@@ -47,6 +47,11 @@ constant-$\mu$ and constant-$N$ heat capacities are different functions. A final
 strand runs the argument backwards: a phase transition exists only in the
 thermodynamic limit, so no finite simulation displays one, and
 Section~\ref{sec:fss} turns that obstruction into a measuring instrument.
+Section~\ref{sec:filters} descends to the microscopic side: for independent
+levels in the grand canonical ensemble every observable is the single-particle
+spectrum seen through its own filter, all centred on $\mu$ and all of width set
+by $T$ alone, but of different shapes --- so that the entropy counts the levels
+that are undecided while the heat capacity is exactly blind to them.
 Peripheral derivations and numerical practice are collected in the appendices.
 \end{abstract}
 
@@ -1918,6 +1923,523 @@ fluctuation projected out, i.e.\ a conditional variance.
 Appendix~\ref{app:bookkeeping} checks both formulas against the classical ideal
 gas, where the naive grand-canonical answer is not even $\mu$-independent and the
 correction term restores $\tfrac32Nk_B$ exactly.
+
+\section{Microscopic view: thermodynamics as a filter on the spectrum}
+\label{sec:filters}
+
+Everything so far has been top-down: a potential is postulated, Legendre
+transformed, and differentiated. This section runs the chain in the opposite
+direction for the one case in which it can be run explicitly --- a system of
+independent fermionic levels in the grand canonical ensemble --- and asks what a
+measurement at temperature $T$ actually \emph{sees} of the spectrum. The answer
+is sharper than the usual slogan that thermodynamics probes states within $k_BT$
+of the chemical potential. Each observable turns out to be the spectrum viewed
+through its \emph{own} kernel: the kernels are all centred on $\mu$ and all have a
+width set by $T$ alone and by no property of the spectrum, but they differ in
+shape, and the differences are physical. The heat capacity, in particular, is
+exactly blind to the levels sitting at $\mu$.
+
+Two remarks on scope before the derivation. The per-level factorisation below is
+special to a Hamiltonian quadratic in the fermion operators; the fluctuation
+identity it produces, Eq.~\eqref{eq:filt_C_fluct}, is completely general and holds
+for any grand canonical system. And the whole construction is at fixed $\mu$;
+Section~\ref{sec:filt_muN} converts to fixed $N$ using the formula of
+Section~\ref{sec:caveat}, which is not always a small correction.
+
+\subsection{The two-level decomposition}
+\label{sec:filt_twolevel}
+
+Take
+\[
+\hat H=\sum_\lambda\varepsilon_\lambda\,\hat n_\lambda ,
+\qquad
+\hat N=\sum_\lambda\hat n_\lambda ,
+\qquad
+\hat n_\lambda=c^\dagger_\lambda c^{\phantom\dagger}_\lambda ,
+\]
+where $\lambda$ runs over single-particle orbitals (spin and any other internal
+label included) and $\hat n_\lambda$ has eigenvalues $0,1$. Nothing is idealised
+in the step: for any quadratic Hamiltonian the $\varepsilon_\lambda$ are its
+exact eigenvalues, including in a disordered or inhomogeneous sample where they
+are not labelled by momentum.
+
+Because $\hat H-\mu\hat N=\sum_\lambda(\varepsilon_\lambda-\mu)\hat n_\lambda$ is
+a sum of commuting one-orbital terms, the trace defining $\Xi$ factorises over
+$\lambda$ and each factor is a two-state sum, $\hat n_\lambda\in\{0,1\}$:
+\begin{equation}\label{eq:filt_Xi}
+\Xi(T,\mu)=\prod_\lambda\Big(1+e^{-\beta(\varepsilon_\lambda-\mu)}\Big),
+\qquad
+\Omega=-k_BT\sum_\lambda\ln\Big(1+e^{-\beta(\varepsilon_\lambda-\mu)}\Big).
+\end{equation}
+The orbitals are statistically independent --- a fact used twice below, once for
+the entropy and once for the variance.
+
+Introduce the dimensionless distance from the chemical potential,
+\begin{equation}\label{eq:filt_x}
+\boxed{\;x_\lambda\equiv\frac{\varepsilon_\lambda-\mu}{2k_BT}\;}
+\end{equation}
+so that $\beta(\varepsilon_\lambda-\mu)=2x_\lambda$. The factor of two is not
+cosmetic. A single orbital in the grand canonical ensemble is a two-level system
+with levels $0$ and $\varepsilon_\lambda-\mu$, i.e.\ a spin-$\tfrac12$ in a field,
+and $x_\lambda$ is the distance from the \emph{midpoint} of that pair, the
+variable in which the problem is manifestly symmetric. Extracting the midpoint is
+exactly the algebraic identity
+\begin{equation}\label{eq:filt_identity}
+\ln\big(1+e^{-2x}\big)
+=\ln\Big(e^{-x}\big(e^{x}+e^{-x}\big)\Big)
+=-x+\ln\big(2\cosh x\big),
+\end{equation}
+whose first term is the $T$-independent zero-point piece and whose second is the
+entire thermal content. Substituting into Eq.~\eqref{eq:filt_Xi},
+\begin{equation}\label{eq:filt_Omega}
+\Omega(T,\mu)=\sum_\lambda\Big[\;\tfrac12\big(\varepsilon_\lambda-\mu\big)
+\;-\;k_BT\,\ln\big(2\cosh x_\lambda\big)\;\Big].
+\end{equation}
+Each orbital contributes its own two-level grand potential, and no expansion or
+approximation has been made.
+
+\paragraph{Entropy.} Differentiate at fixed $\mu$. Since $x_\lambda\propto1/T$,
+\begin{equation}\label{eq:filt_dxdT}
+\left(\frac{\partial x_\lambda}{\partial T}\right)_{\!\mu}=-\frac{x_\lambda}{T},
+\end{equation}
+which is the one relation the rest of the subsection rests on. The first term of
+Eq.~\eqref{eq:filt_Omega} is temperature independent, so with
+$S=-(\partial\Omega/\partial T)_{V,\mu}$,
+\[
+-\frac{\partial}{\partial T}\Big[-k_BT\ln(2\cosh x_\lambda)\Big]_\mu
+=k_B\ln(2\cosh x_\lambda)+k_BT\tanh x_\lambda
+\left(\frac{\partial x_\lambda}{\partial T}\right)_{\!\mu},
+\]
+and inserting Eq.~\eqref{eq:filt_dxdT},
+\begin{equation}\label{eq:filt_S}
+S(T,\mu)=k_B\sum_\lambda\Big[\;\ln\big(2\cosh x_\lambda\big)
+\;-\;x_\lambda\tanh x_\lambda\;\Big].
+\end{equation}
+It is worth checking this against the Gibbs entropy of independent orbitals,
+$S=-k_B\sum_\lambda[\,n_\lambda\ln n_\lambda+(1-n_\lambda)\ln(1-n_\lambda)\,]$.
+The Fermi factor written in the symmetric variable is
+\begin{equation}\label{eq:filt_n}
+n_\lambda=\frac{1}{1+e^{2x_\lambda}}=\frac{e^{-x_\lambda}}{2\cosh x_\lambda},
+\qquad
+1-n_\lambda=\frac{e^{x_\lambda}}{2\cosh x_\lambda},
+\qquad
+1-2n_\lambda=\tanh x_\lambda ,
+\end{equation}
+so $\ln n_\lambda=-x_\lambda-\ln(2\cosh x_\lambda)$ and
+$\ln(1-n_\lambda)=+x_\lambda-\ln(2\cosh x_\lambda)$, whence the bracket is
+$\ln(2\cosh x_\lambda)-x_\lambda(1-2n_\lambda)$, which is
+Eq.~\eqref{eq:filt_S}. The two routes agree, as they must.
+
+\paragraph{Heat capacity.} Write the per-orbital entropy as
+$s(x)=k_B[\ln(2\cosh x)-x\tanh x]$. Its derivative telescopes,
+\begin{equation}\label{eq:filt_sprime}
+\frac{ds}{dx}=k_B\big[\tanh x-\tanh x-x\operatorname{sech}^2x\big]
+=-k_B\,x\operatorname{sech}^2x ,
+\end{equation}
+the cancellation being the reason the entropy filter is smooth at its maximum.
+With $C_\mu\equiv T(\partial S/\partial T)_{V,\mu}$ and
+Eq.~\eqref{eq:filt_dxdT},
+\begin{equation}\label{eq:filt_C}
+\boxed{\;C_\mu(T)=k_B\sum_\lambda x_\lambda^{2}\operatorname{sech}^2x_\lambda\;}
+\end{equation}
+Every term is non-negative, so $C_\mu>0$ level by level --- the stability result
+of Section~\ref{sec:convexity}, here without any thermodynamic argument.
+
+\paragraph{The same quantity as a fluctuation.} Section~\ref{sec:caveat} gives
+$C_\mu=\Var(E-\mu N)/k_BT^{2}$ for any grand canonical system. For independent
+orbitals $\hat H-\mu\hat N=\sum_\lambda(\varepsilon_\lambda-\mu)\hat n_\lambda$
+with independent $\hat n_\lambda$, and since $\hat n_\lambda^2=\hat n_\lambda$,
+\begin{equation}\label{eq:filt_var_n}
+\Var(\hat n_\lambda)=n_\lambda(1-n_\lambda)
+=\frac{e^{-x_\lambda}e^{x_\lambda}}{4\cosh^2x_\lambda}
+=\tfrac14\operatorname{sech}^2x_\lambda
+=-k_BT\,\frac{\partial n_\lambda}{\partial\varepsilon_\lambda}\,,
+\end{equation}
+so that, using $(\varepsilon_\lambda-\mu)^2=4(k_BT)^2x_\lambda^2$,
+\begin{equation}\label{eq:filt_C_fluct}
+\frac{\Var(E-\mu N)}{k_BT^{2}}
+=\frac{1}{k_BT^{2}}\sum_\lambda(\varepsilon_\lambda-\mu)^2\,
+\tfrac14\operatorname{sech}^2x_\lambda
+=k_B\sum_\lambda x_\lambda^{2}\operatorname{sech}^2x_\lambda ,
+\end{equation}
+identical to Eq.~\eqref{eq:filt_C}. The two readings of the same number ---
+a sum of two-level Schottky contributions, and a variance of $E-\mu N$ --- are
+the two halves of the discussion in Section~\ref{sec:filt_blind}.
+
+\subsection{The filters}
+\label{sec:filt_kernels}
+
+Introduce the single-particle density of states
+$\rho(\varepsilon)=\sum_\lambda\delta(\varepsilon-\varepsilon_\lambda)$ and
+replace the sums by integrals. Equations~\eqref{eq:filt_S} and~\eqref{eq:filt_C},
+together with $N=\sum_\lambda n_\lambda$, become
+\begin{equation}\label{eq:filt_integrals}
+\boxed{\;
+\mathcal{O}(T,\mu)=\int\!d\varepsilon\;\rho(\varepsilon)\;
+w_{\mathcal{O}}\!\left(\frac{\varepsilon-\mu}{2k_BT}\right)\;}
+\end{equation}
+with the four kernels
+\begin{equation}\label{eq:filt_kernels}
+\begin{aligned}
+C_\mu:&\ \ w_c(x)=k_B\,x^{2}\operatorname{sech}^{2}x, &
+S:&\ \ w_S(x)=k_B\big[\ln(2\cosh x)-x\tanh x\big],\\[2pt]
+\left(\tfrac{\partial N}{\partial T}\right)_{\!\mu}\!:&\ \
+w_{N,T}(x)=\frac{x\operatorname{sech}^{2}x}{2T}, &
+\left(\tfrac{\partial N}{\partial\mu}\right)_{\!T}\!:&\ \
+w_{N,\mu}(x)=\frac{\operatorname{sech}^{2}x}{4k_BT} .
+\end{aligned}
+\end{equation}
+The last two follow from Eq.~\eqref{eq:filt_n} by the same one-line
+differentiations, $\partial n/\partial x=-\tfrac12\operatorname{sech}^2x$
+together with Eq.~\eqref{eq:filt_dxdT} and
+$(\partial x/\partial\mu)_T=-1/2k_BT$; they are needed in
+Section~\ref{sec:filt_muN}.
+
+Three structural facts hold for all four.
+
+\paragraph{(i) The width is set by $T$ alone.} Every kernel is a fixed function of
+$(\varepsilon-\mu)/2k_BT$. The spectrum enters Eq.~\eqref{eq:filt_integrals} only
+through $\rho$; it contributes nothing to the resolution of the instrument. This
+is the scale covariance of the Boltzmann weight, seen one level at a time: a
+change of temperature dilates the kernel about $\mu$ without deforming it.
+
+\paragraph{(ii) Parity is fixed by the observable.} $w_c$, $w_S$ and $w_{N,\mu}$
+are even; $w_{N,T}$ is odd. Consequently the even observables are sensitive to
+$\rho$ symmetrised about $\mu$, and $(\partial N/\partial T)_\mu$ measures the
+\emph{asymmetry} of $\rho$ across the window --- it vanishes identically for a
+particle--hole symmetric spectrum, which is why the fixed-$N$ correction of
+Section~\ref{sec:caveat} disappears at half filling.
+
+\paragraph{(iii) The shapes differ, and the difference is physical.} Collecting
+the relevant constants:
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+Kernel & value at $\varepsilon=\mu$ & peak at $|\varepsilon-\mu|$
+& peak height & $\int\!d\varepsilon\,w$ \\
+\midrule
+$w_c/k_B$ & $0$ & $2.3994\,k_BT$ & $0.43923$ & $\pi^{2}k_BT/3$ \\
+$w_S/k_B$ & $\ln2$ & $0$ & $\ln 2$ & $\pi^{2}k_BT/3$ \\
+$w_{N,\mu}$ & $1/4k_BT$ & $0$ & $1/4k_BT$ & $1$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Each entry is elementary.
+$w_c'\propto 2x\operatorname{sech}^2x\,(1-x\tanh x)$ vanishes at the root $x_\ast$
+of $x\tanh x=1$, namely $x_\ast=1.199679$, i.e.\
+$|\varepsilon-\mu|=2x_\ast k_BT=2.3994\,k_BT$; at that point
+$\operatorname{sech}^2x_\ast=1-\tanh^2x_\ast=1-x_\ast^{-2}$, so the height is
+exactly
+\begin{equation}\label{eq:filt_peak}
+\max_x\,\frac{w_c}{k_B}=x_\ast^{2}-1=0.439229\ldots
+\end{equation}
+The areas follow from $d\varepsilon=2k_BT\,dx$ and
+$\int_{-\infty}^{\infty}x^{2}\operatorname{sech}^{2}x\,dx=\pi^{2}/6$, while
+$\int w_S\,dx$ reduces to the same integral by parts, using
+Eq.~\eqref{eq:filt_sprime}:
+\begin{equation}\label{eq:filt_byparts}
+\int_{-\infty}^{\infty}\!\frac{w_S}{k_B}\,dx
+=\Big[x\,\frac{w_S}{k_B}\Big]_{-\infty}^{\infty}
++\int_{-\infty}^{\infty}\! x^{2}\operatorname{sech}^{2}x\,dx
+=\frac{\pi^{2}}{6},
+\end{equation}
+the boundary term vanishing because $w_S\simeq 2k_B|x|e^{-2|x|}$ at large $|x|$.
+Finally $\int\operatorname{sech}^2x\,dx=2$ gives unit area for $w_{N,\mu}$.
+
+Three consequences deserve to be stated separately.
+
+The unit area of $w_{N,\mu}$ is the statement
+$(\partial N/\partial\mu)_T\to\rho(\mu)$ for a smooth $\rho$: the compressibility
+counts states at the Fermi level with weight one, and it is the only one of the
+four that does.
+
+The equal areas of $w_c$ and $w_S$ are the reason that
+\begin{equation}\label{eq:filt_sommerfeld}
+C_\mu\;\simeq\;S\;\simeq\;\frac{\pi^{2}}{3}k_B^{2}T\,\rho(\mu)
+\qquad(\rho\text{ smooth on the scale }k_BT),
+\end{equation}
+which is the Sommerfeld result, here obtained without a Sommerfeld expansion: if
+$\rho$ is constant across the window it comes out of the integral and only the
+kernel area survives. That $S$ and $C_\mu$ coincide at this order, despite
+weighting entirely different levels, is a coincidence of areas and nothing
+deeper; Section~\ref{sec:filt_power} shows it fail as soon as $\rho$ has
+structure.
+
+The area of $w_c$ is $\pi^{2}k_BT/3\approx3.29\,k_BT$, which is the precise
+version of ``the specific heat counts the levels within $k_BT$ of the chemical
+potential'': the exact statement is that $C_\mu/k_B$ equals the number of levels
+in a \emph{box} of width $3.29\,k_BT$ centred on $\mu$ and of unit weight. The
+actual kernel is not that box, and the difference is the subject of the next
+subsection.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.30cm,y=4.30cm]
+  \draw[->] (-4.3,0) -- (4.5,0) node[below right]{$x=(\varepsilon-\mu)/2k_BT$};
+  \draw[->] (0,0) -- (0,0.83) node[left]{$w/k_B$};
+  \foreach \t in {-4,-3,-2,-1,1,2,3,4}
+    \draw (\t,0) -- (\t,-0.012) node[below,font=\scriptsize]{$\t$};
+  \draw[dotted,gray] (-4.3,0.6931) -- (4.3,0.6931);
+  \node[anchor=east,font=\scriptsize,inner sep=1.5pt] at (-4.32,0.6931) {$\ln2$};
+  \draw[dotted,gray] (-4.3,0.4392) -- (4.3,0.4392);
+  \node[anchor=west,font=\scriptsize,inner sep=1.5pt] at (4.32,0.4392) {$0.4392$};
+  \draw[very thick,blue!60!black,domain=-4.3:4.3,samples=180,smooth,variable=\x]
+       plot ({\x},{ln(2*cosh(\x))-\x*tanh(\x)});
+  \draw[very thick,red!75!black,domain=-4.3:4.3,samples=180,smooth,variable=\x]
+       plot ({\x},{\x*\x/(cosh(\x)*cosh(\x))});
+  \draw[dotted,gray!80] (1.1997,0) -- (1.1997,0.4392);
+  \draw[dotted,gray!80] (-1.1997,0) -- (-1.1997,0.4392);
+  \fill[red!75!black] (1.1997,0.4392) circle (1.4pt);
+  \fill[red!75!black] (-1.1997,0.4392) circle (1.4pt);
+  \fill[blue!60!black] (0,0.6931) circle (1.4pt);
+  \node[anchor=south west,font=\scriptsize,blue!60!black,inner sep=2pt]
+       at (1.15,0.74) {$w_S$: entropy};
+  \draw[blue!60!black,thin] (1.13,0.76) -- (0.55,0.65);
+  \node[anchor=south west,font=\scriptsize,red!75!black,inner sep=2pt]
+       at (2.10,0.30) {$w_c$: heat capacity};
+  \draw[red!75!black,thin] (2.08,0.33) -- (1.45,0.42);
+\end{tikzpicture}
+\caption{The two kernels of Eq.~\eqref{eq:filt_kernels}, in units of $k_B$,
+against the symmetric variable $x=(\varepsilon-\mu)/2k_BT$. Both are even, both
+are centred on $\mu$, both have width set by $T$ alone, and both enclose the same
+area $\pi^{2}/6$. The entropy kernel peaks at $\mu$ with height $\ln2$ --- one
+undecided orbital carries one bit. The heat-capacity kernel \emph{vanishes} at
+$\mu$ and peaks at $|\varepsilon-\mu|=2.3994\,k_BT$ with height $x_\ast^2-1$.}
+\label{fig:filt_kernels}
+\end{figure}
+
+\subsection{Why the heat capacity is blind to the levels at \texorpdfstring{$\mu$}{mu}}
+\label{sec:filt_blind}
+
+The vanishing of $w_c$ at $\varepsilon=\mu$ --- visible in
+Fig.~\ref{fig:filt_kernels}, and easy to miss because it contradicts the usual
+picture of $c_V$ as a count of thermally ``available'' states --- is explained by
+the fluctuation form, Eq.~\eqref{eq:filt_C_fluct}. Each orbital contributes a
+product of two factors,
+\begin{equation}\label{eq:filt_product}
+\underbrace{(\varepsilon_\lambda-\mu)^{2}}_{\text{energy cost}}
+\;\times\;
+\underbrace{n_\lambda(1-n_\lambda)}_{\text{occupancy variance}}\,,
+\end{equation}
+and the two are maximised in different places. The occupancy variance is
+$\tfrac14\operatorname{sech}^2x_\lambda$: it is largest for a level exactly at
+$\mu$, which is a fair coin, and exponentially small for a level far below $\mu$
+(occupied with certainty) or far above it (empty with certainty). Neither of the
+latter fluctuates, so neither can absorb heat. But a level exactly at $\mu$,
+while maximally undecided, costs nothing to occupy: flipping it moves no energy
+in the grand canonical sense, and it too absorbs no heat.
+
+\begin{quote}
+A heat measurement sees only the levels that are simultaneously
+\emph{undecided} and \emph{displaced}; $|\varepsilon-\mu|=2.4\,k_BT$ is where
+that compromise is optimal.
+\end{quote}
+
+Availability alone is therefore not sufficient. The observable that counts
+undecided levels without the energy weighting is the entropy, whose kernel is
+peaked at $\mu$ with the value $\ln2$ --- one orbital with $n=\tfrac12$ carries
+exactly one bit. Two observables, two questions: $S$ asks how many levels are
+undecided, $C_\mu$ asks how much energy their indecision can move.
+
+The same structure explains the exponential decay on both sides. The rate is set
+by the occupancy variance, $\operatorname{sech}^2x\simeq4e^{-2|x|}$, i.e.\
+$e^{-|\varepsilon-\mu|/k_BT}$ in physical units: a level a few $k_BT$ from the
+chemical potential is frozen, and the polynomial prefactors ($x^2$ for $w_c$,
+$2|x|$ for $w_S$) only decide how the two kernels approach that common fate.
+
+\subsection{Fixed \texorpdfstring{$\mu$}{mu} versus fixed \texorpdfstring{$N$}{N}}
+\label{sec:filt_muN}
+
+Equations~\eqref{eq:filt_C} and~\eqref{eq:filt_integrals} deliver $C_\mu$,
+whereas a calorimeter works at fixed particle number. The conversion is the boxed
+formula of Section~\ref{sec:caveat},
+\begin{equation}\label{eq:filt_CN}
+C_N=C_\mu-T\,
+\frac{\big[(\partial N/\partial T)_{V,\mu}\big]^{2}}
+     {(\partial N/\partial\mu)_{T,V}}\,,
+\end{equation}
+and the kernels of Eq.~\eqref{eq:filt_kernels} say at once how large the
+correction is. By fact (ii) the numerator is an \emph{odd} moment of $\rho$ about
+$\mu$; for $\rho$ smooth on the scale $k_BT$, expanding
+$\rho(\mu+2k_BTx)\simeq\rho(\mu)+2k_BTx\,\rho'(\mu)$ kills the leading term and
+leaves
+\begin{equation}\label{eq:filt_dNdT}
+\left(\frac{\partial N}{\partial T}\right)_{\!V,\mu}
+\simeq 2k_B^{2}T\rho'(\mu)\!\int\! x^{2}\operatorname{sech}^{2}x\,dx
+=\frac{\pi^{2}}{3}k_B^{2}T\,\rho'(\mu),
+\end{equation}
+the standard Sommerfeld result, obtained here as the statement that an odd kernel
+sees only the slope. With
+$(\partial N/\partial\mu)_T\simeq\rho(\mu)$ and
+Eq.~\eqref{eq:filt_sommerfeld}, the relative correction is
+\begin{equation}\label{eq:filt_ratio}
+\boxed{\;\frac{C_\mu-C_N}{C_\mu}\;\simeq\;
+\frac{\pi^{2}}{3}\left(k_BT\,\frac{d\ln\rho}{d\varepsilon}\bigg|_{\mu}\right)^{\!2}\;}
+\end{equation}
+This is the useful form. The correction is second order in the single
+dimensionless group $k_BT\,\rho'/\rho$, i.e.\ in the ratio of the kernel width to
+the scale on which $\rho$ varies. For an ordinary metal, where $\rho$ varies on
+the scale of the bandwidth $W$ and $k_BT/W\sim10^{-2}$, it is of order $10^{-4}$
+and the distinction between $C_\mu$ and $C_N$ is invisible. It ceases to be
+negligible exactly when $\rho$ acquires structure on the scale $k_BT$ --- a van
+Hove singularity at the Fermi level, a pseudogap, a narrow impurity resonance ---
+which is also the regime in which $c_V$ is being measured for what that structure
+says. The correction is largest where it is least convenient to forget, and
+Eq.~\eqref{eq:filt_ratio} shows why the two heat capacities of
+Section~\ref{sec:caveat} are not a bookkeeping nicety.
+
+\subsection{A power-law density of states}
+\label{sec:filt_power}
+
+The value of the filter form is that scale covariance --- fact (i) --- turns a
+scale-free spectrum into an exponent by inspection. Let
+\begin{equation}\label{eq:filt_powerlaw}
+\rho(\varepsilon)=A\,|\varepsilon-\mu|^{r},\qquad r>-1,
+\end{equation}
+over a window wide compared with $k_BT$; $r=0$ is a flat band, $r=1$ a Dirac
+point in two dimensions, $r=2$ in three, $-1<r<0$ a divergent van Hove-like
+enhancement. Substituting into Eq.~\eqref{eq:filt_integrals} with
+$\varepsilon-\mu=2k_BTx$ and $d\varepsilon=2k_BT\,dx$, the temperature comes out
+of the integral entirely:
+\begin{equation}\label{eq:filt_power_C}
+C_\mu=k_B A\,(2k_BT)^{r+1}\!\!\int_{-\infty}^{\infty}\!\!|x|^{r}
+x^{2}\operatorname{sech}^{2}x\,dx
+\;=\;2k_B A\,(k_BT)^{r+1}\,\Gamma(r+3)\,\eta(r+2),
+\end{equation}
+where the moment integral is evaluated by expanding
+$\operatorname{sech}^{2}x=4\sum_{n\ge1}(-1)^{n-1}n\,e^{-2nx}$ term by term for
+$x>0$, giving $\int_0^\infty x^{s-1}\operatorname{sech}^2x\,dx=
+4\,\Gamma(s)\,\eta(s-1)/2^{s}$ with $\eta(s)=(1-2^{1-s})\zeta(s)$ the Dirichlet
+eta function. At $r=0$ this returns
+$2k_BA\,k_BT\,\Gamma(3)\eta(2)=\tfrac{\pi^2}{3}k_B^{2}AT$, i.e.\
+Eq.~\eqref{eq:filt_sommerfeld}. So
+\begin{equation}\label{eq:filt_exponent}
+\boxed{\;\rho\sim|\varepsilon-\mu|^{r}\;\Longrightarrow\;C_\mu\sim T^{\,r+1},
+\qquad \frac{C_\mu}{T}\sim T^{\,r}\;}
+\end{equation}
+The entropy carries the \emph{same} exponent with a different amplitude, and the
+ratio is exact. Integrating $\int_0^\infty x^{r}w_S\,dx$ by parts with
+Eq.~\eqref{eq:filt_sprime} gives
+$\int_0^\infty x^{r}w_S\,dx=(r+1)^{-1}k_B\int_0^\infty x^{r+2}
+\operatorname{sech}^2x\,dx$, so that
+\begin{equation}\label{eq:filt_SC}
+\boxed{\;\frac{S}{C_\mu}=\frac{1}{r+1}\qquad\text{exactly, for }
+\rho\propto|\varepsilon-\mu|^{r}\;}
+\end{equation}
+The Sommerfeld coincidence $S=C_\mu$ is the special case $r=0$ and nothing more.
+Three readings of Eq.~\eqref{eq:filt_SC} are worth having.
+
+For $r>0$ (a semimetal) $S<C_\mu$: states are scarce at $\mu$, and the few that
+the window catches are far enough out to be heavily energy weighted.
+
+For $-1<r<0$ the Sommerfeld ratio $C_\mu/T\sim T^{r}$ \emph{diverges} as
+$T\to0$, while $C_\mu$ itself still vanishes. This is worth separating, because
+the two are routinely conflated: a diverging $\gamma=C/T$ is a statement about
+the enhancement of the density of states at $\mu$, not about a divergent heat
+capacity, and it is entirely compatible with the third law.
+
+As $r\to-1^{+}$, $S/C_\mu\to\infty$: the entropy stops vanishing as $T\to0$ and
+tends to a residual value fixed by the lower cutoff of the scale-free window.
+For $r\le-1$ the integral $\int d\varepsilon\,\rho$ diverges at $\mu$: there would
+be infinitely many thermally active levels at arbitrarily low energy, and both
+the third law and the normalisability of $\rho$ fail. The realisable extreme is
+therefore $r\to-1$, i.e.\ a residual entropy, and not a divergent $C$.
+
+\subsection{Reading the shape of \texorpdfstring{$c(T)$}{c(T)}}
+\label{sec:filt_shape}
+
+The elementary reading of the specific heat is calorimetric: $c=\dbar Q/dT$, so
+$\Delta T\simeq\Delta Q/c$, and a large $c$ means that a given amount of heat
+raises the temperature little because the system has somewhere to put it. The
+filter form makes this quantitative and corrects it in one respect: ``somewhere
+to put it'' is neither the total number of states nor the number below $k_BT$,
+but the number that $w_c$ actually weighs. With that correction, the standard
+readings of the \emph{shape} of $c(T)$ follow, and they are worth listing because
+the practical use of a measured $c(T)$ consists in running them backwards.
+
+\paragraph{Rise.} An increase of $c$ with temperature means that the kernel is
+dilating into a region of higher level density, so that each further unit of
+temperature activates more excitations than the last. Equation~\eqref{eq:filt_exponent}
+is the quantitative version: a pure power $c\sim T^{r+1}$ is the case in which the
+spectrum presents no scale for the dilation to encounter, and the measured
+exponent returns $r$ directly.
+
+\paragraph{Plateau.} A temperature-independent $c$ is the marginal case
+$r+1=0$ of Eq.~\eqref{eq:filt_exponent}, i.e.\ $\rho\propto|\varepsilon-\mu|^{-1}$,
+for which the power-law integrals fail logarithmically and the level count in a
+window of width $\Delta$ grows as $\ln\Delta$ rather than as a power. Since
+Section~\ref{sec:filt_power} showed $r\le-1$ to be non-normalisable, a plateau
+cannot extend to $T\to0$: it is necessarily the behaviour \emph{between} the two
+cutoffs of a scale-free window, which is what a geometric hierarchy of levels
+produces, and it terminates at the bottom in the residual entropy that the lower
+cutoff fixes. A plateau is thus considerably more informative than it looks --- it
+identifies logarithmic counting, and it comes with a prediction for where it must
+end.
+
+\paragraph{Peaks, and the staircase caveat.} A peak is the generic shape whenever
+the spectrum has a largest relevant scale. Its rising side is the filling of the
+window; its falling side is \emph{exhaustion} --- once $k_BT$ exceeds the largest
+splitting in the group of levels concerned, they are all equally undecided, their
+occupations stop changing with temperature, and by
+Eq.~\eqref{eq:filt_product} the sector ceases to absorb heat. The bookkeeping is
+the entropy sum rule, which follows immediately from $C=T(\partial S/\partial T)$:
+\begin{equation}\label{eq:filt_sumrule}
+\int_0^{\infty}C(T)\,\frac{dT}{T}=S(\infty)-S(0).
+\end{equation}
+The area under $c/T$ \emph{counts the states released}, and a peak is the only
+way a finite count can be released over a finite range.
+
+The caveat concerns the frequent claim that a tiered spectrum gives a staircase
+in $c$. It does not. A set of \emph{well-separated} tiers gives a staircase in
+$S(T)$, whose step heights are the logarithms of the tier multiplicities, and a
+\emph{sequence of peaks} in $c(T)$, one per tier, with $c$ returning towards zero
+between them. A staircase in $c$ requires the tiers to overlap on a logarithmic
+temperature axis, i.e.\ to be dense enough to produce the logarithmic counting of
+the previous paragraph.
+
+\paragraph{High temperature.} Whether $c$ must vanish as $T\to\infty$ is settled
+by the same sum rule, and the answer is conditional. If the spectrum is bounded
+and the degrees of freedom have finite dimension, then $S(\infty)$ is bounded by
+$k_B\ln(\dim\mathcal{H})$ and Eq.~\eqref{eq:filt_sumrule} forces $c\to0$; the
+explicit form is the Schottky tail obtained from Eq.~\eqref{eq:filt_C} at
+$x_\lambda\to0$,
+\begin{equation}\label{eq:filt_schottky}
+C_\mu\;\xrightarrow[T\to\infty]{}\;k_B\sum_\lambda x_\lambda^{2}
+=\frac{\Var_\infty(E-\mu N)}{k_BT^{2}}\;\propto\;\frac{1}{T^{2}},
+\end{equation}
+with a finite coefficient. Degrees of freedom of unbounded spectrum and unbounded
+occupation --- harmonic modes, which fall outside the two-level decomposition of
+Section~\ref{sec:filt_twolevel} --- instead settle at the equipartition value
+$k_B$ per mode, with $S$ growing as $\ln T$ without bound. A vanishing
+high-temperature $c$ is thus a statement about the finite dimension of the local
+Hilbert space, not a thermodynamic requirement.
+
+\paragraph{Divergence.} This is the informative case, and the filter form settles
+what it can and cannot mean. Since Eq.~\eqref{eq:filt_C} is a sum of terms each
+bounded by Eq.~\eqref{eq:filt_peak}, the bound holds term by term:
+\begin{equation}\label{eq:filt_bound}
+\boxed{\;C_\mu\;\leq\;0.4393\,k_B\times(\text{number of orbitals})\;}
+\end{equation}
+at \emph{every} temperature. A lattice model with finitely many orbitals per site
+and a temperature-independent spectrum therefore has an $\mathcal{O}(k_B)$ heat
+capacity per site and cannot diverge at all. Every divergence is consequently a
+statement that the spectrum itself \emph{moves}: with temperature, through
+self-consistency --- an order parameter that reconstructs the band as it
+re-equilibrates --- or with a control parameter, through the accumulation of
+level crossings at a transition. And a divergence as $T\to0$ is excluded on the
+second, independent ground of Section~\ref{sec:filt_power}: it would require
+$r<-1$, hence a non-normalisable $\rho$ and a violation of the third law. What
+diverges in a non-Fermi-liquid regime is the Sommerfeld ratio $C/T\sim T^{r}$,
+not $C$.
+
+\begin{remark}
+Equation~\eqref{eq:filt_bound} is a statement about non-interacting levels, and
+the escape clause in it --- ``temperature-independent spectrum'' --- is where all
+the interesting physics of strongly correlated systems lives. It is nevertheless
+the right null hypothesis: any claim of an anomalously large $c$ carries the
+burden of identifying either the extra orbitals or the moving spectrum that
+produces it.
+\end{remark}
 
 \section{Summary}
 
@@ -4036,6 +4558,323 @@ Table~\ref{tab:appising} collects the three regimes, and
 Figure~\ref{fig:appising2}c shows the exact finite-$N$ curves crossing at
 $U_4^{\ast}$.
 
+\subsection{Spectral view: configurations, levels, and three different gaps}
+\label{sec:appising:spectrum}
+
+Everything above is written in terms of $m$ and $f(m)$. It is worth once
+translating back into the language of Section~\ref{sec:filters} --- microstates,
+energy levels, degeneracies --- because the translation exposes a distinction
+that the order-parameter language hides. ``The gap closes at $T_c$'' is said
+routinely about a continuous transition, and in this model there are \emph{three}
+candidate gaps with three different exponents, only one of which closes as
+$|t|^{1/2}$, and none of which is the splitting between the two ordered states.
+
+\paragraph{The spectrum is an inverted parabola.} At $h=0$ the Curie--Weiss
+Hamiltonian of Section~\ref{sec:appising:exact} depends on the configuration only
+through $m$, so the $2^{N}$ configurations collapse onto $N+1$ distinct energy
+levels,
+\begin{equation}\label{eq:isspec_levels}
+E(m)=-\frac{N k_BT_c}{2}\,m^{2},
+\qquad
+g(m)=\binom{N}{N(1+m)/2}=e^{N\mathfrak{s}(m)+O(\ln N)},
+\end{equation}
+with $m$ running over the $N+1$ values $\{-1,-1+\tfrac2N,\dots,1\}$.
+The structure is the exact inverse of the familiar one. The \emph{ground} level
+$E_0=-Nk_BT_c/2$ at $m=\pm1$ is a doublet --- two configurations out of $2^{N}$ ---
+and the \emph{top} level $E=0$ at $m=0$ carries $\binom{N}{N/2}\simeq2^{N}$ of
+them. Degeneracy therefore increases monotonically with energy across the whole
+spectrum, whose total width is $Nk_BT_c/2$ and whose total entropy span is
+$Nk_B\ln2$. The level spacing is not uniform either: adjacent levels differ by
+$\delta m=2/N$, hence by
+\begin{equation}\label{eq:isspec_spacing}
+\delta E=2k_BT_c\,|m| ,
+\end{equation}
+so the levels are widely spaced at the bottom of the band and accumulate at the
+top. In particular the gap above the ordered ground state, obtained by flipping
+one spin, is $2k_BT_c(1-1/N)$: an $O(1)$ gap that does not depend on temperature
+at all. Indeed nothing in Eqs.~\eqref{eq:isspec_levels}--\eqref{eq:isspec_spacing}
+does: the Hamiltonian does not know about $T_c$. What depends on temperature is
+\emph{where on this fixed ladder the thermal state sits}, and because the spacing
+$\delta E$ is itself a function of $m$, that turns out to be enough to produce
+the closing gap of mean-field theory --- as the next paragraphs make precise.
+
+\paragraph{The whole paramagnet is one point of the spectrum.} The microcanonical
+route makes this concrete. With $u=E/N=-\tfrac12k_BT_cm^{2}$ and
+$s=k_B\mathfrak{s}(m)$, using $\mathfrak{s}'(m)=-\operatorname{artanh}m$ and
+$du=-k_BT_c m\,dm$,
+\begin{equation}\label{eq:isspec_micro}
+\frac{1}{T}=\frac{ds}{du}
+=\frac{k_B\operatorname{artanh}m}{k_BT_c\,m}
+\qquad\Longleftrightarrow\qquad
+m=\tanh\!\Big(\frac{m}{\theta}\Big),
+\end{equation}
+which is the Weiss equation again --- a third derivation, and a check on the
+first two. But read it as it stands: $\operatorname{artanh}(m)/m\geq1$ for all
+$m$, with equality only at $m=0$, so $T\leq T_c$ over the \emph{entire} energy
+range $-\tfrac12k_BT_c\leq u<0$. The top of the spectrum is at $T_c$, not at
+$T=\infty$. Every temperature above $T_c$ maps to the same point $u=0$, and the
+paramagnetic phase occupies a single level.
+
+That is the spectral content of a fact recorded in Section~\ref{sec:appising:caseA}
+and usually stated apologetically: mean-field theory gives the paramagnet
+$c=0$. It is not that the calculation is crude, but that there is no energy left
+to absorb --- above $T_c$ the system already sits at the top of its own spectrum.
+The residue at finite $N$ is exactly the Schottky tail of
+Eq.~\eqref{eq:filt_schottky}: at $T=\infty$ the spins are independent, so
+$\Var(m^{2})=2/N^{2}$ and
+\begin{equation}\label{eq:isspec_schottky}
+\Var_\infty(E)=\frac{(k_BT_c)^{2}}{2}
+\qquad\Longrightarrow\qquad
+C=\frac{\Var_\infty(E)}{k_BT^{2}}=\frac{k_B}{2}\Big(\frac{T_c}{T}\Big)^{2},
+\end{equation}
+a heat capacity of order $k_B$ for the \emph{whole system}, i.e.\ $O(1/N)$ per
+site, which vanishes in the thermodynamic limit.
+
+\paragraph{Three gaps.} Now the transition. Three quantities compete for the name
+``the gap'', and they are genuinely different.
+
+\emph{(1) The splitting between the two ordered configurations is exactly zero,
+at every temperature.} The states $m=+1$ and $m=-1$ are exchanged by the
+$\mathbb{Z}_2$ symmetry of $\hat H$, so they are degenerate at $T=0$, at $T_c$,
+and everywhere between. Nothing closes because nothing was ever open. What
+separates the ordered states is not an energy difference but a \emph{path}: to
+carry the system from one to the other, $m$ must pass through $0$, and the cost of
+the crossing is the object that changes with temperature.
+
+\emph{(2) The energy barrier along that path.} At temperature $T$ the thermally
+selected ordered states sit at $m=\pm m_s(T)$, and the crossing point is the
+maximum-entropy level $m=0$. The energetic cost is read straight off
+Eq.~\eqref{eq:isspec_levels},
+\begin{equation}\label{eq:isspec_dE}
+\Delta E(T)=E(0)-E(m_s)=\frac{N k_BT_c}{2}\,m_s(T)^{2}
+\;\simeq\;\frac{3}{2}\,N k_BT_c\,|t| ,
+\end{equation}
+using $m_s^{2}\simeq3|t|$ from Section~\ref{sec:appising:caseA}. This closes
+\emph{linearly} in $|t|$.
+
+\emph{(3) The single-spin (Weiss) gap.} In the decoupled description each site is
+a two-level system in the field $h_{\rm eff}=k_BT_c\,m_s$, with levels at
+$\mp h_{\rm eff}$ and splitting
+\begin{equation}\label{eq:isspec_D1}
+\Delta_1(T)=2k_BT_c\,m_s(T)\;\simeq\;2k_BT_c\sqrt{3|t|} ,
+\end{equation}
+closing as $|t|^{1/2}$. This is the gap that people usually mean when they say
+that the gap protecting the ordered state vanishes at $T_c$, and the first two
+are related by
+\begin{equation}\label{eq:isspec_relation}
+\Delta E=\frac{N\,\Delta_1^{2}}{8k_BT_c} ,
+\end{equation}
+which is the whole content of ``the collective barrier is the square of the
+single-particle gap''.
+
+\paragraph{The closing gap is a spectral statement after all.} It is worth
+spelling out why Eq.~\eqref{eq:isspec_D1} is not in conflict with the fixed
+spectrum of Eq.~\eqref{eq:isspec_levels}, because the two are usually presented
+as if one had to choose between them. Flip one spin in a configuration of
+magnetisation $m$, so that $m\to m-2/N$:
+\begin{equation}\label{eq:isspec_flip}
+E(m-2/N)-E(m)=2k_BT_c\,m-\frac{2k_BT_c}{N} ,
+\end{equation}
+which is the local level spacing $\delta E$ of Eq.~\eqref{eq:isspec_spacing}.
+Evaluated at the thermally selected magnetisation $m=m_s(T)$ this is
+$\Delta_1(T)$ up to $O(1/N)$:
+\begin{equation}\label{eq:isspec_identify}
+\boxed{\;\Delta_1(T)=\delta E\big|_{m=m_s(T)}\;}
+\end{equation}
+So the gap that protects the ordered state \emph{is} an energy gap of the exact
+Hamiltonian --- the cost of the cheapest excitation available to the system at
+the place where it actually sits --- and the familiar statement that it closes as
+$|t|^{1/2}$ is correct as it stands. What has to be said carefully is only the
+mechanism. No level moves. The ladder~\eqref{eq:isspec_levels} is fixed, its
+rungs crowd together towards the top of the band, and heating slides the thermal
+state up the ladder towards the accumulation point at $m=0$. The gap closes
+because of where the state is, not because of where the levels are.
+
+Two riders belong with this. First, ``protects'' is a statement about $\Delta_1$
+measured \emph{against temperature}, not in absolute units. Both $\Delta_1$ and
+$k_BT$ are finite at $T_c$; what decides the fate of the order is the ratio,
+\begin{equation}\label{eq:isspec_ratio_T}
+\frac{\Delta_1}{k_BT}=\frac{2m_s}{\theta}=2\operatorname{artanh}m_s ,
+\end{equation}
+which falls monotonically from $\infty$ at $T=0$ to $0$ at $T_c$, and which fixes
+the fraction of overturned spins $n=(1+e^{\Delta_1/k_BT})^{-1}$ through
+$m_s=1-2n$. Order is destroyed when the cheapest excitation stops being expensive
+\emph{on the scale of $T$}, which is the content of the Weiss equation read
+backwards. Second, $\Delta_1$ is a one-spin quantity, and it is not the splitting
+between the two ordered states, which is zero at every temperature by item (1).
+Conflating the two is what makes the closing gap sound paradoxical; kept apart,
+the $\tfrac12$, $1$, $2$ of Eq.~\eqref{eq:isspec_ratio} are three different
+questions with three different answers.
+
+\paragraph{The free energy closes the barrier one power faster.} Against
+Eq.~\eqref{eq:isspec_dE} set the free-energy barrier computed in
+Section~\ref{sec:appising:caseA}, $\Delta F=\tfrac34Nk_BT_c\,t^{2}$. The two
+differ by the entropy released at the crossing point, $T\Delta S=\Delta E-\Delta
+F$ with $\Delta S=Nk_B[\ln2-\mathfrak{s}(m_s)]$, and expanding
+$\mathfrak{s}(m)=\ln2-m^{2}/2-m^{4}/12-\dots$ shows exactly how the cancellation
+works:
+\begin{equation}\label{eq:isspec_cancel}
+\frac{\Delta F}{N}
+=\underbrace{\frac{k_BT_c}{2}m_s^{2}}_{\Delta E/N}
+-\underbrace{k_BT\Big(\frac{m_s^{2}}{2}+\frac{m_s^{4}}{12}+\dots\Big)}_{T\Delta S/N}
+=\frac{k_BT_c}{2}m_s^{2}\,(1-\theta)-\frac{k_BT}{12}m_s^{4}+\dots
+\end{equation}
+The leading terms cancel \emph{identically} at $\theta=1$; what survives is
+$O(m_s^{2}|t|)=O(t^{2})$. Hence
+\begin{equation}\label{eq:isspec_ratio}
+\boxed{\;
+\Delta_1\sim|t|^{1/2},
+\qquad
+\Delta E\sim|t|,
+\qquad
+\Delta F\sim t^{2},
+\qquad
+\frac{\Delta F}{\Delta E}\simeq\frac{|t|}{2}\;}
+\end{equation}
+Near $T_c$ the entropy of the disordered level pays for all but a fraction
+$|t|/2$ of the energetic cost of crossing it. That is the quantitative version of
+the statement that a continuous transition is driven by entropy: the energy
+barrier is still there, and still extensive, but it has been almost exactly
+refunded.
+
+\begin{center}
+\begin{tabular}{cccccc}
+\toprule
+$\theta$ & $|t|$ & $m_s$ & $\Delta_1/k_BT_c$ & $\Delta E/Nk_BT_c$
+& $\Delta F/Nk_BT_c$ \\
+\midrule
+$0.99$ & $0.01$ & $0.17251$ & $0.34502$ & $0.014881$ & $0.0000747$ \\
+$0.95$ & $0.05$ & $0.37949$ & $0.75897$ & $0.072005$ & $0.0018560$ \\
+$0.90$ & $0.10$ & $0.52543$ & $1.05086$ & $0.138038$ & $0.0073432$ \\
+$0.80$ & $0.20$ & $0.71041$ & $1.42082$ & $0.252342$ & $0.0286816$ \\
+$0.60$ & $0.40$ & $0.90733$ & $1.81466$ & $0.411630$ & $0.1082834$ \\
+$0.20$ & $0.80$ & $0.99991$ & $1.99982$ & $0.499909$ & $0.3613797$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Both barriers are extensive, which is why symmetry breaking survives the
+thermodynamic limit at every $T<T_c$: the ratio $P_N(0)/P_N(\pm m_s)=e^{-\beta
+N\Delta F}$ of Section~\ref{sec:appising:caseA} is exponentially small in $N$ for
+any fixed $t<0$. The $t^{2}$ rather than $|t|$ is what decides how \emph{close}
+to $T_c$ a finite system still looks bimodal, namely $N t^{2}\gtrsim1$; and
+$Nt^{2}\sim1$ is precisely the finite-size scaling combination $L^{1/\nu}t$ with
+$N=L^{d}$, $d=4$ and $\nu=\tfrac12$, so the spectral bookkeeping and the scaling
+analysis of Section~\ref{sec:fss} agree, as they must.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=2.25cm,y=2.00cm]
+  \draw[->] (-1.32,0) -- (1.40,0) node[below right,inner sep=1pt]{$m$};
+  \draw[very thick,red!75!black,domain=-1:1,samples=90,smooth,variable=\x]
+       plot ({\x},{-0.5*\x*\x});
+  \draw[very thick,blue!60!black,domain=-0.9995:0.9995,samples=140,smooth,variable=\x]
+       plot ({\x},{(-(1+\x)/2*ln((1+\x)/2)-(1-\x)/2*ln((1-\x)/2))});
+  \fill[red!75!black] (-1,-0.5) circle (1.7pt); \fill[red!75!black] (1,-0.5) circle (1.7pt);
+  \fill[red!75!black] (0,0) circle (1.7pt);
+  \draw[dotted,gray] (-1,0) -- (-1,-0.5);  \draw[dotted,gray] (1,0) -- (1,-0.5);
+  \node[anchor=north,font=\scriptsize] at (-1,-0.02) {$-1$};
+  \node[anchor=north,font=\scriptsize] at (1,-0.02) {$+1$};
+  \node[anchor=west,font=\scriptsize,red!75!black,inner sep=2pt] at (1.05,-0.50)
+       {$u/k_BT_c$};
+  \node[anchor=west,font=\scriptsize,blue!60!black,inner sep=2pt] at (0.72,0.60)
+       {$\mathfrak{s}(m)=\ln g/N$};
+  \draw[blue!60!black,thin] (0.70,0.60) -- (0.50,0.55);
+  \node[anchor=south,font=\scriptsize,align=center,inner sep=2pt] at (-0.72,0.80)
+       {top of band, $E=0$\\ $g\simeq2^{N}$, all $T\geq T_c$};
+  \draw[thin,gray!70] (-0.30,0.78) -- (-0.05,0.06);
+  \node[anchor=north,font=\scriptsize,align=center,inner sep=2pt] at (0,-0.62)
+       {ground doublet, $g=1$};
+  \draw[thin,gray!70] (-0.34,-0.60) -- (-0.95,-0.52);
+  \draw[thin,gray!70] (0.34,-0.60) -- (0.95,-0.52);
+  \draw[<->,thick,orange!85!black] (0.5254,-0.1381) -- (0.5254,-0.004);
+  \node[anchor=west,font=\scriptsize,orange!85!black,inner sep=2pt] at (0.60,0.14)
+       {$\Delta E/N$};
+  \draw[orange!85!black,thin] (0.58,0.13) -- (0.53,-0.04);
+  \node[anchor=south east,font=\scriptsize,inner sep=1pt] at (0.51,0.01) {$m_s$};
+  \node[anchor=north,font=\small] at (0,-0.90) {(a)};
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.55cm,y=0.44cm]
+  \draw[->] (-3.15,-6.4) -- (-0.05,-6.4) node[below right,font=\scriptsize]{$\log_{10}|t|$};
+  \draw[->] (-3.15,-6.4) -- (-3.15,0.75);
+  \foreach \t in {-3,-2,-1} \draw (\t,-6.4) -- (\t,-6.62) node[below,font=\scriptsize]{$\t$};
+  \foreach \v in {-6,-4,-2,0} \draw (-3.15,\v) -- (-3.27,\v) node[left,font=\scriptsize]{$\v$};
+  \draw[very thick,blue!60!black] plot coordinates{
+    (-3.0000,-0.9606) (-2.7301,-0.8258) (-2.4602,-0.6911) (-2.1903,-0.5567)
+    (-1.9204,-0.4227) (-1.6505,-0.2896) (-1.3806,-0.1581) (-1.1107,-0.0296)
+    (-0.8408,0.0927) (-0.5709,0.2022) (-0.3010,0.2822)};
+  \draw[very thick,orange!85!black] plot coordinates{
+    (-3.0000,-2.8243) (-2.7301,-2.5547) (-2.4602,-2.2853) (-2.1903,-2.0165)
+    (-1.9204,-1.7485) (-1.6505,-1.4823) (-1.3806,-1.2192) (-1.1107,-0.9624)
+    (-0.8408,-0.7177) (-0.5709,-0.4986) (-0.3010,-0.3387)};
+  \draw[very thick,red!75!black] plot coordinates{
+    (-3.0000,-6.1250) (-2.7301,-5.5853) (-2.4602,-5.0457) (-2.1903,-4.5061)
+    (-1.9204,-3.9668) (-1.6505,-3.4279) (-1.3806,-2.8899) (-1.1107,-2.3534)
+    (-0.8408,-1.8202) (-0.5709,-1.2942) (-0.3010,-0.7871)};
+  \draw[very thick,blue!60!black] (-1.95,-4.15) -- (-1.65,-4.15);
+  \node[anchor=west,font=\scriptsize,blue!60!black,inner sep=2pt] at (-1.61,-4.15)
+       {$\Delta_1$, slope $\tfrac12$};
+  \draw[very thick,orange!85!black] (-1.95,-5.00) -- (-1.65,-5.00);
+  \node[anchor=west,font=\scriptsize,orange!85!black,inner sep=2pt] at (-1.61,-5.00)
+       {$\Delta E/N$, slope $1$};
+  \draw[very thick,red!75!black] (-1.95,-5.85) -- (-1.65,-5.85);
+  \node[anchor=west,font=\scriptsize,red!75!black,inner sep=2pt] at (-1.61,-5.85)
+       {$\Delta F/N$, slope $2$};
+  \node[anchor=south,rotate=90,font=\scriptsize,inner sep=3pt] at (-3.50,-2.8)
+       {$\log_{10}(\text{gap}/k_BT_c)$};
+  \node[anchor=north,font=\small] at (-1.6,-7.35) {(b)};
+\end{tikzpicture}
+\caption{(a) The Curie--Weiss spectrum. Energy per site (red) is an inverted
+parabola in $m$; the log-degeneracy per site (blue) is the binomial entropy. The
+ground level is a doublet and the top level carries almost all the
+configurations; every temperature $T\geq T_c$ sits at the single point $m=0$.
+(b) The three gaps of Eq.~\eqref{eq:isspec_ratio} against $|t|$, from the exact
+$m_s(\theta)$, in units of $k_BT_c$. The slopes $\tfrac12$, $1$, $2$ are the
+asymptotic exponents.}
+\label{fig:isspec}
+\end{figure}
+
+\paragraph{The specific-heat jump is entirely spectrum motion.} One further
+translation is worth making, because it instantiates the escape clause of
+Eq.~\eqref{eq:filt_bound} in a case where everything is computable. Put
+$x\equiv\Delta_1/2k_BT=m_s/\theta$, so that the Weiss equation reads
+$m_s=\tanh x$. Then the per-site entropy of Section~\ref{sec:appising:exact} is
+\emph{exactly} the entropy kernel of Eq.~\eqref{eq:filt_kernels},
+\begin{equation}\label{eq:isspec_wS}
+s(T)=k_B\,\mathfrak{s}(\tanh x)=k_B\big[\ln(2\cosh x)-x\tanh x\big]=w_S(x),
+\end{equation}
+as it must be, since each site \emph{is} a two-level system. But $x$ depends on
+temperature twice over: explicitly through $\theta$, as in
+Eq.~\eqref{eq:filt_dxdT}, and implicitly through $m_s(\theta)$. Differentiating
+with $ds/dx=-k_Bx\operatorname{sech}^{2}x$ from Eq.~\eqref{eq:filt_sprime},
+\begin{equation}\label{eq:isspec_csplit}
+\boxed{\;
+\frac{c}{k_B}=\underbrace{x^{2}\operatorname{sech}^{2}x}_{\text{frozen spectrum}}
+\;-\;\underbrace{x\operatorname{sech}^{2}x\,\frac{dm_s}{d\theta}}_{\text{moving spectrum}}\;}
+\end{equation}
+The first term is the kernel $w_c$ of Eq.~\eqref{eq:filt_kernels} --- what the
+heat capacity would be if the level splitting were held fixed --- and the second
+is what the motion of the levels contributes. Now take $T\to T_c^{-}$. The
+splitting closes, so $x\to0$, and the frozen-spectrum term vanishes: this is
+exactly the blindness of $w_c$ at zero gap established in
+Section~\ref{sec:filt_blind}, a level with no energy cost absorbs no heat. Yet
+$dm_s/d\theta\to-\infty$ as $-\tfrac{\sqrt3}{2}|t|^{-1/2}$ while
+$x\simeq m_s\simeq\sqrt{3|t|}$, and the product tends to the finite limit
+\begin{equation}\label{eq:isspec_jump}
+\frac{c(T_c^{-})}{k_B}=-x\frac{dm_s}{d\theta}\bigg|_{t\to0}
+=\sqrt{3|t|}\cdot\frac{\sqrt3}{2}|t|^{-1/2}=\frac{3}{2},
+\end{equation}
+which is the mean-field jump of Section~\ref{sec:appising:caseA}. \emph{The
+entire discontinuity is spectrum motion.} A model with a fixed spectrum could not
+produce it: Eq.~\eqref{eq:filt_bound} bounds the frozen term by $0.4393\,k_B$ per
+two-level degree of freedom, and indeed the first term of
+Eq.~\eqref{eq:isspec_csplit} saturates that bound exactly at $\theta=0.6948$,
+where $\Delta_1=2.3994\,k_BT$, and is smaller everywhere else. Self-consistency
+--- the feedback of $m$ on the field that produces $m$ --- is what lets a
+mean-field magnet exceed the bound, and it is the same mechanism named at the end
+of Section~\ref{sec:filt_shape}.
+
 \subsection{Case B: finite $h_{\rm ext}$ --- the first-order transition}
 \label{sec:appising:caseB}
 
@@ -4882,6 +5721,219 @@ with every entry computable.
 
 Per unit volume the numbers above are divided by $a^{d}$, as in
 Section~\ref{sec:appising:caseA}.
+
+\subsection{Spectral view: the same three gaps, none of which closes}
+\label{sec:apppotts:spectrum}
+
+Section~\ref{sec:appising:spectrum} translated the Ising transition into
+configurations, levels and degeneracies, and found three gaps closing with
+exponents $\tfrac12$, $1$ and $2$. Running the same translation here is the
+sharpest way to see what a first-order transition is: every one of those three
+quantities is \emph{finite} at $T_t$, and the free energy nevertheless has a
+degenerate pair of minima. The reason is entirely a matter of degeneracies.
+
+\paragraph{The spectrum.} The fully-connected Hamiltonian of
+Section~\ref{sec:apppotts:exact} depends on the configuration only through the
+occupation numbers, so the $q^{N}$ configurations collapse onto levels labelled
+by the composition $\{N_a\}$,
+\begin{equation}\label{eq:ptspec_levels}
+E(\{x_a\})=-\frac{N\tilde J}{2}\sum_a x_a^{2},
+\qquad
+g(\{x_a\})=\frac{N!}{\prod_a N_a!}=e^{N\mathfrak{s}(\{x\})+O(\ln N)} ,
+\end{equation}
+with $\mathfrak{s}=-\sum_ax_a\ln x_a$. As in the Ising case degeneracy increases
+with energy, but both ends of the band have moved:
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+& configuration & $E/N$ & degeneracy \\
+\midrule
+bottom & one state occupied, $x_a=\delta_{a1}$ & $-\tilde J/2$ & $q$ \\
+top & centroid, $x_a=1/q$ & $-\tilde J/2q$ & $\simeq q^{N}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+The bandwidth per site is $\tfrac{\tilde J}{2}(1-1/q)$ and the entropy span is
+$k_B\ln q$; the ground level is $q$-fold rather than two-fold, and the
+single-site excitation gap above it is $\tilde J(1-1/N)$ with degeneracy
+$N(q-1)$. As before, none of this depends on temperature.
+
+The microcanonical temperature at the top of the band is again worth computing.
+On the ordered ray, $u(m)=-\frac{\tilde J}{2q}[1+(q-1)m^{2}]$ and
+$s(m)=k_B[\ln q-G(m)/q]$ with $G'(m)\simeq q(q-1)m$ near $m=0$, so
+\begin{equation}\label{eq:ptspec_micro}
+\frac{1}{T}\bigg|_{u\to u_{\rm top}}=\frac{ds}{du}\bigg|_{m\to0}
+=\frac{-k_B(q-1)m}{-\tilde J(q-1)m/q}=\frac{q\,k_B}{\tilde J}
+\qquad\Longrightarrow\qquad
+k_BT_{\rm top}=\frac{\tilde J}{q}=k_BT_0 .
+\end{equation}
+The top of the spectrum sits at the \emph{disordered spinodal} of
+Section~\ref{sec:apppotts:spinodal}. For $q=2$ this is $T_0=T_c$ and reproduces
+Eq.~\eqref{eq:isspec_micro}: the Ising transition happens exactly at the top of
+the band. For $q>2$, however, $T_0<T_t$, so the ordering transition is reached
+while the disordered state is still pinned at the top of its spectrum --- which
+is why the disordered branch carries $c=0$ all the way down to $T_t$
+(Section~\ref{sec:apppotts:c}), and why the energy has nowhere to go at $T_t$
+except to jump.
+
+\paragraph{The single-site levels are degenerate on one side only.} This is the
+whole of the difference, and it is visible before any calculation. Each site sees
+$q$ levels: one at $-\tilde Jx_1$ and $q-1$ at $-\tilde Jx_2$, with splitting
+\begin{equation}\label{eq:ptspec_D1}
+\Delta_1=\tilde J\,(x_1-x_2)=\tilde J\,m .
+\end{equation}
+On the self-consistent branch the site occupations are exactly Boltzmann in that
+two-level spectrum --- writing $y\equiv\Delta_1/k_BT=\tilde\beta m$, the
+self-consistency equation of Section~\ref{sec:apppotts:model} is literally
+$x_1/x_2=e^{y}$ --- so
+\begin{equation}\label{eq:ptspec_schottky}
+x_1=\frac{e^{y}}{e^{y}+q-1},
+\qquad
+x_{a\neq1}=\frac{1}{e^{y}+q-1},
+\qquad
+\frac{s}{k_B}=\ln\big(e^{y}+q-1\big)-y\,x_1 ,
+\end{equation}
+the $q$-level Schottky entropy, which one checks is identical to
+$\ln q-G(m)/q$. At $q=2$ it reduces to $w_S(y/2)$ of
+Eq.~\eqref{eq:filt_kernels} and everything of
+Section~\ref{sec:appising:spectrum} follows. For $q>2$ it does not, because the
+\emph{upper} level is $(q-1)$-fold degenerate and the lower one is not: the
+entropy is no longer an even function of $m$. Expanding
+$G(m)=\frac{q(q-1)}{2}m^{2}-\frac{q(q-1)(q-2)}{6}m^{3}+\dots$ gives
+\begin{equation}\label{eq:ptspec_cubic}
+\boxed{\;
+\begin{aligned}
+  u(m)&=-\frac{\tilde J}{2q}\big[1+(q-1)m^{2}\big]
+  &&\text{even in $m$: no cubic term,}\\[2pt]
+  \frac{s(m)}{k_B}&=\ln q-\frac{q-1}{2}\,m^{2}
+    +\frac{(q-1)(q-2)}{6}\,m^{3}+\dots
+  &&\text{odd terms $\propto(q-2)$.}
+\end{aligned}\;}
+\end{equation}
+The energy along the ordered ray is an even quadratic in $m$, exactly as in the
+Ising model; \emph{every} odd term in the Landau expansion of
+Section~\ref{sec:apppotts:landau} comes from the entropy, with a coefficient
+proportional to $q-2$, which is the imbalance between the one favoured level and
+the $q-1$ rejected ones. This is why the cubic coefficient there,
+$B=-k_BT(q-1)(q-2)/6$, carries an explicit factor of $k_BT$: it is a purely
+entropic term. The first-order character of the mean-field Potts transition is
+not an energetic effect at all. Energetically the model is Ising-like; it is the
+degeneracy of the disordered side that breaks the symmetry between ordering and
+not ordering.
+
+\paragraph{Three gaps, none of which closes.} With that in place the comparison
+with Eq.~\eqref{eq:isspec_ratio} is immediate.
+
+\emph{(1) The splitting between the $q$ ordered configurations is exactly zero at
+every temperature}, as in the Ising case and for the same reason: they are
+permutation images. Again nothing closes, and again what matters is the crossing.
+
+\emph{(2) The energy gap between the coexisting states is the latent heat}, and
+at $T_t$ it is finite:
+\begin{equation}\label{eq:ptspec_L}
+\Delta E/N=u(0)-u(m_t)=L=\frac{\tilde J}{2}\,\frac{(q-2)^{2}}{q(q-1)} ,
+\end{equation}
+$\tilde J/12$ at $q=3$. In the Ising model the corresponding quantity,
+Eq.~\eqref{eq:isspec_dE}, vanished as $|t|$.
+
+\emph{(3) The Weiss gap does not close but jumps.} At $T_t^{-}$,
+$\Delta_1=\tilde J m_t=\tilde J(q-2)/(q-1)$, and at $T_t^{+}$ it is zero. Nor
+does it close anywhere else: for $q>2$ the ordered branch does not reach $m=0$
+at all, terminating at the upper spinodal $T_1$ with $m$ still finite
+($m=0.377$ at $q=3$, $m=0.699$ at $q=10$), while the
+$m=0$ branch is a separate solution. The continuous closing
+$\Delta_1\sim|t|^{1/2}$ of Eq.~\eqref{eq:isspec_D1} exists only at $q=2$, and it
+is recovered as $q\to2^{+}$ because $m_t=(q-2)/(q-1)\to0$.
+
+The identification of Eq.~\eqref{eq:isspec_identify} survives unchanged, and it
+is what makes the contrast sharp. Moving one site out of the favoured state, so
+that $N_1\to N_1-1$ and $N_2\to N_2+1$, costs
+\begin{equation}\label{eq:ptspec_flip}
+\delta E=\tilde J\,(x_1-x_2)-\frac{\tilde J}{N}=\tilde J m-\frac{\tilde J}{N} ,
+\end{equation}
+so here too the protecting gap is the local level spacing of the fixed
+spectrum~\eqref{eq:ptspec_levels}, evaluated where the thermal state sits. The
+whole difference between the two models is then a statement about \emph{how the
+state moves along that spectrum} as it is heated. In the Ising model it slides
+continuously to the accumulation point at the top of the band, and the spacing it
+feels closes with it. For $q>2$ it jumps at $T_t$ across a finite stretch of the
+band --- that jump is the latent heat --- and the spacing jumps with it, from
+$\tilde J m_t$ to zero, without ever passing through the intermediate values. A
+continuous transition is a sliding occupation on a crowding spectrum; a
+first-order one is a discontinuous one.
+
+\paragraph{Energy against free energy: the same $\Delta F=0$, the opposite
+mechanism.} The transition condition is $\Delta F=0$ in both models, and the
+contrast is exactly in how it is met:
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+at the transition & Ising ($q=2$) & Potts ($q>2$) \\
+\midrule
+$\Delta E/N$        & $\to0$ as $\tfrac32k_BT_c|t|$ & $L$, finite \\
+$T\Delta S/N$       & $\to0$ as $\tfrac32k_BT_c|t|$ & $T_t\Delta S=L$, finite \\
+$\Delta F/N$        & $\tfrac34k_BT_ct^{2}$, vanishing one power faster & $0$, by exact cancellation \\
+barrier at $T_{\rm tr}$ & $0$ & finite \\
+$\Delta_1$          & closes as $|t|^{1/2}$ & jumps by $\tilde J(q-2)/(q-1)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+In the Ising model both terms go to zero and the free energy goes to zero
+\emph{faster} than either, by the cancellation of Eq.~\eqref{eq:isspec_cancel}.
+In the Potts model both terms stay finite and cancel each other exactly:
+$L=T_t\Delta S$ is the identity verified in
+Section~\ref{sec:apppotts:transition}. A first-order transition is the case in
+which entropy pays for a finite energy debt at one temperature only; a continuous
+one is the case in which the debt and the payment vanish together, and the
+residual is second order in $|t|$.
+
+The finiteness of the barrier is the operational consequence. At $q=3$ the three
+relevant points of the simplex at $T_t$ are, in units of $\tilde J$ and with
+$k_BT_t=0.36067\,\tilde J$:
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+& $\{x_a\}$ & $u$ & $s/k_B$ & $f$ \\
+\midrule
+ordered ($m_t=\tfrac12$) & $(\tfrac23,\tfrac16,\tfrac16)$ & $-0.25000$ & $0.86756$ & $-0.562907$ \\
+disordered (centroid)    & $(\tfrac13,\tfrac13,\tfrac13)$ & $-0.16667$ & $1.09861$ & $-0.562907$ \\
+edge midpoint            & $(\tfrac12,\tfrac12,0)$        & $-0.25000$ & $0.69315$ & $-0.500000$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+The first two are degenerate, which is the transition condition; the third shows
+that the route between two ordered states does \emph{not} go over the edge of the
+simplex, even though that route costs no energy at all (at $q=3$ the edge
+midpoint happens to have exactly the energy of the ordered state) --- it is
+forbidden by its entropy, being $0.063\,\tilde J$ per site higher in free energy. The system passes
+through the centroid instead, and the centroid is itself a local minimum. Hence
+the structural difference from Ising recorded in
+Section~\ref{sec:apppotts:distributions}: the Ising landscape has two minima with
+a maximum between them, whereas the Potts landscape has $q+1$ minima with the
+disordered one acting as the junction, and the barrier separating them
+--- $1.13\times10^{-3}k_BT_t$ at $q=3$, $7.14\times10^{-2}k_BT_t$ at $q=10$ ---
+is finite rather than vanishing.
+
+\paragraph{Large $q$: the two-level estimate becomes exact.} A last check, and a
+useful one because it explains when the crudest possible spectral argument works.
+Compare only the two extreme levels of the band --- fully ordered ($q$ states,
+$s=0$, $u=-\tilde J/2$) against fully disordered ($q^{N}$ states, $s=k_B\ln q$,
+$u=-\tilde J/2q$) --- and equate their free energies. This gives
+\begin{equation}\label{eq:ptspec_twolevel}
+k_BT_{\rm 2\text{-}level}=\frac{\tilde J\,(q-1)}{2q\ln q}
+\qquad\text{against the exact}\qquad
+k_BT_t=\frac{\tilde J}{2}\,\frac{q-2}{(q-1)\ln(q-1)} .
+\end{equation}
+The ratio $T_{\rm 2\text{-}level}/T_t$ is $0.841$, $0.892$, $0.919$, $0.966$,
+$0.998$ at $q=3,4,5,10,100$: the estimate is asymptotically exact. It has to be,
+because $m_t=(q-2)/(q-1)\to1$, so at large $q$ the two coexisting states really
+are the two ends of the spectrum, and a two-level argument is the right one. At
+$q=2$ the same estimate gives $k_BT=\tilde J_{\rm Ising}/(2\ln2)=0.721\,k_BT_c$
+and is simply wrong, by $28\%$ and in the direction of underestimating $T_c$:
+the Ising transition is continuous, its coexisting states are two nearby levels
+\emph{near the top} of the band rather than the extremes, and the partially
+ordered levels in between --- which the two-level argument discards --- are what
+sustain order up to $T_c$.
 
 \subsection{Susceptibility}
 \label{sec:apppotts:chi}
