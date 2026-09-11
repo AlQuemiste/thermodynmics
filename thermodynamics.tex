@@ -6434,4 +6434,301 @@ a first-order transition has no critical fluctuations.}
 \label{fig:apppotts2}
 \end{figure}
 
+\section{The generic structure of a mean-field theory}
+\label{sec:mfgeneric}
+
+Appendices~\ref{sec:appising} and~\ref{sec:apppotts} worked two mean-field
+theories in full, and the Bogoliubov--de Gennes (BdG) treatment of
+superconductivity is a third of the same kind. Read side by side they invite a
+contradiction. In the superconducting case one says without hesitation that a gap
+opens and \emph{protects} the condensate, and that the gap closes as $T\to
+T_c^-$; in Section~\ref{sec:appising:spectrum} it was insisted that the Weiss
+field does \emph{not} protect the up-ordered Ising state against the down-ordered
+one, which stays exactly degenerate with it at every temperature. Both statements
+are correct, and they are about different things. This section sets out the
+structure common to all three so that which is which can be read off, once, in
+general.
+
+\subsection{The construction}
+\label{sec:mfgeneric:construction}
+
+Every case has the same four steps.
+
+\begin{enumerate}[leftmargin=*]
+\item A Hamiltonian $\hat H$ invariant under a symmetry group $G$:
+$U_g\hat HU_g^{\dagger}=\hat H$ for all $g\in G$.
+\item A choice of order parameter: an operator $\hat\Phi$, transforming in some
+representation of $G$, whose expectation value is expected to be nonzero in the
+ordered phase.
+\item The decoupling. The interaction is replaced by a coupling of $\hat\Phi$ to
+its own average, leaving a Hamiltonian that is \emph{one-body} in the elementary
+degrees of freedom and therefore exactly solvable,
+\begin{equation}\label{eq:mfg_HMF}
+\hat H\;\longrightarrow\;\hat H_{\rm MF}[\Phi]
+=\hat H_{\rm one\text{-}body}[\Phi]\;+\;\mathcal{C}(\Phi),
+\end{equation}
+with $\mathcal{C}$ a $c$-number that corrects the double counting of the
+interaction. Its presence is not decorative: without it the free energy is wrong,
+as the $\tfrac{zJ}{2}m^{2}$ of Section~\ref{sec:appising:model} shows.
+\item Self-consistency, $\Phi=\langle\hat\Phi\rangle_{\hat H_{\rm MF}[\Phi]}$,
+equivalently stationarity of $f[\Phi]=-k_BT\ln\Tr\,e^{-\beta\hat H_{\rm
+MF}[\Phi]}$, evaluated per site or per unit volume.
+\end{enumerate}
+
+The three instances, in one table:
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+& Ising (Weiss) & $q$-state Potts & BCS/BdG \\
+\midrule
+symmetry $G$ & $\mathbb{Z}_2$ & $S_q$ & $U(1)$ \\
+order parameter $\Phi$ & $m=\langle s_i\rangle$ & $\{x_a\}$ & $\Delta=g\sum_k\langle c_{-k\downarrow}c_{k\uparrow}\rangle$ \\
+$G$ acts by & $m\mapsto-m$ & permuting $x_a$ & $\Delta\mapsto e^{2i\theta}\Delta$ \\
+one-body term & $-zJm\sum_is_i$ & $-zJ\sum_{ia}x_an_i^{a}$
+  & $-\sum_k(\Delta c^{\dagger}_{k\uparrow}c^{\dagger}_{-k\downarrow}+{\rm h.c.})$ \\
+double counting $\mathcal{C}$ & $\tfrac{N zJ}{2}m^{2}$
+  & $\tfrac{NzJ}{2}\sum_ax_a^{2}$ & $|\Delta|^{2}/g$ \\
+spectrum of $\hat H_{\rm MF}$ & $\mp zJm$ per site & $-zJx_a$, $q$ per site
+  & $\pm\sqrt{\xi_k^{2}+|\Delta|^{2}}$ \\
+local gap $\Delta_{\rm loc}$ & $2zJm$ & $zJ\,m$ & $2|\Delta|$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+In each row of the last three lines the spectrum of the solvable Hamiltonian
+depends on $\Phi$, and hence --- once self-consistency has fixed $\Phi=\Phi(T)$
+--- on temperature. This is the ``moving spectrum'' of
+Section~\ref{sec:filt_shape}, and it is what every mean-field theory has in
+common: an exactly solvable one-body problem whose levels are placed by the
+state they are supposed to describe.
+
+\subsection{The orbit is exactly flat}
+\label{sec:mfgeneric:orbit}
+
+Now the point that causes the trouble. Let $g\in G$ and let $g\!\cdot\!\Phi$
+denote the transformed order parameter. Because $\hat\Phi$ transforms in a
+representation of $G$ and $\mathcal{C}$ is built from $G$-invariants of $\Phi$
+--- $m^{2}$, $\sum_ax_a^{2}$, $|\Delta|^{2}$ respectively --- the decoupling is
+\emph{covariant},
+\begin{equation}\label{eq:mfg_covariance}
+\hat H_{\rm MF}[g\!\cdot\!\Phi]=U_g\,\hat H_{\rm MF}[\Phi]\,U_g^{\dagger}.
+\end{equation}
+Unitary equivalence preserves the spectrum, hence the partition function, hence
+everything computed from it:
+\begin{equation}\label{eq:mfg_flat}
+\boxed{\;f[g\!\cdot\!\Phi]=f[\Phi],\qquad u[g\!\cdot\!\Phi]=u[\Phi],\qquad
+s[g\!\cdot\!\Phi]=s[\Phi]
+\qquad\text{for every }g\in G\text{ and every }T .\;}
+\end{equation}
+The free energy is \emph{constant on the orbit} $G\!\cdot\!\Phi$. This is a
+one-line theorem, not a property of any particular model, and it has no
+exceptions within mean-field theory: a mean field can never split states related
+by a symmetry of $\hat H$, because the mean field is itself carried along by the
+transformation. Applied to the three instances it says that $f(+m_s)=f(-m_s)$
+identically, that the $q$ ordered Potts rays are exactly degenerate, and that all
+phases of $\Delta$ are exactly degenerate. The last of these nobody ever doubts,
+because the orbit is visibly a circle; the first is the same statement about a
+two-element orbit, and reads as surprising only because with $|G|=2$ the phrase
+``the ordered state'' sounds like the name of one of them.
+
+\subsection{Three energies, not one}
+\label{sec:mfgeneric:three}
+
+With Eq.~\eqref{eq:mfg_flat} in hand, three distinct scales can be kept apart.
+Every mean-field theory has all three, and confusion between the first and the
+second is the whole of the apparent paradox.
+
+\paragraph{(1) The local gap $\Delta_{\rm loc}$.} The cost of the cheapest
+excitation of $\hat H_{\rm MF}[\Phi]$ \emph{at fixed $\Phi$}. This is what
+``protects'' the ordered state, and it is the last line of the table: flipping one
+spin against the Weiss field, moving one site out of the favoured Potts state,
+breaking one Cooper pair. Since $\hat H_{\rm MF}$ depends on $\Phi$ through a
+term linear in it, $\Delta_{\rm loc}\propto|\Phi|$, so at a continuous transition
+with $\beta_{\rm exp}=\tfrac12$,
+\begin{equation}\label{eq:mfg_gap}
+\Delta_{\rm loc}(T)\;\propto\;|\Phi(T)|\;\sim\;|t|^{1/2}.
+\end{equation}
+The exponent is universal within mean-field theory; the amplitude is not. In
+units of $k_BT_c$ it is $2\sqrt3\,|t|^{1/2}=3.46\,|t|^{1/2}$ for the Ising spin
+flip (Section~\ref{sec:appising:spectrum}) and
+$2\sqrt{8\pi^{2}/7\zeta(3)}\,|t|^{1/2}=6.13\,|t|^{1/2}$ for BCS pair breaking.
+This is the gap that ``closes at $T_c$'', in both models, and the statement is
+correct in both.
+
+\paragraph{(2) The splitting within the orbit: exactly zero.} By
+Eq.~\eqref{eq:mfg_flat}. There is nothing to close, at any temperature, in any
+mean-field theory, and $\Delta_{\rm loc}$ has no bearing on it. A \emph{genuine}
+external field --- one added to $\hat H$, thereby lowering the symmetry --- does
+split the orbit: a field $h$ splits the two Ising sectors by $2Nhm_s$
+(Section~\ref{sec:appising:caseB}), and a supercurrent or an external phase
+gradient does the analogous thing to $\Delta$. That is the operational difference
+between a real field and a self-consistent one.
+
+\paragraph{(3) The cost of moving along the orbit.} Here the models part company,
+and the division is by the topology of $G$, not by anything dynamical.
+
+\emph{$G$ discrete} (Ising $\mathbb{Z}_2$, Potts $S_q$). The orbit is a finite
+set of isolated points. $f$ is equal at all of them, but any path joining two of
+them must leave the orbit, and the free energy along that path is higher. The
+cost is the barrier of Section~\ref{sec:appising:caseA}, $N\Delta F$, which is
+\emph{extensive}. In the thermodynamic limit it is infinite, the two sectors
+decouple, and the state must be chosen by hand --- which is spontaneous symmetry
+breaking in its precise sense, and is the ergodicity statement of
+Section~\ref{sec:firstorder}. There is no soft mode.
+
+\emph{$G$ continuous} (BCS $U(1)$, Heisenberg $O(3)$). The orbit is a connected
+manifold, and by Eq.~\eqref{eq:mfg_flat} $f$ is constant \emph{along} it. There
+is no barrier at all: a uniform rotation of the phase of $\Delta$ costs exactly
+nothing. That flat direction is the Goldstone mode, and a slow spatial twist of
+it costs only gradient energy, $\propto(\nabla\theta)^{2}$, vanishing as the
+wavelength grows. The ordered state is therefore \emph{not} protected against
+phase fluctuations at all; only the amplitude $|\Delta|$ is stiff. This is why a
+continuous symmetry is destroyed by fluctuations in $d\leq2$ at $T>0$ while a
+discrete one is not, and it is a distinction invisible in the local gap, which
+looks the same in both cases.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.55cm,y=1.30cm]
+  \draw[->] (-0.25,0) -- (3.45,0) node[below right,font=\scriptsize]{path along/between minima};
+  \draw[->] (-0.25,0) -- (-0.25,1.45) node[above left,font=\scriptsize,inner sep=1pt]{$f$};
+  \draw[dashed,gray!70] (-0.25,0.30) -- (3.35,0.30);
+  \draw[very thick,blue!60!black,domain=0.25:3.05,samples=100,smooth,variable=\x]
+       plot ({\x},{0.30+0.85*exp(-((\x-1.65)*(\x-1.65))/0.52)});
+  \fill[blue!60!black] (0.25,0.3057) circle (1.9pt);
+  \fill[blue!60!black] (3.05,0.3057) circle (1.9pt);
+  \draw[<->,thick,orange!85!black] (1.65,0.33) -- (1.65,1.12);
+  \node[anchor=west,font=\scriptsize,orange!85!black,inner sep=2pt] at (1.72,0.74)
+       {$N\Delta F$};
+  \node[anchor=north,font=\scriptsize,align=center] at (0.30,-0.06) {$-m_s$};
+  \node[anchor=north,font=\scriptsize,align=center] at (3.00,-0.06) {$+m_s$};
+  \node[anchor=south,font=\scriptsize,align=center,inner sep=2pt] at (1.65,1.18)
+       {the path \emph{leaves} the orbit};
+  \node[anchor=north,font=\small,align=center] at (1.55,-0.48)
+       {(a) $G$ discrete: orbit $=$ isolated points};
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.55cm,y=1.30cm]
+  \draw[->] (-0.25,0) -- (3.45,0) node[below right,font=\scriptsize]{phase $\theta$};
+  \draw[->] (-0.25,0) -- (-0.25,1.45) node[above left,font=\scriptsize,inner sep=1pt]{$f$};
+  \draw[dashed,gray!70] (-0.25,0.30) -- (3.35,0.30);
+  \draw[very thick,red!75!black] (0.25,0.30) -- (3.05,0.30);
+  \foreach \x in {0.25,0.72,1.19,1.65,2.12,2.59,3.05}
+     \fill[red!75!black] (\x,0.30) circle (1.6pt);
+  \node[anchor=north,font=\scriptsize] at (0.25,-0.06) {$0$};
+  \node[anchor=north,font=\scriptsize] at (3.05,-0.06) {$2\pi$};
+  \node[anchor=south,font=\scriptsize,align=center,inner sep=2pt] at (1.65,0.40)
+       {$f$ exactly constant: no barrier};
+  \draw[->,thick,red!75!black] (1.05,0.72) to[bend left=22] (2.25,0.72);
+  \node[anchor=south,font=\scriptsize,red!75!black,align=center,inner sep=2pt]
+       at (1.65,0.86) {Goldstone mode\\ (free motion along the orbit)};
+  \node[anchor=north,font=\small,align=center] at (1.55,-0.48)
+       {(b) $G$ continuous: orbit $=$ connected};
+\end{tikzpicture}
+\caption{Free energy along a path connecting two symmetry-related ordered
+states. In both panels the endpoints are \emph{exactly} degenerate, at every
+temperature, by Eq.~\eqref{eq:mfg_flat} --- no mean field ever splits them.
+\textbf{(a)} For a discrete $G$ the orbit is a set of isolated points, so the
+connecting path must leave it and pay the extensive barrier $N\Delta F$; this is
+ergodicity breaking, and there is no soft mode. \textbf{(b)} For a continuous $G$
+the orbit is connected and $f$ is constant on it, so the same journey is free:
+that flat direction is the Goldstone mode. The local gap $\Delta_{\rm loc}$,
+which is what closes at $T_c$, is a property of neither panel --- it is the cost
+of an excitation \emph{at fixed} $\Phi$.}
+\label{fig:mfgeneric}
+\end{figure}
+
+\subsection{What ``the gap protects the ordered state'' means}
+\label{sec:mfgeneric:reconcile}
+
+The reconciliation is now a matter of naming. In BCS the statement is that
+breaking a pair costs $2|\Delta|$, so the condensate is stable against
+quasiparticle excitation, and that this protection weakens as $|\Delta|\to0$ at
+$T_c$. That is item~(1), and nobody reads it as a claim that $\Delta$ and
+$-\Delta$ differ in energy --- the $U(1)$ degeneracy is manifest. In the Ising
+model the statement is that flipping a spin costs $2zJm_s$, so the ordered state
+is stable against local excitation, and that this protection weakens as
+$m_s\to0$. That is the same item~(1), and it is equally correct.
+
+What does \emph{not} transfer is the reading of ``the ordered state'' as ``this
+one rather than that one''. In neither model does the gap do that work. In BCS
+nothing does it: the phases are degenerate and freely connected. In Ising the
+work is done by item~(3), an extensive barrier that has nothing to do with the
+gap and a different exponent, $t^{2}$ against $|t|^{1/2}$
+(Eq.~\eqref{eq:isspec_ratio}). The two models differ in item~(3) and agree in
+items~(1) and~(2); the superconducting intuition is sound, and transfers to Ising
+exactly as far as the local gap, which is all it was ever about.
+
+\subsection{The heat capacity, uniformly}
+\label{sec:mfgeneric:heat}
+
+One quantitative consequence ties the three cases and
+Section~\ref{sec:filters} together. In every mean-field theory $\hat H_{\rm MF}$
+is one-body, so its entropy is a sum of the two-level kernels of
+Eq.~\eqref{eq:filt_kernels} evaluated on its own levels. Differentiating, and
+using that those levels depend on $T$ both explicitly and through $\Phi(T)$,
+gives the decomposition already found for the Ising model in
+Eq.~\eqref{eq:isspec_csplit}, in general:
+\begin{equation}\label{eq:mfg_csplit}
+\boxed{\;c\;=\;\underbrace{c_{\rm frozen}[\Phi(T)]}_{\text{the filter }w_c
+\text{ on the instantaneous spectrum}}
+\;+\;\underbrace{c_{\rm motion}}_{\propto\;\mathrm{d}|\Phi|^{2}/\mathrm{d}T}\;}
+\end{equation}
+At a continuous transition $|\Phi|\to0$, so the instantaneous spectrum tends to
+the disordered one and $c_{\rm frozen}$ is \emph{continuous} across $T_c$, while
+$\mathrm{d}|\Phi|^{2}/\mathrm{d}T$ stays finite and $c_{\rm motion}$ delivers the
+entire jump. This is one statement, and it reproduces the standard numbers.
+
+For the Ising model the disordered phase has $c=0$ identically
+(Section~\ref{sec:appising:spectrum}), so $c_{\rm frozen}\to0$ and the whole jump
+$\tfrac32k_B$ per site is spectrum motion --- which is what
+Eq.~\eqref{eq:isspec_jump} found. For BCS the disordered phase is a metal, so
+$c_{\rm frozen}\to C_n=\tfrac{2\pi^{2}}{3}N(0)k_B^{2}T$, and the motion term
+gives $\Delta C=-N(0)\,\mathrm{d}\Delta^{2}/\mathrm{d}T|_{T_c}$; with the
+BCS result $\Delta^{2}\simeq\tfrac{8\pi^{2}}{7\zeta(3)}(k_BT_c)^{2}(1-T/T_c)$,
+\begin{equation}\label{eq:mfg_bcsjump}
+\frac{\Delta C}{C_n}\bigg|_{T_c}
+=\frac{8\pi^{2}/7\zeta(3)}{2\pi^{2}/3}=\frac{12}{7\zeta(3)}=1.426\ldots,
+\end{equation}
+the textbook value, obtained here as a special case of
+Eq.~\eqref{eq:mfg_csplit}. For the Potts model at $q>2$ the transition is first
+order, $|\Phi|$ jumps rather than vanishing, and $\mathrm{d}|\Phi|^{2}/\mathrm{d}T$
+acquires a delta function: $c_{\rm motion}$ then carries the latent heat instead
+of a jump, which is the $L\,\delta(T-T_t)$ of Section~\ref{sec:apppotts:c}.
+
+The bound of Eq.~\eqref{eq:filt_bound} applies to $c_{\rm frozen}$ in all three
+cases, since that term is the filter on a one-body spectrum, and to none of the
+jumps. Every mean-field anomaly at a transition lives in $c_{\rm motion}$, i.e.\
+in the self-consistency, which is exactly the escape clause named at the end of
+Section~\ref{sec:filt_shape}.
+
+\subsection{Three caveats}
+\label{sec:mfgeneric:caveats}
+
+\paragraph{A complex order parameter has two kinds of fluctuation.} Where $\Phi$
+is complex, the amplitude and the phase behave differently: the amplitude mode is
+gapped (it climbs the wall of the potential) and the phase mode is the gapless
+Goldstone mode of item~(3). Ising has a single real component and no phase, so
+this distinction is absent there; transferring superconducting intuition to Ising
+one must remember that the flat direction has no Ising counterpart.
+
+\paragraph{Gauge ``symmetry'' is not a symmetry.} For a \emph{neutral} superfluid
+the $U(1)$ above is a genuine global symmetry and the Goldstone mode is physical
+(the Anderson--Bogoliubov mode). For a \emph{charged} superconductor the $U(1)$
+is local, Elitzur's theorem forbids its spontaneous breaking, and the would-be
+Goldstone mode is absorbed by the electromagnetic field and pushed to the plasma
+frequency (the Anderson--Higgs mechanism). The BdG calculation is unaffected ---
+it is a variational treatment of a definite Hamiltonian --- but the words
+``broken symmetry'' must be used with care in the charged case, in a way that has
+no analogue in the Ising and Potts examples.
+
+\paragraph{Mean-field theory assumes what it appears to derive.} As recorded in
+Section~\ref{sec:appising:spectrum}, $\Phi$ is chosen by hand at step~3 and the
+theory then verifies that the choice reproduces itself. Its real content is the
+\emph{range} over which a nonzero solution exists, the value of $T_c$ that bounds
+it, and the exponents on the ordered side. Whether the resulting picture is
+quantitatively right is the separate question of the Ginzburg criterion
+(Section~\ref{sec:appising:caveats}); BCS satisfies it comfortably, because the
+coherence length is large, which is why superconductivity is the one place where
+a mean-field theory of a $d=3$ continuous transition is quantitatively accurate.
+
 \end{document}
