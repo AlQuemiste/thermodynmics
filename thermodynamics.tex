@@ -4706,6 +4706,53 @@ Conflating the two is what makes the closing gap sound paradoxical; kept apart,
 the $\tfrac12$, $1$, $2$ of Eq.~\eqref{eq:isspec_ratio} are three different
 questions with three different answers.
 
+\paragraph{What the Weiss field does and does not break.} The effective field
+$h_{\rm eff}=zJm$ of Section~\ref{sec:appising:model} is temperature dependent
+and it does split levels, so it is tempting to read the whole of symmetry
+breaking off it. Three statements have to be separated, because only two of them
+are right.
+
+It is true that $\hat H_{\rm MF}$ is not $\mathbb{Z}_2$ symmetric: once $m\neq0$
+the single-site levels sit at $\mp h_{\rm eff}$ instead of at a common value, and
+the ground state of $\hat H_{\rm MF}$ is the unique configuration aligned with
+$h_{\rm eff}$. It is also true --- and this is the standard statement of
+spontaneous symmetry breaking --- that each individual ground state of the
+\emph{exact} $\hat H$ fails to have the symmetry of $\hat H$: at $h=0$ the ground
+configurations are $\uparrow\cdots\uparrow$ and $\downarrow\cdots\downarrow$, and
+the $\mathbb{Z}_2$ operation maps each to the \emph{other} rather than to itself.
+The set of ground states is symmetric; no member of it is.
+
+What is \emph{not} true is that the Weiss field protects the up-ordered state
+against the down-ordered one. At $h=0$ the free energy is exactly even,
+$f_N(m)=f_N(-m)$, so the two self-consistent solutions $\pm m_s$ have identical
+free energy, identical energy and identical entropy at every temperature, and the
+splitting between them is zero --- item~(1) above, which no amount of
+self-consistency alters. The Weiss field does not lower $+m_s$ relative to
+$-m_s$; it lowers \emph{both}, by the same $\Delta F$, relative to the disordered
+level. What it protects each ordered state against is \emph{local} decay, by
+making the cheapest excitation cost $\Delta_1$; and what stops the system from
+visiting the other sector is not an energy difference but the extensive barrier
+$N\Delta F$ between them, i.e.\ the loss of ergodicity recorded in
+Section~\ref{sec:firstorder}, not a level splitting. A genuine external field
+\emph{does} split the two sectors, by $2Nhm_s$, and that is exactly the
+first-order line of Section~\ref{sec:appising:caseB}. The operational difference
+between a real field and a Weiss field is precisely this.
+
+The third statement needs the most care: mean-field theory does not \emph{derive}
+the symmetry breaking, it assumes it. The number $m$ is chosen by hand at the
+decoupling step and the theory then checks that the choice reproduces itself. Had
+one set $m=0$ the algebra would have been equally consistent, and for $T>T_c$
+that is the only consistent choice. The non-vacuous content is therefore not
+``the symmetry is broken'' but the \emph{range} over which a broken solution
+exists at all, together with the $T_c$ that bounds it. The corresponding exact
+statement is weaker still, and belongs with Section~\ref{sec:fss:problem}: at
+finite $N$ nothing is broken, $\langle m\rangle=0$ identically at every
+temperature, and a nonzero magnetisation survives only in the order
+$N\to\infty$ first and $h\to0^{+}$ second. Taken the other way round the limits
+give zero at every temperature. Symmetry breaking in this model is a statement
+about barriers and the order of two limits, not about a level splitting between
+up and down.
+
 \paragraph{The free energy closes the barrier one power faster.} Against
 Eq.~\eqref{eq:isspec_dE} set the free-energy barrier computed in
 Section~\ref{sec:appising:caseA}, $\Delta F=\tfrac34Nk_BT_c\,t^{2}$. The two
