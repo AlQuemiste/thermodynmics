@@ -1930,8 +1930,8 @@ correction term restores $\tfrac32Nk_B$ exactly.
 Everything so far has been top-down: a potential is postulated, Legendre
 transformed, and differentiated. This section runs the chain in the opposite
 direction for the one case in which it can be run explicitly --- a system of
-independent fermionic levels in the grand canonical ensemble --- and asks what a
-measurement at temperature $T$ actually \emph{sees} of the spectrum. The answer
+independent modes in the grand canonical ensemble, of any statistics --- and asks
+what a measurement at temperature $T$ actually \emph{sees} of the spectrum. The answer
 is sharper than the usual slogan that thermodynamics probes states within $k_BT$
 of the chemical potential. Each observable turns out to be the spectrum viewed
 through its \emph{own} kernel: the kernels are all centred on $\mu$ and all have a
@@ -1939,14 +1939,11 @@ width set by $T$ alone and by no property of the spectrum, but they differ in
 shape, and the differences are physical. The heat capacity, in particular, is
 exactly blind to the levels sitting at $\mu$.
 
-Two remarks on scope before the derivation. The per-level factorisation below is
-special to a Hamiltonian quadratic in the fermion operators; the fluctuation
-identity it produces, Eq.~\eqref{eq:filt_C_fluct}, is completely general and holds
-for any grand canonical system. And the whole construction is at fixed $\mu$;
-Section~\ref{sec:filt_muN} converts to fixed $N$ using the formula of
+One remark on scope before the derivation: the whole construction is at fixed
+$\mu$, and Section~\ref{sec:filt_muN} converts to fixed $N$ using the formula of
 Section~\ref{sec:caveat}, which is not always a small correction.
 
-\subsection{The two-level decomposition}
+\subsection{Independent modes, any statistics}
 \label{sec:filt_twolevel}
 
 Take
@@ -1954,34 +1951,141 @@ Take
 \hat H=\sum_\lambda\varepsilon_\lambda\,\hat n_\lambda ,
 \qquad
 \hat N=\sum_\lambda\hat n_\lambda ,
-\qquad
-\hat n_\lambda=c^\dagger_\lambda c^{\phantom\dagger}_\lambda ,
 \]
-where $\lambda$ runs over single-particle orbitals (spin and any other internal
-label included) and $\hat n_\lambda$ has eigenvalues $0,1$. Nothing is idealised
-in the step: for any quadratic Hamiltonian the $\varepsilon_\lambda$ are its
-exact eigenvalues, including in a disordered or inhomogeneous sample where they
-are not labelled by momentum.
+where $\lambda$ runs over single-particle modes (spin and any other internal
+label included) and $\hat n_\lambda$ counts the occupation of mode $\lambda$.
+\emph{Nothing is assumed about the statistics.} The allowed occupations may be
+$\{0,1\}$, or $\{0,1,2,\dots\}$, or anything else; every result of this
+subsection holds for all three of the standard choices, and the specialisation to
+any one of them is postponed to the end. Nothing is idealised in the step either:
+for any Hamiltonian quadratic in the creation and annihilation operators the
+$\varepsilon_\lambda$ are its exact eigenvalues, including in a disordered or
+inhomogeneous sample where they are not labelled by momentum.
 
 Because $\hat H-\mu\hat N=\sum_\lambda(\varepsilon_\lambda-\mu)\hat n_\lambda$ is
-a sum of commuting one-orbital terms, the trace defining $\Xi$ factorises over
-$\lambda$ and each factor is a two-state sum, $\hat n_\lambda\in\{0,1\}$:
+a sum of commuting one-mode terms, the trace defining $\Xi$ factorises over
+$\lambda$, and each factor is a one-mode sum:
 \begin{equation}\label{eq:filt_Xi}
-\Xi(T,\mu)=\prod_\lambda\Big(1+e^{-\beta(\varepsilon_\lambda-\mu)}\Big),
+\Xi(T,\mu)=\prod_\lambda\xi(u_\lambda),
 \qquad
-\Omega=-k_BT\sum_\lambda\ln\Big(1+e^{-\beta(\varepsilon_\lambda-\mu)}\Big).
+\xi(u)\equiv\!\!\!\sum_{n\ \rm allowed}\!\!\! e^{-nu},
+\qquad
+\boxed{\;u_\lambda\equiv\frac{\varepsilon_\lambda-\mu}{k_BT}\;}
 \end{equation}
-The orbitals are statistically independent --- a fact used twice below, once for
-the entropy and once for the variance.
+The modes are statistically independent --- a fact used twice below. Writing
+$\varphi(u)\equiv-\ln\xi(u)$ for the dimensionless one-mode grand potential,
+\begin{equation}\label{eq:filt_Omega}
+\boxed{\;\Omega(T,\mu)=k_BT\sum_\lambda\varphi(u_\lambda)\;}
+\end{equation}
 
-Introduce the dimensionless distance from the chemical potential,
-\begin{equation}\label{eq:filt_x}
-\boxed{\;x_\lambda\equiv\frac{\varepsilon_\lambda-\mu}{2k_BT}\;}
+Everything in this section follows from one structural observation about
+Eq.~\eqref{eq:filt_Omega}: \emph{temperature and chemical potential enter only
+through the ratio $u_\lambda$}. The function $\varphi$ carries the statistics and
+knows nothing of $T$; the spectrum enters only through the list
+$\{\varepsilon_\lambda\}$. A change of temperature therefore cannot deform the
+way a level is weighed --- it can only rescale the variable in which the weighing
+is done. That is the scale covariance of the Boltzmann factor, and it is the
+reason every kernel below has a width set by $T$ alone.
+
+\paragraph{Occupation and its variance.} Two derivatives of $\varphi$ carry all
+the physics, and both are statistics-independent identities. Since
+$\partial u_\lambda/\partial\mu=-1/k_BT$ at fixed $T$, the mean occupation is
+\[
+n_\lambda=-\frac{\partial\Omega}{\partial\varepsilon_\lambda}
+=\varphi'(u_\lambda),
+\]
+and differentiating once more --- equivalently, reading off the second cumulant
+of $\hat n_\lambda$ from $\ln\xi$ --- gives its fluctuation,
+\begin{equation}\label{eq:filt_master}
+\boxed{\;n_\lambda=\varphi'(u_\lambda),
+\qquad
+\Var(\hat n_\lambda)=-\varphi''(u_\lambda)
+=-k_BT\,\frac{\partial n_\lambda}{\partial\varepsilon_\lambda}\;}
 \end{equation}
-so that $\beta(\varepsilon_\lambda-\mu)=2x_\lambda$. The factor of two is not
-cosmetic. A single orbital in the grand canonical ensemble is a two-level system
-with levels $0$ and $\varepsilon_\lambda-\mu$, i.e.\ a spin-$\tfrac12$ in a field,
-and $x_\lambda$ is the distance from the \emph{midpoint} of that pair, the
+The last form is the fluctuation--response relation of
+Section~\ref{sec:convexity} applied to a single mode; note that
+$\Var\geq0$ makes $\varphi$ concave, whatever the statistics.
+
+\paragraph{Entropy and heat capacity.} Differentiate at fixed $\mu$. Since
+$u_\lambda\propto1/T$,
+\begin{equation}\label{eq:filt_dudT}
+\left(\frac{\partial u_\lambda}{\partial T}\right)_{\!\mu}=-\frac{u_\lambda}{T},
+\end{equation}
+which is the one relation the rest of the subsection rests on. With
+$S=-(\partial\Omega/\partial T)_{V,\mu}$ applied to Eq.~\eqref{eq:filt_Omega},
+\[
+\frac{\partial\Omega}{\partial T}\bigg|_{\mu}
+=k_B\sum_\lambda\varphi(u_\lambda)
++k_BT\sum_\lambda\varphi'(u_\lambda)\left(-\frac{u_\lambda}{T}\right),
+\]
+so that
+\begin{equation}\label{eq:filt_Sgen}
+\boxed{\;S(T,\mu)=k_B\sum_\lambda\Big[\,u_\lambda\varphi'(u_\lambda)
+-\varphi(u_\lambda)\,\Big]\;}
+\end{equation}
+Differentiating again, the derivative of the bracket with respect to $u$
+telescopes, $\varphi'+u\varphi''-\varphi'=u\varphi''$, and one more application
+of Eq.~\eqref{eq:filt_dudT} gives $C_\mu\equiv T(\partial S/\partial
+T)_{V,\mu}$:
+\begin{equation}\label{eq:filt_Cgen}
+\boxed{\;C_\mu(T)=-k_B\sum_\lambda u_\lambda^{2}\,\varphi''(u_\lambda)
+\;=\;k_B\sum_\lambda u_\lambda^{2}\,\Var(\hat n_\lambda)\;}
+\end{equation}
+Every term is non-negative, so $C_\mu>0$ mode by mode --- the stability result of
+Section~\ref{sec:convexity}, here without any thermodynamic argument and without
+any commitment about statistics.
+
+\paragraph{The same quantity as a fluctuation.} Section~\ref{sec:caveat} gives
+$C_\mu=\Var(E-\mu N)/k_BT^{2}$ for any grand canonical system. That general
+identity and Eq.~\eqref{eq:filt_Cgen} are the same statement here: with
+$\hat H-\mu\hat N=\sum_\lambda(\varepsilon_\lambda-\mu)\hat n_\lambda$ a sum of
+\emph{independent} terms, variances add, and
+$(\varepsilon_\lambda-\mu)^2=(k_BT)^2u_\lambda^2$, so
+\begin{equation}\label{eq:filt_C_fluct}
+\frac{\Var(E-\mu N)}{k_BT^{2}}
+=\frac{1}{k_BT^{2}}\sum_\lambda(\varepsilon_\lambda-\mu)^{2}\Var(\hat n_\lambda)
+=k_B\sum_\lambda u_\lambda^{2}\,\Var(\hat n_\lambda).
+\end{equation}
+Equation~\eqref{eq:filt_Cgen} is thus a product of two factors per mode --- an
+energy cost $(\varepsilon_\lambda-\mu)^2$ and an occupancy variance --- and that
+reading, which is the subject of Section~\ref{sec:filt_blind}, is as
+statistics-independent as the rest.
+
+\paragraph{The three standard cases.} Only now does a choice of statistics enter,
+and it enters in one place: the function $\varphi$.
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+& occupations & $\varphi(u)=-\ln\xi(u)$ & $n=\varphi'$ & $\Var(\hat n)=-\varphi''$ \\
+\midrule
+Fermi--Dirac & $0,1$ & $-\ln\big(1+e^{-u}\big)$ & $\big(e^{u}+1\big)^{-1}$ & $n(1-n)$ \\[2pt]
+Bose--Einstein & $0,1,2,\dots$ & $+\ln\big(1-e^{-u}\big)$ & $\big(e^{u}-1\big)^{-1}$ & $n(1+n)$ \\[2pt]
+Boltzmann & $0,1,2,\dots$ (unsym.) & $-e^{-u}$ & $e^{-u}$ & $n$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Substituting each into Eq.~\eqref{eq:filt_Cgen} gives the whole of elementary
+statistical mechanics in one line apiece: $k_Bu^{2}n(1-n)$ is the Schottky
+anomaly and, summed over a band, the Sommerfeld result; $k_Bu^{2}n(1+n)$ is the
+Einstein heat capacity of an oscillator, and over a phonon spectrum the Debye
+result; $k_Bu^{2}e^{-u}$ is its classical counterpart. The three differ in shape
+but not in structure, and the difference of shape is precisely what
+Section~\ref{sec:filt_kernels} is about.
+
+\subsection{The fermionic case, in symmetric form}
+\label{sec:filt_fermi}
+
+The rest of the section specialises to Fermi--Dirac statistics, both because that
+is the case of interest for electrons and because it admits a symmetric form that
+makes the shape of the kernels transparent. For fermions $\xi(u)=1+e^{-u}$ and it
+pays to measure distance from $\mu$ in units of $2k_BT$,
+\begin{equation}\label{eq:filt_x}
+\boxed{\;x_\lambda\equiv\frac{u_\lambda}{2}
+=\frac{\varepsilon_\lambda-\mu}{2k_BT}\;}
+\end{equation}
+The factor of two is not cosmetic. A single fermionic mode is a two-level system
+with levels $0$ and $\varepsilon_\lambda-\mu$, i.e.\ a spin-$\tfrac12$ in a
+field, and $x_\lambda$ is the distance from the \emph{midpoint} of that pair, the
 variable in which the problem is manifestly symmetric. Extracting the midpoint is
 exactly the algebraic identity
 \begin{equation}\label{eq:filt_identity}
@@ -1990,81 +2094,61 @@ exactly the algebraic identity
 =-x+\ln\big(2\cosh x\big),
 \end{equation}
 whose first term is the $T$-independent zero-point piece and whose second is the
-entire thermal content. Substituting into Eq.~\eqref{eq:filt_Xi},
-\begin{equation}\label{eq:filt_Omega}
+entire thermal content. Equation~\eqref{eq:filt_Omega} becomes
+\begin{equation}\label{eq:filt_OmegaF}
 \Omega(T,\mu)=\sum_\lambda\Big[\;\tfrac12\big(\varepsilon_\lambda-\mu\big)
-\;-\;k_BT\,\ln\big(2\cosh x_\lambda\big)\;\Big].
+\;-\;k_BT\,\ln\big(2\cosh x_\lambda\big)\;\Big],
 \end{equation}
-Each orbital contributes its own two-level grand potential, and no expansion or
-approximation has been made.
+each mode contributing its own two-level grand potential. This decomposition is a
+convenience, not a premise: it is used below only to read off shapes, and nothing
+in Section~\ref{sec:filt_twolevel} depended on it.
 
-\paragraph{Entropy.} Differentiate at fixed $\mu$. Since $x_\lambda\propto1/T$,
+Since $x_\lambda\propto1/T$, Eq.~\eqref{eq:filt_dudT} reads
 \begin{equation}\label{eq:filt_dxdT}
 \left(\frac{\partial x_\lambda}{\partial T}\right)_{\!\mu}=-\frac{x_\lambda}{T},
 \end{equation}
-which is the one relation the rest of the subsection rests on. The first term of
-Eq.~\eqref{eq:filt_Omega} is temperature independent, so with
-$S=-(\partial\Omega/\partial T)_{V,\mu}$,
-\[
--\frac{\partial}{\partial T}\Big[-k_BT\ln(2\cosh x_\lambda)\Big]_\mu
-=k_B\ln(2\cosh x_\lambda)+k_BT\tanh x_\lambda
-\left(\frac{\partial x_\lambda}{\partial T}\right)_{\!\mu},
-\]
-and inserting Eq.~\eqref{eq:filt_dxdT},
-\begin{equation}\label{eq:filt_S}
-S(T,\mu)=k_B\sum_\lambda\Big[\;\ln\big(2\cosh x_\lambda\big)
-\;-\;x_\lambda\tanh x_\lambda\;\Big].
-\end{equation}
-It is worth checking this against the Gibbs entropy of independent orbitals,
-$S=-k_B\sum_\lambda[\,n_\lambda\ln n_\lambda+(1-n_\lambda)\ln(1-n_\lambda)\,]$.
-The Fermi factor written in the symmetric variable is
+and the Fermi factor written in the symmetric variable is
 \begin{equation}\label{eq:filt_n}
 n_\lambda=\frac{1}{1+e^{2x_\lambda}}=\frac{e^{-x_\lambda}}{2\cosh x_\lambda},
 \qquad
 1-n_\lambda=\frac{e^{x_\lambda}}{2\cosh x_\lambda},
 \qquad
-1-2n_\lambda=\tanh x_\lambda ,
+1-2n_\lambda=\tanh x_\lambda .
 \end{equation}
-so $\ln n_\lambda=-x_\lambda-\ln(2\cosh x_\lambda)$ and
+Putting $\varphi=-\ln(1+e^{-2x})=x-\ln(2\cosh x)$ into
+Eqs.~\eqref{eq:filt_Sgen} and~\eqref{eq:filt_Cgen}, or equivalently
+differentiating Eq.~\eqref{eq:filt_OmegaF} directly, gives
+\begin{equation}\label{eq:filt_S}
+S(T,\mu)=k_B\sum_\lambda\Big[\;\ln\big(2\cosh x_\lambda\big)
+\;-\;x_\lambda\tanh x_\lambda\;\Big],
+\end{equation}
+which is worth checking against the Gibbs entropy of independent orbitals,
+$S=-k_B\sum_\lambda[\,n_\lambda\ln n_\lambda+(1-n_\lambda)\ln(1-n_\lambda)\,]$:
+from Eq.~\eqref{eq:filt_n}, $\ln n_\lambda=-x_\lambda-\ln(2\cosh x_\lambda)$ and
 $\ln(1-n_\lambda)=+x_\lambda-\ln(2\cosh x_\lambda)$, whence the bracket is
 $\ln(2\cosh x_\lambda)-x_\lambda(1-2n_\lambda)$, which is
 Eq.~\eqref{eq:filt_S}. The two routes agree, as they must.
 
-\paragraph{Heat capacity.} Write the per-orbital entropy as
+For the heat capacity, write the per-orbital entropy as
 $s(x)=k_B[\ln(2\cosh x)-x\tanh x]$. Its derivative telescopes,
 \begin{equation}\label{eq:filt_sprime}
 \frac{ds}{dx}=k_B\big[\tanh x-\tanh x-x\operatorname{sech}^2x\big]
 =-k_B\,x\operatorname{sech}^2x ,
 \end{equation}
-the cancellation being the reason the entropy filter is smooth at its maximum.
-With $C_\mu\equiv T(\partial S/\partial T)_{V,\mu}$ and
-Eq.~\eqref{eq:filt_dxdT},
+the cancellation being the reason the entropy filter is smooth at its maximum,
+and Eq.~\eqref{eq:filt_dxdT} then gives
 \begin{equation}\label{eq:filt_C}
 \boxed{\;C_\mu(T)=k_B\sum_\lambda x_\lambda^{2}\operatorname{sech}^2x_\lambda\;}
 \end{equation}
-Every term is non-negative, so $C_\mu>0$ level by level --- the stability result
-of Section~\ref{sec:convexity}, here without any thermodynamic argument.
-
-\paragraph{The same quantity as a fluctuation.} Section~\ref{sec:caveat} gives
-$C_\mu=\Var(E-\mu N)/k_BT^{2}$ for any grand canonical system. For independent
-orbitals $\hat H-\mu\hat N=\sum_\lambda(\varepsilon_\lambda-\mu)\hat n_\lambda$
-with independent $\hat n_\lambda$, and since $\hat n_\lambda^2=\hat n_\lambda$,
+This is Eq.~\eqref{eq:filt_Cgen} in the fermionic case: using
+$\hat n_\lambda^{2}=\hat n_\lambda$ in Eq.~\eqref{eq:filt_master},
 \begin{equation}\label{eq:filt_var_n}
 \Var(\hat n_\lambda)=n_\lambda(1-n_\lambda)
 =\frac{e^{-x_\lambda}e^{x_\lambda}}{4\cosh^2x_\lambda}
-=\tfrac14\operatorname{sech}^2x_\lambda
-=-k_BT\,\frac{\partial n_\lambda}{\partial\varepsilon_\lambda}\,,
+=\tfrac14\operatorname{sech}^2x_\lambda\,,
 \end{equation}
-so that, using $(\varepsilon_\lambda-\mu)^2=4(k_BT)^2x_\lambda^2$,
-\begin{equation}\label{eq:filt_C_fluct}
-\frac{\Var(E-\mu N)}{k_BT^{2}}
-=\frac{1}{k_BT^{2}}\sum_\lambda(\varepsilon_\lambda-\mu)^2\,
-\tfrac14\operatorname{sech}^2x_\lambda
-=k_B\sum_\lambda x_\lambda^{2}\operatorname{sech}^2x_\lambda ,
-\end{equation}
-identical to Eq.~\eqref{eq:filt_C}. The two readings of the same number ---
-a sum of two-level Schottky contributions, and a variance of $E-\mu N$ --- are
-the two halves of the discussion in Section~\ref{sec:filt_blind}.
+and $u_\lambda^{2}=4x_\lambda^{2}$ turns $k_Bu^{2}\Var(\hat n)$ into
+$k_Bx^{2}\operatorname{sech}^{2}x$.
 
 \subsection{The filters}
 \label{sec:filt_kernels}
@@ -2408,9 +2492,11 @@ C_\mu\;\xrightarrow[T\to\infty]{}\;k_B\sum_\lambda x_\lambda^{2}
 =\frac{\Var_\infty(E-\mu N)}{k_BT^{2}}\;\propto\;\frac{1}{T^{2}},
 \end{equation}
 with a finite coefficient. Degrees of freedom of unbounded spectrum and unbounded
-occupation --- harmonic modes, which fall outside the two-level decomposition of
-Section~\ref{sec:filt_twolevel} --- instead settle at the equipartition value
-$k_B$ per mode, with $S$ growing as $\ln T$ without bound. A vanishing
+occupation --- harmonic modes --- instead settle at the equipartition value $k_B$
+per mode, with $S$ growing as $\ln T$ without bound. That value is not an
+exception to the framework but a reading of it: the Bose kernel of
+Section~\ref{sec:filt_twolevel} is $k_Bu^{2}n(1+n)$, and since $n\simeq1/u$ as
+$u\to0$ it tends to $k_B$ rather than vanishing there, which is equipartition. A vanishing
 high-temperature $c$ is thus a statement about the finite dimension of the local
 Hilbert space, not a thermodynamic requirement.
 
@@ -2420,8 +2506,11 @@ bounded by Eq.~\eqref{eq:filt_peak}, the bound holds term by term:
 \begin{equation}\label{eq:filt_bound}
 \boxed{\;C_\mu\;\leq\;0.4393\,k_B\times(\text{number of orbitals})\;}
 \end{equation}
-at \emph{every} temperature. A lattice model with finitely many orbitals per site
-and a temperature-independent spectrum therefore has an $\mathcal{O}(k_B)$ heat
+at \emph{every} temperature. The constant is the fermionic one; the same argument
+bounds the Bose kernel by its $u\to0$ value $k_B$ and the Boltzmann kernel by
+$4e^{-2}k_B=0.5413\,k_B$, so in every case the bound is $\mathcal{O}(k_B)$ per
+mode. A lattice model with finitely many modes per site and a
+temperature-independent spectrum therefore has an $\mathcal{O}(k_B)$ heat
 capacity per site and cannot diverge at all. Every divergence is consequently a
 statement that the spectrum itself \emph{moves}: with temperature, through
 self-consistency --- an order parameter that reconstructs the band as it
@@ -4185,8 +4274,10 @@ The table under ``The instances, collected'' in Section~\ref{sec:firstorder}
 asserts a list of modalities for $P(E)$ and $P(\phi)$ without computing any of
 them. This appendix computes all of them, in the simplest model that has both a
 continuous and a first-order transition, using nothing but the standard mean-field
-decoupling. Everything below is exact for the fully-connected version of the
-model, so no step is an approximation whose error has to be tracked.
+decoupling on the ordinary nearest-neighbour lattice. Exactly one approximation
+is made --- the decoupling itself, in Section~\ref{sec:appising:model} --- and
+everything after it is arithmetic, so there is never more than one error to
+track.
 
 Three things make the exercise worth the space. The distribution $P(m)$ is not a
 schematic here but a closed-form expression, so ``unimodal'' and ``bimodal'' can be
@@ -4234,12 +4325,43 @@ and the free energy per site is
 \boxed{\;
 f(m)=\frac{zJ}{2}m^{2}-k_BT\,\ln\!\Big[2\cosh\big(\beta(zJm+h)\big)\Big]\;}
 \]
-Requiring $\partial f/\partial m=0$ closes the loop and returns the
-self-consistency (Weiss) equation
+It remains to close the loop, and it is worth being explicit about how, since
+the usual instruction --- ``require $\partial f/\partial m=0$'' --- looks like a
+second postulate arriving from nowhere. It is not. The quantity $m$ was
+\emph{defined} as $\langle s_i\rangle$ at the start of the decoupling, so the
+calculation must reproduce it: in $\hat H_{\rm MF}$ the spins are independent in the
+field $h_{\rm eff}=zJm+h$, whence $\langle s_i\rangle=\tanh(\beta h_{\rm eff})$,
+and demanding that this agree with the $m$ that was put in gives
 \[
 \boxed{\;m=\tanh\!\big[\beta(zJm+h)\big]\;}
 \]
-Linearising at $h=0$ gives $m=\beta zJ\,m$, so a nonzero solution first appears at
+That is self-consistency, and no variational principle is involved in it.
+
+What \emph{is} worth noticing is that the same equation is the stationarity
+condition on $f$. Differentiating the boxed $f(m)$,
+\[
+\frac{\partial f}{\partial m}
+=zJm-k_BT\cdot\tanh\big(\beta(zJm+h)\big)\cdot\beta zJ
+=zJ\Big[m-\tanh\big(\beta(zJm+h)\big)\Big],
+\]
+so $\partial f/\partial m=0$ and the Weiss equation are the same statement. This
+is not an accident of the algebra. Section~\ref{sec:appising:exact} shows that
+$f(m)$ is the \emph{constrained} free energy of Section~\ref{sec:minimum} --- the
+free energy of the system with its magnetisation held at the value $m$ --- and
+for such a function the minimum principle of that section is exactly what says
+that the equilibrium state sits where it is stationary.
+
+Two things follow from taking the variational reading seriously, and both matter
+below. First, the equilibrium state is at a \emph{minimum}, not at any stationary
+point: below $T_c$ the Weiss equation is solved by $m=0$ as well as by
+$m=\pm m_s$, but $m=0$ is a local maximum of $f$ and is not a state of the
+system. Second, when several minima compete it is the one of lowest $f$ that is
+realised, the others being metastable --- which is the entire content of
+Section~\ref{sec:appising:caseB}.
+
+With the loop closed, the transition temperature follows at once. Linearising the
+Weiss equation at $h=0$ gives $m=\beta zJ\,m$, so a nonzero solution first
+appears at
 \[
 \boxed{\;k_BT_c=zJ\;}
 \]
@@ -4255,30 +4377,73 @@ and the energy per site is
 u=\frac{\langle\hat H\rangle}{N}=-\frac{k_BT_c}{2}m^{2}-h\,m .
 \]
 
-\subsection{The same $f(m)$ is the exact constrained free energy}
+\subsection{The constrained free energy, and the distribution of \texorpdfstring{$m$}{m}}
 \label{sec:appising:exact}
 
-Mean-field theory is usually presented as an uncontrolled approximation, which
-makes it awkward to talk about \emph{distributions} of $m$: an approximation to
-$\langle m\rangle$ says nothing about the fluctuations of $m$. There is however a
-model for which the decoupling is exact, and for it $P(m)$ is available in closed
-form. Take the \emph{Curie--Weiss} (fully-connected) Hamiltonian, in which every
-pair interacts with strength scaled to keep the energy extensive,
+Section~\ref{sec:appising:model} delivers $\langle m\rangle$ and nothing more. It
+says nothing about the \emph{distribution} of $m$, which is what the table of
+Section~\ref{sec:firstorder} is about, and an approximation to an average is not
+by itself an approximation to a distribution. The object that carries the
+distribution is the constrained free energy of Section~\ref{sec:minimum}, and
+this subsection constructs it for the nearest-neighbour model of
+Section~\ref{sec:appising:model}. Two steps are involved, and it matters that
+they are kept apart: an exact identity, and then one approximation --- the same
+one already made, and no other.
+
+\paragraph{Step 1: the identity, which is exact.} Let
 \[
-\hat H=-\frac{\tilde J}{2N}\Big(\sum_i s_i\Big)^{2}-h\sum_i s_i
-=-\frac{N\tilde J}{2}m^{2}-Nhm ,
-\qquad \tilde J\equiv zJ=k_BT_c ,
+\hat m=\frac{1}{N}\sum_i s_i
 \]
-where now $m=N^{-1}\sum_is_i$ is the \emph{instantaneous} magnetisation, a
-function on configuration space rather than an average. Because $\hat H$ depends on
-the configuration \emph{only} through $m$, the constrained trace of
-Section~\ref{sec:minimum} can be done by counting: the number of configurations
-with a given $m$ is the binomial coefficient with $N_{\pm}=N(1\pm m)/2$ spins up
-and down, so
+be the \emph{instantaneous} magnetisation --- a function on configuration space,
+not an average. Every configuration has some value of $\hat m$, so the partition
+function can be sorted into groups by that value without changing anything,
+\begin{equation}\label{eq:ising_sort}
+Z=\sum_{\rm configs}e^{-\beta\hat H}
+=\sum_{m}\;\underbrace{\sum_{\rm configs}\delta_{\hat m,m}\,e^{-\beta\hat H}}
+_{\textstyle \equiv\;Z_N(m)}\,,
+\end{equation}
+where $m$ runs over the $N+1$ attainable values $-1,-1+2/N,\dots,1$. Define
+$f_N(m)$ as the free energy of the group,
+\begin{equation}\label{eq:ising_fNdef}
+\boxed{\;N f_N(m)\;\equiv\;-k_BT\ln Z_N(m)
+=-k_BT\ln\Tr\big[\delta(\hat m-m)\,e^{-\beta\hat H}\big]\;}
+\end{equation}
+which is precisely the constrained free energy $F(T,V,N;\phi)$ whose definition
+caused difficulty in Section~\ref{sec:minimum}, here with $\phi=m$. Now ask for
+the probability that a configuration drawn from the Boltzmann distribution has
+magnetisation $m$. It is the weight of the group divided by the total weight,
+\begin{equation}\label{eq:ising_PN}
+\boxed{\;P_N(m)=\frac{Z_N(m)}{Z}
+=\frac{e^{-\beta N f_N(m)}}{\sum_{m'}e^{-\beta N f_N(m')}}
+\;\propto\;e^{-\beta N f_N(m)}\;}
+\end{equation}
+That is the whole derivation: Eq.~\eqref{eq:ising_sort} is a regrouping of a
+sum, Eq.~\eqref{eq:ising_fNdef} is a definition, and the denominator of
+Eq.~\eqref{eq:ising_PN} does not depend on $m$. No approximation has been made
+and no property of the Ising model has been used --- the relation
+$P\propto e^{-\beta N f_N}$ holds for any Hamiltonian and any order parameter,
+and it is the reason the constrained free energy is worth constructing at all.
+The factor $N$ in the exponent is what makes it powerful: free-energy
+differences of order $k_BT$ \emph{per site} become probability ratios
+exponentially large in $N$.
+
+\paragraph{Step 2: evaluating $f_N$, where the approximation enters.} With
+$\hat H=-J\sum_{\langle ij\rangle}s_is_j-h\sum_is_i$, every configuration in the
+group has $\sum_is_i=Nm$, so the field term contributes $-Nhm$ to all of them
+\emph{exactly}. The interaction term is not constant on the group, and this is
+the one place an approximation is needed. It is the same one as in
+Section~\ref{sec:appising:model} --- drop the correlation between neighbouring
+fluctuations, $\langle\delta s_i\,\delta s_j\rangle\to0$ --- which on the
+constrained set reads
+\begin{equation}\label{eq:ising_mfstep}
+\sum_{\langle ij\rangle}s_is_j\;\longrightarrow\;\frac{Nz}{2}\,m^{2}.
+\end{equation}
+The Boltzmann factor is then the same for every configuration in the group, and
+$Z_N(m)$ reduces to \emph{counting} them. That count is exact combinatorics on
+the lattice: with $N_\pm=N(1\pm m)/2$ spins up and down,
 \[
-e^{-\beta N f_N(m)}
-=\Tr\big[\delta(\hat m-m)\,e^{-\beta\hat H}\big]
-=\binom{N}{N_+}\exp\!\Big[\beta N\Big(\tfrac{k_BT_c}{2}m^{2}+hm\Big)\Big] .
+Z_N(m)\;\simeq\;\binom{N}{N_+}\,
+\exp\!\Big[\beta N\Big(\tfrac{zJ}{2}m^{2}+hm\Big)\Big] .
 \]
 Using Stirling's formula, $\ln\binom{N}{N_+}=N\,\mathfrak{s}(m)+O(\ln N)$ with
 \[
@@ -4286,28 +4451,63 @@ Using Stirling's formula, $\ln\binom{N}{N_+}=N\,\mathfrak{s}(m)+O(\ln N)$ with
 \mathfrak{s}(m)=-\frac{1+m}{2}\ln\frac{1+m}{2}-\frac{1-m}{2}\ln\frac{1-m}{2}\;}
 \]
 the entropy per site in units of $k_B$ (so $\mathfrak{s}(0)=\ln2$ and
-$\mathfrak{s}(\pm1)=0$), one obtains the \emph{exact} constrained free energy per
-site,
-\[
+$\mathfrak{s}(\pm1)=0$), and writing $zJ=k_BT_c$ as in
+Section~\ref{sec:appising:model},
+\begin{equation}\label{eq:ising_fN}
 \boxed{\;
 f_N(m)=-\frac{k_BT_c}{2}m^{2}-h\,m-k_BT\,\mathfrak{s}(m)\;}
-\qquad\text{and}\qquad
-\boxed{\;P_N(m)\propto e^{-\beta N f_N(m)}\;}
+\end{equation}
+The energy is approximate and the entropy is exact --- a division worth
+remembering, because it is the energy term that fails in low dimension while the
+counting never does.\footnote{Step~\eqref{eq:ising_mfstep} is exact if every pair
+of spins interacts with strength $zJ/N$ instead of only neighbours, since
+then $\hat H$ depends on the configuration through $m$ alone. That
+infinite-range model is often used to present this argument for exactly that
+reason; nothing below requires it, and the nearest-neighbour reading is kept
+throughout.}
+
+\paragraph{Two checks.} First, $\mathfrak{s}'(m)=-\operatorname{artanh}m$, so
+stationarity of Eq.~\eqref{eq:ising_fN} reads
+\[
+-k_BT_c\,m-h+k_BT\operatorname{artanh}m=0
+\qquad\Longleftrightarrow\qquad
+m=\tanh\big[\beta(k_BT_cm+h)\big],
 \]
-Two checks confirm that this is the same theory as
-Section~\ref{sec:appising:model}. First, $\mathfrak{s}'(m)=-\operatorname{artanh}
-m$, so $\partial f_N/\partial m=0$ reads
-$-k_BT_cm-h+k_BT\operatorname{artanh}m=0$, i.e.\ $m=\tanh[\beta(k_BT_cm+h)]$ ---
-the Weiss equation again. Second, $\min_m f_N(m)$ reproduces the boxed $f(m)$ of
-the previous subsection up to an additive constant. So for the Curie--Weiss model
-the mean-field free energy \emph{is} the constrained free energy $F(T,V,N;\phi)$
-whose definition caused difficulty in Section~\ref{sec:minimum}, the Landau
-function is not a phenomenological guess but an exact partial trace, and
-$P_N(m)$ is exactly $e^{-\beta N f_N(m)}$. Everything asked for below is therefore
-a calculation, not a sketch. (For a finite-dimensional lattice the same
-expressions hold as the leading term of a systematic expansion, exactly at
-$d=\infty$, and increasingly badly as $d$ decreases; see
-Section~\ref{sec:appising:caveats}.)
+the Weiss equation of Section~\ref{sec:appising:model} again. Second, $\min_mf_N(m)$ reproduces the
+$f(m)$ of that section up to an additive constant. The two routes are the same
+theory, as they must be, and Eq.~\eqref{eq:ising_fN} is the Landau function of
+this model: not a phenomenological guess with undetermined coefficients, but a
+partial trace with the coefficients computed.
+
+\paragraph{Why minimising is the right operation.} Section~\ref{sec:appising:model}
+justified $\partial f/\partial m=0$ by the minimum principle applied to
+Eq.~\eqref{eq:ising_fNdef}, and Eq.~\eqref{eq:ising_PN} now makes that concrete:
+$P_N$ is largest where $f_N$ is smallest, by a margin exponential in $N$, so in
+the thermodynamic limit the equilibrium state \emph{is} the minimum. There is
+also a variational statement, which is stronger and independent of the
+foregoing. The Gibbs--Bogoliubov inequality $F\leq F_0+\langle\hat H-\hat
+H_0\rangle_0$, applied with the trial Hamiltonian $\hat H_0=-\lambda\sum_is_i$ of
+independent spins in a field $\lambda$ and reparametrised by
+$m=\tanh(\beta\lambda)$, returns the right-hand side
+\[
+\frac{1}{N}\Big[F_0+\langle\hat H-\hat H_0\rangle_0\Big]
+=-\frac{k_BT_c}{2}m^{2}-hm-k_BT\,\mathfrak{s}(m)
+=f_N(m)
+\]
+--- the same function. So $F/N\leq f_N(m)$ for \emph{every} $m$, and minimising
+over $m$ is not merely natural but optimal: it is the best bound the trial family
+can give. This is the sense in which mean-field theory is a controlled
+approximation from one side, and it is why the minimum, rather than any other
+stationary point, is the object of interest.
+
+\paragraph{What is exact and what is not.} Collecting: the identity
+$P_N\propto e^{-\beta Nf_N}$ is exact; the entropy in Eq.~\eqref{eq:ising_fN} is
+exact; $f_N$ is a variational upper bound on the true free energy per site; and
+the only approximation is Eq.~\eqref{eq:ising_mfstep}, whose error is the
+neglected nearest-neighbour correlation. Everything computed below is therefore a
+calculation rather than a sketch, but it is a mean-field calculation, and where
+that matters --- the exponents, the value of $T_c$, the behaviour in low
+dimension --- is set out in Section~\ref{sec:appising:caveats}.
 
 \subsection{Landau expansion}
 \label{sec:appising:landau}
@@ -4426,8 +4626,10 @@ $T_c$ the product $3|t|\times1/2|t|$ is the finite jump $3/2$. The whole structu
 of Case A is in that one line.
 
 \paragraph{Distribution of the order parameter.} Now use
-$P_N(m)\propto e^{-\beta Nf_N(m)}$ with the exact $f_N$ of
-Section~\ref{sec:appising:exact}. Since $f_N$ is even in $m$ at $h=0$, so is
+Eq.~\eqref{eq:ising_PN}, $P_N(m)\propto e^{-\beta Nf_N(m)}$ --- the exact
+identity of Section~\ref{sec:appising:exact}, which said that the probability of
+a value of $m$ is the Boltzmann weight of the configurations carrying it divided
+by the total --- with $f_N$ from Eq.~\eqref{eq:ising_fN}. Since $f_N$ is even in $m$ at $h=0$, so is
 $P_N$, and $\langle m\rangle=0$ identically at every temperature --- the point
 emphasised in Section~\ref{sec:fss:observables}. What changes with temperature is
 the \emph{shape}:
@@ -4465,11 +4667,14 @@ so
 \]
 two Gaussian peaks at $\pm m_s$ of width $(2N|t|)^{-1/2}$, separated by a dip that
 deepens \emph{exponentially in $N$}. This is the $\mathbb{Z}_2$ row of the table in
-Section~\ref{sec:firstorder}, now computed. Note the difference from a
-short-range model: because every spin here interacts with every other, there is no
-interface to pay for and the barrier scales as $N$ rather than as $L^{d-1}$ --- the
-Lee--Kosterlitz scaling is a statement about short-range models, and the
-fully-connected model is the extreme opposite limit.
+Section~\ref{sec:firstorder}, now computed. One caveat belongs with it. The
+mean-field step~\eqref{eq:ising_mfstep} admits only spatially \emph{uniform} $m$,
+so the barrier it produces is extensive, $\propto N$. A real short-range system
+crosses between the two peaks the cheap way instead, by nucleating a domain wall
+whose cost is only $\propto L^{d-1}$, and that is the Lee--Kosterlitz scaling.
+The discrepancy is not a detail of the counting but a genuine failure of
+mean-field theory \emph{between} the peaks, where the configurations that matter
+are the non-uniform ones it has discarded; the peaks themselves are unaffected.
 \end{itemize}
 Figure~\ref{fig:appising1}a,b shows $f_N$ and $P_N$ in all three regimes.
 
@@ -4569,10 +4774,11 @@ routinely about a continuous transition, and in this model there are \emph{three
 candidate gaps with three different exponents, only one of which closes as
 $|t|^{1/2}$, and none of which is the splitting between the two ordered states.
 
-\paragraph{The spectrum is an inverted parabola.} At $h=0$ the Curie--Weiss
-Hamiltonian of Section~\ref{sec:appising:exact} depends on the configuration only
-through $m$, so the $2^{N}$ configurations collapse onto $N+1$ distinct energy
-levels,
+\paragraph{The spectrum is an inverted parabola.} At $h=0$ the mean-field
+energy~\eqref{eq:ising_mfstep} depends on the configuration only through $m$, so
+the $2^{N}$ configurations collapse onto $N+1$ distinct levels --- the
+\emph{mean-field} spectrum, coarse-grained from the exact one by the single
+approximation of Section~\ref{sec:appising:exact}:
 \begin{equation}\label{eq:isspec_levels}
 E(m)=-\frac{N k_BT_c}{2}\,m^{2},
 \qquad
@@ -4681,9 +4887,12 @@ $\Delta_1(T)$ up to $O(1/N)$:
 \begin{equation}\label{eq:isspec_identify}
 \boxed{\;\Delta_1(T)=\delta E\big|_{m=m_s(T)}\;}
 \end{equation}
-So the gap that protects the ordered state \emph{is} an energy gap of the exact
-Hamiltonian --- the cost of the cheapest excitation available to the system at
-the place where it actually sits --- and the familiar statement that it closes as
+So the gap that protects the ordered state \emph{is} an energy gap --- the cost
+of the cheapest excitation available to the system at the place where it actually
+sits. In the nearest-neighbour model the exact cost of flipping spin $i$ is
+$2Js_i\sum_{j\in{\rm nn}(i)}s_j$, and $\Delta_1$ is precisely its mean value once
+the neighbours are replaced by $m$; the identification is therefore as exact as
+the decoupling itself, and no more. With that said, and the familiar statement that it closes as
 $|t|^{1/2}$ is correct as it stands. What has to be said carefully is only the
 mechanism. No level moves. The ladder~\eqref{eq:isspec_levels} is fixed, its
 rungs crowd together towards the top of the band, and heating slides the thermal
@@ -4872,7 +5081,7 @@ analysis of Section~\ref{sec:fss} agree, as they must.
        {$\log_{10}(\text{gap}/k_BT_c)$};
   \node[anchor=north,font=\small] at (-1.6,-7.35) {(b)};
 \end{tikzpicture}
-\caption{(a) The Curie--Weiss spectrum. Energy per site (red) is an inverted
+\caption{(a) The mean-field spectrum. Energy per site (red) is an inverted
 parabola in $m$; the log-degeneracy per site (blue) is the binomial entropy. The
 ground level is a doublet and the top level carries almost all the
 configurations; every temperature $T\geq T_c$ sits at the single point $m=0$.
@@ -5142,8 +5351,9 @@ any $T$, $|h|>h_{\rm sp}$ & single peak at $m_0\neq0$ & unimodal
   & $\to\dfrac23$ (uninformative) \\
 \bottomrule
 \end{tabular}
-\caption{Everything computed in this appendix, for the mean-field (Curie--Weiss)
-Ising model with $N$ sites. The entries are exact in the stated limits. Note the
+\caption{Everything computed in this appendix, for the mean-field Ising model
+with $N$ sites. The entries are exact consequences of the decoupling, in the
+stated limits. Note the
 third row: the order-parameter distribution is bimodal while the energy
 distribution is not, because the two coexisting phases are related by a symmetry
 that leaves the energy invariant. The last two rows are why the Binder cumulant
@@ -5220,11 +5430,13 @@ value is $\simeq4.511J$ against $6J$. Mean field also predicts a transition in
 $d=1$, where there is none.
 \item \textbf{When it is right.} The Ginzburg criterion says fluctuations are
 negligible when $d>d_c=4$, and mean-field exponents are then exact (with
-multiplicative logarithmic corrections exactly at $d=4$). They are also exact for
-the fully-connected model at any $N$, which is the sense in which
-Section~\ref{sec:appising:exact} is a theorem rather than an approximation --- and
-which is why $N\leftrightarrow L^{4}$ made the finite-size scaling check of
-Section~\ref{sec:appising:caseA} work.
+multiplicative logarithmic corrections exactly at $d=4$), which is why
+$N\leftrightarrow L^{4}$ made the finite-size scaling check of
+Section~\ref{sec:appising:caseA} work. Within
+Section~\ref{sec:appising:exact} the division is sharp: the identity
+$P_N\propto e^{-\beta Nf_N}$ and the entropy are exact at any $N$ and any $d$,
+and everything listed in this subsection is a failure of the one energy
+step~\eqref{eq:ising_mfstep}.
 \item \textbf{What survives regardless.} The \emph{structure} is right even where
 the numbers are not: which distributions are uni- or multi-modal, that $U_4$ is
 $L$-independent at criticality and tends to $0$ and $2/3$ on the two sides, that
@@ -5387,7 +5599,8 @@ nonzero above $T_c$ because $m\neq0$ there. \textbf{(b)} At $h=0$ the
 susceptibility diverges from both sides as $|t|^{-1}$ (curves truncated at the top
 of the frame), with amplitudes in the ratio $C_+/C_-=2$; the field cuts the
 divergence off at $|t|\sim\mathfrak{h}^{2/3}$ and leaves a finite maximum.
-\textbf{(c)} $U_4$ from the exact finite-$N$ Curie--Weiss sums. The curves tend to
+\textbf{(c)} $U_4$ by summing $P_N(m)\propto e^{-\beta Nf_N(m)}$ over the $N+1$
+attainable values of $m$ at finite $N$. The curves tend to
 $0$ above $T_c$ and to $2/3$ below, and pass through the universal value
 $U_4^{\ast}=0.270520$ at $T_c$ --- the mean-field Binder crossing of
 Section~\ref{sec:fss:observables}. The residual spread at $T_c$ ($0.3056$,
@@ -5486,28 +5699,30 @@ For $q=2$ this is $m=\tanh(\tilde\beta m/2)$, which with $J_{\rm
 Potts}=2J_{\rm Ising}$ is $m=\tanh(m/\theta)$ --- the Weiss equation of
 Section~\ref{sec:appising:model}, as required.
 
-\subsection{The exact constrained free energy}
+\subsection{The constrained free energy}
 \label{sec:apppotts:exact}
 
-As in Section~\ref{sec:appising:exact}, the decoupling is \emph{exact} for the
-fully-connected version, and there the constrained free energy can be written
-down without approximation. Take
+The construction of Section~\ref{sec:appising:exact} carries over word for word,
+with the order parameter now the whole set $\{x_a\}$. Sorting the configurations
+of the nearest-neighbour Hamiltonian by their occupation numbers $\{N_a\}$ and
+dividing by $Z$ gives, exactly and for the same one-line reason as
+Eq.~\eqref{eq:ising_PN},
 \[
-\hat H=-\frac{\tilde J}{2N}\sum_{a}N_a^{2}+\text{const},
-\qquad \tilde J\equiv zJ ,
+P_N(\{x_a\})=\frac{Z_N(\{x_a\})}{Z}\propto e^{-\beta Nf_N},
+\qquad
+Nf_N\equiv-k_BT\ln\Tr\Big[\textstyle\prod_a\delta(\hat N_a-N_a)\,e^{-\beta\hat H}\Big].
 \]
-which is the fully-connected form of the same model (it counts every pair of
-like-valued sites with weight $\tilde J/N$). Since $\hat H$ depends on the
-configuration only through the occupation numbers $\{N_a\}$, the constrained trace
-is again a counting problem --- now multinomial rather than binomial:
+Evaluating $f_N$ needs the one approximation, the same decoupling as before: on
+the constrained set, $\sum_{\langle ij\rangle}\delta_{\sigma_i\sigma_j}\to
+(Nz/2)\sum_ax_a^{2}$, after which the Boltzmann factor is constant across the set
+and the trace is pure counting --- multinomial now rather than binomial,
 \[
-e^{-\beta N f_N}
-=\Tr\Big[\textstyle\prod_a\delta(\hat N_a-N_a)\,e^{-\beta\hat H}\Big]
-=\frac{N!}{\prod_a N_a!}\;
-\exp\!\Big[\beta N\,\frac{\tilde J}{2}\sum_a x_a^{2}\Big] ,
+Z_N(\{x_a\})\simeq\frac{N!}{\prod_a N_a!}\;
+\exp\!\Big[\beta N\,\frac{\tilde J}{2}\sum_a x_a^{2}\Big],
+\qquad \tilde J\equiv zJ .
 \]
-and Stirling gives $\ln(N!/\prod_aN_a!)=N\mathfrak{s}(\{x\})+O(\ln N)$ with
-$\mathfrak{s}=-\sum_ax_a\ln x_a$. Hence, exactly,
+Stirling gives $\ln(N!/\prod_aN_a!)=N\mathfrak{s}(\{x\})+O(\ln N)$ with
+$\mathfrak{s}=-\sum_ax_a\ln x_a$, and hence
 \[
 \boxed{\;
 f_N(\{x_a\})=-\frac{\tilde J}{2}\sum_a x_a^{2}
@@ -5515,6 +5730,7 @@ f_N(\{x_a\})=-\frac{\tilde J}{2}\sum_a x_a^{2}
 \qquad
 P_N(\{x_a\})\propto e^{-\beta N f_N}\;}
 \]
+As in the Ising case the entropy is exact and only the energy is approximate.
 Restricted to the one-parameter family above, with
 $\sum_ax_a^{2}=[1+(q-1)m^{2}]/q$ and
 $\mathfrak{s}=\ln q-G(m)/q$ where
@@ -5539,8 +5755,9 @@ s(m)=k_B\Big[\ln q-\frac{G(m)}{q}\Big]\;}
 Setting $\Delta f'(m)=0$ returns
 $\ln\frac{1+(q-1)m}{1-m}=\tilde\beta m$, the self-consistency equation of
 Section~\ref{sec:apppotts:model}, confirming that the two routes agree. So once
-again the mean-field free energy \emph{is} the exact constrained free energy of
-Section~\ref{sec:minimum}, and $P_N(m)$ is known rather than modelled.
+again the mean-field free energy \emph{is} the constrained free energy of
+Section~\ref{sec:minimum}, evaluated under the decoupling, and $P_N(m)$ is
+computed rather than modelled.
 
 \paragraph{The state space is a simplex, not a line.} One difference from the
 Ising case must be kept in view. The full order-parameter space is the
@@ -5779,10 +5996,10 @@ sharpest way to see what a first-order transition is: every one of those three
 quantities is \emph{finite} at $T_t$, and the free energy nevertheless has a
 degenerate pair of minima. The reason is entirely a matter of degeneracies.
 
-\paragraph{The spectrum.} The fully-connected Hamiltonian of
+\paragraph{The spectrum.} The mean-field energy of
 Section~\ref{sec:apppotts:exact} depends on the configuration only through the
-occupation numbers, so the $q^{N}$ configurations collapse onto levels labelled
-by the composition $\{N_a\}$,
+occupation numbers, so the $q^{N}$ configurations collapse onto mean-field levels
+labelled by the composition $\{N_a\}$,
 \begin{equation}\label{eq:ptspec_levels}
 E(\{x_a\})=-\frac{N\tilde J}{2}\sum_a x_a^{2},
 \qquad
