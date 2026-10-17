@@ -79,13 +79,13 @@ inverse temperature is written out or carried as $K=J/k_BT$.
 \section{The fundamental relation}
 \label{sec:totaldiff}
 
-For a simple compressible system with variable particle number, all equilibrium
+For a simple compressible system with variable particle number, all \emph{equilibrium}
 information sits in one function of entirely extensive variables,
 \[
 U=U(S,V,N).
 \]
 We call $U$ the internal energy; \emph{fundamental relation} refers to $U$ in
-these natural variables specifically, and \emph{potential} is used collectively
+these \emph{natural} variables specifically, and \emph{potential} is used collectively
 for the whole family generated below. Its differential defines the conjugate
 intensive variables,
 \[
@@ -108,8 +108,8 @@ relevant conjugate pair.
 Four assumptions are hidden in those three lines. They are of different
 character, and each fails somewhere identifiable.
 
-\paragraph{(A1) Single-valuedness of $U$.} That $U$ is a function of the state at
-all is empirical content, not mathematics. Its basis is Joule's observation that
+\paragraph{(A1) Single-valuedness of $U$.} That $U$ is a function of the state
+is empirical content, not mathematics. Its basis is Joule's observation that
 the work needed to carry an adiabatically enclosed system between two states is
 path-independent, which permits $U$ to be defined, up to an additive constant, on
 the space of equilibrium states.
@@ -119,8 +119,8 @@ returns to the same $(T,\mathcal{H})$ with a different magnetisation and a
 different internal energy. This is not a failure of statistical mechanics --- the
 Hamiltonian, the microstates and the Boltzmann weight are untouched, and the loop
 is a sequence of metastable states whose relaxation is kinetically obstructed.
-What fails is the premise of this section, that the equilibrium state is a
-single-valued function of the control variables. On the equilibrium branch,
+What fails is the premise of this section, that $ U $ at equilibrium is a
+\emph{single-valued function} of the control variables. On the equilibrium branch,
 reached by waiting out the relaxation or by field-cooling, $U$ is single valued
 and everything below applies; around the loop there is no function of state to
 differentiate.
@@ -128,71 +128,20 @@ differentiate.
 \paragraph{(A2) Completeness of the variable list.} The state postulate asserts
 that an equilibrium state of a simple, one-component, single-phase system is
 fixed by $(S,V,N)$ and nothing else, so the state space is a three-dimensional
-manifold. The count is one thermal variable, plus one per independent work mode,
-plus one per chemical species.
+manifold. The count is one thermal variable (entropy), plus one per independent
+work mode, plus one per chemical species.
 
 The content of the postulate is timescale separation. Let $\xi$ be a macroscopic
 collective variable --- an order parameter, the extent of a chemical reaction, a
 configurational coordinate in a glass --- with relaxation time $\tau_\xi$ much
 longer than the microscopic collision times
 ($10^{-13}$--$10^{-11}\,\mathrm{s}$), and let $\tau_{\rm obs}$ be the duration of
-the measurement. Three regimes must be distinguished, and only the middle one
-adds a variable.
-
-\begin{itemize}
-\item $\tau_\xi\ll\tau_{\rm obs}$: $\xi$ is equilibrated. Its value is already a
-function of $(S,V,N)$, fixed by $\mathcal{A}=0$ below. The state postulate stands
-as written. All internal variables of an ordinary simple fluid are of this type,
-which is why $(S,V,N)$ suffices.
-
-\item $\tau_\xi\gg\tau_{\rm obs}$: $\xi$ is frozen and must be promoted. It holds
-one definite macroscopic value throughout the measurement, and every fast degree
-of freedom has equilibrated \emph{at that fixed} $\xi$, so $T$, $P$ and $\mu$ are
-as sharp as ever. The system is in \emph{constrained equilibrium} and the state
-space is four-dimensional:
-\[
-U=U(S,V,N;\xi),\qquad
-dU=T\,dS-P\,dV+\mu\,dN-\mathcal{A}\,d\xi ,
-\qquad
-\mathcal{A}\equiv-\left(\frac{\partial U}{\partial\xi}\right)_{S,V,N} ,
-\]
-with $\mathcal{A}$ the generalized force conjugate to
-$\xi$.\footnote{In the chemical literature $\mathcal{A}$ is called the
-\emph{affinity}; it is an ordinary generalized force and no separate concept is
-involved.} Physical instances: a glass quenched below $T_g$; an alloy with a
-frozen long-range order parameter; the ortho/para ratio in solid hydrogen, which
-relaxes over days.
-
-Nothing here contradicts the second law. Thermodynamics is being applied to the
-\emph{constrained} system, in which $\xi$ is an externally imposed label rather
-than a free internal variable, exactly as $V$ is a label imposed by a wall; all
-the machinery below is valid at fixed $\xi$. Releasing the constraint, which
-happens on the timescale $\tau_\xi$, then lets $\xi$ move in the direction the
-second law prescribes, producing entropy at the rate
-$T\,d\sigma=\mathcal{A}\,d\xi\geq0$, until $\mathcal{A}=0$ and the unconstrained
-equilibrium of the first regime is reached.
-
-\item $\tau_\xi\sim\tau_{\rm obs}$: no state description at all. Here $\xi$
-neither tracks the constraints nor holds still, no equilibrium manifold exists on
-which to define $U$, and state functions must be given up in favour of
-frequency-dependent response, $c(\omega)=c'(\omega)-ic''(\omega)$
-(Section~\ref{sec:clausius}).
-\end{itemize}
-
-
-The natural variables are therefore of two kinds. Those protected by a
-conservation law or by a wall --- energy, volume, particle number --- need not
-relax at all: their values are imposed from outside and the system cannot change
-them. Everything else must relax fast compared with $\tau_{\rm obs}$, or else be
-frozen and promoted. The diffusive time $\tau\sim L^{2}/D$ for a conserved
-density to become spatially \emph{uniform} is a condition on how long one must
-wait before calling a sample homogeneous; it is not a property of the natural
-variables, which are the spatially integrated totals.
+the measurement.
 
 All of these are macroscopic averages over $\sim10^{23}$ microscopic degrees of
-freedom, with relative fluctuations of order $N^{-1/2}$: it is their
-\emph{number}, not their sharpness, that the state postulate is about.
+freedom, with relative fluctuations of order $N^{-1/2}$.
 
+%DO: Note: but S, V, N cannot be functionally independent variables, as they are related to each other via the equation of state at equilibrium.
 \paragraph{(A3) Independence of the variables.} The symbol $(\partial U/\partial
 S)_{V,N}$ presupposes that $S$ can be varied with $V$ and $N$ held fixed.
 Formally, $(S,V,N)$ must be a coordinate chart: the three functions must be
@@ -226,8 +175,10 @@ by a \emph{linear} map,
 \[
 U(\mathbf{x}+\mathbf{h})-U(\mathbf{x})=\sum_i a_ih_i+o(|\mathbf{h}|),
 \]
-which is total (Fr\'echet) differentiability. Existence of the partial
-derivatives alone does not deliver it: they may exist everywhere and yet the
+which is total (Fr\'echet) differentiability.
+%DO: but the partial derivatives are defined by the same relation $ U(\mathbf{x}+\mathbf{h})-U(\mathbf{x})=\sum_i a_ih_i+o(|\mathbf{h}|) $
+Existence of the partial derivatives alone does not deliver it:
+they may exist everywhere and yet the
 increment fail to be linear in the direction of approach, in which case there is
 no gradient, no differential and no tangent plane. Appendix~\ref{app:diff}
 works through the standard counterexample and states the Landau symbols used
@@ -235,9 +186,11 @@ throughout.
 
 The sufficient condition is familiar: if the partial derivatives exist in a
 neighbourhood and are continuous there, then $U$ is of class
-$C^{1}$\footnote{\label{fn:Cn}\textbf{Differentiability classes, and the word
-``smooth''.} $f$ is of class $C^{n}$ on an open set if all its partial
-derivatives up to order $n$ exist and are continuous there; $C^{0}$ is continuity
+$C^{1}$ and the expansion is valid.%
+\footnote{
+\label{fn:Cn}\textbf{Differentiability classes, and the word ``smooth''.}
+$f$ is of class $C^{n}$ on an open set if all its partial derivatives
+up to order $n$ exist and are continuous there; $C^{0}$ is continuity
 alone and $C^{\infty}$ is $C^{n}$ for every $n$. The classes are strictly nested:
 $|x|$ is $C^{0}$ but not $C^{1}$, and $x|x|$ is $C^{1}$ but not $C^{2}$. On a
 manifold the definition is applied in any chart, and the class is chart
@@ -248,8 +201,8 @@ symmetric, which is what makes the Maxwell relations available.
 argument requires --- which is almost always far less than $C^{\infty}$; where
 the required class is sharp it is stated. The distinction matters immediately:
 this section turns on $U$ being $C^{1}$ but not $C^{2}$ at a first-order
-transition, and on $G$ being merely $C^{0}$ there.} and the expansion is valid. Translated into physics,
-the requirement is that
+transition, and on $G$ being merely $C^{0}$ there.}
+Translated into physics, the requirement is that
 \[
 T,\quad -P,\quad \mu \qquad\text{be \emph{continuous} functions of state,}
 \]
@@ -274,6 +227,7 @@ continuous, $U$ is $C^{1}$ across the transition, and nothing in
 $dU=T\,dS-P\,dV+\mu\,dN$ is in trouble.
 
 At fixed $N$ and fixed $T_t$ on the coexistence curve, the two-phase states form
+%DO: Why a "straight" segment?
 a straight segment in the $(S,V)$ plane --- the \emph{tie line} --- joining
 $(S_\ell,V_\ell)$ to $(S_g,V_g)$: a mixture with liquid fraction $x$ has
 $S=xS_\ell+(1-x)S_g$, $V=xV_\ell+(1-x)V_g$ and $U=xU_\ell+(1-x)U_g$, all three
@@ -503,8 +457,8 @@ whence
 \[
 \boxed{\;S\,dT - V\,dP + N\,d\mu = 0\;}
 \]
-Two steps deserve a word. The product rule $d(fg)=f\,dg+g\,df$ holds for any two
-$C^{1}$ functions on $\mathcal{M}$, coordinates or not: in a chart both sides
+The product rule $d(fg)=f\,dg+g\,df$ holds for any two $C^{1}$ functions on $\mathcal{M}$,
+coordinates or not: in a chart both sides
 have $i$-th component $f\,\partial_ig+g\,\partial_if$, and holding in every chart
 it is chart independent. And $S\,dT$ means the one-form $dT$ rescaled pointwise
 by the number $S(p)$. Since $T=U_S$, this presupposes $U\in C^{2}$ --- exactly
@@ -527,7 +481,7 @@ the \emph{symmetry} of the Hessian and follows from $U\in C^{2}$, whereas this
 expresses its \emph{degeneracy} and follows from extensivity. The degeneracy is
 why the response functions of a simple system are not all independent --- one
 combination is fixed by homogeneity alone. Read instead as a statement about
-independence, Gibbs--Duhem says $dT,dP,d\mu$ satisfy one linear relation at every
+independence, Gibbs--Duhem says $dT,dP,d\mu$ satisfy a linear relation at every
 point, with a coefficient vector $(S,-V,N)$ that never vanishes: they span a
 two-dimensional subspace of a three-dimensional cotangent space and cannot be a
 basis, so fixing two of $T,P,\mu$ fixes the third. That is the failure of (A3)
@@ -539,13 +493,13 @@ Trading all three extensive variables at once would give
 \[
 \Lambda\;\equiv\;U-TS+PV-\mu N\;\overset{\text{Euler}}{=}\;0
 \]
-\emph{identically} --- not zero at some special point, but the zero function on
+\emph{identically}, not zero at some special point, but the zero function on
 $\mathcal{M}$. A function that is identically zero determines nothing, and its
 differential is no help either: $d\Lambda=0$ is Gibbs--Duhem again.
 
 A dimensional argument needs no algebra: $\Lambda$ is a sum of extensive
 quantities, hence extensive, but was constructed as a function of $(T,P,\mu)$
-alone, which scaling leaves unchanged --- so $\lambda\Lambda=\Lambda$ for all
+alone, which scaling leaves unchanged; so $\lambda\Lambda=\Lambda$ for all
 $\lambda>0$, forcing $\Lambda\equiv0$. The same argument shows why $\Omega$ and
 $G$ survive: each keeps one extensive variable ($V$ and $N$) to carry the
 scaling.
@@ -557,7 +511,7 @@ definitions gives
 \]
 and likewise $F=-PV+\mu N$, $H=TS+\mu N$. Each is a nontrivial constraint:
 $\Omega(T,V,\mu)$ is not merely some function but $V$ times a function of
-$(T,\mu)$ alone --- Euler homogeneity in the only extensive variable $\Omega$ has
+$(T,\mu)$ alone. Euler homogeneity in the only extensive variable $\Omega$ has
 left. Writing $\Omega=-V\pi(T,\mu)$ gives
 $-(\partial\Omega/\partial V)_{T,\mu}=\pi$, so $\pi=P$ and $P$ is a function of
 $(T,\mu)$ only, which is Gibbs--Duhem once more.
@@ -600,10 +554,9 @@ gives a free energy density whose singular part behaves, with $t=(T-T_c)/T_c$, a
 \[
 f_{\rm sing}(t)\;\sim\; A\,t^{2}\ln|t| ,\qquad A>0 .
 \]
-Two bookkeeping points before differentiating.
 
-\emph{Which specific heat.} For a lattice spin model the natural variables are
-$(T,h)$ with $h$ the field, and $m$ is conjugate to $h$ exactly as $n$ is to
+For a lattice spin model the natural variables are $(T,h)$ with $h$ the field,
+and $m$ is conjugate to $h$ exactly as $n$ is to
 $\mu$, so $f(T,h)$ is the lattice analogue of the grand potential density
 $\omega(T,\mu)$, not of the Helmholtz density $f(T,n)$. Hence
 $c\equiv c_h=-T(\partial^{2}f/\partial T^{2})_{h}$ is the specific heat at fixed
@@ -612,8 +565,8 @@ pedantry: as Appendix~\ref{app:fisher} shows, the fixed-$m$ and fixed-$h$
 specific heats carry different critical exponents whenever $\alpha>0$. All values
 of $\alpha$ below are fixed-field values, as is conventional.
 
-\emph{No singular derivative is dropped.} For $t\neq0$ --- the only place any
-derivative is claimed --- $d\ln|t|/dt=1/t$ on both branches, so
+No singular derivative is dropped: For $t\neq0$, the only place any
+derivative is claimed, $d\ln|t|/dt=1/t$ on both branches, so
 $df_{\rm sing}/dt=A(2t\ln|t|+t)\to0$ and
 $d^{2}f_{\rm sing}/dt^{2}=A(2\ln|t|+3)$: $f_{\rm sing}$ is $C^{1}$ at $t=0$ and
 not $C^{2}$. Since $\partial^{2}/\partial T^{2}=T_c^{-2}\,d^{2}/dt^{2}$,
@@ -629,17 +582,17 @@ The same remark disposes of the general power law: for $p>0$ and $t\neq0$,
 $d^{2}|t|^{p}/dt^{2}=p(p-1)|t|^{p-2}$, the two sign functions cancelling at
 second order, so the singularity sits entirely in the prefactor and appears only
 as $t\to0$. A genuine $\delta$-function would arise only from a term with a
-discontinuous \emph{value}, such as $\operatorname{sgn}(t)$ --- which is what the
+discontinuous \emph{value}, such as $\operatorname{sgn}(t)$ which is what the
 order parameter does at a first-order transition, and why $dG$ fails there and
 $dU$ does not.
 
 Throughout, extensivity remains exact: $F=Vf$, $\Omega=-PV$, Gibbs--Duhem holds.
-But $f(t)$ has no Taylor series about $t=0$, and the specific heat --- an
-innocuous second derivative of a perfectly extensive potential --- diverges.
+But $f(t)$ has no Taylor series about $t=0$, and the specific heat,
+an innocuous second derivative of a perfectly extensive potential, diverges.
 
 \paragraph{The scaling form and the gap exponent.} Near a critical point the
-singular part of the free energy density takes the \emph{generalized homogeneous}
-form
+singular part of the free energy density takes the \emph{generalized homogeneous} form
+%DO: h is dimensionless?
 \[
 f_{\rm sing}(t,h)=|t|^{2-\alpha}\,\Phi\!\left(\frac{h}{|t|^{\Delta}}\right),
 \qquad
@@ -648,19 +601,19 @@ c_{h}\sim|t|^{-\alpha}\quad(h=0),
 where $\Delta$ is the \emph{gap exponent}, defined by the requirement that
 $h/|t|^{\Delta}$ be the scale-invariant combination, and $\Phi$ is a
 \emph{universal scaling function}: a function determined by the universality
-class alone --- dimensionality, order-parameter symmetry, interaction range ---
+class alone (dimensionality, order-parameter symmetry, interaction range)
 and not by microscopic details. Universality is a statement about $\Phi$ up to
 two non-universal scale factors: for two systems in the same class,
 \[
 f_{\rm sing}(t,h)=A_0\,|t|^{2-\alpha}\,\Phi\!\left(\frac{B_0h}{|t|^{\Delta}}\right)
 \]
 with the \emph{same} function $\Phi$ and only $A_0$, $B_0$, and the location of
-$T_c$ differing. $\Phi$ is analytic on each branch $t>0$, $t<0$ away from the
+$T_c$ differing. $\Phi$ is \emph{analytic} on each branch $t>0$, $t<0$ away from the
 origin; the scaling hypothesis is precisely the assumption that all the
 non-analyticity has been collected into the prefactor and the argument.
 
-Each field derivative lowers the exponent of $|t|$ by the same \emph{gap}
-$\Delta$,
+%DO: I do not see why $\Delta$ is suddenly named a "gap"
+Each field derivative lowers the exponent of $|t|$ by the same \emph{gap} $\Delta$,
 \[
 \frac{\partial^{k}f_{\rm sing}}{\partial h^{k}}\sim|t|^{2-\alpha-k\Delta},
 \]
@@ -678,7 +631,7 @@ non-integer exponents.
 Appendix~\ref{app:cusp} works out what the sign of $\alpha$ does to the shape of
 $c_h$, and what universality does and does not deliver in practice.
 
-\begin{remark}[Origin of the non-analyticity]
+\paragraph{Origin of the non-analyticity.}
 For any \emph{finite} system, $Z=\sum_ie^{-\beta E_i}$ is a finite sum of
 positive exponentials, hence an entire function of $\beta$ with no zeros on the
 real axis, so $F=-k_BT\ln Z$ is analytic and no phase transition can occur.
@@ -687,7 +640,6 @@ zeros of $Z$ (Yang--Lee zeros in the fugacity plane, Fisher zeros in the
 temperature plane) pinch the real axis. A phase transition is a property of the
 limit, never of a finite sample --- which is precisely why finite-size scaling is
 needed to extract critical behaviour from simulation (Section~\ref{sec:fss}).
-\end{remark}
 
 \section{Heat and work}
 \label{sec:heat}
@@ -695,8 +647,8 @@ needed to extract critical behaviour from simulation (Section~\ref{sec:fss}).
 \subsection{Derivation of \texorpdfstring{$\dbar Q_{\rm rev}=T\,dS$}{dQrev = T dS}}
 
 This relation is the hinge on which the rest of these notes turn, and it follows
-from the Gibbs state alone. Take $\rho$ Gibbsian with $S=-k_B\sum_ip_i\ln p_i$,
-and let $\lambda$ stand for the external parameters the experimenter controls
+from the Gibbs state alone. Take $\rho$ Gibbsian, $\rho_i = \frac{e^{-\beta E_i}}/{Z}$,
+with $S=-k_B\sum_ip_i\ln p_i$, and let $\lambda$ stand for the external parameters the experimenter controls
 (volume, field, strain), work being by definition the energy delivered through
 $\lambda$. Substituting $\ln p_i=-\beta E_i-\ln Z$ gives the exact identity
 $S=k_B(\ln Z+\beta U)$. Differentiate, using $d\ln Z=-U\,d\beta-\beta\,\dbar W$,
@@ -726,7 +678,7 @@ reversible.
 
 The statement is written with $\Delta S_{\rm tot}$ rather than $dS_{\rm tot}$
 deliberately. Entropy is defined for \emph{equilibrium} states, so
-$dS_{\rm tot}$ presumes the system has an entropy at every instant --- false for
+$dS_{\rm tot}$ presumes the system has an entropy at every instant which is false for
 a violently irreversible process: while a gas rushes into a vacuum there is no
 equilibrium state and no entropy there to differentiate. All the second law needs
 is that $S$ be defined at the initial and final points, which are equilibrium
@@ -736,20 +688,24 @@ The differential form $dS_{\rm tot}\geq0$ is licensed in exactly two
 circumstances. A process is \emph{quasi-static} if it is slow compared with all
 internal relaxation times; every intermediate state is then an equilibrium state,
 the path is a genuine curve on the equilibrium manifold, and $dS_{\rm tot}$ is a
-one-form evaluated on that curve's tangent vector. Alternatively, under
-\emph{local equilibrium} --- the system partitioned into cells each internally
-equilibrated on the timescale of observation --- one may define an entropy
+one-form evaluated on that curve's tangent vector.%
+\footnote{
+Alternatively, under \emph{local equilibrium}, the system partitioned into cells each internally
+equilibrated on the timescale of observation, one may define an entropy
 density and obtain the local statement $\partial_ts+\nabla\!\cdot\mathbf{J}_s
 =\sigma\geq0$, with $\mathbf{J}_s$ the entropy current and $\sigma$ the local
 production rate. This is an additional hypothesis, not a theorem; it is the
 foundation of irreversible thermodynamics, and it fails in shock fronts, in
 rarefied gases and in glasses.
+}
 
 The reservoir is by construction always internally equilibrated, so
 $S_{\rm res}$ is defined at every instant and $dS_{\rm res}=-\dbar Q/T_{\rm res}$
 carries no caveat. Eliminating it at the integrated level therefore needs no
 quasi-static assumption at all: $\Delta S_{\rm res}=-\int\dbar Q/T_{\rm res}$ is
 exact, and $\Delta S_{\rm tot}\geq0$ gives
+%DO: $\Delta S $ is not defined.
+%DO: $ T_{res} $ is a constant? if  $ T_{res} $ is a constant then $\int\frac{\dbar Q}{T_{\rm res}} = \frac{1}{T_{res} \int \dbar Q = \frac{\Delta Q}{T_{res}}$
 \[
 \boxed{\;\Delta S\;\geq\;\int\frac{\dbar Q}{T_{\rm res}}\;}
 \]
@@ -761,9 +717,10 @@ elimination gives the differential \emph{Clausius inequality}
 \]
 Clausius' statement is the second law with the reservoir's entropy eliminated,
 and nothing else. Note that it compares the system's entropy change with the
-\emph{reservoir's} temperature: a finite temperature drop across the boundary
-already costs entropy even when both bodies are internally equilibrated. The same
-elimination, carried out for each choice of constraint, produces the minimum
+\emph{reservoir's} temperature:
+%DO: unclear statement: "a finite temperature ... internally equilibrated".
+a finite temperature drop across the boundary already costs entropy even when both bodies are internally equilibrated.
+The same elimination, carried out for each choice of constraint, produces the minimum
 principles of Section~\ref{sec:minimum}. Naming the entropy produced
 $d\sigma\equiv dS_{\rm tot}\geq0$ turns the inequality into the equality
 $dS=\dbar Q/T_{\rm res}+d\sigma$, so that $T\,dS=\dbar Q+T\,d\sigma\geq\dbar Q$
@@ -795,15 +752,14 @@ that spoils $\dbar Q=T\,dS$. Appendix~\ref{app:glass} sets out which parts of th
 apparatus survive in that case.
 \end{itemize}
 
-\begin{remark}[Robustness of $c_V$]
+\paragraph{Robustness of $c_V$.}
+%DO: but in this case $ d U$ will not be defined, only $ \Delta Q = \Delta U $.
 At fixed volume and particle number no work is done, so $\dbar Q=dU$
 \emph{regardless of reversibility}. Hence $C_V=(\partial U/\partial T)_{V,N}$
 holds even for irreversible heating, which is why constant-volume calorimetry is
 well behaved. The step $\dbar Q=T\,dS$ is needed only to re-express this as
 $C_V=T(\partial S/\partial T)_{V,N}$ and connect it to the free energy. For
-$C_P$, or any process involving mechanical work, the reversibility caveat bites
-in earnest.
-\end{remark}
+$C_P$, or any process involving mechanical work, the reversibility caveat bites in earnest.
 
 The exactness criterion for one-forms, the Maxwell relations it generates, and
 the sense in which $1/T$ is an integrating factor are collected in
@@ -813,8 +769,8 @@ Appendix~\ref{app:exact}.
 \label{sec:potentials}
 
 An experiment fixes intensive variables: a sample sits in a bath at temperature
-$T$, not at prescribed entropy. The obvious move is naive substitution --- invert
-$T=(\partial U/\partial S)_{V,N}$ to get $S(T,V,N)$ and define
+$T$, not at prescribed entropy. The obvious move is naive substitution:
+invert $T=(\partial U/\partial S)_{V,N}$ to get $S(T,V,N)$ and define
 $\tilde U(T,V,N)\equiv U\big(S(T,V,N),V,N\big)$. This destroys information; the
 Legendre transform does not. Two questions must be separated: whether the
 inversion is possible, and whether the substitution keeps what it should.
@@ -824,6 +780,7 @@ inversion is possible, and whether the substitution keeps what it should.
 Nonlinearity of $T(S)$ is not an obstacle. What a function needs in order to be
 invertible is \emph{strict monotonicity}, and strict convexity of $U$ in $S$
 delivers exactly that. The implication is one line: for $S_1<S_2$, strict
+%DO: the definition in footnote~\ref{fn:convex} does not match with the current definition based on derivatives.
 convexity (footnote~\ref{fn:convex}) gives both
 \[
 U(S_2)-U(S_1)>U'(S_1)(S_2-S_1)
@@ -864,8 +821,8 @@ and such states are not physical.
 On the stable branch the inversion is sound, and the naive substitution is a
 disaster anyway.
 
-\paragraph{The loss is a whole function.} What goes missing is not a constant ---
-which a statement about the domain of $\tilde U$ might still recover --- but a
+\paragraph{The loss is a whole function.} What goes missing is not a constant,
+which a statement about the domain of $\tilde U$ might still recover, but a
 function of the remaining variables, and nothing outside $\tilde U$ can supply
 it. For the classical monatomic ideal
 gas the energy is volume-independent, $U=\tfrac32Nk_BT$, so
@@ -919,6 +876,8 @@ why $F$ is a potential and $\tilde U$ is merely a function.
 The Legendre transform works because a convex function can be described in two
 equivalent ways: as the set of points $\big(S,U(S)\big)$, or as the envelope of
 its tangent lines. The tangent at $S_0$ has slope $T=U'(S_0)$ and satisfies
+%DO: y = U(S, V, N)?
+%DO: F(T) = F(T) at S = S_0?
 \[
 y=U(S_0)+T(S-S_0)=T\,S+\underbrace{\big[U(S_0)-TS_0\big]}_{=\,F(T)} ,
 \]
@@ -930,12 +889,15 @@ lost. Naive substitution keeps only the slopes and discards the intercepts.
 \label{sec:whyconvex}
 
 Convexity is not an assumption; it follows from the second law. Divide a system
-into two equal halves that may exchange energy. At fixed total energy $2E$ the
-total entropy is maximal at the actual equilibrium, which by symmetry is equal
-division, so $S(E_1)+S(E_2)\leq2S\big((E_1+E_2)/2\big)$ --- midpoint concavity,
-which with continuity gives concavity of $S(E)$ outright. Since also $\partial
-S/\partial E=1/T>0$, $S$ is concave and increasing, and the inverse of a concave
-increasing function is convex increasing, so $U(S)$ is convex, i.e.\
+into two \emph{equal halves} that may exchange energy. At fixed total energy $2E$
+the total entropy is maximal at the actual equilibrium, which by symmetry is equal
+%DO: how does $S(E_1)+S(E_2)\leq2S\big((E_1+E_2)/2\big)$ follow from the 2nd law?
+division, so $S(E_1)+S(E_2)\leq2S\big((E_1+E_2)/2\big)$,
+%DO: unjustified statement: "midpoint concavity... which with continuity gives concavity of $S(E)$ outright"
+midpoint concavity which with continuity gives concavity of $S(E)$ outright.
+%DO: why "concave and increasing"? How concavity leads to increasing? how does concavity/convexity translate to derivatives?
+Since also $\partial S/\partial E=1/T>0$, $S$ is concave and increasing,
+and the inverse of a concave increasing function is convex increasing, so $U(S)$ is convex, i.e.\
 $(\partial^{2}U/\partial S^{2})_{V,N}=T/C_V\geq0$. Convexity of $U$ in $S$,
 positivity of $C_V$ and entropy maximisation of the composite are three
 statements of one fact; Section~\ref{sec:convexity} turns the same construction
@@ -946,12 +908,12 @@ into the stability inequalities for every response function.
 The classical Legendre transform is defined by a stationarity condition and a
 substitution:
 \[
-F(T)=U(S^\ast)-TS^\ast, \qquad S^\ast \text{ solving } \frac{\partial
-U}{\partial S}=T ,
+F(T)=U(S^\ast)-TS^\ast, \qquad S^\ast \text{ solving } \frac{\partial U}{\partial S} \vert_{S^\ast} = T ,
 \]
 and there is no minimisation in that definition. For convex differentiable $U$ it
 coincides with the \emph{Legendre--Fenchel} transform,\footnote{\label{fn:inf}\textbf{$\inf$
-and $\sup$.} For a set $A$ of real numbers, $\inf A$ is its greatest lower bound,
+  and $\sup$.} For a set $A$ of real numbers, $\inf A$ is its greatest lower bound,
+%DO: what is $_S$ in $\inf_{S}g(S)$?
 and $\inf_{S}g(S)$ means the greatest lower bound of the values $g$ takes on its
 domain. The point of writing $\inf$ rather than $\min$ is that the infimum always
 exists in $\mathbb{R}\cup\{-\infty\}$ whereas a minimum need not be attained:
@@ -966,10 +928,12 @@ upper bound.}
 \boxed{\;F(T)=\inf_{S}\big[\,U(S)-TS\,\big]\;}
 \]
 because for convex $U$ the function $S\mapsto U(S)-TS$ is convex and its unique
+%DO: the "variational form" is the Legendre--Fenchel form?
 stationary point is its global minimum. The variational form is the more general
 of the two: it is well defined for non-differentiable and even non-convex $U$,
+%DO: "convex hull" of a function is not defined. define as footnote.
 and applying it twice returns not $U$ but its convex hull,
-$U^{\ast\ast}=\operatorname{conv}U$ --- which is the Maxwell construction
+$U^{\ast\ast}=\operatorname{conv}U$, which is the Maxwell construction
 (Appendix~\ref{app:maxwell}).
 
 The variational form is also the bridge to thermodynamics. In $\inf_S[U(S)-TS]$
@@ -982,7 +946,7 @@ Legendre--Fenchel form are the same equation read in two directions; neither is
 the same as the bare definition of the transform.
 
 \subsection{The family}
-
+%DO: All potentials of the family carry the same amount of information about the thermodynamic state? U is the most robust?
 \paragraph{Internal energy.} Natural variables $(S,V,N)$:
 \[
 \boxed{\;dU=T\,dS-P\,dV+\mu\,dN\;}
@@ -1025,8 +989,10 @@ $P=-(\partial\Omega/\partial V)_{T,\mu}$, $N=-(\partial\Omega/\partial\mu)_{T,V}
 The grand potential is indispensable for both quantum statistics, for the same
 technical reason in each case: only in the grand ensemble does the many-body
 problem factorise mode by mode, $\Xi=\prod_{k}\xi_{k}$, because the constraint
+%DO: why "$\sum_kn_k=N$ that couples the modes"?  why a "Lagrange multiplier"?
 $\sum_kn_k=N$ that couples the modes has been traded for a Lagrange multiplier.
 The Fermi--Dirac and Bose--Einstein distributions both emerge from this
+%DO: why "intractable at fixed $N$"?
 factorisation and are essentially intractable at fixed $N$. Typical settings:
 electrons exchanging with leads or with a gate that holds $\mu$, and any
 Landauer-type transport problem with $\mu_L\neq\mu_R$; Bose--Einstein
@@ -1045,10 +1011,10 @@ At fixed values of its natural variables, the appropriate thermodynamic potentia
 is minimised with respect to all remaining unconstrained internal degrees of
 freedom.
 \end{quote}
-
+%DO: I think, here spontaneous processes is meant here, but not well explained.
 ``Internal degrees of freedom'' is used for three different things, of which only
-one is meant. \emph{Microscopic} degrees of freedom --- atomic positions and
-momenta, or the quantum many-body state --- are not minimised over; they are
+one is meant. \emph{Microscopic} degrees of freedom (atomic positions and
+momenta, or the quantum many-body state) are not minimised over; they are
 summed over, traced out by the partition function, and the minimum principle sits
 at a level of description from which they have disappeared. The \emph{natural
 variables} of the potential are not varied either: they are what the walls and
@@ -1058,9 +1024,9 @@ collective quantities left undetermined by the constraints.
 
 These are exactly the $\xi$-type variables of Section~\ref{sec:totaldiff}:
 macroscopic averages, sharp and non-fluctuating in the thermodynamic limit, but
-not pinned down by the imposed constraints --- the partitioning of a conserved
+not pinned down by the imposed constraints, the partitioning of a conserved
 quantity between subsystems, the extent of a chemical reaction, the volume
-fraction of a coexisting phase, an order parameter, the position of an internal
+fraction of a coexisting phase, an order parameter; e.g., the position of an internal
 partition. The test for membership is operational: a variable belongs on the list
 if the system can change it without violating any imposed constraint. Once it
 can, the second law says the composite will change it in whichever direction
@@ -1075,7 +1041,7 @@ dS_{\rm tot}=dS-\frac{\dbar Q}{T}\geq 0
 \quad\Longrightarrow\quad \dbar Q \leq T\,dS ,
 \]
 and inserting the first law $\dbar Q=dU-\dbar W$ for each set of constraints:
-
+%DO: why dS >= 0 leads to "S maximum", or "dU <= 0" leads to "U minimum"?
 \begin{center}
 \begin{tabular}{lll}
 \toprule
@@ -1114,6 +1080,7 @@ theory, is the same statement with a restricted trial family.
 parameter $\phi$ and builds a constrained free energy $F(T,V,N;\phi)$. The
 honest definition is a \emph{partial} trace. Let $\hat\phi$ be the operator whose
 value is the order parameter, for instance
+%DO: $M^{-1}$ is $N_{sites}^{-1}$?
 $\hat\phi=M^{-1}\sum_i\hat\sigma^z_i$ for magnetisation per site. Then
 \[
 \boxed{\;e^{-\beta F(T,V,N;\phi)}\;=\;\Tr\Big[\,\delta\big(\hat\phi-\phi\big)\,
@@ -1121,11 +1088,13 @@ e^{-\beta\hat H}\Big]\;}
 \]
 one sums the Boltzmann weight over only those microstates whose order parameter
 has the prescribed value; nothing artificial is added, the constraint being a
+%DO: what is P(\phi)? is this Z(\phi)?
 restriction of the sum. Equivalently $F(\phi)=-k_BT\ln P(\phi)+\text{const}$ with
+%DO: histogram reports P(\phi)?
 $P(\phi)$ the distribution of $\phi$ in the ordinary canonical ensemble, so
 $F(\phi)$ is measurable and in a simulation is exactly what a histogram reports.
 Summing over $\phi$ recovers the unconstrained free energy, and in the
-thermodynamic limit that sum is dominated by its smallest term:
+thermodynamic limit that sum is dominated by its \emph{smallest} term:
 \[
 F_{\rm eq}(T,V,N)=\min_{\phi}F(T,V,N;\phi)+O(\ln V),
 \qquad
@@ -1133,19 +1102,21 @@ F_{\rm eq}(T,V,N)=\min_{\phi}F(T,V,N;\phi)+O(\ln V),
 \]
 
 The conjugate-field route is a \emph{different} construction. Adding a source $h$
-coupled to $\hat\phi$ gives an unconstrained $F_h=-k_BT\ln\Tr\,
-e^{-\beta(\hat H-hV\hat\phi)}$, whose Legendre transform back to fixed $\phi$ is
-$\hat F(\phi)=\min_h[F_h(h)+hV\phi]$ --- convex in $\phi$ by construction, so
-$\hat F=\operatorname{conv}F$ and not $F$ itself. The two agree wherever $F$ is
-already convex and differ exactly where it is not: below $T_c$ the field route
+coupled to $\hat\phi$ gives an unconstrained
+%DO: what is $V$ is $F_h=-k_BT\ln\Tr\, e^{-\beta(\hat H-hV\hat\phi)}$?
+$F_h=-k_BT\ln\Tr\, e^{-\beta(\hat H-hV\hat\phi)}$, whose Legendre transform back to fixed $\phi$ is
+$\hat F(\phi)=\min_h[F_h(h)+hV\phi]$, convex in $\phi$ by construction,
+so $\hat F=\operatorname{conv}F$ and not $F$ itself. The two agree wherever $F$
+is already convex and differ exactly where it is not: below $T_c$ the field route
 returns the flat common tangent between the two wells and is blind to the barrier
 between them. Since that barrier is the whole content of nucleation,
 metastability and hysteresis, the field construction cannot serve as the
 definition: fixing the field performs the Maxwell construction automatically,
 fixing the order parameter does not.
 
-Two points make $F(\phi)$ concrete. At finite volume the double-well shape is
-real, and its barrier height is the interfacial free energy of the domain wall
+%DO: "real" is not clear in "At \emph{finite} volume the double-well shape is real".
+Two points make $F(\phi)$ concrete. At \emph{finite} volume the double-well shape
+is real, and its barrier height is the interfacial free energy of the domain wall
 separating the two ordered regions, $\Delta F\sim2\sigma L^{d-1}$ --- the
 Lee--Kosterlitz quantity of Section~\ref{sec:firstorder}, which diverges with $L$
 and so survives the thermodynamic limit even though $F_{\rm eq}/V$ does not
@@ -1157,11 +1128,12 @@ expansion of $F(T;\phi)$ in powers of $\phi$, and the change in the location and
 multiplicity of its minima as $T$ crosses $T_c$ \emph{is} the phase transition.
 
 \begin{warning}
-Stationarity alone is not equilibrium; one also needs stability, i.e.\ that the
+%DO: Where was "Stationarity" used?
+Stationarity alone is not equilibrium; one also needs \emph{stability}, i.e.\ that the
 extremum be a minimum. And a local minimum is a metastable state, not the
 equilibrium state: supercooled liquids, retained austenite and diamond at ambient
 conditions all sit in local minima with lifetimes exceeding any experiment.
-Thermodynamics identifies the global minimum; whether the system reaches it is a
+Thermodynamics identifies the \emph{global} minimum; whether the system reaches it is a
 question of kinetics.
 \end{warning}
 
@@ -1173,10 +1145,11 @@ binodal/spinodal distinction.
 \label{sec:convexity}
 
 \paragraph{Convexity flip under Legendre transform.} Read $F(T)=\inf_S[U(S)-TS]$
+%DO: define "affine" as footnote
 as a function of $T$ at fixed $S$: the bracket is affine in $T$, with slope $-S$
 and intercept $U(S)$. So $F(T)$ is the pointwise infimum of a family of straight
-lines, and a pointwise infimum of affine functions is concave --- draw two lines
-and take the lower envelope --- regardless of the family:
+lines, and a pointwise infimum of affine functions is concave (draw two lines
+and take the lower envelope) regardless of the family:
 \[
 \boxed{\;F(T)=\inf_S\big[\underbrace{U(S)-TS}_{\text{affine in }T}\big]
 \;\Longrightarrow\;F\ \text{concave in}\ T\;}
@@ -1191,23 +1164,25 @@ $T=U'(S)$ and $S=-F'(T)$,
 \frac{\partial^{2}F}{\partial T^{2}}=-\frac{dS}{dT}
 =-\left(\frac{\partial^{2}U}{\partial S^{2}}\right)^{-1} .
 \]
-The curvatures are not merely opposite in sign but \emph{reciprocal}. Physically
-this is a fluctuation statement: a potential very flat in $T$ (large $|F''|$,
+The curvatures are not merely opposite in sign but \emph{reciprocal}.
+%DO: unclear statement
+Physically this is a fluctuation statement: a potential very flat in $T$ (large $|F''|$,
 large $C_V$) corresponds to a fundamental relation very stiff in $S$. A stiff
 system has small fluctuations of the conjugate variable.
 
 \paragraph{Stability as a second-order condition.} Every stability inequality
 comes from one construction. Divide a homogeneous system conceptually into two
-equal halves that may exchange a single extensive quantity $X$ through an
-internal wall, the total $X_{\rm tot}=2X_0$ being held fixed from outside. The
-split
+\emph{equal halves} that may exchange a single \emph{extensive} quantity $X$ through an
+internal wall, the total $X_{\rm tot}=2X_0$ being held fixed from outside.
+The split, $ x $,
 \[
 X_{1}=X_0+x,\qquad X_{2}=X_0-x
 \]
 is then an unconstrained internal variable in the sense of
-Section~\ref{sec:minimum}, so the potential $\Phi$ selected by the remaining
-constraints must be extremal at the homogeneous state $x=0$ --- and
-\emph{stability is the demand that the extremum be a minimum} (a maximum, for
+Section~\ref{sec:minimum}, so the potential $\Phi$ selected by the remaining constraints
+%DO: why at x = 0? we should do that for a generic unknown x.
+must be extremal at the homogeneous state $x=0$
+and \emph{stability is the demand that the extremum be a minimum} (a maximum, for
 the entropy). Since
 \[
 \Phi_{\rm tot}(x)=\Phi(X_0+x)+\Phi(X_0-x),
@@ -1216,9 +1191,10 @@ the entropy). Since
 \qquad
 \Phi_{\rm tot}''(0)=2\,\Phi''(X_0),
 \]
-the first-order condition holds identically by symmetry --- it says only that the
-two halves share the intensive variable conjugate to $X$ --- and the entire
-content is second order:
+the first-order condition holds identically by symmetry, it says only that the
+two halves share the intensive variable conjugate to $X$,
+and the entire content is second order:
+%DO: this needs a proof: $ S''(X_0)\;\leq\;0\quad\text{for the entropy} $
 \[
 \boxed{\;\Phi''(X_0)\;\geq\;0\quad\text{for a minimised potential},
 \qquad S''(X_0)\;\leq\;0\quad\text{for the entropy}\;}
@@ -1230,10 +1206,10 @@ worked out explicitly.
 \paragraph{Heat capacity.} Take the composite \emph{isolated}, with a rigid,
 impermeable, diathermal internal wall, so that the only free variable is the
 energy split $X=E$ and the governing principle is maximum total entropy. The
-construction gives $(\partial^{2}S/\partial E^{2})_{V,N}\leq0$ --- the argument
-of Section~\ref{sec:whyconvex} carried to second order. Now evaluate that
-derivative. From $(\partial S/\partial E)_{V,N}=1/T$ and
-$(\partial E/\partial T)_{V,N}=C_V$,
+construction gives $(\partial^{2}S/\partial E^{2})_{V,N}\leq0$,
+the argument of Section~\ref{sec:whyconvex} carried to second order.
+Now evaluate that derivative.
+From $(\partial S/\partial E)_{V,N}=1/T$ and $(\partial E/\partial T)_{V,N}=C_V$,
 \[
 \left(\frac{\partial^{2}S}{\partial E^{2}}\right)_{V,N}
 =\frac{\partial}{\partial E}\left(\frac{1}{T}\right)_{V,N}
@@ -1275,6 +1251,7 @@ gives $\Var(V)=k_BT\,V\kappa_T\geq0$.
 \paragraph{Magnetic susceptibility.} Repeat with $X=M$: fix $T$, $V$, $N$ and the
 total moment $2M_0$, and let the halves exchange moment. The potential at fixed
 $M$ is the constrained free energy $F(T,V,N;M)$ of Section~\ref{sec:minimum},
+%DO: why "derivative is the field, $(\partial F/\partial M)_{T,V,N}=\mathcal{H}$"?
 whose derivative is the field, $(\partial F/\partial M)_{T,V,N}=\mathcal{H}$, so
 \[
 \left(\frac{\partial^{2}F}{\partial M^{2}}\right)_{T,V,N}
@@ -1303,12 +1280,13 @@ The first term is the non-negative fluctuation (paramagnetic) response; the
 second vanishes only for linear coupling. Orbital magnetism enters through
 minimal substitution $\hat{\mathbf{p}}\to\hat{\mathbf{p}}-q\mathbf{A}$, which is
 \emph{quadratic} in the field, so $\partial^{2}\hat H/\partial\mathcal{H}^{2}>0$
-and the second term is negative --- Landau and core diamagnetism, and in the
-extreme case a superconductor. Nothing is violated: what stability of the
-combined matter-plus-field system bounds is the permeability
-$\mu_r=1+\chi_{\rm vol}\geq0$, with $\chi_{\rm vol}=\chi_T/V$ dimensionless in SI
-units, an inequality that $\chi_{\rm vol}=-1$ saturates rather than breaks. (For
-$[\hat H_0,\hat M]\neq0$ the variance becomes the Kubo canonical correlation,
+and the second term is negative:
+Landau and core diamagnetism, and in the extreme case a superconductor.
+Nothing is violated: what stability of the combined matter-plus-field system
+bounds is the permeability $\mu_r=1+\chi_{\rm vol}\geq0$,
+with $\chi_{\rm vol}=\chi_T/V$ dimensionless in SI units,
+an inequality that $\chi_{\rm vol}=-1$ saturates rather than breaks.
+(For $[\hat H_0,\hat M]\neq0$ the variance becomes the Kubo canonical correlation,
 likewise non-negative.)
 
 \paragraph{The general pattern.} Applying the construction variable by variable
@@ -1325,8 +1303,8 @@ $C_P\geq C_V\geq0$ and $\kappa_T\geq\kappa_S\geq0$ follow. In every case
 \]
 the elementary form of the fluctuation--dissipation theorem. Because the
 right-hand side is a variance, statistical mechanics delivers thermodynamic
-stability automatically; and equality --- vanishing curvature, diverging
-response, diverging fluctuation --- is precisely what marks a critical point.
+stability automatically; and equality (vanishing curvature, diverging
+response, diverging fluctuation) is precisely what marks a critical point.
 
 \section{Statistical ensembles and their partition functions}
 \label{sec:ensembles}
@@ -1351,8 +1329,10 @@ Z(T,V,N)=\sum_i e^{-\beta E_i}=\Tr\, e^{-\beta \hat H},
 \boxed{\;F=-k_BT\ln Z\;}
 \]
 
+%DO: the mathematical trick is to add $ e^{-\beta X} $ whenever the value of X is only fixed on average; this needs to be explained.
 \paragraph{Grand partition function $\Xi$.} System exchanging energy and
 particles with a reservoir at $(T,\mu)$, at fixed $V$:
+%DO: can we imagine an statistical ensemble where e.g. the magnetisation is fixed on average?
 \[
 \boxed{\;\Xi(T,V,\mu)=\sum_{N=0}^{\infty}\sum_i e^{-\beta(E_{i,N}-\mu N)}
 =\sum_{N=0}^{\infty} z^N Z(T,V,N)\;}
@@ -1412,8 +1392,10 @@ fluctuating variable and the Gaussian width around it giving its variance.
 
 Take $\Xi=\sum_N e^{-\beta[F(T,V,N)-\mu N]}$ and evaluate by steepest descent.
 The exponent is stationary at $N^\ast$ satisfying $(\partial F/\partial
-N)_{T,V}=\mu$, which is the thermodynamic condition for particle equilibrium with
-the reservoir. Expanding to second order and doing the Gaussian integral,
+N)_{T,V}=\mu$, which is the thermodynamic condition for particle equilibrium with the reservoir.
+%DO: explain, in footnote, how to perform saddle-point approximation
+%DO: Which "Gaussian integral"?
+Expanding to second order and doing the Gaussian integral,
 \[
 \Xi\simeq e^{-\beta[F(N^\ast)-\mu N^\ast]}\sqrt{\frac{2\pi}{\beta F''}} ,
 \qquad
@@ -1433,20 +1415,20 @@ $2\pi/(\beta F'')=2\pi\Var(N)=O(N)$ and the correction is
 $-\tfrac12k_BT\ln N+O(1)=\mathcal{O}(\ln N)$. The Gaussian width is $\Delta
 N/N\sim N^{-1/2}$, and $\mathcal{O}(\ln N)$ is subextensive, hence invisible in
 the densities $\omega=\Omega/V$. That is the whole content of ensemble
-equivalence: the two ensembles produce the same thermodynamic surface, up to
-subextensive terms.
+equivalence: the two ensembles produce the same thermodynamic surface,
+up to subextensive terms.
 
 \subsection{Difference of response functions}
 \label{sec:respdiffer}
 
 Here is the point that the $N^{-1/2}$ slogan obscures. Equivalence states that
 the \emph{function} $S(T,V,\mu)$ is the same in both descriptions, but a response
-function is not determined by the surface alone: it is a \emph{directional
-derivative}, fixed by the surface \emph{and} the direction of differentiation.
+function is not determined by the function value, ``the surface'' alone:
+it is a \emph{directional derivative}, fixed by the surface \emph{and} the direction of differentiation.
 Fixing $\mu$ and fixing $N$ define two different curves through the same point of
 the same surface, so $C_{V,N}=T(\partial S/\partial T)_{V,N}$ and
-$C_{V,\mu}=T(\partial S/\partial T)_{V,\mu}$ are two different numbers --- exactly
-as $C_P\neq C_V$ within a single ensemble, which nobody calls an inequivalence.
+$C_{V,\mu}=T(\partial S/\partial T)_{V,\mu}$ are two different numbers,
+exactly as $C_P\neq C_V$ within a single ensemble, which nobody calls an inequivalence.
 
 The size of the difference is not a $1/N$ correction. From
 Section~\ref{sec:caveat},
@@ -1543,10 +1525,10 @@ from this exchange of an unknown continuous variable for a known discrete one.
 
 \subsection{The rounding-and-shifting estimate}
 \label{sec:fss:estimate}
-
 In the infinite system $\xi(t)\simeq\xi_0|t|^{-\nu}$; in a box of side $L$
-correlations cannot extend further than the system. So there are two regimes,
-separated by $\xi(t)\approx L$, i.e.\ by
+correlations cannot extend further than the system.
+%DO: not clear why.
+So there are two regimes, separated by $\xi(t)\approx L$, i.e.\ by
 \[
 \boxed{\;|t^{\ast}(L)|\;\approx\;\left(\frac{\xi_0}{L}\right)^{1/\nu}
 \;\sim\;L^{-1/\nu}\;}
@@ -1564,7 +1546,7 @@ $\Delta T\sim L^{-1/\nu}$ in temperature and is displaced from $T_c$ by the same
 order, there being no other scale to set it.
 
 The estimate delivers the exponents of $L$ and nothing else: no amplitudes, no
-peak shape, no size of corrections --- and it is the corrections, not the leading
+peak shape, no size of corrections and it is the corrections, not the leading
 powers, that set the achievable accuracy.
 
 \subsection{The five assumptions}
@@ -1575,8 +1557,8 @@ Appendix~\ref{app:fssassumptions}. In brief:
 \begin{itemize}\setlength{\itemsep}{0pt}
 \item[(S1)] a \emph{single} divergent length, $\xi(t)\simeq\xi_0|t|^{-\nu}$, with
 the order-parameter correlator $G(r)\simeq A\,r^{-(d-2+\eta)}g(r/\xi)$ and every
-other length --- lattice spacing, interaction range, interface width --- staying
-finite as $t\to0$;
+other length like lattice spacing, interaction range, interface width,
+staying finite as $t\to0$;
 \item[(S2)] one $k_BT$ of singular free energy per correlation volume,
 $f_{\rm sing}\approx k_BT\,\xi^{-d}$, which together with (S1) is \emph{exactly}
 hyperscaling,
@@ -1840,13 +1822,14 @@ all; and the standard protocol for extracting exponents numerically.
 \section{Heat capacity at fixed \texorpdfstring{$N$}{N} and at fixed \texorpdfstring{$\mu$}{mu}}
 
 We use the volumetric (per unit volume) heat capacity
+%DO: sudden change of _total_ derivative to _partial_ derivative
 \[
 \boxed{\;c_V=\frac{1}{V}\left(\frac{\dbar Q}{dT}\right)_V
 =\frac{T}{V}\left(\frac{\partial S}{\partial T}\right)_V\;}
 \]
 The second form is preferable as a definition: it refers only to state functions
 and carries no hidden reversibility assumption. The subscript $V$ is not the whole
-story --- one must also say what else is held fixed.
+story, one must also say what else is held fixed.
 
 \subsection{Canonical ensemble: fixed \texorpdfstring{$N$}{N}}
 \label{sec:canonical}
@@ -1879,8 +1862,9 @@ c_V=\frac{1}{V}\left(\frac{\partial (U-\mu N)}{\partial T}\right)_{V,\mu}
 =-\frac{T}{V}\left(\frac{\partial^{2}\Omega}{\partial T^{2}}\right)_{V,\mu} .
 \]
 
-Splitting the energy flux of an open system into ``heat'' and ``matter
-transport'' is a matter of convention, because particles entering carry entropy
+Splitting the energy flux of an open system into ``heat'' and ``matter transport''
+%DO: entropy cannot be carried by particles
+is a matter of convention, because particles entering carry entropy
 as well as energy; the expression above is the definition $\dbar Q\equiv T\,dS$
 at fixed $\mu$, which is self-consistent and standard, while other conventions
 (using the enthalpy per particle rather than $\mu$) appear in the
@@ -1915,9 +1899,9 @@ language, using $(\partial N/\partial T)_{V,\mu}=k_B\beta^{2}\Cov(N,E-\mu N)$,
 the $\mu$-dependence cancels identically and
 \[
 \boxed{\;c_{V,N}=\frac{1}{Vk_BT^{2}}
-\left[\Var(E)-\frac{\Cov(E,N)^{2}}{\Var(N)}\right]\;}
+\left[\Var(E)-\frac{\Cov(E,N)^{2}}{\Var(N)}\right]\;} ,
 \]
---- the energy variance with the part explained by the particle-number
+the energy variance with the part explained by the particle-number
 fluctuation projected out, i.e.\ a conditional variance.
 
 Appendix~\ref{app:bookkeeping} checks both formulas against the classical ideal
@@ -1929,22 +1913,22 @@ correction term restores $\tfrac32Nk_B$ exactly.
 
 Everything so far has been top-down: a potential is postulated, Legendre
 transformed, and differentiated. This section runs the chain in the opposite
-direction for the one case in which it can be run explicitly --- a system of
-independent modes in the grand canonical ensemble, of any statistics --- and asks
-what a measurement at temperature $T$ actually \emph{sees} of the spectrum. The answer
-is sharper than the usual slogan that thermodynamics probes states within $k_BT$
-of the chemical potential. Each observable turns out to be the spectrum viewed
-through its \emph{own} kernel: the kernels are all centred on $\mu$ and all have a
-width set by $T$ alone and by no property of the spectrum, but they differ in
-shape, and the differences are physical. The heat capacity, in particular, is
-exactly blind to the levels sitting at $\mu$.
+direction for the one case in which it can be run explicitly
+(a system of independent modes in the grand canonical ensemble of any statistics)
+and asks what a measurement at temperature $T$ actually \emph{sees} of the spectrum.
+Each observable turns out to be the spectrum viewed through its \emph{own} kernel:
+the kernels are all centred on $\mu$ and all have a width set by $T$ alone,
+but they differ in shape, and the differences are physical.
+The heat capacity, in particular, is exactly blind to the levels sitting at $\mu$.
 
 One remark on scope before the derivation: the whole construction is at fixed
 $\mu$, and Section~\ref{sec:filt_muN} converts to fixed $N$ using the formula of
 Section~\ref{sec:caveat}, which is not always a small correction.
 
-\subsection{Independent modes, any statistics}
+\subsection{Independent modes}
 \label{sec:filt_twolevel}
+%DO: Here we should use particle-number representation in Fock space (not "single-particle mode").
+%DO: We assume that we have solved the full Hamiltonian and obtained the eigenstates of the system. $ \mu N $ is representation independent, since total N can be obtained in any representation.
 
 Take
 \[
@@ -1954,15 +1938,10 @@ Take
 \]
 where $\lambda$ runs over single-particle modes (spin and any other internal
 label included) and $\hat n_\lambda$ counts the occupation of mode $\lambda$.
-\emph{Nothing is assumed about the statistics.} The allowed occupations may be
-$\{0,1\}$, or $\{0,1,2,\dots\}$, or anything else; every result of this
-subsection holds for all three of the standard choices, and the specialisation to
-any one of them is postponed to the end. Nothing is idealised in the step either:
-for any Hamiltonian quadratic in the creation and annihilation operators the
-$\varepsilon_\lambda$ are its exact eigenvalues, including in a disordered or
-inhomogeneous sample where they are not labelled by momentum.
+Nothing is assumed about the statistics.
 
 Because $\hat H-\mu\hat N=\sum_\lambda(\varepsilon_\lambda-\mu)\hat n_\lambda$ is
+%DO: Proof needed: "trace defining $\Xi$ factorises over $\lambda$"
 a sum of commuting one-mode terms, the trace defining $\Xi$ factorises over
 $\lambda$, and each factor is a one-mode sum:
 \begin{equation}\label{eq:filt_Xi}
@@ -1972,8 +1951,8 @@ $\lambda$, and each factor is a one-mode sum:
 \qquad
 \boxed{\;u_\lambda\equiv\frac{\varepsilon_\lambda-\mu}{k_BT}\;}
 \end{equation}
-The modes are statistically independent --- a fact used twice below. Writing
-$\varphi(u)\equiv-\ln\xi(u)$ for the dimensionless one-mode grand potential,
+The modes are statistically independent.
+Writing $\varphi(u)\equiv-\ln\xi(u)$ for the dimensionless one-mode grand potential,
 \begin{equation}\label{eq:filt_Omega}
 \boxed{\;\Omega(T,\mu)=k_BT\sum_\lambda\varphi(u_\lambda)\;}
 \end{equation}
@@ -1983,19 +1962,22 @@ Eq.~\eqref{eq:filt_Omega}: \emph{temperature and chemical potential enter only
 through the ratio $u_\lambda$}. The function $\varphi$ carries the statistics and
 knows nothing of $T$; the spectrum enters only through the list
 $\{\varepsilon_\lambda\}$. A change of temperature therefore cannot deform the
-way a level is weighed --- it can only rescale the variable in which the weighing
-is done. That is the scale covariance of the Boltzmann factor, and it is the
+way a level is weighed, it can only rescale the variable in which the weighing is done.
+%DO: define "scale covariance" as footnote
+That is the scale covariance of the Boltzmann factor, and it is the
 reason every kernel below has a width set by $T$ alone.
 
 \paragraph{Occupation and its variance.} Two derivatives of $\varphi$ carry all
-the physics, and both are statistics-independent identities. Since
-$\partial u_\lambda/\partial\mu=-1/k_BT$ at fixed $T$, the mean occupation is
+the physics, and both are statistics-independent identities.
+%DO: it is not clear if $n_\lambda$ is the "mean occupation".
+Since $\partial u_\lambda/\partial\mu=-1/k_BT$ at fixed $T$, the mean occupation is
 \[
 n_\lambda=-\frac{\partial\Omega}{\partial\varepsilon_\lambda}
 =\varphi'(u_\lambda),
 \]
-and differentiating once more --- equivalently, reading off the second cumulant
-of $\hat n_\lambda$ from $\ln\xi$ --- gives its fluctuation,
+and differentiating once more, equivalently, reading off the second cumulant
+of $\hat n_\lambda$ from $\ln\xi$, gives its fluctuation,
+%DO: prove explicitly
 \begin{equation}\label{eq:filt_master}
 \boxed{\;n_\lambda=\varphi'(u_\lambda),
 \qquad
@@ -2003,8 +1985,8 @@ of $\hat n_\lambda$ from $\ln\xi$ --- gives its fluctuation,
 =-k_BT\,\frac{\partial n_\lambda}{\partial\varepsilon_\lambda}\;}
 \end{equation}
 The last form is the fluctuation--response relation of
-Section~\ref{sec:convexity} applied to a single mode; note that
-$\Var\geq0$ makes $\varphi$ concave, whatever the statistics.
+Section~\ref{sec:convexity} applied to a single mode;
+note that $\Var\geq0$ makes $\varphi$ concave, whatever the statistics.
 
 \paragraph{Entropy and heat capacity.} Differentiate at fixed $\mu$. Since
 $u_\lambda\propto1/T$,
@@ -2023,34 +2005,34 @@ so that
 \boxed{\;S(T,\mu)=k_B\sum_\lambda\Big[\,u_\lambda\varphi'(u_\lambda)
 -\varphi(u_\lambda)\,\Big]\;}
 \end{equation}
-Differentiating again, the derivative of the bracket with respect to $u$
-telescopes, $\varphi'+u\varphi''-\varphi'=u\varphi''$, and one more application
+%DO: what is the meaning of "telescopes"?
+%DO: alway calculate volumetric specific heat.
+Differentiating again, the derivative of the bracket with respect to $u$ telescopes,
+$\varphi'+u\varphi''-\varphi'=u\varphi''$, and one more application
 of Eq.~\eqref{eq:filt_dudT} gives $C_\mu\equiv T(\partial S/\partial
 T)_{V,\mu}$:
 \begin{equation}\label{eq:filt_Cgen}
 \boxed{\;C_\mu(T)=-k_B\sum_\lambda u_\lambda^{2}\,\varphi''(u_\lambda)
 \;=\;k_B\sum_\lambda u_\lambda^{2}\,\Var(\hat n_\lambda)\;}
 \end{equation}
-Every term is non-negative, so $C_\mu>0$ mode by mode --- the stability result of
+Every term is non-negative, so $C_\mu>0$ mode by mode; i.e., the stability result of
 Section~\ref{sec:convexity}, here without any thermodynamic argument and without
 any commitment about statistics.
 
 \paragraph{The same quantity as a fluctuation.} Section~\ref{sec:caveat} gives
 $C_\mu=\Var(E-\mu N)/k_BT^{2}$ for any grand canonical system. That general
 identity and Eq.~\eqref{eq:filt_Cgen} are the same statement here: with
-$\hat H-\mu\hat N=\sum_\lambda(\varepsilon_\lambda-\mu)\hat n_\lambda$ a sum of
-\emph{independent} terms, variances add, and
-$(\varepsilon_\lambda-\mu)^2=(k_BT)^2u_\lambda^2$, so
+$\hat H-\mu\hat N=\sum_\lambda(\varepsilon_\lambda-\mu)\hat n_\lambda$
+a sum of \emph{independent} terms, variances add,
+and $(\varepsilon_\lambda-\mu)^2=(k_BT)^2u_\lambda^2$, so
 \begin{equation}\label{eq:filt_C_fluct}
 \frac{\Var(E-\mu N)}{k_BT^{2}}
 =\frac{1}{k_BT^{2}}\sum_\lambda(\varepsilon_\lambda-\mu)^{2}\Var(\hat n_\lambda)
 =k_B\sum_\lambda u_\lambda^{2}\,\Var(\hat n_\lambda).
 \end{equation}
 Equation~\eqref{eq:filt_Cgen} is thus a product of two factors per mode --- an
-energy cost $(\varepsilon_\lambda-\mu)^2$ and an occupancy variance --- and that
-reading, which is the subject of Section~\ref{sec:filt_blind}, is as
-statistics-independent as the rest.
-
+energy cost $(\varepsilon_\lambda-\mu)^2$ and an occupancy variance.
+%DO: Calculate also the particle/charge susceptibility and magnetic susceptibility. All fluctuations will be related to Var(\hat{n}_\lambda) like c_v.
 \paragraph{The three standard cases.} Only now does a choice of statistics enter,
 and it enters in one place: the function $\varphi$.
 \begin{center}
@@ -2058,6 +2040,7 @@ and it enters in one place: the function $\varphi$.
 \toprule
 & occupations & $\varphi(u)=-\ln\xi(u)$ & $n=\varphi'$ & $\Var(\hat n)=-\varphi''$ \\
 \midrule
+%DO: The Bose--Einstein and Boltzmann parts need a clear explicit proof.
 Fermi--Dirac & $0,1$ & $-\ln\big(1+e^{-u}\big)$ & $\big(e^{u}+1\big)^{-1}$ & $n(1-n)$ \\[2pt]
 Bose--Einstein & $0,1,2,\dots$ & $+\ln\big(1-e^{-u}\big)$ & $\big(e^{u}-1\big)^{-1}$ & $n(1+n)$ \\[2pt]
 Boltzmann & $0,1,2,\dots$ (unsym.) & $-e^{-u}$ & $e^{-u}$ & $n$ \\
@@ -2065,14 +2048,15 @@ Boltzmann & $0,1,2,\dots$ (unsym.) & $-e^{-u}$ & $e^{-u}$ & $n$ \\
 \end{tabular}
 \end{center}
 Substituting each into Eq.~\eqref{eq:filt_Cgen} gives the whole of elementary
-statistical mechanics in one line apiece: $k_Bu^{2}n(1-n)$ is the Schottky
-anomaly and, summed over a band, the Sommerfeld result; $k_Bu^{2}n(1+n)$ is the
-Einstein heat capacity of an oscillator, and over a phonon spectrum the Debye
-result; $k_Bu^{2}e^{-u}$ is its classical counterpart. The three differ in shape
-but not in structure, and the difference of shape is precisely what
-Section~\ref{sec:filt_kernels} is about.
+statistical mechanics in one line apiece: $k_Bu^{2}n(1-n)$ is
+%DO: define "Schottky anomaly" and "Sommerfeld result" as footnote.
+the Schottky anomaly and, summed over a band, the Sommerfeld result;
+$k_Bu^{2}n(1+n)$ is the Einstein heat capacity of an oscillator,
+and over a phonon spectrum the Debye result;
+$k_Bu^{2}e^{-u}$ is its classical counterpart. The three differ in shape
+but not in structure.
 
-\subsection{The fermionic case, in symmetric form}
+\subsection{The fermionic case}
 \label{sec:filt_fermi}
 
 The rest of the section specialises to Fermi--Dirac statistics, both because that
@@ -2099,15 +2083,13 @@ entire thermal content. Equation~\eqref{eq:filt_Omega} becomes
 \Omega(T,\mu)=\sum_\lambda\Big[\;\tfrac12\big(\varepsilon_\lambda-\mu\big)
 \;-\;k_BT\,\ln\big(2\cosh x_\lambda\big)\;\Big],
 \end{equation}
-each mode contributing its own two-level grand potential. This decomposition is a
-convenience, not a premise: it is used below only to read off shapes, and nothing
-in Section~\ref{sec:filt_twolevel} depended on it.
+each mode contributing its own two-level grand potential.
 
 Since $x_\lambda\propto1/T$, Eq.~\eqref{eq:filt_dudT} reads
 \begin{equation}\label{eq:filt_dxdT}
 \left(\frac{\partial x_\lambda}{\partial T}\right)_{\!\mu}=-\frac{x_\lambda}{T},
 \end{equation}
-and the Fermi factor written in the symmetric variable is
+and the Fermi-Dirac factor written in the symmetric variable is
 \begin{equation}\label{eq:filt_n}
 n_\lambda=\frac{1}{1+e^{2x_\lambda}}=\frac{e^{-x_\lambda}}{2\cosh x_\lambda},
 \qquad
@@ -2120,8 +2102,9 @@ Eqs.~\eqref{eq:filt_Sgen} and~\eqref{eq:filt_Cgen}, or equivalently
 differentiating Eq.~\eqref{eq:filt_OmegaF} directly, gives
 \begin{equation}\label{eq:filt_S}
 S(T,\mu)=k_B\sum_\lambda\Big[\;\ln\big(2\cosh x_\lambda\big)
-\;-\;x_\lambda\tanh x_\lambda\;\Big],
+\;-\;x_\lambda\tanh x_\lambda\;\Big] .
 \end{equation}
+%DO: move the Gibbs entropy to footnote:
 which is worth checking against the Gibbs entropy of independent orbitals,
 $S=-k_B\sum_\lambda[\,n_\lambda\ln n_\lambda+(1-n_\lambda)\ln(1-n_\lambda)\,]$:
 from Eq.~\eqref{eq:filt_n}, $\ln n_\lambda=-x_\lambda-\ln(2\cosh x_\lambda)$ and
@@ -2142,6 +2125,7 @@ and Eq.~\eqref{eq:filt_dxdT} then gives
 \end{equation}
 This is Eq.~\eqref{eq:filt_Cgen} in the fermionic case: using
 $\hat n_\lambda^{2}=\hat n_\lambda$ in Eq.~\eqref{eq:filt_master},
+%DO: prove {eq:filt_var_n}
 \begin{equation}\label{eq:filt_var_n}
 \Var(\hat n_\lambda)=n_\lambda(1-n_\lambda)
 =\frac{e^{-x_\lambda}e^{x_\lambda}}{4\cosh^2x_\lambda}
@@ -2149,13 +2133,16 @@ $\hat n_\lambda^{2}=\hat n_\lambda$ in Eq.~\eqref{eq:filt_master},
 \end{equation}
 and $u_\lambda^{2}=4x_\lambda^{2}$ turns $k_Bu^{2}\Var(\hat n)$ into
 $k_Bx^{2}\operatorname{sech}^{2}x$.
+%DO: Derive for the bosonic case.
 
 \subsection{The filters}
 \label{sec:filt_kernels}
 
+%DO: This section and the following section should be rewritten. The kernel is always even, and is non-negative, and is mono-modal, centered $ x = 0 $. The structure of quantities is always like $ \rho(\varepsilon)\; A_{\mathcal{O}} \;  w_{\mathcal{O}}\!\left(\frac{\varepsilon-\mu}{2k_BT}\right) $; for instance, for c_v, $ A_{\mathcal{O}} = k_B x^2 $ and $ w_{\mathcal{O}} = sech^2(x) $. The physical interpretations will be also more clear that those given in section {sec:filt_blind}, like ``maximally undecided''. For instance, c_v is, within this interpretation, a measure of variance of energy for states around $ \varepsilon = \mu $. This is the proper physical interpretation and is also related to the microscopic view of phase transitions.
+
 Introduce the single-particle density of states
-$\rho(\varepsilon)=\sum_\lambda\delta(\varepsilon-\varepsilon_\lambda)$ and
-replace the sums by integrals. Equations~\eqref{eq:filt_S} and~\eqref{eq:filt_C},
+$\rho(\varepsilon)=\sum_\lambda\delta(\varepsilon-\varepsilon_\lambda)$
+and replace the sums by integrals. Equations~\eqref{eq:filt_S} and~\eqref{eq:filt_C},
 together with $N=\sum_\lambda n_\lambda$, become
 \begin{equation}\label{eq:filt_integrals}
 \boxed{\;
@@ -2168,6 +2155,7 @@ with the four kernels
 C_\mu:&\ \ w_c(x)=k_B\,x^{2}\operatorname{sech}^{2}x, &
 S:&\ \ w_S(x)=k_B\big[\ln(2\cosh x)-x\tanh x\big],\\[2pt]
 \left(\tfrac{\partial N}{\partial T}\right)_{\!\mu}\!:&\ \
+%DO: Move to the section {sec:filt_muN}
 w_{N,T}(x)=\frac{x\operatorname{sech}^{2}x}{2T}, &
 \left(\tfrac{\partial N}{\partial\mu}\right)_{\!T}\!:&\ \
 w_{N,\mu}(x)=\frac{\operatorname{sech}^{2}x}{4k_BT} .
@@ -2183,14 +2171,14 @@ Three structural facts hold for all four.
 
 \paragraph{(i) The width is set by $T$ alone.} Every kernel is a fixed function of
 $(\varepsilon-\mu)/2k_BT$. The spectrum enters Eq.~\eqref{eq:filt_integrals} only
-through $\rho$; it contributes nothing to the resolution of the instrument. This
-is the scale covariance of the Boltzmann weight, seen one level at a time: a
-change of temperature dilates the kernel about $\mu$ without deforming it.
+through $\rho$; it contributes nothing to the resolution of the function.
+This is the scale covariance of the Boltzmann weight, seen one level at a time:
+a change of temperature dilates the kernel about $\mu$ without deforming it.
 
 \paragraph{(ii) Parity is fixed by the observable.} $w_c$, $w_S$ and $w_{N,\mu}$
 are even; $w_{N,T}$ is odd. Consequently the even observables are sensitive to
 $\rho$ symmetrised about $\mu$, and $(\partial N/\partial T)_\mu$ measures the
-\emph{asymmetry} of $\rho$ across the window --- it vanishes identically for a
+\emph{asymmetry} of $\rho$ across the window; it vanishes identically for a
 particle--hole symmetric spectrum, which is why the fixed-$N$ correction of
 Section~\ref{sec:caveat} disappears at half filling.
 
@@ -2374,9 +2362,9 @@ Section~\ref{sec:caveat} are not a bookkeeping nicety.
 
 \subsection{A power-law density of states}
 \label{sec:filt_power}
-
-The value of the filter form is that scale covariance --- fact (i) --- turns a
-scale-free spectrum into an exponent by inspection. Let
+%DO: Can we invert the relation of the observables to obtain the structure of density of states, esp. at low energies where the weight function has a small width?
+The value of the filter form is that scale covariance, fact (i),
+turns a scale-free spectrum into an exponent by inspection. Let
 \begin{equation}\label{eq:filt_powerlaw}
 \rho(\varepsilon)=A\,|\varepsilon-\mu|^{r},\qquad r>-1,
 \end{equation}
@@ -2415,6 +2403,7 @@ Three readings of Eq.~\eqref{eq:filt_SC} are worth having.
 
 For $r>0$ (a semimetal) $S<C_\mu$: states are scarce at $\mu$, and the few that
 the window catches are far enough out to be heavily energy weighted.
+%DO: also compare with metals, bad metals and Fermi-liquid characteristics
 
 For $-1<r<0$ the Sommerfeld ratio $C_\mu/T\sim T^{r}$ \emph{diverges} as
 $T\to0$, while $C_\mu$ itself still vanishes. This is worth separating, because
@@ -2428,6 +2417,9 @@ For $r\le-1$ the integral $\int d\varepsilon\,\rho$ diverges at $\mu$: there wou
 be infinitely many thermally active levels at arbitrarily low energy, and both
 the third law and the normalisability of $\rho$ fail. The realisable extreme is
 therefore $r\to-1$, i.e.\ a residual entropy, and not a divergent $C$.
+
+%DO: Furthermore, the origin of the scaling laws of free-energy and other quantities is the behaviour of density of states.
+% related to paragraph{The scaling form and the gap exponent.}
 
 \subsection{Reading the shape of \texorpdfstring{$c(T)$}{c(T)}}
 \label{sec:filt_shape}
