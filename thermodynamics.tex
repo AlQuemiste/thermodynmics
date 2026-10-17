@@ -2437,10 +2437,11 @@ transformed, and differentiated. This section runs the chain in the opposite
 direction for the one case in which it can be run explicitly
 (a system of independent modes in the grand canonical ensemble of any statistics)
 and asks what a measurement at temperature $T$ actually \emph{sees} of the spectrum.
-Each observable turns out to be the spectrum viewed through its \emph{own} kernel:
-the kernels are all centred on $\mu$ and all have a width set by $T$ alone,
-being built from one common \emph{fluctuation window}, the occupancy variance of a
-level, but they differ in shape, and the differences are physical.
+Each observable turns out to be the spectrum viewed through its \emph{own} weight:
+the weights are all normalised, centred on $\mu$, of width set by $T$ alone, and
+all tend to $ \delta(\varepsilon - \mu) $ as $ T \to 0 $, being built from one
+common \emph{fluctuation window}, the occupancy variance of a level; but they
+differ in shape, and the differences are physical.
 The heat capacity, in particular, is exactly blind to the levels sitting at $\mu$.
 
 One remark on scope before the derivation: the whole construction is at fixed
@@ -2554,7 +2555,7 @@ it generates at temperature $ T $ is the weight at $ T_0 $ with the energy axis
 stretched about $ \mu $ by $ T/T_0 $. Covariance fails as soon as the system has an
 intrinsic energy scale that does \emph{not} scale with $ T $ --- but that scale then
 lives in $ \rho $, not in the weight.} of the Boltzmann factor, and it is the
-reason every kernel below has a width set by $T$ alone.
+reason every weight below has a width set by $T$ alone.
 
 \paragraph{Occupation and its variance.} Two derivatives of $\varphi$ carry all
 the physics, and both are statistics-independent identities. The operator
@@ -2775,7 +2776,7 @@ but not in structure.
 
 The rest of the section specialises to Fermi--Dirac statistics, both because that
 is the case of interest for electrons and because it admits a symmetric form that
-makes the shape of the kernels transparent. For fermions $\xi(u)=1+e^{-u}$ and it
+makes the shape of the weights transparent. For fermions $\xi(u)=1+e^{-u}$ and it
 pays to measure distance from $\mu$ in units of $2k_BT$,
 \begin{equation}\label{eq:filt_x}
 \boxed{\;x_\lambda\equiv\frac{u_\lambda}{2}
@@ -2829,17 +2830,21 @@ $ -k_B $ times it is $ k_B[\ln(2\cosh x_\lambda) - x_\lambda(1-2n_\lambda)] $, w
 Eq.~\eqref{eq:filt_S} by the last of Eqs.~\eqref{eq:filt_n}. The two routes agree,
 as they must.}.
 
-For the heat capacity, write the per-orbital entropy as
-$w_S(x)=k_B[\ln(2\cosh x)-x\tanh x]$. Using $ d\ln(2\cosh x)/dx = \tanh x $ and
+For the heat capacity, write the per-orbital entropy as $ k_B\sigma(x) $, with
+\[
+  \sigma(x)\equiv\ln(2\cosh x)-x\tanh x ,
+\]
+so that $ s = V^{-1}\sum_\lambda k_B\sigma(x_\lambda) = \int d\varepsilon\,\rho\,k_B\sigma $.
+Using $ d\ln(2\cosh x)/dx = \tanh x $ and
 $ d(x\tanh x)/dx = \tanh x + x\operatorname{sech}^2x $, the two $ \tanh x $ terms
 cancel,
 \begin{equation}\label{eq:filt_sprime}
-\frac{dw_S}{dx}=k_B\big[\tanh x-\tanh x-x\operatorname{sech}^2x\big]
-=-k_B\,x\operatorname{sech}^2x ,
+\frac{d\sigma}{dx}=\tanh x-\tanh x-x\operatorname{sech}^2x
+=-x\operatorname{sech}^2x ,
 \end{equation}
 the cancellation being the reason the entropy filter is smooth at its maximum,
 and Eq.~\eqref{eq:filt_dxdT} then gives
-$ T\,\partial w_S/\partial T = T(dw_S/dx)(-x/T) = k_Bx^{2}\operatorname{sech}^{2}x $, i.e.
+$ T\,\partial(k_B\sigma)/\partial T = k_BT(d\sigma/dx)(-x/T) = k_Bx^{2}\operatorname{sech}^{2}x $, i.e.
 \begin{equation}\label{eq:filt_C}
 \boxed{\;c_\mu(T)=\frac{k_B}{V}\sum_\lambda x_\lambda^{2}\operatorname{sech}^2x_\lambda\;}
 \end{equation}
@@ -2891,30 +2896,31 @@ so that, from the Bose--Einstein row of the table,
   = \tfrac14\operatorname{csch}^{2}x_\lambda .
 \]
 The entropy per orbital, from Eq.~\eqref{eq:filt_Sgen} with $ u\varphi' = 2x\cdot
-\tfrac12(\coth x - 1) $, is
+\tfrac12(\coth x - 1) $, is $ k_B\sigma_{\rm B}(x) $ with
 \begin{gather*}
-  w_S^{\rm B}(x) = k_B\big[\,x\coth x - \ln\big(2\sinh x\big)\big],
+  \sigma_{\rm B}(x) = x\coth x - \ln\big(2\sinh x\big),
   \\
-  \frac{dw_S^{\rm B}}{dx} = k_B\big[\coth x - x\operatorname{csch}^{2}x - \coth x\big]
-  = -k_B\,x\operatorname{csch}^{2}x ,
+  \frac{d\sigma_{\rm B}}{dx} = \coth x - x\operatorname{csch}^{2}x - \coth x
+  = -x\operatorname{csch}^{2}x ,
 \end{gather*}
 the two $ \coth x $ terms cancelling exactly as the $ \tanh x $ terms did, and the
 heat capacity per orbital is
 \[
-  w_c^{\rm B}(x) = k_Bu^{2}\Var(\hat n) = k_B\,x^{2}\operatorname{csch}^{2}x
+  k_Bu^{2}\Var(\hat n) = k_B\,x^{2}\operatorname{csch}^{2}x
   = k_B\left(\frac{x}{\sinh x}\right)^{2} .
 \]
 For a phonon, $ x = \hbar\omega_\lambda/2k_BT $ and this is the Einstein function.
 Its limits are the two classic ones: $ k_B $ (equipartition) as $ x \to 0 $, and
 $ 4k_Bx^{2}e^{-2x} $ (frozen out) as $ x \to \infty $.
 
-The comparison with the fermionic kernel is instructive. Both are (energy cost)$
+The comparison with the fermionic per-orbital heat capacity
+$ k_Bx^{2}\operatorname{sech}^{2}x $ is instructive. Both are (energy cost)$
 {}^{2}\times{} $(occupancy variance), but the bosonic variance $ \tfrac14\operatorname
 {csch}^{2}x \simeq 1/4x^{2} $ \emph{diverges} as a level approaches $ \mu $, because a
 bosonic mode can hold arbitrarily many quanta, and the divergence exactly
-compensates the vanishing energy cost $ x^{2} $. The Bose kernel is therefore
-largest, $ k_B $, at the level nearest $ \mu $ and decreases monotonically away from
-it, whereas the Fermi kernel vanishes there. Fermionic blindness at $ \mu $
+compensates the vanishing energy cost $ x^{2} $. The Bose contribution is
+therefore largest, $ k_B $, at the level nearest $ \mu $ and decreases monotonically
+away from it, whereas the Fermi contribution vanishes there. Fermionic blindness at $ \mu $
 (Section~\ref{sec:filt_blind}) is a consequence of the bounded occupancy
 variance, $ \Var(\hat n) \leq \tfrac14 $, imposed by the exclusion principle.
 
@@ -2923,81 +2929,145 @@ variance, $ \Var(\hat n) \leq \tfrac14 $, imposed by the exclusion principle.
 
 Return to fermions and replace the orbital sums by integrals with
 Eq.~\eqref{eq:filt_dos}. Every response of Eq.~\eqref{eq:filt_response} has the
-form $ V^{-1}\sum_\lambda K(\varepsilon_\lambda)\Var(\hat n_\lambda) $, and
-$ \Var(\hat n_\lambda) = \tfrac14\operatorname{sech}^2x_\lambda $ by
-Eq.~\eqref{eq:filt_var_n}. Every second derivative of $ \Omega $ therefore has the
-same structure,
+form $ V^{-1}\sum_\lambda a_\lambda b_\lambda\Var(\hat n_\lambda)/k_BT $, and by
+Eq.~\eqref{eq:filt_var_n} the one-orbital factor is
+\begin{equation}\label{eq:filt_window}
+\delta_T(\varepsilon-\mu)\equiv\frac{\Var(\hat n)}{k_BT}\bigg|_{\varepsilon}
+=\frac{\operatorname{sech}^{2}x}{4k_BT}
+=-\frac{\partial f}{\partial\varepsilon},
+\qquad x=\frac{\varepsilon-\mu}{2k_BT},
+\end{equation}
+with $ f(\varepsilon) = (e^{2x} + 1)^{-1} $ the Fermi function; the last form
+follows from $ \partial f/\partial x = -\tfrac12\operatorname{sech}^{2}x $ and
+$ \partial x/\partial\varepsilon = 1/2k_BT $. Every second derivative of
+$ \Omega $ therefore has the same structure,
 \begin{equation}\label{eq:filt_integrals}
-\boxed{\;
-o(T,\mu)=\int\!d\varepsilon\;\rho(\varepsilon)\;
-A_o\!\left(\frac{\varepsilon-\mu}{2k_BT}\right)\,
-w\!\left(\frac{\varepsilon-\mu}{2k_BT}\right),
-\qquad
-w(x)\equiv\operatorname{sech}^{2}x = 4\Var(\hat n)\big|_{x}\;}
+\boxed{\;o(T,\mu)=\int\!d\varepsilon\;\rho(\varepsilon)\;
+A_o(\varepsilon)\;\delta_T(\varepsilon-\mu)\;}
 \end{equation}
 a product of two factors with entirely different roles. The \emph{fluctuation
-window} $ w $ is common to all observables; the \emph{amplitude} $ A_o $ is
-specific to the observable, and is the product of the two charges in
-Eq.~\eqref{eq:filt_response}, written in the variable $ x $:
+window} $ \delta_T $ is common to all observables; the \emph{amplitude}
+$ A_o = a\,b $ is specific to the observable, and is the product of the two
+charges that an orbital at energy $ \varepsilon $ carries in
+Eq.~\eqref{eq:filt_response}:
 \begin{equation}\label{eq:filt_amplitudes}
 \begin{aligned}
-c_\mu:&\quad A_c(x) = k_B\,x^{2} = \frac{(\varepsilon-\mu)^{2}}{4k_BT^{2}}, \\[2pt]
 \chi_c = \tfrac{1}{V}\big(\tfrac{\partial N}{\partial\mu}\big)_{T}:&\quad
-  A_\chi(x) = \frac{1}{4k_BT}, \qquad
-\chi_s:\quad A_{s}(x) = \frac{m_0^{2}}{4k_BT} .
+  A_\chi = 1, \qquad
+\chi_s:\quad A_{s} = m_0^{2}, \\[2pt]
+c_\mu:&\quad A_c = \frac{(\varepsilon-\mu)^{2}}{T} = 4k_B^{2}T\,x^{2}, \\[2pt]
+\tfrac{1}{V}\big(\tfrac{\partial N}{\partial T}\big)_{\mu}:&\quad
+  A_{N,T} = \frac{\varepsilon-\mu}{T} = 2k_B\,x .
 \end{aligned}
 \end{equation}
-The products are the kernels,
-\begin{equation}\label{eq:filt_kernels}
-\begin{aligned}
-c_\mu:&\quad w_c(x)=A_cw=k_B\,x^{2}\operatorname{sech}^{2}x, \\[2pt]
-\chi_c:&\quad w_{\chi}(x)=A_\chi w=\frac{\operatorname{sech}^{2}x}{4k_BT},\\[2pt]
-s:&\quad w_S(x)=k_B\big[\ln(2\cosh x)-x\tanh x\big]
-  = k_B\!\int_{|x|}^{\infty}\! y\,w(y)\,dy ,
-\end{aligned}
-\end{equation}
-so that $ c_\mu = \int d\varepsilon\,\rho\,w_c $, $ \chi_c = \int d\varepsilon\,\rho\,w_\chi $,
-$ \chi_s = m_0^{2}\chi_c $, and $ s = \int d\varepsilon\,\rho\,w_S $ by
-Eq.~\eqref{eq:filt_S}. The entropy, a first derivative of $ \Omega $, is not of the
-product form, but its kernel is built from the same window: integrating
-Eq.~\eqref{eq:filt_sprime} from $ x $ to $ \infty $, where $ w_S $ vanishes, gives the
-integral representation quoted.
 
-\paragraph{The fluctuation window.} $ w(x) = \operatorname{sech}^{2}x $ has the
-properties one expects of a filter, each with a direct physical reading.
+\paragraph{The fluctuation window.} $ \delta_T $ has the properties one expects
+of a filter, each with a direct physical reading.
 \begin{itemize}
-\item \emph{It is even}, $ w(-x) = w(x) $: a level at $ \mu + \delta $, mostly empty,
-  fluctuates exactly as much as a level at $ \mu - \delta $, mostly full. This is the
-  particle--hole symmetry of a single orbital, $ n \leftrightarrow 1 - n $ under
-  $ x \to -x $, which leaves $ n(1-n) $ unchanged.
+\item \emph{It is even} in $ \varepsilon - \mu $: a level at $ \mu + \delta $,
+  mostly empty, fluctuates exactly as much as a level at $ \mu - \delta $, mostly
+  full. This is the particle--hole symmetry of a single orbital,
+  $ n \leftrightarrow 1 - n $ under $ x \to -x $, which leaves $ n(1-n) $ unchanged.
 \item \emph{It is non-negative}, being a variance.
 \item \emph{It is unimodal and centred on $ \mu $}: it has a single maximum,
-  $ w(0) = 1 $, at $ \varepsilon = \mu $, where the level is a fair coin, and
-  decreases monotonically to $ w \simeq 4e^{-2|x|} = 4e^{-|\varepsilon-\mu|/k_BT} $ on
-  both sides, where the level is frozen full or frozen empty.
+  $ 1/4k_BT $, at $ \varepsilon = \mu $, where the level is a fair coin, and
+  decreases monotonically to $ e^{-|\varepsilon-\mu|/k_BT}/k_BT $ on both sides,
+  where the level is frozen full or frozen empty.
+\item \emph{It is normalised}, $ \int d\varepsilon\,\delta_T = f(-\infty) - f(\infty)
+  = 1 $, whatever the temperature.
 \item \emph{Its width is set by $ T $ alone}: half maximum is reached at
   $ \cosh x = \sqrt2 $, $ |x| = 0.8814 $, so the full width at half maximum is
-  $ 3.53\,k_BT $, and $ \int d\varepsilon\,w = 2k_BT\int dx\,\operatorname{sech}^{2}x =
-  4k_BT $. This is scale covariance seen one level at a time: a change of
-  temperature dilates the window about $ \mu $ without deforming it. The spectrum
-  enters Eq.~\eqref{eq:filt_integrals} only through $ \rho $ and contributes
-  nothing to the resolution.
+  $ 3.53\,k_BT $. This is scale covariance seen one level at a time: a change of
+  temperature dilates the window about $ \mu $ without deforming it, and the
+  spectrum, which enters only through $ \rho $, contributes nothing to the
+  resolution.
 \end{itemize}
-The window selects the levels whose occupation is \emph{undecided} at temperature
-$ T $ --- the only ones that can respond to anything, since a level that is surely
-full or surely empty has no fluctuation to offer. The amplitude then says how much
-of the observable's conjugate quantity one occupation flip at energy $ \varepsilon $
-carries. Since all the observables in Eq.~\eqref{eq:filt_kernels} are even in $ x $,
-they are sensitive only to $ \rho $ symmetrised about $ \mu $; the odd kernel that
-measures its asymmetry appears in Section~\ref{sec:filt_muN}.
+The last two properties together make $ \delta_T $ a \emph{representation of the
+Dirac delta}, which is the reason for the name: as $ T \to 0 $,
+$ \delta_T(\varepsilon - \mu) \to \delta(\varepsilon - \mu) $. The window selects the
+levels whose occupation is \emph{undecided} at temperature $ T $ --- the only ones
+that can respond to anything, since a level that is surely full or surely empty
+has no fluctuation to offer --- and at $ T = 0 $ only the levels exactly at $ \mu $
+are undecided. The amplitude then says how much of the observable's conjugate
+quantity one occupation flip at energy $ \varepsilon $ carries.
+
+\paragraph{Normalised weights.} The amplitudes of $ c_\mu $ and of
+$ (\partial N/\partial T)_\mu $ depend on $ \varepsilon $, so the effective weight
+that each observable puts on the spectrum is $ A_o\delta_T $, not $ \delta_T $. To
+compare observables on an equal footing, split off the total weight,
+\begin{equation}\label{eq:filt_norm}
+o(T,\mu)=\Lambda_o(T)\int\!d\varepsilon\;\rho(\varepsilon)\,w_o(\varepsilon-\mu;T),
+\qquad
+\Lambda_o\equiv\int\!d\varepsilon\,A_o\,\delta_T,
+\qquad
+w_o\equiv\frac{A_o\,\delta_T}{\Lambda_o},
+\end{equation}
+so that every weight has unit area, $ \int d\varepsilon\,w_o = 1 $. The prefactor
+$ \Lambda_o $ is the response of a flat band of unit density of states, and
+carries all the dimensions and the explicit temperature dependence; the weight
+$ w_o $ is a probability density on the energy axis, and says \emph{where} the
+observable looks. With $ d\varepsilon = 2k_BT\,dx $ and the integrals
+$ \int\operatorname{sech}^{2}x\,dx = 2 $ and
+$ \int x^{2}\operatorname{sech}^{2}x\,dx = \pi^{2}/6 $, the weights are
+\begin{equation}\label{eq:filt_kernels}
+\begin{aligned}
+\chi_c:&\quad w_\chi=\delta_T=\frac{1}{2k_BT}\cdot\frac{\operatorname{sech}^{2}x}{2},
+&\Lambda_\chi&=1,\\[2pt]
+c_\mu:&\quad w_c=\frac{1}{2k_BT}\cdot\frac{6}{\pi^{2}}\,x^{2}\operatorname{sech}^{2}x,
+&\Lambda_c&=\frac{\pi^{2}}{3}k_B^{2}T,\\[2pt]
+s:&\quad w_S=\frac{1}{2k_BT}\cdot\frac{6}{\pi^{2}}\,\sigma(x),
+&\Lambda_S&=\frac{\pi^{2}}{3}k_B^{2}T,
+\end{aligned}
+\end{equation}
+and $ \chi_s = m_0^{2}\chi_c $. The entropy, a \emph{first} derivative of $ \Omega $,
+is not of the product form~\eqref{eq:filt_integrals}, but by Eq.~\eqref{eq:filt_S}
+it is $ s = \int d\varepsilon\,\rho\,k_B\sigma(x) $, and since $ \sigma \geq 0 $ it can be
+normalised in the same way. Its weight is built from the same window: integrating
+Eq.~\eqref{eq:filt_sprime} from $ x $ to $ \infty $, where $ \sigma $ vanishes,
+\[
+  \sigma(x) = \int_{|x|}^{\infty}\! y\operatorname{sech}^{2}y\,dy ,
+\]
+and its area, $ \int\sigma\,dx = \pi^{2}/6 $, is computed in
+Eq.~\eqref{eq:filt_byparts} below. The observable $ (\partial N/\partial T)_\mu $
+is the exception: $ A_{N,T} $ is odd, $ \Lambda_{N,T} = 0 $, and it has no
+normalised weight of its own; Section~\ref{sec:filt_muN} shows that it is
+$ \Lambda_S $ times the entropy weight acting on $ \rho' $ instead of $ \rho $.
+
+\paragraph{Every weight is a delta representation.} Each weight in
+Eq.~\eqref{eq:filt_kernels} has the form
+\[
+  w_o(\varepsilon-\mu;T) = \frac{1}{2k_BT}\,\hat w_o\!\left(\frac{\varepsilon-\mu}{2k_BT}\right),
+  \qquad \hat w_o \geq 0, \qquad \int\!\hat w_o(x)\,dx = 1 ,
+\]
+with a temperature-independent shape $ \hat w_o $; this is scale covariance once
+more. For any $ F $ continuous and bounded near $ \mu $, substituting
+$ \varepsilon = \mu + 2k_BT\,x $,
+\[
+  \int\! d\varepsilon\;F(\varepsilon)\,w_o(\varepsilon-\mu;T)
+  = \int\! dx\;F(\mu + 2k_BT\,x)\,\hat w_o(x)
+  \;\xrightarrow[T\to0]{}\; F(\mu)\int\! dx\;\hat w_o(x) = F(\mu) ,
+\]
+the limit being taken under the integral because $ \hat w_o $ is integrable and
+$ F $ bounded. Hence $ w_o \to \delta(\varepsilon - \mu) $ for every observable, and
+\begin{equation}\label{eq:filt_delta_limit}
+o(T,\mu)\;\simeq\;\Lambda_o(T)\Big[\rho(\mu)+\tfrac12\,\rho''(\mu)\,M_o+\dots\Big],
+\qquad
+M_o\equiv\int\!d\varepsilon\,(\varepsilon-\mu)^{2}\,w_o ,
+\end{equation}
+for $ \rho $ smooth on the scale $ k_BT $: Taylor-expanding $ \rho $ about $ \mu $,
+the zeroth moment of $ w_o $ is one and the odd moments vanish because all three
+weights are even. At low temperature \emph{every} observable reads $ \rho(\mu) $,
+multiplied by its own flat-band prefactor; the observables differ only in the
+corrections, i.e.\ in how far from $ \mu $ their weight reaches. This is the
+precise sense of ``each observable sees the spectrum through its own window''.
 
 \paragraph{Reading each observable.}
 \begin{itemize}
 \item \emph{Charge and spin susceptibilities.} The amplitude is constant: one flip
-  moves one particle (or one moment $ m_0 $) whatever its energy. $ \chi_c $ is
-  therefore the number of undecided levels, each counted with unit weight, i.e.\ the
-  particle-number variance per $ k_BT $. Because $ w_\chi $ has unit area, $ \chi_c \to
-  \rho(\mu) $ for $ \rho $ smooth on the scale $ k_BT $.
+  moves one particle (or one moment $ m_0 $) whatever its energy. The weight is
+  the window itself, $ \chi_c $ is the number of undecided levels, each counted
+  with unit weight, i.e.\ the particle-number variance per $ k_BT $, and
+  $ \chi_c \to \rho(\mu) $.
 \item \emph{Heat capacity.} The amplitude $ A_c \propto (\varepsilon - \mu)^{2} $ is
   the square of the energy carried by a flip. By Eq.~\eqref{eq:filt_C_fluct},
   \[
@@ -3009,75 +3079,79 @@ measures its asymmetry appears in Section~\ref{sec:filt_muN}.
   density of states seen through the window. The two factors are maximised in
   different places, and their product vanishes at $ \mu $ and peaks at
   $ |\varepsilon - \mu| = 2.40\,k_BT $ (Section~\ref{sec:filt_blind}).
-\item \emph{Entropy.} $ w_S $ is itself even, non-negative and unimodal, with maximum
-  $ k_B\ln2 $ at $ \mu $: it is the Shannon entropy of the occupation of one orbital,
-  and one orbital with $ n = \tfrac12 $ carries exactly one bit. It counts the
-  undecided levels by their \emph{information}, not by any charge they carry.
+\item \emph{Entropy.} $ \hat w_S $ is even, non-negative and unimodal, with maximum
+  at $ \mu $: $ k_B\sigma $ is the Shannon entropy of the occupation of one orbital,
+  and one orbital with $ n = \tfrac12 $ carries exactly one bit, $ \sigma(0) = \ln2 $.
+  It counts the undecided levels by their \emph{information}, not by any charge
+  they carry.
 \end{itemize}
 
-\paragraph{Constants of the kernels.} Collecting the relevant numbers:
+\paragraph{Constants of the weights.} Collecting the relevant numbers, in the
+dimensionless form $ \hat w_o = 2k_BT\,w_o $:
 \begin{center}
-\begin{tabular}{lcccc}
+\small
+\begin{tabular}{lccccc}
 \toprule
-Kernel & value at $\varepsilon=\mu$ & peak at $|\varepsilon-\mu|$
-& peak height & $\int\!d\varepsilon\,w$ \\
+Weight & $\Lambda_o$ & $\hat w_o(0)$ & peak at $|\varepsilon-\mu|$
+& peak of $\hat w_o$ & $M_o/(k_BT)^{2}$ \\
 \midrule
-$w$ (window) & $1$ & $0$ & $1$ & $4k_BT$ \\
-$w_c/k_B$ & $0$ & $2.3994\,k_BT$ & $0.43923$ & $\pi^{2}k_BT/3$ \\
-$w_S/k_B$ & $\ln2$ & $0$ & $\ln 2$ & $\pi^{2}k_BT/3$ \\
-$w_{\chi}$ & $1/4k_BT$ & $0$ & $1/4k_BT$ & $1$ \\
+$w_\chi=\delta_T$ & $1$ & $1/2$ & $0$ & $1/2$ & $\pi^{2}/3=3.290$ \\
+$w_c$ & $\pi^{2}k_B^{2}T/3$ & $0$ & $2.3994\,k_BT$ & $0.26702$ & $7\pi^{2}/5=13.82$ \\
+$w_S$ & $\pi^{2}k_B^{2}T/3$ & $6\ln2/\pi^{2}$ & $0$ & $0.42138$ & $7\pi^{2}/15=4.606$ \\
 \bottomrule
 \end{tabular}
 \end{center}
 Each entry is elementary.
-$w_c'\propto 2x\operatorname{sech}^2x\,(1-x\tanh x)$ vanishes at the root $x_\ast$
+The derivative of $ x^{2}\operatorname{sech}^{2}x $ is
+$ 2x\operatorname{sech}^2x\,(1-x\tanh x) $, which vanishes at the root $x_\ast$
 of $x\tanh x=1$, namely $x_\ast=1.199679$, i.e.\
 $|\varepsilon-\mu|=2x_\ast k_BT=2.3994\,k_BT$; at that point
-$\operatorname{sech}^2x_\ast=1-\tanh^2x_\ast=1-x_\ast^{-2}$, so the height is
-exactly
+$\operatorname{sech}^2x_\ast=1-\tanh^2x_\ast=1-x_\ast^{-2}$, so the largest
+heat capacity a single orbital can have is exactly
 \begin{equation}\label{eq:filt_peak}
-\max_x\,\frac{w_c}{k_B}=x_\ast^{2}-1=0.439229\ldots
+\max_x\,x^{2}\operatorname{sech}^{2}x=x_\ast^{2}-1=0.439229\ldots,
 \end{equation}
-The areas follow from $d\varepsilon=2k_BT\,dx$ and
-$\int_{-\infty}^{\infty}x^{2}\operatorname{sech}^{2}x\,dx=\pi^{2}/6$, while
-$\int w_S\,dx$ reduces to the same integral by parts, using
-Eq.~\eqref{eq:filt_sprime}:
+in units of $ k_B $, and the peak of $ \hat w_c $ is $ 6/\pi^{2} $ times this.
+The area of $ \sigma $ reduces to that of $ x^{2}\operatorname{sech}^{2}x $ by parts,
+using Eq.~\eqref{eq:filt_sprime}:
 \begin{equation}\label{eq:filt_byparts}
-\int_{-\infty}^{\infty}\!\frac{w_S}{k_B}\,dx
-=\Big[x\,\frac{w_S}{k_B}\Big]_{-\infty}^{\infty}
+\int_{-\infty}^{\infty}\!\sigma(x)\,dx
+=\Big[x\,\sigma(x)\Big]_{-\infty}^{\infty}
 +\int_{-\infty}^{\infty}\! x^{2}\operatorname{sech}^{2}x\,dx
 =\frac{\pi^{2}}{6},
 \end{equation}
-the boundary term vanishing because $w_S\simeq 2k_B|x|e^{-2|x|}$ at large $|x|$.
-Finally $\int\operatorname{sech}^2x\,dx=2$ gives unit area for $w_{\chi}$.
+the boundary term vanishing because $\sigma\simeq 2|x|e^{-2|x|}$ at large $|x|$.
+The second moments use $ \int x^{4}\operatorname{sech}^{2}x\,dx = 7\pi^{4}/120 $, and
+for $ w_S $ one more integration by parts, $ \int x^{2}\sigma\,dx =
+\tfrac13\int x^{4}\operatorname{sech}^{2}x\,dx $.
 
 Three consequences deserve to be stated separately.
 
-The unit area of $w_{\chi}$ is the statement
-$\chi_c\to\rho(\mu)$ for a smooth $\rho$: the compressibility
-counts states at the Fermi level with weight one, and it is the only one of the
-kernels that does.
+The unit prefactor of the compressibility is the statement $ \chi_c \to \rho(\mu) $:
+the compressibility counts states at the Fermi level with weight one, and it is
+the only one of the observables whose amplitude is constant.
 
-The equal areas of $w_c$ and $w_S$ are the reason that
+The equal prefactors $ \Lambda_c = \Lambda_S $ are the reason that
 \begin{equation}\label{eq:filt_sommerfeld}
 c_\mu\;\simeq\;s\;\simeq\;\frac{\pi^{2}}{3}k_B^{2}T\,\rho(\mu)
 \qquad(\rho\text{ smooth on the scale }k_BT),
 \end{equation}
-which is the Sommerfeld result, here obtained without a Sommerfeld expansion: if
-$\rho$ is constant across the window it comes out of the integral and only the
-kernel area survives. That $s$ and $c_\mu$ coincide at this order, despite
-weighting entirely different levels, is a coincidence of areas and nothing
-deeper; Section~\ref{sec:filt_power} shows it fail as soon as $\rho$ has
+which is the Sommerfeld result, here obtained without a Sommerfeld expansion: it is
+the delta limit~\eqref{eq:filt_delta_limit} of two weights with the same
+prefactor. That $s$ and $c_\mu$ coincide at this order, despite weighting entirely
+different levels, is a coincidence of prefactors and nothing deeper; the second
+moments already differ by a factor of three, $ M_c = 3M_S $, and
+Section~\ref{sec:filt_power} shows the two fail to coincide as soon as $\rho$ has
 structure. Combined with $ \chi_s = m_0^{2}\rho(\mu) $ it also fixes the
 \emph{Wilson ratio} $ R_W \equiv (\pi^{2}k_B^{2}/3m_0^{2})\,\chi_s/\gamma $, with
 $ \gamma = c_\mu/T $, to exactly $ 1 $ for independent electrons: both quantities
 count the same states, with different amplitudes.
 
-The area of $w_c$ is $\pi^{2}k_BT/3\approx3.29\,k_BT$, which is the precise
-version of ``the specific heat counts the levels within $k_BT$ of the chemical
-potential'': the exact statement is that $c_\mu/k_B$ equals the number of levels
+The prefactor $ \Lambda_c = k_B\times(\pi^{2}/3)k_BT \approx k_B\times3.29\,k_BT $ is
+the precise version of ``the specific heat counts the levels within $k_BT$ of the
+chemical potential'': for smooth $ \rho $, $c_\mu/k_B$ equals the number of levels
 per unit volume in a \emph{box} of width $3.29\,k_BT$ centred on $\mu$ and of unit
-weight. The actual kernel is not that box, and the difference is the subject of
+weight. The actual weight is not that box, and the difference is the subject of
 the next subsection.
 
 \begin{figure}[htbp]
@@ -3102,71 +3176,88 @@ the next subsection.
          plot ({\x},{\x});
   \end{scope}
   \node[anchor=west,font=\scriptsize,red!75!black] at (2.15,4.1)
-       {$A_c/k_B = x^{2}$};
+       {$A_c/4k_B^{2}T = x^{2}$};
   \node[anchor=west,font=\scriptsize,orange!85!black] at (3.0,3.4)
-       {$2T A_{N,T} = x$};
+       {$A_{N,T}/2k_B = x$};
   \node[anchor=west,font=\scriptsize,green!45!black] at (2.6,1.35)
-       {$4k_BT A_\chi = 1$};
+       {$A_\chi = 1$};
   \node[anchor=west,font=\scriptsize,black] at (1.6,-0.8)
-       {$w = \operatorname{sech}^{2}x$};
+       {$4k_BT\,\delta_T = \operatorname{sech}^{2}x$};
   \draw[black,thin] (1.62,-0.7) -- (0.75,0.55);
 \end{tikzpicture}
 
 \vspace{4mm}
 
-\begin{tikzpicture}[>=Stealth,font=\small,x=1.30cm,y=4.30cm]
-  % panel (b): the kernels, amplitude times window
-  \node[font=\normalsize] at (-4.0,0.80) {(b)};
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.30cm,y=7.00cm]
+  % panel (b): the normalised weights, unit area in x
+  \node[font=\normalsize] at (-3.6,0.56) {(b)};
   \draw[->] (-4.3,0) -- (4.5,0) node[below right]{$x$};
-  \draw[->] (0,-0.52) -- (0,0.86);
+  \draw[->] (0,0) -- (0,0.58) node[left]{$\hat w_o$};
   \foreach \t in {-4,-3,-2,-1,1,2,3,4}
-    \draw (\t,0) -- (\t,-0.012) node[below,font=\scriptsize]{$\t$};
-  \draw[dotted,gray] (-4.3,0.6931) -- (4.3,0.6931);
-  \node[anchor=east,font=\scriptsize,inner sep=1.5pt] at (-4.32,0.6931) {$\ln2$};
-  \draw[dotted,gray] (-4.3,0.4392) -- (4.3,0.4392);
-  \node[anchor=west,font=\scriptsize,inner sep=1.5pt] at (4.32,0.4392) {$0.4392$};
+    \draw (\t,0) -- (\t,-0.008) node[below,font=\scriptsize]{$\t$};
+  \draw[dotted,gray] (-4.3,0.5) -- (4.3,0.5);
+  \node[anchor=east,font=\scriptsize,inner sep=1.5pt] at (-4.32,0.5) {$0.5$};
+  \draw[dotted,gray] (-4.3,0.4214) -- (4.3,0.4214);
+  \node[anchor=east,font=\scriptsize,inner sep=1.5pt] at (-4.32,0.4214) {$0.4214$};
+  \draw[dotted,gray] (-4.3,0.2670) -- (4.3,0.2670);
+  \node[anchor=west,font=\scriptsize,inner sep=1.5pt] at (4.32,0.2670) {$0.2670$};
   \draw[very thick,green!45!black,dashed,domain=-4.3:4.3,samples=180,smooth,variable=\x]
-       plot ({\x},{0.25/(cosh(\x)*cosh(\x))});
-  \draw[very thick,orange!85!black,domain=-4.3:4.3,samples=180,smooth,variable=\x]
-       plot ({\x},{\x/(cosh(\x)*cosh(\x))});
+       plot ({\x},{0.5/(cosh(\x)*cosh(\x))});
   \draw[very thick,blue!60!black,domain=-4.3:4.3,samples=180,smooth,variable=\x]
-       plot ({\x},{ln(2*cosh(\x))-\x*tanh(\x)});
+       plot ({\x},{0.607927*(ln(2*cosh(\x))-\x*tanh(\x))});
   \draw[very thick,red!75!black,domain=-4.3:4.3,samples=180,smooth,variable=\x]
-       plot ({\x},{\x*\x/(cosh(\x)*cosh(\x))});
-  \draw[dotted,gray!80] (1.1997,0) -- (1.1997,0.4392);
-  \draw[dotted,gray!80] (-1.1997,0) -- (-1.1997,0.4392);
-  \fill[red!75!black] (1.1997,0.4392) circle (1.4pt);
-  \fill[red!75!black] (-1.1997,0.4392) circle (1.4pt);
-  \fill[blue!60!black] (0,0.6931) circle (1.4pt);
+       plot ({\x},{0.607927*\x*\x/(cosh(\x)*cosh(\x))});
+  \draw[dotted,gray!80] (1.1997,0) -- (1.1997,0.2670);
+  \draw[dotted,gray!80] (-1.1997,0) -- (-1.1997,0.2670);
+  \fill[red!75!black] (1.1997,0.2670) circle (1.4pt);
+  \fill[red!75!black] (-1.1997,0.2670) circle (1.4pt);
   \node[anchor=south west,font=\scriptsize,blue!60!black,inner sep=2pt]
-       at (1.15,0.74) {$w_S/k_B$: entropy};
-  \draw[blue!60!black,thin] (1.13,0.76) -- (0.55,0.65);
+       at (1.25,0.40) {$\hat w_S$: entropy};
+  \draw[blue!60!black,thin] (1.23,0.41) -- (0.55,0.36);
   \node[anchor=south west,font=\scriptsize,red!75!black,inner sep=2pt]
-       at (2.10,0.30) {$w_c/k_B$: heat capacity};
-  \draw[red!75!black,thin] (2.08,0.33) -- (1.45,0.42);
+       at (2.10,0.17) {$\hat w_c$: heat capacity};
+  \draw[red!75!black,thin] (2.08,0.19) -- (1.55,0.24);
   \node[anchor=south west,font=\scriptsize,green!45!black,inner sep=2pt]
-       at (-4.25,0.20) {$k_BT\,w_\chi = \Var(\hat n)$};
-  \draw[green!45!black,thin] (-3.0,0.20) -- (-1.0,0.11);
-  \node[anchor=north west,font=\scriptsize,orange!85!black,inner sep=2pt]
-       at (-4.25,-0.38) {$2T\,w_{N,T}$: $(\partial N/\partial T)_\mu$};
-  \draw[orange!85!black,thin] (-2.0,-0.41) -- (-1.25,-0.37);
+       at (-4.25,0.35) {$\hat w_\chi$: compressibility};
+  \draw[green!45!black,thin] (-2.6,0.365) -- (-0.64,0.35);
+\end{tikzpicture}
+
+\vspace{4mm}
+
+\begin{tikzpicture}[>=Stealth,font=\small,x=0.85cm,y=6.00cm]
+  % panel (c): the delta limit of w_c as T -> 0
+  \node[font=\normalsize] at (-6.0,0.58) {(c)};
+  \draw[->] (-6.5,0) -- (6.7,0) node[below right]{$(\varepsilon-\mu)/k_BT_0$};
+  \draw[->] (0,0) -- (0,0.62) node[left]{$k_BT_0\,w_c$};
+  \foreach \t in {-6,-4,-2,2,4,6}
+    \draw (\t,0) -- (\t,-0.009) node[below,font=\scriptsize]{$\t$};
+  \draw[very thick,red!30,domain=-6.5:6.5,samples=200,smooth,variable=\e]
+       plot ({\e},{0.303964*(\e/2)^2/(cosh(\e/2)^2)});
+  \draw[very thick,red!55!black,domain=-4.3:4.3,samples=200,smooth,variable=\e]
+       plot ({\e},{0.607927*(\e)^2/(cosh(\e)^2)});
+  \draw[very thick,red!85!black,domain=-2.15:2.15,samples=200,smooth,variable=\e]
+       plot ({\e},{1.215854*(2*\e)^2/(cosh(2*\e)^2)});
+  \node[anchor=west,font=\scriptsize,red!85!black] at (0.75,0.55) {$T = T_0/4$};
+  \node[anchor=west,font=\scriptsize,red!55!black] at (1.45,0.29) {$T = T_0/2$};
+  \node[anchor=west,font=\scriptsize,red!40] at (3.1,0.15) {$T = T_0$};
 \end{tikzpicture}
 \caption{The filter of Eq.~\eqref{eq:filt_integrals} taken apart, against the
 symmetric variable $x=(\varepsilon-\mu)/2k_BT$.
-(a)~The two factors. The fluctuation window $ w = \operatorname{sech}^{2}x =
-4\Var(\hat n) $ (black) is common to every observable: even, non-negative,
-single-peaked at $\mu$, of width set by $T$ alone. The amplitudes,
-Eqs.~\eqref{eq:filt_amplitudes} and~\eqref{eq:filt_wNT}, are made dimensionless:
-$ A_\chi $ is constant (one flip moves one particle), $ A_c \propto x^{2} $ (the
-energy carried by a flip, squared), and $ A_{N,T} \propto x $ is odd.
-(b)~The kernels, products of the two. $ w_c $ and $ w_S $ enclose the same area
-$\pi^{2}/6$. The entropy kernel peaks at $\mu$ with height $\ln2$ --- one
-undecided orbital carries one bit. The heat-capacity kernel \emph{vanishes} at
-$\mu$, where the amplitude does, and peaks at $|\varepsilon-\mu|=2.3994\,k_BT$
-with height $x_\ast^2-1$. The kernel of $ (\partial N/\partial T)_\mu $ is odd,
-peaking at $ x\tanh x = \tfrac12 $, $ |x| = 0.772 $, so it sees only the asymmetry
-of $ \rho $ about $ \mu $. $ w_S $ is not a product: it is the integral of
-$ x\,w $, Eq.~\eqref{eq:filt_kernels}.}
+(a)~The two factors. The fluctuation window
+$ \delta_T = \operatorname{sech}^{2}x/4k_BT = -\partial f/\partial\varepsilon $
+(black) is common to every observable: even, non-negative, single-peaked at $\mu$,
+of unit area and of width set by $T$ alone. The amplitudes,
+Eq.~\eqref{eq:filt_amplitudes}, are shown in dimensionless form: $ A_\chi $ is
+constant (one flip moves one particle), $ A_c \propto x^{2} $ (the energy carried
+by a flip, squared), and $ A_{N,T} \propto x $ is odd, so that
+$ (\partial N/\partial T)_\mu $ has no normalised weight of its own.
+(b)~The normalised weights of Eq.~\eqref{eq:filt_kernels}, $ \hat w_o = 2k_BT\,w_o $,
+each of unit area. The entropy weight peaks at $\mu$ ($ \sigma(0) = \ln2 $: one
+undecided orbital carries one bit). The heat-capacity weight \emph{vanishes} at
+$\mu$, where the amplitude does, and peaks at $|\varepsilon-\mu|=2.3994\,k_BT$.
+(c)~The delta limit: $ w_c $ at $ T_0 $, $ T_0/2 $ and $ T_0/4 $, on a fixed energy
+axis. The area stays one while the width shrinks $ \propto T $, so
+$ w_c \to \delta(\varepsilon - \mu) $; $ w_\chi $ and $ w_S $ do the same.}
 \label{fig:filt_kernels}
 \end{figure}
 
@@ -3207,7 +3298,7 @@ levels, $ \chi_c $ how many particles their fluctuations move, and $ c_\mu $ how
 much energy. The same structure explains the exponential decay on both sides,
 which is that of the window, $ e^{-|\varepsilon-\mu|/k_BT} $: a level a few $ k_BT $
 from $ \mu $ is frozen, and the polynomial prefactors ($ x^{2} $ for $ w_c $, $ 2|x| $
-for $ w_S $) only decide how the kernels approach that common fate.
+for $ w_S $) only decide how the weights approach that common fate.
 
 \paragraph{The microscopic view of a phase transition.} The variance form says at
 once what a divergent response requires. For independent orbitals with a fixed
@@ -3250,53 +3341,53 @@ c_N=c_\mu-T\,
 \frac{\big[V^{-1}(\partial N/\partial T)_{V,\mu}\big]^{2}}
      {\chi_c}\,,
 \end{equation}
-and needs one more kernel. The temperature derivative of $ N $ at fixed $ \mu $ is
-the mixed case of Eq.~\eqref{eq:filt_response}, with charges
+and needs one more response. The temperature derivative of $ N $ at fixed $ \mu $
+is the mixed case of Eq.~\eqref{eq:filt_response}, with charges
 $ a_\lambda = (\varepsilon_\lambda - \mu)/T $ and $ b_\lambda = 1 $; equivalently,
 from Eqs.~\eqref{eq:filt_n} and~\eqref{eq:filt_dxdT}, $ \partial n/\partial x =
--\tfrac12\operatorname{sech}^{2}x $ and $ (\partial x/\partial T)_\mu = -x/T $.
-Either way,
+-\tfrac12\operatorname{sech}^{2}x $ and $ (\partial x/\partial T)_\mu = -x/T $, so
+$ \partial n/\partial T = x\operatorname{sech}^{2}x/2T $. Either way,
 \begin{equation}\label{eq:filt_wNT}
 \frac{1}{V}\left(\frac{\partial N}{\partial T}\right)_{\!V,\mu}
-= \int\! d\varepsilon\;\rho(\varepsilon)\,A_{N,T}(x)\,w(x),
+= \int\! d\varepsilon\;\rho(\varepsilon)\,A_{N,T}\,\delta_T(\varepsilon-\mu)
+= \int\! d\varepsilon\;\rho(\varepsilon)\,\frac{x\operatorname{sech}^{2}x}{2T},
 \qquad
-A_{N,T}(x) = \frac{x}{2T},
+A_{N,T} = 2k_B\,x .
 \end{equation}
-so that the kernel is $ w_{N,T} \equiv A_{N,T}w = x\operatorname{sech}^{2}x/2T $.
 The amplitude is the product of the two charges, the particle number $ 1 $ and the
-energy $ \varepsilon - \mu $, and is therefore \emph{odd} in $ x $: a level above
-$ \mu $ gains particles on heating, a level below loses them. The even
-combination $ x^{2}\operatorname{sech}^{2}x/2T $ appears only after the odd
-amplitude has been paired with the slope of $ \rho $, Eq.~\eqref{eq:filt_dNdT}
-below. The pairing can be made exact. Since
-$ x\operatorname{sech}^{2}x = -\tfrac{d}{dx}(w_S/k_B) $ by
-Eq.~\eqref{eq:filt_sprime}, and $ w_S $ vanishes at $ x \to \pm\infty $, an
-integration by parts in Eq.~\eqref{eq:filt_wNT} moves the derivative onto
-$ \rho $:
+energy $ (\varepsilon - \mu)/T $, and is therefore \emph{odd} in $ x $: a level above
+$ \mu $ gains particles on heating, a level below loses them. The integrand
+$ A_{N,T}\delta_T $ integrates to zero, so, unlike the weights of
+Eq.~\eqref{eq:filt_kernels}, it cannot be normalised to a delta representation;
+as $ T \to 0 $ it tends to zero, not to $ \delta(\varepsilon - \mu) $. An integration
+by parts converts it into one. Since
+$ x\operatorname{sech}^{2}x = -d\sigma/dx $ by Eq.~\eqref{eq:filt_sprime}, and
+$ \sigma $ vanishes at $ x \to \pm\infty $, the derivative moves onto $ \rho $, and
+with $ d\varepsilon = 2k_BT\,dx $,
 \begin{equation}\label{eq:filt_wNT_parts}
 \frac{1}{V}\left(\frac{\partial N}{\partial T}\right)_{\!V,\mu}
-= \int\! d\varepsilon\;\rho'(\varepsilon)\,w_S(x)
-= \frac{\partial s}{\partial\mu}\bigg|_{T} ,
+= \int\! d\varepsilon\;\rho'(\varepsilon)\,k_B\sigma(x)
+= \Lambda_S\int\! d\varepsilon\;\rho'(\varepsilon)\,w_S(\varepsilon-\mu;T)
+= \frac{\partial s}{\partial\mu}\bigg|_{T} .
 \end{equation}
-the second equality because $ \mu $ enters $ s = \int d\varepsilon\,\rho\,w_S $
-only through $ x $, and shifting $ \mu $ is the same as shifting $ \rho $. This is
+The last equality holds because $ \mu $ enters $ s = \int d\varepsilon\,\rho\,k_B\sigma $
+only through $ x $, and shifting $ \mu $ is the same as shifting $ \rho $: this is
 the Maxwell relation $ (\partial N/\partial T)_\mu = (\partial S/\partial\mu)_T $
-of the grand potential, read through the filter: the odd kernel acting on
-$ \rho $ equals the even entropy kernel acting on $ \rho' $.
-Because the amplitude is odd,
-$ (\partial N/\partial T)_\mu $ measures the \emph{asymmetry} of $ \rho $ across the
-window. It vanishes identically for a particle--hole symmetric spectrum, which is
-why the fixed-$N$ correction of Section~\ref{sec:caveat} disappears at half
-filling. For $\rho$ smooth on the scale $k_BT$, expanding
-$\rho(\mu+2k_BTx)\simeq\rho(\mu)+2k_BTx\,\rho'(\mu)$ kills the leading term and
-leaves
+of the grand potential, read through the filter. The odd integrand acting on
+$ \rho $ equals the normalised, even entropy weight acting on $ \rho' $.
+Consequently $ (\partial N/\partial T)_\mu $ measures the \emph{asymmetry} of
+$ \rho $ across the window: it vanishes identically for a particle--hole symmetric
+spectrum, which is why the fixed-$N$ correction of Section~\ref{sec:caveat}
+disappears at half filling. Because $ w_S $ is a delta representation,
+Eq.~\eqref{eq:filt_delta_limit} applies to $ \rho' $ in place of $ \rho $ and gives,
+for $ \rho $ smooth on the scale $ k_BT $,
 \begin{equation}\label{eq:filt_dNdT}
 \frac{1}{V}\left(\frac{\partial N}{\partial T}\right)_{\!V,\mu}
-\simeq 2k_B^{2}T\rho'(\mu)\!\int\! x^{2}\operatorname{sech}^{2}x\,dx
+\simeq \Lambda_S\,\rho'(\mu)
 =\frac{\pi^{2}}{3}k_B^{2}T\,\rho'(\mu),
 \end{equation}
-the standard Sommerfeld result, obtained here as the statement that an odd kernel
-sees only the slope. With
+the standard Sommerfeld result, obtained here as the statement that the odd
+response sees only the slope of $ \rho $ at $ \mu $. With
 $\chi_c\simeq\rho(\mu)$ and
 Eq.~\eqref{eq:filt_sommerfeld}, the relative correction is
 \begin{equation}\label{eq:filt_ratio}
@@ -3304,7 +3395,7 @@ Eq.~\eqref{eq:filt_sommerfeld}, the relative correction is
 \frac{\pi^{2}}{3}\left(k_BT\,\frac{d\ln\rho}{d\varepsilon}\bigg|_{\mu}\right)^{\!2}\;}
 \end{equation}
 This is the useful form. The correction is second order in the single
-dimensionless group $k_BT\,\rho'/\rho$, i.e.\ in the ratio of the kernel width to
+dimensionless group $k_BT\,\rho'/\rho$, i.e.\ in the ratio of the window width to
 the scale on which $\rho$ varies. For an ordinary metal, where $\rho$ varies on
 the scale of the bandwidth $W$ and $k_BT/W\sim10^{-2}$, it is of order $10^{-4}$
 and the distinction between $c_\mu$ and $c_N$ is invisible. It ceases to be
@@ -3344,15 +3435,19 @@ Eq.~\eqref{eq:filt_sommerfeld}. So
 \qquad \frac{c_\mu}{T}\sim T^{\,r}\;}
 \end{equation}
 The entropy carries the \emph{same} exponent with a different amplitude, and the
-ratio is exact. Integrating $\int_0^\infty x^{r}w_S\,dx$ by parts with
+ratio is exact. Integrating $\int_0^\infty x^{r}\sigma\,dx$ by parts with
 Eq.~\eqref{eq:filt_sprime} gives
-$\int_0^\infty x^{r}w_S\,dx=(r+1)^{-1}k_B\int_0^\infty x^{r+2}
+$\int_0^\infty x^{r}\sigma\,dx=(r+1)^{-1}\int_0^\infty x^{r+2}
 \operatorname{sech}^2x\,dx$, so that
 \begin{equation}\label{eq:filt_SC}
 \boxed{\;\frac{s}{c_\mu}=\frac{1}{r+1}\qquad\text{exactly, for }
 \rho\propto|\varepsilon-\mu|^{r}\;}
 \end{equation}
 The Sommerfeld coincidence $s=c_\mu$ is the special case $r=0$ and nothing more.
+In the language of Eq.~\eqref{eq:filt_norm}, $ \Lambda_S = \Lambda_c $ and
+$ s/c_\mu $ is the ratio of the $ r $-th absolute moments of the two normalised
+weights; at $ r = 2 $ it is $ M_S/M_c = \tfrac13 $, as the table of
+Section~\ref{sec:filt_kernels} requires.
 Three readings of Eq.~\eqref{eq:filt_SC} are worth having.
 
 For $r>0$ (a semimetal) $s<c_\mu$: states are scarce at $\mu$, and the few that
@@ -3451,12 +3546,12 @@ Since a measured $ c(T) $ is a linear integral transform of $ \rho $, it is natu
 to ask whether the transform can be inverted to recover $ \rho $, especially at low
 energy, where the window is narrow. The answer has three parts.
 
-\emph{What can be recovered.} The kernel $ w_c $ is even, so $ c_\mu $ determines
+\emph{What can be recovered.} The weight $ w_c $ is even, so $ c_\mu $ determines
 only the symmetrised density of states $ \rho_s(\omega) =
 \tfrac12[\rho(\mu + \omega) + \rho(\mu - \omega)] $, $ \omega > 0 $; the
-antisymmetric part is invisible to it and must be obtained from an odd kernel, such
+antisymmetric part is invisible to it and must be obtained from an odd response, such
 as $ (\partial N/\partial T)_\mu $ of Eq.~\eqref{eq:filt_wNT} or, in practice, the
-thermopower. Combining several even kernels does not help, since they all see the
+thermopower. Combining several even weights does not help, since they all see the
 same $ \rho_s $.
 
 \emph{Exact inversion.} Write $ \tau = 2k_BT $ and $ g(y) = y^{2}\operatorname{sech}^{2}y $,
@@ -3484,7 +3579,7 @@ then, $ c(T) $ over all temperatures determines $ \rho_s $ uniquely.
 factor $ \Gamma(s+2) $ in $ G $ decays as $ e^{-\pi|t|/2} $. Dividing by $ G $ therefore
 amplifies the components of the data that oscillate rapidly in $ \ln T $
 exponentially in their frequency, and any noise there swamps the reconstruction.
-The resolution is fixed on a logarithmic scale: at temperature $ T $ the kernel
+The resolution is fixed on a logarithmic scale: at temperature $ T $ the weight
 samples $ \rho $ around $ |\omega| \approx 2.4\,k_BT $ with a width of the same order, so
 structure at energy $ \omega $ can be resolved only to within a factor of order one
 in $ \omega $ itself. Lowering $ T $ improves the \emph{absolute} resolution, since the
@@ -3515,7 +3610,7 @@ but the number that $w_c$ actually weighs. With that correction, the standard
 readings of the \emph{shape} of $c(T)$ follow, and they are worth listing because
 the practical use of a measured $c(T)$ consists in running them backwards.
 
-\paragraph{Rise.} An increase of $c$ with temperature means that the kernel is
+\paragraph{Rise.} An increase of $c$ with temperature means that the weight is
 dilating into a region of higher level density, so that each further unit of
 temperature activates more excitations than the last. Equation~\eqref{eq:filt_exponent}
 is the quantitative version: a pure power $c\sim T^{r+1}$ is the case in which the
@@ -3568,7 +3663,7 @@ c_\mu\;\xrightarrow[T\to\infty]{}\;\frac{k_B}{V}\sum_\lambda x_\lambda^{2}
 with a finite coefficient. Degrees of freedom of unbounded spectrum and unbounded
 occupation --- harmonic modes --- instead settle at the equipartition value $k_B$
 per mode, with $S$ growing as $\ln T$ without bound. That value is not an
-exception to the framework but a reading of it: the Bose kernel of
+exception to the framework but a reading of it: the per-orbital Bose heat capacity of
 Section~\ref{sec:filt_twolevel} is $k_Bu^{2}n(1+n)$, and since $n\simeq1/u$ as
 $u\to0$ it tends to $k_B$ rather than vanishing there, which is equipartition. A vanishing
 high-temperature $c$ is thus a statement about the finite dimension of the local
@@ -3581,7 +3676,7 @@ bounded by Eq.~\eqref{eq:filt_peak}, the bound holds term by term:
 \boxed{\;c_\mu\;\leq\;0.4393\,k_B\times(\text{number of orbitals per unit volume})\;}
 \end{equation}
 at \emph{every} temperature. The constant is the fermionic one; the same argument
-bounds the Bose kernel by its $u\to0$ value $k_B$ and the Boltzmann kernel by
+bounds the per-orbital Bose heat capacity by its $u\to0$ value $k_B$ and the Boltzmann one by
 $4e^{-2}k_B=0.5413\,k_B$, so in every case the bound is $\mathcal{O}(k_B)$ per
 mode. A lattice model with finitely many modes per site and a
 temperature-independent spectrum therefore has an $\mathcal{O}(k_B)$ heat
@@ -6170,9 +6265,10 @@ translation is worth making, because it instantiates the escape clause of
 Eq.~\eqref{eq:filt_bound} in a case where everything is computable. Put
 $x\equiv\Delta_1/2k_BT=m_s/\theta$, so that the Weiss equation reads
 $m_s=\tanh x$. Then the per-site entropy of Section~\ref{sec:appising:exact} is
-\emph{exactly} the entropy kernel of Eq.~\eqref{eq:filt_kernels},
+\emph{exactly} the per-orbital entropy $ k_B\sigma $ of Eq.~\eqref{eq:filt_S},
+whose normalised form is the weight $ w_S $ of Eq.~\eqref{eq:filt_kernels},
 \begin{equation}\label{eq:isspec_wS}
-s(T)=k_B\,\mathfrak{s}(\tanh x)=k_B\big[\ln(2\cosh x)-x\tanh x\big]=w_S(x),
+s(T)=k_B\,\mathfrak{s}(\tanh x)=k_B\big[\ln(2\cosh x)-x\tanh x\big]=k_B\sigma(x),
 \end{equation}
 as it must be, since each site \emph{is} a two-level system. But $x$ depends on
 temperature twice over: explicitly through $\theta$, as in
@@ -6183,7 +6279,8 @@ with $ds/dx=-k_Bx\operatorname{sech}^{2}x$ from Eq.~\eqref{eq:filt_sprime},
 \frac{c}{k_B}=\underbrace{x^{2}\operatorname{sech}^{2}x}_{\text{frozen spectrum}}
 \;-\;\underbrace{x\operatorname{sech}^{2}x\,\frac{dm_s}{d\theta}}_{\text{moving spectrum}}\;}
 \end{equation}
-The first term is the kernel $w_c$ of Eq.~\eqref{eq:filt_kernels} --- what the
+The first term is the per-orbital heat capacity underlying the weight $w_c$ of
+Eq.~\eqref{eq:filt_kernels} --- what the
 heat capacity would be if the level splitting were held fixed --- and the second
 is what the motion of the levels contributes. Now take $T\to T_c^{-}$. The
 splitting closes, so $x\to0$, and the frozen-spectrum term vanishes: this is
@@ -7132,8 +7229,8 @@ x_{a\neq1}=\frac{1}{e^{y}+q-1},
 \frac{s}{k_B}=\ln\big(e^{y}+q-1\big)-y\,x_1 ,
 \end{equation}
 the $q$-level Schottky entropy, which one checks is identical to
-$\ln q-G(m)/q$. At $q=2$ it reduces to $w_S(y/2)$ of
-Eq.~\eqref{eq:filt_kernels} and everything of
+$\ln q-G(m)/q$. At $q=2$ it reduces to the two-level entropy $\sigma(y/2)$ of
+Eq.~\eqref{eq:filt_S} and everything of
 Section~\ref{sec:appising:spectrum} follows. For $q>2$ it does not, because the
 \emph{upper} level is $(q-1)$-fold degenerate and the lower one is not: the
 entropy is no longer an even function of $m$. Expanding
@@ -7954,8 +8051,8 @@ exactly as far as the local gap, which is all it was ever about.
 
 One quantitative consequence ties the three cases and
 Section~\ref{sec:filters} together. In every mean-field theory $\hat H_{\rm MF}$
-is one-body, so its entropy is a sum of the two-level kernels of
-Eq.~\eqref{eq:filt_kernels} evaluated on its own levels. Differentiating, and
+is one-body, so its entropy is a sum of the two-level entropies $ k_B\sigma $ of
+Eq.~\eqref{eq:filt_S} evaluated on its own levels. Differentiating, and
 using that those levels depend on $T$ both explicitly and through $\Phi(T)$,
 gives the decomposition already found for the Ising model in
 Eq.~\eqref{eq:isspec_csplit}, in general:
