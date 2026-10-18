@@ -23,6 +23,8 @@
 \newcommand{\Var}{\operatorname{Var}}
 \newcommand{\Cov}{\operatorname{Cov}}
 \newcommand{\Tr}{\operatorname{Tr}}
+%% capital kappa (one-mode grand partition function); LaTeX has no \Kappa
+\providecommand{\Kappa}{\mathrm{K}}
 
 \title{Thermodynamic Potentials, Ensembles, and Response Functions\\
 \large A working guide for graduate students}
@@ -50,8 +52,12 @@ Section~\ref{sec:fss} turns that obstruction into a measuring instrument.
 Section~\ref{sec:filters} descends to the microscopic side: for independent
 levels in the grand canonical ensemble every observable is the single-particle
 spectrum seen through its own filter, all centred on $\mu$ and all of width set
-by $T$ alone, but of different shapes --- so that the entropy counts the levels
-that are undecided while the heat capacity is exactly blind to them.
+by $T$ alone, but of different shapes --- so that the entropy is largest for the
+levels at $\mu$, whose occupation fluctuates most, while the heat capacity is
+exactly blind to them.
+Section~\ref{sec:foundations} examines what heat, entropy and the second law mean
+at the level of the microscopic dynamics, where unitary evolution conserves both
+the Gibbs entropy and the energy distribution.
 Peripheral derivations and numerical practice are collected in the appendices.
 \end{abstract}
 
@@ -169,7 +175,7 @@ a volume, admit particles, add heat), whereas the intensive ones are already
 derivatives of the fundamental relation and inherit relations among themselves.
 
 A natural objection is that $ S $, $ V $ and $ N $ cannot be independent either,
-since ``they are related by the equation of state''. They are not. An equation of
+since ``they are related by the equation of state''. However, an equation of
 state such as $ P = P(T, V, N) $ or $ T = T(S, V, N) $ relates an \emph{intensive}
 variable, i.e.\ a first derivative of $ U $, to a set of coordinates; it is one
 of the three relations
@@ -208,7 +214,13 @@ derivative $ a_i = \partial U/\partial x_i $ is defined by
 \]
 with the displacement $ \mathbf{h} = t\,\mathbf{e}_i $ restricted to the $ i $-th
 coordinate axis; there are $ n $ such statements, one per axis, each about a single
-line through $ \mathbf{x} $. Total differentiability is one statement about
+line through $ \mathbf{x} $.
+It is tempting to read total differentiability as partial differentiability in
+\emph{all} directions, i.e.\ as the existence, for every unit vector
+$ \hat{\mathbf{u}} $, of the directional derivative
+$ D_{\hat{\mathbf{u}}}U = \lim_{t\to0}[U(\mathbf{x} + t\hat{\mathbf{u}}) - U(\mathbf{x})]/t $.
+That is not enough, and the difference is the whole point of (A4).
+Total differentiability is one statement about
 \emph{all} displacements $ \mathbf{h} $ at once, including those that are not
 along any axis, and it requires that the \emph{same} numbers $ a_i $ work for all
 of them with a remainder that is $ o(|\mathbf{h}|) $ uniformly in the direction.
@@ -219,8 +231,19 @@ knowing $ U $ along the $ n $ axes says nothing about $ U $ along a diagonal.
 Existence of the partial derivatives alone therefore does not deliver it:
 they may exist everywhere and yet the
 increment fail to be linear in the direction of approach, in which case there is
-no gradient, no differential and no tangent plane. Appendix~\ref{app:diff}
-works through the standard counterexample and states the Landau symbols used
+no gradient, no differential and no tangent plane. Nor do all directional
+derivatives deliver it, even when they exist and depend \emph{linearly} on
+$ \hat{\mathbf{u}} $: each of them is a limit along one ray, taken at a rate that
+may depend on the ray, whereas total differentiability demands that
+$ |r(\mathbf{h})|/|\mathbf{h}| $ be small for \emph{all} $ \mathbf{h} $ of small length
+simultaneously, including along curves that approach $ \mathbf{x} $ tangentially to
+no ray at all. In short,
+\[
+  \text{total} \;\Longrightarrow\; \text{all directional, linear in } \hat{\mathbf{u}}
+  \;\Longrightarrow\; \text{all partial},
+\]
+and neither arrow can be reversed. Appendix~\ref{app:diff}
+works through a counterexample to each converse and states the Landau symbols used
 throughout.
 
 The sufficient condition is familiar: if the partial derivatives exist in a
@@ -692,8 +715,8 @@ brings down one factor $ |t|^{-\Delta} $, so
 = |t|^{2-\alpha-k\Delta}\;\Phi^{(k)}\!\left(\frac{h}{|t|^{\Delta}}\right)
 \;\xrightarrow{\;h=0\;}\; \Phi^{(k)}(0)\,|t|^{2-\alpha-k\Delta} .
 \]
-The exponents of the successive field derivatives --- free energy, magnetisation,
-susceptibility, non-linear susceptibilities --- therefore form a ladder
+The exponents of the successive field derivatives (free energy, magnetisation,
+susceptibility, non-linear susceptibilities) therefore form a ladder
 $ 2-\alpha,\ 2-\alpha-\Delta,\ 2-\alpha-2\Delta,\ \dots $ with \emph{equally
 spaced} rungs, and $ \Delta $ is the constant gap between consecutive rungs. (The
 term is due to Essam and Fisher; it has nothing to do with a spectral gap.) Reading
@@ -793,11 +816,11 @@ exchanging heat with its surroundings, and write
 \]
 for the change of the \emph{system's} entropy, a difference of a state function
 between two points where it is defined; $ \Delta S_{\rm res} $ is the same for the
-reservoir(s) and $ \Delta S_{\rm tot} = \Delta S + \Delta S_{\rm res} $. Nothing is
-assumed about the states in between.
+reservoir(s) and $ \Delta S_{\rm tot} = \Delta S + \Delta S_{\rm res} $ as entropy is an extensive quantity.
+Nothing is assumed about the states in between.
 
-A reservoir is by construction always internally equilibrated --- it is so large
-that the heat it exchanges never drives it out of equilibrium --- and it does no
+A reservoir is by construction always internally equilibrated (it is so large
+that the heat it exchanges never drives it out of equilibrium) and it does no
 work, so $ dU_{\rm res} = -\dbar Q $, with $ \dbar Q $ the heat received by the
 system. Hence $ S_{\rm res} $ is defined at every instant, and the reversible
 relation applied to the reservoir gives $ dS_{\rm res} = -\dbar Q/T_{\rm res} $ with
@@ -1164,7 +1187,41 @@ upper bound.}
 \boxed{\;F(T)=\inf_{S}\big[\,U(S)-TS\,\big]\;}
 \]
 because for convex $U$ the function $S\mapsto U(S)-TS$ is convex and its unique
-stationary point is its global minimum. We call the boxed expression the
+stationary point is its global minimum.
+
+\paragraph{Which variables are independent.} The variational form uses the letter
+$ T $ for two different objects, and they must be kept apart. One is the
+\emph{function} $ T(S) \equiv U'(S) $, the temperature that a state of entropy $ S $
+has. The other is a \emph{number} $ T $, a slope fixed before the minimisation
+starts; physically it is the temperature of the bath, and we write it $ T_0 $ in
+this paragraph to make the distinction visible. The object minimised is
+\[
+  g_{T_0}(S) \equiv U(S) - T_0\,S ,
+\]
+a function of one independent variable, the trial entropy $ S $, with $ T_0 $ a
+parameter. Its derivative is therefore
+\[
+  \frac{d g_{T_0}}{dS} = U'(S) - T_0 = T(S) - T_0 ,
+\]
+with no term $ -S\,dT_0/dS $, because $ T_0 $ does not depend on $ S $. Nothing here
+contradicts $ T = T(S) $: the relation $ T(S) = U'(S) $ holds for every trial
+state, and what the minimisation \emph{asserts} is that, among all trial values
+of $ S $, the minimiser $ S^\ast $ is the one whose own temperature equals the
+imposed one, $ T(S^\ast) = T_0 $. The identification of the two temperatures is
+the \emph{outcome} of the minimisation, not an input to it. After the
+minimisation the value $ F(T_0) = g_{T_0}(S^\ast(T_0)) $ depends on $ T_0 $ only, and
+$ T_0 $ becomes the independent variable of $ F $; its derivative,
+\[
+  \frac{dF}{dT_0} = \underbrace{g'_{T_0}(S^\ast)}_{=\,0}\,\frac{dS^\ast}{dT_0}
+  + \frac{\partial g_{T_0}}{\partial T_0}\bigg|_{S = S^\ast} = -S^\ast(T_0) ,
+\]
+is computed by the chain rule, the first term vanishing by stationarity (the
+envelope theorem). The same bookkeeping applies to every potential below: in
+$ U - T_0S + P_0V - \mu_0N $ the subscript-$ 0 $ quantities are parameters set by
+the surroundings, and $ S, V, N $ are the trial values of the system's own
+extensive variables. Once this is understood the subscript is dropped.
+
+We call the boxed expression the
 \emph{variational form}; it \emph{is} the Legendre--Fenchel transform, the
 classical Legendre transform being the special case in which the infimum is
 found by setting a derivative to zero. The variational form is the more general
@@ -1194,6 +1251,28 @@ the same as the bare definition of the transform.
 
 \subsection{The family}
 
+Every potential is an \emph{extensive} quantity, whatever its natural variables.
+Each is $ U $ minus products of an intensive variable with its conjugate
+extensive one, $ TS $, $ -PV $, $ \mu N $, and each such product scales like its
+extensive factor. Hence, for any $ \lambda > 0 $, the potential is homogeneous of
+degree one in its \emph{extensive} arguments at fixed intensive ones,
+\[
+  F(T, \lambda V, \lambda N) = \lambda F(T, V, N), \qquad
+  G(T, P, \lambda N) = \lambda G(T, P, N),
+\]
+\[
+  \Omega(T, \lambda V, \mu) = \lambda\,\Omega(T, V, \mu) ,
+\]
+as follows from $ U(\lambda S, \lambda V, \lambda N) = \lambda U(S, V, N) $
+(Section~\ref{sec:euler}) by transforming both sides. Two consequences recur.
+A potential with a single extensive argument is that argument times a function
+of the intensive ones, which is the content of $ G = \mu(T,P)\,N $ and
+$ \Omega = -P(T,\mu)\,V $. And the transform in \emph{all three} variables,
+$ U - TS + PV - \mu N $, would be a function of $ (T, P, \mu) $ alone with no
+extensive argument left to scale with; extensivity then forces it to vanish
+identically, which is Euler's relation, and the would-be potential carries no
+information (Gibbs--Duhem).
+
 Before listing the potentials it is worth stating precisely in what sense they are
 equivalent. \emph{As descriptions of the substance} they carry the same
 information: each is obtained from $ U(S,V,N) $ by Legendre transformation in some
@@ -1211,11 +1290,35 @@ point $ (S, V, N) $, and $ U $ is $ C^{1} $ everywhere
 (Section~\ref{sec:totaldiff}). Each transformation replaces an extensive
 coordinate by its conjugate intensive one, and on a tie line the intensive
 variables are constant: $ F(T,V,N) $ still labels two-phase states uniquely,
-because $ V $ fixes the lever-rule fraction, but $ G(T,P,N) $ assigns the entire
-tie line to the single point $ (T_t, P_t) $ and acquires a kink there. The
+because $ V $ fixes the fraction of the substance in each phase, but
+$ G(T,P,N) $ assigns the entire tie line to the single point $ (T_t, P_t) $ and
+acquires a kink there. The fraction is fixed by the \emph{lever rule}. Let the
+coexisting phases have volumes per particle $ v_\ell < v_g $ at $ (T_t, P_t) $, and
+let a fraction $ x_g $ of the $ N $ particles be in the gas. Volumes add, so
+$ V = N\big[(1 - x_g)\,v_\ell + x_g\,v_g\big] $, i.e.
+\[
+  x_g = \frac{V/N - v_\ell}{v_g - v_\ell} , \qquad 0 \leq x_g \leq 1 .
+\]
+The point $ V/N $ divides the segment $ [v_\ell, v_g] $ in the ratio
+$ x_g : (1 - x_g) $, as a balance is divided by its fulcrum, hence the name; the
+same rule with $ S/N $ in place of $ V/N $ holds along the entropy axis. The
 transformed potential has lost no information about the substance, but its
-arguments no longer tell us \emph{which} state the system is in. The more
-intensive variables a potential has, the more convenient it is in the laboratory
+arguments no longer tell us \emph{which} state the system is in.
+
+Why extensive coordinates are robust and intensive ones are not is visible in this
+example. The coexistence conditions are \emph{equalities of intensive variables}
+between the phases, $ T_\ell = T_g $, $ P_\ell = P_g $, $ \mu_\ell = \mu_g $: that is
+what it means for the phases to be in equilibrium with each other. Intensive
+variables therefore take the same value in every two-phase state on the tie line
+and cannot tell those states apart. Extensive variables \emph{add} over the phases,
+$ V = V_\ell + V_g $, $ S = S_\ell + S_g $, and through the lever rule they record
+how much of each phase is present. Geometrically, a tie line is a segment on which
+$ U $ is affine; the gradient of $ U $, i.e.\ the intensive triple, is constant
+along it, so the map from states to intensive variables is many-to-one there,
+while the map to extensive variables remains one-to-one. A Legendre transform
+replaces a coordinate by the slope conjugate to it, and so turns every such flat
+segment into a single point, i.e.\ a kink.
+The more intensive variables a potential has, the more convenient it is in the laboratory
 and the less robust it is at a transition; $ \Omega(T,V,\mu) $ and $ G(T,P,N) $,
 with a single extensive argument, are the extreme cases. A related caveat applies
 to \emph{approximate} theories: if a computed $ U $ is not convex, transforming it
@@ -1278,13 +1381,26 @@ the others. This is the sense in which the constraint $ \sum_kn_k = N $
 with weight $ e^{\beta\mu N} $ removes the delta,
 \[
   \Xi = \sum_N e^{\beta\mu N} Z_N
-  = \sum_{\{n_k\}} \prod_k e^{-\beta(\varepsilon_k - \mu)n_k}
-  = \prod_k \underbrace{\sum_{n_k} e^{-\beta(\varepsilon_k - \mu)n_k}}_{\xi_k} ,
+  = \sum_{\{n_k\}} \prod_{k\,:\,\text{states}} e^{-\beta(\varepsilon_k - \mu)n_k}
+  = \prod_{k\,:\,\text{states}}\;
+    \underbrace{\sum_{n_k\,:\,\text{allowed occupations}} e^{-\beta(\varepsilon_k - \mu)n_k}}_{\Kappa_k} ,
 \]
-since now every $ n_k $ runs freely. The price is that $ N $ is no longer fixed;
+since now every $ n_k $ runs freely: the product runs over the single-particle
+states $ k $, and each sum over the occupations $ n_k $ allowed by the statistics.
+The price is that $ N $ is no longer fixed;
 $ \mu $ must be \emph{chosen} so that the mean $ \langle N\rangle =
 -\partial\Omega/\partial\mu $ equals the desired particle number. This is exactly
-the role of a Lagrange multiplier: in maximising the Gibbs entropy subject to
+the role of a Lagrange multiplier: in maximising the Gibbs
+entropy\footnote{\label{fn:gibbsS}\textbf{Gibbs entropy.} For a probability
+distribution $ \{p_i\} $ over microstates, or more generally a density matrix
+$ \rho $ (Hermitian, $ \rho \geq 0 $, $ \Tr\rho = 1 $),
+$ S_{\rm G}[\rho] \equiv -k_B\Tr(\rho\ln\rho) = -k_B\sum_i p_i\ln p_i $, the second form
+in the eigenbasis of $ \rho $, with $ p_i $ its eigenvalues and $ 0\ln0 \equiv 0 $.
+It is defined for \emph{any} state, in or out of equilibrium; it vanishes for a pure
+state and is largest, $ k_B\ln D $, for the uniform distribution over $ D $ states.
+For the microcanonical distribution, $ p_i = 1/W $ on $ W $ states, it reduces to
+$ k_B\ln W $; for the equilibrium state of any ensemble it equals the
+thermodynamic entropy (Section~\ref{sec:heat}).} subject to
 prescribed $ \langle\hat H\rangle $ and $ \langle\hat N\rangle $, the two constraints
 are imposed through multipliers $ \beta $ and $ -\beta\mu $, and their values are
 fixed afterwards by the constraints (Section~\ref{sec:ensembles}). The hard
@@ -1292,7 +1408,7 @@ constraint has been traded for a soft one, enforced on average, and the error is
 the particle-number fluctuation, of relative size $ O(N^{-1/2}) $.
 The Fermi--Dirac and Bose--Einstein distributions, $ \langle n_k\rangle =
 1/(e^{\beta(\varepsilon_k-\mu)} \pm 1) $, emerge directly from this
-factorisation, one factor $ \xi_k $ at a time. At fixed $ N $ there is no such
+factorisation, one factor $ \Kappa_k $ at a time. At fixed $ N $ there is no such
 closed form: $ Z_N $ is a sum over all ways of distributing $ N $ particles among
 the modes, whose number grows combinatorially, and the canonical occupations
 depend on $ N $ and on the whole spectrum. It can be organised as a recursion in
@@ -1329,7 +1445,7 @@ therefore the state, among all those made accessible by the release, at which th
 potential is lowest: from there no spontaneous change remains possible. The
 quantities that the release has freed --- the piston position, the amount
 transferred through the valve, the order parameter --- are the ``internal degrees
-of freedom'' of the quote.
+of freedom''.
 
 ``Internal degrees of freedom'' is used for three different things, of which only
 one is meant. \emph{Microscopic} degrees of freedom (atomic positions and
@@ -1352,18 +1468,43 @@ can, the second law says the composite will change it in whichever direction
 lowers the relevant potential, and equilibrium is where no such direction
 remains.
 
-\paragraph{Derivation.} The only fundamental extremum principle is the second
-law: for an isolated composite, $S_{\rm tot}$ is maximised. Everything else
-follows by eliminating the reservoir. With $dS_{\rm res}=-\dbar Q/T$,
+\paragraph{Derivation.} The proof needs only the system itself and two laws
+applied to it. Let the system pass, by any process however violent, from an
+equilibrium state $ A $ (with some internal constraint) to an equilibrium state $ B $
+(the constraint released). Its surroundings enter only through the values they
+impose at the boundary: the temperature $ T_0 $ of the walls through which heat
+passes, the pressure $ P_0 $ against which the volume moves, and the chemical
+potential $ \mu_0 $ at which particles are admitted. As in the variational form of
+Section~\ref{sec:potentials}, these are parameters, not functions of the system's
+state. The first law for the system reads
 \[
-dS_{\rm tot}=dS-\frac{\dbar Q}{T}\geq 0
-\quad\Longrightarrow\quad \dbar Q \leq T\,dS ,
+  \Delta U = Q - P_0\,\Delta V + \mu_0\,\Delta N ,
 \]
-and inserting the first law $\dbar Q=dU-\dbar W$ for each set of constraints
-gives the second column of the table below. Each differential there is the change
-of the potential during a \emph{spontaneous} change $ d\xi $ of the free internal
-variables at fixed natural variables, $ d\Phi = (\partial\Phi/\partial\xi)\,d\xi $
-with $ \Phi $ the potential. Two steps lead from the inequality to the extremum.
+with $ Q $ the heat received and $ \mu_0\Delta N $ the energy brought in with the
+particles (the convention of Section~\ref{sec:caveat}), and the Clausius
+inequality of Section~\ref{sec:clausius}, with a single wall temperature, reads
+$ \Delta S \geq Q/T_0 $. Eliminating $ Q $,
+\[
+  \boxed{\;\Delta\big(U - T_0S + P_0V - \mu_0N\big) \;\leq\; 0\;}
+\]
+since $ T_0 $, $ P_0 $, $ \mu_0 $ are constants and can be taken inside the
+difference. The quantity in brackets, the \emph{availability}, is defined for any
+equilibrium state of the system; it involves the system's own extensive variables
+and the surroundings' intensive ones. When the system is in equilibrium with
+its surroundings, the system's temperature (and, where the walls permit,
+pressure and chemical potential) equals the imposed value, and the availability
+reduces to a thermodynamic potential: to $ F $ if the walls are rigid and closed
+($ \Delta V = \Delta N = 0 $), to $ G $ if closed but movable ($ \Delta N = 0 $), to
+$ \Omega $ if rigid but permeable ($ \Delta V = 0 $). No reservoir entropy, and no
+partition of the system, appear anywhere; the second law enters only through the
+system's own Clausius inequality, and the internal variable $ \xi $ released at
+$ A $ can be any of those listed above, an order parameter included. The
+differential form, used below, follows in the same way when the process is
+quasi-static. Each differential in the second column of the table below is then
+the change of the potential during a \emph{spontaneous} change $ d\xi $ of the
+free internal variables at fixed natural variables,
+$ d\Phi = (\partial\Phi/\partial\xi)\,d\xi $ with $ \Phi $ the potential. Two steps
+lead from the inequality to the extremum.
 (i) If the current state is not one of minimal $ \Phi $ among the accessible ones,
 then some change $ d\xi $ lowers $ \Phi $; the second law permits it, and in the
 absence of a kinetic obstruction the system takes it, so the state was not
@@ -1396,20 +1537,33 @@ For $T,V,N$ explicitly: at fixed $V$ no work is done, so $\dbar W=0$ and
 $\dbar Q=dU$; the inequality $dU\leq T\,dS$ at fixed $T$ is
 $d(U-TS)=dF\leq0$. The potential can only decrease, so it decreases until it
 cannot: it is a Lyapunov function whose minimum is equilibrium. The sign flip
-relative to entropy maximisation comes entirely from the reservoir's entropy
-entering with the opposite sign.
+relative to entropy maximisation comes entirely from the term $ -T_0S $ in the
+availability: at fixed wall temperature, raising the system's entropy lowers
+$ U - T_0S $.
 
 \paragraph{The statistical-mechanical version.} For an arbitrary trial density
 matrix $\rho$ define
 \[
-\mathcal{F}[\rho]=\Tr(\rho\hat H)+k_BT\,\Tr(\rho\ln\rho).
+\mathcal{F}[\rho]=\Tr(\rho\hat H)+k_BT\,\Tr(\rho\ln\rho),
 \]
-Then $\mathcal{F}[\rho]-F=k_BT\,D(\rho\|\rho_{\rm eq})\geq0$, with equality only
-for $\rho=\rho_{\rm eq}$. The equilibrium density matrix is the \emph{global}
-minimiser of $\mathcal{F}$ and $F=-k_BT\ln Z$ is the minimum value. This is the
-Gibbs variational principle; the Gibbs--Bogoliubov inequality $F\leq
+the mean energy minus $ T $ times the Gibbs entropy (footnote~\ref{fn:gibbsS}) of
+the trial state, and let $ \rho_{\rm eq} = e^{-\beta\hat H}/Z $. The distance between
+two density matrices that matters here is the \emph{quantum relative entropy}
+\[
+  D(\rho\,\|\,\sigma) \equiv \Tr\big[\rho\,(\ln\rho - \ln\sigma)\big] ,
+\]
+which for commuting $ \rho $, $ \sigma $ reduces to the Kullback--Leibler divergence
+$ \sum_i p_i\ln(p_i/q_i) $ of their eigenvalue distributions. It is not symmetric
+in its arguments and is not a metric, but it has the one property needed (Klein's
+inequality): $ D(\rho\|\sigma) \geq 0 $, with equality if and only if
+$ \rho = \sigma $. Then $\mathcal{F}[\rho]-F=k_BT\,D(\rho\|\rho_{\rm eq})\geq0$, with
+equality only for $\rho=\rho_{\rm eq}$. The equilibrium density matrix is the
+\emph{global} minimiser of $\mathcal{F}$ and $F=-k_BT\ln Z$ is the minimum value.
+This is the Gibbs variational principle; the Gibbs--Bogoliubov inequality $F\leq
 F_0+\langle\hat H-\hat H_0\rangle_0$, the workhorse of variational mean-field
-theory, is the same statement with a restricted trial family.
+theory, is the same statement with a restricted trial family. Klein's inequality,
+the identity for $ \mathcal{F} $, both inequalities and their grand-canonical form
+are proved in Appendix~\ref{app:gibbsvar}.
 
 \paragraph{The constrained free energy.} In practice one introduces an order
 parameter $\phi$ and builds a constrained free energy $F(T,V,N;\phi)$. The
@@ -1431,17 +1585,37 @@ dividing it by the full $ Z = \Tr e^{-\beta\hat H} = \int d\phi\, Z(\phi) $ make
 one:
 \[
   P(\phi) \equiv \frac{Z(\phi)}{Z}
-  = \Big\langle \delta\big(\hat\phi - \phi\big) \Big\rangle_{\rm can} ,
+  = \Big\langle \delta\big(\hat\phi - \phi\big) \Big\rangle ,
 \]
 the probability density for the order parameter to take the value $ \phi $ in the
-ordinary, unconstrained canonical ensemble; it is normalised,
-$ \int d\phi\, P(\phi) = 1 $. Taking logarithms,
+ordinary, unconstrained ensemble; it is normalised,
+$ \int d\phi\, P(\phi) = 1 $. If $ \hat\phi $ commutes with $ \hat H $ and
+$ |a\rangle $ are common eigenstates, $ P(\phi) = \sum_a p_a\,\delta(\phi - \phi_a) $:
+the eigenvalues of $ \hat\phi $ counted with their Boltzmann probabilities, i.e.\ a
+thermally weighted density of states of the operator $ \hat\phi $. It is a
+distribution over the values of an observable and should not be confused with an
+inverse participation ratio $ \sum_i|\psi_i|^{4} $, which is a single number
+measuring over how many basis states one wavefunction is spread.
+
+Nothing in the construction is specific to the canonical ensemble. In any ensemble
+the weight $ e^{-\beta\hat H} $ is replaced by that ensemble's weight and $ Z $ by
+its partition function; in the grand canonical one, for instance,
+$ e^{-\beta\Omega(T,V,\mu;\phi)} = \Tr[\delta(\hat\phi - \phi)\,e^{-\beta(\hat H - \mu\hat N)}] $,
+$ P(\phi) = e^{-\beta\Omega(\phi)}/\Xi $, and every statement below holds with
+$ (F, Z) \to (\Omega, \Xi) $. We write the canonical case for definiteness. Taking
+logarithms,
 \[
   F(\phi) = -k_BT\ln P(\phi) + F_{\rm eq}, \qquad F_{\rm eq} = -k_BT\ln Z ,
 \]
 so $ F(\phi) $ and $ -k_BT\ln P(\phi) $ differ by a $ \phi $-independent constant.
-This makes $ F(\phi) $ measurable. A Monte Carlo or molecular-dynamics run
-samples microstates with the canonical weight; recording $ \phi $ at each sample
+This makes $ F(\phi) $ measurable. A Monte Carlo or molecular-dynamics run at fixed
+$ (T, V, N) $ visits microstate $ i $ with probability $ p_i = e^{-\beta E_i}/Z $,
+the Boltzmann weight of the ensemble being simulated: the Metropolis acceptance
+probability $ \min(1, e^{-\beta\Delta E}) $ is constructed to satisfy detailed
+balance with respect to exactly this distribution, and a thermostatted
+molecular-dynamics run samples it by design. (A grand-canonical simulation, with
+particle insertion and removal, samples $ e^{-\beta(E_i - \mu N_i)}/\Xi $ instead.)
+Recording $ \phi $ at each sample
 and binning the values gives a histogram whose normalised bin heights (fraction
 of samples in a bin divided by its width) converge to $ P(\phi) $. Up to the
 additive constant, $ -k_BT $ times the logarithm of the histogram is
@@ -1453,20 +1627,71 @@ F_{\rm eq}(T,V,N)=\min_{\phi}F(T,V,N;\phi)+O(\ln V),
 \qquad
 \left.\frac{\partial F}{\partial \phi}\right|_{\phi_{\rm eq}}=0 .
 \]
+The correction comes from the \emph{number} of terms in the sum, and its size is
+fixed by counting them. For $ V $ Ising spins, $ \hat\phi $ takes the $ V + 1 $ values
+$ \phi_j = -1 + 2j/V $, and $ Z = \sum_{j=0}^{V}e^{-\beta F(\phi_j)} $ is a sum of
+$ V + 1 $ positive terms. It is at least its largest term and at most $ V + 1 $ times
+it,
+\[
+  e^{-\beta F_{\min}} \;\leq\; Z \;\leq\; (V + 1)\,e^{-\beta F_{\min}}
+  \quad\Longrightarrow\quad
+  F_{\min} - k_BT\ln(V + 1) \;\leq\; F_{\rm eq} \;\leq\; F_{\min} ,
+\]
+with $ F_{\min} = \min_jF(\phi_j) $. Since $ F_{\min} $ is extensive, of order $ V $,
+the correction is negligible per unit volume. The actual correction is smaller
+than the bound: $ F(\phi) = Vf(\phi) $ grows linearly in $ V $, so only the
+$ O(V^{1/2}) $ terms with $ |\phi - \phi_{\rm eq}| \lesssim (\beta Vf'')^{-1/2} $ contribute
+appreciably, and the Gaussian (Laplace) evaluation of the sum gives
+$ F_{\rm eq} = F_{\min} - \tfrac12k_BT\ln V + O(1) $: the logarithm of the width of
+the peak of $ P(\phi) $, measured in units of the spacing $ 2/V $ of the allowed values.
 
 The conjugate-field route is a \emph{different} construction. Adding a source $h$
 coupled to $\hat\phi$ gives an unconstrained
 $F_h=-k_BT\ln\Tr\, e^{-\beta(\hat H-hV\hat\phi)}$, the field $ h $ coupling to the
 extensive total $ V\hat\phi = \sum_i \hat\sigma^z_i $ (with $ V $ the number of sites
 as above) so that $ F_h $ is extensive, and whose Legendre transform back to fixed $\phi$ is
-$\hat F(\phi)=\min_h[F_h(h)+hV\phi]$, convex in $\phi$ by construction,
-so $\hat F=\operatorname{conv}F$ and not $F$ itself. The two agree wherever $F$
-is already convex and differ exactly where it is not: below $T_c$ the field route
-returns the flat common tangent between the two wells and is blind to the barrier
-between them. Since that barrier is the whole content of nucleation,
-metastability and hysteresis, the field construction cannot serve as the
-definition: fixing the field performs the Maxwell construction automatically,
-fixing the order parameter does not.
+\[
+  \hat F(\phi) = \sup_h\big[F_h(h) + hV\phi\big] ,
+\]
+a supremum because $ F_h $ is concave in $ h $ (the bracket is a concave function of
+$ h $ and its stationary point is a maximum).
+
+The relation between $ \hat F $ and $ F $ follows in three steps; assume, as for
+classical spins, that $ \hat\phi $ commutes with $ \hat H $, so that the trace can be
+organised by the eigenvalues of $ \hat\phi $. (i) The source term only reweights
+each value of $ \phi $,
+\[
+  e^{-\beta F_h(h)} = \int\! d\phi\; e^{-\beta[F(\phi) - hV\phi]} ,
+\]
+and with $ F(\phi) = Vf(\phi) $ the integral is dominated by its largest integrand,
+exactly as for the sum above, so that per unit volume, as $ V \to \infty $,
+\[
+  f_h(h) \equiv \frac{F_h}{V} = \inf_\phi\big[f(\phi) - h\phi\big] .
+\]
+This is the Legendre--Fenchel transform of $ f $, up to sign:
+$ f_h(h) = -f^{\ast}(h) $ with $ f^{\ast}(h) \equiv \sup_\phi[h\phi - f(\phi)] $.
+(ii) Transforming back, $ \hat f(\phi) \equiv \hat F/V = \sup_h[h\phi - f^{\ast}(h)] =
+f^{\ast\ast}(\phi) $. (iii) The biconjugate of any function is its convex hull,
+$ f^{\ast\ast} = \operatorname{conv}f $ (footnote~\ref{fn:hull} and
+Appendix~\ref{app:maxwell}): it is the supremum of all affine functions lying
+below $ f $, which is the largest convex function below $ f $. Hence
+\[
+  \hat F = \operatorname{conv}F , \qquad
+  \hat F(\phi) = F(\phi) \iff F \text{ touches its convex hull at } \phi .
+\]
+The two constructions therefore agree wherever $F$ coincides with its convex hull,
+in particular everywhere if $ F $ is convex, and differ exactly on the interval where
+$ F $ lies strictly above its hull, which contains every region where $ F $ is locally
+concave. Below $T_c$ the exact $ F(\phi) $ at finite volume has two wells at
+$ \pm\phi_0 $ and a barrier between them; its hull is $ F $ outside
+$ [-\phi_0, \phi_0] $ and the straight common tangent across it, so the field route
+returns the flat segment and is blind to the barrier. Physically, a field $ h $ selects
+the $ \phi $ that minimises $ F(\phi) - hV\phi $: every value of $ h $ selects a point
+outside $ (-\phi_0, \phi_0) $, and the states inside are never selected by any field;
+they are reached only as mixtures of the two coexisting states. Since that barrier is
+the whole content of nucleation, metastability and hysteresis, the field
+construction cannot serve as the definition: fixing the field performs the Maxwell
+construction automatically, fixing the order parameter does not.
 
 Two points make $F(\phi)$ concrete. At \emph{finite} volume the double-well shape
 of the exact $ F(\phi) $ is a genuine property of the system, not an artefact of
@@ -1508,9 +1733,19 @@ as a function of $T$ at fixed $S$: the bracket is affine in $T$\footnote{\textbf
 means linear plus a constant (footnote~\ref{fn:affine}): $ T \mapsto aT + b $, whose
 graph is a straight line that need not pass through the origin. Here $ a = -S $ and
 $ b = U(S) $; ``linear'' in the strict sense would require $ U(S) = 0 $.}, with slope $-S$
-and intercept $U(S)$. So $F(T)$ is the pointwise infimum of a family of straight
+and intercept $U(S)$.
+So $F(T)$ is the \emph{pointwise} infimum of a family of straight
 lines, one for each $ S $, and a pointwise infimum of affine functions is concave
-(draw two lines and take the lower envelope) regardless of the family. The proof
+(draw two lines and take the lower envelope) regardless of the family. ``Pointwise''
+is essential. A single straight line $ T \mapsto U(S) - TS $ is unbounded below as
+$ T $ ranges over $ \mathbb{R} $, and no infimum \emph{over $ T $} is ever taken. The
+infimum is taken over the \emph{family}, i.e.\ over $ S $, separately at each fixed
+$ T $: at a given $ T $ one evaluates every line at that abscissa and takes the
+lowest of the resulting numbers. That set of numbers is bounded below whenever $ T $
+lies in the range of $ U' $, because the convex function $ U(S) - TS $ of $ S $ then
+attains its minimum at $ S^\ast(T) $; for other $ T $ the infimum is $ -\infty $
+(footnote~\ref{fn:inf}), and the concavity argument below holds with that value
+allowed. The proof
 is two lines. For any $ S $, any $ T_1, T_2 $ and $ x \in [0,1] $, the bracket is
 affine in $ T $, so
 \[
@@ -1531,14 +1766,23 @@ Symmetrically $U(S)=\sup_T[F(T)+TS]$ is a supremum of affine functions of $S$ an
 therefore convex, which is also why the double transform returns the convex hull
 and nothing more. No differentiability is needed anywhere in this argument.
 
-For smooth functions there is a differential version that says more. With
-$T=U'(S)$ and $S=-F'(T)$,
+For smooth functions there is a differential version that says more.
+Throughout, $ V $ and $ N $ are held fixed, so $ U(S, V, N) $ and $ F(T, V, N) $ are
+functions of the single variable $ S $, respectively $ T $, and a partial
+derivative at fixed $ (V, N) $ \emph{is} the ordinary derivative of that
+one-variable function. Write $ S(T, V, N) = S^\ast(T) $ for the minimiser, the
+inverse of $ T(S) = (\partial U/\partial S)_{V,N} $. The envelope theorem of
+Section~\ref{sec:potentials} gives $ (\partial F/\partial T)_{V,N} = -S(T, V, N) $;
+differentiating once more with respect to $ T $ at the same fixed $ (V, N) $, and using
+the inverse-function rule for the derivative of $ S(T) $ as the inverse of $ T(S) $,
 \[
-\frac{\partial^{2}F}{\partial T^{2}}=-\frac{dS}{dT}
-=-\left(\frac{\partial^{2}U}{\partial S^{2}}\right)^{-1} .
+\left(\frac{\partial^{2}F}{\partial T^{2}}\right)_{V,N}
+=-\left(\frac{\partial S}{\partial T}\right)_{V,N}
+=-\left[\left(\frac{\partial T}{\partial S}\right)_{V,N}\right]^{-1}
+=-\left[\left(\frac{\partial^{2}U}{\partial S^{2}}\right)_{V,N}\right]^{-1} .
 \]
 The curvatures are not merely opposite in sign but \emph{reciprocal}. With
-$ dS/dT = C_V/T $ the two are
+$ (\partial S/\partial T)_{V,N} = C_V/T $ the two are
 \[
   \left(\frac{\partial^{2}U}{\partial S^{2}}\right)_{V,N} = \frac{T}{C_V},
   \qquad
@@ -1547,11 +1791,55 @@ $ dS/dT = C_V/T $ the two are
 so a large heat capacity makes $ U(S) $ nearly \emph{flat} (adding entropy hardly
 raises the temperature) and $ F(T) $ strongly \emph{curved} (a small change of
 temperature changes the entropy a lot), and vice versa. Physically this is a
-fluctuation statement. A system held at temperature $ T $ by a bath can borrow
-entropy from it; the probability of a deviation $ \delta S $ from the mean is
-governed by the work needed to produce it, $ \delta(U - TS) =
-\tfrac{1}{2}U''(S)\,\delta S^{2} $ to second order, so $ P(\delta S) \propto
-\exp[-U''\delta S^{2}/2k_BT] $ and
+fluctuation statement. A system held at temperature $ T_0 $ by a bath can borrow
+entropy from it, and the probability of a deviation $ \delta S $ from the mean is
+governed by the work needed to produce it. Two steps make this precise.
+
+\emph{The probability of a deviation.} Let the system (energy $ U $) and the bath
+(energy $ E_{\rm tot} - U $) form an isolated composite, and consider the
+macrostate in which the system is in equilibrium with entropy $ S $, hence energy
+$ U(S) $, at fixed $ V, N $. All microstates of the composite are equally likely,
+so the probability of this macrostate is proportional to the number of
+composite microstates realising it, $ e^{S/k_B} $ for the system times
+$ e^{S_{\rm res}(E_{\rm tot} - U(S))/k_B} $ for the bath (Section~\ref{sec:ensembles}):
+\[
+  P(S) \;\propto\; \exp\Big\{\big[S + S_{\rm res}\big(E_{\rm tot} - U(S)\big)\big]\big/k_B\Big\} .
+\]
+The bath is large, so its entropy may be expanded to first order in the energy it
+gives up, with $ \partial S_{\rm res}/\partial E_{\rm res} = 1/T_0 $; the
+second-order term is smaller by the ratio of the system's to the bath's heat
+capacity and vanishes for an ideal bath. Hence
+$ S_{\rm res}(E_{\rm tot} - U) = S_{\rm res}(E_{\rm tot}) - U/T_0 $, and
+\[
+  P(S) \;\propto\; \exp\!\left[-\frac{U(S) - T_0S}{k_BT_0}\right] ,
+\]
+the constant $ S_{\rm res}(E_{\rm tot}) $ being absorbed into the normalisation. The
+exponent is the function $ g_{T_0}(S) $ of Section~\ref{sec:potentials}, with $ T_0 $
+the bath temperature and $ S $ the system's own entropy: the probability of a
+deviation is the Boltzmann factor of the availability it costs.
+
+\emph{The second-order expansion.} Let $ S_0 = S^\ast(T_0) $ be the minimiser,
+$ U'(S_0) = T_0 $, and expand $ U $ by Taylor's theorem about $ S_0 $, with
+$ \delta S = S - S_0 $:
+\[
+  U(S_0 + \delta S) - T_0(S_0 + \delta S)
+  = \big[U(S_0) - T_0S_0\big] + \big[U'(S_0) - T_0\big]\,\delta S
+  + \tfrac12U''(S_0)\,\delta S^{2} + O(\delta S^{3}) .
+\]
+The first bracket is $ F(T_0) $, independent of $ \delta S $, and the second vanishes
+by the stationarity condition. Hence
+\[
+  \delta(U - T_0S) \equiv g_{T_0}(S_0 + \delta S) - g_{T_0}(S_0)
+  = \tfrac12U''(S_0)\,\delta S^{2} + O(\delta S^{3}) .
+\]
+The cubic term is negligible. $ U'' = T/C_V $ is of order $ 1/N $, $ U''' $ of order
+$ 1/N^{2} $, and the typical deviation found below is $ \delta S \sim N^{1/2} $, so
+the quadratic term is $ O(1) $ while the cubic term is $ O(N^{-1/2}) $. Substituting,
+\[
+  P(\delta S) \;\propto\; \exp\!\left[-\frac{U''(S_0)\,\delta S^{2}}{2k_BT_0}\right] ,
+\]
+a Gaussian of variance $ k_BT_0/U''(S_0) $. With
+$ U'' = T/C_V $ and $ F'' = -C_V/T $ from above,
 \[
   \Var(S) = \frac{k_BT}{U''(S)} = k_B C_V = -k_BT\,F''(T) .
 \]
@@ -1603,7 +1891,7 @@ halves:
   \Phi_{\rm tot}(x) - \Phi_{\rm tot}(0) = \Phi''(X_0)\,x^{2} + O(x^{4}) .
 \]
 For $ x = 0 $ to be a minimum the right side must be non-negative for all small
-$ x $; dividing by $ x^{2} $ and letting $ x \to 0 $ gives $ \Phi''(X_0) \geq 0 $. For
+$ x $ which gives $ \Phi''(X_0) \geq 0 $. For
 the entropy of an isolated composite the same expansion holds with $ S $ in place
 of $ \Phi $, and $ x = 0 $ must be a \emph{maximum}, $ S_{\rm tot}(x) \leq
 S_{\rm tot}(0) $, which gives $ S''(X_0)\,x^{2} + O(x^{4}) \leq 0 $ and hence
@@ -1771,10 +2059,9 @@ Because the reservoir is large, $ X_i \ll X_{\rm tot} $ and its entropy may be
 expanded to first order,
 \[
   \frac{S_{\rm res}(X_{\rm tot} - X_i)}{k_B} \simeq \frac{S_{\rm res}(X_{\rm tot})}{k_B}
-  - \frac{X_i}{k_B}\,\frac{\partial S_{\rm res}}{\partial X_{\rm res}} ,
+  - \frac{X_i}{k_B}\,\frac{\partial S_{\rm res}}{\partial X_{\rm res}} .
 \]
-the second-order term being of relative size $ X_i/X_{\rm tot} \to 0 $. The
-derivative is an intensive property of the reservoir alone, read off from its
+The derivative is an intensive property of the reservoir alone, read off from its
 $ dS = (dU + P\,dV - \mu\,dN)/T $: it is $ 1/T $ for $ X = E $, $ -\mu/T $ for $ X = N $,
 and $ P/T $ for $ X = V $. Hence
 \[
@@ -2005,10 +2292,10 @@ specific heat that have no canonical counterpart at all.
 
 For any finite system $Z$ is a finite sum of positive exponentials, hence entire
 in $\beta$ with no zeros on the real axis, so $F=-k_BT\ln Z$ is analytic in $T$
-and every derivative of it is finite. The consequences are not small print:
+and every derivative of it is finite. The consequences are not minor:
 $c(T,L)$ and $\chi(T,L)$ have finite maxima at every $L$;
 $\langle|m|\rangle(T,L)>0$ at every temperature, so there is no sharp point below
-which order switches on; and there is strictly no $T_c$ --- the maximum of $c$,
+which order switches on; and there is strictly no $T_c$; the maximum of $c$,
 the maximum of $\chi$ and the inflection of $\langle|m|\rangle$ are three
 different temperatures. So the naive programme, simulating near $T_c$ and fitting
 $c\sim|t|^{-\alpha}$, fits a power law to a function that has none; what it
@@ -2018,7 +2305,7 @@ depends on $L$, and no amount of statistics repairs the resulting drift.
 Finite-size scaling turns the obstacle into the instrument. The rounding is
 controlled by one mechanism, it is universal, and its $L$-dependence contains
 exactly the exponents wanted. And $L$ is an integer the simulator chooses
-exactly, whereas $t=(T-T_c)/T_c$ requires prior knowledge of $T_c$ --- which is
+exactly, whereas $t=(T-T_c)/T_c$ requires prior knowledge of $T_c$, which is
 what is not known. Most of the accuracy of modern exponent determinations comes
 from this exchange of an unknown continuous variable for a known discrete one.
 
@@ -2029,9 +2316,14 @@ correlations cannot extend further than the system. There are two ways to see
 this. Directly: $ \xi $ is defined by the decay of the connected correlator
 $ G(r) = \langle\phi(0)\phi(\mathbf{r})\rangle - \langle\phi\rangle^{2} $ with
 distance, and in a box of side $ L $ no two points are further apart than $ O(L) $
---- with periodic boundary conditions, $ G $ is itself periodic in each direction
-with period $ L $, so the largest distinct separation is $ L/2 $ --- and a decay
-length longer than every available distance cannot be realised. In Fourier
+--- and a decay length longer than every available distance cannot be realised.
+With periodic boundary conditions the precise statement is as follows. $ G $ is
+periodic in each direction with period $ L $ and, by reflection symmetry, even,
+so a separation $ r $ along an axis is equivalent to $ L - r $; the distinct
+separations along an axis are $ 0 \leq r \leq L/2 $ (the minimum-image distance),
+and along the body diagonal of a $ d $-dimensional box they reach $ \sqrt{d}\,L/2 $.
+The numerical factor is immaterial: in every case the largest distance available
+is of order $ L $, which is all the argument uses. In Fourier
 language: the divergence of $ \xi $ is the growth of long-wavelength fluctuations,
 the correlations at distance $ \xi $ being carried by modes of wavevector
 $ k \lesssim 1/\xi $. In the box the allowed wavevectors are quantised,
@@ -2434,45 +2726,321 @@ correction term restores $\tfrac32Nk_B$ exactly.
 
 Everything so far has been top-down: a potential is postulated, Legendre
 transformed, and differentiated. This section runs the chain in the opposite
-direction for the one case in which it can be run explicitly
-(a system of independent modes in the grand canonical ensemble of any statistics)
-and asks what a measurement at temperature $T$ actually \emph{sees} of the spectrum.
-Each observable turns out to be the spectrum viewed through its \emph{own} weight:
-the weights are all normalised, centred on $\mu$, of width set by $T$ alone, and
-all tend to $ \delta(\varepsilon - \mu) $ as $ T \to 0 $, being built from one
-common \emph{fluctuation window}, the occupancy variance of a level; but they
-differ in shape, and the differences are physical.
-The heat capacity, in particular, is exactly blind to the levels sitting at $\mu$.
+direction and asks what a measurement at temperature $T$ actually \emph{sees} of
+the spectrum. The representation used throughout is the eigenbasis of the full
+many-body Hamiltonian, interacting or not, which is assumed to be known; every
+result is derived first in that basis, where it is exact
+(Sections~\ref{sec:filt_exact} and~\ref{sec:filt_mb}). In it, every thermodynamic
+quantity is the \emph{many-body} spectrum seen through the Boltzmann weight, and
+every response is a covariance. The familiar single-particle picture is the special
+case of an \emph{additive} spectrum (Section~\ref{sec:filt_additive} onwards): there
+the many-body weight collapses onto the single-particle levels, and each observable
+becomes the single-particle spectrum viewed through its own weight; for fermions
+these weights are all normalised, centred on $\mu$, of width set by $T$ alone, and
+all tend to $ \delta(\varepsilon - \mu) $ as $ T \to 0 $. The table at the end of
+Section~\ref{sec:filt_additive} lists which of the later results are exact and which
+are specific to the additive case.
 
 One remark on scope before the derivation: the whole construction is at fixed
 $\mu$, and Section~\ref{sec:filt_muN} converts to fixed $N$ using the formula of
 Section~\ref{sec:caveat}, which is not always a small correction.
 
+\subsection{Exact eigenstates}
+\label{sec:filt_exact}
+
+Let $ \hat H $ be the full many-body Hamiltonian, interacting or not, of a system
+whose particle number is conserved, $ [\hat H, \hat N] = 0 $. We assume that it has
+been solved: the commuting Hermitian operators $ \hat H $ and $ \hat N $ have a
+common orthonormal eigenbasis $ \{|a\rangle\} $ of the Fock space,
+\[
+  \hat H\,|a\rangle = E_a\,|a\rangle , \qquad \hat N\,|a\rangle = N_a\,|a\rangle ,
+\]
+which is the same assumption that underlies the Lehmann spectral representation.
+Nothing else is assumed. In an interacting system the $ |a\rangle $ are in general
+superpositions of very many Slater determinants (or permanents), and nothing
+requires $ E_a $ to be related to single-particle energies. We abbreviate
+\[
+  \hat K \equiv \hat H - \mu\hat N , \qquad K_a = E_a - \mu N_a .
+\]
+
+\paragraph{The partition function as a normalisation.} The grand canonical
+equilibrium state of Section~\ref{sec:ensembles} is the density matrix
+\[
+  \hat\rho_{\rm eq} = \frac{e^{-\beta\hat K}}{\Xi} , \qquad
+  \Tr\hat\rho_{\rm eq} = 1
+  \quad\Longrightarrow\quad
+  \Xi(T,\mu) = \Tr e^{-\beta\hat K} :
+\]
+the grand partition function is the normalisation of the equilibrium density
+matrix. A trace may be evaluated in any orthonormal basis, and the eigenbasis turns
+it into a sum. A function of an operator acts on each eigenvector as the same
+function of the eigenvalue (the spectral theorem), $ e^{-\beta\hat K}|a\rangle =
+e^{-\beta K_a}|a\rangle $, so $ \langle a|e^{-\beta\hat K}|a\rangle = e^{-\beta K_a} $ and
+\[
+  \Xi = \sum_a \langle a|e^{-\beta\hat K}|a\rangle
+  = \sum_a e^{-\beta(E_a - \mu N_a)}
+  = \sum_N e^{\beta\mu N}\!\!\sum_{a\,:\,N_a = N}\!\! e^{-\beta E_a}
+  = \sum_N e^{\beta\mu N}\,Z_N ,
+\]
+which is the standard form of Section~\ref{sec:ensembles}. In the same basis the
+density matrix is diagonal, $ \hat\rho_{\rm eq} = \sum_a p_a\,|a\rangle\langle a| $ with
+$ p_a = e^{-\beta K_a}/\Xi $: the system is found in the eigenstate $ a $ with
+probability $ p_a $, and $ \sum_ap_a = 1 $.
+
+\subsection{Thermodynamics in the eigenbasis}
+\label{sec:filt_mb}
+
+\paragraph{The many-body filter.} Let $ g(K) \equiv \sum_a\delta(K - K_a) $ be the
+many-body density of states of $ \hat K $, and
+$ P_T(K) \equiv g(K)\,e^{-\beta K}/\Xi $ the probability density of $ K $ in
+equilibrium. Then
+\begin{equation}\label{eq:filt_mb}
+  \Xi = \int\! dK\; g(K)\,e^{-\beta K} , \qquad
+  S = -k_B\sum_a p_a\ln p_a = \frac{\langle\hat K\rangle - \Omega}{T} , \qquad
+  \boxed{\;C_\mu = \frac{\Var(\hat K)}{k_BT^{2}}\;}
+\end{equation}
+with $ \Omega = -k_BT\ln\Xi $. The first is the definition of $ g $; the thermodynamics
+is the Laplace transform of the many-body spectrum. The second follows from
+$ \ln p_a = -\beta K_a - \ln\Xi $. For the third, $ \hat K $ does not depend on $ T $ at
+fixed $ \mu $, so $ \partial\ln\Xi/\partial\beta = -\langle\hat K\rangle $ and
+$ \partial^{2}\ln\Xi/\partial\beta^{2} = \Var(\hat K) $; differentiating $ TS = \langle\hat K\rangle - \Omega $
+with $ (\partial\Omega/\partial T)_\mu = -S $ gives $ T(\partial S/\partial T)_\mu =
+(\partial\langle\hat K\rangle/\partial T)_\mu = \Var(\hat K)/k_BT^{2} $, using
+$ d\beta/dT = -1/k_BT^{2} $. This is the result of Section~\ref{sec:caveat}, now
+written in the eigenbasis:
+\[
+  C_\mu = \frac{1}{k_BT^{2}}\int\! dK\; P_T(K)\,\big(K - \langle\hat K\rangle\big)^{2} ,
+\]
+the variance of the many-body spectrum seen through the Boltzmann weight. It is
+non-negative for every Hamiltonian.
+
+\paragraph{Responses as covariances.} Let $ \hat A $ be a Hermitian operator that is
+conserved, $ [\hat A, \hat H] = [\hat A, \hat N] = 0 $; the eigenbasis may then be chosen
+to diagonalise it as well, $ \hat A|a\rangle = A_a|a\rangle $. A field $ f $ coupled to it,
+$ \hat K \to \hat K - f\hat A $, leaves the eigenvectors unchanged and shifts the
+eigenvalues to $ K_a - fA_a $. For any $ \hat B $ diagonal in the same basis,
+$ \langle\hat B\rangle = \sum_aB_a\,e^{-\beta(K_a - fA_a)}/\Xi(f) $, and differentiating the
+numerator and the normalisation,
+\begin{equation}\label{eq:filt_mb_response}
+  \frac{\partial\langle\hat B\rangle}{\partial f}\bigg|_{T,\mu}
+  = \frac{\Cov(\hat A, \hat B)}{k_BT} ,
+  \qquad
+  \frac{\partial\langle\hat B\rangle}{\partial T}\bigg|_{\mu}
+  = \frac{\Cov(\hat K, \hat B)}{k_BT^{2}} ,
+\end{equation}
+the second because $ \partial_Te^{-\beta K_a} = (K_a/k_BT^{2})\,e^{-\beta K_a} $: a change
+of temperature acts as a field whose charge on the state $ a $ is $ K_a/T $. Every
+static response among conserved quantities is a covariance, exactly:
+$ (\partial N/\partial\mu)_T = \Var(\hat N)/k_BT $ ($ \hat A = \hat B = \hat N $, $ f = \mu $);
+the spin susceptibility $ \Var(\hat M)/Vk_BT $ whenever the total moment $ \hat M $ is
+conserved; $ C_\mu $ itself ($ \hat B = \hat K $); and the mixed response
+$ (\partial N/\partial T)_\mu = \Cov(\hat N, \hat K)/k_BT^{2} $, needed in
+Section~\ref{sec:filt_muN}.
+
+If $ \hat A $ is \emph{not} conserved, the eigenvectors move with $ f $, and the
+derivative of $ e^{-\beta(\hat K - f\hat A)} $ is given by Duhamel's formula,
+$ \int_0^\beta d\tau\,e^{-(\beta-\tau)\hat K}\hat A\,e^{-\tau\hat K} $. Evaluating the trace
+in the eigenbasis, the $ \tau $ integral is elementary and gives the static
+\emph{Lehmann representation} of the isothermal susceptibility,
+\begin{equation}\label{eq:filt_mb_kubo}
+  \chi_{AB} \equiv \frac{\partial\langle\hat B\rangle}{\partial f}\bigg|_{f=0}
+  = \sum_{a,b}A_{ab}B_{ba}\,w_{ab} - \beta\langle\hat A\rangle\langle\hat B\rangle ,
+  \qquad
+  w_{ab} = \frac{p_b - p_a}{K_a - K_b} ,
+\end{equation}
+with $ A_{ab} = \langle a|\hat A|b\rangle $ and $ w_{ab} \equiv \beta p_a $ when $ K_a = K_b $ (the
+limit of the quotient). For conserved $ \hat A $ only $ a = b $ survives and
+Eq.~\eqref{eq:filt_mb_response} is recovered. The weight $ w_{ab} > 0 $ is the
+many-body filter for responses: it acts on \emph{pairs} of eigenstates connected by
+the perturbation. Writing $ y = \beta(K_a - K_b) $, $ w_{ab} = \beta p_b(1 - e^{-y})/y $
+while $ \tfrac12\beta(p_a + p_b) = \tfrac12\beta p_b(1 + e^{-y}) $, and
+$ (1 - e^{-y})/y \leq \tfrac12(1 + e^{-y}) $ is the inequality $ \tanh(y/2) \leq y/2 $.
+Hence, with $ \delta\hat A = \hat A - \langle\hat A\rangle $ and
+$ \sum_{ab}|A_{ab}|^{2}p_a = \langle\hat A^{2}\rangle $,
+\[
+  0 \;\leq\; \chi_{AA} = \sum_{a,b}\big|\langle a|\delta\hat A|b\rangle\big|^{2}\,w_{ab}
+  \;\leq\; \frac{\Var(\hat A)}{k_BT} ,
+\]
+with equality on the right if and only if $ \hat A $ connects only states of equal
+$ K $, i.e.\ is conserved. A conserved quantity responds exactly as much as it
+fluctuates; a non-conserved one responds less, because part of its fluctuation
+is carried by transitions between states of different energy, which a static field
+cannot exploit fully.
+
+\paragraph{Exact limits.} Three statements follow from Eq.~\eqref{eq:filt_mb} with no
+assumption on $ \hat H $.
+\begin{itemize}
+\item \emph{Low temperature.} Let $ K_0 $ be the lowest eigenvalue of $ \hat K $, with
+  degeneracy $ d_0 $. As $ T \to 0 $, $ p_a \to 1/d_0 $ on the ground manifold, and
+  $ S \to k_B\ln d_0 $. If the next eigenvalue is $ K_0 + \Delta $, with degeneracy $ d_1 $,
+  then $ \Xi = e^{-\beta K_0}\big[d_0 + d_1e^{-\beta\Delta} + \dots\big] $ and, to leading
+  order in $ q = (d_1/d_0)\,e^{-\beta\Delta} $, $ \Var(\hat K) = \Delta^{2}q $:
+  \[
+    C_\mu \;\simeq\; k_B\left(\frac{\Delta}{k_BT}\right)^{2}\frac{d_1}{d_0}\,e^{-\Delta/k_BT} .
+  \]
+  The heat capacity of a gapped system is activated, with the many-body gap of
+  $ \hat K $; at fixed $ \mu $ this includes the costs $ E_{N\pm1} - E_N \mp \mu $ of
+  adding or removing a particle. (In a macroscopic system $ d_1 $ grows with $ V $ and
+  the expansion holds while $ q \ll 1 $, i.e.\ while excitations are dilute.)
+\item \emph{High temperature.} If the Fock space has finite dimension $ D $ (fermions
+  on a lattice), write $ \langle\cdot\rangle_\infty = \Tr(\cdot)/D $ for the
+  infinite-temperature average. The cumulant expansion of
+  $ \ln\Xi = \ln D + \ln\langle e^{-\beta\hat K}\rangle_\infty $ gives
+  \begin{equation}\label{eq:filt_mb_hiT}
+    \ln\Xi = \ln D - \beta\langle\hat K\rangle_\infty + \tfrac12\beta^{2}\Var_\infty(\hat K) + O(\beta^{3}) ,
+    \qquad
+    C_\mu = \frac{\Var_\infty(\hat K)}{k_BT^{2}} + O(T^{-3}) ,
+  \end{equation}
+  so $ S \to k_B\ln D $ and $ C_\mu $ decays as $ T^{-2} $ with a coefficient fixed by the
+  spread of the whole spectrum.
+\item \emph{Sum rule.} Since $ C_\mu = T(\partial S/\partial T)_\mu $,
+  \begin{equation}\label{eq:filt_mb_sumrule}
+    \int_0^{\infty}\! C_\mu(T)\,\frac{dT}{T} = S(\infty) - S(0) = k_B\ln\frac{D}{d_0} :
+  \end{equation}
+  the area under $ C_\mu/T $ counts the eigenstates, logarithmically.
+\end{itemize}
+
+\paragraph{The thermodynamic limit: a filter on an energy shell.} For a macroscopic
+system $ g $ is dominated by an extensive exponent, $ g(K) = e^{S_{\rm mc}(K)/k_B} $ up to
+subextensive factors, with $ S_{\rm mc} $ the microcanonical entropy of $ \hat K $. The
+weight
+\[
+  P_T(K) \;\propto\; \exp\!\Big[\big(S_{\rm mc}(K) - K/T\big)\big/k_B\Big]
+\]
+is then sharply peaked where $ S'_{\rm mc}(K) = 1/T $, i.e.\ at the thermal value
+$ \langle\hat K\rangle = U - \mu N $, and, by the steepest-descent argument of
+Section~\ref{sec:equivalence}, Gaussian with variance $ k_BT^{2}C_\mu \propto V $: its
+relative width is $ O(V^{-1/2}) $. The many-body filter therefore does not select
+levels near $ \mu $, nor levels near the ground state; it selects a thin
+\emph{shell} of many-body states around the thermal energy, and the observables
+measure the density and the curvature of the spectrum in that shell. The temperature
+does not rescale the shape of the weight, as it will for single-particle levels; it
+tilts $ \ln g $ by $ -K/T $ and so moves the shell.
+
+\paragraph{Correlations.} The variance form says at once what a divergent response
+requires. A response per unit volume can diverge only if the variance of an
+extensive quantity grows \emph{faster} than the volume. Writing the extensive
+quantity as a sum of local densities, $ \hat X = \sum_i\hat x_i $,
+\[
+  \frac{\Var(\hat X)}{V} = \frac{1}{V}\sum_i\Var(\hat x_i)
+  + \frac{1}{V}\sum_{i\neq j}\Cov(\hat x_i, \hat x_j)
+  \;\simeq\; \sum_{\mathbf{r}} G_x(\mathbf{r}) ,
+\]
+with $ G_x(\mathbf{r}) = \Cov(\hat x_0, \hat x_{\mathbf{r}}) $ the connected
+correlation function. The first, ``diagonal'' sum is always finite per unit volume
+when the local Hilbert space is finite; the covariances --- the \emph{correlations}
+between fluctuations at different places --- are what can grow. With correlations of
+range $ \xi $ the sum runs effectively over a correlation volume, and if
+$ G(r) \sim r^{-(d-2+\eta)} $ up to $ r \sim \xi $ it gives
+$ \chi \sim \xi^{2-\eta} \sim |t|^{-\nu(2-\eta)} $, which is Fisher's relation
+$ \gamma = \nu(2 - \eta) $. A critical point is thus the place where the fluctuations
+of macroscopically many degrees of freedom become correlated, so that they no
+longer add as independent contributions.
+
+\subsection{From many-body levels to single-particle levels}
+\label{sec:filt_additive}
+
+The results above are exact but involve the many-body spectrum, with a number of
+levels exponential in $ V $. They reduce to statements about single-particle levels
+under one condition, \emph{additivity}: a complete set of single-particle orbitals
+$ \lambda $ with energies $ \varepsilon_\lambda $ such that every eigenstate $ |a\rangle $ is a
+Fock state of occupations $ \{n_\lambda\} $ and
+\[
+  E_a = \sum_\lambda \varepsilon_\lambda\,n_\lambda , \qquad N_a = \sum_\lambda n_\lambda .
+\]
+This holds exactly when $ \hat H $ is quadratic in creation and annihilation
+operators, since then $ \hat H = \sum_\lambda\varepsilon_\lambda\hat n_\lambda $ in the
+basis that diagonalises the one-body matrix; and conversely an operator that acts
+as $ \sum_\lambda\varepsilon_\lambda n_\lambda $ on every Fock state \emph{is}
+$ \sum_\lambda\varepsilon_\lambda\hat n_\lambda $, a quadratic operator.
+
+\paragraph{Cumulants add.} Under additivity the many-body spectrum is generated by
+independent orbitals: $ g(K) $ is the convolution of the spectra of the single
+orbitals, and since the Laplace transform of a convolution is the product of the
+transforms, $ \Xi $ is a product over orbitals (Section~\ref{sec:filt_twolevel}).
+Then $ \ln\Xi $ is a \emph{sum} over orbitals, and so is each of its derivatives, i.e.\
+every cumulant of $ \hat K $ and $ \hat N $:
+\[
+  \Var(\hat K) = \sum_\lambda\xi_\lambda^{2}\Var(\hat n_\lambda) , \qquad
+  \Cov(\hat N, \hat K) = \sum_\lambda\xi_\lambda\Var(\hat n_\lambda) , \qquad
+  \Var(\hat N) = \sum_\lambda\Var(\hat n_\lambda) ,
+\]
+with $ \xi_\lambda = \varepsilon_\lambda - \mu $. Each exact formula of
+Section~\ref{sec:filt_mb} thus becomes a sum over orbitals of a function of a single
+ratio $ \xi_\lambda/k_BT $, and that function is the \emph{single-particle filter}. The
+shell picture and the orbital picture are compatible: the thermal shell of many-body
+states is what independent fluctuations of the orbitals near $ \mu $ generate, and its
+Gaussian shape is the central limit theorem applied to their sum.
+
+\paragraph{Without additivity.} For a generic interacting $ \hat H $ the eigenstates
+$ |a\rangle $ are exact but they are not Fock states, no set of occupations labels them,
+and the many-body spectrum is not generated by single-particle levels: already for one
+orbital with spin and an on-site repulsion $ U $ (the Hubbard atom), the states have
+$ K = 0,\ \xi,\ \xi,\ 2\xi + U $, and $ \Xi = 1 + 2e^{-\beta\xi} + e^{-\beta(2\xi+U)} $ equals
+$ (1 + e^{-\beta\xi})^{2} $ only for $ U = 0 $. The Lehmann representation still defines a
+single-particle spectral function,
+\[
+  A_k(\omega) = \frac{1}{\Xi}\sum_{a,b}\big|\langle b|\hat c^\dagger_k|a\rangle\big|^{2}
+  \big(e^{-\beta K_a} + e^{-\beta K_b}\big)\,\delta\big(\omega - (K_b - K_a)\big) ,
+\]
+with $ \omega $ measured from $ \mu $, but the addition energies $ K_b - K_a $ belong to
+\emph{pairs} of many-body states and not to single orbitals, and the thermodynamics
+is not in general a functional of $ A_k(\omega) $ alone: the entropy, for instance,
+requires the full $ g(K) $. The single-particle filters of the following subsections
+therefore hold exactly for quadratic Hamiltonians, and for interacting systems to the
+extent that the low-lying many-body spectrum is additive: for the quasiparticles of a
+Landau Fermi liquid at low temperature, whose entropy is that of free quasiparticles
+to leading order in $ T $; for self-consistent (mean-field) theories, which are additive
+at each temperature with a temperature-dependent spectrum; and for exactly quadratic
+sub-problems, such as the conduction electrons of the Falicov--Kimball model at a
+fixed $ f $-configuration.
+
+\paragraph{What is exact and what is additive.} The division of the results that
+follow is summarised here.
+\begin{center}
+\small
+\begin{tabular}{p{0.45\linewidth}p{0.45\linewidth}}
+\toprule
+Exact, for any $ \hat H $ (eigenbasis) & Additive spectrum only \\
+\midrule
+$ C_\mu = \Var(\hat K)/k_BT^{2} \geq 0 $, Eq.~\eqref{eq:filt_mb} &
+Fermi and Bose windows, Eqs.~\eqref{eq:filt_window} ff. \\
+responses $ = $ covariances, Eqs.~\eqref{eq:filt_mb_response}, \eqref{eq:filt_mb_kubo} &
+normalised weights and the delta limit, Eq.~\eqref{eq:filt_kernels} \\
+activated $ C_\mu $ of a gapped system; $ S(0) = k_B\ln d_0 $ &
+Sommerfeld law, Wilson ratio $ R_W = 1 $ \\
+high-$ T $ tail, Eq.~\eqref{eq:filt_mb_hiT}; sum rule, Eq.~\eqref{eq:filt_mb_sumrule} &
+$ c \sim T^{r+1} $ from $ \rho \sim |\varepsilon - \mu|^{r} $; $ s/c = 1/(r+1) $ \\
+divergent response requires correlations &
+per-orbital bound on $ c_\mu $, Eq.~\eqref{eq:filt_bound} \\
+inversion of $ c(T) $ for $ g(K) $ (Section~\ref{sec:filt_invert}) &
+inversion of $ c(T) $ for $ \rho(\varepsilon) $ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
 \subsection{Independent modes}
 \label{sec:filt_twolevel}
 
-We work in Fock space, in the particle-number (occupation-number)
-representation, and assume that the many-body Hamiltonian has been solved: its
-eigenstates are known, and they are Fock states $ |\{n_\lambda\}\rangle =
-|n_1, n_2, \dots\rangle $ built on some complete set of single-particle orbitals
-$ \lambda $ (spin and any other internal label included), with
+Assume from now on that the spectrum is additive (Section~\ref{sec:filt_additive}).
+The eigenstates are then Fock
+states $ |\{n_\lambda\}\rangle = |n_1, n_2, \dots\rangle $ built on a complete set of
+single-particle orbitals $ \lambda $ (spin and any other internal label included),
+with
 \[
 \hat H\,|\{n_\lambda\}\rangle=\Big(\sum_\lambda\varepsilon_\lambda\,n_\lambda\Big)|\{n_\lambda\}\rangle ,
 \qquad\text{i.e.}\qquad
 \hat H=\sum_\lambda\varepsilon_\lambda\,\hat n_\lambda ,
 \qquad \hat n_\lambda = \hat a^\dagger_\lambda\hat a_\lambda .
 \]
-This is exactly the case for every Hamiltonian quadratic in creation and
-annihilation operators: free electrons in a periodic or disordered potential,
-harmonic phonons, linear spin waves, Bogoliubov--de Gennes quasiparticles, and the
-conduction electrons of the Falicov--Kimball model at a fixed $ f $-configuration.
-The orbitals $ \lambda $ are then the eigenvectors of the one-body Hamiltonian
-matrix, and the $ \varepsilon_\lambda $ its eigenvalues; finding them is the
-``solving'' assumed here. For interacting Hamiltonians the eigenstates are not
-Fock states, and what follows applies only to the extent that a quasiparticle
-description does. The occupation number $ n_\lambda $ takes the values $ \{0,1\} $
-for fermions and $ \{0,1,2,\dots\} $ for bosons; nothing else is assumed about the
-statistics.
+Examples are free electrons in a periodic or disordered potential, harmonic
+phonons, linear spin waves, and the conduction electrons of the Falicov--Kimball
+model at a fixed $ f $-configuration. The orbitals $ \lambda $ are the eigenvectors of
+the one-body Hamiltonian matrix, and the $ \varepsilon_\lambda $ its eigenvalues;
+finding them is the ``solving'' of Section~\ref{sec:filt_exact}, now reduced from the
+Fock space to the single-particle space. The occupation number $ n_\lambda $ takes the
+values $ \{0,1\} $ for fermions and $ \{0,1,2,\dots\} $ for bosons; nothing else is
+assumed about the statistics.
 
 The total number operator is the same in every single-particle basis. If
 $ \hat a_\lambda = \sum_i U_{\lambda i}\,\hat c_i $ with $ U $ unitary, then
@@ -2482,46 +3050,75 @@ $ \sum_\lambda \hat a^\dagger_\lambda\hat a_\lambda = \sum_{ij}
 \hat N=\sum_\lambda\hat n_\lambda
 \]
 in the eigenbasis as in the site, momentum or any other basis. The term
-$ \mu\hat N $ is therefore diagonal in the same Fock basis as $ \hat H $, and
-$ \hat H - \mu\hat N $ has eigenvalues $ \sum_\lambda(\varepsilon_\lambda - \mu)n_\lambda $.
-
-\paragraph{Factorisation.} Evaluate the trace defining $ \Xi $ in this basis. The
-Fock states are labelled by the full list of occupations, each $ n_\lambda $
-ranging \emph{independently} over its allowed values (the fixed-$ N $ constraint
-of Section~\ref{sec:potentials} is absent in the grand ensemble), so the trace is
-a multiple sum, one sum per orbital. The weight of each state is the exponential
-of a sum, hence a product:
+$ \mu\hat N $ is therefore diagonal in the same Fock basis as $ \hat H $. With the
+single-particle energies measured from the chemical potential,
 \[
-\Xi = \sum_{n_1}\sum_{n_2}\cdots\; e^{-\beta\sum_\lambda(\varepsilon_\lambda - \mu)n_\lambda}
+  \xi_\lambda \equiv \varepsilon_\lambda - \mu ,
+  \qquad
+  \hat K = \hat H - \mu\hat N = \sum_\lambda \xi_\lambda\,\hat n_\lambda ,
+\]
+whose eigenvalues are $ K_{\{n\}} = \sum_\lambda\xi_\lambda n_\lambda $.
+
+\paragraph{Factorisation.} Evaluate the trace $ \Xi = \Tr e^{-\beta\hat K} $ of
+Section~\ref{sec:filt_exact} in the Fock eigenbasis. The label $ a $ is now the full
+list of occupations, each $ n_\lambda $ ranging \emph{independently} over its allowed
+values (the fixed-$ N $ constraint of Section~\ref{sec:potentials} is absent in the
+grand ensemble), so the sum over $ a $ is a multiple sum, one sum per orbital. The
+weight of each state is the exponential of a sum, hence a product:
+\[
+\Xi = \sum_a e^{-\beta K_a}
+= \sum_{n_1}\sum_{n_2}\cdots\; e^{-\beta\sum_\lambda\xi_\lambda n_\lambda}
 = \sum_{n_1}\sum_{n_2}\cdots\;\prod_\lambda e^{-u_\lambda n_\lambda}
 = \prod_\lambda\Big(\sum_{n_\lambda} e^{-u_\lambda n_\lambda}\Big) ,
 \]
-with $ u_\lambda = \beta(\varepsilon_\lambda - \mu) $. The last step is the distributive law: a sum over independent indices of a
+with $ u_\lambda = \beta\xi_\lambda $. The last step is the distributive law: a sum over independent indices of a
 product of factors, each depending on one index only, is the product of the
 separate sums (as in $ \sum_{a,b} f(a)g(b) = \sum_a f(a)\sum_b g(b) $). It is
-legitimate precisely because (i) $ \hat H - \mu\hat N $ is a sum of commuting
+legitimate precisely because (i) $ \hat K $ is a sum of commuting
 one-orbital terms, all diagonal in the same basis, and (ii) the allowed values of
 each $ n_\lambda $ do not depend on the others. Fermionic sign conventions for the
 ordering of creation operators affect only off-diagonal matrix elements and play
 no role in the trace of a diagonal operator. The result is:
 \begin{equation}\label{eq:filt_Xi}
-\Xi(T,\mu)=\prod_\lambda\xi(u_\lambda),
+\Xi(T,\mu)=\prod_\lambda\Kappa(u_\lambda),
 \qquad
-\xi(u)\equiv\!\!\!\sum_{n\ \rm allowed}\!\!\! e^{-nu},
+\Kappa(u)\equiv\!\!\!\sum_{n\ \rm allowed}\!\!\! e^{-nu},
 \qquad
-\boxed{\;u_\lambda\equiv\frac{\varepsilon_\lambda-\mu}{k_BT}\;}
+\boxed{\;u_\lambda\equiv\frac{\xi_\lambda}{k_BT}=\frac{\varepsilon_\lambda-\mu}{k_BT}\;}
 \end{equation}
 The same factorisation holds for the probabilities themselves: the probability of
 a Fock state is
 \[
   p\big(\{n_\lambda\}\big) = \frac{e^{-\sum_\lambda u_\lambda n_\lambda}}{\Xi}
-  = \prod_\lambda \frac{e^{-u_\lambda n_\lambda}}{\xi(u_\lambda)}
+  = \prod_\lambda \frac{e^{-u_\lambda n_\lambda}}{\Kappa(u_\lambda)}
   \equiv \prod_\lambda p_\lambda(n_\lambda) ,
 \]
-a product of normalised one-orbital distributions, so the occupations of
-different orbitals are statistically \emph{independent} random variables, and
-$ \Cov(\hat n_\lambda, \hat n_{\lambda'}) = 0 $ for $ \lambda \neq \lambda' $.
-Writing $\varphi(u)\equiv-\ln\xi(u)$ for the dimensionless one-orbital grand potential,
+a product of normalised one-orbital distributions, $ \sum_n p_\lambda(n) = 1 $, so the
+occupations of different orbitals are statistically \emph{independent} random
+variables. In particular their covariance vanishes. Since $ \hat n_\lambda $ and
+$ \hat n_{\lambda'} $ are diagonal in the Fock basis, so is their product, and its
+average is a sum over occupations with the product weight. For
+$ \lambda \neq \lambda' $, every sum over an $ n_\kappa $ with $ \kappa \neq \lambda, \lambda' $
+gives $ \sum_{n_\kappa}p_\kappa(n_\kappa) = 1 $, and the two remaining sums separate:
+\[
+  \langle\hat n_\lambda\hat n_{\lambda'}\rangle
+  = \sum_{\{n\}} n_\lambda n_{\lambda'}\prod_\kappa p_\kappa(n_\kappa)
+  = \Big(\sum_{n}n\,p_\lambda(n)\Big)\Big(\sum_{n'}n'\,p_{\lambda'}(n')\Big)
+  = \langle\hat n_\lambda\rangle\langle\hat n_{\lambda'}\rangle ,
+\]
+hence
+\[
+  \Cov(\hat n_\lambda, \hat n_{\lambda'}) \equiv
+  \langle\hat n_\lambda\hat n_{\lambda'}\rangle - \langle\hat n_\lambda\rangle\langle\hat n_{\lambda'}\rangle = 0
+  \qquad (\lambda \neq \lambda') .
+\]
+The same computation with $ n_\lambda n_{\lambda'} $ replaced by $ F(n_\lambda)G(n_{\lambda'}) $
+gives $ \langle F(\hat n_\lambda)G(\hat n_{\lambda'})\rangle = \langle F(\hat n_\lambda)\rangle\langle G(\hat n_{\lambda'})\rangle $
+for any functions $ F $, $ G $, which is full statistical independence and not merely
+vanishing covariance. In an interacting system the occupations of a fixed orbital
+basis are in general correlated, and it is these covariances that the many-body
+weight of Section~\ref{sec:filt_mb} retains and the factorised form discards.
+Writing $\varphi(u)\equiv-\ln\Kappa(u)$ for the dimensionless one-orbital grand potential,
 \begin{equation}\label{eq:filt_Omega}
 \boxed{\;\Omega(T,\mu)=k_BT\sum_\lambda\varphi(u_\lambda)\;}
 \end{equation}
@@ -2566,19 +3163,19 @@ write without a hat,
   n_\lambda \equiv \langle\hat n_\lambda\rangle ,
 \]
 a number between $ 0 $ and $ 1 $ for fermions and non-negative for bosons. Its
-distribution is $ p_\lambda(n) = e^{-nu_\lambda}/\xi(u_\lambda) $, whose moments are
-generated by $ \xi $. Writing $ \xi' = d\xi/du $,
+distribution is $ p_\lambda(n) = e^{-nu_\lambda}/\Kappa(u_\lambda) $, whose moments are
+generated by $ \Kappa $. Writing $ \Kappa' = d\Kappa/du $,
 \[
-  \langle\hat n_\lambda\rangle = \frac{\sum_n n\, e^{-nu}}{\xi} = -\frac{\xi'}{\xi}
-  = -\frac{d\ln\xi}{du} = \varphi'(u_\lambda),
+  \langle\hat n_\lambda\rangle = \frac{\sum_n n\, e^{-nu}}{\Kappa} = -\frac{\Kappa'}{\Kappa}
+  = -\frac{d\ln\Kappa}{du} = \varphi'(u_\lambda),
   \qquad
-  \langle\hat n_\lambda^{2}\rangle = \frac{\sum_n n^{2} e^{-nu}}{\xi} = \frac{\xi''}{\xi} ,
+  \langle\hat n_\lambda^{2}\rangle = \frac{\sum_n n^{2} e^{-nu}}{\Kappa} = \frac{\Kappa''}{\Kappa} ,
 \]
 each factor $ n $ being brought down by one derivative $ -d/du $ of $ e^{-nu} $. The
 variance is therefore
 \[
-  \Var(\hat n_\lambda) = \frac{\xi''}{\xi} - \left(\frac{\xi'}{\xi}\right)^{2}
-  = \frac{d}{du}\left(\frac{\xi'}{\xi}\right) = \frac{d^{2}\ln\xi}{du^{2}}
+  \Var(\hat n_\lambda) = \frac{\Kappa''}{\Kappa} - \left(\frac{\Kappa'}{\Kappa}\right)^{2}
+  = \frac{d}{du}\left(\frac{\Kappa'}{\Kappa}\right) = \frac{d^{2}\ln\Kappa}{du^{2}}
   = -\varphi''(u_\lambda) ,
 \]
 the second step being the quotient rule. Finally, $ u_\lambda $ depends on
@@ -2630,20 +3227,21 @@ Every term is non-negative, so $c_\mu>0$ mode by mode; i.e., the stability resul
 Section~\ref{sec:convexity}, here without any thermodynamic argument and without
 any commitment about statistics.
 
-\paragraph{The same quantity as a fluctuation.} Section~\ref{sec:caveat} gives
-$c_{V,\mu}=\Var(E-\mu N)/Vk_BT^{2}$ for any grand canonical system. That general
-identity and Eq.~\eqref{eq:filt_Cgen} are the same statement here: with
-$\hat H-\mu\hat N=\sum_\lambda(\varepsilon_\lambda-\mu)\hat n_\lambda$
-a sum of \emph{independent} terms, variances add,
-and $(\varepsilon_\lambda-\mu)^2=(k_BT)^2u_\lambda^2$, so
+\paragraph{The same quantity as a fluctuation.} The exact many-body result,
+Eq.~\eqref{eq:filt_mb}, is $ c_\mu = \Var(\hat K)/Vk_BT^{2} $ for any Hamiltonian. That
+identity and Eq.~\eqref{eq:filt_Cgen} are the same statement here. The operator
+$ \hat K = \hat H - \mu\hat N = \sum_\lambda\xi_\lambda\hat n_\lambda $ is
+a sum of \emph{independent} terms, so variances add (the covariances vanish,
+Section~\ref{sec:filt_twolevel}),
+and $\xi_\lambda^2=(k_BT)^2u_\lambda^2$, so
 \begin{equation}\label{eq:filt_C_fluct}
 \frac{\Var(E-\mu N)}{Vk_BT^{2}}
-=\frac{1}{Vk_BT^{2}}\sum_\lambda(\varepsilon_\lambda-\mu)^{2}\Var(\hat n_\lambda)
+=\frac{1}{Vk_BT^{2}}\sum_\lambda\xi_\lambda^{2}\Var(\hat n_\lambda)
 =\frac{k_B}{V}\sum_\lambda u_\lambda^{2}\,\Var(\hat n_\lambda).
 \end{equation}
 Equation~\eqref{eq:filt_Cgen} is thus a sum, over orbitals, of the variance
-$ \Var\big[(\varepsilon_\lambda - \mu)\hat n_\lambda\big] =
-(\varepsilon_\lambda-\mu)^2\Var(\hat n_\lambda) $ of the energy that each orbital
+$ \Var\big(\xi_\lambda\hat n_\lambda\big) =
+\xi_\lambda^2\Var(\hat n_\lambda) $ of the energy that each orbital
 carries: the energy carried by one particle, squared, times the variance of the
 number of particles carrying it.
 
@@ -2660,7 +3258,11 @@ fa_\lambda $. By Eq.~\eqref{eq:filt_master} and the chain rule,
   = \frac{1}{k_BT}\sum_\lambda a_\lambda b_\lambda\,\Var(\hat n_\lambda)
   = \frac{\Cov(\hat A, \hat B)}{k_BT} ,
 \end{equation}
-the last step by independence of the orbitals. Every linear response of
+the last step by independence of the orbitals. This is the exact
+Eq.~\eqref{eq:filt_mb_response} in the additive case: $ \hat A $ and $ \hat B $ are
+conserved, since they commute with $ \hat H = \sum_\lambda\varepsilon_\lambda\hat n_\lambda $,
+and their covariance splits into one term per orbital because the cross-covariances
+vanish. Every linear response of
 independent particles is the single-orbital fluctuation $ \Var(\hat n_\lambda) $,
 weighted by the product of the charges the orbital carries for the two quantities
 involved. Three instances are needed below.
@@ -2704,7 +3306,7 @@ and it enters in one place: the function $\varphi$.
 \small
 \begin{tabular}{lcccc}
 \toprule
-& occupations & $\varphi(u)=-\ln\xi(u)$ & $n=\varphi'$ & $\Var(\hat n)=-\varphi''$ \\
+& occupations & $\varphi(u)=-\ln\Kappa(u)$ & $n=\varphi'$ & $\Var(\hat n)=-\varphi''$ \\
 \midrule
 Fermi--Dirac & $0,1$ & $-\ln\big(1+e^{-u}\big)$ & $\big(e^{u}+1\big)^{-1}$ & $n(1-n)$ \\[2pt]
 Bose--Einstein & $0,1,2,\dots$ & $+\ln\big(1-e^{-u}\big)$ & $\big(e^{u}-1\big)^{-1}$ & $n(1+n)$ \\[2pt]
@@ -2714,15 +3316,21 @@ Boltzmann & $0,1,2,\dots$, weight $1/n!$ & $-e^{-u}$ & $e^{-u}$ & $n$ \\
 \end{center}
 Each row is a short computation from Eq.~\eqref{eq:filt_master}.
 
-\emph{Fermi--Dirac.} The sum has two terms, $ \xi = 1 + e^{-u} $. Then
+\emph{Fermi--Dirac.} The sum has two terms, $ \Kappa = 1 + e^{-u} $. Then
 $ \varphi' = e^{-u}/(1 + e^{-u}) = 1/(e^{u} + 1) $, and
-$ -\varphi'' = -dn/du = e^{u}/(e^{u} + 1)^{2} = n(1-n) $. The same follows without
-differentiating: since $ n = 0, 1 $ satisfy $ n^{2} = n $, $ \hat n^{2} = \hat n $,
-so $ \langle\hat n^{2}\rangle = n $ and $ \Var(\hat n) = n - n^{2} $.
+$ -\varphi'' = -dn/du = e^{u}/(e^{u} + 1)^{2} = n(1-n) $.
+The same follows without
+differentiating. The \emph{eigenvalues} of the operator $ \hat n $ are $ 0 $ and $ 1 $,
+and both satisfy $ \nu^{2} = \nu $; hence $ \hat n^{2} = \hat n $ as an operator
+identity, true on every eigenvector and therefore everywhere. (The mean occupation
+$ n = \langle\hat n\rangle $ takes any value in $ [0, 1] $, and $ n^{2} \neq n $ in
+general; the identity is about the operator, not its average.) Averaging it,
+$ \langle\hat n^{2}\rangle = \langle\hat n\rangle = n $, and
+$ \Var(\hat n) = \langle\hat n^{2}\rangle - \langle\hat n\rangle^{2} = n - n^{2} $.
 
 \emph{Bose--Einstein.} The sum is geometric,
 \[
-  \xi(u) = \sum_{n=0}^{\infty}\big(e^{-u}\big)^{n} = \frac{1}{1 - e^{-u}} ,
+  \Kappa(u) = \sum_{n=0}^{\infty}\big(e^{-u}\big)^{n} = \frac{1}{1 - e^{-u}} ,
 \]
 which converges only for $ e^{-u} < 1 $, i.e.\ $ u_\lambda > 0 $ for every orbital:
 $ \mu $ must lie below the lowest level, and Bose--Einstein condensation is the
@@ -2743,7 +3351,7 @@ rather than by (anti)symmetrisation. With $ Z_N = Z_1^{N}/N! $ and $ Z_1 =
   \Xi = \sum_{N=0}^{\infty}\frac{\big(e^{\beta\mu}Z_1\big)^{N}}{N!}
   = \exp\Big(\sum_\lambda e^{-u_\lambda}\Big) = \prod_\lambda \exp\big(e^{-u_\lambda}\big) ,
 \]
-so $ \xi(u) = \exp(e^{-u}) = \sum_n e^{-nu}/n! $: each occupation $ n $ carries the
+so $ \Kappa(u) = \exp(e^{-u}) = \sum_n e^{-nu}/n! $: each occupation $ n $ carries the
 extra weight $ 1/n! $, and $ p_\lambda(n) $ is a Poisson distribution. Then
 $ \varphi = -e^{-u} $, $ n = \varphi' = e^{-u} $ and $ -\varphi'' = e^{-u} = n $: the
 variance of a Poisson distribution equals its mean. This is also the common
@@ -2774,9 +3382,9 @@ but not in structure.
 \subsection{The fermionic case}
 \label{sec:filt_fermi}
 
-The rest of the section specialises to Fermi--Dirac statistics, both because that
+This section specialises to Fermi--Dirac statistics, both because that
 is the case of interest for electrons and because it admits a symmetric form that
-makes the shape of the weights transparent. For fermions $\xi(u)=1+e^{-u}$ and it
+makes the shape of the weights transparent. For fermions $\Kappa(u)=1+e^{-u}$ and it
 pays to measure distance from $\mu$ in units of $2k_BT$,
 \begin{equation}\label{eq:filt_x}
 \boxed{\;x_\lambda\equiv\frac{u_\lambda}{2}
@@ -2866,7 +3474,7 @@ at $ \mu $ ($ n = \tfrac12 $, a fair coin) and falls off as $ e^{-2|x|} $ on eit
 
 The same construction goes through for bosons, with one essential difference: the
 geometric series requires $ u_\lambda > 0 $, so all levels lie \emph{above} $ \mu $
-and only $ x_\lambda > 0 $ occurs. With $ \xi = (1 - e^{-2x})^{-1} $ and the
+and only $ x_\lambda > 0 $ occurs. With $ \Kappa = (1 - e^{-2x})^{-1} $ and the
 analogue of Eq.~\eqref{eq:filt_identity},
 \[
   1 - e^{-2x} = e^{-x}\big(e^{x} - e^{-x}\big) = 2e^{-x}\sinh x
@@ -2927,7 +3535,8 @@ variance, $ \Var(\hat n) \leq \tfrac14 $, imposed by the exclusion principle.
 \subsection{The filters}
 \label{sec:filt_kernels}
 
-Return to fermions and replace the orbital sums by integrals with
+Return to fermions (the bosonic counterparts are collected at the end of this
+subsection) and replace the orbital sums by integrals with
 Eq.~\eqref{eq:filt_dos}. Every response of Eq.~\eqref{eq:filt_response} has the
 form $ V^{-1}\sum_\lambda a_\lambda b_\lambda\Var(\hat n_\lambda)/k_BT $, and by
 Eq.~\eqref{eq:filt_var_n} the one-orbital factor is
@@ -2947,9 +3556,7 @@ A_o(\varepsilon)\;\delta_T(\varepsilon-\mu)\;}
 \end{equation}
 a product of two factors with entirely different roles. The \emph{fluctuation
 window} $ \delta_T $ is common to all observables; the \emph{amplitude}
-$ A_o = a\,b $ is specific to the observable, and is the product of the two
-charges that an orbital at energy $ \varepsilon $ carries in
-Eq.~\eqref{eq:filt_response}:
+$ A_o = a\,b $ is specific to the observable:
 \begin{equation}\label{eq:filt_amplitudes}
 \begin{aligned}
 \chi_c = \tfrac{1}{V}\big(\tfrac{\partial N}{\partial\mu}\big)_{T}:&\quad
@@ -2984,12 +3591,11 @@ of a filter, each with a direct physical reading.
 \end{itemize}
 The last two properties together make $ \delta_T $ a \emph{representation of the
 Dirac delta}, which is the reason for the name: as $ T \to 0 $,
-$ \delta_T(\varepsilon - \mu) \to \delta(\varepsilon - \mu) $. The window selects the
-levels whose occupation is \emph{undecided} at temperature $ T $ --- the only ones
-that can respond to anything, since a level that is surely full or surely empty
-has no fluctuation to offer --- and at $ T = 0 $ only the levels exactly at $ \mu $
-are undecided. The amplitude then says how much of the observable's conjugate
-quantity one occupation flip at energy $ \varepsilon $ carries.
+$ \delta_T(\varepsilon - \mu) \to \delta(\varepsilon - \mu) $.
+The window selects the levels whose occupation \emph{fluctuates} at temperature
+$ T $, i.e.\ those with $ n_\lambda $ appreciably different from $ 0 $ and $ 1 $ --- the
+only ones that can respond to anything, since a level that is surely full or surely
+empty has no fluctuation to offer.
 
 \paragraph{Normalised weights.} The amplitudes of $ c_\mu $ and of
 $ (\partial N/\partial T)_\mu $ depend on $ \varepsilon $, so the effective weight
@@ -3063,13 +3669,16 @@ precise sense of ``each observable sees the spectrum through its own window''.
 
 \paragraph{Reading each observable.}
 \begin{itemize}
-\item \emph{Charge and spin susceptibilities.} The amplitude is constant: one flip
-  moves one particle (or one moment $ m_0 $) whatever its energy. The weight is
-  the window itself, $ \chi_c $ is the number of undecided levels, each counted
-  with unit weight, i.e.\ the particle-number variance per $ k_BT $, and
-  $ \chi_c \to \rho(\mu) $.
+\item \emph{Charge and spin susceptibilities.} The amplitudes are the charges
+  $ a_\lambda $, $ b_\lambda $ of Eq.~\eqref{eq:filt_response}, i.e.\ the change of the
+  observable per unit change of the occupation $ n_\lambda $: a change of $ n_\lambda $
+  by one moves one particle (or one moment $ m_0 $) whatever the energy of the
+  level, so the amplitude is constant. The weight is the window itself:
+  $ \chi_c $ counts the levels whose occupation fluctuates, each with unit weight,
+  i.e.\ it is the particle-number variance per $ k_BT $, and $ \chi_c \to \rho(\mu) $.
 \item \emph{Heat capacity.} The amplitude $ A_c \propto (\varepsilon - \mu)^{2} $ is
-  the square of the energy carried by a flip. By Eq.~\eqref{eq:filt_C_fluct},
+  the square of the energy $ \varepsilon - \mu $ that a unit change of the occupation
+  moves, measured from the reservoir. By Eq.~\eqref{eq:filt_C_fluct},
   \[
     k_BT^{2}c_\mu = \frac{\Var(E - \mu N)}{V}
     = \int\! d\varepsilon\;\rho(\varepsilon)\,(\varepsilon - \mu)^{2}\,\Var(\hat n)\big|_{\varepsilon} ,
@@ -3082,8 +3691,8 @@ precise sense of ``each observable sees the spectrum through its own window''.
 \item \emph{Entropy.} $ \hat w_S $ is even, non-negative and unimodal, with maximum
   at $ \mu $: $ k_B\sigma $ is the Shannon entropy of the occupation of one orbital,
   and one orbital with $ n = \tfrac12 $ carries exactly one bit, $ \sigma(0) = \ln2 $.
-  It counts the undecided levels by their \emph{information}, not by any charge
-  they carry.
+  It weighs the fluctuating levels by the \emph{information} missing about their
+  occupation, not by any charge they carry.
 \end{itemize}
 
 \paragraph{Constants of the weights.} Collecting the relevant numbers, in the
@@ -3152,7 +3761,72 @@ the precise version of ``the specific heat counts the levels within $k_BT$ of th
 chemical potential'': for smooth $ \rho $, $c_\mu/k_B$ equals the number of levels
 per unit volume in a \emph{box} of width $3.29\,k_BT$ centred on $\mu$ and of unit
 weight. The actual weight is not that box, and the difference is the subject of
-the next subsection.
+Section~\ref{sec:filt_blind}.
+
+\paragraph{The bosonic filters.} Everything above that does not use the specific
+form of $ \Var(\hat n) $ carries over to bosons unchanged: the factorisation into
+a window and an amplitude, Eq.~\eqref{eq:filt_integrals}, and the amplitudes
+themselves, Eq.~\eqref{eq:filt_amplitudes}, which depend only on the charges of an
+orbital and not on its statistics. What changes is the window, and with it the
+weights. From Section~\ref{sec:filt_bose}, with $ x = (\varepsilon - \mu)/2k_BT > 0 $,
+\[
+  \delta^{\rm B}_T(\varepsilon - \mu) \equiv \frac{\Var(\hat n)}{k_BT}\bigg|_{\varepsilon}
+  = \frac{\operatorname{csch}^{2}x}{4k_BT}
+  = -\frac{\partial f_{\rm B}}{\partial\varepsilon} ,
+  \qquad f_{\rm B}(\varepsilon) = \frac{1}{e^{2x} - 1} ,
+\]
+the last form from $ \partial f_{\rm B}/\partial x = -2e^{2x}/(e^{2x} - 1)^{2} =
+-\tfrac12\operatorname{csch}^{2}x $. It is non-negative and decreases monotonically
+away from $ \mu $, but it is one-sided ($ \varepsilon > \mu $ only) and it is
+\emph{not normalisable}: near $ \mu $, $ \delta^{\rm B}_T \simeq k_BT/(\varepsilon - \mu)^{2} $, and
+$ \int_\mu^\infty d\varepsilon\,\delta^{\rm B}_T = f_{\rm B}(\mu^{+}) = \infty $. The bosonic
+window is therefore not a representation of the delta function, and the
+compressibility $ \chi_c = \int d\varepsilon\,\rho\,\delta^{\rm B}_T $ is finite only if
+$ \rho $ vanishes faster than $ \varepsilon - \mu $ at $ \mu $, or if $ \mu $ lies strictly
+below the bottom of the spectrum. The divergence is that of the number fluctuations
+of a bosonic mode, $ \Var(\hat n) = n(1+n) \simeq (k_BT/\xi_\lambda)^{2} $ for
+$ \xi_\lambda \ll k_BT $: the precursor of Bose--Einstein condensation.
+
+The heat capacity and the entropy are better behaved, because their amplitudes
+vanish at $ \mu $ fast enough to cure the divergence. With
+$ \operatorname{csch}^{2}x = 4\sum_{n\geq1}n\,e^{-2nx} $ for $ x > 0 $, the same
+term-by-term integration as for the fermions gives
+\[
+  \int_0^\infty\! x^{s-1}\operatorname{csch}^{2}x\,dx = \frac{4\,\Gamma(s)\,\zeta(s-1)}{2^{s}} ,
+  \qquad\text{so}\qquad
+  \int_0^\infty\! x^{2}\operatorname{csch}^{2}x\,dx = \zeta(2) = \frac{\pi^{2}}{6} ,
+\]
+the same number as the fermionic $ \int_{-\infty}^{\infty}x^{2}\operatorname{sech}^{2}x\,dx $,
+with the Riemann $ \zeta $ in place of the Dirichlet $ \eta $ because the series has no
+alternating sign. By parts with $ d\sigma_{\rm B}/dx = -x\operatorname{csch}^{2}x $, and
+boundary terms that vanish at both ends ($ x\sigma_{\rm B} \sim -x\ln x \to 0 $ at the
+origin), also $ \int_0^\infty\sigma_{\rm B}\,dx = \pi^{2}/6 $. The normalised bosonic
+weights on $ x > 0 $ are therefore
+\[
+  \hat w^{\rm B}_c(x) = \frac{6}{\pi^{2}}\,x^{2}\operatorname{csch}^{2}x ,
+  \qquad
+  \hat w^{\rm B}_S(x) = \frac{6}{\pi^{2}}\,\sigma_{\rm B}(x) ,
+  \qquad
+  \Lambda^{\rm B}_c = \Lambda^{\rm B}_S = \frac{\pi^{2}}{3}k_B^{2}T ,
+\]
+with exactly the fermionic prefactors. Their shapes differ from the fermionic ones
+in the way anticipated in Section~\ref{sec:filt_bose}: $ \hat w^{\rm B}_c $ is largest
+\emph{at} $ \mu $, $ \hat w^{\rm B}_c(0) = 6/\pi^{2} = 0.608 $, and decreases
+monotonically (since $ \tanh x < x $), while $ \hat w^{\rm B}_S $ diverges
+logarithmically at $ \mu $, $ \sigma_{\rm B} \simeq 1 - \ln 2x $, but remains integrable.
+Both are one-sided delta representations: for $ F $ continuous on $ [\mu, \infty) $,
+$ \int d\varepsilon\,F\,w^{\rm B}_o \to F(\mu^{+}) $ as $ T \to 0 $. For a power law
+$ \rho = A(\varepsilon - \mu)^{r} $ on $ \varepsilon > \mu $, the analogue of
+Eq.~\eqref{eq:filt_power_C} below is
+\[
+  c^{\rm B}_\mu = k_BA\,(2k_BT)^{r+1}\!\int_0^\infty\! x^{r+2}\operatorname{csch}^{2}x\,dx
+  = k_BA\,(k_BT)^{r+1}\,\Gamma(r+3)\,\zeta(r+2) ,
+\]
+and $ s/c^{\rm B}_\mu = 1/(r+1) $,
+the ratio following by the same integration by parts as for fermions. For acoustic
+phonons, $ \mu = 0 $ and $ \rho = 3\varepsilon^{2}/2\pi^{2}\hbar^{3}v^{3} $ (three branches
+of velocity $ v $), so $ r = 2 $, $ \Gamma(5)\zeta(4) = 24\pi^{4}/90 $, and
+$ c = (2\pi^{2}/5)\,k_B(k_BT/\hbar v)^{3} $ with $ s = c/3 $: the Debye $ T^{3} $ law.
 
 \begin{figure}[htbp]
 \centering
@@ -3248,12 +3922,12 @@ $ \delta_T = \operatorname{sech}^{2}x/4k_BT = -\partial f/\partial\varepsilon $
 (black) is common to every observable: even, non-negative, single-peaked at $\mu$,
 of unit area and of width set by $T$ alone. The amplitudes,
 Eq.~\eqref{eq:filt_amplitudes}, are shown in dimensionless form: $ A_\chi $ is
-constant (one flip moves one particle), $ A_c \propto x^{2} $ (the energy carried
-by a flip, squared), and $ A_{N,T} \propto x $ is odd, so that
+constant (a unit change of an occupation moves one particle), $ A_c \propto x^{2} $
+(the energy it moves, squared), and $ A_{N,T} \propto x $ is odd, so that
 $ (\partial N/\partial T)_\mu $ has no normalised weight of its own.
 (b)~The normalised weights of Eq.~\eqref{eq:filt_kernels}, $ \hat w_o = 2k_BT\,w_o $,
-each of unit area. The entropy weight peaks at $\mu$ ($ \sigma(0) = \ln2 $: one
-undecided orbital carries one bit). The heat-capacity weight \emph{vanishes} at
+each of unit area. The entropy weight peaks at $\mu$ ($ \sigma(0) = \ln2 $: an
+orbital with $ n = \tfrac12 $ carries one bit). The heat-capacity weight \emph{vanishes} at
 $\mu$, where the amplitude does, and peaks at $|\varepsilon-\mu|=2.3994\,k_BT$.
 (c)~The delta limit: $ w_c $ at $ T_0 $, $ T_0/2 $ and $ T_0/4 $, on a fixed energy
 axis. The area stays one while the width shrinks $ \propto T $, so
@@ -3281,20 +3955,28 @@ An orbital contributes to the energy variance only if its occupation fluctuates
 \emph{and} each fluctuation moves energy. A level far below $ \mu $ is full with
 certainty and a level far above is empty with certainty; neither fluctuates, so
 neither contributes, however much energy it would carry. A level exactly at $ \mu $
-fluctuates maximally, but its occupation flips at zero cost relative to the
-reservoir: it moves particles, and so contributes fully to $ \chi_c $, but it
+fluctuates maximally, but a change of its occupation costs zero energy relative
+to the reservoir: it moves particles, and so contributes fully to $ \chi_c $, but it
 moves no energy, and so contributes nothing to the energy variance or to $ c_\mu $.
+
+The blindness is the additive form of an exact statement. By
+Eq.~\eqref{eq:filt_mb_response}, $ \chi_c $ and $ c_\mu $ are the variances of two
+different conserved quantities, $ \hat N $ and $ \hat K $, over the same distribution
+$ p_a $ of eigenstates. Equilibrium mixing among eigenstates that differ in $ N $ but
+have the same $ K $ --- a particle added or removed at no cost relative to the
+reservoir --- contributes to $ \Var(\hat N) $ and nothing to $ \Var(\hat K) $. For independent
+fermions those are precisely the fluctuations of the levels at $ \mu $.
 
 \begin{quote}
 The heat capacity measures the energy variance of the levels in the fluctuation
-window; it sees only the levels that are simultaneously \emph{undecided} and
-\emph{displaced} from $ \mu $, and $|\varepsilon-\mu|=2.4\,k_BT$ is where the
+window; it sees only the levels whose occupation simultaneously \emph{fluctuates}
+and which are \emph{displaced} from $ \mu $, and $|\varepsilon-\mu|=2.4\,k_BT$ is where the
 product of the two is largest.
 \end{quote}
 
 Availability alone is therefore not sufficient. Each observable asks a different
-question of the same window: $ s $ asks how much information is in the undecided
-levels, $ \chi_c $ how many particles their fluctuations move, and $ c_\mu $ how
+question of the same window: $ s $ asks how much information is missing about
+the occupations of the fluctuating levels, $ \chi_c $ how many particles their fluctuations move, and $ c_\mu $ how
 much energy. The same structure explains the exponential decay on both sides,
 which is that of the window, $ e^{-|\varepsilon-\mu|/k_BT} $: a level a few $ k_BT $
 from $ \mu $ is frozen, and the polynomial prefactors ($ x^{2} $ for $ w_c $, $ 2|x| $
@@ -3307,104 +3989,13 @@ $ (k_BT)^{2}\times0.4392 $ for fermions (Eq.~\eqref{eq:filt_peak}), so
 $ \Var(E - \mu N) $ grows at most like the \emph{number} of orbitals: independent
 fluctuations add like the steps of a random walk, and the response per unit volume
 stays finite (Eq.~\eqref{eq:filt_bound} below). The same holds for $ \Var(N) $ and
-$ \Var(M) $. A response per unit volume can diverge only if the variance of an
-extensive quantity grows \emph{faster} than the volume. For any Hamiltonian, writing
-the extensive quantity as a sum of local densities, $ \hat X = \sum_i\hat x_i $,
-\[
-  \frac{\Var(\hat X)}{V} = \frac{1}{V}\sum_i\Var(\hat x_i)
-  + \frac{1}{V}\sum_{i\neq j}\Cov(\hat x_i, \hat x_j)
-  \;\simeq\; \sum_{\mathbf{r}} G_x(\mathbf{r}) ,
-\]
-with $ G_x(\mathbf{r}) = \Cov(\hat x_0, \hat x_{\mathbf{r}}) $ the connected
-correlation function. The first, ``diagonal'' sum is what independent modes
-provide and is always finite per unit volume; the covariances --- the
-\emph{correlations} between fluctuations at different places, or between
-different modes --- are what can grow. With correlations of range $ \xi $ the sum
-runs effectively over a correlation volume, and if
-$ G(r) \sim r^{-(d-2+\eta)} $ up to $ r \sim \xi $ it gives
-$ \chi \sim \xi^{2-\eta} \sim |t|^{-\nu(2-\eta)} $, which is Fisher's relation
-$ \gamma = \nu(2 - \eta) $. A critical point is thus the place where the fluctuations
-of macroscopically many degrees of freedom become correlated, so that they no
-longer add as independent contributions. In a self-consistent quasiparticle
-description, where the orbitals remain formally independent, the same physics
-appears instead as a spectrum $ \{\varepsilon_\lambda\} $ that itself moves with
-$ T $ (Section~\ref{sec:filt_shape}).
-
-\subsection{Fixed \texorpdfstring{$\mu$}{mu} versus fixed \texorpdfstring{$N$}{N}}
-\label{sec:filt_muN}
-
-Equations~\eqref{eq:filt_C} and~\eqref{eq:filt_integrals} deliver $c_\mu$,
-whereas a calorimeter works at fixed particle number. The conversion is the boxed
-formula of Section~\ref{sec:caveat}, which per unit volume reads
-\begin{equation}\label{eq:filt_CN}
-c_N=c_\mu-T\,
-\frac{\big[V^{-1}(\partial N/\partial T)_{V,\mu}\big]^{2}}
-     {\chi_c}\,,
-\end{equation}
-and needs one more response. The temperature derivative of $ N $ at fixed $ \mu $
-is the mixed case of Eq.~\eqref{eq:filt_response}, with charges
-$ a_\lambda = (\varepsilon_\lambda - \mu)/T $ and $ b_\lambda = 1 $; equivalently,
-from Eqs.~\eqref{eq:filt_n} and~\eqref{eq:filt_dxdT}, $ \partial n/\partial x =
--\tfrac12\operatorname{sech}^{2}x $ and $ (\partial x/\partial T)_\mu = -x/T $, so
-$ \partial n/\partial T = x\operatorname{sech}^{2}x/2T $. Either way,
-\begin{equation}\label{eq:filt_wNT}
-\frac{1}{V}\left(\frac{\partial N}{\partial T}\right)_{\!V,\mu}
-= \int\! d\varepsilon\;\rho(\varepsilon)\,A_{N,T}\,\delta_T(\varepsilon-\mu)
-= \int\! d\varepsilon\;\rho(\varepsilon)\,\frac{x\operatorname{sech}^{2}x}{2T},
-\qquad
-A_{N,T} = 2k_B\,x .
-\end{equation}
-The amplitude is the product of the two charges, the particle number $ 1 $ and the
-energy $ (\varepsilon - \mu)/T $, and is therefore \emph{odd} in $ x $: a level above
-$ \mu $ gains particles on heating, a level below loses them. The integrand
-$ A_{N,T}\delta_T $ integrates to zero, so, unlike the weights of
-Eq.~\eqref{eq:filt_kernels}, it cannot be normalised to a delta representation;
-as $ T \to 0 $ it tends to zero, not to $ \delta(\varepsilon - \mu) $. An integration
-by parts converts it into one. Since
-$ x\operatorname{sech}^{2}x = -d\sigma/dx $ by Eq.~\eqref{eq:filt_sprime}, and
-$ \sigma $ vanishes at $ x \to \pm\infty $, the derivative moves onto $ \rho $, and
-with $ d\varepsilon = 2k_BT\,dx $,
-\begin{equation}\label{eq:filt_wNT_parts}
-\frac{1}{V}\left(\frac{\partial N}{\partial T}\right)_{\!V,\mu}
-= \int\! d\varepsilon\;\rho'(\varepsilon)\,k_B\sigma(x)
-= \Lambda_S\int\! d\varepsilon\;\rho'(\varepsilon)\,w_S(\varepsilon-\mu;T)
-= \frac{\partial s}{\partial\mu}\bigg|_{T} .
-\end{equation}
-The last equality holds because $ \mu $ enters $ s = \int d\varepsilon\,\rho\,k_B\sigma $
-only through $ x $, and shifting $ \mu $ is the same as shifting $ \rho $: this is
-the Maxwell relation $ (\partial N/\partial T)_\mu = (\partial S/\partial\mu)_T $
-of the grand potential, read through the filter. The odd integrand acting on
-$ \rho $ equals the normalised, even entropy weight acting on $ \rho' $.
-Consequently $ (\partial N/\partial T)_\mu $ measures the \emph{asymmetry} of
-$ \rho $ across the window: it vanishes identically for a particle--hole symmetric
-spectrum, which is why the fixed-$N$ correction of Section~\ref{sec:caveat}
-disappears at half filling. Because $ w_S $ is a delta representation,
-Eq.~\eqref{eq:filt_delta_limit} applies to $ \rho' $ in place of $ \rho $ and gives,
-for $ \rho $ smooth on the scale $ k_BT $,
-\begin{equation}\label{eq:filt_dNdT}
-\frac{1}{V}\left(\frac{\partial N}{\partial T}\right)_{\!V,\mu}
-\simeq \Lambda_S\,\rho'(\mu)
-=\frac{\pi^{2}}{3}k_B^{2}T\,\rho'(\mu),
-\end{equation}
-the standard Sommerfeld result, obtained here as the statement that the odd
-response sees only the slope of $ \rho $ at $ \mu $. With
-$\chi_c\simeq\rho(\mu)$ and
-Eq.~\eqref{eq:filt_sommerfeld}, the relative correction is
-\begin{equation}\label{eq:filt_ratio}
-\boxed{\;\frac{c_\mu-c_N}{c_\mu}\;\simeq\;
-\frac{\pi^{2}}{3}\left(k_BT\,\frac{d\ln\rho}{d\varepsilon}\bigg|_{\mu}\right)^{\!2}\;}
-\end{equation}
-This is the useful form. The correction is second order in the single
-dimensionless group $k_BT\,\rho'/\rho$, i.e.\ in the ratio of the window width to
-the scale on which $\rho$ varies. For an ordinary metal, where $\rho$ varies on
-the scale of the bandwidth $W$ and $k_BT/W\sim10^{-2}$, it is of order $10^{-4}$
-and the distinction between $c_\mu$ and $c_N$ is invisible. It ceases to be
-negligible exactly when $\rho$ acquires structure on the scale $k_BT$ --- a van
-Hove singularity at the Fermi level, a pseudogap, a narrow impurity resonance ---
-which is also the regime in which $c_V$ is being measured for what that structure
-says. The correction is largest where it is least convenient to forget, and
-Eq.~\eqref{eq:filt_ratio} shows why the two heat capacities of
-Section~\ref{sec:caveat} are not a bookkeeping nicety.
+$ \Var(M) $. The exact decomposition of Section~\ref{sec:filt_mb} (paragraph
+``Correlations'') shows what is missing: a divergence requires covariances between
+the fluctuations of macroscopically many degrees of freedom, and the additive
+spectrum, in which the occupations of different orbitals are independent, has none.
+In a self-consistent quasiparticle description, where the orbitals remain formally
+independent, the same physics appears instead as a spectrum
+$ \{\varepsilon_\lambda\} $ that itself moves with $ T $ (Section~\ref{sec:filt_shape}).
 
 \subsection{A power-law density of states}
 \label{sec:filt_power}
@@ -3465,6 +4056,29 @@ For $r\le-1$ the integral $\int d\varepsilon\,\rho$ diverges at $\mu$: there wou
 be infinitely many thermally active levels at arbitrarily low energy, and both
 the third law and the normalisability of $\rho$ fail. The realisable extreme is
 therefore $r\to-1$, i.e.\ a residual entropy, and not a divergent $c$.
+
+\paragraph{The same exponent in the many-body spectrum.} The density of states
+$ \rho(\varepsilon) $ exists only for an additive spectrum, but the exponent has an
+exact counterpart in the many-body density of states $ g(K) $ of
+Section~\ref{sec:filt_mb}, for any Hamiltonian. Suppose that, per unit volume,
+$ c_\mu = aT^{r+1} $ at low temperature and $ s(0) = 0 $. Then
+$ s = aT^{r+1}/(r+1) $, and the excitation energy per unit volume is
+$ k \equiv (\langle\hat K\rangle - K_0)/V = \int_0^Tc_\mu\,dT' = aT^{r+2}/(r+2) $.
+Eliminating $ T $,
+\[
+  s(k) = \frac{a}{r+1}\left(\frac{(r+2)\,k}{a}\right)^{(r+1)/(r+2)} ,
+\]
+and since $ k_B\ln g = S_{\rm mc} = Vs $ in the thermodynamic limit, the many-body
+density of states grows above the ground state as
+\[
+  \ln g\big(K_0 + Vk\big) \;\simeq\; \frac{V}{k_B}\,s(k) \;\propto\; V\,k^{(r+1)/(r+2)} :
+\]
+a power-law heat capacity is equivalent to a \emph{stretched-exponential} growth of the
+many-body level density. For a Fermi liquid, $ r = 0 $ gives
+$ S = (2aV E)^{1/2} $ at excitation energy $ E = Vk $, i.e.\ $ g \propto e^{2\sqrt{\tilde aE}} $
+with $ \tilde a = aV/2k_B^{2} $: Bethe's formula for the level density of a heavy
+nucleus, which is the many-body statement of the Sommerfeld law. For Debye phonons,
+$ r = 2 $ gives $ \ln g \propto V^{1/4}E^{3/4} $.
 
 \paragraph{Metals, Fermi liquids, bad metals.} The exponent $ r $ is a compact
 classification of what $ c(T) $ says about the electronic states at the Fermi
@@ -3542,17 +4156,36 @@ missing scale is turned into exponents is the same.
 \subsection{Inverting the filter}
 \label{sec:filt_invert}
 
-Since a measured $ c(T) $ is a linear integral transform of $ \rho $, it is natural
-to ask whether the transform can be inverted to recover $ \rho $, especially at low
-energy, where the window is narrow. The answer has three parts.
+\emph{Exact inversion, for any Hamiltonian.} What $ c_\mu(T) $ determines in general
+is the many-body spectrum. Given $ C_\mu $ at all temperatures, the entropy and the
+excitation energy follow by integration,
+$ S(T) = S(0) + \int_0^TC_\mu\,dT'/T' $ and $ \langle\hat K\rangle(T) = K_0 + \int_0^TC_\mu\,dT' $,
+and with them $ \ln\Xi = S/k_B - \beta\langle\hat K\rangle $. Hence
+\[
+  e^{\beta K_0}\,\Xi(\beta) = \int_0^\infty\! d\epsilon\; g(K_0 + \epsilon)\,e^{-\beta\epsilon}
+\]
+is known for all $ \beta > 0 $, up to the factor $ e^{S(0)/k_B} = d_0 $. The left side is
+the Laplace transform of the excitation spectrum, and a Laplace transform known on
+the whole half-line determines its original uniquely (Lerch's theorem). The heat
+capacity therefore fixes the many-body density of states above the ground state
+exactly, up to the ground-state degeneracy, with no assumption on $ \hat H $. It cannot,
+by itself, resolve $ g $ into single-particle levels; that step requires additivity,
+and it is the inversion treated in the rest of this subsection. The inverse Laplace
+transform is also severely ill-posed, for the same reason as the Mellin inversion
+below.
+
+\emph{Additive case.} Since a measured $ c(T) $ is then a linear integral transform of
+$ \rho $, it is natural to ask whether the transform can be inverted to recover $ \rho $,
+especially at low energy, where the window is narrow. The answer has three parts.
 
 \emph{What can be recovered.} The weight $ w_c $ is even, so $ c_\mu $ determines
 only the symmetrised density of states $ \rho_s(\omega) =
 \tfrac12[\rho(\mu + \omega) + \rho(\mu - \omega)] $, $ \omega > 0 $; the
 antisymmetric part is invisible to it and must be obtained from an odd response, such
 as $ (\partial N/\partial T)_\mu $ of Eq.~\eqref{eq:filt_wNT} or, in practice, the
-thermopower. Combining several even weights does not help, since they all see the
-same $ \rho_s $.
+thermopower. Combining several even weights cannot recover the antisymmetric part,
+since they all see the same $ \rho_s $; but, as shown at the end of this
+subsection, it does help to determine $ \rho_s $ itself.
 
 \emph{Exact inversion.} Write $ \tau = 2k_BT $ and $ g(y) = y^{2}\operatorname{sech}^{2}y $,
 so that, folding the integral over $ \varepsilon $ onto $ \omega = |\varepsilon - \mu| $,
@@ -3598,6 +4231,77 @@ in $ \rho $ narrower than a few $ k_BT $ at the lowest measured temperature is b
 reach of thermodynamics and requires a spectroscopy (tunnelling, photoemission)
 whose resolution is not tied to $ T $.
 
+\emph{Combining observables at low temperature.} A single observable measured at a
+single temperature returns one number, and Eq.~\eqref{eq:filt_delta_limit} shows
+which combination of the Taylor coefficients of $ \rho $ at $ \mu $ it is. Different
+observables return \emph{different} combinations, because their weights have
+different moments, and a set of observables measured at the same temperature can
+therefore be solved for the coefficients individually. Write
+$ \rho_k \equiv \rho^{(k)}(\mu) $ for the $ k $-th derivative and divide each observable
+by its flat-band prefactor, $ \hat o \equiv o/\Lambda_o $. Taylor-expanding $ \rho $ about
+$ \mu $ under the integral of Eq.~\eqref{eq:filt_norm}, and using that the even weights
+have vanishing odd moments,
+\[
+  \hat o(T) = \sum_{k\geq0}\frac{\rho_{2k}}{(2k)!}\,(2k_BT)^{2k}\,m^{(2k)}_o ,
+  \qquad
+  m^{(2k)}_o \equiv \int\! dx\; x^{2k}\,\hat w_o(x) ,
+\]
+an exact linear system in the unknowns $ \rho_0, \rho_2, \rho_4, \dots $, with
+coefficients $ m^{(2k)}_o $ known once and for all. To the first non-trivial order the
+second moments of the table above give, for the three normalised observables
+\[
+  \hat\chi \equiv \chi_c = \frac{\chi_s}{m_0^{2}} , \qquad
+  \hat c \equiv \frac{c_\mu}{\pi^{2}k_B^{2}T/3} , \qquad
+  \hat s \equiv \frac{s}{\pi^{2}k_B^{2}T/3} ,
+\]
+the system
+\[
+  \begin{pmatrix} \hat\chi \\ \hat c \\ \hat s \end{pmatrix}
+  = \begin{pmatrix} 1 & \pi^{2}/6 \\ 1 & 7\pi^{2}/10 \\ 1 & 7\pi^{2}/30 \end{pmatrix}
+  \begin{pmatrix} \rho(\mu) \\ (k_BT)^{2}\rho''(\mu) \end{pmatrix}
+  + O(T^{4}) .
+\]
+Any two rows determine both unknowns. From the compressibility and the heat
+capacity,
+\[
+  \rho(\mu) \simeq \frac{21\,\hat\chi - 5\,\hat c}{16} ,
+  \qquad
+  \rho''(\mu) \simeq \frac{15}{8\pi^{2}}\,\frac{\hat c - \hat\chi}{(k_BT)^{2}} ,
+\]
+so that the curvature of the density of states at the Fermi level is read off from
+the \emph{difference} between the normalised heat capacity and the normalised
+compressibility (or spin susceptibility) at one temperature, without fitting a
+temperature dependence; for independent electrons the Wilson ratio
+$ R_W = \hat\chi/\hat c $ deviates from $ 1 $ by $ -(8\pi^{2}/15)(k_BT)^{2}\rho''/\rho $.
+The third row is then a consistency check: the residual
+$ \hat s - \tfrac18(7\hat\chi + \hat c) $, which vanishes to this order, measures the
+$ O(T^{4}) $ terms.
+The antisymmetric part follows from the odd observable: with
+$ A_{N,T} = (\varepsilon - \mu)/T $ and the second moment of the window,
+\[
+  \frac{1}{V}\left(\frac{\partial N}{\partial T}\right)_{\!\mu}
+  = \frac{\pi^{2}}{3}k_B^{2}T\,\rho'(\mu) + O(T^{3}) ,
+\]
+which fixes $ \rho'(\mu) $. With $ J $ even observables and the expansion truncated
+after $ J $ even coefficients, the system is square, and it is solvable whenever the matrix
+of moments is non-singular; including several temperatures enlarges the system and
+over-determines it.
+
+Two limitations should be kept in view. First, the moment matrix is ill-conditioned:
+the weights are all of similar shape, their moments differ by factors of order one,
+and the information about $ \rho_2 $ enters at relative order
+$ (k_BT)^{2}\rho''/\rho $, so the differences of observables must be measured to that
+relative accuracy; each further coefficient costs another factor $ (k_BT)^{2} $. This
+is the same ill-posedness as that of the Mellin inversion, now in a finite-dimensional
+form. Second, the combination presupposes that all observables see the same
+independent levels. In an interacting system they need not: in a Fermi liquid
+$ \chi_s $ and $ c_\mu $ are renormalised differently, the Wilson ratio departs from $ 1 $
+already at $ T = 0 $ (Section~\ref{sec:filt_power}), and the difference $ \hat c - \hat\chi $
+then measures the Landau parameter $ F_0^{a} $ rather than $ \rho''(\mu) $. The
+procedure is exact for quadratic Hamiltonians and should be read, otherwise, as a
+definition of effective densities of states, one per observable, whose differences
+are themselves informative.
+
 \subsection{Reading the shape of \texorpdfstring{$c(T)$}{c(T)}}
 \label{sec:filt_shape}
 
@@ -3632,10 +4336,11 @@ end.
 \paragraph{Peaks, and the staircase caveat.} A peak is the generic shape whenever
 the spectrum has a largest relevant scale. Its rising side is the filling of the
 window; its falling side is \emph{exhaustion} --- once $k_BT$ exceeds the largest
-splitting in the group of levels concerned, they are all equally undecided, their
+splitting in the group of levels concerned, they are all equally populated, their
 occupations stop changing with temperature, and by
 Eq.~\eqref{eq:filt_product} the sector ceases to absorb heat. The bookkeeping is
-the entropy sum rule, which follows immediately from $c=T(\partial s/\partial T)$:
+the entropy sum rule, which follows immediately from $c=T(\partial s/\partial T)$ and
+holds for any Hamiltonian (Eq.~\eqref{eq:filt_mb_sumrule}):
 \begin{equation}\label{eq:filt_sumrule}
 \int_0^{\infty}c(T)\,\frac{dT}{T}=s(\infty)-s(0).
 \end{equation}
@@ -3653,9 +4358,10 @@ the previous paragraph.
 \paragraph{High temperature.} Whether $c$ must vanish as $T\to\infty$ is settled
 by the same sum rule, and the answer is conditional. If the spectrum is bounded
 and the degrees of freedom have finite dimension, then $s(\infty)$ is bounded by
-$k_B\ln(\dim\mathcal{H})/V$ and Eq.~\eqref{eq:filt_sumrule} forces $c\to0$; the
-explicit form is the Schottky tail obtained from Eq.~\eqref{eq:filt_C} at
-$x_\lambda\to0$,
+$k_B\ln(\dim\mathcal{H})/V$ and Eq.~\eqref{eq:filt_sumrule} forces $c\to0$. The
+explicit form, for any Hamiltonian, is the $ T^{-2} $ tail of
+Eq.~\eqref{eq:filt_mb_hiT}; in the additive case it is the Schottky tail obtained from
+Eq.~\eqref{eq:filt_C} at $x_\lambda\to0$,
 \begin{equation}\label{eq:filt_schottky}
 c_\mu\;\xrightarrow[T\to\infty]{}\;\frac{k_B}{V}\sum_\lambda x_\lambda^{2}
 =\frac{\Var_\infty(E-\mu N)}{Vk_BT^{2}}\;\propto\;\frac{1}{T^{2}},
@@ -3680,7 +4386,9 @@ bounds the per-orbital Bose heat capacity by its $u\to0$ value $k_B$ and the Bol
 $4e^{-2}k_B=0.5413\,k_B$, so in every case the bound is $\mathcal{O}(k_B)$ per
 mode. A lattice model with finitely many modes per site and a
 temperature-independent spectrum therefore has an $\mathcal{O}(k_B)$ heat
-capacity per site and cannot diverge at all. Every divergence is consequently a
+capacity per site and cannot diverge at all. (Without additivity the bound is
+replaced by the exact decomposition of Section~\ref{sec:filt_mb}: $ \Var(\hat K)/V $ stays
+finite unless correlations become long-ranged.) Every divergence is consequently a
 statement that the spectrum itself \emph{moves}: with temperature, through
 self-consistency --- an order parameter that reconstructs the band as it
 re-equilibrates --- or with a control parameter, through the accumulation of
@@ -3698,6 +4406,246 @@ the right null hypothesis: any claim of an anomalously large $c$ carries the
 burden of identifying either the extra orbitals or the moving spectrum that
 produces it.
 \end{remark}
+
+\section{Microscopic foundations: heat, information and the second law}
+\label{sec:foundations}
+
+The preceding sections take the equilibrium ensembles as given. This section asks
+where they come from, starting from the microscopic dynamics: a density matrix
+$ \rho $ evolving under a Hamiltonian $ \hat H $. Four questions are separated: what
+heat is, what entropy is, what the multipliers $ T $ and $ \mu $ are, and what the
+second law says at the microscopic level. The answer to the last is subtler than is
+often stated, and two natural guesses --- that the second law is an increase of
+the uncertainty in the energy, and that it follows from the von~Neumann equation
+alone --- fail in instructive ways.
+
+\subsection{Heat and work}
+\label{sec:found_heat}
+
+Let the Hamiltonian $ \hat H(\lambda) $ depend on parameters $ \lambda $ that the
+experimenter controls (volume, field, strain), and let $ U = \Tr(\rho\hat H) $. Any
+infinitesimal change of the state or of the parameters gives
+\[
+  dU = \underbrace{\Tr\big(\rho\,d\hat H\big)}_{\dbar W}
+     + \underbrace{\Tr\big(\hat H\,d\rho\big)}_{\dbar Q} .
+\]
+The first term, $ \dbar W = \sum_j\langle\partial\hat H/\partial\lambda_j\rangle\,d\lambda_j $, is
+the energy delivered by moving the levels through the controlled parameters; for
+$ \lambda = V $, $ \langle\partial\hat H/\partial V\rangle = -P $ and $ \dbar W = -P\,dV $. The
+second term is the energy delivered by redistributing probability \emph{among} the
+levels. In the instantaneous eigenbasis, and for a $ \rho $ diagonal in it,
+\[
+  \dbar W = \sum_i p_i\,dE_i , \qquad \dbar Q = \sum_i E_i\,dp_i :
+\]
+work changes the levels, heat changes their occupations. This is the precise form of
+the statement that heat is the energy exchanged through processes that are not
+modelled microscopically. If the system were isolated, its evolution would be
+unitary, $ i\hbar\,d\rho = [\hat H, \rho]\,dt $, even with a time-dependent
+$ \hat H(\lambda(t)) $, and then
+\[
+  \dbar Q = \Tr\big(\hat H\,d\rho\big) = -\frac{i}{\hbar}\Tr\big(\hat H[\hat H, \rho]\big)\,dt = 0
+\]
+by cyclicity of the trace. A change of occupations therefore requires a coupling to
+degrees of freedom outside $ \hat H $ --- the walls, a bath, radiation --- and heat is
+the energy that flows through that coupling. Neither $ \dbar W $ nor $ \dbar Q $ is the
+differential of a function of the state (Appendix~\ref{app:exact}); along a
+quasi-static sequence of Gibbs states, Section~\ref{sec:heat} shows that
+$ \dbar Q = T\,dS $.
+
+\subsection{Entropy as missing information}
+\label{sec:found_info}
+
+The Gibbs entropy $ S[\rho] = -k_B\Tr(\rho\ln\rho) $ (footnote~\ref{fn:gibbsS}) has
+an operational meaning, due to Shannon: $ S/(k_B\ln2) $ is the number of binary
+(yes/no) questions needed, on average and per copy in the limit of many copies, to
+identify the microstate of a system known only to be in the state $ \rho $. It is the
+information \emph{missing} from the description $ \rho $. In this sense it is a property
+of the description, i.e.\ of the data on which $ \rho $ was assigned, not of the
+microstate itself.
+
+\paragraph{Maximum entropy.} Suppose that all that is known about a system is the
+mean energy $ \langle\hat H\rangle = U $ and the mean particle number
+$ \langle\hat N\rangle = \bar N $. Jaynes' prescription (1957) is to assign the state
+that is least committal about everything else, i.e.\ that maximises $ S[\rho] $
+subject to these data and $ \Tr\rho = 1 $. The maximiser is the grand canonical state
+$ \rho_{\rm G} = e^{-\beta(\hat H - \mu\hat N)}/\Xi $, with $ \beta $ and $ \mu $ chosen to
+reproduce $ U $ and $ \bar N $, and the proof needs no calculus of variations. Since
+$ \ln\rho_{\rm G} = -\beta(\hat H - \mu\hat N) - \ln\Xi $ is \emph{linear} in $ \hat H $ and
+$ \hat N $, every state $ \rho $ with the same data has
+\[
+  \Tr(\rho\ln\rho_{\rm G}) = -\beta(U - \mu\bar N) - \ln\Xi = \Tr(\rho_{\rm G}\ln\rho_{\rm G}) ,
+\]
+and therefore
+\[
+  S[\rho_{\rm G}] - S[\rho] = k_B\big[\Tr(\rho\ln\rho) - \Tr(\rho\ln\rho_{\rm G})\big]
+  = k_B\,D(\rho\,\|\,\rho_{\rm G}) \;\geq\; 0 ,
+\]
+with equality only for $ \rho = \rho_{\rm G} $, by Klein's inequality
+(Appendix~\ref{app:gibbsvar}). With only $ U $ known the same argument gives the
+canonical state, and with $ E $ known exactly (to within $ \delta E $) the uniform
+distribution on the energy shell, $ S = k_B\ln W $.
+
+\paragraph{The meaning of $ T $ and $ \mu $.} The multipliers are what the missing data
+are replaced by. $ \beta = 1/k_BT $ is the multiplier conjugate to the energy
+constraint: it is present precisely when the energy is known only on average, and
+it fixes the state once the average is given. Likewise $ \beta\mu $ appears when the
+particle number is known only on average. Each step from exact knowledge to
+knowledge of the mean (from $ E $ to $ \langle\hat H\rangle $, from $ N $ to
+$ \langle\hat N\rangle $) introduces one multiplier and moves one ensemble down the list
+of Section~\ref{sec:ensembles}; on the thermodynamic side it is one Legendre
+transform. It is the \emph{entropy} that measures the information missing about the
+microstate; the temperature and the chemical potential measure the price, in
+entropy, of the constraints (Section~\ref{sec:ensembles}). For a macroscopic system
+the distinction between exact and mean values hardly matters for the potentials,
+because the distributions of $ E $ and $ N $ in the canonical and grand canonical
+states have relative widths $ O(N^{-1/2}) $ (Section~\ref{sec:equivalence}).
+
+\subsection{What unitary dynamics conserves}
+\label{sec:found_unitary}
+
+Consider first an isolated system, $ i\hbar\,\partial_t\rho = [\hat H, \rho] $, so that
+$ \rho(t) = \hat U\rho(0)\hat U^\dagger $ with $ \hat U = e^{-i\hat Ht/\hbar} $. Two exact
+statements follow.
+
+\emph{The Gibbs entropy is constant.} $ \rho(t) $ and $ \rho(0) $ are unitarily similar,
+so they have the same eigenvalues, and $ S[\rho(t)] = S[\rho(0)] $; more generally
+$ \Tr f(\rho) $ is conserved for every function $ f $. The Gibbs entropy of an
+isolated system never increases, however irreversible its macroscopic behaviour.
+
+\emph{The energy distribution is constant.} Let $ P_t(E) = \Tr[\rho(t)\,\delta(\hat H - E)] $.
+Since $ \hat U $ commutes with every function of $ \hat H $, cyclicity of the trace gives
+\[
+  P_t(E) = \Tr\big[\rho(0)\,\hat U^\dagger\delta(\hat H - E)\,\hat U\big]
+  = \Tr\big[\rho(0)\,\delta(\hat H - E)\big] = P_0(E) .
+\]
+All moments of $ \hat H $ are constants of motion, and the uncertainty in the energy of
+an isolated system is exactly conserved. The second law can therefore be neither an
+increase of the Gibbs entropy nor an increase of the energy uncertainty in an
+isolated system. Nor does the energy uncertainty grow for an open system: a body of
+heat capacity $ C $ initially at $ T_1 $, placed in contact with a bath at
+$ T_2 < T_1 $, relaxes from $ \Var(E) = k_BT_1^{2}C(T_1) $ to $ k_BT_2^{2}C(T_2) $, which
+is smaller whenever $ C $ does not decrease with $ T $. The energy of the body becomes
+\emph{more} certain while the total entropy grows.
+
+\paragraph{The spreading wavepacket.} The spreading of a free Gaussian wavepacket is
+an instructive analogy, but not in the way it first suggests. With
+$ \hat x(t) = \hat x + \hat pt/m $ and an unchirped initial packet,
+$ \Cov(\hat x, \hat p) = 0 $ and $ \Var(\hat p) = \hbar^{2}/4\sigma^{2} $,
+\begin{gather*}
+  \Var\big(\hat x(t)\big) = \sigma^{2} + \frac{\hbar^{2}t^{2}}{4m^{2}\sigma^{2}} ,
+  \qquad
+  \Cov\big(\hat x(t), \hat p\big) = \frac{t}{m}\Var(\hat p) ,
+  \\
+  \Var\big(\hat x(t)\big)\Var(\hat p) - \Cov\big(\hat x(t), \hat p\big)^{2} = \frac{\hbar^{2}}{4} ,
+\end{gather*}
+the symmetrised covariance being meant. The position distribution spreads, but the
+state remains pure ($ S = 0 $ throughout), the momentum and energy distributions do
+not change at all, and the spreading is reversible: a packet prepared with the
+opposite chirp first contracts. What grows is the \emph{correlation} between $ \hat x $
+and $ \hat p $, while the phase-space area, the last expression, is conserved. The
+information initially carried by the narrow width in $ x $ has not been lost; it has
+moved into an $ x $--$ p $ correlation that a measurement of $ x $ alone does not see.
+This, and not the growth of a width, is the correct lesson, and it is the microscopic
+mechanism of the second law.
+
+\subsection{Where the second law comes from}
+\label{sec:found_second}
+
+The conserved Gibbs entropy of the full state is not the entropy that thermodynamics
+measures. The latter refers to what macroscopic measurements can access, and there
+are three distinct mechanisms by which information leaves that reach.
+
+\paragraph{(i) Correlations between subsystems.} Let a system $ A $ interact with an
+environment $ B $, the composite evolving unitarily, and let
+$ \rho_A = \Tr_B\rho_{AB} $, $ \rho_B = \Tr_A\rho_{AB} $ be the reduced states, which are
+all that measurements on one part can access. The mutual information
+\[
+  I(A{:}B) \equiv S[\rho_A] + S[\rho_B] - S[\rho_{AB}] \;\geq\; 0
+\]
+is non-negative (subadditivity of the entropy, itself a case of Klein's inequality:
+$ I = k_B D(\rho_{AB}\,\|\,\rho_A\otimes\rho_B) $). Since $ S[\rho_{AB}] $ is conserved,
+$ S[\rho_A] + S[\rho_B] = S[\rho_{AB}] + I(A{:}B) $ grows by exactly the information
+stored in the correlations, including entanglement, that the interaction has built
+up. The sum of the entropies of the parts is the thermodynamic entropy of the
+composite, and its increase is the second law. For a small system and a large
+environment more is true (canonical typicality: Goldstein, Lebowitz, Tumulka and
+Zangh\`\i; Popescu, Short and Winter, 2006): for almost every \emph{pure} state of
+$ A + B $ in a narrow energy shell, $ \rho_A $ is close to $ e^{-\beta\hat H_A}/Z_A $, with
+$ \beta $ set by the shell. The canonical ensemble of a subsystem follows from the
+dynamics and the size of the environment, with no ensemble assumed for the whole.
+
+\paragraph{(ii) Dephasing.} For an isolated system with non-degenerate energy
+differences, the matrix elements in the eigenbasis are
+$ \langle a|\rho(t)|b\rangle = \rho_{ab}(0)\,e^{-i(E_a - E_b)t/\hbar} $. The off-diagonal elements oscillate, and their time average vanishes,
+$ \tau^{-1}\int_0^\tau e^{-i\omega t}dt \to 0 $ for $ \omega \neq 0 $; hence
+\[
+  \bar\rho \equiv \lim_{\tau\to\infty}\frac{1}{\tau}\int_0^\tau\!\rho(t)\,dt
+  = \sum_a\rho_{aa}\,|a\rangle\langle a| ,
+\]
+the \emph{diagonal ensemble}. A measurement averaged over long times, or of a
+few-body observable at a typical late time in a macroscopic system (whose level
+spacings are so dense that the off-diagonal contributions add with effectively
+random phases), sees $ \bar\rho $ rather than $ \rho(t) $. Its entropy is larger. Because
+$ \ln\bar\rho $ is diagonal in the eigenbasis,
+$ \Tr[\rho(0)\ln\bar\rho] = \sum_a\rho_{aa}\ln\rho_{aa} = \Tr(\bar\rho\ln\bar\rho) $, and
+\[
+  S[\bar\rho] - S[\rho(0)] = k_B\,D\big(\rho(0)\,\|\,\bar\rho\big) \;\geq\; 0 ,
+\]
+with equality only if $ \rho(0) $ was already diagonal. The increase is the
+information carried by the phases of $ \rho_{ab} $.
+
+\paragraph{(iii) Thermalisation.} The diagonal ensemble still remembers every
+$ \rho_{aa} $, i.e.\ exponentially many conserved quantities, and it is not the
+microcanonical state. That few-body observables nevertheless take their
+microcanonical values is the content of the \emph{eigenstate thermalisation
+hypothesis} (Deutsch, 1991; Srednicki, 1994): the diagonal matrix elements
+$ \langle a|\hat O|a\rangle $ of a few-body observable are a smooth function $ O(E_a) $ of
+the energy, up to fluctuations exponentially small in the system size. Then
+$ \Tr(\bar\rho\hat O) = \sum_a\rho_{aa}O(E_a) \simeq O(U) $ whenever $ \rho_{aa} $ is
+concentrated in an energy window narrow on the scale over which $ O $ varies, which
+is the case for any physically preparable state of a macroscopic system; and $ O(U) $
+is also the microcanonical value. The hypothesis is a property of the Hamiltonian,
+well supported numerically for generic (chaotic) many-body systems. It fails for
+integrable systems, which relax instead to a \emph{generalised} Gibbs ensemble with
+one multiplier for each conserved quantity --- Jaynes' prescription with more data
+--- and for many-body localised systems, which do not thermalise at all.
+
+\subsection{The second law as a statement about information}
+\label{sec:found_law}
+
+Assembled, the picture is this. The microscopic dynamics destroys no information:
+the Gibbs entropy of the full state and its entire energy distribution are
+conserved. What changes is \emph{where} the information resides: initially in
+quantities that macroscopic measurements can see, later in correlations between
+subsystems, in the phases of $ \rho_{ab} $, and in correlation functions of ever higher
+order. The thermodynamic entropy is the entropy of the macroscopic description,
+\[
+  S_{\rm th}(\mathcal{A}) \equiv \max\big\{\,S[\rho] \;:\; \rho \text{ reproduces the macroscopic data } \mathcal{A}\,\big\} ,
+\]
+which for $ \mathcal{A} = (U, V, N) $ is the equilibrium entropy of
+Section~\ref{sec:ensembles}. In this form the second law has a two-line proof.
+Prepare the system in equilibrium under some internal constraint, so that its state
+$ \rho(0) $ is the maximiser for the initial data $ \mathcal{A}_0 $ and
+$ S[\rho(0)] = S_{\rm th}(\mathcal{A}_0) $. Release the constraint and let the system
+evolve, isolated, to new macroscopic data $ \mathcal{A}_1 $. The evolved state
+$ \rho(t) $ reproduces $ \mathcal{A}_1 $ (these are its own expectation values), so it is
+one of the candidates in the maximum defining $ S_{\rm th}(\mathcal{A}_1) $; hence
+\[
+  S_{\rm th}(\mathcal{A}_1) \;\geq\; S[\rho(t)] = S[\rho(0)] = S_{\rm th}(\mathcal{A}_0) ,
+\]
+the middle equality being the conservation law of Section~\ref{sec:found_unitary}.
+Equality holds only if $ \rho(t) $ is itself the maximum-entropy state for the new
+data, i.e.\ only if no information has been moved out of reach of the macroscopic
+observables --- which is the microscopic meaning of a reversible process. The
+inequality is the entropy form of the minimum principle of Section~\ref{sec:minimum},
+and the same argument with a bath gives the potentials.
+
+The entropy is therefore not a dispensable device. It is the measure of the
+information missing from a description, and the second law is the statement that
+the information missing from the \emph{macroscopic} description of an isolated system
+cannot decrease. Neither the energy variance nor any other property of the energy
+distribution can play this role, since the former is conserved in an isolated system
+and can decrease in an open one.
 
 \section{Summary}
 
@@ -3719,14 +4667,17 @@ $\mu$ and fixed $N$ give genuinely different heat capacities, related by the
 conversion formula of Section~\ref{sec:caveat}, even though the ensembles agree
 on every potential.
 
+\clearpage
 \appendix
+\part*{Appendix}
+\addcontentsline{toc}{part}{Appendix}
 
 \section{Total differentiability and its failure}
 \label{app:diff}
 
 This appendix supports assumption (A4) of Section~\ref{sec:totaldiff}: existence
-of all partial derivatives, and even of all directional derivatives, does not
-imply that a function has a differential.
+of all partial derivatives, and even of all directional derivatives depending
+linearly on the direction, does not imply that a function has a differential.
 
 \paragraph{Landau symbols.} Let $g(\mathbf{h})>0$ (here $g=|\mathbf{h}|$) and let
 $\mathbf{h}\to0$. Then $r=O(g)$, ``at most of order $g$'', means $|r|\leq Cg$ for
@@ -3777,9 +4728,9 @@ $\cos^{3}\theta\neq\cos\theta$.
 The trouble is not that the derivative depends on direction: for every
 non-constant differentiable function it does, through $\nabla
 f\cdot\hat{\mathbf{u}}$. The trouble is that it depends on direction
-\emph{non-linearly}. Differentiability is precisely the assertion that
-$\hat{\mathbf{u}}\mapsto D_{\hat{\mathbf{u}}}f$ is linear --- equivalently, that
-it is contraction with a single covector, which is the geometric restatement in
+\emph{non-linearly}. Differentiability requires that
+$\hat{\mathbf{u}}\mapsto D_{\hat{\mathbf{u}}}f$ be linear --- equivalently, that
+it be contraction with a single covector, which is the geometric restatement in
 Section~\ref{sec:totaldiff}. A function whose directional derivatives fail to be
 linear in the direction has no gradient, no differential and no tangent plane,
 however many directional derivatives exist individually.
@@ -3803,6 +4754,32 @@ $\Theta(|\mathbf{h}|)$ along some direction; the \emph{lower} bound is the
 operative half. The culprit is visible in $f_x$, which tends to $1$ along $y=0$
 and to $0$ along $x=0$: the partials exist but are discontinuous, so $f$ is not
 $C^{1}$ (footnote~\ref{fn:Cn}).
+
+\paragraph{Linear directional derivatives are not enough either.} Linearity in
+$ \hat{\mathbf{u}} $ is necessary but still not sufficient. Consider
+\[
+  g(x,y) = \frac{x^{3}y}{x^{6} + y^{2}}, \qquad g(0,0) = 0 .
+\]
+Along the ray $ (t\cos\theta, t\sin\theta) $ with $ \sin\theta \neq 0 $,
+\[
+  \frac{g(t\cos\theta,\,t\sin\theta)}{t}
+  = \frac{t\cos^{3}\theta\,\sin\theta}{t^{4}\cos^{6}\theta + \sin^{2}\theta}
+  \;\xrightarrow[t\to0]{}\; 0 ,
+\]
+and along $ \sin\theta = 0 $ the function vanishes identically. Hence
+$ D_{\hat{\mathbf{u}}}g(0) = 0 $ for every direction: all directional derivatives
+exist and form the linear (zero) function of $ \hat{\mathbf{u}} $, the candidate
+gradient being $ \nabla g = 0 $. Yet along the curve $ y = x^{3} $, which reaches the
+origin tangentially to the $ x $ axis and hence along no fixed ray,
+$ g(x, x^{3}) = x^{6}/2x^{6} = \tfrac12 $. So $ g $ is not even continuous at the
+origin, and \emph{a fortiori} the remainder $ r = g - 0 $ is not
+$ o(|\mathbf{h}|) $. On each ray the ratio $ g/t $ becomes small, but only for
+$ t \ll |\sin\theta| $ (at $ t = |\sin\theta|^{1/2} $ it is still of order
+$ |\sin\theta|^{-1/2} $), a range that shrinks to nothing as the ray
+approaches the $ x $ axis: the convergence is not uniform in $ \hat{\mathbf{u}} $, and
+uniformity is the extra content of total differentiability. Again the partial
+derivatives are discontinuous at the origin, consistent with the sufficient
+condition that $ C^{1} $ implies total differentiability.
 
 \section{Uniqueness of an expansion, and the intensive triple}
 \label{app:basis}
@@ -4379,6 +5356,125 @@ Legendre-transform bookkeeping as everywhere else: $U^{\ast\ast}=\operatorname{c
 means that transforming to the field ensemble and back automatically performs the
 Maxwell construction and erases the metastable and unstable branches.
 
+
+\section{The Gibbs variational principle}
+\label{app:gibbsvar}
+
+This appendix proves the statements quoted in Section~\ref{sec:minimum}. A
+\emph{density matrix} is a Hermitian operator $ \rho \geq 0 $ with $ \Tr\rho = 1 $; we
+take the Hilbert space finite-dimensional, the extension to trace-class operators
+on an infinite-dimensional space being routine, and use the convention
+$ 0\ln0 = 0 $. For two density matrices $ \rho $, $ \sigma $ with $ \sigma $ of full rank
+($ \sigma > 0 $, so that $ \ln\sigma $ is defined), the \emph{relative entropy} is
+\[
+  D(\rho\,\|\,\sigma) \equiv \Tr(\rho\ln\rho) - \Tr(\rho\ln\sigma) .
+\]
+Every Gibbs state $ e^{-\beta\hat H}/Z $ has full rank, which is all that is needed.
+
+\paragraph{Lemma 1 (Gibbs' inequality).} For probability vectors $ p $ and $ r $,
+\[
+  \sum_i p_i\ln\frac{p_i}{r_i} \;\geq\; 0 ,
+\]
+with equality if and only if $ p = r $.
+
+\emph{Proof.} The function $ \ln y $ is concave and lies below its tangent at
+$ y = 1 $: $ \ln y \leq y - 1 $, with equality only at $ y = 1 $. Summing over the $ i $
+with $ p_i > 0 $,
+\[
+  -\sum_{p_i > 0}p_i\ln\frac{r_i}{p_i}
+  \;\geq\; -\sum_{p_i > 0}p_i\Big(\frac{r_i}{p_i} - 1\Big)
+  = 1 - \sum_{p_i > 0}r_i \;\geq\; 0 .
+\]
+Equality in the first step requires $ r_i = p_i $ wherever $ p_i > 0 $, and in the
+second that $ r $ vanish wherever $ p $ does; together, $ r = p $. \qed
+
+\paragraph{Lemma 2 (Klein's inequality).} For density matrices $ \rho $ and
+$ \sigma > 0 $, $ D(\rho\|\sigma) \geq 0 $, with equality if and only if $ \rho = \sigma $.
+
+\emph{Proof.} Diagonalise both, $ \rho = \sum_ip_i|i\rangle\langle i| $ and
+$ \sigma = \sum_aq_a|a\rangle\langle a| $, and let $ P_{ia} = |\langle i|a\rangle|^{2} $. Since
+both bases are orthonormal and complete, $ P_{ia} \geq 0 $ and
+$ \sum_aP_{ia} = \sum_iP_{ia} = 1 $. Then
+\[
+  \Tr(\rho\ln\rho) = \sum_ip_i\ln p_i ,
+  \qquad
+  \Tr(\rho\ln\sigma) = \sum_ip_i\langle i|\ln\sigma|i\rangle = \sum_ip_i\sum_aP_{ia}\ln q_a .
+\]
+For each $ i $, $ \{P_{ia}\}_a $ is a probability distribution over $ a $, and concavity
+of the logarithm (Jensen's inequality) gives
+\[
+  \sum_aP_{ia}\ln q_a \;\leq\; \ln r_i , \qquad r_i \equiv \sum_aP_{ia}q_a = \langle i|\sigma|i\rangle > 0 ,
+\]
+with $ \sum_ir_i = \Tr\sigma = 1 $. Hence
+$ D(\rho\|\sigma) \geq \sum_ip_i\ln p_i - \sum_ip_i\ln r_i = \sum_ip_i\ln(p_i/r_i) \geq 0 $
+by Lemma 1. If $ D = 0 $, both inequalities are equalities. Lemma 1 then gives
+$ p_i = r_i > 0 $ for every $ i $. Equality in Jensen's inequality for the strictly
+concave logarithm requires, for each $ i $, that $ q_a $ take one and the same value on
+all $ a $ with $ P_{ia} > 0 $; i.e.\ $ |i\rangle $ lies in a single eigenspace of $ \sigma $,
+with eigenvalue $ \langle i|\sigma|i\rangle = r_i = p_i $. So $ \sigma|i\rangle = p_i|i\rangle = \rho|i\rangle $
+for every vector of a complete basis, and $ \sigma = \rho $. The converse is
+immediate. \qed
+
+For commuting $ \rho $ and $ \sigma $, $ P_{ia} = \delta_{ia} $ and Lemma 2 reduces to Lemma 1:
+the quantum statement contains the classical one.
+
+\paragraph{Theorem (Gibbs variational principle).} Let $ Z = \Tr e^{-\beta\hat H} $,
+$ \rho_{\rm eq} = e^{-\beta\hat H}/Z $ and $ F = -k_BT\ln Z $. For every density matrix $ \rho $,
+\[
+  \mathcal{F}[\rho] \equiv \Tr(\rho\hat H) + k_BT\,\Tr(\rho\ln\rho)
+  = F + k_BT\,D(\rho\,\|\,\rho_{\rm eq}) \;\geq\; F ,
+\]
+with equality if and only if $ \rho = \rho_{\rm eq} $.
+
+\emph{Proof.} By the spectral theorem, $ \ln\rho_{\rm eq} = -\beta\hat H - \ln Z $ as an
+operator identity, so $ k_BT\,\Tr(\rho\ln\rho_{\rm eq}) = -\Tr(\rho\hat H) + F $ for every
+$ \rho $ (using $ \Tr\rho = 1 $). Therefore
+\[
+  k_BT\,D(\rho\|\rho_{\rm eq}) = k_BT\,\Tr(\rho\ln\rho) + \Tr(\rho\hat H) - F
+  = \mathcal{F}[\rho] - F ,
+\]
+and Lemma 2 gives the inequality and the condition for equality. \qed
+
+$ \mathcal{F}[\rho] = U[\rho] - TS[\rho] $ is the free energy of an arbitrary,
+generally non-equilibrium state at the bath temperature $ T $, in the sense of the
+availability of Section~\ref{sec:minimum}, and the theorem is the minimum principle at
+the level of states: among all states, the Gibbs state has the lowest free energy, and
+the excess is $ k_BT $ times its relative entropy to the Gibbs state.
+
+\paragraph{Corollary (Gibbs--Bogoliubov inequality).} Let $ \hat H_0 $ be any
+Hamiltonian with $ Z_0 = \Tr e^{-\beta\hat H_0} $ finite, $ \rho_0 = e^{-\beta\hat H_0}/Z_0 $,
+$ F_0 = -k_BT\ln Z_0 $ and $ \langle\cdot\rangle_0 = \Tr(\rho_0\,\cdot\,) $. Then
+\[
+  F \;\leq\; F_0 + \langle\hat H - \hat H_0\rangle_0 ,
+\]
+with equality if and only if $ \hat H - \hat H_0 $ is a multiple of the identity.
+
+\emph{Proof.} Take $ \rho = \rho_0 $ in the theorem. With
+$ \ln\rho_0 = -\beta\hat H_0 - \ln Z_0 $,
+\[
+  \mathcal{F}[\rho_0] = \langle\hat H\rangle_0 + k_BT\big(-\beta\langle\hat H_0\rangle_0 - \ln Z_0\big)
+  = F_0 + \langle\hat H - \hat H_0\rangle_0 ,
+\]
+and $ F \leq \mathcal{F}[\rho_0] $. Equality requires $ \rho_0 = \rho_{\rm eq} $, i.e.\
+$ e^{-\beta\hat H_0}/Z_0 = e^{-\beta\hat H}/Z $; taking logarithms,
+$ \hat H = \hat H_0 + k_BT\ln(Z_0/Z) $. \qed
+
+The corollary is the theorem with the trial states restricted to the Gibbs states of a
+family of solvable Hamiltonians $ \hat H_0 $. Variational mean-field theory minimises
+the right-hand side over such a family, for instance non-interacting spins in an
+effective field, $ \hat H_0 = -h\sum_i\hat\sigma^z_i $ with $ h $ the variational parameter;
+the best member of the family gives the lowest upper bound on $ F $ that the family
+allows.
+
+\paragraph{Other ensembles.} Nothing in the proofs uses more than the form
+$ \rho_{\rm eq} \propto e^{-\beta\hat K} $ for some Hermitian $ \hat K $. With
+$ \hat K = \hat H - \mu\hat N $ and $ \Xi = \Tr e^{-\beta\hat K} $,
+\[
+  \Omega[\rho] \equiv \Tr\big[\rho\,(\hat H - \mu\hat N)\big] + k_BT\,\Tr(\rho\ln\rho)
+  = \Omega + k_BT\,D(\rho\,\|\,\rho_{\rm eq}) \;\geq\; \Omega = -k_BT\ln\Xi ,
+\]
+and $ \Omega \leq \Omega_0 + \langle\hat K - \hat K_0\rangle_0 $; the same holds with a field
+term $ -\mathcal{H}\hat M $ or a pressure term $ +P\hat V $ in $ \hat K $.
 
 \section{Three points of ensemble bookkeeping}
 \label{app:bookkeeping}
