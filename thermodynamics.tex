@@ -344,8 +344,23 @@ but not necessary for strictness ($\lambda^{4}$ is strictly convex with
 $f''(0)=0$). An affine function is convex and concave but strictly neither.
 For $ f \in C^{1} $ there is a third, equivalent form, used in
 Section~\ref{sec:potentials}: $ f $ is convex if and only if its graph lies above
-each of its tangent lines, $ f(b) \geq f(a) + f'(a)(b - a) $ for all $ a, b $, and
-strictly convex if and only if the inequality is strict for $ b \neq a $.} A convex function that is affine on a segment is still
+each of its tangent lines, $ f(b) \geq f(a) + f'(a)\,(b - a) $ for all $ a, b $, and
+strictly convex if and only if the inequality is strict for $ b \neq a $. To derive it
+from the chord form, take $ a \neq b $, $ 0 < x \leq 1 $, $ \lambda_1 = b $ and
+$ \lambda_2 = a $:
+$ f\big(a + x(b - a)\big) \leq (1 - x)f(a) + xf(b) $, i.e.\
+$ \big[f\big(a + x(b - a)\big) - f(a)\big]/x \leq f(b) - f(a) $. As $ x \to 0^{+} $ the
+left side tends to the derivative of $ f $ at $ a $ in the direction $ b - a $, namely
+$ f'(a)\,(b - a) $, which gives the tangent inequality. For strictness let
+$ m = (a + b)/2 $: the tangent inequality at $ a $, applied to the point $ m $, gives
+$ f(m) \geq f(a) + \tfrac{1}{2}f'(a)\,(b - a) $, and strict convexity gives
+$ f(m) < \tfrac{1}{2}\big(f(a) + f(b)\big) $; combining the two,
+$ f(b) > f(a) + f'(a)\,(b - a) $. (The limit $ x \to 0 $ alone would only have given
+$ \geq $, since strict inequalities are not preserved by limits; the midpoint trick
+restores strictness.) Conversely, if the tangent inequality holds, apply it at
+$ c = x\lambda_1 + (1 - x)\lambda_2 $ to the points $ \lambda_1 $ and $ \lambda_2 $ and
+add the two results with weights $ x $ and $ 1 - x $: the terms in $ f'(c) $ cancel and
+the chord inequality remains.} A convex function that is affine on a segment is still
 $C^{1}$ --- the slope is continuous, it simply stops changing --- but its second
 derivative vanishes on the segment and jumps at the endpoints, so $U$ is $C^{1}$
 and not $C^{2}$. Since $C_V$, $\kappa_T$ and every other response function is
@@ -855,17 +870,24 @@ Clausius' statement is the second law with the reservoir's entropy eliminated,
 and nothing else. Note that it compares the system's entropy change with the
 \emph{reservoir's} temperature, not with the system's own. The difference matters
 even in the gentlest possible process. Let the system, at temperature $ T $, and
-the reservoir, at $ T_{\rm res} > T $, each be internally equilibrated, and let a
-small heat $ \dbar Q > 0 $ pass from the reservoir to the system through a weakly
-conducting wall. Each body separately changes quasi-statically, so
+the reservoir, at $ T_{\rm res} \neq T $, each be internally equilibrated, and let a
+small heat $ \dbar Q $ pass between them through a weakly conducting wall, with
+$ \dbar Q $ counted as received by the system. Heat flows from the hotter body to the
+colder one, so $ \dbar Q > 0 $ if $ T_{\rm res} > T $ and $ \dbar Q < 0 $ if
+$ T_{\rm res} < T $. Each body separately changes quasi-statically, so
 $ dS = \dbar Q/T $ and $ dS_{\rm res} = -\dbar Q/T_{\rm res} $, and
 \[
-  dS_{\rm tot} = \dbar Q\left(\frac{1}{T} - \frac{1}{T_{\rm res}}\right) > 0 .
+  dS_{\rm tot} = \dbar Q\left(\frac{1}{T} - \frac{1}{T_{\rm res}}\right)
+  = \dbar Q\;\frac{T_{\rm res} - T}{T\,T_{\rm res}} \;>\; 0 ,
 \]
+in either case, because $ \dbar Q $ and $ T_{\rm res} - T $ have the same sign. The
+direction of the flow and the sign of $ dS_{\rm tot} $ are the same statement: a flow
+from the colder body to the hotter one would give $ dS_{\rm tot} < 0 $, and that is
+exactly what the second law forbids (Clausius' original formulation).
 The entropy is produced \emph{in the wall}, across the finite temperature drop,
 and not inside either body; it vanishes only when $ T \to T_{\rm res} $. So
-$ dS > \dbar Q/T_{\rm res} $ here although neither body is ever out of
-equilibrium.
+$ dS - \dbar Q/T_{\rm res} = dS_{\rm tot} > 0 $ here, for heating and for cooling alike,
+although neither body is ever out of equilibrium.
 The same elimination, carried out for each choice of constraint, produces the minimum
 principles of Section~\ref{sec:minimum}. Naming the entropy produced
 $d\sigma\equiv dS_{\rm tot}\geq0$ turns the inequality into the equality
@@ -874,16 +896,34 @@ when $T=T_{\rm res}$, with equality if and only if $d\sigma=0$.
 
 \paragraph{Why the two words differ.} \emph{Reversible} means quasi-static
 \emph{and} dissipationless: no friction, no finite temperature or pressure drops
-across the boundary, no hysteresis, no chemical reaction running downhill. So
+across the boundary, no hysteresis, no chemical reaction running downhill. The
+name is literal. Every dissipative force is the coarse-grained trace of energy
+passing into microscopic degrees of freedom that nobody controls; once all of them
+are excluded, what remains is the microscopic equations of motion themselves, which
+are invariant under time reversal. For every such process the time-reversed one is
+then also a solution, and running the protocol backwards retraces the path and
+restores both the system and its surroundings. Dissipation is what breaks this
+symmetry at the macroscopic level (Section~\ref{sec:foundations}). So
 quasi-staticity is necessary for $\dbar Q=T\,dS$ and not sufficient. Standard
 counterexamples, all arbitrarily slow yet all with $\dbar Q<T\,dS$:
 
 \begin{itemize}
-\item \emph{Joule heating.} Stir a thermally isolated fluid infinitesimally
-slowly. The fluid stays in equilibrium, so the process is quasi-static;
-$\dbar Q=0$ because the vessel is adiabatic; yet $dS>0$, since the work is
+\item \emph{Joule heating.} Stir a thermally isolated fluid infinitesimally slowly.
+The fluid stays in equilibrium, so the process is quasi-static;
+$\dbar Q=0$ because the vessel is adiabatic;\footnote{\label{fn:adiabatic}%
+\textbf{Adiabatic.} In thermodynamics a wall is \emph{adiabatic} if no heat can pass
+through it, so that the energy of the enclosed system can change only by work
+(mechanical, electrical, stirring); a wall that lets heat pass is \emph{diathermal}. A
+process is adiabatic if the system is enclosed by adiabatic walls throughout, so that
+$ \dbar Q = 0 $ at every stage. The word says nothing about the rate: an adiabatic
+process may be fast and violent (free expansion, stirring), and then $ dS > 0 $; only a
+\emph{reversible} adiabatic process is isentropic. The quantum-mechanical usage is a
+different notion: a parameter of $ \hat H $ is changed \emph{adiabatically} if it is
+changed slowly enough for the system to follow the instantaneous eigenstates (the
+adiabatic theorem), which concerns slowness, not thermal insulation
+(Section~\ref{sec:found_heat}).} yet $dS>0$, since the work is
 degraded into internal energy. Here $T\,dS=T\,d\sigma$ entirely.
-\item \emph{Heat flow across a finite $\Delta T$.} If $T_{\rm res}\neq T$ then
+\item \emph{Heat flow across a finite $\Delta T$.} If $T_{\rm res} > T$ then
 $\dbar Q/T_{\rm res}<\dbar Q/T=dS$ for heating. The system alone is quasi-static;
 the composite is not. Compression against sliding friction is of the same kind.
 \item \emph{Hysteretic systems.} Domain-wall depinning (Barkhausen noise),
@@ -900,7 +940,7 @@ apparatus survive in that case.
 
 \paragraph{Robustness of $c_V$.}
 At fixed volume and particle number no work is done, so the first law between the
-initial and final equilibrium states reads $ \Delta U = Q $ \emph{regardless of
+initial and final equilibrium states reads $ \Delta U = \Delta Q $ \emph{regardless of
 reversibility}. During an irreversible heating step $ U $ need not be a function
 of $ (T, V, N) $ at intermediate times --- there may be no $ T $ --- so $ dU $ along
 the path is not meaningful; but only the end points enter. Heat the sample at
@@ -933,34 +973,15 @@ inversion is possible, and whether the substitution keeps what it should.
 
 \subsection{Invertibility and strict convexity}
 
-Nonlinearity of $T(S)$ is not an obstacle. What a function needs in order to be
-invertible is \emph{strict monotonicity}, and strict convexity of $U$ in $S$
-delivers exactly that.
+What a function needs in order to be invertible is \emph{strict monotonicity},
+and strict convexity of $U$ in $S$ delivers exactly that.
 
-The definition of convexity in footnote~\ref{fn:convex} is by chords; the
-argument needs it in tangent form, so we first derive the latter. Let $ f $ be
-$ C^{1} $ and convex, take $ a \neq b $ and $ 0 < x \leq 1 $, and apply the chord
-inequality to the points $ a $ and $ b $ with weights $ 1-x $ and $ x $:
+The argument uses convexity in its tangent form, derived from the chord definition
+in footnote~\ref{fn:convex}: a strictly convex $ C^{1} $ function lies strictly above
+each of its tangent lines away from the point of tangency,
 \[
-  f\big(a + x(b - a)\big) \leq (1-x) f(a) + x f(b)
-  \quad\Longrightarrow\quad
-  \frac{f\big(a + x(b - a)\big) - f(a)}{x} \leq f(b) - f(a) .
+  f(b) > f(a) + f'(a)\,(b - a) \qquad (b \neq a) .
 \]
-As $ x \to 0^{+} $ the left side tends to the derivative of $ f $ at $ a $ in the
-direction $ b - a $, namely $ f'(a)(b - a) $, so
-\[
-  f(b) \geq f(a) + f'(a)(b - a) :
-\]
-a convex function lies on or above each of its tangent lines. If $ f $ is
-\emph{strictly} convex the inequality is strict. Indeed, let $ m = (a + b)/2 $;
-the tangent inequality at $ a $, applied to the point $ m $, gives
-$ f(m) \geq f(a) + \tfrac{1}{2} f'(a)(b - a) $, and strict convexity gives
-$ f(m) < \tfrac{1}{2}\big(f(a) + f(b)\big) $. Combining the two,
-$ f(a) + \tfrac{1}{2}f'(a)(b - a) < \tfrac{1}{2}\big(f(a) + f(b)\big) $, i.e.\
-$ f(b) > f(a) + f'(a)(b - a) $. (The limit $ x \to 0 $ alone would only have given
-$ \geq $, since strict inequalities are not preserved by limits; the midpoint
-trick restores strictness.)
-
 With this in hand the implication is one line: for $S_1<S_2$, strict
 convexity gives both
 \[
@@ -968,25 +989,37 @@ U(S_2)-U(S_1)>U'(S_1)(S_2-S_1)
 \qquad\text{and}\qquad
 U(S_1)-U(S_2)>U'(S_2)(S_1-S_2),
 \]
-since a strictly convex function lies strictly above each of its tangent lines
-away from the point of tangency. Adding the two and dividing by $S_2-S_1>0$
+by the tangent inequality applied at $ S_1 $ and at $ S_2 $. Adding the two and dividing by $S_2-S_1>0$
 gives
 \[
 U'(S_2)-U'(S_1)>0,
 \qquad\text{i.e.}\qquad T(S_2)>T(S_1) .
 \]
-So $T(S)$ is strictly increasing, hence injective, and the inverse function
-theorem supplies a $C^{1}$ inverse $S(T,V,N)$ on the whole stable branch. In
-differential form the same statement is
+So $T(S)$ is strictly increasing, hence injective, and
+the inverse function theorem\footnote{\label{fn:ift}\textbf{Inverse function
+theorem.} Let $ \mathbf{f} : D \to \mathbb{R}^{n} $ be $ C^{k} $ ($ k \geq 1 $) on an open
+set $ D \subset \mathbb{R}^{n} $, and let its Jacobian matrix
+$ \partial f_i/\partial x_j $ be invertible at a point $ \mathbf{x}_0 $. Then there are
+neighbourhoods of $ \mathbf{x}_0 $ and of $ \mathbf{f}(\mathbf{x}_0) $ between which
+$ \mathbf{f} $ is a bijection, and its inverse is again $ C^{k} $, with Jacobian equal
+to the inverse of the Jacobian of $ \mathbf{f} $; for $ n = 1 $,
+$ (f^{-1})'(y) = 1/f'\big(f^{-1}(y)\big) $. The theorem is local. A global inverse on
+an interval needs injectivity in addition, which in one variable is strict
+monotonicity, and the derivative must not vanish anywhere: $ f(x) = x^{3} $ is
+strictly increasing, but its inverse $ y^{1/3} $ is not differentiable at $ 0 $,
+where $ f'(0) = 0 $. Here the theorem is applied to the map
+$ (S, V, N) \mapsto (T, V, N) $, whose Jacobian determinant is
+$ (\partial T/\partial S)_{V,N} = T/C_V $; it is nonzero, and the inverse therefore
+$ C^{1} $ in all three variables, wherever $ C_V $ is finite and positive.}
+supplies a $C^{1}$ inverse $S(T,V,N)$ on the whole stable branch.
+In differential form the same statement is
 \[
 \left(\frac{\partial T}{\partial S}\right)_{V,N}
 =\left(\frac{\partial^{2}U}{\partial S^{2}}\right)_{V,N}=\frac{T}{C_V}>0
 \qquad\text{whenever } C_V>0 ,
 \]
 and Section~\ref{sec:whyconvex} shows that $C_V>0$ is not an assumption but a
-consequence of the second law. Nonlinearity is irrelevant to this:
-$T=\alpha S^{3}+\beta e^{S}$ with $\alpha,\beta>0$ is thoroughly nonlinear and
-thoroughly invertible.
+consequence of the second law.
 
 Invertibility fails only where \emph{strict} convexity does. At a first-order
 transition $U$ is affine in $S$ along a tie line (Figure~\ref{fig:firstorder}b),
@@ -1056,15 +1089,17 @@ why $F$ is a potential and $\tilde U$ is merely a function.
 
 The Legendre transform works because a convex function can be described in two
 equivalent ways: as the set of points $\big(S,U(S)\big)$, or as the envelope of
-its tangent lines. Work at fixed $ (V, N) $ and draw the graph of $ U $ against
-$ S $ in a plane with coordinates $ (S, y) $; the graph is the curve $ y = U(S) $.
-The tangent to it at the point $ S_0 $ has slope $ T = U'(S_0) $; it is a
-\emph{straight line}, the set of points $ (S, y) $ with
+its tangent lines. Work at fixed $ (V, N) = (V_0, N_0) $, write $ U(S) $ for
+$ U(S, V_0, N_0) $, and draw the graph in a plane with coordinates $ (S, y) $. Here
+$ y $ is only the vertical coordinate of a point of the plane, a free variable like
+$ S $ and not a function of it; curves in the plane are described by equations
+relating $ y $ to $ S $. The graph of $ U $ is the curve $ y = U(S) $. The tangent to it
+at the point $ S_0 $ has slope $ T = U'(S_0) $; it is a \emph{straight line}, the curve
 \[
 y=U(S_0)+T(S-S_0)=T\,S+\big[U(S_0)-TS_0\big] .
 \]
-Here $ y $ is the ordinate of a point on the tangent line, not the value of $ U $:
-the two coincide only at $ S = S_0 $. Now label the tangent by its slope instead of
+The two curves share the point $ \big(S_0, U(S_0)\big) $ and no other: by the tangent
+inequality, a point of the tangent line with $ S \neq S_0 $ has $ y < U(S) $. Now label the tangent by its slope instead of
 by its point of contact. Because $ U $ is strictly convex, each slope $ T $ in the
 range of $ U' $ is attained at exactly one point, $ S_0 = S^\ast(T) $, the solution
 of $ U'(S_0) = T $ (Section~\ref{sec:potentials}); the bracket is then a function of
@@ -1307,8 +1342,37 @@ arguments no longer tell us \emph{which} state the system is in.
 
 Why extensive coordinates are robust and intensive ones are not is visible in this
 example. The coexistence conditions are \emph{equalities of intensive variables}
-between the phases, $ T_\ell = T_g $, $ P_\ell = P_g $, $ \mu_\ell = \mu_g $: that is
-what it means for the phases to be in equilibrium with each other. Intensive
+between the phases, $ T_\ell = T_g $, $ P_\ell = P_g $, $ \mu_\ell = \mu_g $, and this is
+a consequence of the entropy maximum, not a definition. The two phases are two parts
+of one isolated sample, separated by an interface that lets energy, volume and
+particles pass: it conducts heat, it moves, and molecules cross it. The totals
+$ U $, $ V $, $ N $ are fixed; their division between the phases is an internal
+variable, and equilibrium is the division that maximises the total entropy. The
+interface contributes a term of relative order $ N^{-1/d} $, negligible in the
+thermodynamic limit, so
+\[
+  S = S_\ell(U_\ell, V_\ell, N_\ell) + S_g(U - U_\ell,\, V - V_\ell,\, N - N_\ell) ,
+\]
+and stationarity with respect to $ U_\ell $, $ V_\ell $ and $ N_\ell $ gives
+\[
+  \frac{\partial S_\ell}{\partial U_\ell} = \frac{\partial S_g}{\partial U_g} , \qquad
+  \frac{\partial S_\ell}{\partial V_\ell} = \frac{\partial S_g}{\partial V_g} , \qquad
+  \frac{\partial S_\ell}{\partial N_\ell} = \frac{\partial S_g}{\partial N_g} ,
+\]
+i.e.\ equal $ 1/T $, $ P/T $ and $ -\mu/T $. The derivatives that are equalised are
+those with respect to the quantities exchanged, and these are the intensive variables.
+The argument uses nothing specific to phase transitions: it holds for any two parts of
+a system in equilibrium that can exchange $ U $, $ V $ and $ N $. What is specific to a
+first-order transition is that two \emph{distinct} states, with different densities
+$ v_\ell \neq v_g $ and $ s_\ell \neq s_g $, satisfy it at the same $ (T, P, \mu) $. At a
+continuous transition there are no distinct coexisting phases. The densities, and with
+them the first derivatives of the potentials, are continuous; the tie line has shrunk
+to a point, and at the critical point the two phases have become identical. The
+equalities then hold trivially between any two parts of the single homogeneous phase,
+$ U $ remains strictly convex (its curvature may vanish at the critical point, as that
+of $ \lambda^{4} $ does at $ 0 $, footnote~\ref{fn:convex}), the map to intensive
+variables stays one-to-one, and the non-analyticity is confined to second and higher
+derivatives (Section~\ref{sec:critical}). At a first-order transition, intensive
 variables therefore take the same value in every two-phase state on the tie line
 and cannot tell those states apart. Extensive variables \emph{add} over the phases,
 $ V = V_\ell + V_g $, $ S = S_\ell + S_g $, and through the lever rule they record
@@ -1476,7 +1540,18 @@ impose at the boundary: the temperature $ T_0 $ of the walls through which heat
 passes, the pressure $ P_0 $ against which the volume moves, and the chemical
 potential $ \mu_0 $ at which particles are admitted. As in the variational form of
 Section~\ref{sec:potentials}, these are parameters, not functions of the system's
-state. The first law for the system reads
+state. They are constant throughout the process from $ A $ to $ B $ because that is what
+the walls and reservoirs are for, and this is the situation in which a potential is
+the relevant quantity. Heat is exchanged with a bath so large that the heat it gives
+up does not change its temperature; the volume moves against a piston loaded by a
+fixed weight, or against the atmosphere, which exerts the same pressure on the
+boundary whatever the system does; particles are admitted from a reservoir whose
+chemical potential the transfer does not change. The values $ P_0 $ and $ \mu_0 $ are
+those of the surroundings at the boundary, not the system's own pressure and
+chemical potential, which during a violent process need not even exist. With
+surroundings that changed during the process the energy balance would involve
+$ \int P_0\,dV $ and $ \int\mu_0\,dN $, which are not differences of state functions,
+and no potential would result. The first law for the system reads
 \[
   \Delta U = Q - P_0\,\Delta V + \mu_0\,\Delta N ,
 \]
@@ -1490,12 +1565,41 @@ $ \Delta S \geq Q/T_0 $. Eliminating $ Q $,
 since $ T_0 $, $ P_0 $, $ \mu_0 $ are constants and can be taken inside the
 difference. The quantity in brackets, the \emph{availability}, is defined for any
 equilibrium state of the system; it involves the system's own extensive variables
-and the surroundings' intensive ones. When the system is in equilibrium with
-its surroundings, the system's temperature (and, where the walls permit,
+and the surroundings' intensive ones.
+When the system is in equilibrium with its surroundings, the system's temperature (and, where the walls permit,
 pressure and chemical potential) equals the imposed value, and the availability
 reduces to a thermodynamic potential: to $ F $ if the walls are rigid and closed
 ($ \Delta V = \Delta N = 0 $), to $ G $ if closed but movable ($ \Delta N = 0 $), to
-$ \Omega $ if rigid but permeable ($ \Delta V = 0 $). No reservoir entropy, and no
+$ \Omega $ if rigid but permeable ($ \Delta V = 0 $).
+
+To prove the first part, let the system be in an equilibrium state, with temperature
+$ T $, pressure $ P $ and chemical potential $ \mu $, and consider a small further
+exchange through the walls: heat $ \dbar Q $, a volume change $ dV $ if the walls move,
+$ dN $ particles if they are permeable. To first order the system passes through
+equilibrium states, so $ dU = T\,dS - P\,dV + \mu\,dN $, and the availability
+$ \Psi \equiv U - T_0S + P_0V - \mu_0N $ changes by
+\[
+  d\Psi = (T - T_0)\,dS - (P - P_0)\,dV + (\mu - \mu_0)\,dN .
+\]
+Suppose $ T \neq T_0 $. Then a heat flow with $ dS $ of the sign of $ T_0 - T $, i.e.\ heat
+flowing from the hotter side to the colder, lowers $ \Psi $; it is permitted by
+the inequality $ \Delta\Psi \leq 0 $, and a diathermal wall lets it happen, so the
+state was not one from which no spontaneous change proceeds, i.e.\ not equilibrium
+with the surroundings. Hence $ T = T_0 $. In the same way $ P \neq P_0 $ would let a
+movable wall move (towards larger $ V $ if $ P > P_0 $), and $ \mu \neq \mu_0 $ would let
+particles cross a permeable one; hence $ P = P_0 $ and $ \mu = \mu_0 $ where the walls
+permit the exchange, while across a rigid or closed wall nothing is implied. For the
+second part, let $ A $ and $ B $ both be in equilibrium with the surroundings ($ A $ with
+its internal constraint), so that $ T = T_0 $ at both. Then
+$ \Delta(T_0S) = \Delta(TS) $, and with rigid closed walls
+$ \Delta\Psi = \Delta(U - TS) = \Delta F $, the terms in $ V $ and $ N $ being
+constant. With closed movable walls also $ P = P_0 $ at both ends, so
+$ \Delta(P_0V) = \Delta(PV) $ and $ \Delta\Psi = \Delta(U - TS + PV) = \Delta G $; with
+rigid permeable walls $ \mu = \mu_0 $ and $ \Delta\Psi = \Delta(U - TS - \mu N) =
+\Delta\Omega $. In each case $ \Delta\Psi \leq 0 $ becomes $ \Delta\Phi \leq 0 $ for the
+corresponding potential.
+
+No reservoir entropy, and no
 partition of the system, appear anywhere; the second law enters only through the
 system's own Clausius inequality, and the internal variable $ \xi $ released at
 $ A $ can be any of those listed above, an order parameter included. The
@@ -1544,7 +1648,7 @@ $ U - T_0S $.
 \paragraph{The statistical-mechanical version.} For an arbitrary trial density
 matrix $\rho$ define
 \[
-\mathcal{F}[\rho]=\Tr(\rho\hat H)+k_BT\,\Tr(\rho\ln\rho),
+\mathcal{F}[\rho]=\Tr(\rho\hat H)+k_BT\,\Tr(\rho\ln\rho) = U - T S,
 \]
 the mean energy minus $ T $ times the Gibbs entropy (footnote~\ref{fn:gibbsS}) of
 the trial state, and let $ \rho_{\rm eq} = e^{-\beta\hat H}/Z $. The distance between
@@ -2758,58 +2862,63 @@ common orthonormal eigenbasis $ \{|a\rangle\} $ of the Fock space,
 which is the same assumption that underlies the Lehmann spectral representation.
 Nothing else is assumed. In an interacting system the $ |a\rangle $ are in general
 superpositions of very many Slater determinants (or permanents), and nothing
-requires $ E_a $ to be related to single-particle energies. We abbreviate
+requires $ E_a $ to be related to single-particle energies.
+We abbreviate
 \[
-  \hat K \equiv \hat H - \mu\hat N , \qquad K_a = E_a - \mu N_a .
+  \hat{\mathcal{H}} \equiv \hat H - \mu\hat N , \qquad \xi_a \equiv E_a - \mu N_a ,
 \]
+so that $ \hat{\mathcal{H}}|a\rangle = \xi_a|a\rangle $. The hat distinguishes the
+operator $ \hat{\mathcal{H}} $ from the applied magnetic field $ \mathcal{H} $, and
+$ \xi_a $ is the many-body counterpart of the single-particle $ \xi_\lambda =
+\varepsilon_\lambda - \mu $ of Section~\ref{sec:filt_additive}.
 
 \paragraph{The partition function as a normalisation.} The grand canonical
 equilibrium state of Section~\ref{sec:ensembles} is the density matrix
 \[
-  \hat\rho_{\rm eq} = \frac{e^{-\beta\hat K}}{\Xi} , \qquad
+  \hat\rho_{\rm eq} = \frac{e^{-\beta\hat{\mathcal{H}}}}{\Xi} , \qquad
   \Tr\hat\rho_{\rm eq} = 1
   \quad\Longrightarrow\quad
-  \Xi(T,\mu) = \Tr e^{-\beta\hat K} :
+  \Xi(T,\mu) = \Tr e^{-\beta\hat{\mathcal{H}}} :
 \]
 the grand partition function is the normalisation of the equilibrium density
 matrix. A trace may be evaluated in any orthonormal basis, and the eigenbasis turns
 it into a sum. A function of an operator acts on each eigenvector as the same
-function of the eigenvalue (the spectral theorem), $ e^{-\beta\hat K}|a\rangle =
-e^{-\beta K_a}|a\rangle $, so $ \langle a|e^{-\beta\hat K}|a\rangle = e^{-\beta K_a} $ and
+function of the eigenvalue (the spectral theorem), $ e^{-\beta\hat{\mathcal{H}}}|a\rangle =
+e^{-\beta \xi_a}|a\rangle $, so $ \langle a|e^{-\beta\hat{\mathcal{H}}}|a\rangle = e^{-\beta \xi_a} $ and
 \[
-  \Xi = \sum_a \langle a|e^{-\beta\hat K}|a\rangle
+  \Xi = \sum_a \langle a|e^{-\beta\hat{\mathcal{H}}}|a\rangle
   = \sum_a e^{-\beta(E_a - \mu N_a)}
   = \sum_N e^{\beta\mu N}\!\!\sum_{a\,:\,N_a = N}\!\! e^{-\beta E_a}
   = \sum_N e^{\beta\mu N}\,Z_N ,
 \]
 which is the standard form of Section~\ref{sec:ensembles}. In the same basis the
 density matrix is diagonal, $ \hat\rho_{\rm eq} = \sum_a p_a\,|a\rangle\langle a| $ with
-$ p_a = e^{-\beta K_a}/\Xi $: the system is found in the eigenstate $ a $ with
+$ p_a = e^{-\beta \xi_a}/\Xi $: the system is found in the eigenstate $ a $ with
 probability $ p_a $, and $ \sum_ap_a = 1 $.
 
 \subsection{Thermodynamics in the eigenbasis}
 \label{sec:filt_mb}
 
-\paragraph{The many-body filter.} Let $ g(K) \equiv \sum_a\delta(K - K_a) $ be the
-many-body density of states of $ \hat K $, and
-$ P_T(K) \equiv g(K)\,e^{-\beta K}/\Xi $ the probability density of $ K $ in
+\paragraph{The many-body filter.} Let $ g(\xi) \equiv \sum_a\delta(\xi - \xi_a) $ be the
+many-body density of states of $ \hat{\mathcal{H}} $, and
+$ P_T(\xi) \equiv g(\xi)\,e^{-\beta \xi}/\Xi $ the probability density of $ \xi $ in
 equilibrium. Then
 \begin{equation}\label{eq:filt_mb}
-  \Xi = \int\! dK\; g(K)\,e^{-\beta K} , \qquad
-  S = -k_B\sum_a p_a\ln p_a = \frac{\langle\hat K\rangle - \Omega}{T} , \qquad
-  \boxed{\;C_\mu = \frac{\Var(\hat K)}{k_BT^{2}}\;}
+  \Xi = \int\! d\xi\; g(\xi)\,e^{-\beta \xi} , \qquad
+  S = -k_B\sum_a p_a\ln p_a = \frac{\langle\hat{\mathcal{H}}\rangle - \Omega}{T} , \qquad
+  \boxed{\;C_\mu = \frac{\Var(\hat{\mathcal{H}})}{k_BT^{2}}\;}
 \end{equation}
 with $ \Omega = -k_BT\ln\Xi $. The first is the definition of $ g $; the thermodynamics
 is the Laplace transform of the many-body spectrum. The second follows from
-$ \ln p_a = -\beta K_a - \ln\Xi $. For the third, $ \hat K $ does not depend on $ T $ at
-fixed $ \mu $, so $ \partial\ln\Xi/\partial\beta = -\langle\hat K\rangle $ and
-$ \partial^{2}\ln\Xi/\partial\beta^{2} = \Var(\hat K) $; differentiating $ TS = \langle\hat K\rangle - \Omega $
+$ \ln p_a = -\beta \xi_a - \ln\Xi $. For the third, $ \hat{\mathcal{H}} $ does not depend on $ T $ at
+fixed $ \mu $, so $ \partial\ln\Xi/\partial\beta = -\langle\hat{\mathcal{H}}\rangle $ and
+$ \partial^{2}\ln\Xi/\partial\beta^{2} = \Var(\hat{\mathcal{H}}) $; differentiating $ TS = \langle\hat{\mathcal{H}}\rangle - \Omega $
 with $ (\partial\Omega/\partial T)_\mu = -S $ gives $ T(\partial S/\partial T)_\mu =
-(\partial\langle\hat K\rangle/\partial T)_\mu = \Var(\hat K)/k_BT^{2} $, using
+(\partial\langle\hat{\mathcal{H}}\rangle/\partial T)_\mu = \Var(\hat{\mathcal{H}})/k_BT^{2} $, using
 $ d\beta/dT = -1/k_BT^{2} $. This is the result of Section~\ref{sec:caveat}, now
 written in the eigenbasis:
 \[
-  C_\mu = \frac{1}{k_BT^{2}}\int\! dK\; P_T(K)\,\big(K - \langle\hat K\rangle\big)^{2} ,
+  C_\mu = \frac{1}{k_BT^{2}}\int\! d\xi\; P_T(\xi)\,\big(\xi - \langle\hat{\mathcal{H}}\rangle\big)^{2} ,
 \]
 the variance of the many-body spectrum seen through the Boltzmann weight. It is
 non-negative for every Hamiltonian.
@@ -2817,42 +2926,42 @@ non-negative for every Hamiltonian.
 \paragraph{Responses as covariances.} Let $ \hat A $ be a Hermitian operator that is
 conserved, $ [\hat A, \hat H] = [\hat A, \hat N] = 0 $; the eigenbasis may then be chosen
 to diagonalise it as well, $ \hat A|a\rangle = A_a|a\rangle $. A field $ f $ coupled to it,
-$ \hat K \to \hat K - f\hat A $, leaves the eigenvectors unchanged and shifts the
-eigenvalues to $ K_a - fA_a $. For any $ \hat B $ diagonal in the same basis,
-$ \langle\hat B\rangle = \sum_aB_a\,e^{-\beta(K_a - fA_a)}/\Xi(f) $, and differentiating the
+$ \hat{\mathcal{H}} \to \hat{\mathcal{H}} - f\hat A $, leaves the eigenvectors unchanged and shifts the
+eigenvalues to $ \xi_a - fA_a $. For any $ \hat B $ diagonal in the same basis,
+$ \langle\hat B\rangle = \sum_aB_a\,e^{-\beta(\xi_a - fA_a)}/\Xi(f) $, and differentiating the
 numerator and the normalisation,
 \begin{equation}\label{eq:filt_mb_response}
   \frac{\partial\langle\hat B\rangle}{\partial f}\bigg|_{T,\mu}
   = \frac{\Cov(\hat A, \hat B)}{k_BT} ,
   \qquad
   \frac{\partial\langle\hat B\rangle}{\partial T}\bigg|_{\mu}
-  = \frac{\Cov(\hat K, \hat B)}{k_BT^{2}} ,
+  = \frac{\Cov(\hat{\mathcal{H}}, \hat B)}{k_BT^{2}} ,
 \end{equation}
-the second because $ \partial_Te^{-\beta K_a} = (K_a/k_BT^{2})\,e^{-\beta K_a} $: a change
-of temperature acts as a field whose charge on the state $ a $ is $ K_a/T $. Every
+the second because $ \partial_Te^{-\beta \xi_a} = (\xi_a/k_BT^{2})\,e^{-\beta \xi_a} $: a change
+of temperature acts as a field whose charge on the state $ a $ is $ \xi_a/T $. Every
 static response among conserved quantities is a covariance, exactly:
 $ (\partial N/\partial\mu)_T = \Var(\hat N)/k_BT $ ($ \hat A = \hat B = \hat N $, $ f = \mu $);
 the spin susceptibility $ \Var(\hat M)/Vk_BT $ whenever the total moment $ \hat M $ is
-conserved; $ C_\mu $ itself ($ \hat B = \hat K $); and the mixed response
-$ (\partial N/\partial T)_\mu = \Cov(\hat N, \hat K)/k_BT^{2} $, needed in
+conserved; $ C_\mu $ itself ($ \hat B = \hat{\mathcal{H}} $); and the mixed response
+$ (\partial N/\partial T)_\mu = \Cov(\hat N, \hat{\mathcal{H}})/k_BT^{2} $, needed in
 Section~\ref{sec:filt_muN}.
 
 If $ \hat A $ is \emph{not} conserved, the eigenvectors move with $ f $, and the
-derivative of $ e^{-\beta(\hat K - f\hat A)} $ is given by Duhamel's formula,
-$ \int_0^\beta d\tau\,e^{-(\beta-\tau)\hat K}\hat A\,e^{-\tau\hat K} $. Evaluating the trace
+derivative of $ e^{-\beta(\hat{\mathcal{H}} - f\hat A)} $ is given by Duhamel's formula,
+$ \int_0^\beta d\tau\,e^{-(\beta-\tau)\hat{\mathcal{H}}}\hat A\,e^{-\tau\hat{\mathcal{H}}} $. Evaluating the trace
 in the eigenbasis, the $ \tau $ integral is elementary and gives the static
 \emph{Lehmann representation} of the isothermal susceptibility,
 \begin{equation}\label{eq:filt_mb_kubo}
   \chi_{AB} \equiv \frac{\partial\langle\hat B\rangle}{\partial f}\bigg|_{f=0}
   = \sum_{a,b}A_{ab}B_{ba}\,w_{ab} - \beta\langle\hat A\rangle\langle\hat B\rangle ,
   \qquad
-  w_{ab} = \frac{p_b - p_a}{K_a - K_b} ,
+  w_{ab} = \frac{p_b - p_a}{\xi_a - \xi_b} ,
 \end{equation}
-with $ A_{ab} = \langle a|\hat A|b\rangle $ and $ w_{ab} \equiv \beta p_a $ when $ K_a = K_b $ (the
+with $ A_{ab} = \langle a|\hat A|b\rangle $ and $ w_{ab} \equiv \beta p_a $ when $ \xi_a = \xi_b $ (the
 limit of the quotient). For conserved $ \hat A $ only $ a = b $ survives and
 Eq.~\eqref{eq:filt_mb_response} is recovered. The weight $ w_{ab} > 0 $ is the
 many-body filter for responses: it acts on \emph{pairs} of eigenstates connected by
-the perturbation. Writing $ y = \beta(K_a - K_b) $, $ w_{ab} = \beta p_b(1 - e^{-y})/y $
+the perturbation. Writing $ y = \beta(\xi_a - \xi_b) $, $ w_{ab} = \beta p_b(1 - e^{-y})/y $
 while $ \tfrac12\beta(p_a + p_b) = \tfrac12\beta p_b(1 + e^{-y}) $, and
 $ (1 - e^{-y})/y \leq \tfrac12(1 + e^{-y}) $ is the inequality $ \tanh(y/2) \leq y/2 $.
 Hence, with $ \delta\hat A = \hat A - \langle\hat A\rangle $ and
@@ -2862,7 +2971,7 @@ $ \sum_{ab}|A_{ab}|^{2}p_a = \langle\hat A^{2}\rangle $,
   \;\leq\; \frac{\Var(\hat A)}{k_BT} ,
 \]
 with equality on the right if and only if $ \hat A $ connects only states of equal
-$ K $, i.e.\ is conserved. A conserved quantity responds exactly as much as it
+$ \xi_a $, i.e.\ is conserved. A conserved quantity responds exactly as much as it
 fluctuates; a non-conserved one responds less, because part of its fluctuation
 is carried by transitions between states of different energy, which a static field
 cannot exploit fully.
@@ -2870,26 +2979,26 @@ cannot exploit fully.
 \paragraph{Exact limits.} Three statements follow from Eq.~\eqref{eq:filt_mb} with no
 assumption on $ \hat H $.
 \begin{itemize}
-\item \emph{Low temperature.} Let $ K_0 $ be the lowest eigenvalue of $ \hat K $, with
+\item \emph{Low temperature.} Let $ \xi_0 $ be the lowest eigenvalue of $ \hat{\mathcal{H}} $, with
   degeneracy $ d_0 $. As $ T \to 0 $, $ p_a \to 1/d_0 $ on the ground manifold, and
-  $ S \to k_B\ln d_0 $. If the next eigenvalue is $ K_0 + \Delta $, with degeneracy $ d_1 $,
-  then $ \Xi = e^{-\beta K_0}\big[d_0 + d_1e^{-\beta\Delta} + \dots\big] $ and, to leading
-  order in $ q = (d_1/d_0)\,e^{-\beta\Delta} $, $ \Var(\hat K) = \Delta^{2}q $:
+  $ S \to k_B\ln d_0 $. If the next eigenvalue is $ \xi_0 + \Delta $, with degeneracy $ d_1 $,
+  then $ \Xi = e^{-\beta \xi_0}\big[d_0 + d_1e^{-\beta\Delta} + \dots\big] $ and, to leading
+  order in $ q = (d_1/d_0)\,e^{-\beta\Delta} $, $ \Var(\hat{\mathcal{H}}) = \Delta^{2}q $:
   \[
     C_\mu \;\simeq\; k_B\left(\frac{\Delta}{k_BT}\right)^{2}\frac{d_1}{d_0}\,e^{-\Delta/k_BT} .
   \]
-  The heat capacity of a gapped system is activated, with the many-body gap of
-  $ \hat K $; at fixed $ \mu $ this includes the costs $ E_{N\pm1} - E_N \mp \mu $ of
+  The heat capacity of a gapped system is ``activated'', with the many-body gap of
+  $ \hat{\mathcal{H}} $; at fixed $ \mu $ this includes the costs $ E_{N\pm1} - E_N \mp \mu $ of
   adding or removing a particle. (In a macroscopic system $ d_1 $ grows with $ V $ and
   the expansion holds while $ q \ll 1 $, i.e.\ while excitations are dilute.)
 \item \emph{High temperature.} If the Fock space has finite dimension $ D $ (fermions
   on a lattice), write $ \langle\cdot\rangle_\infty = \Tr(\cdot)/D $ for the
   infinite-temperature average. The cumulant expansion of
-  $ \ln\Xi = \ln D + \ln\langle e^{-\beta\hat K}\rangle_\infty $ gives
+  $ \ln\Xi = \ln D + \ln\langle e^{-\beta\hat{\mathcal{H}}}\rangle_\infty $ gives
   \begin{equation}\label{eq:filt_mb_hiT}
-    \ln\Xi = \ln D - \beta\langle\hat K\rangle_\infty + \tfrac12\beta^{2}\Var_\infty(\hat K) + O(\beta^{3}) ,
+    \ln\Xi = \ln D - \beta\langle\hat{\mathcal{H}}\rangle_\infty + \tfrac12\beta^{2}\Var_\infty(\hat{\mathcal{H}}) + O(\beta^{3}) ,
     \qquad
-    C_\mu = \frac{\Var_\infty(\hat K)}{k_BT^{2}} + O(T^{-3}) ,
+    C_\mu = \frac{\Var_\infty(\hat{\mathcal{H}})}{k_BT^{2}} + O(T^{-3}) ,
   \end{equation}
   so $ S \to k_B\ln D $ and $ C_\mu $ decays as $ T^{-2} $ with a coefficient fixed by the
   spread of the whole spectrum.
@@ -2901,21 +3010,21 @@ assumption on $ \hat H $.
 \end{itemize}
 
 \paragraph{The thermodynamic limit: a filter on an energy shell.} For a macroscopic
-system $ g $ is dominated by an extensive exponent, $ g(K) = e^{S_{\rm mc}(K)/k_B} $ up to
-subextensive factors, with $ S_{\rm mc} $ the microcanonical entropy of $ \hat K $. The
+system $ g $ is dominated by an extensive exponent, $ g(\xi) = e^{S_{\rm mc}(\xi)/k_B} $ up to
+subextensive factors, with $ S_{\rm mc} $ the microcanonical entropy of $ \hat{\mathcal{H}} $. The
 weight
 \[
-  P_T(K) \;\propto\; \exp\!\Big[\big(S_{\rm mc}(K) - K/T\big)\big/k_B\Big]
+  P_T(\xi) \;\propto\; \exp\!\Big[\big(S_{\rm mc}(\xi) - \xi/T\big)\big/k_B\Big]
 \]
-is then sharply peaked where $ S'_{\rm mc}(K) = 1/T $, i.e.\ at the thermal value
-$ \langle\hat K\rangle = U - \mu N $, and, by the steepest-descent argument of
+is then sharply peaked where $ S'_{\rm mc}(\xi) = 1/T $, i.e.\ at the thermal value
+$ \langle\hat{\mathcal{H}}\rangle = U - \mu N $, and, by the steepest-descent argument of
 Section~\ref{sec:equivalence}, Gaussian with variance $ k_BT^{2}C_\mu \propto V $: its
 relative width is $ O(V^{-1/2}) $. The many-body filter therefore does not select
 levels near $ \mu $, nor levels near the ground state; it selects a thin
 \emph{shell} of many-body states around the thermal energy, and the observables
 measure the density and the curvature of the spectrum in that shell. The temperature
 does not rescale the shape of the weight, as it will for single-particle levels; it
-tilts $ \ln g $ by $ -K/T $ and so moves the shell.
+tilts $ \ln g $ by $ -\xi/T $ and so moves the shell.
 
 \paragraph{Correlations.} The variance form says at once what a divergent response
 requires. A response per unit volume can diverge only if the variance of an
@@ -2955,14 +3064,14 @@ as $ \sum_\lambda\varepsilon_\lambda n_\lambda $ on every Fock state \emph{is}
 $ \sum_\lambda\varepsilon_\lambda\hat n_\lambda $, a quadratic operator.
 
 \paragraph{Cumulants add.} Under additivity the many-body spectrum is generated by
-independent orbitals: $ g(K) $ is the convolution of the spectra of the single
+independent orbitals: $ g(\xi) $ is the convolution of the spectra of the single
 orbitals, and since the Laplace transform of a convolution is the product of the
 transforms, $ \Xi $ is a product over orbitals (Section~\ref{sec:filt_twolevel}).
 Then $ \ln\Xi $ is a \emph{sum} over orbitals, and so is each of its derivatives, i.e.\
-every cumulant of $ \hat K $ and $ \hat N $:
+every cumulant of $ \hat{\mathcal{H}} $ and $ \hat N $:
 \[
-  \Var(\hat K) = \sum_\lambda\xi_\lambda^{2}\Var(\hat n_\lambda) , \qquad
-  \Cov(\hat N, \hat K) = \sum_\lambda\xi_\lambda\Var(\hat n_\lambda) , \qquad
+  \Var(\hat{\mathcal{H}}) = \sum_\lambda\xi_\lambda^{2}\Var(\hat n_\lambda) , \qquad
+  \Cov(\hat N, \hat{\mathcal{H}}) = \sum_\lambda\xi_\lambda\Var(\hat n_\lambda) , \qquad
   \Var(\hat N) = \sum_\lambda\Var(\hat n_\lambda) ,
 \]
 with $ \xi_\lambda = \varepsilon_\lambda - \mu $. Each exact formula of
@@ -2972,21 +3081,30 @@ shell picture and the orbital picture are compatible: the thermal shell of many-
 states is what independent fluctuations of the orbitals near $ \mu $ generate, and its
 Gaussian shape is the central limit theorem applied to their sum.
 
-\paragraph{Without additivity.} For a generic interacting $ \hat H $ the eigenstates
-$ |a\rangle $ are exact but they are not Fock states, no set of occupations labels them,
-and the many-body spectrum is not generated by single-particle levels: already for one
-orbital with spin and an on-site repulsion $ U $ (the Hubbard atom), the states have
-$ K = 0,\ \xi,\ \xi,\ 2\xi + U $, and $ \Xi = 1 + 2e^{-\beta\xi} + e^{-\beta(2\xi+U)} $ equals
+\paragraph{Without additivity.} The Fock states of any complete set of orbitals,
+the symmetrised or antisymmetrised products of single-particle states, form a basis
+of the Fock space, so every eigenstate $ |a\rangle $ of an interacting $ \hat H $ can be
+expanded in them and written in the occupation-number representation. What fails for
+a generic interacting $ \hat H $ is that the expansion has a single term: each $ |a\rangle $
+is a superposition of many Fock states, and no choice of orbitals makes every
+eigenstate a single one, so that the $ |a\rangle $ are not labelled by sets of
+occupations. Even where they are, the energies need not be additive, and the many-body
+spectrum is then not generated by single-particle levels: already for one
+orbital with spin and an on-site repulsion $ U $ (the Hubbard atom), whose
+eigenstates $ |0\rangle $, $ |{\uparrow}\rangle $, $ |{\downarrow}\rangle $,
+$ |{\uparrow\downarrow}\rangle $ are Fock states, these have
+$ \xi_a = 0,\ \xi,\ \xi,\ 2\xi + U $, with $ \xi = \varepsilon - \mu $ the orbital
+energy measured from $ \mu $, and $ \Xi = 1 + 2e^{-\beta\xi} + e^{-\beta(2\xi+U)} $ equals
 $ (1 + e^{-\beta\xi})^{2} $ only for $ U = 0 $. The Lehmann representation still defines a
 single-particle spectral function,
 \[
   A_k(\omega) = \frac{1}{\Xi}\sum_{a,b}\big|\langle b|\hat c^\dagger_k|a\rangle\big|^{2}
-  \big(e^{-\beta K_a} + e^{-\beta K_b}\big)\,\delta\big(\omega - (K_b - K_a)\big) ,
+  \big(e^{-\beta \xi_a} + e^{-\beta \xi_b}\big)\,\delta\big(\omega - (\xi_b - \xi_a)\big) ,
 \]
-with $ \omega $ measured from $ \mu $, but the addition energies $ K_b - K_a $ belong to
+with $ \omega $ measured from $ \mu $, but the addition energies $ \xi_b - \xi_a $ belong to
 \emph{pairs} of many-body states and not to single orbitals, and the thermodynamics
 is not in general a functional of $ A_k(\omega) $ alone: the entropy, for instance,
-requires the full $ g(K) $. The single-particle filters of the following subsections
+requires the full $ g(\xi) $. The single-particle filters of the following subsections
 therefore hold exactly for quadratic Hamiltonians, and for interacting systems to the
 extent that the low-lying many-body spectrum is additive: for the quasiparticles of a
 Landau Fermi liquid at low temperature, whose entropy is that of free quasiparticles
@@ -3003,7 +3121,7 @@ follow is summarised here.
 \toprule
 Exact, for any $ \hat H $ (eigenbasis) & Additive spectrum only \\
 \midrule
-$ C_\mu = \Var(\hat K)/k_BT^{2} \geq 0 $, Eq.~\eqref{eq:filt_mb} &
+$ C_\mu = \Var(\hat{\mathcal{H}})/k_BT^{2} \geq 0 $, Eq.~\eqref{eq:filt_mb} &
 Fermi and Bose windows, Eqs.~\eqref{eq:filt_window} ff. \\
 responses $ = $ covariances, Eqs.~\eqref{eq:filt_mb_response}, \eqref{eq:filt_mb_kubo} &
 normalised weights and the delta limit, Eq.~\eqref{eq:filt_kernels} \\
@@ -3013,7 +3131,7 @@ high-$ T $ tail, Eq.~\eqref{eq:filt_mb_hiT}; sum rule, Eq.~\eqref{eq:filt_mb_sum
 $ c \sim T^{r+1} $ from $ \rho \sim |\varepsilon - \mu|^{r} $; $ s/c = 1/(r+1) $ \\
 divergent response requires correlations &
 per-orbital bound on $ c_\mu $, Eq.~\eqref{eq:filt_bound} \\
-inversion of $ c(T) $ for $ g(K) $ (Section~\ref{sec:filt_invert}) &
+inversion of $ c(T) $ for $ g(\xi) $ (Section~\ref{sec:filt_invert}) &
 inversion of $ c(T) $ for $ \rho(\varepsilon) $ \\
 \bottomrule
 \end{tabular}
@@ -3055,18 +3173,18 @@ single-particle energies measured from the chemical potential,
 \[
   \xi_\lambda \equiv \varepsilon_\lambda - \mu ,
   \qquad
-  \hat K = \hat H - \mu\hat N = \sum_\lambda \xi_\lambda\,\hat n_\lambda ,
+  \hat{\mathcal{H}} = \hat H - \mu\hat N = \sum_\lambda \xi_\lambda\,\hat n_\lambda ,
 \]
-whose eigenvalues are $ K_{\{n\}} = \sum_\lambda\xi_\lambda n_\lambda $.
+whose eigenvalues are $ \xi_{\{n\}} = \sum_\lambda\xi_\lambda n_\lambda $.
 
-\paragraph{Factorisation.} Evaluate the trace $ \Xi = \Tr e^{-\beta\hat K} $ of
+\paragraph{Factorisation.} Evaluate the trace $ \Xi = \Tr e^{-\beta\hat{\mathcal{H}}} $ of
 Section~\ref{sec:filt_exact} in the Fock eigenbasis. The label $ a $ is now the full
 list of occupations, each $ n_\lambda $ ranging \emph{independently} over its allowed
 values (the fixed-$ N $ constraint of Section~\ref{sec:potentials} is absent in the
 grand ensemble), so the sum over $ a $ is a multiple sum, one sum per orbital. The
 weight of each state is the exponential of a sum, hence a product:
 \[
-\Xi = \sum_a e^{-\beta K_a}
+\Xi = \sum_a e^{-\beta \xi_a}
 = \sum_{n_1}\sum_{n_2}\cdots\; e^{-\beta\sum_\lambda\xi_\lambda n_\lambda}
 = \sum_{n_1}\sum_{n_2}\cdots\;\prod_\lambda e^{-u_\lambda n_\lambda}
 = \prod_\lambda\Big(\sum_{n_\lambda} e^{-u_\lambda n_\lambda}\Big) ,
@@ -3074,7 +3192,7 @@ weight of each state is the exponential of a sum, hence a product:
 with $ u_\lambda = \beta\xi_\lambda $. The last step is the distributive law: a sum over independent indices of a
 product of factors, each depending on one index only, is the product of the
 separate sums (as in $ \sum_{a,b} f(a)g(b) = \sum_a f(a)\sum_b g(b) $). It is
-legitimate precisely because (i) $ \hat K $ is a sum of commuting
+legitimate precisely because (i) $ \hat{\mathcal{H}} $ is a sum of commuting
 one-orbital terms, all diagonal in the same basis, and (ii) the allowed values of
 each $ n_\lambda $ do not depend on the others. Fermionic sign conventions for the
 ordering of creation operators affect only off-diagonal matrix elements and play
@@ -3228,9 +3346,9 @@ Section~\ref{sec:convexity}, here without any thermodynamic argument and without
 any commitment about statistics.
 
 \paragraph{The same quantity as a fluctuation.} The exact many-body result,
-Eq.~\eqref{eq:filt_mb}, is $ c_\mu = \Var(\hat K)/Vk_BT^{2} $ for any Hamiltonian. That
+Eq.~\eqref{eq:filt_mb}, is $ c_\mu = \Var(\hat{\mathcal{H}})/Vk_BT^{2} $ for any Hamiltonian. That
 identity and Eq.~\eqref{eq:filt_Cgen} are the same statement here. The operator
-$ \hat K = \hat H - \mu\hat N = \sum_\lambda\xi_\lambda\hat n_\lambda $ is
+$ \hat{\mathcal{H}} = \hat H - \mu\hat N = \sum_\lambda\xi_\lambda\hat n_\lambda $ is
 a sum of \emph{independent} terms, so variances add (the covariances vanish,
 Section~\ref{sec:filt_twolevel}),
 and $\xi_\lambda^2=(k_BT)^2u_\lambda^2$, so
@@ -3961,10 +4079,10 @@ moves no energy, and so contributes nothing to the energy variance or to $ c_\mu
 
 The blindness is the additive form of an exact statement. By
 Eq.~\eqref{eq:filt_mb_response}, $ \chi_c $ and $ c_\mu $ are the variances of two
-different conserved quantities, $ \hat N $ and $ \hat K $, over the same distribution
+different conserved quantities, $ \hat N $ and $ \hat{\mathcal{H}} $, over the same distribution
 $ p_a $ of eigenstates. Equilibrium mixing among eigenstates that differ in $ N $ but
-have the same $ K $ --- a particle added or removed at no cost relative to the
-reservoir --- contributes to $ \Var(\hat N) $ and nothing to $ \Var(\hat K) $. For independent
+have the same $ \xi_a $ --- a particle added or removed at no cost relative to the
+reservoir --- contributes to $ \Var(\hat N) $ and nothing to $ \Var(\hat{\mathcal{H}}) $. For independent
 fermions those are precisely the fluctuations of the levels at $ \mu $.
 
 \begin{quote}
@@ -4059,11 +4177,11 @@ therefore $r\to-1$, i.e.\ a residual entropy, and not a divergent $c$.
 
 \paragraph{The same exponent in the many-body spectrum.} The density of states
 $ \rho(\varepsilon) $ exists only for an additive spectrum, but the exponent has an
-exact counterpart in the many-body density of states $ g(K) $ of
+exact counterpart in the many-body density of states $ g(\xi) $ of
 Section~\ref{sec:filt_mb}, for any Hamiltonian. Suppose that, per unit volume,
 $ c_\mu = aT^{r+1} $ at low temperature and $ s(0) = 0 $. Then
 $ s = aT^{r+1}/(r+1) $, and the excitation energy per unit volume is
-$ k \equiv (\langle\hat K\rangle - K_0)/V = \int_0^Tc_\mu\,dT' = aT^{r+2}/(r+2) $.
+$ k \equiv (\langle\hat{\mathcal{H}}\rangle - \xi_0)/V = \int_0^Tc_\mu\,dT' = aT^{r+2}/(r+2) $.
 Eliminating $ T $,
 \[
   s(k) = \frac{a}{r+1}\left(\frac{(r+2)\,k}{a}\right)^{(r+1)/(r+2)} ,
@@ -4071,7 +4189,7 @@ Eliminating $ T $,
 and since $ k_B\ln g = S_{\rm mc} = Vs $ in the thermodynamic limit, the many-body
 density of states grows above the ground state as
 \[
-  \ln g\big(K_0 + Vk\big) \;\simeq\; \frac{V}{k_B}\,s(k) \;\propto\; V\,k^{(r+1)/(r+2)} :
+  \ln g\big(\xi_0 + Vk\big) \;\simeq\; \frac{V}{k_B}\,s(k) \;\propto\; V\,k^{(r+1)/(r+2)} :
 \]
 a power-law heat capacity is equivalent to a \emph{stretched-exponential} growth of the
 many-body level density. For a Fermi liquid, $ r = 0 $ gives
@@ -4159,10 +4277,10 @@ missing scale is turned into exponents is the same.
 \emph{Exact inversion, for any Hamiltonian.} What $ c_\mu(T) $ determines in general
 is the many-body spectrum. Given $ C_\mu $ at all temperatures, the entropy and the
 excitation energy follow by integration,
-$ S(T) = S(0) + \int_0^TC_\mu\,dT'/T' $ and $ \langle\hat K\rangle(T) = K_0 + \int_0^TC_\mu\,dT' $,
-and with them $ \ln\Xi = S/k_B - \beta\langle\hat K\rangle $. Hence
+$ S(T) = S(0) + \int_0^TC_\mu\,dT'/T' $ and $ \langle\hat{\mathcal{H}}\rangle(T) = \xi_0 + \int_0^TC_\mu\,dT' $,
+and with them $ \ln\Xi = S/k_B - \beta\langle\hat{\mathcal{H}}\rangle $. Hence
 \[
-  e^{\beta K_0}\,\Xi(\beta) = \int_0^\infty\! d\epsilon\; g(K_0 + \epsilon)\,e^{-\beta\epsilon}
+  e^{\beta \xi_0}\,\Xi(\beta) = \int_0^\infty\! d\epsilon\; g(\xi_0 + \epsilon)\,e^{-\beta\epsilon}
 \]
 is known for all $ \beta > 0 $, up to the factor $ e^{S(0)/k_B} = d_0 $. The left side is
 the Laplace transform of the excitation spectrum, and a Laplace transform known on
@@ -4387,7 +4505,7 @@ $4e^{-2}k_B=0.5413\,k_B$, so in every case the bound is $\mathcal{O}(k_B)$ per
 mode. A lattice model with finitely many modes per site and a
 temperature-independent spectrum therefore has an $\mathcal{O}(k_B)$ heat
 capacity per site and cannot diverge at all. (Without additivity the bound is
-replaced by the exact decomposition of Section~\ref{sec:filt_mb}: $ \Var(\hat K)/V $ stays
+replaced by the exact decomposition of Section~\ref{sec:filt_mb}: $ \Var(\hat{\mathcal{H}})/V $ stays
 finite unless correlations become long-ranged.) Every divergence is consequently a
 statement that the spectrum itself \emph{moves}: with temperature, through
 self-consistency --- an order parameter that reconstructs the band as it
@@ -4422,35 +4540,45 @@ alone --- fail in instructive ways.
 \subsection{Heat and work}
 \label{sec:found_heat}
 
-Let the Hamiltonian $ \hat H(\lambda) $ depend on parameters $ \lambda $ that the
-experimenter controls (volume, field, strain), and let $ U = \Tr(\rho\hat H) $. Any
-infinitesimal change of the state or of the parameters gives
+Heat and work are not two terms into which $ dU $ can be split by inspecting the state
+of the system; they are distinguished by the \emph{channel} through which the energy
+arrives. Let the Hamiltonian $ \hat H(\lambda) $ of the system depend on parameters
+$ \lambda $ that the experimenter controls (volume, field, strain), let the system be
+coupled, if at all, to a bath with Hamiltonian $ \hat H_{\rm B} $, and let
+$ U = \Tr(\rho\hat H) $ with $ \rho $ the state of the system. System and bath together
+are isolated except for the agent that moves $ \lambda $: their joint state evolves
+unitarily under $ \hat H_{\rm tot} = \hat H(\lambda(t)) + \hat H_{\rm B} + \hat H_{\rm int} $,
+whose only time dependence is through $ \lambda(t) $. Their energy therefore changes at
+the rate
 \[
-  dU = \underbrace{\Tr\big(\rho\,d\hat H\big)}_{\dbar W}
-     + \underbrace{\Tr\big(\hat H\,d\rho\big)}_{\dbar Q} .
+  \frac{d}{dt}\Tr\big(\rho_{\rm tot}\hat H_{\rm tot}\big)
+  = \Tr\big(\rho_{\rm tot}\,\partial_t\hat H_{\rm tot}\big)
+  = \sum_j\Big\langle\frac{\partial\hat H}{\partial\lambda_j}\Big\rangle\dot\lambda_j ,
 \]
-The first term, $ \dbar W = \sum_j\langle\partial\hat H/\partial\lambda_j\rangle\,d\lambda_j $, is
-the energy delivered by moving the levels through the controlled parameters; for
-$ \lambda = V $, $ \langle\partial\hat H/\partial V\rangle = -P $ and $ \dbar W = -P\,dV $. The
-second term is the energy delivered by redistributing probability \emph{among} the
-levels. In the instantaneous eigenbasis, and for a $ \rho $ diagonal in it,
-\[
-  \dbar W = \sum_i p_i\,dE_i , \qquad \dbar Q = \sum_i E_i\,dp_i :
-\]
-work changes the levels, heat changes their occupations. This is the precise form of
-the statement that heat is the energy exchanged through processes that are not
-modelled microscopically. If the system were isolated, its evolution would be
-unitary, $ i\hbar\,d\rho = [\hat H, \rho]\,dt $, even with a time-dependent
-$ \hat H(\lambda(t)) $, and then
-\[
-  \dbar Q = \Tr\big(\hat H\,d\rho\big) = -\frac{i}{\hbar}\Tr\big(\hat H[\hat H, \rho]\big)\,dt = 0
-\]
-by cyclicity of the trace. A change of occupations therefore requires a coupling to
-degrees of freedom outside $ \hat H $ --- the walls, a bath, radiation --- and heat is
-the energy that flows through that coupling. Neither $ \dbar W $ nor $ \dbar Q $ is the
-differential of a function of the state (Appendix~\ref{app:exact}); along a
-quasi-static sequence of Gibbs states, Section~\ref{sec:heat} shows that
-$ \dbar Q = T\,dS $.
+the term $ \Tr(\hat H_{\rm tot}\,\dot\rho_{\rm tot}) = -(i/\hbar)\Tr\big(\hat H_{\rm tot}[\hat H_{\rm tot}, \rho_{\rm tot}]\big) $
+vanishing by cyclicity of the trace. This is the \emph{work}, the energy delivered by
+the agent, $ \dbar W = \sum_j\langle\partial\hat H/\partial\lambda_j\rangle\,d\lambda_j $; for
+$ \lambda = V $ in equilibrium, $ \langle\partial\hat H/\partial V\rangle = -P $ and
+$ \dbar W = -P\,dV $. The \emph{heat} is the energy the system receives from the bath,
+$ \dbar Q = -d\langle\hat H_{\rm B}\rangle $ when the coupling energy
+$ \langle\hat H_{\rm int}\rangle $ is negligible (weak coupling), and the first law
+$ dU = \dbar W + \dbar Q $ is the conservation of the total energy. Without a bath there is
+no heat at all: a thermally isolated system receives energy only as work.
+
+Neither quantity is tied to a particular kind of change in the state of the system;
+in particular, work is not confined to shifting the energy levels while leaving their
+occupations alone. A parameter changed at a finite rate induces transitions between
+the instantaneous eigenstates of $ \hat H(\lambda) $ and so changes their occupations:
+a sudden quench does, and so does Joule's paddle wheel, which raises the energy and the
+entropy of a thermally isolated fluid at fixed volume entirely by work
+(Section~\ref{sec:clausius}). The occupations of the instantaneous eigenstates are
+preserved only in the quantum-adiabatic limit (footnote~\ref{fn:adiabatic}), when
+$ \lambda $ changes slowly on the scale set by $ \hbar $ divided by the spacing of the
+levels involved; for a macroscopic system, whose many-body levels are exponentially
+dense, that limit is far slower than any thermodynamically quasi-static process.
+Neither $ \dbar W $ nor $ \dbar Q $ is the differential of a function of the state
+(Appendix~\ref{app:exact}); along a quasi-static sequence of Gibbs states,
+Section~\ref{sec:heat} shows that $ \dbar Q = T\,dS $.
 
 \subsection{Entropy as missing information}
 \label{sec:found_info}
@@ -4527,27 +4655,6 @@ $ T_2 < T_1 $, relaxes from $ \Var(E) = k_BT_1^{2}C(T_1) $ to $ k_BT_2^{2}C(T_2)
 is smaller whenever $ C $ does not decrease with $ T $. The energy of the body becomes
 \emph{more} certain while the total entropy grows.
 
-\paragraph{The spreading wavepacket.} The spreading of a free Gaussian wavepacket is
-an instructive analogy, but not in the way it first suggests. With
-$ \hat x(t) = \hat x + \hat pt/m $ and an unchirped initial packet,
-$ \Cov(\hat x, \hat p) = 0 $ and $ \Var(\hat p) = \hbar^{2}/4\sigma^{2} $,
-\begin{gather*}
-  \Var\big(\hat x(t)\big) = \sigma^{2} + \frac{\hbar^{2}t^{2}}{4m^{2}\sigma^{2}} ,
-  \qquad
-  \Cov\big(\hat x(t), \hat p\big) = \frac{t}{m}\Var(\hat p) ,
-  \\
-  \Var\big(\hat x(t)\big)\Var(\hat p) - \Cov\big(\hat x(t), \hat p\big)^{2} = \frac{\hbar^{2}}{4} ,
-\end{gather*}
-the symmetrised covariance being meant. The position distribution spreads, but the
-state remains pure ($ S = 0 $ throughout), the momentum and energy distributions do
-not change at all, and the spreading is reversible: a packet prepared with the
-opposite chirp first contracts. What grows is the \emph{correlation} between $ \hat x $
-and $ \hat p $, while the phase-space area, the last expression, is conserved. The
-information initially carried by the narrow width in $ x $ has not been lost; it has
-moved into an $ x $--$ p $ correlation that a measurement of $ x $ alone does not see.
-This, and not the growth of a width, is the correct lesson, and it is the microscopic
-mechanism of the second law.
-
 \subsection{Where the second law comes from}
 \label{sec:found_second}
 
@@ -4606,7 +4713,18 @@ concentrated in an energy window narrow on the scale over which $ O $ varies, wh
 is the case for any physically preparable state of a macroscopic system; and $ O(U) $
 is also the microcanonical value. The hypothesis is a property of the Hamiltonian,
 well supported numerically for generic (chaotic) many-body systems. It fails for
-integrable systems, which relax instead to a \emph{generalised} Gibbs ensemble with
+integrable systems,\footnote{\label{fn:integrable}\textbf{Integrable systems.} A
+classical system with $ f $ degrees of freedom is integrable (in the sense of
+Liouville) if it has $ f $ independent conserved quantities whose mutual Poisson
+brackets vanish; its motion is then confined to $ f $-dimensional invariant tori and is
+quasi-periodic, so it cannot explore the energy surface. In quantum mechanics there is
+no single accepted definition. In practice a many-body system is called integrable if
+it has an extensive set of local or quasi-local conserved operators that commute with
+$ \hat H $ and with each other: the occupations $ \hat n_\lambda $ of a quadratic
+Hamiltonian, or the hierarchies of interacting models solvable by the Bethe ansatz,
+such as the Heisenberg (XXZ) chain, the Lieb--Liniger Bose gas and the one-dimensional
+Hubbard model. A practical signature is the level statistics: Poissonian for
+integrable systems, Wigner--Dyson for chaotic ones.} which relax instead to a \emph{generalised} Gibbs ensemble with
 one multiplier for each conserved quantity --- Jaynes' prescription with more data
 --- and for many-body localised systems, which do not thermalise at all.
 
@@ -5467,14 +5585,14 @@ the best member of the family gives the lowest upper bound on $ F $ that the fam
 allows.
 
 \paragraph{Other ensembles.} Nothing in the proofs uses more than the form
-$ \rho_{\rm eq} \propto e^{-\beta\hat K} $ for some Hermitian $ \hat K $. With
-$ \hat K = \hat H - \mu\hat N $ and $ \Xi = \Tr e^{-\beta\hat K} $,
+$ \rho_{\rm eq} \propto e^{-\beta\hat{\mathcal{H}}} $ for some Hermitian $ \hat{\mathcal{H}} $. With
+$ \hat{\mathcal{H}} = \hat H - \mu\hat N $ and $ \Xi = \Tr e^{-\beta\hat{\mathcal{H}}} $,
 \[
   \Omega[\rho] \equiv \Tr\big[\rho\,(\hat H - \mu\hat N)\big] + k_BT\,\Tr(\rho\ln\rho)
   = \Omega + k_BT\,D(\rho\,\|\,\rho_{\rm eq}) \;\geq\; \Omega = -k_BT\ln\Xi ,
 \]
-and $ \Omega \leq \Omega_0 + \langle\hat K - \hat K_0\rangle_0 $; the same holds with a field
-term $ -\mathcal{H}\hat M $ or a pressure term $ +P\hat V $ in $ \hat K $.
+and $ \Omega \leq \Omega_0 + \langle\hat{\mathcal{H}} - \hat{\mathcal{H}}_0\rangle_0 $; the same holds with a field
+term $ -\mathcal{H}\hat M $ or a pressure term $ +P\hat V $ in $ \hat{\mathcal{H}} $.
 
 \section{Three points of ensemble bookkeeping}
 \label{app:bookkeeping}
