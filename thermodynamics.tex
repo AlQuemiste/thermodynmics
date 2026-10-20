@@ -56,8 +56,13 @@ by $T$ alone, but of different shapes --- so that the entropy is largest for the
 levels at $\mu$, whose occupation fluctuates most, while the heat capacity is
 exactly blind to them.
 Section~\ref{sec:foundations} examines what heat, entropy and the second law mean
-at the level of the microscopic dynamics, where unitary evolution conserves both
-the Gibbs entropy and the energy distribution.
+at the level of the microscopic dynamics. Unitary evolution is reversible and
+conserves the Gibbs entropy; the entropy enters instead as a device that represents
+the part of the Hamiltonian no description contains --- the uncontrolled couplings
+that scramble the microstate, as in Brownian motion --- just as the term $ -\mu N $
+represents the unknown processes that exchange particles. Equilibrium appears as a
+protocol: wait until these relaxation processes have run, then measure on a longer
+time scale.
 Peripheral derivations and numerical practice are collected in the appendices.
 \end{abstract}
 
@@ -2846,8 +2851,8 @@ Section~\ref{sec:filt_additive} lists which of the later results are exact and w
 are specific to the additive case.
 
 One remark on scope before the derivation: the whole construction is at fixed
-$\mu$, and Section~\ref{sec:filt_muN} converts to fixed $N$ using the formula of
-Section~\ref{sec:caveat}, which is not always a small correction.
+$\mu$; the conversion to fixed $N$ uses the formula of Section~\ref{sec:caveat},
+which is not always a small correction.
 
 \subsection{Exact eigenstates}
 \label{sec:filt_exact}
@@ -2943,8 +2948,8 @@ static response among conserved quantities is a covariance, exactly:
 $ (\partial N/\partial\mu)_T = \Var(\hat N)/k_BT $ ($ \hat A = \hat B = \hat N $, $ f = \mu $);
 the spin susceptibility $ \Var(\hat M)/Vk_BT $ whenever the total moment $ \hat M $ is
 conserved; $ C_\mu $ itself ($ \hat B = \hat{\mathcal{H}} $); and the mixed response
-$ (\partial N/\partial T)_\mu = \Cov(\hat N, \hat{\mathcal{H}})/k_BT^{2} $, needed in
-Section~\ref{sec:filt_muN}.
+$ (\partial N/\partial T)_\mu = \Cov(\hat N, \hat{\mathcal{H}})/k_BT^{2} $, needed for the
+conversion to fixed $ N $ (Section~\ref{sec:caveat}).
 
 If $ \hat A $ is \emph{not} conserved, the eigenvectors move with $ f $, and the
 derivative of $ e^{-\beta(\hat{\mathcal{H}} - f\hat A)} $ is given by Duhamel's formula,
@@ -3412,8 +3417,8 @@ involved. Three instances are needed below.
   - \mu)/T $; with $ \hat B = \hat H - \mu\hat N $, $ b_\lambda = \varepsilon_\lambda - \mu $,
   Eq.~\eqref{eq:filt_response} returns $ c_\mu $ in the form
   Eq.~\eqref{eq:filt_C_fluct}. The mixed case $ a_\lambda = (\varepsilon_\lambda - \mu)/T $,
-  $ b_\lambda = 1 $ gives $ (\partial N/\partial T)_\mu $, which is needed in
-  Section~\ref{sec:filt_muN}.
+  $ b_\lambda = 1 $ gives $ (\partial N/\partial T)_\mu $, which is needed for the
+  conversion to fixed $ N $ (Section~\ref{sec:caveat}).
 \end{itemize}
 The entropy is the one quantity of interest that is not of this form, being a
 \emph{first} derivative of $ \Omega $; it is treated separately below.
@@ -3754,8 +3759,7 @@ Eq.~\eqref{eq:filt_sprime} from $ x $ to $ \infty $, where $ \sigma $ vanishes,
 and its area, $ \int\sigma\,dx = \pi^{2}/6 $, is computed in
 Eq.~\eqref{eq:filt_byparts} below. The observable $ (\partial N/\partial T)_\mu $
 is the exception: $ A_{N,T} $ is odd, $ \Lambda_{N,T} = 0 $, and it has no
-normalised weight of its own; Section~\ref{sec:filt_muN} shows that it is
-$ \Lambda_S $ times the entropy weight acting on $ \rho' $ instead of $ \rho $.
+normalised weight of its own.
 
 \paragraph{Every weight is a delta representation.} Each weight in
 Eq.~\eqref{eq:filt_kernels} has the form
@@ -4300,7 +4304,7 @@ especially at low energy, where the window is narrow. The answer has three parts
 only the symmetrised density of states $ \rho_s(\omega) =
 \tfrac12[\rho(\mu + \omega) + \rho(\mu - \omega)] $, $ \omega > 0 $; the
 antisymmetric part is invisible to it and must be obtained from an odd response, such
-as $ (\partial N/\partial T)_\mu $ of Eq.~\eqref{eq:filt_wNT} or, in practice, the
+as $ (\partial N/\partial T)_\mu $ of Eq.~\eqref{eq:filt_amplitudes} or, in practice, the
 thermopower. Combining several even weights cannot recover the antisymmetric part,
 since they all see the same $ \rho_s $; but, as shown at the end of this
 subsection, it does help to determine $ \rho_s $ itself.
@@ -4529,13 +4533,31 @@ produces it.
 \label{sec:foundations}
 
 The preceding sections take the equilibrium ensembles as given. This section asks
-where they come from, starting from the microscopic dynamics: a density matrix
-$ \rho $ evolving under a Hamiltonian $ \hat H $. Four questions are separated: what
-heat is, what entropy is, what the multipliers $ T $ and $ \mu $ are, and what the
-second law says at the microscopic level. The answer to the last is subtler than is
-often stated, and two natural guesses --- that the second law is an increase of
-the uncertainty in the energy, and that it follows from the von~Neumann equation
-alone --- fail in instructive ways.
+where they come from. The starting point is a negative result. The microscopic
+dynamics of a closed system --- a density matrix $ \rho $ evolving under a Hamiltonian
+by the von~Neumann equation --- is reversible, and it conserves the Gibbs entropy
+exactly. The entropy therefore cannot be obtained from the microscopic equations of
+motion, however they are manipulated.
+
+What enters instead is the part of the Hamiltonian that no description contains. The
+Hamiltonian of a real body is
+\[
+  \hat H_{\rm tot} = \hat H + \hat H' ,
+\]
+where $ \hat H $ is the model, the part that is known and treated microscopically, and
+$ \hat H' $ comprises everything else: the degrees of freedom of the body itself that the
+model does not resolve --- strongly interacting states on energy and length scales
+beyond its ultraviolet or infrared cutoffs --- and the couplings to the walls, to the
+radiation field, to the molecules of a surrounding fluid, and to the contacts through
+which particles enter and leave. The effects of $ \hat H' $ are not small, but $ \hat H' $ cannot be written down
+in detail, either because it is too complex or because its mechanism is simply not
+known. A Brownian particle is the paradigm: it is kicked by the molecules of the
+fluid, and nothing about the individual kicks is known. Statistical mechanics does not
+attempt to describe $ \hat H' $. It replaces it by \emph{devices} with very few
+parameters. The entropy, with its conjugate $ T $, is the device for the unknown
+exchange of energy; the term $ -\mu\hat N $ added to the Hamiltonian is the device for
+the unknown exchange of particles. Shannon's formula gives the first device its form,
+but its content is the unknown part of the Hamiltonian.
 
 \subsection{Heat and work}
 \label{sec:found_heat}
@@ -4563,7 +4585,11 @@ $ \dbar W = -P\,dV $. The \emph{heat} is the energy the system receives from the
 $ \dbar Q = -d\langle\hat H_{\rm B}\rangle $ when the coupling energy
 $ \langle\hat H_{\rm int}\rangle $ is negligible (weak coupling), and the first law
 $ dU = \dbar W + \dbar Q $ is the conservation of the total energy. Without a bath there is
-no heat at all: a thermally isolated system receives energy only as work.
+no heat at all: a thermally isolated system receives energy only as work. In the
+language of this section, work is the energy that arrives through the known part of
+the Hamiltonian, the controlled parameters $ \lambda $, and heat is the energy that
+arrives through the part that is not known in detail,
+$ \hat H' = \hat H_{\rm B} + \hat H_{\rm int} $.
 
 Neither quantity is tied to a particular kind of change in the state of the system;
 in particular, work is not confined to shifting the energy levels while leaving their
@@ -4580,60 +4606,18 @@ Neither $ \dbar W $ nor $ \dbar Q $ is the differential of a function of the sta
 (Appendix~\ref{app:exact}); along a quasi-static sequence of Gibbs states,
 Section~\ref{sec:heat} shows that $ \dbar Q = T\,dS $.
 
-\subsection{Entropy as missing information}
-\label{sec:found_info}
-
-The Gibbs entropy $ S[\rho] = -k_B\Tr(\rho\ln\rho) $ (footnote~\ref{fn:gibbsS}) has
-an operational meaning, due to Shannon: $ S/(k_B\ln2) $ is the number of binary
-(yes/no) questions needed, on average and per copy in the limit of many copies, to
-identify the microstate of a system known only to be in the state $ \rho $. It is the
-information \emph{missing} from the description $ \rho $. In this sense it is a property
-of the description, i.e.\ of the data on which $ \rho $ was assigned, not of the
-microstate itself.
-
-\paragraph{Maximum entropy.} Suppose that all that is known about a system is the
-mean energy $ \langle\hat H\rangle = U $ and the mean particle number
-$ \langle\hat N\rangle = \bar N $. Jaynes' prescription (1957) is to assign the state
-that is least committal about everything else, i.e.\ that maximises $ S[\rho] $
-subject to these data and $ \Tr\rho = 1 $. The maximiser is the grand canonical state
-$ \rho_{\rm G} = e^{-\beta(\hat H - \mu\hat N)}/\Xi $, with $ \beta $ and $ \mu $ chosen to
-reproduce $ U $ and $ \bar N $, and the proof needs no calculus of variations. Since
-$ \ln\rho_{\rm G} = -\beta(\hat H - \mu\hat N) - \ln\Xi $ is \emph{linear} in $ \hat H $ and
-$ \hat N $, every state $ \rho $ with the same data has
-\[
-  \Tr(\rho\ln\rho_{\rm G}) = -\beta(U - \mu\bar N) - \ln\Xi = \Tr(\rho_{\rm G}\ln\rho_{\rm G}) ,
-\]
-and therefore
-\[
-  S[\rho_{\rm G}] - S[\rho] = k_B\big[\Tr(\rho\ln\rho) - \Tr(\rho\ln\rho_{\rm G})\big]
-  = k_B\,D(\rho\,\|\,\rho_{\rm G}) \;\geq\; 0 ,
-\]
-with equality only for $ \rho = \rho_{\rm G} $, by Klein's inequality
-(Appendix~\ref{app:gibbsvar}). With only $ U $ known the same argument gives the
-canonical state, and with $ E $ known exactly (to within $ \delta E $) the uniform
-distribution on the energy shell, $ S = k_B\ln W $.
-
-\paragraph{The meaning of $ T $ and $ \mu $.} The multipliers are what the missing data
-are replaced by. $ \beta = 1/k_BT $ is the multiplier conjugate to the energy
-constraint: it is present precisely when the energy is known only on average, and
-it fixes the state once the average is given. Likewise $ \beta\mu $ appears when the
-particle number is known only on average. Each step from exact knowledge to
-knowledge of the mean (from $ E $ to $ \langle\hat H\rangle $, from $ N $ to
-$ \langle\hat N\rangle $) introduces one multiplier and moves one ensemble down the list
-of Section~\ref{sec:ensembles}; on the thermodynamic side it is one Legendre
-transform. It is the \emph{entropy} that measures the information missing about the
-microstate; the temperature and the chemical potential measure the price, in
-entropy, of the constraints (Section~\ref{sec:ensembles}). For a macroscopic system
-the distinction between exact and mean values hardly matters for the potentials,
-because the distributions of $ E $ and $ N $ in the canonical and grand canonical
-states have relative widths $ O(N^{-1/2}) $ (Section~\ref{sec:equivalence}).
-
-\subsection{What unitary dynamics conserves}
+\subsection{Reversibility of the microscopic dynamics}
 \label{sec:found_unitary}
 
-Consider first an isolated system, $ i\hbar\,\partial_t\rho = [\hat H, \rho] $, so that
-$ \rho(t) = \hat U\rho(0)\hat U^\dagger $ with $ \hat U = e^{-i\hat Ht/\hbar} $. Two exact
-statements follow.
+Consider an isolated system, $ i\hbar\,\partial_t\rho = [\hat H, \rho] $, so that
+$ \rho(t) = \hat U\rho(0)\hat U^\dagger $ with $ \hat U = e^{-i\hat Ht/\hbar} $. The evolution
+is reversible in two senses. It is \emph{invertible},
+$ \rho(0) = \hat U^\dagger\rho(t)\,\hat U $: the state at any time determines the state at
+every other time, so no information about the initial state is ever lost. And if
+$ \hat H $ commutes with the antiunitary time-reversal operator $ \Theta $, then with
+$ \rho(t) $ the time-reversed history $ \Theta\rho(-t)\Theta^{-1} $ is also a solution, so
+that every process can, in principle, run backwards (Loschmidt's objection to
+Boltzmann, 1876). Two exact statements follow.
 
 \emph{The Gibbs entropy is constant.} $ \rho(t) $ and $ \rho(0) $ are unitarily similar,
 so they have the same eigenvalues, and $ S[\rho(t)] = S[\rho(0)] $; more generally
@@ -4646,44 +4630,229 @@ Since $ \hat U $ commutes with every function of $ \hat H $, cyclicity of the tr
   P_t(E) = \Tr\big[\rho(0)\,\hat U^\dagger\delta(\hat H - E)\,\hat U\big]
   = \Tr\big[\rho(0)\,\delta(\hat H - E)\big] = P_0(E) .
 \]
-All moments of $ \hat H $ are constants of motion, and the uncertainty in the energy of
-an isolated system is exactly conserved. The second law can therefore be neither an
-increase of the Gibbs entropy nor an increase of the energy uncertainty in an
-isolated system. Nor does the energy uncertainty grow for an open system: a body of
-heat capacity $ C $ initially at $ T_1 $, placed in contact with a bath at
-$ T_2 < T_1 $, relaxes from $ \Var(E) = k_BT_1^{2}C(T_1) $ to $ k_BT_2^{2}C(T_2) $, which
-is smaller whenever $ C $ does not decrease with $ T $. The energy of the body becomes
-\emph{more} certain while the total entropy grows.
+All moments of $ \hat H $ are constants of motion.
 
-\subsection{Where the second law comes from}
+Both statements hold for \emph{any} Hamiltonian, and in particular for the full
+$ \hat H_{\rm tot} $ of system and surroundings. No functional of $ \rho $ determined by
+a completely known microscopic dynamics can therefore grow monotonically: a system
+described exactly has no second law. The macroscopic irreversibility of
+Section~\ref{sec:clausius} --- a gas filling a vessel, heat flowing from hot to cold, a
+stirred fluid warming up --- must come from what the description leaves out, i.e.\
+from $ \hat H' $.
+
+\subsection{The unknown part of the Hamiltonian}
 \label{sec:found_second}
 
-The conserved Gibbs entropy of the full state is not the entropy that thermodynamics
-measures. The latter refers to what macroscopic measurements can access, and there
-are three distinct mechanisms by which information leaves that reach.
+\paragraph{No body is isolated.} The many-body levels of a macroscopic body are
+spaced by about $ e^{-S/k_B} $ in natural units, i.e.\ by a quantity of order $ e^{-N} $.
+Any coupling to the outside --- a thermal photon scattered by the walls, the
+vibrations of the container, the gravitational field of distant masses --- has matrix
+elements that exceed this spacing by a factor of order $ e^{N} $. Such a coupling mixes
+the eigenstates of the model Hamiltonian $ \hat H $ over an energy range that contains
+astronomically many of them, and the resulting state depends on details of $ \hat H' $
+that are neither known nor controlled. The eigenstates of an ``isolated'' macroscopic
+body are therefore an idealisation: they are sharp only on a scale that the real body
+never respects.
 
-\paragraph{(i) Correlations between subsystems.} Let a system $ A $ interact with an
-environment $ B $, the composite evolving unitarily, and let
-$ \rho_A = \Tr_B\rho_{AB} $, $ \rho_B = \Tr_A\rho_{AB} $ be the reduced states, which are
-all that measurements on one part can access. The mutual information
+The sensitivity is amplified by chaos. Classically, nearby trajectories of a chaotic
+system separate exponentially, so that an initially negligible perturbation soon
+dominates; Berry (1978) estimated that neglecting the gravitational pull of a single
+electron at the edge of the observable universe makes the trajectory of a molecule in
+a gas unpredictable after about fifty collisions. The quantum counterpart is the
+\emph{Loschmidt echo}
 \[
-  I(A{:}B) \equiv S[\rho_A] + S[\rho_B] - S[\rho_{AB}] \;\geq\; 0
+  M(t) = \big|\langle\psi|\,e^{i\hat Ht/\hbar}\,e^{-i(\hat H + \hat H')t/\hbar}\,|\psi\rangle\big|^{2} ,
 \]
-is non-negative (subadditivity of the entropy, itself a case of Klein's inequality:
-$ I = k_B D(\rho_{AB}\,\|\,\rho_A\otimes\rho_B) $). Since $ S[\rho_{AB}] $ is conserved,
-$ S[\rho_A] + S[\rho_B] = S[\rho_{AB}] + I(A{:}B) $ grows by exactly the information
-stored in the correlations, including entanglement, that the interaction has built
-up. The sum of the entropies of the parts is the thermodynamic entropy of the
-composite, and its increase is the second law. For a small system and a large
-environment more is true (canonical typicality: Goldstein, Lebowitz, Tumulka and
-Zangh\`\i; Popescu, Short and Winter, 2006): for almost every \emph{pure} state of
-$ A + B $ in a narrow energy shell, $ \rho_A $ is close to $ e^{-\beta\hat H_A}/Z_A $, with
-$ \beta $ set by the shell. The canonical ensemble of a subsystem follows from the
-dynamics and the size of the environment, with no ensemble assumed for the whole.
+the fidelity with which a state evolved forward under the true Hamiltonian
+$ \hat H + \hat H' $ is returned to its start by reversing only the model Hamiltonian
+$ \hat H $. For systems whose classical limit is chaotic, $ M(t) $ decays exponentially,
+and in a broad range of perturbation strengths at a rate set by the Lyapunov exponent
+of the unperturbed dynamics and independent of $ \hat H' $ (Jalabert and Pastawski,
+2001). A coupling too weak to be measured thus suffices to make the microscopic
+history unrepeatable and irreversible in practice.
 
-\paragraph{(ii) Dephasing.} For an isolated system with non-degenerate energy
-differences, the matrix elements in the eigenbasis are
-$ \langle a|\rho(t)|b\rangle = \rho_{ab}(0)\,e^{-i(E_a - E_b)t/\hbar} $. The off-diagonal elements oscillate, and their time average vanishes,
+\paragraph{Brownian motion: the unknown kicks as a device.} A colloidal particle of
+mass $ m $ moves in an external potential $ \mathcal{V}(x) $ inside a fluid. The known
+Hamiltonian is $ p^{2}/2m + \mathcal{V}(x) $; the unknown part is the interaction with some
+$ 10^{20} $ fluid molecules, whose positions and velocities nobody knows. Langevin's
+equation (1908) replaces that part by two terms,
+\[
+  m\ddot x = -\mathcal{V}'(x) - \gamma\dot x + \zeta(t) , \qquad
+  \langle\zeta(t)\rangle = 0 , \qquad
+  \langle\zeta(t)\,\zeta(t')\rangle = 2\gamma k_BT\,\delta(t - t') :
+\]
+a friction $ -\gamma\dot x $, the average effect of the kicks, and a random force
+$ \zeta(t) $, their fluctuation. The two are not independent. The strength of the noise
+must be $ 2\gamma k_BT $ for a fluid at temperature $ T $ to bring the kinetic energy of
+the particle to its equipartition value $ k_BT/2 $; this is the
+fluctuation--dissipation relation, in Einstein's form (1905) $ D = k_BT/\gamma $ for
+the diffusion constant. The whole Hamiltonian of the fluid and of its coupling to the
+particle has been replaced by two numbers, $ \gamma $ and $ T $.
+
+On time scales long compared with $ m/\gamma $ the inertia can be dropped,
+$ \gamma\dot x = -\mathcal{V}'(x) + \zeta(t) $, and the probability density $ P(x, t) $ of
+the particle obeys the Smoluchowski equation
+\[
+  \frac{\partial P}{\partial t}
+  = \frac{\partial}{\partial x}\bigg[\frac{1}{\gamma}\Big(\mathcal{V}'P + k_BT\,\frac{\partial P}{\partial x}\Big)\bigg]
+  = \frac{\partial}{\partial x}\bigg[\frac{P}{\gamma}\,\frac{\partial}{\partial x}\big(\mathcal{V} + k_BT\ln P\big)\bigg] ,
+\]
+the drift coming from the force and the diffusion from the noise. Define
+\[
+  F[P] \equiv \int\!dx\;P\,\big(\mathcal{V} + k_BT\ln P\big)
+  = \langle\mathcal{V}\rangle - T\,S[P] , \qquad
+  S[P] = -k_B\!\int\!dx\;P\ln P .
+\]
+With $ \psi \equiv \mathcal{V} + k_BT\ln P $, the functional derivative is
+$ \delta F/\delta P = \psi + k_BT $, and an integration by parts (the boundary terms
+vanish for a confining potential) gives
+\[
+  \frac{dF}{dt} = \int\!dx\;\frac{\partial P}{\partial t}\,(\psi + k_BT)
+  = -\int\!dx\;\frac{P}{\gamma}\Big(\frac{\partial\psi}{\partial x}\Big)^{2} \;\leq\; 0 ,
+\]
+with equality only if $ \psi $ is constant, i.e.\ for $ P \propto e^{-\mathcal{V}/k_BT} $. (With
+inertia kept, the same holds for the density in $ (x, p) $, with
+$ \langle p^{2}/2m + \mathcal{V}\rangle $ in place of $ \langle\mathcal{V}\rangle $.)
+
+This calculation shows exactly where the entropy comes from. The known force alone,
+$ T \to 0 $, would minimise $ \langle\mathcal{V}\rangle $ and send the particle to the bottom
+of the well. The noise alone would spread it without limit. The term $ -T\,S[P] $ in
+the functional that the motion minimises is the entire imprint of the unknown kicks:
+it vanishes with them. The friction $ \gamma $ fixes how fast the minimum is reached,
+not where it lies, and the equilibrium state retains $ T $ alone. The entropy enters
+not from the known dynamics but as the representation of the unknown part.
+
+\paragraph{The unknown part need not be external.} Nothing in the device requires the
+kicks to come from outside the body, nor any external time-dependent drive. Every
+model resolves the degrees of freedom of a body only within a window of length and
+energy scales. Beyond its ultraviolet cutoff (short lengths, high energies) and its
+infrared cutoff (long lengths, low energies) lie states that are in general strongly
+interacting and far too complex to be treated microscopically, and they belong to
+$ \hat H' $. Their effect on the retained degrees of freedom is modelled, crudely, by a
+stochastic force or potential, as the fluid was for the Brownian particle. The
+conduction electrons of a metal damp a local magnetic moment and make its orientation
+fluctuate (Korringa relaxation, Gilbert damping); the lattice is the bath of the
+nuclear spins (the spin--lattice relaxation time $ T_1 $) and the phonons are a bath
+for the conduction electrons. The short-wavelength fluctuations of an order parameter
+$ \phi $, once eliminated, leave on the long-wavelength ones a damping and a noise,
+\[
+  \frac{\partial\phi}{\partial t} = -\Gamma\,\frac{\delta F[\phi]}{\delta\phi} + \zeta ,
+  \qquad
+  \langle\zeta(\mathbf{r}, t)\,\zeta(\mathbf{r}', t')\rangle
+  = 2\Gamma k_BT\,\delta(\mathbf{r} - \mathbf{r}')\,\delta(t - t') ,
+\]
+the field-theoretic Langevin equation (model~A of Hohenberg and Halperin, 1977), whose
+stationary distribution is $ \propto e^{-F[\phi]/k_BT} $ by the same calculation as above.
+In this example the ``known Hamiltonian'' $ F[\phi] $ of the retained modes is itself a
+coarse-grained free energy, of Landau--Ginzburg form, which already contains the
+entropy of the eliminated modes: the device is applied scale by scale. In all these
+cases the total Hamiltonian may be time-independent and the body isolated; seen from
+the retained variables, the eliminated ones act as a random force all the same.
+Isolation from the outside therefore does not exempt a macroscopic body from the
+second law: its own unresolved degrees of freedom suffice.
+
+\paragraph{Averaging over the unknown Hamiltonian.} The same mechanism, stated for a
+quantum system without any model of the noise, is an average over what is not known.
+Let the realisations of $ \hat H' $ that cannot be excluded be labelled by $ k $, with
+weights $ q_k > 0 $, $ \sum_kq_k = 1 $, and let each generate, together with $ \hat H $,
+the unitary $ \hat U_k $ over some interval of time. Each $ \hat U_k $ alone is reversible
+and conserves the entropy, but not knowing which one acted, the description after the
+interval is the mixture
+\[
+  \rho' = \sum_k q_k\,\rho_k , \qquad \rho_k \equiv \hat U_k\rho\,\hat U_k^\dagger .
+\]
+Its entropy cannot be lower than that of $ \rho $. Applying Klein's inequality
+(Appendix~\ref{app:gibbsvar}) to each $ \rho_k $ against $ \rho' $ (the support of
+$ \rho_k $ lies in that of $ \rho' $, since $ \rho' \geq q_k\rho_k $) and using
+$ \sum_kq_k\rho_k = \rho' $,
+\[
+  0 \;\leq\; \sum_kq_k\,D(\rho_k\,\|\,\rho')
+  = \sum_kq_k\Tr(\rho_k\ln\rho_k) - \Tr(\rho'\ln\rho')
+  = \frac{1}{k_B}\Big(S[\rho'] - \sum_kq_k\,S[\rho_k]\Big) ,
+\]
+and $ S[\rho_k] = S[\rho] $ for every $ k $, so that
+\[
+  S[\rho'] \;\geq\; S[\rho] ,
+\]
+with equality only if every $ \rho_k $ equals $ \rho' $, i.e.\ only if all the
+realisations of $ \hat H' $ that cannot be excluded leave the state the same. The
+microscopic processes are reversible one by one; the entropy of the description grows
+because it is not known which of them took place.
+
+For a body that exchanges nothing with its surroundings, each $ \hat U_k $ conserves the
+energy to within a macroscopically small width and maps an energy shell into itself.
+If the unknown couplings are generic enough to connect every pair of states in the
+shell, the only state on which all of them act identically is the uniform one,
+proportional to the projector onto the shell, which commutes with every unitary
+acting within it. Repeated averaging therefore drives the description to the
+microcanonical state, and stops there, with $ S = k_B\ln W $ for $ W $ states in the
+shell. The energy survives because $ \hat H' $ conserves it; everything else about the
+microstate is erased.
+
+\paragraph{The master equation.} The mechanism can be made explicit when $ \hat H' $ is
+weak. Let $ |a\rangle $, $ E_a $ be the eigenstates of the model Hamiltonian $ \hat H $
+and $ p_a = \langle a|\rho|a\rangle $ their occupations. Over a time $ \Delta t $, second-order
+perturbation theory in $ \hat H' $, averaged over the unknown phases of the matrix
+elements $ H'_{ab} = \langle a|\hat H'|b\rangle $ (which removes the interference terms
+between different transitions and keeps $ \rho $ diagonal in $ |a\rangle $), gives Fermi's
+golden rule,
+\[
+  \frac{dp_a}{dt} = \sum_b W_{ab}\,(p_b - p_a) , \qquad
+  W_{ab} = \frac{2\pi}{\hbar}\,\overline{|H'_{ab}|^{2}}\;\delta_{\Delta t}(E_a - E_b) ,
+\]
+with $ W_{ab} $ the rate from $ b $ to $ a $ and $ \delta_{\Delta t} $ a peak of width
+$ \hbar/\Delta t $. Hermiticity of $ \hat H' $ makes the rates symmetric,
+$ W_{ab} = W_{ba} \geq 0 $. The entropy $ S = -k_B\sum_ap_a\ln p_a $ then obeys
+Boltzmann's $ H $-theorem in Pauli's form (1928). Since $ \sum_a\dot p_a = 0 $,
+\[
+  \begin{aligned}
+  \frac{dS}{dt} &= -k_B\sum_a\dot p_a\ln p_a
+  = -k_B\sum_{a,b}W_{ab}\,(p_b - p_a)\ln p_a \\
+  &= \frac{k_B}{2}\sum_{a,b}W_{ab}\,(p_b - p_a)(\ln p_b - \ln p_a) \;\geq\; 0 ,
+  \end{aligned}
+\]
+the last form following by exchanging $ a \leftrightarrow b $ and averaging, with
+$ W_{ab} = W_{ba} $. Each term is non-negative because the logarithm is increasing, and
+the sum vanishes only if $ p_a = p_b $ for every pair connected by a transition, i.e.\
+for the uniform distribution on the energy shell. The irreversibility enters at one
+identifiable step: the phases of $ \rho $ and of $ \hat H' $ are discarded at every
+interval $ \Delta t $ (Pauli's repeated random-phase approximation). Van~Hove (1955)
+showed that this step becomes exact for a macroscopic system in the weak-coupling
+limit, $ \hat H' \to 0 $ and $ t \to \infty $ with $ \|\hat H'\|^{2}t $ fixed. With $ \hat H' $
+known and the phases kept, the same calculation would give unitary evolution and a
+constant entropy. The master equation is the evolution of the description, not of the
+microstate.
+
+\paragraph{In contact with a bath.} A bath is the extreme case of an unknown
+$ \hat H' $. If each transition $ b \to a $ of the system takes the energy
+$ E_a - E_b $ from a large bath at temperature $ T $, the rates are no longer symmetric:
+the bath has fewer states at lower energy, by the factor
+$ \Omega_{\rm B}(E_{\rm tot} - E_a)/\Omega_{\rm B}(E_{\rm tot} - E_b) = e^{-\beta(E_a - E_b)} $
+(Section~\ref{sec:ensembles}), and the rates obey \emph{detailed balance},
+$ W_{ab}\,p_b^{\rm eq} = W_{ba}\,p_a^{\rm eq} \equiv K_{ab} = K_{ba} $, with
+$ p_a^{\rm eq} = e^{-\beta E_a}/Z $. The master equation becomes
+$ \dot p_a = \sum_b(W_{ab}p_b - W_{ba}p_a) = \sum_bK_{ab}(x_b - x_a) $ with
+$ x_a \equiv p_a/p_a^{\rm eq} $, and the relative entropy
+$ D(p\,\|\,p^{\rm eq}) = \sum_ap_a\ln x_a $ obeys
+\[
+  \frac{dD}{dt} = \sum_a\dot p_a\ln x_a + \sum_a\dot p_a
+  = -\frac{1}{2}\sum_{a,b}K_{ab}\,(x_b - x_a)(\ln x_b - \ln x_a) \;\leq\; 0 ,
+\]
+where the second sum vanished and the same exchange of $ a $ and $ b $ was used. Since
+$ k_BT\,D(p\,\|\,p^{\rm eq}) = F[p] - F $ with $ F[p] = U[p] - TS[p] $
+(Appendix~\ref{app:gibbsvar}), the free energy of the system decreases monotonically
+to its equilibrium value, as it did for the Brownian particle. The bath enters only
+through the number $ T $ in the ratio of the rates; all other details of
+$ \hat H_{\rm B} $ and $ \hat H_{\rm int} $ are absorbed in the symmetric $ K_{ab} $, which, like
+$ \gamma $, sets how fast the system relaxes but not where. The minimum principle of
+Section~\ref{sec:minimum} appears here as the end point of the action of the unknown
+part of the Hamiltonian.
+
+\paragraph{Dephasing is not loss.} The model Hamiltonian $ \hat H $ by itself also
+makes the state look more disordered, but reversibly. For non-degenerate energy
+differences the matrix elements in the eigenbasis are
+$ \langle a|\rho(t)|b\rangle = \rho_{ab}(0)\,e^{-i(E_a - E_b)t/\hbar} $. The off-diagonal elements
+oscillate, and their time average vanishes,
 $ \tau^{-1}\int_0^\tau e^{-i\omega t}dt \to 0 $ for $ \omega \neq 0 $; hence
 \[
   \bar\rho \equiv \lim_{\tau\to\infty}\frac{1}{\tau}\int_0^\tau\!\rho(t)\,dt
@@ -4692,28 +4861,64 @@ $ \tau^{-1}\int_0^\tau e^{-i\omega t}dt \to 0 $ for $ \omega \neq 0 $; hence
 the \emph{diagonal ensemble}. A measurement averaged over long times, or of a
 few-body observable at a typical late time in a macroscopic system (whose level
 spacings are so dense that the off-diagonal contributions add with effectively
-random phases), sees $ \bar\rho $ rather than $ \rho(t) $. Its entropy is larger. Because
-$ \ln\bar\rho $ is diagonal in the eigenbasis,
-$ \Tr[\rho(0)\ln\bar\rho] = \sum_a\rho_{aa}\ln\rho_{aa} = \Tr(\bar\rho\ln\bar\rho) $, and
+random phases), sees $ \bar\rho $ rather than $ \rho(t) $. Because $ \ln\bar\rho $ is
+diagonal in the eigenbasis, $ \Tr[\rho(0)\ln\bar\rho] = \sum_a\rho_{aa}\ln\rho_{aa} =
+\Tr(\bar\rho\ln\bar\rho) $, and
 \[
   S[\bar\rho] - S[\rho(0)] = k_B\,D\big(\rho(0)\,\|\,\bar\rho\big) \;\geq\; 0 ,
 \]
-with equality only if $ \rho(0) $ was already diagonal. The increase is the
-information carried by the phases of $ \rho_{ab} $.
+with equality only if $ \rho(0) $ was already diagonal. This increase is only apparent.
+The information is still there, in the phases of $ \rho_{ab} $, and an operation that
+reverses the sign of $ \hat H $ recovers it. The nuclear spin echo (Hahn, 1950) does
+exactly this: nuclear spins precessing in an inhomogeneous field dephase and their
+net magnetisation disappears; a $ \pi $ pulse reverses the precession, and the
+magnetisation reappears, although the inhomogeneity was never known in detail ---
+only static. What the echo cannot recover decays with the time $ T_2 $, set by the
+interactions among the spins and by fluctuating fields, which the pulse does not
+reverse. The magic echo (Rhim, Pines and Waugh, 1971) reverses the dipolar
+interaction among the spins as well, and still recovers the signal only partially;
+the residual decay comes from the terms in the Hamiltonian that the reversal does not
+control. Dephasing under the known Hamiltonian displaces information; the unknown
+part of the Hamiltonian removes it beyond recovery.
 
-\paragraph{(iii) Thermalisation.} The diagonal ensemble still remembers every
-$ \rho_{aa} $, i.e.\ exponentially many conserved quantities, and it is not the
-microcanonical state. That few-body observables nevertheless take their
-microcanonical values is the content of the \emph{eigenstate thermalisation
-hypothesis} (Deutsch, 1991; Srednicki, 1994): the diagonal matrix elements
-$ \langle a|\hat O|a\rangle $ of a few-body observable are a smooth function $ O(E_a) $ of
-the energy, up to fluctuations exponentially small in the system size. Then
+\paragraph{Correlations with the environment.} The unknown $ \hat H' $ couples the
+system to degrees of freedom that nobody monitors. Including those degrees of freedom
+makes the composite closed again, and then the information is not destroyed but
+transferred into correlations. Let a system $ A $ interact with an environment $ B $,
+the composite evolving unitarily, and let $ \rho_A = \Tr_B\rho_{AB} $,
+$ \rho_B = \Tr_A\rho_{AB} $ be the reduced states, which are all that measurements on one
+part can access. The mutual information
+\[
+  I(A{:}B) \equiv S[\rho_A] + S[\rho_B] - S[\rho_{AB}] \;\geq\; 0
+\]
+is non-negative (subadditivity of the entropy, itself a case of Klein's inequality:
+$ I = k_B D(\rho_{AB}\,\|\,\rho_A\otimes\rho_B) $). Since $ S[\rho_{AB}] $ is conserved,
+$ S[\rho_A] + S[\rho_B] = S[\rho_{AB}] + I(A{:}B) $ grows by exactly the information
+stored in the correlations, including entanglement, that the interaction has built
+up. Recovering it would require a joint measurement on $ A $ and on every degree of
+freedom of $ B $ that $ A $ has touched; once these include the walls and the radiation
+field, the information is lost as surely as if it had been destroyed. For a small
+system and a large environment more is true (canonical typicality: Goldstein,
+Lebowitz, Tumulka and Zangh\`\i; Popescu, Short and Winter, 2006): for almost every
+\emph{pure} state of $ A + B $ in a narrow energy shell, $ \rho_A $ is close to
+$ e^{-\beta\hat H_A}/Z_A $, with $ \beta $ set by the shell. The canonical state of a
+subsystem is what remains of its description once the environment is traced out.
+
+\paragraph{Why the energy suffices: thermalisation.} The diagonal ensemble still
+remembers every $ \rho_{aa} $, i.e.\ exponentially many conserved quantities, and it is
+not the microcanonical state. That few-body observables nevertheless take their
+microcanonical values, before $ \hat H' $ has had time to equalise the $ \rho_{aa} $, is
+the content of the \emph{eigenstate thermalisation hypothesis} (Deutsch, 1991;
+Srednicki, 1994): the diagonal matrix elements $ \langle a|\hat O|a\rangle $ of a
+few-body observable are a smooth function $ O(E_a) $ of the energy, up to fluctuations
+exponentially small in the system size. Then
 $ \Tr(\bar\rho\hat O) = \sum_a\rho_{aa}O(E_a) \simeq O(U) $ whenever $ \rho_{aa} $ is
 concentrated in an energy window narrow on the scale over which $ O $ varies, which
 is the case for any physically preparable state of a macroscopic system; and $ O(U) $
-is also the microcanonical value. The hypothesis is a property of the Hamiltonian,
-well supported numerically for generic (chaotic) many-body systems. It fails for
-integrable systems,\footnote{\label{fn:integrable}\textbf{Integrable systems.} A
+is also the microcanonical value. The information carried by the $ \rho_{aa} $ beyond
+the energy is real, but invisible to few-body observables. The hypothesis is a
+property of the Hamiltonian, well supported numerically for generic (chaotic)
+many-body systems. It fails for integrable systems,\footnote{\label{fn:integrable}\textbf{Integrable systems.} A
 classical system with $ f $ degrees of freedom is integrable (in the sense of
 Liouville) if it has $ f $ independent conserved quantities whose mutual Poisson
 brackets vanish; its motion is then confined to $ f $-dimensional invariant tori and is
@@ -4724,19 +4929,188 @@ $ \hat H $ and with each other: the occupations $ \hat n_\lambda $ of a quadrati
 Hamiltonian, or the hierarchies of interacting models solvable by the Bethe ansatz,
 such as the Heisenberg (XXZ) chain, the Lieb--Liniger Bose gas and the one-dimensional
 Hubbard model. A practical signature is the level statistics: Poissonian for
-integrable systems, Wigner--Dyson for chaotic ones.} which relax instead to a \emph{generalised} Gibbs ensemble with
-one multiplier for each conserved quantity --- Jaynes' prescription with more data
---- and for many-body localised systems, which do not thermalise at all.
+integrable systems, Wigner--Dyson for chaotic ones.} where more than the energy
+survives: they relax instead to a \emph{generalised} Gibbs ensemble with one
+multiplier for each conserved quantity. It fails too for many-body localised
+systems, which do not thermalise at all.
+
+\subsection{Entropy and chemical potential as devices}
+\label{sec:found_info}
+
+\paragraph{The device for energy exchange.} The results of the previous subsection
+share one structure. The unknown part of the Hamiltonian, whatever it is, drives the
+description to a stationary state that depends on it through the single parameter
+$ T $, and the approach is governed by a functional
+\[
+  F[\rho] = \Tr(\rho\hat H) - T\,S[\rho]
+\]
+that decreases monotonically: $ F[P] $ for the Brownian particle, $ F[p] $ for the
+master equation with a bath. The first term is the known Hamiltonian. The second,
+$ -T\,S[\rho] $, is all that survives of $ \hat H' $: the entropy, multiplied by $ T $,
+stands in for the unknown exchange of energy, and without it ($ T \to 0 $) the known
+dynamics would minimise $ \langle\hat H\rangle $ alone. The details of $ \hat H' $ --- the
+friction $ \gamma $, the rates $ K_{ab} $ --- set how fast the minimum is approached, not
+where it lies; equilibrium thermodynamics keeps only $ T $.
+
+\paragraph{The device for particle exchange.} Particles enter and leave a body
+through processes at least as complex: tunnelling through a contact, adsorption at a
+surface, a chemical reaction, the creation and annihilation of photons and phonons at
+the walls. Let the transitions between the eigenstates $ |a\rangle $ (energies $ E_a $,
+particle numbers $ N_a $) now change $ N $ as well. The reservoir with which particles
+are exchanged, being large, fixes the ratio of the forward and backward rates through
+two numbers: removing the energy $ E_a - E_b $ and $ N_a - N_b $ particles from it
+multiplies its number of states by $ e^{-\beta[(E_a - E_b) - \mu(N_a - N_b)]} $, with $ \mu $
+the chemical potential of the reservoir (Section~\ref{sec:ensembles}). Detailed
+balance becomes $ W_{ab}\,e^{-\beta\xi_b} = W_{ba}\,e^{-\beta\xi_a} $ with
+$ \xi_a = E_a - \mu N_a $, and the argument of the bath paragraph goes through with
+$ E_a $ replaced by $ \xi_a $: the description relaxes to
+$ \rho_{\rm G} = e^{-\beta(\hat H - \mu\hat N)}/\Xi $, and the functional
+\[
+  \Omega[\rho] = \Tr\big[\rho\,(\hat H - \mu\hat N)\big] - T\,S[\rho]
+\]
+decreases monotonically to $ \Omega = -k_BT\ln\Xi $ (Appendix~\ref{app:gibbsvar}). The
+particle-exchange Hamiltonian, whatever it is, has been replaced by a single term
+added to the known Hamiltonian, $ \hat{\mathcal{H}} = \hat H - \mu\hat N $
+(Section~\ref{sec:filt_exact}): the simplest operator that can represent it, linear in
+the conserved quantity it exchanges, with $ \mu $ as its only parameter. Three examples
+show how much is hidden in that term.
+\begin{itemize}
+\item \emph{A quantum dot and a lead.} A level $ \varepsilon_d $ coupled by tunnelling,
+  $ \hat H_{\rm T} = \sum_k(t_k\hat c_k^\dagger\hat d + \text{h.c.}) $, to a metallic lead.
+  The many electrons of the lead and the amplitudes $ t_k $ are replaced, for the
+  equilibrium occupation of the dot in the weak-coupling limit, by the Fermi level
+  $ \mu $ of the lead alone, $ \langle\hat n_d\rangle = 1/(e^{\beta(\varepsilon_d - \mu)} + 1) $; the
+  tunnelling rate $ \Gamma = 2\pi\nu|t|^{2}/\hbar $, with $ \nu $ the density of states of
+  the lead at $ \mu $, plays the role of $ \gamma $ and sets only the time scale.
+\item \emph{Photons in a cavity.} The walls absorb and emit photons, so $ \hat H' $ does
+  not conserve their number, and no reservoir sets a price per photon. The photon
+  number is not among the quantities that survive, there is no term to add, and
+  $ \mu = 0 $: the Planck distribution. The same holds for phonons.
+\item \emph{Chemical reactions.} A reaction that converts $ \nu_i $ particles of species
+  $ i $ (with $ \nu_i < 0 $ for those consumed) leaves $ \sum_i\nu_i\hat N_i $ unchanged
+  but no single $ \hat N_i $. The device assigns a $ \mu_i $ to each species, and
+  stationarity of the reaction requires $ \sum_i\nu_i\mu_i = 0 $, the law of mass
+  action.
+\end{itemize}
+
+\paragraph{The general rule.} Each channel through which a conserved quantity
+$ \hat X $ is exchanged with uncontrolled surroundings is represented by a term
+$ -\lambda\hat X $ added to the Hamiltonian, with $ \lambda $ the conjugate intensive
+variable that the surroundings fix ($ \lambda = \mu $ for $ \hat X = \hat N $). Each such
+channel moves the description one ensemble down the list of
+Section~\ref{sec:ensembles}; on the thermodynamic side it is one Legendre transform.
+The energy itself is the exception: adding a term $ -\lambda\hat H $ would only rescale
+the Hamiltonian, so the unknown exchange of energy cannot be represented by an
+operator. It is represented instead by the noise, and its imprint is the term
+$ -T\,S[\rho] $, which depends on the state and not on any observable. The two
+devices are different in kind, and together they give the grand canonical state.
+
+\paragraph{Shannon's measure, and Jaynes' reading.} The form of the device is
+Shannon's. $ S[\rho] = -k_B\Tr(\rho\ln\rho) $ (footnote~\ref{fn:gibbsS}) has an
+operational meaning: $ S/(k_B\ln2) $ is the number of yes/no questions needed, on
+average and per copy in the limit of many copies, to identify the microstate of a
+system known only to be in the state $ \rho $. In the device it measures how widely the
+unknown part of the Hamiltonian has spread the state over the microstates of the
+known part. The same state $ \rho_{\rm G} $ is also the state of largest $ S $ among all
+states with the same $ \langle\hat H\rangle = U $ and $ \langle\hat N\rangle = \bar N $ (Jaynes,
+1957), and the proof needs no calculus of variations. Since
+$ \ln\rho_{\rm G} = -\beta(\hat H - \mu\hat N) - \ln\Xi $ is \emph{linear} in $ \hat H $ and
+$ \hat N $, every state $ \rho $ with the same averages has
+\[
+  \Tr(\rho\ln\rho_{\rm G}) = -\beta(U - \mu\bar N) - \ln\Xi = \Tr(\rho_{\rm G}\ln\rho_{\rm G}) ,
+\]
+and therefore
+\[
+  S[\rho_{\rm G}] - S[\rho] = k_B\big[\Tr(\rho\ln\rho) - \Tr(\rho\ln\rho_{\rm G})\big]
+  = k_B\,D(\rho\,\|\,\rho_{\rm G}) \;\geq\; 0 ,
+\]
+with equality only for $ \rho = \rho_{\rm G} $, by Klein's inequality. Read as inference,
+this says that $ \rho_{\rm G} $ is the least committal assignment given the conserved
+averages. Read as physics, it says that the unknown part of the Hamiltonian has
+erased everything except the conserved quantities. Only the second reading explains
+why the assignment predicts experiments: the inference alone would apply equally to a
+closed system with a completely known Hamiltonian, where the ignored details persist
+and could be recovered by reversing the dynamics (Section~\ref{sec:found_unitary}).
+
+\paragraph{The meaning of $ T $ and $ \mu $.} Neither parameter is a property of the
+known Hamiltonian; both are properties of the surroundings to which the unknown part
+couples, and they are all that equilibrium thermodynamics retains of that part. $ T $
+is the strength of the unknown kicks, in the precise sense of the
+fluctuation--dissipation relation, which fixes the strength of the noise at
+$ 2\gamma k_BT $ for a given friction $ \gamma $; equivalently, it fixes the ratio $ e^{-\beta(E_a - E_b)} $ of the rates up and
+down in energy. $ \mu $ is the price per particle in the ratio of the rates of uptake
+and release. For a macroscopic system the distinction between a closed body and one
+that exchanges energy or particles hardly matters for the potentials, because the
+distributions of $ E $ and $ N $ in the canonical and grand canonical states have
+relative widths $ O(N^{-1/2}) $ (Section~\ref{sec:equivalence}).
+
+\subsection{Equilibrium as a protocol}
+\label{sec:found_protocol}
+
+\paragraph{Separation of time scales.} The devices describe a stationary state, and a
+stationary state is reached only after the relaxation processes driven by $ \hat H' $
+have run their course. ``Equilibrium'' is therefore less a property of a state found
+in nature than a protocol: prepare the body, wait until the complex relaxation
+processes have happened, and then measure on a longer time scale still. Three time
+scales enter. The correlation time $ \tau_c $ of the stochastic force (for the Brownian
+particle, the duration of a molecular collision, about $ 10^{-13} $ s) must be short
+enough for the force to be represented as white noise; otherwise the friction acquires
+a memory kernel, which changes the kinetics but not the stationary state. The
+relaxation time $ \tau_{\rm rel} $ of the retained variables ($ m/\gamma $ and the
+diffusion time across the well for the Brownian particle, the inverse of the rates
+$ K_{ab} $ in the master equation) sets how long one must wait. And the observation time
+$ \tau_{\rm obs} $ over which a measurement averages must exceed $ \tau_{\rm rel} $, so that
+the measurement records stationary averages rather than individual kicks:
+\[
+  \tau_c \;\ll\; \tau_{\rm rel} \;\ll\; t_{\rm wait},\ \tau_{\rm obs} .
+\]
+Processes slower than the protocol are not part of the device at all. They are
+frozen, and the variables they would change enter as internal constraints
+(Section~\ref{sec:minimum}): the ortho and para forms of molecular hydrogen, which
+without a catalyst interconvert over days or longer; nuclear spins in an insulator at
+low temperature, whose spin--lattice relaxation can take hours; the configurational
+degrees of freedom of a glass below $ T_g $ (Appendix~\ref{app:glass}). The same body can
+be in equilibrium for one protocol and not for another, and the division of the
+Hamiltonian into $ \hat H $ and $ \hat H' $ is made relative to the time scales of the
+protocol. In Feynman's phrase, equilibrium is reached when all the fast things have
+happened and all the slow things have not.
+
+\paragraph{No assumption that the coupling is weak.} The derivation of the ensembles
+from a reservoir (Section~\ref{sec:ensembles}) treats system and reservoir as weakly
+coupled: the interaction energy at their interface, which grows as its area, is
+neglected against the bulk energies, which grow as the volumes, so that the energies
+add and the states of the reservoir can be counted separately. The definition of heat
+in Section~\ref{sec:found_heat} and the bath paragraph of
+Section~\ref{sec:found_second} rest on the same assumption. The device does not
+need it. The stochastic force represents the unknown part through its effect on the
+retained variables, whatever the strength of the coupling: in the Langevin equation
+$ \gamma $ may be as large as one likes, and the stationary distribution remains
+$ P \propto e^{-\mathcal{V}/k_BT} $; the strength of the coupling sets the kinetics, not the
+end point. When a strong coupling also modifies the retained degrees of freedom
+statically --- a polaronic shift of a level, the screening of an interaction, the
+energy of an interface --- the modification is absorbed into the known part, which
+becomes an effective, in general temperature-dependent, Hamiltonian
+$ \hat H_{\rm eff} $ (the Hamiltonian of mean force), and the stationary state is
+$ e^{-\beta\hat H_{\rm eff}}/Z_{\rm eff} $. Surface and interface interactions therefore need
+not be negligible compared with the bulk. What their size decides is not whether the
+ensemble applies but whether the resulting potentials are extensive
+(Appendix~\ref{app:extensivity}): in a nanoscale body, or across an interface, they
+survive as surface free energies without invalidating the description.
 
 \subsection{The second law as a statement about information}
 \label{sec:found_law}
 
-Assembled, the picture is this. The microscopic dynamics destroys no information:
-the Gibbs entropy of the full state and its entire energy distribution are
-conserved. What changes is \emph{where} the information resides: initially in
-quantities that macroscopic measurements can see, later in correlations between
-subsystems, in the phases of $ \rho_{ab} $, and in correlation functions of ever higher
-order. The thermodynamic entropy is the entropy of the macroscopic description,
+Assembled, the picture is this. Microscopic dynamics under any completely known
+Hamiltonian destroys no information: the Gibbs entropy of the full state and its
+entire energy distribution are conserved. The second law arises because the
+description of a macroscopic body never contains its whole Hamiltonian. The unknown
+part $ \hat H' $, whether external couplings or the body's own unresolved degrees of
+freedom, acts on the microstate far below the resolution of any measurement,
+conserves the energy and the particle number except through the channels represented
+by $ T $ and $ \mu $, and scrambles everything else. Its effect on the description is an
+average over unitaries, which can only increase $ S[\rho] $; at the end only the
+conserved quantities remain, and the state is the one that maximises $ S $ given them.
+The thermodynamic entropy is the entropy of that state,
 \[
   S_{\rm th}(\mathcal{A}) \equiv \max\big\{\,S[\rho] \;:\; \rho \text{ reproduces the macroscopic data } \mathcal{A}\,\big\} ,
 \]
@@ -4744,26 +5118,43 @@ which for $ \mathcal{A} = (U, V, N) $ is the equilibrium entropy of
 Section~\ref{sec:ensembles}. In this form the second law has a two-line proof.
 Prepare the system in equilibrium under some internal constraint, so that its state
 $ \rho(0) $ is the maximiser for the initial data $ \mathcal{A}_0 $ and
-$ S[\rho(0)] = S_{\rm th}(\mathcal{A}_0) $. Release the constraint and let the system
-evolve, isolated, to new macroscopic data $ \mathcal{A}_1 $. The evolved state
-$ \rho(t) $ reproduces $ \mathcal{A}_1 $ (these are its own expectation values), so it is
-one of the candidates in the maximum defining $ S_{\rm th}(\mathcal{A}_1) $; hence
+$ S[\rho(0)] = S_{\rm th}(\mathcal{A}_0) $. Release the constraint and wait, as the protocol
+of Section~\ref{sec:found_protocol} prescribes, until the system has evolved to new
+macroscopic data $ \mathcal{A}_1 $. The evolved state $ \rho(t) $ reproduces
+$ \mathcal{A}_1 $ (these are its own expectation values), so it is one of the
+candidates in the maximum defining $ S_{\rm th}(\mathcal{A}_1) $; hence
 \[
-  S_{\rm th}(\mathcal{A}_1) \;\geq\; S[\rho(t)] = S[\rho(0)] = S_{\rm th}(\mathcal{A}_0) ,
+  S_{\rm th}(\mathcal{A}_1) \;\geq\; S[\rho(t)] \;\geq\; S[\rho(0)] = S_{\rm th}(\mathcal{A}_0) .
 \]
-the middle equality being the conservation law of Section~\ref{sec:found_unitary}.
-Equality holds only if $ \rho(t) $ is itself the maximum-entropy state for the new
-data, i.e.\ only if no information has been moved out of reach of the macroscopic
-observables --- which is the microscopic meaning of a reversible process. The
+The middle inequality is an equality for exactly unitary evolution
+(Section~\ref{sec:found_unitary}), and holds in general once the average over the
+unknown part of the Hamiltonian is included (Section~\ref{sec:found_second}). The
 inequality is the entropy form of the minimum principle of Section~\ref{sec:minimum},
 and the same argument with a bath gives the potentials.
 
-The entropy is therefore not a dispensable device. It is the measure of the
-information missing from a description, and the second law is the statement that
-the information missing from the \emph{macroscopic} description of an isolated system
-cannot decrease. Neither the energy variance nor any other property of the energy
-distribution can play this role, since the former is conserved in an isolated system
-and can decrease in an open one.
+The proof shows only that $ S_{\rm th} $ cannot decrease. That it actually increases,
+and that the increase is physical rather than a matter of bookkeeping, is the content
+of Section~\ref{sec:found_second}. Under exactly unitary evolution $ \rho(t) $ differs
+from the maximiser for $ \mathcal{A}_1 $, and the difference --- the information in
+phases and correlations --- could in principle be recovered by reversing the
+dynamics. The unknown part of the Hamiltonian removes that possibility: it erases the
+difference faster than any experiment could exploit it, so that $ \rho(t) $ becomes,
+for every feasible measurement and every feasible reversal, the maximum-entropy state
+itself. Equality holds only if no information has been moved out of reach of the
+macroscopic observables --- which is the microscopic meaning of a reversible process.
+
+The entropy is therefore neither a property of the microstate nor a product of the
+microscopic equations of the known Hamiltonian. It is the device by which a
+description that cannot contain the whole Hamiltonian accounts for the part it leaves
+out, as the term $ -\mu\hat N $ accounts for the unknown exchange of particles and as
+friction and noise account for the unknown kicks of the fluid on a Brownian particle.
+Shannon's formula gives the device its form; the unknown part of the Hamiltonian
+gives it its content; and the second law states that this part, which conserves the
+energy and scrambles the rest, can only increase it. Neither the energy variance nor
+any other property of the energy distribution can play the role of the entropy: the
+variance is conserved in an isolated system, and in a body cooled by a bath it falls,
+from $ k_BT_1^{2}C(T_1) $ to $ k_BT_2^{2}C(T_2) $ when $ C $ does not decrease with $ T $,
+while the total entropy grows.
 
 \section{Summary}
 
