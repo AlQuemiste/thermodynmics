@@ -130,7 +130,7 @@ by field cooling, everything below applies.
 \subsection{Work}
 \label{sec:work}
 
-Work is energy delivered to the system through a parameter that the
+Work is energy delivered \emph{to the system} through a parameter that the
 experimenter controls: the position of a piston, the strength of an applied
 field, the strain imposed by a clamp. For a fluid compressed quasi-statically
 by a piston the work done on the system is
@@ -147,7 +147,15 @@ variable):
 with $\mathcal{H}\,dM$ for magnetic work, $V\sigma_{ij}\,d\epsilon_{ij}$ for
 elastic work against the stress $\sigma_{ij}$, $\mathbf{E}\cdot d\mathbf{P}$
 for dielectric work, and $\mu\,dN$ the energy brought in with $dN$ particles
-admitted from a reservoir at chemical potential $\mu$. (The sign of the magnetic
+admitted from a reservoir at chemical potential $\mu$. The terms simply add
+because the control parameters are taken to be \emph{independent}: each can be
+moved while all the others are held fixed, the work for a small displacement
+of all of them is then linear in the displacements $dV$, $dM$, $d\epsilon_{ij}$,
+\dots, and the coefficient of each is the work for moving that parameter
+alone. If two controls are tied to each other, as when the volume of a
+magnetostrictive sample follows the applied field, the dependent one is
+eliminated first, so that the list contains only parameters that can be set
+independently. (The sign of the magnetic
 term is opposite to that of the pressure term because magnetising a sample
 against a field costs energy, whereas expanding it against a pressure releases
 energy; Appendix~\ref{app:bookkeeping} discusses the conventions.) Everything
@@ -173,9 +181,13 @@ Section~\ref{sec:foundations} returns to this.
 
 Joule's experiments established that the work needed to carry a thermally
 insulated\footnote{\label{fn:adiabatic}%
-\textbf{Adiabatic.} A wall is \emph{adiabatic} if no heat passes through it,
-so that the energy of the enclosed system changes only by work (mechanical,
-electrical, stirring); a wall that lets heat pass is \emph{diathermal}. A
+\textbf{Adiabatic.} A wall is \emph{adiabatic} if it is impermeable to
+matter and lets no heat through, so that the energy of the enclosed system
+changes only by work (mechanical, electrical, stirring); a wall that lets heat
+pass is \emph{diathermal}. Impermeability is part of the definition and not an
+afterthought: particles that cross a wall carry energy with them, and of that
+energy only the part $\mu\,dN$ is work, the remainder being heat
+(Section~\ref{sec:clausius}), so a wall open to matter cannot be adiabatic. A
 process is adiabatic if the system is enclosed by adiabatic walls throughout,
 $\dbar Q=0$ at every stage. The word says nothing about the rate: an adiabatic
 process may be violent (free expansion, stirring), and then the entropy
@@ -221,13 +233,7 @@ $T+\Delta T$ by any means, however irreversible, measure $Q$, and
 \]
 The limit is a derivative of the equilibrium function $U(T,V,N)$, which exists
 independently of how the heat was delivered. That is why constant-volume
-calorimetry is well defined without any assumption of reversibility. For the
-heat capacity at constant pressure, $C_P$, the work term $-P\,dV$ enters, and
-the convenient bookkeeping variable is the enthalpy $H=U+PV$
-(Section~\ref{sec:family}): at constant $P$, $dH=\dbar Q$ and
-$C_P=(\partial H/\partial T)_{P,N}$. Rewriting either heat capacity as a
-derivative of the entropy requires the second law and is done in
-Section~\ref{sec:clausius}.
+calorimetry is well defined without any assumption of reversibility.
 
 \section{Mathematical preliminaries}
 \label{sec:math}
@@ -274,8 +280,14 @@ $f'(a)(b-a)$.)
 $f'$ is non-decreasing, and strictly convex if and only if $f'$ is strictly
 increasing. (Add the tangent inequalities at $a$ and at $b$.)
 \item \emph{Second-derivative form.} A $C^{2}$ function is convex if and only
-if $f''\geq0$ everywhere. The condition $f''>0$ is sufficient for strict
-convexity but not necessary: $x^{4}$ is strictly convex with $f''(0)=0$.
+if $f''\geq0$ everywhere. (Both directions reduce to the first-derivative
+form. If $f''\geq0$, the mean value theorem $f'(b)-f'(a)=f''(c)\,(b-a)$ with
+$c$ between $a$ and $b$ shows that $f'$ is non-decreasing; conversely, if $f'$
+is non-decreasing then $f''(a)=\lim_{h\to0^{+}}[f'(a+h)-f'(a)]/h$ is a limit
+of non-negative numbers.) The condition $f''>0$ is sufficient for strict
+convexity, since it makes $f'$ strictly increasing, but not necessary: $f'$
+may be strictly increasing while $f''$ vanishes at isolated points, as for
+$x^{4}$, which is strictly convex with $f''(0)=0$.
 \end{itemize}
 For concave functions every inequality is reversed: the graph lies below its
 tangents, $f'$ is non-increasing, $f''\leq0$.
@@ -284,9 +296,25 @@ Two consequences are used constantly. First, a strictly convex $C^{1}$
 function has a strictly increasing derivative, so the map $a\mapsto f'(a)$ is
 one-to-one and can be inverted: \emph{the slope labels the point}. This is what
 makes the Legendre transform possible. Second, a convex function of several
-variables is convex along every straight line in its domain, and for a $C^{2}$
-function this is the statement that its matrix of second derivatives (the
-Hessian) is positive semidefinite.
+variables is convex along every straight line in its domain, because the chord
+inequality only ever involves two points and the segment between them. For a
+$C^{2}$ function $f(\mathbf{x})$ the second derivative along the line
+$\mathbf{x}_0+t\,\mathbf{v}$ is
+\[
+  \frac{d^{2}}{dt^{2}}\,f(\mathbf{x}_0+t\,\mathbf{v})
+  =\sum_{ij}v_i\,\frac{\partial^{2}f}{\partial x_i\,\partial x_j}\,v_j
+  \equiv\mathbf{v}^{\mathsf T}\mathsf{H}\,\mathbf{v} ,
+\]
+with $\mathsf{H}$ the symmetric matrix of second derivatives (the Hessian).
+Convexity along every line is therefore the statement that $\mathsf{H}$ is
+\emph{positive semidefinite}: $\mathbf{v}^{\mathsf T}\mathsf{H}\mathbf{v}\geq0$
+for every vector $\mathbf{v}$, equivalently every eigenvalue of $\mathsf{H}$
+is non-negative. $\mathsf{H}$ is \emph{positive definite} if the inequality
+is strict for every $\mathbf{v}\neq\mathbf{0}$, equivalently every eigenvalue
+is positive. For a $2\times2$ matrix, positive definiteness is
+$\mathsf{H}_{11}>0$ together with $\det\mathsf{H}>0$, and positive
+semidefiniteness is $\mathsf{H}_{11}\geq0$, $\mathsf{H}_{22}\geq0$ and
+$\det\mathsf{H}\geq0$; Section~\ref{sec:stability} uses this case.
 
 \subsection{The Legendre transform}
 \label{sec:legendre}
@@ -360,26 +388,54 @@ function is its unique global minimum. Hence
 In the minimisation $T$ is a fixed parameter and $S$ the variable scanned; the
 result depends on $T$ alone. This form says the same thing as the definition
 but has three advantages. It is defined for any $U$, differentiable or not,
-convex or not, provided the minimum (or the greatest lower bound) exists; it
-displays $S$ as a quantity that is \emph{chosen} so as to minimise $U-TS$ at
+convex or not, provided the minimum (or the greatest lower bound, `infimum') exists;
+it displays $S$ as a quantity that is \emph{chosen} so as to minimise $U-TS$ at
 given $T$, which is exactly what a system in contact with a heat bath does
 (Section~\ref{sec:minimum}); and it makes two properties of $F$ immediate,
 which are derived next.
 
-\paragraph{Convexity flips, and curvatures are reciprocal.} For each fixed
-$S$, the bracket in Eq.~\eqref{eq:legendre_inf} is an affine function of $T$,
-with slope $-S$. $F(T)$ is the lower envelope of this family of straight
-lines, and a lower envelope of straight lines is concave (draw two lines and
-take the lower one). So
+\paragraph{Convexity flips, and curvatures are reciprocal.} The first
+property is qualitative: $F$ is concave in $T$. Read Eq.~\eqref{eq:legendre_inf}
+with the roles of the two variables exchanged. For each fixed value of $S$ the
+bracket
 \[
-  U \text{ convex in } S \quad\Longrightarrow\quad F \text{ concave in } T .
+  \ell_S(T)\equiv U(S)-T\,S
 \]
-Quantitatively, differentiating Eq.~\eqref{eq:legendre_deriv} once more and
-using the rule for the derivative of an inverse function,
+is a \emph{straight line} in $T$, with slope $-S$ and intercept $U(S)$; the
+transform $F(T)=\min_S\ell_S(T)$ is the lowest of these lines at each $T$,
+their lower envelope. A lower envelope of straight lines is concave, and the
+proof is three lines. Take $T=x\,T_1+(1-x)\,T_2$ with $0\leq x\leq1$, and let
+$S^{\ast}=S(T)$ be the value of $S$ that attains the minimum at this $T$. Then
+\[
+  F(T)=\ell_{S^{\ast}}(T)
+  =x\,\ell_{S^{\ast}}(T_1)+(1-x)\,\ell_{S^{\ast}}(T_2)
+  \;\geq\;x\,F(T_1)+(1-x)\,F(T_2) ,
+\]
+the equality in the middle because $\ell_{S^{\ast}}$ is affine, the inequality
+because $F(T_i)$ is the \emph{minimum} over $S$ of $\ell_S(T_i)$ and
+$S^{\ast}$ is just one competitor. This is the chord inequality for a concave
+function. Note what was and was not used: the argument never invoked the
+convexity of $U$, so the variational transform of \emph{any} function is
+concave. Convexity of $U$ is needed for something else, namely that the
+transform can be undone and $U$ recovered (next paragraph). So
+\[
+  U \text{ convex in } S \quad\Longrightarrow\quad
+  F \text{ concave in } T,\ \text{and } U \text{ is recovered from } F .
+\]
+The second property is quantitative and says how strongly $F$ curves. Start
+from $F'(T)=-S(T)$, Eq.~\eqref{eq:legendre_deriv}, and differentiate once
+more: $F''(T)=-dS/dT$. The function $S(T)$ is the inverse of $T(S)=U'(S)$,
+and the derivative of an inverse function is the reciprocal of the derivative,
+$dS/dT=1/(dT/dS)=1/U''(S)$. Hence
 \begin{equation}\label{eq:reciprocal}
   \frac{d^{2}F}{dT^{2}}=-\frac{dS}{dT}=-\left(\frac{dT}{dS}\right)^{-1}
   =-\left(\frac{d^{2}U}{dS^{2}}\right)^{-1} .
 \end{equation}
+The sign reproduces the qualitative statement, $U''>0$ giving $F''<0$, and
+the magnitude adds to it. The picture is this: where $U(S)$ is nearly flat,
+the slope $T$ changes very little over a wide range of $S$, so the inverse
+function $S(T)$ swings through that wide range for a tiny change of $T$, and
+$F$, whose slope is $-S$, bends sharply.
 The curvatures\footnote{\label{fn:curvature}\textbf{Curvature.} In this text
 the curvature of a function of one variable means its second derivative
 $f''$, which fixes the sign (convex for $f''>0$, concave for $f''<0$) and the
@@ -413,9 +469,31 @@ segment, i.e.\ by a two-phase mixture.
 \paragraph{Several variables.} Everything above applies to a function of
 several variables transformed in one of them, the others being held fixed as
 parameters. Successive transforms in different variables commute, and each
-replaces one extensive variable by its conjugate slope. The Legendre transform
-of a function convex in all its variables is convex in the untransformed
-variables and concave in the transformed ones.
+replaces one extensive variable by its conjugate slope. The mixed convexity
+of the result is the point that needs care. Let $U(S,V)$ be jointly convex and
+transform it in $S$ only,
+\[
+  F(T,V)=\min_S\big[\,U(S,V)-T\,S\,\big] .
+\]
+Then $F$ is \emph{concave in the transformed variable} $T$ at fixed $V$, by
+the envelope argument above applied at each $V$, and \emph{convex in the
+untransformed variable} $V$ at fixed $T$. The latter is the statement that
+minimising a jointly convex function over one of its variables leaves a convex
+function of the others. To see it, fix $T$, take $V=x\,V_1+(1-x)\,V_2$, and
+let $S_1$, $S_2$ be the minimisers at $V_1$, $V_2$. The point
+$(x\,S_1+(1-x)\,S_2,\,V)$ is a competitor in the minimisation at $V$, so
+\[
+  F(T,V)\;\leq\;U\big(xS_1+(1-x)S_2,\,V\big)-T\,\big(xS_1+(1-x)S_2\big)
+  \;\leq\;x\,F(T,V_1)+(1-x)\,F(T,V_2) ,
+\]
+the second step by the joint convexity of $U$ and the linearity of $-TS$.
+The rule, for a function convex in all its variables, is therefore:
+\emph{the transform is convex in the variables that were not transformed and
+concave in those that were}. In particular $F(T,V)$ is neither convex nor
+concave jointly in $(T,V)$: its graph is a saddle, and its full Hessian is
+indefinite. This is why the stability conditions of
+Section~\ref{sec:stability} are stated one variable at a time for $F$, $G$
+and $\Omega$, whereas for $U(S,V,N)$ they are a single matrix statement.
 
 \begin{figure}[htbp]
 \centering
@@ -739,7 +817,8 @@ most useful for what follows (Callen's postulates, as presented by Swendsen
 \begin{quote}
 There exists an extensive function of state, the \emph{entropy} $S(U,V,N)$,
 which is a continuous and strictly increasing function of $U$, with the
-following property. When an internal constraint of an isolated system is
+following property.
+When an internal \emph{macroscopic} constraint of an isolated system is
 released, the system evolves to the equilibrium state in which $S$ is as large
 as it can be, given the constraints that remain. Consequently, for any process
 that carries a thermally isolated system from one equilibrium state to
@@ -749,6 +828,20 @@ another,
 \]
 with equality if and only if the process is reversible.
 \end{quote}
+The word \emph{macroscopic} in the statement is not decorative. The
+constraint is a wall, a valve, a clamp, a switch: something described by a few
+variables and operated without any knowledge of the microstate. A constraint
+that acts on individual molecules is not of this kind. Maxwell's demon, a
+trap door opened for fast molecules travelling one way and for slow ones
+travelling the other, sorts a gas at uniform temperature into a hot half and a
+cold half, and the entropy of the gas decreases. There is no contradiction,
+because the demon is not a macroscopic constraint: to operate the door it must
+measure and record the state of each molecule, and the record is a physical
+system whose entropy grows by at least $k_B\ln2$ per bit when it is erased to
+make room for the next (Landauer's bound), so that the entropy of gas plus
+demon does not decrease. The second law bounds what can be achieved with
+macroscopic manipulations; what a microscopic agent can do is accounted for
+only when the agent is included in the system (Section~\ref{sec:found_info}).
 Clausius' statement (heat does not flow spontaneously from cold to hot) and
 Kelvin's (no cyclic process converts heat entirely into work) are consequences
 and are derived below and in Section~\ref{sec:clausius}; the three are
@@ -758,6 +851,31 @@ states, and during a violent process (a gas rushing into a vacuum) there is no
 equilibrium state and no entropy to differentiate. All that is needed is that
 $S$ exist at the two end points.
 
+\paragraph{Reversibility and the creation of entropy.} The condition for
+equality, \emph{reversible}, is defined operationally in
+Section~\ref{sec:clausius}: quasi-static and without dissipation, so that the
+reversed protocol restores system and surroundings. For a thermally isolated
+system the postulate makes the two notions coincide. A reversible process has
+$\Delta S=0$, because the reversed process is also allowed and would have
+$-\Delta S\geq0$. Conversely, a process with $\Delta S=0$ is reversible,
+because any irreversibility consists of the relaxation of some internal
+variable from a value held by a released constraint to its equilibrium value,
+and the postulate says that such a relaxation strictly increases $S$. For a
+system that is not thermally isolated the two notions must be kept apart,
+because $S$ then changes for two reasons. Entropy can be \emph{transferred}
+across the boundary with the heat, and it can be \emph{created} inside; the
+balance along any process is
+\[
+  dS=\frac{\dbar Q}{T_{\rm res}}+\dbar S_{\rm created} ,\qquad
+  \dbar S_{\rm created}\geq0 ,
+\]
+with $T_{\rm res}$ the temperature of the reservoir supplying the heat
+(Section~\ref{sec:clausius}, where this follows from the Clausius inequality).
+Reversibility is equivalent to the vanishing of the \emph{created} part, not
+of $\Delta S$: a reversible isothermal expansion has $\Delta S=Q/T>0$ and
+creates nothing, the loss of entropy of the reservoir, $-Q/T$, compensating
+exactly. The isolated system is the case $\dbar Q=0$, where transfer is
+absent and the two statements become one.
 \paragraph{The entropy representation.} Since $S$ is strictly increasing in
 $U$, the relation $S=S(U,V,N)$ can be inverted to $U=U(S,V,N)$, the
 fundamental relation of Section~\ref{sec:totaldiff}. The derivatives of the
@@ -767,26 +885,50 @@ two forms are related by solving Eq.~\eqref{eq:dU} for $dS$,
   \qquad
   \left(\frac{\partial S}{\partial U}\right)_{V,N}=\frac{1}{T}>0 .
 \end{equation}
-Positivity of $T$ is the monotonicity of $S$ in $U$; it holds for every system
-whose energy spectrum is unbounded above.
+Positivity of $T$ is the monotonicity of $S$ in $U$, and it is worth being
+precise about where it comes from. It is \emph{not} a consequence of the
+maximum principle: that principle, applied below to two bodies in thermal
+contact, yields $1/T_1=1/T_2$ and the direction of heat flow, and it would do
+so for negative temperatures as well. Monotonicity is a separate clause of the
+postulate, and physically it is a property of the energy spectrum. For a
+spectrum unbounded above the number of states available grows with $U$ without
+limit, $S$ increases with $U$, and $T>0$ (Section~\ref{sec:microcanonical}).
+For a system whose spectrum is bounded above, such as a set of nuclear spins
+isolated from the lattice, $S(U)$ rises and then falls again as $U$ approaches
+the top of the band, and on the falling branch $T=(\partial S/\partial U)^{-1}$
+is negative. Such states are prepared in the laboratory by population
+inversion; they are internally equilibrated, obey the maximum principle, and
+give heat to any body at positive temperature, so that they are ``hotter than
+infinite temperature''. Everything in these notes that uses $T>0$ (the
+invertibility of $S(U)$ to $U(S)$, the signs in the stability inequalities)
+is restricted to systems with spectra unbounded above, which includes every
+system with kinetic energy.
 
 \paragraph{Equilibrium between two bodies.} Let an isolated system consist of
 two parts, $1$ and $2$, separated by a wall. The entropy is additive,
 $S=S_1(U_1,V_1,N_1)+S_2(U_2,V_2,N_2)$, up to a contribution from the interface
 that is negligible in the thermodynamic limit (Appendix~\ref{app:extensivity}).
 If the wall conducts heat but is rigid and impermeable, the only internal
-variable is the division of the fixed total energy, $U_1+U_2=U$, and the
-second law says that equilibrium maximises $S$ over $U_1$:
+variable is the division of the fixed total energy, $U_1+U_2=U$, and
+the second law says that equilibrium maximises $S$ over $U_1$:
 \[
   \frac{\partial S}{\partial U_1}
   =\frac{\partial S_1}{\partial U_1}-\frac{\partial S_2}{\partial U_2}
   =\frac{1}{T_1}-\frac{1}{T_2}=0
   \qquad\Longrightarrow\qquad T_1=T_2 .
 \]
+That $S$ has a maximum does not conflict with the monotonicity of each $S_i$
+in its own energy: the total energy is fixed, so the function being maximised
+is $S_1(U_1)+S_2(U-U_1)$, which increases with $U_1$ through the first term
+and decreases through the second, and the maximum is where the two rates,
+$1/T_1$ and $1/T_2$, balance. Monotonicity in $U$ says only that raising the
+\emph{total} energy never lowers the entropy. That the stationary point is a
+maximum, and the only one, follows from the concavity of each $S_i$
+(Section~\ref{sec:whyconvex}).
 If the wall is also movable, maximising over $V_1$ gives $P_1/T_1=P_2/T_2$,
 hence $P_1=P_2$; if it is permeable, maximising over $N_1$ gives $\mu_1=\mu_2$.
 The derivatives of $S$ with respect to the quantities exchanged are what is
-equalised, and these are the intensive variables: this is why $T$, $P$ and
+equalised, and these are the \emph{intensive} variables: this is why $T$, $P$ and
 $\mu$, defined as derivatives in Eq.~\eqref{eq:defTPmu}, are the quantities
 that a thermometer, a manometer and a membrane measure. The direction of
 approach follows from the same formula. Before equilibrium, a small transfer
@@ -807,13 +949,21 @@ hysteresis. For a reversible process the time-reversed process is also
 possible, so that running the protocol backwards restores both the system and
 its surroundings.
 
-\paragraph{The reversible heat.} Along a reversible path at fixed $N$ the work
+\paragraph{The reversible heat.} Along a \emph{reversible} path at fixed $N$ the work
 is $-P\,dV$, the pressure of the system being equal to the external pressure
 at every stage. Comparing the first law $dU=\dbar Q_{\rm rev}-P\,dV$ with
 Eq.~\eqref{eq:dU} at fixed $N$ gives
 \begin{equation}\label{eq:TdS}
   \boxed{\;\dbar Q_{\rm rev}=T\,dS\;}
 \end{equation}
+Nothing here requires $P$ to be constant along the path; it varies in an
+adiabatic compression, and the argument is unaffected. What is required is
+that at every stage the external pressure equal the system's own $P$, a
+function of state, so that the work is expressed through state variables and
+can be compared with Eq.~\eqref{eq:dU} term by term. In an irreversible
+compression the external pressure exceeds $P$, the work $-P_{\rm ext}\,dV$
+exceeds $-P\,dV$, and the heat falls short of $T\,dS$; this is the content of
+the Clausius inequality below.
 This is the hinge on which thermodynamics turns: it converts the unmeasurable
 entropy into the measurable heat, and it is what makes $1/T$ an integrating
 factor for $\dbar Q$ (Appendix~\ref{app:exact}). In particular the heat
@@ -896,11 +1046,28 @@ turns Eq.~\eqref{eq:superadd} into
 \begin{equation}\label{eq:Sconcave}
   x\,S(a)+(1-x)\,S(b)\;\leq\;S\big(x\,a+(1-x)\,b\big) ,
 \end{equation}
-the chord inequality of Section~\ref{sec:convex} with the inequality
-reversed: \emph{the entropy is a concave function of $(U,V,N)$ jointly}. The
+the chord inequality of Section~\ref{sec:convex} with the inequality reversed:
+\emph{the entropy is a concave function of $(U,V,N)$ jointly}. The
 inequality is strict in a single homogeneous phase and becomes an equality
 along the straight segments that describe two-phase mixtures
 (Section~\ref{sec:firsttransition}).
+
+\begin{remark}
+Concave and strictly increasing in $U$ are compatible, and together they say
+something definite. Concavity requires the slope $\partial S/\partial U=1/T$
+to be non-increasing in $U$; strict monotonicity requires it to stay
+positive. A function with a positive slope that keeps decreasing without ever
+reaching zero does both: $\ln U$ and $\sqrt U$ are examples, and so is the
+entropy of the classical ideal gas, $S=\tfrac32Nk_B\ln U+\dots$, whose slope
+$1/T=\tfrac32Nk_B/U$ falls towards zero as $U\to\infty$ but never vanishes.
+Nothing in concavity forces the function to turn over. In thermodynamic terms
+the two properties combined say that $1/T$ decreases with $U$, i.e.\ that
+$T$ increases with $U$, which is the positivity of $C_V$ derived in
+Eq.~\eqref{eq:USconvex} below. The case in which a concave $S(U)$ does turn
+over is the bounded spectrum of Section~\ref{sec:secondlaw}, where the slope
+passes through zero and $T$ becomes negative; the postulate excludes it by
+requiring strict monotonicity.
+\end{remark}
 
 \paragraph{From $S$ to $U$.} Since $S$ is concave and strictly increasing in
 $U$, its inverse $U(S,V,N)$ is convex. In one variable: with $S'(U)=1/T>0$,
@@ -939,7 +1106,7 @@ transferred through a valve, the extent of a chemical reaction, the fraction of
 a coexisting phase, an order parameter. Prepare the system in equilibrium with
 such a variable pinned, release it while the walls and reservoirs keep the
 natural variables fixed, and the system moves spontaneously until the potential
-is as low as it can be; from there no spontaneous change remains.
+is as low as it can be; from there no \emph{spontaneous} change remains.
 
 \paragraph{Derivation.} Let the system pass, by any process, from an
 equilibrium state $A$ (with an internal constraint) to an equilibrium state $B$
@@ -1170,17 +1337,55 @@ Equations~\eqref{eq:coex} hold between any two parts of a system in
 equilibrium. What makes a \emph{phase transition} is that two \emph{distinct}
 homogeneous states satisfy them at the same $(T_t,P_t,\mu_t)$. Two states of a
 one-component substance are distinct if they differ in at least one density per
-particle, $u=U/N$, $v=V/N$ or $s=S/N$. Generically they differ in all three:
-the volumes $v_\ell\neq v_g$, and the entropies $s_\ell\neq s_g$, whose
-difference is the latent heat per particle, $L=T_t(s_g-s_\ell)$. The two
-differences are not independent. Along the coexistence line both phases keep
-$\mu_\ell=\mu_g$, so by Gibbs--Duhem $-s_\ell\,dT+v_\ell\,dP=-s_g\,dT+v_g\,dP$,
-which is the \emph{Clapeyron equation}
+particle, $u=U/N$, $v=V/N$ or $s=S/N$. Each density is computed for the
+homogeneous phase in question with that phase's own particle number,
+$v_\ell=V_\ell/N_\ell$ and $v_g=V_g/N_g$; being intensive, the densities do
+not depend on how much of either phase is present, and $N$ here is not the
+total number of particles in the sample. Generically the two phases differ in
+all three densities: the volumes $v_\ell\neq v_g$, and the entropies
+$s_\ell\neq s_g$, whose difference defines the \emph{latent heat} per
+particle,
+\[
+  Q_L\equiv T_t\,(s_g-s_\ell) ,
+\]
+the heat that must be supplied reversibly at $T_t$ to convert one particle
+from phase $\ell$ to phase $g$, by $\dbar Q_{\rm rev}=T\,dS$. The two
+differences are not independent, and the relation between them is the
+\emph{Clapeyron equation}. Its derivation uses three things. (i)~Each phase
+is a homogeneous one-component system, so Gibbs--Duhem,
+Eq.~\eqref{eq:gibbsduhem} divided by $N$, holds for each phase separately
+with that phase's own densities,
+\[
+  d\mu_\ell=-s_\ell\,dT+v_\ell\,dP ,\qquad d\mu_g=-s_g\,dT+v_g\,dP .
+\]
+(ii)~The chemical potential of each phase is a differentiable function
+$\mu_\ell(T,P)$, $\mu_g(T,P)$ on a neighbourhood of the coexistence line, not
+only on the line itself; this is the statement that each single-phase branch
+continues smoothly a little past the transition, as the metastable
+continuation of Figure~\ref{fig:firstorder}c, and it is what gives meaning to
+$d\mu$ for displacements off the line. (iii)~Along the coexistence line
+$\mu_\ell(T,P)=\mu_g(T,P)$ at every point, by Eq.~\eqref{eq:coex}, so for a
+displacement $(dT,dP)$ \emph{along} the line the two functions change by the
+same amount, $d\mu_\ell=d\mu_g$. Equating the two Gibbs--Duhem expressions,
+\[
+  -s_\ell\,dT+v_\ell\,dP=-s_g\,dT+v_g\,dP
+  \qquad\Longrightarrow\qquad
+  (v_g-v_\ell)\,dP=(s_g-s_\ell)\,dT ,
+\]
+and when $v_g\neq v_\ell$ this gives the slope of the coexistence line,
 \begin{equation}\label{eq:clapeyron}
-  \boxed{\;\frac{dP_t}{dT_t}=\frac{s_g-s_\ell}{v_g-v_\ell}=\frac{L}{T_t\,(v_g-v_\ell)}\;}
+  \boxed{\;\frac{dP_t}{dT_t}=\frac{s_g-s_\ell}{v_g-v_\ell}=\frac{Q_L}{T_t\,(v_g-v_\ell)}\;}
 \end{equation}
-A transition with $v_\ell\neq v_g$ and no latent heat would have a horizontal
-coexistence line, which is possible but non-generic.
+The degenerate cases are read off the unboxed form. A transition with
+$v_\ell\neq v_g$ and no latent heat has $dP=0$ along the line: the
+coexistence line is horizontal, which is possible but non-generic. A
+transition with $v_g=v_\ell$ and a latent heat has $dT=0$: the coexistence
+line is vertical, $T_t$ is independent of pressure to first order, and the
+transition is not seen in the volume at all. If both differences vanish the
+two states are not distinct in the fluid densities, and a transition, if
+there is one, shows up in some other density (the magnetisation per site of a
+magnet, say); the same derivation then goes through with the conjugate pair
+$(h,m)$ in place of $(P,-v)$ in the Gibbs--Duhem relation.
 
 \paragraph{The tie line.} Fix $N$ and a point $(T_t,P_t)$ on the coexistence
 line. Let $(S_\ell,V_\ell,U_\ell)$ be the entropy, volume and energy of the
@@ -1315,7 +1520,7 @@ variables is the most robust representation available.
     \draw[very thick,blue!60!black] (0.35,0.37) -- (1,0.5);
     \draw[very thick,orange!85!black] (1,1.3) -- (1.70,1.44);
     \draw[|<->|,red!70!black,thick] (1,0.5) -- (1,1.3)
-         node[midway,right=2pt,font=\scriptsize]{$\Delta S=L/T_t$};
+         node[midway,right=2pt,font=\scriptsize]{$\Delta S=Q_L/T_t$};
     \draw[dotted,gray] (1,0) -- (1,0.5);
     \node[anchor=north,font=\scriptsize] at (1,-0.04) {$T_t$};
     \node[anchor=north,font=\small] at (1.0,-0.44) {(d)};
@@ -1394,8 +1599,7 @@ uniform state is metastable and decays by nucleation.
 \subsection{Continuous transitions and critical exponents}
 \label{sec:critical}
 
-Two properties are easy to conflate, and exactly one of them fails at a
-critical point. \emph{Euler homogeneity} is scaling in the extensive variables
+\emph{Euler homogeneity} is scaling in the extensive variables
 at fixed intensive ones; it needs only short-range interactions and a
 correlation length small compared with the sample, and it holds at and
 arbitrarily close to a critical point. \emph{Analyticity}\footnote{\label{fn:analytic}%
@@ -1427,6 +1631,16 @@ variables are $(T,h)$, with $m$ conjugate to $h$ as $n$ is to $\mu$, so the
 free energy per site $f(T,h)$ is the lattice analogue of the grand potential
 density $\omega(T,\mu)$; the specific heat at fixed field, $c_h$, is the
 analogue of $c_{V,\mu}$ and not of $c_{V,N}$ (Appendix~\ref{app:cmu}). The
+analogy is one of structure, not of particle number. The number of sites of
+the magnet is fixed, but it plays the part of the \emph{volume} $V$ of the
+fluid, not of $N$. The extensive variable that fluctuates in the magnet is
+the total magnetisation $M=\sum_i\sigma_i$, controlled through its conjugate
+field $h$ exactly as $N$ is controlled through $\mu$ in the grand ensemble;
+the lattice-gas map $n_i=(1+\sigma_i)/2$ makes this literal, turning $M$ into
+$N$, $h$ into $\mu$ and the number of sites into $V$. A specific heat
+measured at fixed $h$ therefore lets $M$ fluctuate, as $c_{V,\mu}$ lets $N$
+fluctuate; the analogue of $c_{V,N}$ would be the specific heat at fixed
+magnetisation, $c_M$, which is rarely measured. The
 \emph{critical exponents} are defined by the leading behaviour along the axes,
 \begin{equation}\label{eq:exponents}
   c_h\sim|t|^{-\alpha},\qquad
@@ -1769,8 +1983,11 @@ the probability density of $\phi$ in the unconstrained ensemble,
 \begin{equation}\label{eq:Pphi}
   P(\phi)=\frac{Z(\phi)}{Z}=\big\langle\delta(\hat\phi-\phi)\big\rangle ,
   \qquad
-  F(\phi)=-k_BT\ln P(\phi)+F_{\rm eq} .
+  F(\phi)=-k_BT\ln Z(\phi)=-k_BT\ln P(\phi)+F_{\rm eq} ,
 \end{equation}
+the first equality for $F(\phi)$ being Eq.~\eqref{eq:constrainedF} itself and
+the second following from it by inserting $Z(\phi)=P(\phi)\,Z$ and
+$F_{\rm eq}=-k_BT\ln Z$.
 This makes $F(\phi)$ measurable: a Monte Carlo or molecular-dynamics run
 samples the Boltzmann distribution, and $-k_BT$ times the logarithm of the
 histogram of $\phi$ is $F(\phi)$ up to a constant. In any other ensemble the
@@ -1905,9 +2122,10 @@ weight, and every response is a covariance. Two consequences are drawn. The
 low-energy shape of the density of states fixes the low-temperature power laws
 of the observables, and this is the origin of the scaling forms of
 Section~\ref{sec:critical}; and a divergent response requires correlated
-fluctuations of macroscopically many degrees of freedom, which an additive
-spectrum cannot provide. The special case of a quadratic Hamiltonian, where
-the many-body weight collapses onto the single-particle levels and each
+fluctuations of macroscopically many degrees of freedom,
+which an additive spectrum (non-interacting) cannot provide.
+The special case of a quadratic Hamiltonian,
+where the many-body weight collapses onto the single-particle levels and each
 observable sees the single-particle spectrum through its own window, is worked
 out in Appendix~\ref{app:quadratic}; it is the elementary statistical
 mechanics of metals and phonons, and it is irrelevant to phase transitions.
@@ -1919,15 +2137,33 @@ of Appendix~\ref{app:cmu}, which is not always a small correction.
 
 \subsection{Exact eigenstates}
 \label{sec:filt_exact}
-
 Let $ \hat H $ be the full many-body Hamiltonian, interacting or not, of a system
-whose particle number is conserved, $ [\hat H, \hat N] = 0 $. We assume that it has
+whose total particle number is conserved, $ [\hat H, \hat N] = 0 $. We assume that it has
 been solved: the commuting Hermitian operators $ \hat H $ and $ \hat N $ have a
 common orthonormal eigenbasis $ \{|a\rangle\} $ of the Fock space,
 \[
   \hat H\,|a\rangle = E_a\,|a\rangle , \qquad \hat N\,|a\rangle = N_a\,|a\rangle ,
 \]
-Nothing else is assumed. In an interacting system the $ |a\rangle $ are in general
+Nothing else is assumed.
+
+\begin{remark}
+The conservation law is required only for the species to which $ \mu $ is
+attached. The electron--phonon Hamiltonian is the standard example: it
+creates and destroys phonons freely, but it commutes with the electron number,
+and $ \hat N $ is the electron number. Phonons, like photons and magnons, are
+not a conserved species, they carry no chemical potential, and the ensemble is
+simply canonical in them; their number in equilibrium is whatever minimises
+the free energy, which is the statement $ \mu_{\rm ph} = 0 $. A Hamiltonian
+with \emph{no} conserved number at all, such as the Bardeen--Cooper--Schrieffer
+mean-field Hamiltonian with its pairing terms, is handled by the same
+construction with $ \hat N $ dropped and $ \mu $ absent: $ \xi_a = E_a $ and
+$ \Xi $ becomes $ Z $. In the pairing case the number is in fact conserved by
+the underlying Hamiltonian and broken only by the mean-field approximation;
+what is then diagonalised is $ \hat H_{\rm MF} - \mu\hat N $ with $ \mu $ fixed
+afterwards by the condition $ \langle\hat N\rangle = N $, so that
+$ \hat{\mathcal{H}} $ below is the object that has an eigenbasis even though
+$ \hat H_{\rm MF} $ and $ \hat N $ separately do not share one.
+\end{remark} In an interacting system the $ |a\rangle $ are in general
 superpositions of very many Slater determinants (or permanents), and nothing
 requires $ E_a $ to be related to single-particle energies.
 We abbreviate
@@ -2054,7 +2290,7 @@ assumption on $ \hat H $.
   \[
     C_\mu \;\simeq\; k_B\left(\frac{\Delta}{k_BT}\right)^{2}\frac{d_1}{d_0}\,e^{-\Delta/k_BT} .
   \]
-  The heat capacity of a gapped system is ``activated'', with the many-body gap of
+  The heat capacity of a gapped system has an ``activated'' form, with the many-body gap of
   $ \hat{\mathcal{H}} $; at fixed $ \mu $ this includes the costs $ E_{N\pm1} - E_N \mp \mu $ of
   adding or removing a particle. (In a macroscopic system $ d_1 $ grows with $ V $ and
   the expansion holds while $ q \ll 1 $, i.e.\ while excitations are dilute.)
@@ -2138,8 +2374,8 @@ identity and the steepest-descent evaluation of the previous subsection. Two
 instances: for a metal, $c=\gamma T$ gives $r=0$ and $g\propto e^{2\sqrt{\tilde aE}}$
 at excitation energy $E$, Bethe's formula for the level density of a heavy
 nucleus, which is the many-body statement of the Sommerfeld law; for Debye
-phonons, $r=2$ gives $\ln g\propto V^{1/4}E^{3/4}$. In the additive case the
-exponent $r$ is that of the single-particle density of states near $\mu$,
+phonons, $r=2$ gives $\ln g\propto V^{1/4}E^{3/4}$. In the additive case (non-interacting)
+the exponent $r$ is that of the single-particle density of states near $\mu$,
 $\rho(\varepsilon)\sim|\varepsilon-\mu|^{r}$ (Appendix~\ref{app:quadratic}),
 but Eq.~\eqref{eq:filt_stretched} does not need additivity.
 
@@ -2474,7 +2710,7 @@ not from the known dynamics but as the representation of the unknown part.
 kicks to come from outside the body, nor any external time-dependent drive. Every
 model resolves the degrees of freedom of a body only within a window of length and
 energy scales. Beyond its ultraviolet cutoff (short lengths, high energies) and its
-infrared cutoff (long lengths, low energies) lie states that are in general strongly
+infrared cutoff (long lengths, low energies) lie states that could be strongly
 interacting and far too complex to be treated microscopically, and they are related to
 $ \hat H' $. Their effect on the retained degrees of freedom is modelled, crudely, by a
 stochastic force or potential, as the fluid was for the Brownian particle. The
