@@ -3083,6 +3083,22 @@ Hamiltonian into $ \hat H $ and $ \hat H' $ is made relative to the time scales 
 protocol. In Feynman's phrase, equilibrium is reached when all the fast things have
 happened and all the slow things have not.
 
+\paragraph{Entropy as a clock.} The known Hamiltonian cannot order events: every
+function of $ \rho $ is conserved under $ \hat H $ alone
+(Section~\ref{sec:found_unitary}). The unknown part can. Under the master equation
+$ S[p] $ grows monotonically and stops at the stationary state, so $ S $ itself, or
+$ -F $ with a bath, is an internal clock that runs only while $ \hat H' $ acts and
+reads ``equilibrium'' when it stops; the waiting time $ t_{\rm wait} $ of the protocol
+is the statement that this clock has run out. Barontini \cite{Barontini} realised the
+construction with an isolated condensate split by a barrier into an observed and an
+unobserved sector: the accumulated change of the coarse-grained entropy of the
+observed sector, $ \tau \propto \int|dS| $, orders its expansions and recollapses
+while the entropy of the whole stays constant, and $ \tau $ freezes when the exchange
+across the barrier stops. Two caveats. The clock uses $ |dS| $, so it runs in both
+directions of entropy flow and is an ordering parameter rather than an arrow; and on
+the time scale of the experiment the exchange is reversible, so it measures the
+amount of exchange through the coupling, not information lost.
+
 \paragraph{No assumption that the coupling is weak.} The derivation of the ensembles
 from a reservoir (Section~\ref{sec:ensembles}) treats system and reservoir as weakly
 coupled: the interaction energy at their interface, which grows as its area, is
@@ -3206,6 +3222,7 @@ Physics}, 3rd ed.\ (World Scientific, Singapore, 2005).
 \bibitem{YangLee} C.~N. Yang and T.~D. Lee, Phys.\ Rev.\ \textbf{87}, 404
 (1952); T.~D. Lee and C.~N. Yang, Phys.\ Rev.\ \textbf{87}, 410 (1952).
 \bibitem{Isakov} S.~N. Isakov, Commun.\ Math.\ Phys.\ \textbf{95}, 427 (1984).
+\bibitem{Barontini} G. Barontini, Phys.\ Rev.\ Res.\ \textbf{8}, L022047 (2026).
 \end{thebibliography}
 
 \clearpage
