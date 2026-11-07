@@ -108,7 +108,7 @@ additional chemical species adds one particle number.
 A variable is \emph{extensive} if it doubles when two identical copies of the
 body are put together ($U$, $V$, $N$, the entropy $S$, the magnetisation $M$)
 and \emph{intensive} if it stays the same ($T$, $P$, the chemical potential
-$\mu$, the field $\mathcal{H}$). Extensive variables can be prescribed by
+$\mu$, the applied magnetic field $\mathcal{H}_M$). Extensive variables can be prescribed by
 independent physical operations, by walling off a volume, admitting particles
 or supplying energy, and are therefore the natural independent variables of the
 theory. Intensive variables will appear as derivatives.
@@ -122,9 +122,9 @@ measurement, an order parameter near a transition, the extent of a slow
 chemical reaction, the configurational coordinate of a glass, must be added to
 the list; one that relaxes much more slowly is frozen and acts as a constraint.
 The postulate fails where neither holds, and the failure is visible: a
-ferromagnet driven around a hysteresis loop returns to the same $(T,\mathcal{H})$
+ferromagnet driven around a hysteresis loop returns to the same $(T,\mathcal{H}_M)$
 with a different magnetisation, so that no single-valued function of
-$(T,\mathcal{H})$ describes it. On the equilibrium branch, reached by waiting or
+$(T,\mathcal{H}_M)$ describes it. On the equilibrium branch, reached by waiting or
 by field cooling, everything below applies.
 
 \subsection{Work}
@@ -141,10 +141,11 @@ positive when the volume decreases. Each further control parameter adds its own
 term, and the pattern is always (intensive variable)$\times d$(extensive
 variable):
 \[
-  \dbar W = -P\,dV + \mathcal{H}\,dM + \sum_{ij}V\sigma_{ij}\,d\epsilon_{ij}
+  \dbar W = -P\,dV + \mathcal{H}_M\,dM + \sum_{ij}V\sigma_{ij}\,d\epsilon_{ij}
   + \mathbf{E}\cdot d\mathbf{P} + \mu\,dN + \dots ,
 \]
-with $\mathcal{H}\,dM$ for magnetic work, $V\sigma_{ij}\,d\epsilon_{ij}$ for
+with $\mathcal{H}_M\,dM$ for magnetic work against the applied field
+$\mathcal{H}_M$ (sign conventions in Appendix~\ref{app:bookkeeping}), $V\sigma_{ij}\,d\epsilon_{ij}$ for
 elastic work against the stress $\sigma_{ij}$, $\mathbf{E}\cdot d\mathbf{P}$
 for dielectric work, and $\mu\,dN$ the energy brought in with $dN$ particles
 admitted from a reservoir at chemical potential $\mu$. The terms simply add
@@ -155,12 +156,8 @@ of all of them is then linear in the displacements $dV$, $dM$, $d\epsilon_{ij}$,
 alone. If two controls are tied to each other, as when the volume of a
 magnetostrictive sample follows the applied field, the dependent one is
 eliminated first, so that the list contains only parameters that can be set
-independently. (The sign of the magnetic
-term is opposite to that of the pressure term because magnetising a sample
-against a field costs energy, whereas expanding it against a pressure releases
-energy; Appendix~\ref{app:bookkeeping} discusses the conventions.) Everything
-below is written for the pair $(-P,V)$ and goes through with it replaced by any
-other conjugate pair.
+independently. Everything below is written for the pairs $(-P,V)$ and $(\mu,N)$
+and goes through with either replaced by any other conjugate pair.
 
 The microscopic reading of this definition is useful later. Let the Hamiltonian
 $\hat H(\lambda)$ of the system depend on the controlled parameters $\lambda$
@@ -284,15 +281,15 @@ if $f''\geq0$ everywhere. (Both directions reduce to the first-derivative
 form. If $f''\geq0$, the mean value theorem $f'(b)-f'(a)=f''(c)\,(b-a)$ with
 $c$ between $a$ and $b$ shows that $f'$ is non-decreasing; conversely, if $f'$
 is non-decreasing then $f''(a)=\lim_{h\to0^{+}}[f'(a+h)-f'(a)]/h$ is a limit
-of non-negative numbers.) The condition $f''>0$ is sufficient for strict
-convexity, since it makes $f'$ strictly increasing, but not necessary: $f'$
-may be strictly increasing while $f''$ vanishes at isolated points, as for
+of non-negative numbers.) The condition $f''>0$ is sufficient for
+\emph{strict convexity}, since it makes $f'$ strictly increasing, but not necessary:
+$f'$ may be strictly increasing while $f''$ vanishes at isolated points, as for
 $x^{4}$, which is strictly convex with $f''(0)=0$.
 \end{itemize}
 For concave functions every inequality is reversed: the graph lies below its
 tangents, $f'$ is non-increasing, $f''\leq0$.
 
-Two consequences are used constantly. First, a strictly convex $C^{1}$
+Two consequences are used constantly. First, a \emph{strictly convex} $C^{1}$
 function has a strictly increasing derivative, so the map $a\mapsto f'(a)$ is
 one-to-one and can be inverted: \emph{the slope labels the point}. This is what
 makes the Legendre transform possible. Second, a convex function of several
@@ -432,25 +429,70 @@ $dS/dT=1/(dT/dS)=1/U''(S)$. Hence
   =-\left(\frac{d^{2}U}{dS^{2}}\right)^{-1} .
 \end{equation}
 The sign reproduces the qualitative statement, $U''>0$ giving $F''<0$, and
-the magnitude adds to it. The picture is this: where $U(S)$ is nearly flat,
-the slope $T$ changes very little over a wide range of $S$, so the inverse
-function $S(T)$ swings through that wide range for a tiny change of $T$, and
-$F$, whose slope is $-S$, bends sharply.
+the magnitude adds to it. What enters is the curvature $U''$, not the slope
+$U'$: ``flat'' below means \emph{nearly straight}, a graph of small $U''$ whatever
+its slope, and not a graph of small slope. The picture is this: where $U(S)$ is
+nearly straight, the slope $T$ changes very little over a wide range of $S$, so
+the inverse function $S(T)$ swings through that wide range for a tiny change of
+$T$, and $F$, whose slope is $-S$, bends sharply.
+
+The limiting case, $U$ exactly affine on an interval, shows that this is the
+correct reading and what it becomes when $U''$ vanishes. Let
+$U(S)=U(S_a)+T_0\,(S-S_a)$ for $S_a\leq S\leq S_b$, with $U$ strictly convex
+on either side. Every point of the interval has the same slope $T_0$, so the
+map $S\mapsto U'(S)$ is no longer one-to-one there: the whole interval is
+touched by a single tangent, the line itself, and is sent to the single value
+$T=T_0$. In the variational form, for $T$ slightly below $T_0$ the minimiser
+of $U-TS$ lies at or below $S_a$, and for $T$ slightly above it at or above
+$S_b$; hence $S(T)$ jumps from $S_a$ to $S_b$ as $T$ crosses $T_0$, and $F(T)$
+has a kink there, its slope $-S$ dropping by $S_b-S_a$. In
+Eq.~\eqref{eq:reciprocal} this is $U''=0$ and $F''=-\infty$: a vanishing
+curvature of $U$ is transformed into an infinite curvature of $F$ concentrated
+at one value of $T$. The affine stretch is not lost from $F$; it is compressed
+into the kink, whose size records its length. This is the first-order
+transition of Section~\ref{sec:firsttransition}, seen from the transform.
 The curvatures\footnote{\label{fn:curvature}\textbf{Curvature.} In this text
 the curvature of a function of one variable means its second derivative
 $f''$, which fixes the sign (convex for $f''>0$, concave for $f''<0$) and the
 size of the bending of the graph. It is not the geometric curvature
 $f''/(1+f'^{2})^{3/2}$ of the curve, with which it shares the sign.} are not
-merely of opposite sign but reciprocal: a function that is nearly flat in $S$
+merely of opposite sign but reciprocal: a function that is nearly straight in $S$
 has a transform that is strongly curved in $T$, and conversely.
 Section~\ref{sec:stability} reads this as a statement about fluctuations.
 
-\paragraph{The double transform and the convex hull.} Applying the
-variational form twice returns $U$ when $U$ is convex. When it is not,
+\paragraph{The double transform and the convex hull.} The inverse transform
+is a supremum, not a minimum, and the reason is already contained in
+Eq.~\eqref{eq:legendre_inf}. Because $F(T)$ is the minimum of $U(S)-TS$ over
+$S$, it lies below every value of the bracket, $F(T)\leq U(S)-TS$ for every
+pair $(S,T)$; read the other way,
+\begin{equation}\label{eq:support}
+  U(S)\;\geq\;F(T)+T\,S\qquad\text{for every } T .
+\end{equation}
+At fixed $T$ the right-hand side is a straight line in $S$ of slope $T$ and
+intercept $F(T)$: the line of slope $T$ pushed up as far as it will go while
+remaining nowhere above the graph of $U$, a \emph{supporting line}. Every one
+of these lines lies below $U$, so the most that can be recovered of $U$ at a
+given $S$ from the family is the highest of them, which is the supremum over
+$T$. The roles of $\min$ and $\sup$ are thus fixed by the sign of $-TS$ in the
+definition: $F$ is built from $U$ by subtracting a line and pushing it down,
+$U$ is rebuilt from $F$ by adding a line and pushing it up. For a convex and
+differentiable $U$ the supremum is attained, at the $T=U'(S)$ for which the
+supporting line touches the graph at $S$, and Eq.~\eqref{eq:support} then holds
+with equality, $U(S)=\max_T[F(T)+TS]$, which is the inversion of
+Eq.~\eqref{eq:legendre_inf}. The same follows from the concavity of $F$: the
+function $T\mapsto F(T)+TS$ is concave, and its stationary point $F'(T)=-S$
+is therefore a maximum. One writes $\sup$ rather than $\max$ because the
+supremum need not be attained, for instance at an end point of the domain at
+which the slope of $U$ diverges. Applying the variational form twice
+therefore returns $U$ when $U$ is convex. When it is not, every line of
+Eq.~\eqref{eq:support} is still an affine function lying below $U$, and
+conversely every affine function $a+TS$ lying below $U$ has $a\leq F(T)$ and so
+lies below one of them. The supremum of the family is therefore the supremum of
+all affine functions lying below $U$,
 \begin{equation}\label{eq:hull}
   \sup_T\big[F(T)+TS\big]=\operatorname{conv}U(S) ,
 \end{equation}
-the \emph{convex hull}\footnote{\label{fn:hull}\textbf{Convex hull of a
+which is the \emph{convex hull}\footnote{\label{fn:hull}\textbf{Convex hull of a
 function.} The largest convex function lying nowhere above $U$; equivalently,
 the pointwise supremum of all affine functions lying below $U$. Pictorially,
 stretch a string tight underneath the graph: where $U$ is convex the string
@@ -643,7 +685,7 @@ exchange; comparison with the first law identifies $T\,dS$ with the reversible
 heat and $-P\,dV+\mu\,dN$ with the reversible work (Section~\ref{sec:clausius}
 makes this identification precise). Each additional work mode of
 Section~\ref{sec:work} adds one natural variable and one term, $U=U(S,V,N,M,\dots)$
-with $+\mathcal{H}\,dM$, and so on. That $T$ defined in this way is the
+with $+\mathcal{H}_M\,dM$, and so on. That $T$ defined in this way is the
 temperature measured by a thermometer, and $P$ the pressure measured by a
 gauge, follows from the equilibrium conditions of Section~\ref{sec:secondlaw}.
 
@@ -820,32 +862,68 @@ which is a continuous and strictly increasing function of $U$, with the
 following property.
 When an internal \emph{macroscopic} constraint of an isolated system is
 released, the system evolves to the equilibrium state in which $S$ is as large
-as it can be, given the constraints that remain. Consequently, for any process
-that carries a thermally isolated system from one equilibrium state to
-another,
-\[
-  \boxed{\;\Delta S\;\geq\;0 ,\;}
-\]
-with equality if and only if the process is reversible.
+as it can be, given the constraints that remain:
+\begin{equation}\label{eq:Smax}
+  \boxed{\;S_{\rm eq}(U,V,N)\;=\;\max_{\xi}\,S(U,V,N;\xi)\;}
+\end{equation}
+the maximum being taken over the internal variables $\xi$ that the released
+constraint used to hold fixed.
 \end{quote}
+The internal variables are the macroscopic quantities that the remaining
+constraints leave undetermined: the share $U_1$ of the energy held by one part
+of a partitioned system, the position of an internal piston, the extent of a
+reaction (Section~\ref{sec:minimum} lists more). $S(U,V,N;\xi)$ is the entropy
+of the constrained equilibrium state in which $\xi$ is held at a given value,
+and Eq.~\eqref{eq:Smax} is a \emph{variational principle}: it does not merely
+say that the entropy grows, it says which state the system ends in, namely the
+one that maximises $S$ over every value of $\xi$ that the constraints allow.
+
+The familiar inequality is the weaker consequence. The initial constrained state,
+$\xi=\xi_0$, is one of the candidates in the maximum that defines the final
+state, so $S_{\rm final}=\max_\xi S(\xi)\geq S(\xi_0)=S_{\rm initial}$. Applied
+to a thermally isolated system together with whatever work sources act on it
+(weights, springs, which carry no entropy), this gives, for any process that
+carries the system from one equilibrium state to another,
+\begin{equation}\label{eq:DeltaS}
+  \boxed{\;\Delta S\;\geq\;0 ,\;}
+\end{equation}
+with equality if and only if the process is reversible. The converse does not
+hold. $\Delta S\geq0$ alone would permit the system to stop in \emph{any} state of
+higher entropy, and it identifies neither the equilibrium state nor its
+properties. Everything that follows from the law about equilibrium, the
+equality of $T$, $P$ and $\mu$ between bodies in contact (first-order
+conditions of the maximum), the stability inequalities (second-order
+conditions, Section~\ref{sec:stability}) and the minimum principles of the
+potentials (Section~\ref{sec:minimum}), uses the maximum
+Eq.~\eqref{eq:Smax}. The inequality is what is needed for statements about
+processes: the Clausius inequality, Kelvin's statement and the efficiency of
+engines.
+
 The word \emph{macroscopic} in the statement is not decorative. The
 constraint is a wall, a valve, a clamp, a switch: something described by a few
-variables and operated without any knowledge of the microstate. A constraint
-that acts on individual molecules is not of this kind. Maxwell's demon, a
-trap door opened for fast molecules travelling one way and for slow ones
+variables and operated \emph{without any knowledge of the microstate}.
+A constraint that acts on individual molecules is not of this kind.
+Maxwell's demon, a trap door opened for fast molecules travelling one way and for slow ones
 travelling the other, sorts a gas at uniform temperature into a hot half and a
 cold half, and the entropy of the gas decreases. There is no contradiction,
 because the demon is not a macroscopic constraint: to operate the door it must
 measure and record the state of each molecule, and the record is a physical
-system whose entropy grows by at least $k_B\ln2$ per bit when it is erased to
-make room for the next (Landauer's bound), so that the entropy of gas plus
-demon does not decrease. The second law bounds what can be achieved with
-macroscopic manipulations; what a microscopic agent can do is accounted for
-only when the agent is included in the system (Section~\ref{sec:found_info}).
+system. To run indefinitely the demon must erase its records to make room for
+new ones, and erasing one bit in contact with surroundings at temperature $T$
+delivers to them at least $k_BT\ln2$ of heat, raising their entropy by at least
+$k_B\ln2$ (Landauer's bound), so that the entropy of gas, demon and surroundings
+together does not decrease. The second law bounds what can be achieved with
+\emph{macroscopic} manipulations; what a microscopic agent can do is accounted for
+only when the agent is included in the system (Section~\ref{sec:found_demon},
+where the bound is derived).
 Clausius' statement (heat does not flow spontaneously from cold to hot) and
-Kelvin's (no cyclic process converts heat entirely into work) are consequences
-and are derived below and in Section~\ref{sec:clausius}; the three are
-equivalent (see Schwabl \cite{Schwabl}). The statement is deliberately written
+Kelvin's (no cyclic process in contact with a single reservoir converts heat
+into work) are consequences: Clausius' is derived at the end of this
+subsection and Kelvin's in Section~\ref{sec:clausius}, both from the
+macroscopic statement, and both are derived again in
+Section~\ref{sec:found_statements} from the reversibility of the microscopic
+dynamics alone. The three statements are equivalent (see Schwabl
+\cite{Schwabl}). The inequality~\eqref{eq:DeltaS} is deliberately written
 with $\Delta S$ rather than $dS$: the entropy is defined for equilibrium
 states, and during a violent process (a gas rushing into a vacuum) there is no
 equilibrium state and no entropy to differentiate. All that is needed is that
@@ -861,7 +939,7 @@ $-\Delta S\geq0$. Conversely, a process with $\Delta S=0$ is reversible,
 because any irreversibility consists of the relaxation of some internal
 variable from a value held by a released constraint to its equilibrium value,
 and the postulate says that such a relaxation strictly increases $S$. For a
-system that is not thermally isolated the two notions must be kept apart,
+system that is \emph{not thermally isolated} the two notions must be kept apart,
 because $S$ then changes for two reasons. Entropy can be \emph{transferred}
 across the boundary with the heat, and it can be \emph{created} inside; the
 balance along any process is
@@ -876,6 +954,36 @@ of $\Delta S$: a reversible isothermal expansion has $\Delta S=Q/T>0$ and
 creates nothing, the loss of entropy of the reservoir, $-Q/T$, compensating
 exactly. The isolated system is the case $\dbar Q=0$, where transfer is
 absent and the two statements become one.
+
+\paragraph{Thermodynamic and microscopic reversibility.} The word
+\emph{reversible} is the point at which thermodynamics touches the
+microscopic dynamics, and the two usages must not be confused. The
+microscopic dynamics is reversible always, for every process: the equations of
+motion are invertible and, without magnetic fields, invariant under time
+reversal, so that every microscopic history has a time-reversed partner that is
+equally a solution (Section~\ref{sec:found_unitary}). Thermodynamic
+reversibility is a property of some processes only, and of the
+\emph{protocol} rather than of the equations of motion: running the macroscopic
+controls backwards (pistons, fields, the temperatures of the reservoirs)
+restores system and surroundings. The two are not in conflict, because
+reversing the controls is not reversing the microstate. A free expansion is
+undone microscopically by reversing every velocity, which no piston can do;
+pushing the gas back with a piston restores its volume but leaves its entropy,
+and that of the surroundings, higher than before. The link between the two
+notions is the content of Section~\ref{sec:foundations}, and it can be stated
+here in one line. The entropy created in a process is the information about the
+initial state that has been moved out of reach of the macroscopic controls,
+into correlations between the system and the unmonitored degrees of freedom of
+its surroundings and into the deviation of the surroundings from equilibrium;
+for a system in contact with a bath this is an exact identity,
+Eq.~\eqref{eq:sigma_info} of Section~\ref{sec:found_statements}. A process is
+thermodynamically reversible exactly when nothing of the kind happens, so that
+the time reversal of the microscopic dynamics, which always exists, can be
+carried out by the macroscopic controls alone. Quasi-static processes come
+close because a Gibbs state is fixed by a few macroscopic parameters: the
+reversed protocol leads the system back through the same sequence of Gibbs
+states without anyone having to know the microstate.
+
 \paragraph{The entropy representation.} Since $S$ is strictly increasing in
 $U$, the relation $S=S(U,V,N)$ can be inverted to $U=U(S,V,N)$, the
 fundamental relation of Section~\ref{sec:totaldiff}. The derivatives of the
@@ -890,9 +998,30 @@ precise about where it comes from. It is \emph{not} a consequence of the
 maximum principle: that principle, applied below to two bodies in thermal
 contact, yields $1/T_1=1/T_2$ and the direction of heat flow, and it would do
 so for negative temperatures as well. Monotonicity is a separate clause of the
-postulate, and physically it is a property of the energy spectrum. For a
-spectrum unbounded above the number of states available grows with $U$ without
-limit, $S$ increases with $U$, and $T>0$ (Section~\ref{sec:microcanonical}).
+postulate, and physically it is a property of the energy spectrum. Here
+the macroscopic postulate borrows from the microscopic picture of the
+entropy, which it cannot justify by itself. In the microcanonical ensemble
+(Section~\ref{sec:microcanonical}) $S=k_B\ln W(U)$, with $W(U)$ the number of
+eigenstates of the Hamiltonian in a narrow window at energy $U$, so that
+\[
+  \frac{1}{T}=k_B\,\frac{\partial\ln W}{\partial U}
+\]
+is the logarithmic growth rate of the many-body density of states.
+Monotonicity of $S$ is therefore the statement that the number of states
+available to the system grows with its energy, and the sign of $T$ is the sign
+of that growth. For a spectrum unbounded above it does grow. For the classical
+ideal gas the momenta fill a $3N$-dimensional sphere of radius $\sqrt{2mU}$,
+$W\propto V^{N}U^{3N/2}$ up to factors independent of $U$, and
+$1/T=3Nk_B/2U>0$. In general, in the thermodynamic limit, the argument takes
+one line: $S$ is concave (Section~\ref{sec:whyconvex}), and a spectrum that is
+unbounded above and has levels in every window gives $S=k_B\ln W\geq0$ on the
+whole half-line above the ground state; a concave function bounded below on a
+half-line can nowhere decrease, since once its slope were negative it would
+stay at least that negative and the function would fall to $-\infty$. Hence
+$S$ is non-decreasing, $1/T\geq0$, and for a system with kinetic energy,
+whose $\ln W$ keeps growing as in the gas, $T$ is positive and finite. A
+bounded spectrum escapes the argument because its half-line is cut off at the
+top of the band.
 For a system whose spectrum is bounded above, such as a set of nuclear spins
 isolated from the lattice, $S(U)$ rises and then falls again as $U$ approaches
 the top of the band, and on the falling branch $T=(\partial S/\partial U)^{-1}$
@@ -908,9 +1037,15 @@ system with kinetic energy.
 two parts, $1$ and $2$, separated by a wall. The entropy is additive,
 $S=S_1(U_1,V_1,N_1)+S_2(U_2,V_2,N_2)$, up to a contribution from the interface
 that is negligible in the thermodynamic limit (Appendix~\ref{app:extensivity}).
-If the wall conducts heat but is rigid and impermeable, the only internal
-variable is the division of the fixed total energy, $U_1+U_2=U$, and
-the second law says that equilibrium maximises $S$ over $U_1$:
+Let the wall first be adiabatic, rigid and impermeable, so that each part
+keeps its own $U_i$, $V_i$, $N_i$, and then be made to conduct heat while
+remaining rigid and impermeable. $V_1$, $V_2$, $N_1$, $N_2$ stay fixed, and the
+internal constraint that is released is the one that held the \emph{division
+of the internal energy} between the parts: the adiabatic wall fixed $U_1$ and
+$U_2$ separately, the diathermal wall fixes only their sum $U_1+U_2=U$. The
+share $U_1$ is therefore the only internal variable, $\xi=U_1$ in
+Eq.~\eqref{eq:Smax}, and the second law says that equilibrium maximises $S$
+over $U_1$:
 \[
   \frac{\partial S}{\partial U_1}
   =\frac{\partial S_1}{\partial U_1}-\frac{\partial S_2}{\partial U_2}
@@ -956,6 +1091,16 @@ Eq.~\eqref{eq:dU} at fixed $N$ gives
 \begin{equation}\label{eq:TdS}
   \boxed{\;\dbar Q_{\rm rev}=T\,dS\;}
 \end{equation}
+This does not conflict with the statement of Section~\ref{sec:secondlaw} that
+a reversible process has $\Delta S=0$. That statement concerns a
+\emph{thermally isolated} system, for which $\dbar Q_{\rm rev}=0$ and
+Eq.~\eqref{eq:TdS} indeed gives $dS=0$. For a system exchanging heat,
+reversibility means that no entropy is \emph{created}, and Eq.~\eqref{eq:TdS}
+says that the whole change of $S$ is then the entropy \emph{transferred} with
+the heat. On a reversible path the heat passes between bodies at the same
+temperature, the reservoir loses exactly the entropy $\dbar Q_{\rm rev}/T$ that
+the system gains, and $\Delta S=0$ holds for system and reservoir together, which
+form a thermally isolated composite.
 Nothing here requires $P$ to be constant along the path; it varies in an
 adiabatic compression, and the argument is unaffected. What is required is
 that at every stage the external pressure equal the system's own $P$, a
@@ -979,21 +1124,83 @@ the second forms by $S=-\partial F/\partial T=-\partial G/\partial T$.
 
 \paragraph{The Clausius inequality.} Let the system pass from an equilibrium
 state $A$ to an equilibrium state $B$, by any process however violent, while
-exchanging heat with one or more reservoirs. A reservoir is so large that the
-heat it exchanges never drives it out of equilibrium, and it does no work, so
-Eq.~\eqref{eq:TdS} applies to it at every instant: receiving $-\dbar Q$ when
-the system receives $\dbar Q$, its entropy changes by $-\dbar Q/T_{\rm res}$.
-The second law for the composite, $\Delta S+\Delta S_{\rm res}\geq0$, then
+exchanging heat with one or more reservoirs.
+
+\emph{Reservoirs.} A reservoir (or bath) for an extensive quantity $X$ is an
+idealised body with three properties, each of which is used.
+\begin{enumerate}[label=(\roman*)]
+\item \emph{Its intensive variable does not move.} It is so large compared
+  with the system that any amount of $X$ the system can take changes its
+  conjugate intensive variable negligibly. For a heat bath with heat capacity
+  $C_{\rm res}$, a transfer $Q$ changes its temperature by
+  $\Delta T_{\rm res}\simeq-Q/C_{\rm res}$; since $Q$ is at most of the order of
+  the system's size and $C_{\rm res}$ is proportional to the size of the
+  reservoir, $\Delta T_{\rm res}/T_{\rm res}\to0$ as the ratio of sizes goes to
+  zero. The reservoir is characterised by one number, $T_{\rm res}$ (or $P_0$,
+  or $\mu_0$), constant throughout the process.
+\item \emph{It is always in internal equilibrium.} Its internal relaxation is
+  fast compared with the exchange, so every exchange is quasi-static and
+  dissipationless \emph{for the reservoir}, however violent it is for the
+  system. Its entropy is a function of its own state at every instant, and
+  its changes obey its own fundamental relation. Expanding,
+  \[
+    S_{\rm res}(U_{\rm res}-Q)=S_{\rm res}(U_{\rm res})-\frac{Q}{T_{\rm res}}
+    -\frac{Q^{2}}{2T_{\rm res}^{2}C_{\rm res}}+\dots ,
+  \]
+  and the second-order term, the entropy that the reservoir itself would
+  create, vanishes as $C_{\rm res}\to\infty$. A reservoir is therefore a body in
+  which no entropy is ever created: all creation takes place in the system or
+  in the wall between them, which is counted as part of the system.
+\item \emph{It exchanges only $X$.} A heat bath is rigid and closed and does
+  no work; a pressure reservoir (the atmosphere, a piston loaded by a weight)
+  exchanges volume; a particle reservoir exchanges particles of one species
+  and, together with them, the energy that they carry.
+\end{enumerate}
+A reservoir is the macroscopic form of the devices of
+Section~\ref{sec:found_info}: of the unknown body with which the system
+exchanges energy or particles it retains only one intensive number, and the
+same expansion is the step from which the canonical and grand canonical
+weights are derived (Section~\ref{sec:reservoir}). By (ii) and (iii),
+Eq.~\eqref{eq:TdS} applies to a heat bath at every instant: receiving
+$-\dbar Q$ when the system receives $\dbar Q$, its entropy changes by
+$-\dbar Q/T_{\rm res}$. The second law for the composite, $\Delta S+\Delta S_{\rm res}\geq0$, then
 gives
 \begin{equation}\label{eq:clausius}
   \boxed{\;\Delta S\;\geq\;\int_A^B\frac{\dbar Q}{T_{\rm res}}\;}
 \end{equation}
 with the integral taken along the actual process and $T_{\rm res}$ the
 temperature of the reservoir in contact with the system when $\dbar Q$ is
-delivered. For a single reservoir, $\Delta S\geq Q/T_{\rm res}$; for a cycle,
-$\oint\dbar Q/T_{\rm res}\leq0$, and with two reservoirs
-$Q_h/T_h+Q_c/T_c\leq0$, from which Kelvin's statement and the Carnot bound
-$W\leq Q_h(1-T_c/T_h)$ follow. If in addition the process is quasi-static for
+delivered. For a single reservoir, $\Delta S\geq Q/T_{\rm res}$.
+
+\emph{Cycles: Kelvin's statement and the Carnot bound.} For a cycle the system
+returns to its initial state, and since $S$ is a function of state,
+$\Delta S=0$. The inequality does not disappear; it is transferred entirely to
+the reservoirs. Eq.~\eqref{eq:clausius} with $\Delta S=0$ reads
+\[
+  \oint\frac{\dbar Q}{T_{\rm res}}\;\leq\;0 ,
+\]
+which says that the total entropy change of the reservoirs,
+$-\oint\dbar Q/T_{\rm res}$, is non-negative: a cycle may leave the reservoirs
+with more entropy, never with less. The first law over the cycle,
+$\oint dU=0$, gives $W=-Q$ for the net work done \emph{on} the system and the
+net heat $Q$ it receives. With a single reservoir, $Q/T_{\rm res}\leq0$, so
+$Q\leq0$ and
+\[
+  W=-Q\;\geq\;0 :
+\]
+the net work done on the system is non-negative, and no cycle in contact with
+a single reservoir delivers work. This is \emph{Kelvin's statement}; equality
+holds for a reversible cycle, which neither delivers nor consumes work. With
+two reservoirs at $T_h>T_c$, from which the system receives $Q_h$ and $Q_c$,
+the inequality reads $Q_h/T_h+Q_c/T_c\leq0$, i.e.\ $Q_c\leq-Q_hT_c/T_h$, and the
+work delivered, $W_{\rm out}\equiv-W=Q_h+Q_c$, obeys the \emph{Carnot bound}
+\[
+  W_{\rm out}\;\leq\;Q_h\Big(1-\frac{T_c}{T_h}\Big) ,
+\]
+with equality for a reversible engine. A positive $W_{\rm out}$ requires
+$Q_h>0$ and $Q_c<0$: heat must be rejected to the colder reservoir.
+
+If in addition the process is quasi-static for
 the system, the differential form holds,
 \begin{equation}\label{eq:clausius_diff}
   dS\;\geq\;\frac{\dbar Q}{T_{\rm res}} ,
@@ -1055,7 +1262,8 @@ along the straight segments that describe two-phase mixtures
 \begin{remark}
 Concave and strictly increasing in $U$ are compatible, and together they say
 something definite. Concavity requires the slope $\partial S/\partial U=1/T$
-to be non-increasing in $U$; strict monotonicity requires it to stay
+to be non-increasing in $U$;
+strict monotonic increase requires it to stay
 positive. A function with a positive slope that keeps decreasing without ever
 reaching zero does both: $\ln U$ and $\sqrt U$ are examples, and so is the
 entropy of the classical ideal gas, $S=\tfrac32Nk_B\ln U+\dots$, whose slope
@@ -1066,7 +1274,7 @@ $T$ increases with $U$, which is the positivity of $C_V$ derived in
 Eq.~\eqref{eq:USconvex} below. The case in which a concave $S(U)$ does turn
 over is the bounded spectrum of Section~\ref{sec:secondlaw}, where the slope
 passes through zero and $T$ becomes negative; the postulate excludes it by
-requiring strict monotonicity.
+requiring strict monotonic increase.
 \end{remark}
 
 \paragraph{From $S$ to $U$.} Since $S$ is concave and strictly increasing in
@@ -1110,18 +1318,47 @@ is as low as it can be; from there no \emph{spontaneous} change remains.
 
 \paragraph{Derivation.} Let the system pass, by any process, from an
 equilibrium state $A$ (with an internal constraint) to an equilibrium state $B$
-(constraint released). Its surroundings act only through the values they
-impose at the boundary: a bath at temperature $T_0$ through which heat passes,
-a fixed external pressure $P_0$ against which the volume moves, a reservoir at
-chemical potential $\mu_0$ from which particles are admitted. These are
-constants throughout the process, which is what baths and reservoirs are for;
-the system's own $T$, $P$, $\mu$ need not even exist at intermediate times.
-The first law reads
+(constraint released). Its surroundings act only through reservoirs, in the
+sense of Section~\ref{sec:clausius}: a bath at temperature $T_0$ through which
+heat passes, a fixed external pressure $P_0$ against which the volume moves,
+and a reservoir of the same particles at chemical potential $\mu_0$ to which a
+permeable wall gives access.
+
+A chemical potential is not set by acting on the system's particles; it is set
+by choosing the reservoir, and the system's particle number then adjusts until
+its own $\mu$ equals $\mu_0$, exactly as its energy adjusts until its $T$
+equals $T_0$. The value $\mu_0$ is a property of the state of the reservoir,
+and it is tuned by tuning that state. For a dilute gas reservoir
+$\mu_0=k_BT_0\ln(n_0\lambda_{T_0}^{3})$ (with $\lambda_T$ the thermal de~Broglie
+wavelength), so $\mu_0$ is tuned by the density or pressure of the gas: an
+adsorbing surface, or a porous solid, in contact with a gas of pressure $p_0$ is
+an open system at the $\mu_0$ that $p_0$ fixes, and a liquid in contact with its
+vapour shares the vapour's $\mu$. For electrons the reservoir is a metallic lead
+whose Fermi level, the electrochemical potential, is shifted by $-eV$ by a
+voltage source: a gate or bias voltage is the experimenter's knob on $\mu_0$,
+and a quantum dot, a two-dimensional electron gas or an STM tip is an open
+system at the $\mu_0$ the source imposes. For photons in a cavity there is no
+reservoir that conserves their number, and $\mu_0=0$ (Section~\ref{sec:found_info}).
+
+The reservoirs remain in equilibrium throughout, so that $T_0$, $P_0$ and
+$\mu_0$ are constants of the process and the changes of the reservoirs obey
+their own fundamental relation at every instant,
+$\Delta U_{\rm res}=T_0\,\Delta S_{\rm res}-P_0\,\Delta V_{\rm res}+\mu_0\,\Delta N_{\rm res}$,
+with $\Delta V_{\rm res}=-\Delta V$ and $\Delta N_{\rm res}=-\Delta N$. The system
+itself need not pass through equilibrium states. During a violent process its
+own $T$, $P$ and $\mu$, which are derivatives of a function defined only on
+equilibrium states, have no value; this is why every quantity exchanged is
+evaluated \emph{on the reservoir side}, where it is well defined, and why only
+the end states of the system, where $U$ and $S$ exist, enter the result.
+Energy conservation for the isolated composite of system and reservoirs,
+$\Delta U+\Delta U_{\rm res}=0$, gives the first law in the form
 \[
-  \Delta U=Q-P_0\,\Delta V+\mu_0\,\Delta N ,
+  \Delta U=Q-P_0\,\Delta V+\mu_0\,\Delta N ,\qquad Q\equiv-T_0\,\Delta S_{\rm res} ,
 \]
-and the Clausius inequality~\eqref{eq:clausius} with a single bath temperature
-reads $\Delta S\geq Q/T_0$. Eliminating $Q$,
+with $Q$ the heat drawn from the reservoirs. The second law for the composite,
+$\Delta S+\Delta S_{\rm res}\geq0$, is then the Clausius
+inequality~\eqref{eq:clausius} with a single bath temperature,
+$\Delta S\geq Q/T_0$. Eliminating $Q$,
 \begin{equation}\label{eq:availability}
   \boxed{\;\Delta\big(U-T_0S+P_0V-\mu_0N\big)\;\leq\;0\;}
 \end{equation}
@@ -1155,8 +1392,29 @@ $T,V,\mu$ & $d\Omega \leq 0$ & $\Omega$ minimum\\
 \end{center}
 The sign flip relative to the entropy maximum comes entirely from the term
 $-T_0S$: at fixed bath temperature, raising the system's entropy lowers
-$U-T_0S$. The potential can only decrease, so it decreases until it cannot;
-equilibrium is its minimum over the internal variables, stationarity
+$U-T_0S$.
+
+\paragraph{From ``decreases'' to ``minimum''.} That $\Psi$ can only decrease
+does not by itself say where it stops: Eq.~\eqref{eq:availability} would permit
+the system to come to rest in any state of lower $\Psi$. As for the entropy
+(Section~\ref{sec:secondlaw}), the minimum comes from the maximum form of the
+second law, Eq.~\eqref{eq:Smax}, applied to the isolated composite of system and
+reservoirs. Let the system be in a constrained equilibrium state with the
+internal variable held at $\xi$, at the temperature, pressure and chemical
+potential of its reservoirs. By the relations above, the entropy of the
+reservoirs is linear in what the system has taken from them,
+$S_{\rm res}=\text{const}-(U+P_0V-\mu_0N)/T_0$, so the entropy of the composite is
+\[
+  S_{\rm tot}(\xi)=S(\xi)+S_{\rm res}(\xi)=\text{const}-\frac{\Psi(\xi)}{T_0} ,
+\]
+the constant fixing the totals of energy, volume and particle number shared
+with the reservoirs. Equation~\eqref{eq:Smax} says that the equilibrium value of
+$\xi$ maximises $S_{\rm tot}$ over all values allowed by the constraints, and
+since $T_0>0$ this is the statement that it \emph{minimises} $\Psi$ over the
+same values. The inequality $\Delta\Psi\leq0$ is the weaker consequence for
+processes, obtained as in Section~\ref{sec:secondlaw} by noting that the
+initial constrained state is one of the candidates. Equilibrium is therefore the
+minimum of the potential over the internal variables, stationarity
 $\partial\Phi/\partial\xi=0$ is the first-order condition and
 $\partial^{2}\Phi/\partial\xi^{2}\geq0$ the second-order one.
 
@@ -1200,17 +1458,45 @@ fixed. The split
 is an internal variable, so the potential $\Phi$ selected by the remaining
 constraints, regarded as a function of $x$,
 \[
-  \Phi_{\rm tot}(x)=\Phi(X_0+x)+\Phi(X_0-x) ,
+  \Phi_{\rm tot}(x)=\Phi(X_0+x;Y_0)+\Phi(X_0-x;Y_0) ,
 \]
-must be a minimum at the equilibrium split. The homogeneous split $x=0$ is
-stationary for every $\Phi$, by symmetry: $\Phi'(X_0+x)-\Phi'(X_0-x)$ vanishes
-at $x=0$, which is the equality of the intensive variable conjugate to $X$
-between the halves. Whether it is a minimum is decided by the second order.
-Expanding, the odd powers cancel between the halves,
+must be a minimum at the equilibrium split. Here $Y_0$ stands for the other
+extensive arguments of each half (its volume and particle number, say), which
+the wall does not let the halves exchange and which are the same in both;
+below they are suppressed, $\Phi(X)\equiv\Phi(X;Y_0)$.
+
+Extensivity does \emph{not} make $\Phi_{\rm tot}$ independent of $x$. It fixes
+the value at the homogeneous split, $\Phi_{\rm tot}(0)=2\Phi(X_0;Y_0)=\Phi(2X_0;2Y_0)$,
+because there every extensive variable of the composite is twice that of a
+half. For $x\neq0$ only $X$ is moved from one half to the other while $Y_0$ stays
+put, the two halves are in different states, and $\Phi_{\rm tot}(x)$ is the
+potential of an \emph{inhomogeneous} constrained state, which extensivity says
+nothing about. It would equal $\Phi(2X_0;2Y_0)$ for every $x$ only if $\Phi$
+were linear in $X$ between $X_0-x$ and $X_0+x$, and that is the marginal case of
+a straight segment, a two-phase mixture (Section~\ref{sec:firsttransition}).
+
+The homogeneous split $x=0$ is stationary for every $\Phi$, by symmetry:
+$\Phi_{\rm tot}'(x)=\Phi'(X_0+x)-\Phi'(X_0-x)$ vanishes at $x=0$, which is the
+equality of the intensive variable conjugate to $X$ between the halves.
+Whether it is a minimum is decided by the second order. Expanding each half in
+a Taylor series about $X_0$,
 \[
-  \Phi_{\rm tot}(x)-\Phi_{\rm tot}(0)=\Phi''(X_0)\,x^{2}+O(x^{4}) ,
+  \Phi(X_0\pm x)=\Phi(X_0)\pm\Phi'(X_0)\,x+\tfrac12\Phi''(X_0)\,x^{2}
+  \pm\tfrac16\Phi'''(X_0)\,x^{3}+\tfrac1{24}\Phi''''(X_0)\,x^{4}+O(x^{5}) ,
 \]
-so $x=0$ is a minimum for small $x$ if and only if
+and adding the two series, the odd powers, which carry opposite signs in the
+two halves, cancel, and the even powers double:
+\[
+  \Phi_{\rm tot}(x)-\Phi_{\rm tot}(0)
+  =\Phi''(X_0)\,x^{2}+\tfrac1{12}\Phi''''(X_0)\,x^{4}+O(x^{6})
+  =\Phi''(X_0)\,x^{2}+O(x^{4}) .
+\]
+(The remainder is $O(x^{6})$ rather than $O(x^{5})$ because the fifth-order
+terms also cancel.) If $\Phi''(X_0)>0$ the right-hand side is positive for all
+small $x\neq0$ and $x=0$ is a strict local minimum; if $\Phi''(X_0)<0$ it is
+negative and $x=0$ is a maximum. The marginal case $\Phi''(X_0)=0$ is decided
+by the quartic term, which requires $\Phi''''(X_0)\geq0$; it is the
+critical point (Section~\ref{sec:critical}). Hence $x=0$ can be a minimum only if
 \begin{equation}\label{eq:stab}
   \boxed{\;\Phi''(X_0)\geq0\ \text{ for a minimised potential},
   \qquad S''(X_0)\leq0\ \text{ for the entropy}\;}
@@ -1249,18 +1535,18 @@ escapes it (Appendix~\ref{app:maxwell}).
 
 \paragraph{Magnetic susceptibility.} Fix $T$, $V$, $N$ and the total moment
 $2M_0$, and let the halves exchange moment: $X=M$, the potential is
-$F(T,V,N,M)$ with $(\partial F/\partial M)_{T,V,N}=\mathcal{H}$, and
+$F(T,V,N,M)$ with $(\partial F/\partial M)_{T,V,N}=\mathcal{H}_M$, and
 \[
   \left(\frac{\partial^{2}F}{\partial M^{2}}\right)_{T,V,N}
-  =\left(\frac{\partial\mathcal{H}}{\partial M}\right)_{T,V,N}=\frac{1}{\chi_T}\geq0
+  =\left(\frac{\partial\mathcal{H}_M}{\partial M}\right)_{T,V,N}=\frac{1}{\chi_T}\geq0
   \qquad\Longrightarrow\qquad
-  \boxed{\;\chi_T\equiv\left(\frac{\partial M}{\partial\mathcal{H}}\right)_{T,V,N}\geq0\;}
+  \boxed{\;\chi_T\equiv\left(\frac{\partial M}{\partial\mathcal{H}_M}\right)_{T,V,N}\geq0\;}
 \]
 Diamagnets are not counterexamples: the inequality concerns the response of
-the variable that couples linearly to the field, $\hat H=\hat H_0-\mathcal{H}\hat M$,
+the variable that couples linearly to the field, $\hat H=\hat H_0-\mathcal{H}_M\hat M$,
 whereas orbital magnetism enters through $(\hat{\mathbf p}-q\mathbf{A})^{2}$,
 quadratically in the field, and contributes a negative term
-$-\langle\partial^{2}\hat H/\partial\mathcal{H}^{2}\rangle$ to the measured
+$-\langle\partial^{2}\hat H/\partial\mathcal{H}_M^{2}\rangle$ to the measured
 susceptibility. What stability of matter plus field bounds is the permeability
 $1+\chi_{\rm vol}\geq0$, which a superconductor saturates rather than
 violates.
@@ -1293,8 +1579,8 @@ transform in the conjugate intensive variable are reciprocal:
   \qquad
   \left(\frac{\partial^{2}F}{\partial T^{2}}\right)_{V,N}=-\frac{C_V}{T} .
 \]
-A large heat capacity makes $U(S)$ nearly flat (adding entropy hardly raises
-the temperature) and $F(T)$ strongly curved (a small change of temperature
+A large heat capacity makes $U(S)$ nearly straight, of small curvature
+$T/C_V$ (adding entropy hardly raises the temperature), and $F(T)$ strongly curved (a small change of temperature
 changes the entropy a lot). Section~\ref{sec:ensembles} identifies the
 curvature of the transformed potential with the variance of the fluctuating
 extensive quantity, $k_BT^{2}C_V=\Var(E)$, which is the statistical reason why
@@ -1655,7 +1941,7 @@ the singular part of $f$ takes the \emph{generalised homogeneous} form
 \begin{equation}\label{eq:scaling}
   \boxed{\;f_{\rm sing}(t,h)=|t|^{2-\alpha}\,\Phi\!\left(\frac{h}{|t|^{\Delta}}\right)\;}
 \end{equation}
-in which $t$ and $h$ are dimensionless ($h=\mu_0\mathcal{H}/k_BT_c$ for a
+in which $t$ and $h$ are dimensionless ($h=\mu_0\mathcal{H}_M/k_BT_c$ for a
 lattice magnet with moment $\mu_0$ per site), $\Delta$ is the \emph{gap
 exponent}, and $\Phi$ is a \emph{scaling function}, analytic on each branch
 $t\gtrless0$ away from the origin. The scaling hypothesis is the assumption
@@ -1810,7 +2096,7 @@ reservoir, and which is therefore fixed only on average, enters the weight
 through one factor $e^{\pm\beta fX}$, with $f$ the conjugate intensive variable
 of the reservoir and the sign that of the term $f\,dX$ in $dU$. A magnet in an
 applied field is an ensemble with the magnetisation fixed on average, weight
-$e^{-\beta(\hat H_0-\mathcal{H}\hat M)}$. The second-order term of the expansion
+$e^{-\beta(\hat H_0-\mathcal{H}_M\hat M)}$. The second-order term of the expansion
 is smaller by the ratio of the system's heat capacity to the reservoir's and
 vanishes for an ideal reservoir.
 
@@ -2170,8 +2456,9 @@ We abbreviate
 \[
   \hat{\mathcal{H}} \equiv \hat H - \mu\hat N , \qquad \xi_a \equiv E_a - \mu N_a ,
 \]
-so that $ \hat{\mathcal{H}}|a\rangle = \xi_a|a\rangle $. The hat distinguishes the
-operator $ \hat{\mathcal{H}} $ from the applied magnetic field $ \mathcal{H} $, and
+so that $ \hat{\mathcal{H}}|a\rangle = \xi_a|a\rangle $. The hat and the absence
+of a subscript distinguish the operator $ \hat{\mathcal{H}} $ from the applied magnetic
+field $ \mathcal{H}_M $, and
 $ \xi_a $ is the many-body counterpart of the single-particle $ \xi_\lambda =
 \varepsilon_\lambda - \mu $ of Appendix~\ref{app:quadratic}.
 
@@ -3121,6 +3408,210 @@ ensemble applies but whether the resulting potentials are extensive
 (Appendix~\ref{app:extensivity}): in a nanoscale body, or across an interface, they
 survive as surface free energies without invalidating the description.
 
+\subsection{Clausius and Kelvin from reversible dynamics}
+\label{sec:found_statements}
+
+The classical statements of the second law can be derived from the microscopic
+dynamics with no assumption about irreversibility at all. Two ingredients
+suffice: the evolution of the whole is unitary, for any Hamiltonian
+whatever and however violently it is varied in time; and the bodies start in
+\emph{uncorrelated Gibbs states}. The arrow of time is entirely in the second
+ingredient.
+
+\paragraph{One identity.} Let a body $ B $ with Hamiltonian $ \hat H_B $ start in the
+Gibbs state $ \gamma_B = e^{-\beta\hat H_B}/Z_B $ and end, after any process, in a state
+$ \rho_B' $, which need not be a Gibbs state. With
+$ Q_B \equiv \Tr(\rho_B'\hat H_B) - \Tr(\gamma_B\hat H_B) $ the energy it has received
+and $ \Delta S_B = S[\rho_B'] - S[\gamma_B] $,
+\begin{equation}\label{eq:gibbs_identity}
+  \boxed{\;\beta\,Q_B = \frac{\Delta S_B}{k_B} + D\big(\rho_B'\,\big\|\,\gamma_B\big)\;}
+\end{equation}
+The proof is two lines. Since $ \ln\gamma_B = -\beta\hat H_B - \ln Z_B $,
+\[
+  D(\rho_B'\,\|\,\gamma_B) = \Tr(\rho_B'\ln\rho_B') - \Tr(\rho_B'\ln\gamma_B)
+  = -\frac{S[\rho_B']}{k_B} + \beta\Tr(\rho_B'\hat H_B) + \ln Z_B ,
+\]
+and the same expression with $ \rho_B' = \gamma_B $ vanishes,
+$ 0 = -S[\gamma_B]/k_B + \beta\Tr(\gamma_B\hat H_B) + \ln Z_B $; subtracting gives
+Eq.~\eqref{eq:gibbs_identity}. By Klein's inequality $ D \geq 0 $, so a body that
+starts in equilibrium obeys $ \Delta S_B \leq Q_B/T $ for \emph{every} process: its
+entropy cannot grow by more than the heat it receives divided by its initial
+temperature. The excess $ k_BD(\rho_B'\|\gamma_B) $ is the entropy that the body
+itself creates by being driven away from its Gibbs state. For a large body that
+remains close to a Gibbs state at a slightly shifted temperature it is of
+second order, $ k_BD \simeq Q_B^{2}/2T^{2}C_B $, and it vanishes for an ideal
+reservoir, $ C_B \to \infty $: this is property~(ii) of the reservoirs of
+Section~\ref{sec:clausius}, now derived.
+
+\paragraph{The Clausius inequality and the entropy produced.} Let a system $ A $,
+in an arbitrary state $ \rho_A $, be brought into contact with a bath $ B $ in the
+Gibbs state $ \gamma_B $ at temperature $ T $, the two uncorrelated,
+$ \rho_{AB} = \rho_A\otimes\gamma_B $. The composite evolves unitarily under
+$ \hat H_A(\lambda(t)) + \hat H_B + \hat H_{\rm int}(t) $, the coupling being switched off at
+the end, and $ Q \equiv -Q_B $ is the heat received by $ A $
+(Section~\ref{sec:found_heat}). Unitary evolution conserves
+$ S[\rho_{AB}] $, and the composite starts uncorrelated, so the sum of the entropies
+of the parts grows by exactly the mutual information that the process builds up,
+$ \Delta S_A + \Delta S_B = I'(A{:}B) $ (Section~\ref{sec:found_second}). Combined with
+Eq.~\eqref{eq:gibbs_identity} for the bath,
+\begin{equation}\label{eq:sigma_info}
+  \boxed{\;\sigma\;\equiv\;\Delta S_A - \frac{Q}{T}
+  \;=\; I'(A{:}B) + k_B\,D\big(\rho_B'\,\big\|\,\gamma_B\big)\;\geq\;0\;}
+\end{equation}
+This is the Clausius inequality~\eqref{eq:clausius}, with the entropy produced
+$ \sigma $ given by an exact formula (Esposito, Lindenberg and Van den Broeck, 2010).
+It is the sum of two terms, each a quantity of information, and neither is
+accessible to the macroscopic controls: the correlations that the process has
+built between the system and the bath, and the displacement of the bath from its
+Gibbs state, which is spread over its unmonitored degrees of freedom. A process is
+reversible when both vanish, and that is the precise sense of the statement in
+Section~\ref{sec:secondlaw} that the entropy produced is the information moved out
+of reach of the macroscopic controls. If the final state of $ A $ is not itself a
+maximum-entropy state, its thermodynamic entropy exceeds $ S[\rho_A'] $
+(Section~\ref{sec:found_law}), and the inequality holds a fortiori for the
+thermodynamic $ \Delta S $.
+
+\paragraph{Kelvin's statement: Gibbs states are passive.} Let a system in contact
+with a single bath be driven through a cycle: the control parameters $ \lambda(t) $
+return to their initial values at the end, so that the Hamiltonian
+$ \hat H_{AB}(\lambda) $ of system and bath together is the same at the beginning
+and at the end. Let system and bath start in joint equilibrium at temperature $ T $,
+$ \gamma_{AB} = e^{-\beta\hat H_{AB}}/Z_{AB} $. The composite is closed except for the
+agent, so the work done on it is $ W = \Tr(\rho_{AB}'\hat H_{AB}) - \Tr(\gamma_{AB}\hat H_{AB}) $,
+and Eq.~\eqref{eq:gibbs_identity} applied to the composite as a single body, with
+$ \Delta S_{AB} = 0 $ by unitarity, gives
+\begin{equation}\label{eq:passivity}
+  \beta\,W = D\big(\rho_{AB}'\,\big\|\,\gamma_{AB}\big) \;\geq\; 0 .
+\end{equation}
+No cycle, however it is designed, extracts work from a system in equilibrium with a
+single bath: Gibbs states are \emph{passive} (Pusz and Woronowicz, 1978; Lenard,
+1978). Equality requires $ \rho_{AB}' = \gamma_{AB} $, i.e.\ a cycle that leaves
+everything as it was. The only assumption is the initial Gibbs state, and it is
+indispensable. For a Gibbs state with $ \beta < 0 $, the population-inverted state of
+Section~\ref{sec:secondlaw}, the same identity gives $ W \leq 0 $: work can be
+extracted from it by a cycle, which is one more reason why negative temperatures
+are excluded from these notes.
+
+\paragraph{Clausius' statement.} Let two bodies $ A $ and $ B $ start in Gibbs states at
+temperatures $ T_A $ and $ T_B $, uncorrelated, and let them interact in a way that
+exchanges energy between them without supplying any, i.e.\ by a unitary that
+commutes with $ \hat H_A + \hat H_B $. Then the heat received by $ A $ is
+$ Q = Q_A = -Q_B $. Eq.~\eqref{eq:gibbs_identity} for each body,
+$ \beta_AQ = \Delta S_A/k_B + D_A $ and $ -\beta_BQ = \Delta S_B/k_B + D_B $, added and combined
+with $ \Delta S_A + \Delta S_B = I'(A{:}B) $, gives
+\begin{equation}\label{eq:clausius_micro}
+  \big(\beta_A - \beta_B\big)\,Q \;=\; \frac{I'(A{:}B)}{k_B} + D_A + D_B \;\geq\; 0 .
+\end{equation}
+If $ T_A < T_B $, so that $ \beta_A > \beta_B $, then $ Q \geq 0 $: the heat flows into the
+colder body (Partovi, 2008; Jennings and Rudolph, 2010). This is Clausius'
+statement, obtained from the reversible dynamics of the two bodies and nothing else.
+
+\paragraph{Where the arrow is.} The three results use unitary, hence reversible,
+dynamics, and they are not time-symmetric; the asymmetry lies entirely in the
+assumption that the bodies start uncorrelated and in Gibbs states. Run the
+microscopic dynamics backwards from the final state, and the reversed process
+starts with correlations $ I'(A{:}B) > 0 $ and with a bath out of its Gibbs state;
+neither assumption holds, and Eq.~\eqref{eq:clausius_micro} no longer forbids heat
+to flow from the colder body to the hotter. With initial correlations prepared
+deliberately this has been observed: two nuclear spins in a molecule, initially
+correlated, exchange heat from cold to hot while their correlations are consumed
+(Micadei et al., 2019). The second law is therefore not a property of the
+dynamics but of the states in which bodies are found before they interact, and
+those are supplied by the unknown part of the Hamiltonian
+(Section~\ref{sec:found_second}): it erases the correlations left by earlier
+interactions and returns each body to a Gibbs state, so that every new process
+starts under the assumption that the derivations require.
+
+\subsection{Maxwell's demon and Landauer's principle}
+\label{sec:found_demon}
+
+\paragraph{The demon.} Maxwell (1867) imagined a being that operates a frictionless
+trap door in a wall dividing a gas at uniform temperature, opening it for fast
+molecules moving one way and for slow ones moving the other. It does no work, yet
+it produces a temperature difference from which work can be extracted, and the
+entropy of the gas decreases. Szilard (1929) reduced the paradox to its
+essentials, a single molecule in a box of volume $ V $ in contact with a bath at
+temperature $ T $. Insert a partition in the middle, which costs no work; find out
+which half contains the molecule, one bit of information; and let the molecule push
+the partition, now used as a piston, isothermally back to the empty end. The work
+delivered is
+\[
+  W_{\rm out} = \int_{V/2}^{V}\!P\,dV' = k_BT\int_{V/2}^{V}\frac{dV'}{V'} = k_BT\ln2 ,
+\]
+supplied as heat by the bath. The gas is back in its initial state, the bath has
+lost entropy $ k_B\ln2 $, and if nothing else had changed, Kelvin's statement, which
+Section~\ref{sec:found_statements} derived from the microscopic dynamics, would be
+violated.
+
+\paragraph{The memory.} Something else has changed: the outcome of the measurement
+is stored in a physical memory $ M $, a system with two macroscopically distinct
+sets of microstates, the logical states $ 0 $ and $ 1 $, taken of equal internal
+entropy. Measurement is a copy. Starting from $ M $ in the state $ 0 $, it maps
+(molecule left, $ 0 $) to (left, $ 0 $) and (right, $ 0 $) to (right, $ 1 $), a
+one-to-one map of the joint states that can be realised unitarily and, as Bennett
+(1982) showed, in principle without any expenditure of work. After the
+measurement the molecule and the memory share the mutual information
+$ I = k_B\ln2 $; the work extraction consumes it, leaving the molecule spread over
+the whole box again and uncorrelated with the record, while the memory is left
+in $ 0 $ or $ 1 $ with equal probabilities and entropy $ k_B\ln2 $. The entropy
+lost by the bath has gone into the memory, and the total has not decreased. The
+engine has not completed a cycle; the memory has not been returned to its
+initial state.
+
+\paragraph{Landauer's principle.} To work cyclically the demon must reset its
+memory to $ 0 $ whatever it holds. This \emph{erasure} is a many-to-one map of the
+logical states, and since unitary evolution is one-to-one, it cannot be carried out
+on the memory alone: it must be carried out by a unitary acting on the memory
+together with an environment, which is left holding the information. Let the
+environment be a bath at temperature $ T $, initially in its Gibbs state and
+uncorrelated with the memory. Equation~\eqref{eq:sigma_info} with $ A = M $ gives
+$ Q \leq T\,\Delta S_M $ for the heat received by the memory, i.e.\ for the heat
+delivered to the bath,
+\begin{equation}\label{eq:landauer}
+  \boxed{\;Q_{\rm bath}\;\geq\;-T\,\Delta S_M\;=\;k_BT\,H(p) ,\qquad
+  H(p) = -p\ln p - (1-p)\ln(1-p) ,\;}
+\end{equation}
+where $ p $ is the probability that the memory held $ 1 $ and $ \Delta S_M = -k_BH(p) $
+is the entropy removed from it, the internal entropies of the two logical states
+being equal. For an unknown bit, $ p = 1/2 $, the bound is $ k_BT\ln2 $
+(Landauer, 1961). Equality is approached by erasing quasi-statically, for instance
+by lowering the barrier of a double well slowly, tilting it towards $ 0 $ and
+raising it again, and the bound has been measured in that form with a colloidal
+particle in a double-well optical trap, the mean dissipated heat approaching
+$ k_BT\ln2 $ for slow erasure (B\'erut et al., 2012). Landauer's principle is
+therefore not an additional postulate: it is the Clausius inequality applied to a
+memory, once the uncertainty about its logical state is counted, as the Gibbs
+entropy counts it, as part of its entropy.
+
+\paragraph{The balance.} Over a full cycle of Szilard's engine the bath supplies
+$ k_BT\ln2 $ as work and receives at least $ k_BT\ln2 $ as heat when the memory is
+erased; the net work delivered is $ W_{\rm out} \leq 0 $, and Kelvin's statement
+holds for engine, memory and bath together. The cost is in the erasure, not, as
+Szilard and Brillouin (1951) supposed, in the measurement. A demon that never
+erased would instead fill its memory with entropy $ k_B\ln2 $ per cycle; a tape of
+blank bits is a fuel, which the demon converts into work at the rate of at most
+$ k_BT\ln2 $ per bit. The general form of the balance, for any measurement that
+leaves a mutual information $ I $ between system and memory followed by feedback,
+bounds the work delivered by a system in contact with a bath at $ T $ as
+\[
+  W_{\rm out} \;\leq\; -\Delta F + T\,I
+\]
+(Sagawa and Ueda, 2008), with $ \Delta F = 0 $, $ I = k_B\ln2 $ for Szilard's engine;
+the conversion of information into work at this rate has been realised with a
+Brownian particle driven by feedback (Toyabe et al., 2010).
+
+\paragraph{What the demon shows.} The demon is an agent for which part of the
+unknown Hamiltonian is known: it follows individual molecules. This is precisely
+what the macroscopic constraints of the second law exclude
+(Section~\ref{sec:secondlaw}), and the paradox disappears as soon as the agent is
+included in the system, because its knowledge is stored in a physical memory whose
+entropy enters the balance. Information about the microstate is a thermodynamic
+resource, worth at most $ k_BT\ln2 $ of work per bit, and acquiring it, using it
+and discarding it is subject to the same inequality as any other exchange of
+energy. This is the sense in which the entropy, a measure of what is not known
+about the microstate, is a physical quantity: what is known can be turned into
+work, and forgetting it costs heat.
+
 \subsection{The second law as a statement about information}
 \label{sec:found_law}
 
@@ -3932,7 +4423,7 @@ $ \hat{\mathcal{H}} = \hat H - \mu\hat N $ and $ \Xi = \Tr e^{-\beta\hat{\mathca
   = \Omega + k_BT\,D(\rho\,\|\,\rho_{\rm eq}) \;\geq\; \Omega = -k_BT\ln\Xi ,
 \]
 and $ \Omega \leq \Omega_0 + \langle\hat{\mathcal{H}} - \hat{\mathcal{H}}_0\rangle_0 $; the same holds with a field
-term $ -\mathcal{H}\hat M $ or a pressure term $ +P\hat V $ in $ \hat{\mathcal{H}} $.
+term $ -\mathcal{H}_M\hat M $ or a pressure term $ +P\hat V $ in $ \hat{\mathcal{H}} $.
 
 
 \section{Three points of ensemble bookkeeping}
@@ -4012,48 +4503,50 @@ which is what a large chemical potential is supposed to do. With the opposite
 sign a high chemical potential would empty the system.
 
 
-\subsection*{Magnetic work: $\mathcal{H}\,dM$ versus $-M\,d\mathcal{H}$}
+\subsection*{Magnetic work: $\mathcal{H}_M\,dM$ versus $-M\,d\mathcal{H}_M$}
 Both, in different potentials; the pattern is that of $(\mu,N)$ with the total
-magnetisation $M$ playing the role of $N$ and the applied field $\mathcal{H}$
-that of $\mu$. (The script $\mathcal{H}$ avoids a collision: $H$ is the enthalpy
-and $\hat H$ the Hamiltonian. In density notation $h=\mathcal{H}$ and $m=M/V$.)
+magnetisation $M$ playing the role of $N$ and the applied field $\mathcal{H}_M$
+that of $\mu$. (The script $\mathcal{H}_M$, with the subscript recalling the conjugate
+moment $M$, avoids two collisions: $H$ is the enthalpy, $\hat H$ the
+Hamiltonian and $\hat{\mathcal{H}}=\hat H-\mu\hat N$ the grand-canonical
+operator of Section~\ref{sec:filt_exact}. In density notation $h=\mathcal{H}_M$ and $m=M/V$.)
 
-$M$ is extensive and $\mathcal{H}$ intensive, so $M$ joins $(S,V,N)$ as a natural
+$M$ is extensive and $\mathcal{H}_M$ intensive, so $M$ joins $(S,V,N)$ as a natural
 variable of $U$ and the work done \emph{on} the system is
-$\dbar W=\mathcal{H}\,dM$:
+$\dbar W=\mathcal{H}_M\,dM$:
 \[
-dU=T\,dS-P\,dV+\mu\,dN+\mathcal{H}\,dM ,
+dU=T\,dS-P\,dV+\mu\,dN+\mathcal{H}_M\,dM ,
 \]
-with $U=TS-PV+\mu N+\mathcal{H}M$ and $S\,dT-V\,dP+N\,d\mu+M\,d\mathcal{H}=0$.
-Note why $\mathcal{H}\,dM$ carries the opposite sign to $-P\,dV$: magnetising a
+with $U=TS-PV+\mu N+\mathcal{H}_MM$ and $S\,dT-V\,dP+N\,d\mu+M\,d\mathcal{H}_M=0$.
+Note why $\mathcal{H}_M\,dM$ carries the opposite sign to $-P\,dV$: magnetising a
 sample against a field costs energy, whereas expanding against a pressure
 releases it.
 
-An experiment fixes $\mathcal{H}$, not $M$, so one transforms:
+An experiment fixes $\mathcal{H}_M$, not $M$, so one transforms:
 \[
-\tilde F(T,V,N,\mathcal{H})=F-\mathcal{H}M,
+\tilde F(T,V,N,\mathcal{H}_M)=F-\mathcal{H}_MM,
 \qquad
-d\tilde F=-S\,dT-P\,dV+\mu\,dN-M\,d\mathcal{H} ,
+d\tilde F=-S\,dT-P\,dV+\mu\,dN-M\,d\mathcal{H}_M ,
 \]
-whence $M=-(\partial\tilde F/\partial\mathcal{H})_{T,V,N}$ and
-$\chi=-(\partial^{2}\tilde F/\partial\mathcal{H}^{2})_{T,V,N}\geq0$. In the
+whence $M=-(\partial\tilde F/\partial\mathcal{H}_M)_{T,V,N}$ and
+$\chi=-(\partial^{2}\tilde F/\partial\mathcal{H}_M^{2})_{T,V,N}\geq0$. In the
 partition function this is verbatim the construction of $\Xi$,
 \[
-\mathcal{Z}=\Tr\,e^{-\beta(\hat H-\mathcal{H}\hat M)},
+\mathcal{Z}=\Tr\,e^{-\beta(\hat H-\mathcal{H}_M\hat M)},
 \qquad
 \tilde F=-k_BT\ln\mathcal{Z},
 \qquad
 \Var(M)=k_BT\,\chi ,
 \]
 parallel to $\Var(N)=k_BT(\partial N/\partial\mu)_{T,V}$. So: the
-extensive-variable form $\mathcal{H}\,dM$ in $dU$, $dH$, $dF$, $dG$; the
-transformed form $-M\,d\mathcal{H}$ in whichever potential has traded $M$ away.
+extensive-variable form $\mathcal{H}_M\,dM$ in $dU$, $dH$, $dF$, $dG$; the
+transformed form $-M\,d\mathcal{H}_M$ in whichever potential has traded $M$ away.
 Which is correct is decided by what the apparatus holds fixed.
 
 Two cautions. The division of magnetic work between ``the sample'' and ``the
-field in the volume it occupies'' is convention-dependent, and $\mathcal{H}$
-versus $B$ versus $\mu_0\mathcal{H}$ differ by exactly such terms; the form above
-is the one in which $M$ is the sample's moment and $\mathcal{H}$ the applied
+field in the volume it occupies'' is convention-dependent, and $\mathcal{H}_M$
+versus $B$ versus $\mu_0\mathcal{H}_M$ differ by exactly such terms; the form above
+is the one in which $M$ is the sample's moment and $\mathcal{H}_M$ the applied
 field, which is what experiments report. And ferromagnets are precisely where
 hysteresis makes $U$ multivalued (Section~\ref{sec:states}), so these relations hold
 on the equilibrium branch, not around a loop.
@@ -5462,16 +5955,16 @@ involved. Three instances are needed below.
   electrostatic potential, is $ e^{2}\chi_c $, and the isothermal compressibility
   is $ \kappa_T = \chi_c/\bar n^{2} $ with $ \bar n = N/V $.
 \item \emph{Spin (Pauli) susceptibility.} For spin-$ \tfrac12 $ particles let
-  $ \lambda = (k, \sigma) $ with $ \sigma = \pm1 $, and let a field $ \mathcal{H} $ shift
+  $ \lambda = (k, \sigma) $ with $ \sigma = \pm1 $, and let a field $ \mathcal{H}_M $ shift
   the levels by the Zeeman energy, $ \varepsilon_{k\sigma} = \varepsilon_k - \sigma
-  m_0\mathcal{H} $, with $ m_0 = g\mu_B/2 $. Then $ \hat M = m_0\sum_{k\sigma}\sigma\,
+  m_0\mathcal{H}_M $, with $ m_0 = g\mu_B/2 $. Then $ \hat M = m_0\sum_{k\sigma}\sigma\,
   \hat n_{k\sigma} $, $ a_\lambda = b_\lambda = m_0\sigma $, and since $ \sigma^{2} = 1 $,
   \[
-    \chi_s \equiv \frac{1}{V}\left(\frac{\partial M}{\partial\mathcal{H}}\right)_{T,\mu}\bigg|_{\mathcal{H}=0}
+    \chi_s \equiv \frac{1}{V}\left(\frac{\partial M}{\partial\mathcal{H}_M}\right)_{T,\mu}\bigg|_{\mathcal{H}_M=0}
     = \frac{m_0^{2}}{Vk_BT}\sum_\lambda\Var(\hat n_\lambda) = \frac{\Var(M)}{Vk_BT}
     = m_0^{2}\,\chi_c .
   \]
-  The coupling is linear in $ \mathcal{H} $, so there is no diamagnetic term
+  The coupling is linear in $ \mathcal{H}_M $, so there is no diamagnetic term
   (Section~\ref{sec:convexity}); orbital (Landau) diamagnetism is excluded by
   construction.
 \item \emph{Heat capacity.} Changing $ T $ at fixed $ \mu $ is equivalent, by
