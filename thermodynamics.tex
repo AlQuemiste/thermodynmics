@@ -2008,10 +2008,27 @@ isothermal susceptibility (Section~\ref{sec:stability}); at fixed $\mu$,
 $C_{V,\mu}=\Var(E-\mu N)/k_BT^{2}$. In every case, for a potential $\Phi$ with
 an \emph{intensive} argument $f$ conjugate to the extensive quantity $X$,
 \[
-  -\frac{\partial^{2}\Phi}{\partial f^{2}}=\beta\,\Var(X)\;\geq\;0 :
+  -\frac{\partial^{2}\Phi}{\partial f^{2}}
+  =\left(\frac{\partial\langle X\rangle}{\partial f}\right)_{T}
+  =\beta\,\Var(X)\;\geq\;0 :
 \]
 the second derivative of the potential is, up to sign, a response function,
-and it equals $\beta$ times the variance of the conjugate quantity. This is
+and it equals $\beta$ times the variance of the conjugate quantity. The
+factor $\beta$ is general and has a single origin: the field enters the
+statistical weight $e^{-\beta(E-fX)}$ only through the dimensionless
+combination $\beta f$, so that $\ln\Xi$ generates the cumulants of $X$ by
+differentiation with respect to $\beta f$,
+\[
+  \langle X\rangle=\frac{\partial\ln\Xi}{\partial(\beta f)},\qquad
+  \Var(X)=\frac{\partial^{2}\ln\Xi}{\partial(\beta f)^{2}}
+  =\frac{\partial\langle X\rangle}{\partial(\beta f)} ,
+\]
+with $\Xi$ the partition function of the ensemble at fixed $\beta$. A
+variance is thus the response to a field measured in units of the thermal
+energy, $f/k_BT$. The heat capacity is the same statement for the energy,
+whose conjugate variable in the weight is $-\beta$ itself:
+$\Var(E)=\partial\langle E\rangle/\partial(-\beta)$, which is
+Eq.~\eqref{eq:CVvar}. This is
 the elementary form of the fluctuation--dissipation theorem. Because a
 variance is non-negative, statistical mechanics delivers the stability
 inequalities of Section~\ref{sec:stability} automatically. (For a
