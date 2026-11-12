@@ -111,7 +111,8 @@ and \emph{intensive} if it stays the same ($T$, $P$, the chemical potential
 $\mu$, the field $\mathcal{H}$). Extensive variables can be prescribed by
 independent physical operations, by walling off a volume, admitting particles
 or supplying energy, and are therefore the natural independent variables of the
-theory. Intensive variables will appear as derivatives.
+theory. Intensive variables will appear as derivatives, i.e.\ as the rates at which
+the thermodynamic functions change with the extensive variables.
 
 The state postulate rests on a separation of time scales. The microscopic
 degrees of freedom relax in $10^{-13}$--$10^{-11}\,\mathrm{s}$ and enter a
@@ -150,11 +151,8 @@ admitted from a reservoir at chemical potential $\mu$. The terms add because
 the control parameters are \emph{independent}: each can be moved with the
 others held fixed, so the work for a small displacement of all of them is
 linear in the displacements. A parameter tied to another, as the volume of a
-magnetostrictive sample is to the applied field, is eliminated first. The
-magnetic term has the sign opposite to the pressure term because magnetising a
-sample against a field costs energy, whereas expanding it against a pressure
-releases energy (Appendix~\ref{app:bookkeeping}). Everything below is written
-for the pair $(-P,V)$ and holds for any other conjugate pair.
+magnetostrictive sample is to the applied field, is eliminated first.
+Everything below is written for the pair $(-P,V)$ and holds for any other conjugate pair.
 
 \subsection{Heat and the first law}
 \label{sec:firstlaw}
@@ -223,6 +221,15 @@ the Legendre transform, homogeneous functions and constrained extrema. This
 section collects these tools in the form in which they are used later, so that
 the physical arguments can refer to them without interruption. The reader who
 knows them may skip to Section~\ref{sec:potentials} and return as needed.
+The smoothness required of a function is stated throughout by its
+differentiability class $C^{n}$.\footnote{\label{fn:Cn}%
+\textbf{Differentiability classes.} $f$ is of class $C^{n}$ if all its partial
+derivatives up to order $n$ exist and are continuous; $C^{0}$ is continuity
+alone. The classes are nested: $|x|$ is $C^{0}$ but not $C^{1}$, and $x|x|$ is
+$C^{1}$ but not $C^{2}$. Two facts are used: $f\in C^{1}$ guarantees that the
+differential $df$ exists, and $f\in C^{2}$ guarantees that mixed second
+derivatives are equal, which is what makes the Maxwell relations available
+(Appendix~\ref{app:exact}).}
 
 \subsection{Convex and concave functions}
 \label{sec:convex}
@@ -231,10 +238,8 @@ A function $f$ defined on an interval (or on a convex set) is
 \emph{convex}\footnote{\label{fn:convex}\textbf{Convexity.} The chord form,
 the tangent form and the derivative forms below are equivalent for a $C^{1}$
 function, and the chord form alone defines convexity when $f$ is not
-differentiable. A function that is convex and concave at once is
-\emph{affine}: a linear function plus a constant, $f(x)=ax+b$, whose graph
-is a straight line and whose second derivative vanishes.} if the chord joining
-any two points of its graph lies on or above the graph,
+differentiable.} if the chord joining
+any two points of its graph lies \emph{on or above} the graph,
 \begin{equation}\label{eq:chord}
   f\big(xa+(1-x)b\big)\;\leq\;x f(a)+(1-x)f(b)
   \qquad\text{for all } a,b \text{ and all } x\in[0,1] ,
@@ -245,10 +250,14 @@ $0<x<1$, which excludes any straight segment in the graph. It is
 chord lies on or below the graph. Figure~\ref{fig:convex}a shows the two
 cases.
 
-Three equivalent forms are used below.
+A function that is convex and concave at once is
+\emph{affine}: a linear function plus a constant, $f(x)=ax+b$, whose graph
+is a straight line and whose second derivative vanishes.
+
+The following equivalent forms are used below.
 \begin{itemize}
 \item \emph{Tangent form.} A $C^{1}$ function is convex if and only if its
-graph lies on or above each of its tangent lines,
+graph lies \emph{on or above} each of its tangent lines,
 \begin{equation}\label{eq:tangent}
   f(b)\;\geq\;f(a)+f'(a)\,(b-a) \qquad\text{for all } a,b ,
 \end{equation}
@@ -272,8 +281,8 @@ $x^{4}$, which is strictly convex with $f''(0)=0$.
 For concave functions every inequality is reversed: the graph lies below its
 tangents, $f'$ is non-increasing, $f''\leq0$.
 
-Two consequences are used constantly. First, a strictly convex $C^{1}$
-function has a strictly increasing derivative, so the map $a\mapsto f'(a)$ is
+Two consequences are used constantly. First, a \emph{strictly convex} $C^{1}$
+function has a \emph{strictly increasing} derivative, so the map $a\mapsto f'(a)$ is
 one-to-one and can be inverted: \emph{the slope labels the point}. This is what
 makes the Legendre transform possible. Second, a convex function of several
 variables is convex along every straight line in its domain, because the chord
@@ -291,10 +300,10 @@ Convexity along every line is therefore the statement that $\mathsf{H}$ is
 for every vector $\mathbf{v}$, equivalently every eigenvalue of $\mathsf{H}$
 is non-negative. $\mathsf{H}$ is \emph{positive definite} if the inequality
 is strict for every $\mathbf{v}\neq\mathbf{0}$, equivalently every eigenvalue
-is positive. For a $2\times2$ matrix, positive definiteness is
+is positive.\footnote{For a $2\times2$ matrix, positive definiteness is
 $\mathsf{H}_{11}>0$ together with $\det\mathsf{H}>0$, and positive
 semidefiniteness is $\mathsf{H}_{11}\geq0$, $\mathsf{H}_{22}\geq0$ and
-$\det\mathsf{H}\geq0$; Section~\ref{sec:stability} uses this case.
+$\det\mathsf{H}\geq0$; Section~\ref{sec:stability} uses this case.}
 
 \subsection{The Legendre transform}
 \label{sec:legendre}
@@ -307,7 +316,12 @@ is the function of the slope
 \begin{equation}\label{eq:legendre_def}
   \;F(T)\;:=\;U\big(S(T)\big)-T\,S(T)\
 \end{equation}
-The letters anticipate the thermodynamic use, $U$ the internal energy, $S$ the
+Since the map $S\mapsto T=U'(S)$ is one-to-one, $S$ and $T$ are equivalent
+labels of the points of the graph, and any function of $S$ can be written as a
+function of $T$; in particular $U$ itself, as $U(S(T))$. Geometrically, the
+tangent to the graph at $S(T)$ is the line $y=U(S(T))+T\,[S-S(T)]$, so $F(T)$
+is its intercept with the axis $S=0$ (Figure~\ref{fig:convex}b). The letters
+anticipate the thermodynamic use, $U$ the internal energy, $S$ the
 entropy, $T$ the temperature and $F$ the Helmholtz free energy, but the
 construction is purely mathematical.
 
@@ -329,19 +343,6 @@ differentiation, just as $T$ is obtained from $U$. The transform is therefore
 invertible by the same operation, $U(S)=F(T(S))+T(S)\,S$ with $T(S)$ the
 solution of $F'(T)=-S$, and \emph{no information is lost}.
 
-\paragraph{Geometric content: the envelope of tangents.} A convex curve can be
-described in two equivalent ways, as the set of its points $(S,U(S))$ or as the
-envelope of its tangent lines. The tangent at $S_0$, of slope $T=U'(S_0)$, is
-the straight line
-\[
-  y=U(S_0)+T\,(S-S_0)=T\,S+\big[U(S_0)-T S_0\big] ,
-\]
-and the bracket is its intercept with the $y$ axis (Figure~\ref{fig:convex}b).
-Labelling the tangent by its slope rather than by its point of contact, the
-intercept is $F(T)$: \emph{the Legendre transform is the intercept of the
-tangent of slope $T$}. Specifying all (slope, intercept) pairs specifies the
-envelope and hence the curve, which is why nothing is lost.
-
 \paragraph{What naive substitution loses.} The transform is not the same as
 expressing $U$ in terms of $T$. Inverting $T=U'(S)$ to $S(T)$ and substituting,
 $\tilde U(T):= U(S(T))$, keeps only the slopes and discards the intercepts.
@@ -359,11 +360,20 @@ at once.
 \[
   g_T(S):= U(S)-T\,S .
 \]
-It is strictly convex, since $U$ is and $-TS$ is affine, and its derivative
-$U'(S)-T$ vanishes exactly at $S(T)$; a stationary point of a strictly convex
-function is its unique global minimum. Hence
+It is strictly convex, since $U$ is and $-TS$ is affine.\footnote{Adding an
+affine function $\ell$ to a convex function $f$ gives a convex function. An
+affine function satisfies Eq.~\eqref{eq:chord} with equality,
+$\ell(xa+(1-x)b)=x\,\ell(a)+(1-x)\,\ell(b)$; adding this to the chord
+inequality of $f$ gives the chord inequality of $f+\ell$ with the same sign,
+$\leq$ or $<$. Strictness is therefore preserved, and the same holds for
+concave $f$ with the inequality reversed.}
+Its derivative $g_T'(S)=U'(S)-T$ vanishes only at $S=S(T)$, and a stationary
+point of a strictly convex function is its \emph{unique global minimum}
+(tangent form, Eq.~\eqref{eq:tangent}, with $f'(a)=0$). The minimum of $g_T$
+is therefore attained at the minimiser $S_{\min}=S(T)$, and its value there is
+$g_T(S(T))=U(S(T))-T\,S(T)$, which is $F(T)$ by Eq.~\eqref{eq:legendre_def}:
 \begin{equation}\label{eq:legendre_inf}
-  \;F(T)=\min_{S}\big[\,U(S)-T\,S\,\big]\
+  F(T)=g_T\big(S(T)\big)=\min_{S}\big[\,U(S)-T\,S\,\big] .
 \end{equation}
 In the minimisation $T$ is a fixed parameter and $S$ the variable scanned; the
 result depends on $T$ alone. This form says the same thing as the definition
@@ -381,19 +391,20 @@ bracket
 \[
   \ell_S(T):= U(S)-T\,S
 \]
-is a \emph{straight line} in $T$, with slope $-S$ and intercept $U(S)$; the
-transform $F(T)=\min_S\ell_S(T)$ is the lowest of these lines at each $T$,
+is a \emph{straight line} in $T$, with slope $-S$ and value $U(S)$ at $T=0$
+(Figure~\ref{fig:convex}c); the transform $F(T)=\min_S\ell_S(T)$ is the lowest of these lines at each $T$,
 their lower envelope. A lower envelope of straight lines is concave, and the
-proof is three lines. Take $T=x\,T_1+(1-x)\,T_2$ with $0\leq x\leq1$, and let
+proof is three lines. Take $T(x)=x\,T_1+(1-x)\,T_2$ with $0\leq x\leq1$, and let
 $S^{\ast}=S(T)$ be the value of $S$ that attains the minimum at this $T$. Then
 \[
   F(T)=\ell_{S^{\ast}}(T)
   =x\,\ell_{S^{\ast}}(T_1)+(1-x)\,\ell_{S^{\ast}}(T_2)
   \;\geq\;x\,F(T_1)+(1-x)\,F(T_2) ,
 \]
-the equality in the middle because $\ell_{S^{\ast}}$ is affine, the inequality
-because $F(T_i)$ is the \emph{minimum} over $S$ of $\ell_S(T_i)$ and
-$S^{\ast}$ is just one competitor. This is the chord inequality for a concave
+the equality in the middle because $\ell_{S^{\ast}}$ is affine in $T$. The
+inequality holds because $F(T_i)=\min_S\ell_S(T_i)$ is the smallest value taken
+at $T_i$ by any of the lines, so the particular line $S=S^{\ast}$ cannot lie
+below it there: $\ell_{S^{\ast}}(T_i)\geq F(T_i)$ for $i=1,2$. This is the chord inequality for a concave
 function. The argument does not use the convexity of $U$; convexity is
 what makes the transform invertible, so that $U$ is recovered from $F$
 (Eq.~\eqref{eq:legendre_deriv}).
@@ -407,8 +418,8 @@ $dS/dT=1/(dT/dS)=1/U''(S)$. Hence
   =-\left(\frac{d^{2}U}{dS^{2}}\right)^{-1} .
 \end{equation}
 The sign reproduces the qualitative statement, $U''>0$ giving $F''<0$. The
-magnitude adds that the curvatures\footnote{\label{fn:curvature}\textbf{Curvature.} In this text
-the curvature of a function of one variable means its second derivative
+magnitude adds that the curvatures\footnote{\label{fn:curvature}\textbf{Curvature.}
+In this text, the curvature of a function of one variable means its second derivative
 $f''$, which fixes the sign (convex for $f''>0$, concave for $f''<0$) and the
 size of the bending of the graph. It is not the geometric curvature
 $f''/(1+f'^{2})^{3/2}$ of the curve, with which it shares the sign.} are
@@ -460,7 +471,7 @@ and $\Omega$, whereas for $U(S,V,N)$ they are a single matrix statement.
   \node[anchor=north,font=\scriptsize,blue!60!black] at (1.4,0.55) {convex};
   \node[anchor=north,font=\small] at (1.5,-0.45) {(a)};
 \end{tikzpicture}
-\hspace{1.5cm}
+\hspace{0.4cm}
 \begin{tikzpicture}[>=Stealth,font=\small,x=1.45cm,y=0.95cm]
   \draw[->] (-0.3,0) -- (3.4,0) node[below]{$S$};
   \draw[->] (-0.3,-1.2) -- (-0.3,3.3) node[left]{$y$};
@@ -477,10 +488,29 @@ and $\Omega$, whereas for $U(S,V,N)$ they are a single matrix statement.
   \node[anchor=west,font=\scriptsize,red!70!black] at (2.5,1.6) {slope $T$};
   \node[anchor=north,font=\small] at (1.5,-1.65) {(b)};
 \end{tikzpicture}
+\hspace{0.4cm}
+\begin{tikzpicture}[>=Stealth,font=\small,x=1.55cm,y=0.48cm]
+  % U(S)=S^2/2: lines l_S(T)=S^2/2-S*T, envelope F(T)=-T^2/2
+  \draw[->] (0,0) -- (2.9,0) node[below]{$T$};
+  \draw[->] (0,-3.6) -- (0,3.5) node[left]{$y$};
+  \foreach \s in {0.4,0.9,1.4,1.9,2.4}
+    \draw[thin,red!70!black,domain=0:2.6,variable=\x]
+         plot ({\x},{0.5*\s*\s-\s*\x});
+  \draw[very thick,blue!60!black,domain=0:2.6,smooth,variable=\x]
+       plot ({\x},{-0.5*\x*\x});
+  \fill[red!70!black] (0,2.88) circle (1.6pt);
+  \node[anchor=east,font=\scriptsize,red!70!black] at (-0.05,2.88) {$U(S)$};
+  \node[anchor=west,font=\scriptsize,red!70!black] at (0.45,2.1) {$\ell_S(T)$, slope $-S$};
+  \node[anchor=east,font=\scriptsize,blue!60!black] at (1.75,-2.6) {$F(T)$};
+  \node[anchor=north,font=\small] at (1.4,-3.9) {(c)};
+\end{tikzpicture}
 \caption{\textbf{(a)} A convex function: every chord lies on or above the
 graph. \textbf{(b)} The Legendre transform. The tangent of slope $T$ touches
 the graph at $S(T)$; its intercept with the vertical axis is $F(T)=U-TS$. The
-family of all tangents reconstructs the curve, so the transform loses nothing.}
+family of all tangents reconstructs the curve, so the transform loses nothing.
+\textbf{(c)} The straight lines $\ell_S(T)=U(S)-TS$ for several fixed $S$
+(thin) and their lower envelope $F(T)=\min_S\ell_S(T)$ (thick), which is
+concave.}
 \label{fig:convex}
 \end{figure}
 
@@ -497,15 +527,32 @@ Differentiating with respect to $\lambda$ and setting $\lambda=1$ gives
 \begin{equation}\label{eq:eulerthm}
   \;\sum_i x_i\,\frac{\partial f}{\partial x_i}=k\,f\
 \end{equation}
-Two cases matter. An extensive quantity expressed through extensive variables
+An extensive quantity expressed through extensive variables
 is homogeneous of degree one: doubling the sample doubles it. An intensive
 quantity expressed through extensive variables is homogeneous of degree zero:
-doubling the sample leaves it unchanged. Differentiating a degree-one function
+doubling the sample leaves it unchanged.
+Differentiating a degree-one function
 with respect to one of its arguments gives a degree-zero function, which is why
-the derivatives of $U(S,V,N)$ are intensive. Differentiating
-Eq.~\eqref{eq:eulerthm} once more shows that the Hessian of a degree-one
-function annihilates the vector $(x_1,\dots,x_n)$: it is singular. This is the
-origin of the Gibbs--Duhem relation (Section~\ref{sec:euler}).
+the derivatives of $U(S,V,N)$ are intensive.
+For a degree-one function, Eq.~\eqref{eq:eulerthm} reads
+$\sum_ix_i\,\partial f/\partial x_i=f$. Differentiating it with respect to
+$x_j$, with $\mathsf{H}_{ij}:=\partial^{2}f/\partial x_i\partial x_j$ the
+Hessian,
+\[
+  \frac{\partial f}{\partial x_j}+\sum_i x_i\,\mathsf{H}_{ij}
+  =\frac{\partial f}{\partial x_j}
+  \qquad\Longrightarrow\qquad
+  \sum_i \mathsf{H}_{ji}\,x_i=0 \quad\text{for every } j .
+\]
+The Hessian of a degree-one function has the vector $(x_1,\dots,x_n)$ as an
+eigenvector of eigenvalue zero, so $\det\mathsf{H}=0$. With
+$y_j:=\partial f/\partial x_j$ and $dy_j=\sum_i\mathsf{H}_{ji}\,dx_i$, the
+same identity gives
+\[
+  \sum_j x_j\,dy_j=\sum_i\Big(\sum_j\mathsf{H}_{ij}\,x_j\Big)dx_i=0 ,
+\]
+which for $f=U(S,V,N)$, with $y=(T,-P,\mu)$, is the Gibbs--Duhem relation
+$S\,dT-V\,dP+N\,d\mu=0$ (Section~\ref{sec:euler}).
 
 \subsection{Constrained extrema and Lagrange multipliers}
 \label{sec:lagrange}
@@ -527,9 +574,9 @@ multiplier each.
 The multiplier is not an auxiliary device to be forgotten: it is the rate at
 which the extremum changes when the constraint is relaxed,
 $\lambda=\partial f_{\rm ext}/\partial c$ if the constraint is written $g=c$.
-In thermodynamics the multipliers are the intensive variables. The simplest
+In thermodynamics the multipliers are the \emph{intensive} variables. The simplest
 example fixes the pattern used in Section~\ref{sec:ensembles}. Maximise the
-function $-\sum_ip_i\ln p_i$ of the probabilities $p_i$ subject to
+Gibbs entropy $S/k_B=-\sum_ip_i\ln p_i$ of the probabilities $p_i$ subject to
 $\sum_ip_i=1$ and $\sum_ip_iE_i=U$. With multipliers $\alpha$ and $\beta$,
 \[
   \frac{\partial}{\partial p_i}\Big[-\sum_jp_j\ln p_j-\alpha\sum_jp_j-\beta\sum_jp_jE_j\Big]
@@ -538,8 +585,8 @@ $\sum_ip_i=1$ and $\sum_ip_iE_i=U$. With multipliers $\alpha$ and $\beta$,
   p_i\propto e^{-\beta E_i} ,
 \]
 and $\beta$ is fixed afterwards by the constraint $\sum_ip_iE_i=U$. The
-multiplier of the energy constraint will turn out to be $1/k_BT$: the
-temperature is the price, in entropy, of one unit of energy.
+multiplier of the energy constraint will turn out to be $1/k_BT$:
+\emph{the temperature is the price, in entropy, of one unit of energy}.
 
 A stationary point is not yet an extremum, and an extremum is not yet a
 maximum. The first-order conditions locate stationary points; which of them is
@@ -557,8 +604,8 @@ difference between a stable and a metastable phase.
 
 The second law, introduced in Section~\ref{sec:second}, supplies a further
 function of state, the entropy $S$, which is extensive and which, for an
-isolated system, is a strictly increasing function of the energy. The state
-postulate of Section~\ref{sec:states} then allows the state to be labelled by
+\emph{isolated} system, is a \emph{strictly increasing} function of the internal energy.
+The state postulate of Section~\ref{sec:states} then allows the state to be labelled by
 $(S,V,N)$ instead of $(U,V,N)$, and all equilibrium information about a simple
 one-component system is contained in one function of extensive variables,
 \[
@@ -586,14 +633,14 @@ gauge, follows from the equilibrium conditions of Section~\ref{sec:secondlaw}.
 
 The relations $T=T(S,V,N)$, $P=P(S,V,N)$, $\mu=\mu(S,V,N)$ obtained by
 differentiation are the \emph{equations of state}. Each is a function on the
-set of equilibrium states, not a restriction of it: every triple $(S,V,N)$ in
-the domain is a state of the substance, and the equations of state say what
-$T$, $P$ and $\mu$ are in that state. Any one equation of state is less than
+set of equilibrium states: every triple $(S,V,N)$ in the domain specifies one
+equilibrium state of the substance, and the equations of state give the
+values of $T$, $P$ and $\mu$ in the state so specified. Any one equation of state is less than
 the fundamental relation, since it is a single derivative of it; all three
 together, or one potential in its natural variables, carry the full
 information.
 
-Three assumptions underlie Eq.~\eqref{eq:dU}, and each is physical.
+The following physical assumptions underlie Eq.~\eqref{eq:dU}.
 \begin{itemize}
 \item \emph{$U$ is single valued.} This is Joule's result of
 Section~\ref{sec:firstlaw}, and it fails around a hysteresis loop.
@@ -607,14 +654,7 @@ $T,-P,\mu$ must exist and be continuous for the differential to exist. This is
 a condition on the equation of state, and Section~\ref{sec:transitions} shows
 exactly where it holds and where it fails: at a first-order transition $U$ is
 $C^{1}$ but not $C^{2}$, so Eq.~\eqref{eq:dU} survives while the second
-derivatives (the response functions) do not.\footnote{\label{fn:Cn}%
-\textbf{Differentiability classes.} $f$ is of class $C^{n}$ if all its partial
-derivatives up to order $n$ exist and are continuous; $C^{0}$ is continuity
-alone. The classes are nested: $|x|$ is $C^{0}$ but not $C^{1}$, and $x|x|$ is
-$C^{1}$ but not $C^{2}$. Two facts are used: $f\in C^{1}$ guarantees that the
-differential $df$ exists, and $f\in C^{2}$ guarantees that mixed second
-derivatives are equal, which is what makes the Maxwell relations available
-(Appendix~\ref{app:exact}).}
+derivatives (the response functions) do not.
 \end{itemize}
 
 \subsection{Extensivity: Euler and Gibbs--Duhem}
@@ -627,7 +667,7 @@ Eq.~\eqref{eq:defTPmu}, gives the \emph{Euler relation}
 \begin{equation}\label{eq:euler}
   \;U=TS-PV+\mu N\
 \end{equation}
-Taking its differential and subtracting Eq.~\eqref{eq:dU},
+Taking its differential and using Eq.~\eqref{eq:dU},
 \[
   (S\,dT+T\,dS)-(P\,dV+V\,dP)+(\mu\,dN+N\,d\mu)=T\,dS-P\,dV+\mu\,dN ,
 \]
@@ -637,8 +677,8 @@ whence the \emph{Gibbs--Duhem relation}
 \end{equation}
 Dividing by $N$, with $s=S/N$ and $v=V/N$, it reads $d\mu=-s\,dT+v\,dP$: the
 chemical potential of a one-component system is a function of $T$ and $P$
-alone, and the three intensive variables are not independent. Fixing two of
-them fixes the third. This is the failure of independence noted in
+alone, and the three \emph{intensive} variables are \emph{not independent}.
+Fixing two of them fixes the third. This is the failure of independence noted in
 Section~\ref{sec:totaldiff}, and it is why there is no useful potential of
 $(T,P,\mu)$: a quantity built from $U$, $S$, $V$, $N$ is extensive, but a
 function of $(T,P,\mu)$ alone is unchanged when the sample is doubled, so it
@@ -655,7 +695,7 @@ potentials are extensive but not analytic (Section~\ref{sec:critical}).
 \subsection{The family of potentials}
 \label{sec:family}
 
-An experiment fixes intensive variables: a sample sits in a bath at
+An experiment fixes \emph{intensive} variables: a sample sits in a bath at
 temperature $T$, not at prescribed entropy, and under atmospheric pressure, not
 at prescribed volume. The Legendre transform of Section~\ref{sec:legendre}
 trades an extensive variable for its conjugate slope without loss of
@@ -688,18 +728,15 @@ By the Euler relation $G=\mu N$: the chemical potential is the Gibbs free
 energy per particle, and for a one-component system $G$ is $N$ times a
 function of $(T,P)$.
 
-\paragraph{Grand potential, $\Omega(T,V,\mu)$.}
+\paragraph{Grand canonical potential, $\Omega(T,V,\mu)$.}
 \[
   \;\Omega=U-TS-\mu N=F-\mu N ,\qquad d\Omega=-S\,dT-P\,dV-N\,d\mu\
 \]
 with $S=-(\partial\Omega/\partial T)_{V,\mu}$, $P=-(\partial\Omega/\partial V)_{T,\mu}$
-and $N=-(\partial\Omega/\partial\mu)_{T,V}$. By the Euler relation
-$\Omega=-PV$: the grand potential is $V$ times a function of $(T,\mu)$, and
-$P(T,\mu)$ is Gibbs--Duhem once more. This is the potential of an open system
-and the one computed by the grand canonical ensemble; it is the natural
-potential for quantum gases, because only at fixed $\mu$ does the many-body
-problem of independent particles factorise orbital by orbital
-(Appendix~\ref{app:quadratic}).
+and $N=-(\partial\Omega/\partial\mu)_{T,V}$. By the Euler relation, $\Omega=-PV$.
+This is the potential of an open system and
+the one computed by the grand canonical ensemble; it is the natural
+potential for quantum gases (see Appendix~\ref{app:quadratic}).
 
 \paragraph{Homogeneity of the potentials.} Each product $TS$, $PV$, $\mu N$
 scales like its extensive factor, so every potential is homogeneous of degree
@@ -716,13 +753,21 @@ of the intensive ones, which is the content of $G=\mu(T,P)N$ and
 $\Omega=-P(T,\mu)V$.
 
 \paragraph{Maxwell relations.} Each potential is $C^{2}$ away from phase
-transitions, so its mixed second derivatives are equal. From $dF$ and $dG$,
+transitions, so its mixed second derivatives are equal. For $F(T,V,N)$, with
+$S=-(\partial F/\partial T)_{V,N}$ and $P=-(\partial F/\partial V)_{T,N}$,
 \[
   \left(\frac{\partial S}{\partial V}\right)_{T,N}
-  =\left(\frac{\partial P}{\partial T}\right)_{V,N},
-  \qquad
+  =-\frac{\partial}{\partial V}\frac{\partial F}{\partial T}
+  =-\frac{\partial}{\partial T}\frac{\partial F}{\partial V}
+  =\left(\frac{\partial P}{\partial T}\right)_{V,N} ,
+\]
+and for $G(T,P,N)$, with $S=-(\partial G/\partial T)_{P,N}$ and
+$V=(\partial G/\partial P)_{T,N}$,
+\[
   \left(\frac{\partial S}{\partial P}\right)_{T,N}
-  =-\left(\frac{\partial V}{\partial T}\right)_{P,N},
+  =-\frac{\partial}{\partial P}\frac{\partial G}{\partial T}
+  =-\frac{\partial}{\partial T}\frac{\partial G}{\partial P}
+  =-\left(\frac{\partial V}{\partial T}\right)_{P,N} ,
 \]
 and similarly from $dU$, $dH$ and $d\Omega$. These convert an unmeasurable
 entropy derivative into a measurable equation-of-state derivative, and they
@@ -736,7 +781,7 @@ exchanging energy and particles with a reservoir. As \emph{descriptions of the
 substance} all potentials are equivalent: each is obtained from
 $U(S,V,N)$ by Legendre transformation and $U$ is recovered from each by
 differentiation. As \emph{labels of a state} they are not equivalent, and the
-difference appears at a first-order transition, where the intensive variables
+difference appears at a first-order transition, where the \emph{intensive} variables
 are constant across a whole family of states and the potentials with intensive
 arguments cannot tell those states apart (Section~\ref{sec:firsttransition}).
 
@@ -786,33 +831,43 @@ $S$ exist at the two end points.
 \paragraph{Macroscopic reversibility.} \emph{Reversible} in the statement is a
 property of a macroscopic process, defined operationally in
 Section~\ref{sec:clausius}: quasi-static and without dissipation, so that the
-reversed protocol restores the macroscopic states of system and surroundings.
+reversed protocol restores the \emph{macroscopic states} of system and surroundings.
 It is distinct from the reversibility of the microscopic equations of motion
 (Section~\ref{sec:found_unitary}), which holds for every process, reversible
-or not in the present sense. For a thermally isolated system, reversibility
-and $\Delta S=0$ coincide. A reversible process has $\Delta S=0$, because the
+or not in the present sense. For a thermally \emph{isolated} system, reversibility
+and $\Delta S=0$ coincide; a reversible process has $\Delta S=0$, because the
 reversed process is also allowed and requires $-\Delta S\geq0$. Conversely, an
 irreversible process contains the relaxation of some internal variable after
 the release of a constraint, which by the postulate strictly increases $S$.
-For a system that exchanges heat, $S$ changes also by transfer across the
-boundary, and reversibility is the vanishing of the entropy \emph{produced},
+For a (non-isolated) system that exchanges heat, $S$ changes also by transfer
+across the boundary, and reversibility is the vanishing of the entropy \emph{produced},
 not of $\Delta S$ (Eq.~\eqref{eq:clausius_diff}): a reversible isothermal
 expansion has $\Delta S=Q/T>0$, compensated by the change $-Q/T$ of the
-reservoir.
+reservoir.\footnote{Along a reversible path $\dbar Q=T\,dS$
+(Eq.~\eqref{eq:TdS}); at constant $T$ this integrates to $Q=T\,\Delta S$. The
+sign follows from the Maxwell relation
+$(\partial S/\partial V)_{T,N}=(\partial P/\partial T)_{V,N}$, which is
+positive whenever the pressure rises on heating at fixed volume; for the ideal
+gas $Q=Nk_BT\ln(V_{\rm f}/V_{\rm i})>0$. The reservoir, at the same temperature
+$T$, gives up the heat $Q$ reversibly and its entropy changes by $-Q/T$. The
+total entropy of system and reservoir is unchanged.}
 
-\paragraph{The entropy representation.} Since $S$ is strictly increasing in
-$U$, the relation $S=S(U,V,N)$ can be inverted to $U=U(S,V,N)$, the
-fundamental relation of Section~\ref{sec:totaldiff}. The derivatives of the
+\paragraph{The entropy representation.} Since $S$ is continuous and strictly
+increasing in $U$ at fixed $(V,N)$, the map $U\mapsto S$ is one-to-one and the
+relation $S=S(U,V,N)$ can be inverted to $U=U(S,V,N)$, the fundamental
+relation of Section~\ref{sec:totaldiff}. The inverse is strictly increasing as
+well: $U_1<U_2$ if and only if $S(U_1)<S(U_2)$, so $U$ is a strictly increasing
+function of $S$. The derivatives of the
 two forms are related by solving Eq.~\eqref{eq:dU} for $dS$,
 \begin{equation}\label{eq:dS}
   dS=\frac{1}{T}\,dU+\frac{P}{T}\,dV-\frac{\mu}{T}\,dN ,
   \qquad
   \left(\frac{\partial S}{\partial U}\right)_{V,N}=\frac{1}{T}>0 .
 \end{equation}
-Positivity of $T$ is the monotonicity of $S$ in $U$, and it is worth being
-precise about where it comes from. It is \emph{not} a consequence of the
-maximum principle: that principle, applied below to two bodies in thermal
-contact, yields $1/T_1=1/T_2$ and the direction of heat flow, and it would do
+Positivity of $T$ is the monotonicity of $S$ in $U$.
+It is \emph{not} a consequence of the maximum principle:
+that principle, applied below to two bodies in thermal contact,
+yields $1/T_1=1/T_2$ and the direction of heat flow, and it would do
 so for negative temperatures as well. Monotonicity is a separate clause of the
 postulate, and physically it is a property of the energy spectrum. For a
 spectrum unbounded above the number of states available grows with $U$ without
@@ -862,11 +917,16 @@ the hotter to the colder body. That is Clausius' statement.
 slow compared with all internal relaxation times, so that every intermediate
 state is an equilibrium state and the path is a curve on the set of
 equilibrium states. Only then is $dS$ meaningful along the path. A process is
-\emph{reversible} if it is quasi-static \emph{and} dissipationless: no
-friction, no finite temperature or pressure drop across a boundary, no
-hysteresis. For a reversible process the time-reversed process is also
-possible, so that running the protocol backwards restores both the system and
-its surroundings.
+\emph{reversible} if it is quasi-static and, in addition, the system is at
+every stage in equilibrium with its surroundings: heat passes only between
+bodies of equal temperature, and each work parameter moves against an external
+force equal to the equilibrium force of the system ($P_{\rm ext}=P$). This
+excludes heat flow across a finite temperature difference, motion driven by a
+finite pressure difference, friction and hysteresis. Each of these increases
+the total entropy of system and surroundings
+(Eq.~\eqref{eq:clausius_diff}); collectively they are called
+\emph{dissipation}. In their absence the total entropy is constant, and
+running the protocol backwards restores both the system and its surroundings.
 
 \paragraph{The reversible heat.} Along a \emph{reversible} path at fixed $N$ the work
 is $-P\,dV$, the pressure of the system being equal to the external pressure
@@ -875,11 +935,7 @@ Eq.~\eqref{eq:dU} at fixed $N$ gives
 \begin{equation}\label{eq:TdS}
   \;\dbar Q_{\rm rev}=T\,dS\
 \end{equation}
-The comparison requires only that at every stage the external pressure equal
-the system's own $P$, so that the work is expressed through state variables;
-in an irreversible compression the external pressure exceeds $P$ and the heat
-falls short of $T\,dS$ (the Clausius inequality below). Equation~\eqref{eq:TdS}
-converts the entropy into the measurable heat, and it makes $1/T$ an
+Equation~\eqref{eq:TdS} converts the entropy into the measurable heat, and it makes $1/T$ an
 integrating factor for $\dbar Q$ (Appendix~\ref{app:exact}). In particular the heat
 capacities of Section~\ref{sec:heatcap} become entropy derivatives,
 \begin{equation}\label{eq:CVCP}
@@ -1365,8 +1421,8 @@ $F(T,V,N)$ still labels two-phase states uniquely, because $V$ fixes the phase f
 lever rule; $G(T,P,N)$ assigns the whole tie line to the single point
 $(T_t,P_t)$ and cannot tell the states on it apart. The more intensive
 variables a potential has, the more convenient it is in the laboratory and the
-less robust it is at a transition. \emph{The fundamental relation in extensive
-variables is the most robust representation available.}
+less robust it is at a transition. \emph{The fundamental relation in purely
+extensive variables is the most robust representation available.}
 
 \begin{figure}[htbp]
 \centering
@@ -1686,11 +1742,11 @@ $[E,E+\delta E]$. The energy $E$ of the isolated system is its internal
 energy, $U=E$; in the other ensembles the energy fluctuates and
 $U=\langle E\rangle$. The \emph{fundamental postulate} is that in equilibrium
 the $W$ microstates are equally probable, $p_i=1/W$. The postulate is a
-statement about the state and not a consequence of the dynamics, quantum or
-classical: under the unitary evolution of an exactly isolated system the
+statement about the state and not a consequence of the (quantum or classical) dynamics:
+under the unitary evolution of an exactly isolated system the
 populations of the energy eigenstates are constants of the motion
 (Section~\ref{sec:found_unitary}), so unequal initial populations stay
-unequal. It has two justifications. The uniform distribution is the one of
+unequal. It has the following justifications. The uniform distribution is the one of
 largest Gibbs entropy when nothing but the window is known
 (Section~\ref{sec:lagrange}); and the uncontrolled residual couplings of any
 real body, which exceed the level spacing by a factor exponential in $N$, mix
@@ -1743,9 +1799,9 @@ composite is microcanonical: its state is the uniform distribution over the
 $W_{\rm tot}$ microstates compatible with $X_{\rm tot}$,
 $\hat\rho_{\rm tot}=\delta(\hat X+\hat X_{\rm res}-X_{\rm tot})/W_{\rm tot}$,
 where $\delta$ selects those microstates (a Kronecker delta for a discrete
-$X$, a window of width $\delta E$ for the energy). The probability of one
-microstate $i$ of the system, with value $X_i$, is the partial trace over the
-reservoir,
+$X$, a window of width $\delta E$ for the energy). The marginal probability of
+one microstate $i$ of the system, with value $X_i$, is the partial trace over
+the reservoir,
 \[
   p_i=\langle i|\Tr_{\rm res}\hat\rho_{\rm tot}|i\rangle
   =\frac{\Tr_{\rm res}\,\delta\big(\hat X_{\rm res}-(X_{\rm tot}-X_i)\big)}{W_{\rm tot}}
@@ -1854,10 +1910,10 @@ Isothermal--isobaric & $T,P,N$ & $E,V$ & $G=-k_BT\ln\Delta$ \\
 \bottomrule
 \end{tabular}
 \end{center}
-The microcanonical entry is not a Legendre transform of $U$: $S(E,V,N)$ is the
-fundamental relation itself in the entropy representation
+\emph{The microcanonical entry is not a Legendre transform of $U$}:
+$S(E,V,N)$ is the fundamental relation itself in the entropy representation
 (Section~\ref{sec:secondlaw}), and it is maximised where the potentials are
-minimised. In the other rows a Legendre transform on the thermodynamic side is
+minimised. In the other rows, a Legendre transform on the thermodynamic side is
 matched by a Laplace transform on the statistical side. Grouping the
 microstates in Eq.~\eqref{eq:Z} by their energy, with $W(E)$ the number of
 microstates of energy $E$ (the microcanonical multiplicity),
@@ -1928,14 +1984,18 @@ With $U=\langle E\rangle$ and $d\beta/dT=-k_B\beta^{2}$,
   =k_B\beta^{2}\left(\frac{\partial^{2}\ln Z}{\partial\beta^{2}}\right)_{V,N}
   =k_B\beta^{2}\,\Var(E)=\frac{\Var(E)}{k_BT^{2}} .
 \end{equation}
-The heat capacity is the energy variance: a system that absorbs much heat per
+In the form $C_V/k_B=\Var(E)/(k_BT)^{2}$, the heat capacity in units of $k_B$
+is the energy variance in units of the square of the thermal energy $k_BT$: a
+system that absorbs much heat per
 kelvin is one whose energy fluctuates much at fixed temperature. The same
 computation applies to every conjugate pair. In the grand ensemble
 $N=-(\partial\Omega/\partial\mu)_{T,V}=k_BT\,\partial\ln\Xi/\partial\mu=\langle N\rangle$
 by Eq.~\eqref{eq:Xi}, and one more derivative gives
-$(\partial N/\partial\mu)_{T,V}=\beta\,\Var(N)$. The isothermal--isobaric
-ensemble gives the same with $(V,-P)$ in place of $(N,\mu)$, and the magnet
-with weight $e^{-\beta(\hat H_0-\mathcal{H}\hat M)}$ and conserved $\hat M$
+$(\partial N/\partial\mu)_{T,V}=\beta\,\Var(N)$, i.e.\
+$\Var(N)=(\partial N/\partial(\mu/k_BT))_{T,V}$: the variance is the change of
+$N$ per shift of $\mu$ by the thermal energy $k_BT$.
+The isothermal--isobaric ensemble gives the same with $(V,-P)$ in place of $(N,\mu)$,
+and the magnet with weight $e^{-\beta(\hat H_0-\mathcal{H}\hat M)}$ and conserved $\hat M$
 with $(M,\mathcal{H})$:
 \begin{equation}\label{eq:fluctresp}
   \left(\frac{\partial N}{\partial\mu}\right)_{T,V}=\frac{\Var(N)}{k_BT},\qquad
@@ -1946,7 +2006,7 @@ with $\kappa_T:=-V^{-1}(\partial V/\partial P)_{T,N}$ the isothermal
 compressibility and $\chi_T:=(\partial M/\partial\mathcal{H})_{T}$ the
 isothermal susceptibility (Section~\ref{sec:stability}); at fixed $\mu$,
 $C_{V,\mu}=\Var(E-\mu N)/k_BT^{2}$. In every case, for a potential $\Phi$ with
-an intensive argument $f$ conjugate to the extensive quantity $X$,
+an \emph{intensive} argument $f$ conjugate to the extensive quantity $X$,
 \[
   -\frac{\partial^{2}\Phi}{\partial f^{2}}=\beta\,\Var(X)\;\geq\;0 :
 \]
@@ -2263,43 +2323,11 @@ $ (\partial N/\partial T)_\mu = \Cov(\hat N, \hat{\mathcal{H}})/k_BT^{2} $, need
 conversion to fixed $ N $ (Appendix~\ref{app:cmu}).
 
 If $ \hat A $ is \emph{not} conserved, the field changes the eigenvectors as well
-as the eigenvalues. To first order in $ f $ (perturbation theory in the
-eigenbasis, chosen within each degenerate level to diagonalise $ \hat A $ there),
-\[
-  \xi_a(f) = \xi_a - fA_{aa} , \qquad
-  |a(f)\rangle = |a\rangle - f\sum_{b\,:\,\xi_b\neq\xi_a}|b\rangle\,\frac{A_{ba}}{\xi_a - \xi_b} ,
-  \qquad A_{ab} := \langle a|\hat A|b\rangle .
-\]
-In $ \langle\hat B\rangle = \sum_ap_a(f)\,\langle a(f)|\hat B|a(f)\rangle $ the
-populations contribute
-$ \beta\sum_ap_aA_{aa}B_{aa} - \beta\langle\hat A\rangle\langle\hat B\rangle $ to the
-derivative at $ f = 0 $, and the eigenvectors
-$ -\sum_{a,b}p_a(A_{ab}B_{ba} + B_{ab}A_{ba})/(\xi_a - \xi_b) $. Exchanging $ a $ and
-$ b $ in the second term of the latter gives the \emph{Lehmann} (spectral)
-representation of the isothermal susceptibility,
-\begin{equation}\label{eq:filt_mb_kubo}
-  \chi_{AB} := \frac{\partial\langle\hat B\rangle}{\partial f}\bigg|_{f=0}
-  = \sum_{a,b}A_{ab}B_{ba}\,w_{ab} - \beta\langle\hat A\rangle\langle\hat B\rangle ,
-  \qquad
-  w_{ab} = \frac{p_b - p_a}{\xi_a - \xi_b} ,
-\end{equation}
-with $ w_{ab} := \beta p_a $ when $ \xi_a = \xi_b $ (the limit of the quotient). For conserved $ \hat A $ only $ a = b $ survives and
-Eq.~\eqref{eq:filt_mb_response} is recovered. The weight $ w_{ab} > 0 $ is the
-many-body filter for responses: it acts on \emph{pairs} of eigenstates connected by
-the perturbation. Writing $ y = \beta(\xi_a - \xi_b) $, $ w_{ab} = \beta p_b(1 - e^{-y})/y $
-while $ \tfrac12\beta(p_a + p_b) = \tfrac12\beta p_b(1 + e^{-y}) $, and
-$ (1 - e^{-y})/y \leq \tfrac12(1 + e^{-y}) $ is the inequality $ \tanh(y/2) \leq y/2 $.
-Hence, with $ \delta\hat A = \hat A - \langle\hat A\rangle $ and
-$ \sum_{ab}|A_{ab}|^{2}p_a = \langle\hat A^{2}\rangle $,
-\[
-  0 \;\leq\; \chi_{AA} = \sum_{a,b}\big|\langle a|\delta\hat A|b\rangle\big|^{2}\,w_{ab}
-  \;\leq\; \frac{\Var(\hat A)}{k_BT} ,
-\]
-with equality on the right if and only if $ \hat A $ connects only states of equal
-$ \xi_a $, i.e.\ is conserved. A conserved quantity responds exactly as much as it
-fluctuates; a non-conserved one responds less, because part of its fluctuation
-is carried by transitions between states of different energy, which a static field
-cannot exploit fully.
+as the eigenvalues, and the covariance is replaced by the Lehmann
+representation, Eq.~\eqref{eq:filt_mb_kubo} of Appendix~\ref{app:lehmann}. The
+diagonal response then satisfies $ 0 \leq \chi_{AA} \leq \Var(\hat A)/k_BT $, with
+equality if and only if $ \hat A $ is conserved: a non-conserved quantity
+responds less than it fluctuates.
 
 \paragraph{Exact limits.} Three statements follow from Eq.~\eqref{eq:filt_mb} with no
 assumption on $ \hat H $.
@@ -2312,7 +2340,7 @@ assumption on $ \hat H $.
   \[
     C_\mu \;\simeq\; k_B\left(\frac{\Delta}{k_BT}\right)^{2}\frac{d_1}{d_0}\,e^{-\Delta/k_BT} .
   \]
-  The heat capacity of a gapped system has an ``activated'' form, with the many-body gap of
+  The heat capacity of a gapped system has an ``activated exponential'' form, with the many-body gap of
   $ \hat{\mathcal{H}} $; at fixed $ \mu $ this includes the costs $ E_{N\pm1} - E_N \mp \mu $ of
   adding or removing a particle. (In a macroscopic system $ d_1 $ grows with $ V $ and
   the expansion holds while $ q \ll 1 $, i.e.\ while excitations are dilute.)
@@ -3943,6 +3971,52 @@ $ \hat{\mathcal{H}} = \hat H - \mu\hat N $ and $ \Xi = \Tr e^{-\beta\hat{\mathca
 \]
 and $ \Omega \leq \Omega_0 + \langle\hat{\mathcal{H}} - \hat{\mathcal{H}}_0\rangle_0 $; the same holds with a field
 term $ -\mathcal{H}\hat M $ or a pressure term $ +P\hat V $ in $ \hat{\mathcal{H}} $.
+
+
+\section{Static response of a non-conserved quantity}
+\label{app:lehmann}
+
+This appendix derives the static response to a field $ f $ coupled to an operator
+$ \hat A $ that is \emph{not} conserved, in the notation of
+Section~\ref{sec:filt_mb}: $ \hat{\mathcal{H}}|a\rangle = \xi_a|a\rangle $,
+$ p_a = e^{-\beta\xi_a}/\Xi $, and $ \hat{\mathcal{H}} \to \hat{\mathcal{H}} - f\hat A $. The
+field now changes the eigenvectors as well as the eigenvalues. To first order in $ f $ (perturbation theory in the
+eigenbasis, chosen within each degenerate level to diagonalise $ \hat A $ there),
+\[
+  \xi_a(f) = \xi_a - fA_{aa} , \qquad
+  |a(f)\rangle = |a\rangle - f\sum_{b\,:\,\xi_b\neq\xi_a}|b\rangle\,\frac{A_{ba}}{\xi_a - \xi_b} ,
+  \qquad A_{ab} := \langle a|\hat A|b\rangle .
+\]
+In $ \langle\hat B\rangle = \sum_ap_a(f)\,\langle a(f)|\hat B|a(f)\rangle $ the
+populations contribute
+$ \beta\sum_ap_aA_{aa}B_{aa} - \beta\langle\hat A\rangle\langle\hat B\rangle $ to the
+derivative at $ f = 0 $, and the eigenvectors
+$ -\sum_{a,b}p_a(A_{ab}B_{ba} + B_{ab}A_{ba})/(\xi_a - \xi_b) $. Exchanging $ a $ and
+$ b $ in the second term of the latter gives the \emph{Lehmann} (spectral)
+representation of the isothermal susceptibility,
+\begin{equation}\label{eq:filt_mb_kubo}
+  \chi_{AB} := \frac{\partial\langle\hat B\rangle}{\partial f}\bigg|_{f=0}
+  = \sum_{a,b}A_{ab}B_{ba}\,w_{ab} - \beta\langle\hat A\rangle\langle\hat B\rangle ,
+  \qquad
+  w_{ab} = \frac{p_b - p_a}{\xi_a - \xi_b} ,
+\end{equation}
+with $ w_{ab} := \beta p_a $ when $ \xi_a = \xi_b $ (the limit of the quotient). For conserved $ \hat A $ only $ a = b $ survives and
+Eq.~\eqref{eq:filt_mb_response} is recovered. The weight $ w_{ab} > 0 $ is the
+many-body filter for responses: it acts on \emph{pairs} of eigenstates connected by
+the perturbation. Writing $ y = \beta(\xi_a - \xi_b) $, $ w_{ab} = \beta p_b(1 - e^{-y})/y $
+while $ \tfrac12\beta(p_a + p_b) = \tfrac12\beta p_b(1 + e^{-y}) $, and
+$ (1 - e^{-y})/y \leq \tfrac12(1 + e^{-y}) $ is the inequality $ \tanh(y/2) \leq y/2 $.
+Hence, with $ \delta\hat A = \hat A - \langle\hat A\rangle $ and
+$ \sum_{ab}|A_{ab}|^{2}p_a = \langle\hat A^{2}\rangle $,
+\[
+  0 \;\leq\; \chi_{AA} = \sum_{a,b}\big|\langle a|\delta\hat A|b\rangle\big|^{2}\,w_{ab}
+  \;\leq\; \frac{\Var(\hat A)}{k_BT} ,
+\]
+with equality on the right if and only if $ \hat A $ connects only states of equal
+$ \xi_a $, i.e.\ is conserved. A conserved quantity responds exactly as much as it
+fluctuates; a non-conserved one responds less, because part of its fluctuation
+is carried by transitions between states of different energy, which a static field
+cannot exploit fully.
 
 
 \section{Three points of ensemble bookkeeping}
@@ -9109,9 +9183,9 @@ with $\beta_{\rm exp}=\tfrac12$,
 \Delta_{\rm loc}(T)\;\propto\;|\Phi(T)|\;\sim\;|t|^{1/2}.
 \end{equation}
 The exponent is universal within mean-field theory; the amplitude is not. In
-units of $k_BT_c$ it is $2\sqrt3\,|t|^{1/2}=3.46\,|t|^{1/2}$ for the Ising spin
-flip (Appendix~\ref{sec:appising:spectrum}) and
-$2\sqrt{8\pi^{2}/7\zeta(3)}\,|t|^{1/2}=6.13\,|t|^{1/2}$ for BCS pair breaking.
+units of $k_BT_c$, the Ising spin flip (Appendix~\ref{sec:appising:spectrum})
+has $2\sqrt3\,|t|^{1/2}=3.46\,|t|^{1/2}$ and BCS pair breaking has
+$2\sqrt{8\pi^{2}/7\zeta(3)}\,|t|^{1/2}=6.13\,|t|^{1/2}$.
 This is the gap that ``closes at $T_c$'', in both models, and the statement is
 correct in both.
 
