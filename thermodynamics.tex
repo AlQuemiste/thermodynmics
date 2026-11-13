@@ -23,6 +23,8 @@
 \newcommand{\Var}{\operatorname{Var}}
 \newcommand{\Cov}{\operatorname{Cov}}
 \newcommand{\Tr}{\operatorname{Tr}}
+
+\newcommand{\hmag}{\mathcal{H}_M}
 %% capital kappa (one-mode grand partition function); LaTeX has no \Kappa
 \providecommand{\Kappa}{\mathrm{K}}
 
@@ -108,7 +110,7 @@ additional chemical species adds one particle number.
 A variable is \emph{extensive} if it doubles when two identical copies of the
 body are put together ($U$, $V$, $N$, the entropy $S$, the magnetisation $M$)
 and \emph{intensive} if it stays the same ($T$, $P$, the chemical potential
-$\mu$, the applied magnetic field $\mathcal{H}_M$). Extensive variables can be prescribed by
+$\mu$, the applied magnetic field $\hmag{}$). Extensive variables can be prescribed by
 independent physical operations, by walling off a volume, admitting particles
 or supplying energy, and are therefore the natural independent variables of the
 theory. Intensive variables will appear as derivatives, i.e.\ as the rates at which
@@ -122,7 +124,7 @@ measurement (an order parameter near a transition, the extent of a slow
 chemical reaction) must be added to the list; one that relaxes much more
 slowly is frozen and acts as a constraint. Where neither holds the postulate
 fails: a ferromagnet driven around a hysteresis loop returns to the same
-$(T,\mathcal{H}_M)$ with a different magnetisation.
+$(T,\hmag{})$ with a different magnetisation.
 
 \subsection{Thermodynamic work}
 \label{sec:work}
@@ -131,7 +133,7 @@ $(T,\mathcal{H}_M)$ with a different magnetisation.
 system} by changing a macroscopic parameter that the experimenter controls: the
 position of a piston, the strength of an applied field, the strain imposed by a
 clamp. It is expressed through macroscopic variables alone ($P$, $V$,
-$\mathcal{H}_M$, $M$, \dots), without reference to the microscopic state; the
+$\hmag{}$, $M$, \dots), without reference to the microscopic state; the
 microscopic definition, through the Hamiltonian, is given in
 Section~\ref{sec:found_heat} and agrees with it in equilibrium. For a fluid
 compressed quasi-statically by a piston the work done on the system is
@@ -141,11 +143,11 @@ compressed quasi-statically by a piston the work done on the system is
 positive when the volume decreases. Each further control parameter adds a term
 of the form (intensive variable)$\times d$(extensive variable):
 \[
-  \dbar W = -P\,dV + \mathcal{H}_M\,dM + \sum_{ij}V\sigma_{ij}\,d\epsilon_{ij}
+  \dbar W = -P\,dV + \hmag{}\,dM + \sum_{ij}V\sigma_{ij}\,d\epsilon_{ij}
   + \mathbf{E}\cdot d\mathbf{P} + \mu\,dN + \dots ,
 \]
-with $\mathcal{H}_M\,dM$ for magnetic work against the applied field
-$\mathcal{H}_M$ (sign conventions in Appendix~\ref{app:bookkeeping}), $V\sigma_{ij}\,d\epsilon_{ij}$ for
+with $\hmag{}\,dM$ for magnetic work against the applied field
+$\hmag{}$ (sign conventions in Appendix~\ref{app:bookkeeping}), $V\sigma_{ij}\,d\epsilon_{ij}$ for
 elastic work against the stress $\sigma_{ij}$, $\mathbf{E}\cdot d\mathbf{P}$
 for dielectric work, and $\mu\,dN$ the energy brought in with $dN$ particles
 admitted from a reservoir at chemical potential $\mu$. The terms add because
@@ -697,7 +699,7 @@ exchange; comparison with the first law identifies $T\,dS$ with the reversible
 heat and $-P\,dV+\mu\,dN$ with the reversible work (Section~\ref{sec:clausius}
 makes this identification precise). Each additional work mode of
 Section~\ref{sec:work} adds one natural variable and one term, $U=U(S,V,N,M,\dots)$
-with $+\mathcal{H}_M\,dM$, and so on. That $T$ defined in this way is the
+with $+\hmag{}\,dM$, and so on. That $T$ defined in this way is the
 temperature measured by a thermometer, and $P$ the pressure measured by a
 gauge, follows from the equilibrium conditions of Section~\ref{sec:secondlaw}.
 
@@ -1518,18 +1520,18 @@ escapes it (Appendix~\ref{app:maxwell}).
 
 \paragraph{Magnetic susceptibility.} Fix $T$, $V$, $N$ and the total moment
 $2M_0$, and let the halves exchange moment: $X=M$, the potential is
-$F(T,V,N,M)$ with $(\partial F/\partial M)_{T,V,N}=\mathcal{H}_M$, and
+$F(T,V,N,M)$ with $(\partial F/\partial M)_{T,V,N}=\hmag{}$, and
 \[
   \left(\frac{\partial^{2}F}{\partial M^{2}}\right)_{T,V,N}
-  =\left(\frac{\partial\mathcal{H}_M}{\partial M}\right)_{T,V,N}=\frac{1}{\chi_T}\geq0
+  =\left(\frac{\partial\hmag{}}{\partial M}\right)_{T,V,N}=\frac{1}{\chi_T}\geq0
   \qquad\Longrightarrow\qquad
-  \;\chi_T:=\left(\frac{\partial M}{\partial\mathcal{H}_M}\right)_{T,V,N}\geq0\
+  \;\chi_T:=\left(\frac{\partial M}{\partial\hmag{}}\right)_{T,V,N}\geq0\
 \]
 Diamagnets are not counterexamples: the inequality concerns the response of
-the variable that couples linearly to the field, $\hat H=\hat H_0-\mathcal{H}_M\hat M$,
+the variable that couples linearly to the field, $\hat H=\hat H_0-\hmag{}\hat M$,
 whereas orbital magnetism enters through $(\hat{\mathbf p}-q\mathbf{A})^{2}$,
 quadratically in the field, and contributes a negative term
-$-\langle\partial^{2}\hat H/\partial\mathcal{H}_M^{2}\rangle$ to the measured
+$-\langle\partial^{2}\hat H/\partial\hmag{}^{2}\rangle$ to the measured
 susceptibility. What stability of matter plus field bounds is the permeability
 $1+\chi_{\rm vol}\geq0$, which a superconductor saturates rather than
 violates.
@@ -1942,7 +1944,7 @@ the singular part of $f$ takes the \emph{generalised homogeneous} form
 \begin{equation}\label{eq:scaling}
   f_{\rm sing}(t,h)=|t|^{2-\alpha}\,\Phi_\pm\left(\frac{h}{|t|^{\Delta}}\right)
 \end{equation}
-in which $t$ and $h$ are dimensionless ($h=\mu_0\mathcal{H}_M/k_BT_c$ for a
+in which $t$ and $h$ are dimensionless ($h=\mu_0\hmag{}/k_BT_c$ for a
 lattice magnet with moment $\mu_0$ per site), $\Delta$ is the \emph{gap
 exponent}, and $\Phi_+$, $\Phi_-$ are two \emph{scaling functions}, for $t>0$
 and $t<0$. Each is analytic in its argument $y=h/|t|^{\Delta}$ at every finite
@@ -2149,12 +2151,12 @@ variable of the reservoir and the sign that of the term $f\,dX$ in $dU$. The
 second-order term of the expansion is smaller by the ratio of the system's
 heat capacity to the reservoir's and vanishes for an ideal reservoir. A magnet
 in an applied field follows the same rule with $X=M$, the total magnetic
-moment: the weight $e^{-\beta(\hat H_0-\mathcal{H}_M\hat M)}$ is the canonical
-weight of the Hamiltonian $\hat H_0-\mathcal{H}_M\hat M$, in which $M$
-fluctuates and only $\langle\hat M\rangle$ is fixed, by $\mathcal{H}_M$. No
+moment: the weight $e^{-\beta(\hat H_0-\hmag{}\hat M)}$ is the canonical
+weight of the Hamiltonian $\hat H_0-\hmag{}\hat M$, in which $M$
+fluctuates and only $\langle\hat M\rangle$ is fixed, by $\hmag{}$. No
 moment is exchanged with a reservoir here ($M$ is in general not conserved);
 the source of the field takes the reservoir's part by doing the work
-$\mathcal{H}_M\,dM$.
+$\hmag{}\,dM$.
 
 The same weights follow without a reservoir from the maximum-entropy
 construction of Section~\ref{sec:lagrange}: maximising the Gibbs entropy
@@ -2311,15 +2313,15 @@ $(\partial N/\partial\mu)_{T,V}=\beta\,\Var(N)$, i.e.\
 $\Var(N)=(\partial N/\partial(\mu/k_BT))_{T,V}$: the variance is the change of
 $N$ per shift of $\mu$ by the thermal energy $k_BT$.
 The isothermal--isobaric ensemble gives the same with $(V,-P)$ in place of $(N,\mu)$,
-and the magnet with weight $e^{-\beta(\hat H_0-\mathcal{H}_M\hat M)}$ and conserved $\hat M$
-with $(M,\mathcal{H}_M)$:
+and the magnet with weight $e^{-\beta(\hat H_0-\hmag{}\hat M)}$ and conserved $\hat M$
+with $(M,\hmag{})$:
 \begin{equation}\label{eq:fluctresp}
   \left(\frac{\partial N}{\partial\mu}\right)_{T,V}=\frac{\Var(N)}{k_BT},\qquad
   V\kappa_T=\frac{\Var(V)}{k_BT},\qquad
   \chi_T=\frac{\Var(M)}{k_BT},
 \end{equation}
 with $\kappa_T:=-V^{-1}(\partial V/\partial P)_{T,N}$ the isothermal
-compressibility and $\chi_T:=(\partial M/\partial\mathcal{H}_M)_{T}$ the
+compressibility and $\chi_T:=(\partial M/\partial\hmag{})_{T}$ the
 isothermal susceptibility (Section~\ref{sec:stability}); at fixed $\mu$,
 $C_{V,\mu}=\Var(E-\mu N)/k_BT^{2}$. In every case, for a potential $\Phi$ with
 an \emph{intensive} argument $f$ conjugate to the extensive quantity $X$,
@@ -2904,7 +2906,21 @@ distribution. Equilibrium statistical mechanics goes one step further and keeps
 nothing of the collisions at all: their only trace is that the gas has a
 temperature and an entropy. A Brownian particle is the other paradigm: it is
 kicked by the molecules of the fluid, and nothing about the individual kicks is
-known. Statistical mechanics does not
+known.
+
+Formally, $ \hat H' $ is an operator of the same kind as $ \hat H $ and can be expanded
+in the same operator basis. The difference is that its coefficients are not known
+beforehand, and what is known about them is a probability distribution, a prior in
+the Bayesian sense (Section~\ref{sec:found_second}). The randomness that this
+introduces is not quantum mechanical. It is stochastic, an expression of the lack of
+knowledge of the full Hamiltonian, and it adds to the von~Neumann equation of the
+known part a dissipative term that the equation by itself cannot produce. The
+long-time evolution under the full Hamiltonian, once the relaxation processes
+driven by this term have run their course, ends in a steady state of higher
+entropy, described by an ensemble; a two-level system
+(Section~\ref{sec:found_tls}) shows every step, and particles in an unknown
+potential (Section~\ref{sec:found_anderson}) show what is required of $ \hat H' $
+beyond its being unknown. Statistical mechanics does not
 attempt to describe $ \hat H' $. It replaces it by \emph{devices} with very few
 parameters. The entropy, with its conjugate $ T $, is the device for the unknown
 exchange of energy; the term $ -\mu\hat N $ added to the Hamiltonian is the device for
@@ -3117,51 +3133,261 @@ the retained variables, the eliminated ones act as a random force all the same.
 Isolation from the outside therefore does not exempt a macroscopic body from the
 second law: its own unresolved degrees of freedom suffice.
 
-\paragraph{Averaging over the unknown Hamiltonian.} The same mechanism, stated for a
-quantum system without any model of the noise, is an average over what is not known.
-Let the realisations of $ \hat H' $ that cannot be excluded be labelled by $ k $, with
-weights $ q_k > 0 $, $ \sum_kq_k = 1 $, and let each generate, together with $ \hat H $,
-the unitary $ \hat U_k $ over some interval of time. Each $ \hat U_k $ alone is reversible
-and conserves the entropy, but not knowing which one acted, the description after the
-interval is the mixture
-\[
-  \rho' = \sum_k q_k\,\rho_k , \qquad \rho_k := \hat U_k\rho\,\hat U_k^\dagger .
-\]
-Its entropy cannot be lower than that of $ \rho $. Applying Klein's inequality
-(Appendix~\ref{app:gibbsvar}) to each $ \rho_k $ against $ \rho' $ (the support of
-$ \rho_k $ lies in that of $ \rho' $, since $ \rho' \geq q_k\rho_k $) and using
-$ \sum_kq_k\rho_k = \rho' $,
-\[
-  0 \;\leq\; \sum_kq_k\,D(\rho_k\,\|\,\rho')
-  = \sum_kq_k\Tr(\rho_k\ln\rho_k) - \Tr(\rho'\ln\rho')
-  = \frac{1}{k_B}\Big(S[\rho'] - \sum_kq_k\,S[\rho_k]\Big) ,
-\]
-and $ S[\rho_k] = S[\rho] $ for every $ k $, so that
-\[
-  S[\rho'] \;\geq\; S[\rho] ,
-\]
-with equality only if every $ \rho_k $ equals $ \rho' $, i.e.\ only if all the
-realisations of $ \hat H' $ that cannot be excluded leave the state the same. The
-microscopic processes are reversible one by one; the entropy of the description grows
-because it is not known which of them took place.
+\paragraph{Unknown coefficients in a known basis.} The same mechanism can be stated
+for a quantum system without any model of the noise, and precisely. Choose a basis of
+Hermitian operators $ \hat\Lambda_\alpha $ on the Hilbert space of the body, orthonormal
+under the trace, $ \Tr(\hat\Lambda_\alpha\hat\Lambda_\beta) = \delta_{\alpha\beta} $: for a spin
+$ 1/2 $ the unit matrix and the three Pauli matrices, each divided by $ \sqrt2 $; for $ N $
+spins their products; for particles, the normalised products of creation and
+annihilation operators. Every Hermitian operator has a unique expansion in this basis
+with real coefficients, and so have both parts of the Hamiltonian,
+\begin{equation}\label{eq:Hprime_expansion}
+  \hat H = \sum_\alpha h_\alpha\,\hat\Lambda_\alpha , \qquad
+  \hat H' = \sum_\alpha\eta_\alpha\,\hat\Lambda_\alpha , \qquad
+  h_\alpha = \Tr(\hat\Lambda_\alpha\hat H) , \quad \eta_\alpha = \Tr(\hat\Lambda_\alpha\hat H') .
+\end{equation}
+The two parts are operators of the same kind. The only difference is that the
+$ h_\alpha $ are known numbers and the $ \eta_\alpha $ are not. Nothing in $ \hat H' $ is
+random: in a given body the $ \eta_\alpha $ have definite values. What is missing is the
+knowledge of these values, and a state of incomplete knowledge is described by a
+probability density $ \pi(\eta) $ on the space of the coefficients
+$ \eta = (\eta_1, \eta_2, \dots) $, a \emph{prior} in the Bayesian sense. The prior is not a
+property of the body. It summarises what is known about $ \hat H' $ before the
+experiment, and it changes when more is learned.
 
-For a body that exchanges nothing with its surroundings, each $ \hat U_k $ conserves the
-energy to within a macroscopically small width and maps an energy shell into itself.
-If the unknown couplings are generic enough to connect every pair of states in the
-shell, the only state on which all of them act identically is the uniform one,
-proportional to the projector onto the shell, which commutes with every unitary
-acting within it. Repeated averaging therefore drives the description to the
-microcanonical state, and stops there, with $ S = k_B\ln W $ for $ W $ states in the
-shell. The energy survives because $ \hat H' $ conserves it; everything else about the
-microstate is erased.
+For each value of $ \eta $ the evolution is unitary, generated by
+$ \hat H + \hat H'_\eta $ with $ \hat H'_\eta = \sum_\alpha\eta_\alpha\hat\Lambda_\alpha $:
+$ \rho_\eta(t) = \hat U_\eta(t)\,\rho(0)\,\hat U_\eta^\dagger(t) $. The prediction for an
+observable $ \hat O $ weights the prediction of each realisation with the prior,
+\begin{equation}\label{eq:prior_average}
+  \int\!d\eta\;\pi(\eta)\,\Tr\big[\rho_\eta(t)\,\hat O\big] = \Tr\big[\varrho(t)\,\hat O\big] ,
+  \qquad
+  \varrho(t) := \int\!d\eta\;\pi(\eta)\;\hat U_\eta(t)\,\rho(0)\,\hat U_\eta^\dagger(t) .
+\end{equation}
+Because expectation values are linear in the density matrix, $ \varrho(t) $ contains
+every prediction that can be made. It is the \emph{description} of the body, as
+distinct from the state $ \rho_\eta(t) $ that the body would be assigned if $ \hat H' $ were
+known; in the paragraphs that follow, whenever $ \hat H' $ is involved, the density
+matrix meant is $ \varrho $. Two probabilities of different origin are merged in it.
+The first is quantum mechanical, the Born rule contained in each $ \rho_\eta $, and it
+would be present with $ \hat H' $ known exactly. The second is stochastic, the prior
+$ \pi(\eta) $, an ordinary probability density and not an amplitude, and it expresses
+nothing but the lack of knowledge of the full Hamiltonian. The operator $ \hat H' $
+itself is as quantum mechanical as $ \hat H $: its matrix elements
+$ H'_{ab} = \sum_\alpha\eta_\alpha\langle a|\hat\Lambda_\alpha|b\rangle $ are complex, and their phases
+produce interference in every realisation. Only their values are uncertain. No measurement on the body alone separates the two.
 
-\paragraph{The master equation.} The mechanism can be made explicit when $ \hat H' $ is
-weak. Let $ |a\rangle $, $ E_a $ be the eigenstates of the model Hamiltonian $ \hat H $
-and $ p_a = \langle a|\rho|a\rangle $ their occupations. Over a time $ \Delta t $, second-order
-perturbation theory in $ \hat H' $, averaged over the unknown phases of the matrix
-elements $ H'_{ab} = \langle a|\hat H'|b\rangle $ (which removes the interference terms
-between different transitions and keeps $ \rho $ diagonal in $ |a\rangle $), gives Fermi's
-golden rule,
+Each $ \hat U_\eta $ is reversible and conserves the entropy, but the entropy of the
+description cannot be lower than that of the initial state. Applying Klein's
+inequality (Appendix~\ref{app:gibbsvar}) to each $ \rho_\eta $ against $ \varrho $ (the
+support of $ \rho_\eta $ lies in that of $ \varrho $ for every $ \eta $ of non-zero weight)
+and using $ \int d\eta\,\pi\,\rho_\eta = \varrho $,
+\[
+  \begin{aligned}
+  0 \;\leq\; \int\!d\eta\;\pi(\eta)\,D(\rho_\eta\,\|\,\varrho)
+  &= \int\!d\eta\;\pi(\eta)\Tr(\rho_\eta\ln\rho_\eta) - \Tr(\varrho\ln\varrho) \\
+  &= \frac{1}{k_B}\Big(S[\varrho] - \int\!d\eta\;\pi(\eta)\,S[\rho_\eta]\Big) ,
+  \end{aligned}
+\]
+and $ S[\rho_\eta(t)] = S[\rho(0)] $ for every $ \eta $, so that
+\begin{equation}\label{eq:prior_entropy}
+  S[\varrho(t)] \;\geq\; S[\rho(0)] \qquad\text{at every time } t ,
+\end{equation}
+with equality only if all the $ \rho_\eta(t) $ coincide, i.e.\ only if all the values of
+the coefficients that cannot be excluded lead to the same state. The functional
+$ S $ is the one that the von~Neumann equation conserves; what is new is its argument.
+The equation of motion moves each $ \rho_\eta $ and leaves its entropy alone, and the
+entropy of $ \varrho $ grows by the uncertainty about $ \eta $ that the evolution has
+imprinted on the state. For a prior concentrated on discrete values $ \eta_k $ with
+weights $ q_k $ the growth is bounded by that uncertainty,
+\[
+  S[\varrho(t)] - S[\rho(0)] \;\leq\; -k_B\sum_kq_k\ln q_k ,
+\]
+the Shannon entropy of the prior: the missing information about the Hamiltonian is
+converted, at most in full, into missing information about the state. This is the
+point at which an entropy of the Gibbs--Shannon kind enters beside the dynamics. It
+is not produced by the von~Neumann equation, and it is not quantum mechanical in
+origin.
+
+\paragraph{The prior.} Whatever is known about $ \hat H' $ restricts $ \pi $. A non-zero
+mean $ \overline{\eta_\alpha} $ (the overline denotes the average over the prior) is a
+piece of knowledge and belongs to $ h_\alpha $, so the prior is centred at
+$ \eta = 0 $. If $ \hat H' $ is known to conserve a quantity $ \hat X $ (the particle number
+of a body with impermeable walls, the energy of an insulated one to within a
+macroscopically narrow shell), only the basis operators that commute with $ \hat X $
+are \emph{admitted}: the coefficients of all the others vanish with certainty. And
+the strength of $ \hat H' $ is known in order of magnitude. Beyond this nothing is
+known, and the prior is \emph{flat}: no direction in the space of the admitted
+coefficients is preferred to any other, so that $ \pi $ depends on $ \eta $ only through
+$ \sum_\alpha\eta_\alpha^{2} = \Tr\hat H'^{2} $ and is invariant under every admitted change of
+basis $ \hat H' \to \hat V\hat H'\hat V^\dagger $. A density that is constant over the whole
+space of coefficients cannot be normalised, and would describe a perturbation of
+unbounded strength; the flat prior of a given strength, the density of largest
+Shannon entropy at fixed $ \overline{\Tr\hat H'^{2}} $, is the Gaussian
+\begin{equation}\label{eq:flat_prior}
+  \pi(\eta) \;\propto\; \exp\Big(-\sum_\alpha\frac{\eta_\alpha^{2}}{2v^{2}}\Big)
+  = \exp\Big(-\frac{\Tr\hat H'^{2}}{2v^{2}}\Big) ,
+\end{equation}
+with independent coefficients of equal variance $ v^{2} $. This is Wigner's Gaussian
+ensemble of random matrices, introduced in the 1950s for the same purpose: the
+Hamiltonian of a heavy nucleus, too complex to be known. On a space of $ W $ states
+it gives $ \overline{|H'_{ab}|^{2}} = v^{2} $ for every matrix element and hence
+$ \overline{\langle a|\hat H'^{2}|a\rangle} = Wv^{2} $, so that the coupling of energy scale
+$ \epsilon $ estimated above has $ v = \epsilon/\sqrt W = \epsilon\,e^{-S/2k_B} $.
+
+\paragraph{Static coefficients: a steady state.} In an isolated body whose total
+Hamiltonian does not depend on time the $ \eta_\alpha $ are constants. Let $ E_n(\eta) $ and
+$ \hat\Pi_n^{\eta} $ be the eigenvalues and eigenprojectors of $ \hat H + \hat H'_\eta $. Then
+\[
+  \varrho(t) = \int\!d\eta\;\pi(\eta)\sum_{m,n}
+  e^{-i[E_m(\eta) - E_n(\eta)]t/\hbar}\;\hat\Pi_m^{\eta}\,\rho(0)\,\hat\Pi_n^{\eta} .
+\]
+In the terms with $ m \neq n $ the phase varies with $ \eta $, and for a continuous prior
+their integral vanishes at long times (the Riemann--Lebesgue lemma), namely for
+$ t \gg \hbar/\delta E $ with $ \delta E $ the spread of the level differences under the
+prior. What remains is
+\begin{equation}\label{eq:prior_steady}
+  \varrho_\infty = \int\!d\eta\;\pi(\eta)\sum_n\hat\Pi_n^{\eta}\,\rho(0)\,\hat\Pi_n^{\eta} .
+\end{equation}
+After the transients the description is stationary, with an entropy higher than the
+initial one by Eq.~\eqref{eq:prior_entropy}, and this without an external agent and
+without any average over time; even the recurrences that a finite system shows for
+each single $ \eta $ are absent from $ \varrho(t) $. Two reservations keep this from being
+the second law. The steady state~\eqref{eq:prior_steady} in general remembers more
+of $ \rho(0) $ than the conserved quantities (the two-level system of
+Section~\ref{sec:found_tls} retains one third of its initial polarisation, and
+particles in a static unknown potential may never leave the neighbourhood of
+their initial positions, Section~\ref{sec:found_anderson}). And the
+entropy gained can be taken back. Nothing has happened to the body that a
+realisation $ \hat U_\eta^\dagger $ would not undo; the information resides in the
+correlation between the state and the values of the coefficients, and static
+coefficients can be found out. A measurement on the body updates the prior by
+Bayes' rule, and a coefficient determined in this way, which is what spectroscopy
+does, moves from $ \hat H' $ to $ \hat H $. A static $ \hat H' $ can even be reversed without
+being learned, as in the spin echo discussed below.
+
+\paragraph{Fluctuating coefficients: the dissipator.} In general the unknown part
+is a \emph{stochastic operator}: a quantum operator like any other, expanded in the
+basis~\eqref{eq:Hprime_expansion}, whose coefficients are stochastic processes
+$ \eta_\alpha(t) $. Static coefficients are the special case of an infinite correlation
+time. The prior is then a distribution over the histories of the coefficients, and
+what is known of it is a strength $ v_\alpha $ and a correlation time $ \tau_c $. When $ \tau_c $ is the shortest time in the problem,
+$ v_\alpha\tau_c/\hbar \ll 1 $, the histories are Gaussian white noise,
+\[
+  \overline{\eta_\alpha(t)} = 0 , \qquad
+  \overline{\eta_\alpha(t)\,\eta_\beta(t')} = \hbar^{2}\kappa_\alpha\,\delta_{\alpha\beta}\,\delta(t - t') ,
+  \qquad \hbar^{2}\kappa_\alpha = \int\!dt\;\overline{\eta_\alpha(t)\,\eta_\alpha(0)} \simeq 2v_\alpha^{2}\tau_c ,
+\]
+with one rate $ \kappa_\alpha \geq 0 $ for each basis operator, zero for those not admitted
+(a covariance that is not diagonal is made so by a rotation of the basis). Over an
+interval $ dt $ a given history acts by the unitary
+$ \hat U = e^{-i\hat A/\hbar} $ with
+$ \hat A = \hat H\,dt + \sum_\alpha\hat\Lambda_\alpha\,dw_\alpha $ and
+$ dw_\alpha = \int_t^{t + dt}\eta_\alpha(t')\,dt' $, so that
+\[
+  \hat U\rho_\eta\hat U^\dagger = \rho_\eta - \frac{i}{\hbar}[\hat A, \rho_\eta]
+  - \frac{1}{2\hbar^{2}}\big[\hat A, [\hat A, \rho_\eta]\big] + \dots
+\]
+The increments have $ \overline{dw_\alpha} = 0 $ and
+$ \overline{dw_\alpha\,dw_\beta} = \hbar^{2}\kappa_\alpha\delta_{\alpha\beta}\,dt $, and they are
+independent of $ \rho_\eta(t) $, which depends on the earlier history only. The average
+therefore factorises, the second-order term contributes at order $ dt $, and
+\begin{equation}\label{eq:dissipator}
+  \frac{d\varrho}{dt} = -\frac{i}{\hbar}[\hat H, \varrho]
+  - \frac{1}{2}\sum_\alpha\kappa_\alpha\big[\hat\Lambda_\alpha, [\hat\Lambda_\alpha, \varrho]\big] ,
+  \qquad
+  -\frac{1}{2}\big[\hat\Lambda, [\hat\Lambda, \varrho]\big]
+  = \hat\Lambda\varrho\hat\Lambda - \frac{1}{2}\big\{\hat\Lambda^{2}, \varrho\big\} .
+\end{equation}
+The first term is the von~Neumann equation of the known Hamiltonian. The second is
+new: a \emph{dissipator}, of the form that Gorini, Kossakowski, Sudarshan and Lindblad
+(1976) found for the most general Markovian evolution of a density matrix, here with
+the Hermitian operators $ \sqrt{\kappa_\alpha}\,\hat\Lambda_\alpha $ as jump operators. In the
+phenomenological use of the Lindblad equation the jump operators and their rates are
+postulated. Here they are derived: the operators are the basis operators admitted in
+$ \hat H' $, and the rates are the widths of the prior. No single realisation obeys
+Eq.~\eqref{eq:dissipator}; each evolves unitarily, and the dissipator belongs to the
+description. Four consequences follow.
+
+\emph{The entropy grows monotonically.} In the eigenbasis of the description,
+$ \varrho = \sum_np_n|n\rangle\langle n| $, the Hamiltonian term does not contribute to
+$ dS/dt = -k_B\Tr(\dot\varrho\ln\varrho) $. The dissipator does: with the identity
+$ \Tr([\hat\Lambda, \hat Y]\hat Z) = \Tr(\hat Y[\hat Z, \hat\Lambda]) $,
+\begin{equation}\label{eq:dissipator_entropy}
+  \begin{aligned}
+  \frac{dS}{dt} &= \frac{k_B}{2}\sum_\alpha\kappa_\alpha\Tr\big([\hat\Lambda_\alpha, \varrho]\,[\ln\varrho, \hat\Lambda_\alpha]\big) \\
+  &= \frac{k_B}{2}\sum_\alpha\kappa_\alpha\sum_{m,n}\big|\langle m|\hat\Lambda_\alpha|n\rangle\big|^{2}\,
+  (p_n - p_m)(\ln p_n - \ln p_m) \;\geq\; 0 ,
+  \end{aligned}
+\end{equation}
+each term being non-negative because the logarithm is increasing. Unlike
+Eq.~\eqref{eq:prior_entropy}, which compares the entropy with its initial value only,
+this is an increase at every instant, and it cannot be taken back: a coefficient that
+has fluctuated is no longer there to be learned or reversed.
+
+\emph{The conserved quantities are those of the prior.} For an observable $ \hat X $,
+Eq.~\eqref{eq:dissipator} gives
+$ d\langle\hat X\rangle/dt = (i/\hbar)\langle[\hat H, \hat X]\rangle
+- \tfrac12\sum_\alpha\kappa_\alpha\langle[\hat\Lambda_\alpha, [\hat\Lambda_\alpha, \hat X]]\rangle $, which
+vanishes in every state if $ \hat X $ commutes with $ \hat H $ and with all the admitted
+$ \hat\Lambda_\alpha $. The whole distribution of such an $ \hat X $ is then constant.
+
+\emph{The stationary state is a function of the conserved quantities alone.}
+$ dS/dt = 0 $ in Eq.~\eqref{eq:dissipator_entropy} requires $ p_m = p_n $ wherever a matrix
+element $ \langle m|\hat\Lambda_\alpha|n\rangle $ with $ \kappa_\alpha > 0 $ is non-zero, i.e.\
+$ [\hat\Lambda_\alpha, \varrho_\infty] = 0 $ for every admitted operator, and stationarity then
+requires $ [\hat H, \varrho_\infty] = 0 $ as well. The steady state commutes with
+everything that $ \hat H' $ may contain, and it is uniform over all the states that
+$ \hat H' $ can connect.
+
+\emph{A flat prior gives the uniform distribution.} Let all the Hermitian operators
+on a space of $ W $ states be admitted with the same rate $ \kappa $. The completeness
+of the basis, $ \sum_\alpha\hat\Lambda_\alpha\hat Y\hat\Lambda_\alpha = \Tr(\hat Y)\,\mathbb{1} $ for
+every $ \hat Y $ and hence $ \sum_\alpha\hat\Lambda_\alpha^{2} = W\,\mathbb{1} $, reduces
+Eq.~\eqref{eq:dissipator} to
+\begin{equation}\label{eq:flat_relax}
+  \frac{d\varrho}{dt} = -\frac{i}{\hbar}[\hat H, \varrho] - \kappa W\Big(\varrho - \frac{\mathbb{1}}{W}\Big) ,
+  \qquad
+  \varrho(t) = \frac{\mathbb{1}}{W}
+  + e^{-\kappa Wt}\;\hat U(t)\Big(\rho(0) - \frac{\mathbb{1}}{W}\Big)\hat U^\dagger(t) ,
+\end{equation}
+with $ \hat U(t) = e^{-i\hat Ht/\hbar} $: whatever the known Hamiltonian and whatever the
+initial state, the description relaxes exponentially to $ \mathbb{1}/W $, and
+$ S \to k_B\ln W $.
+
+For a body that exchanges nothing with its surroundings $ \hat H' $ conserves the
+energy to within a macroscopically small width: the admitted operators act within
+an energy shell of $ W $ states, $ \mathbb{1} $ in Eq.~\eqref{eq:flat_relax} is the
+projector onto the shell, and the steady state is the microcanonical one, with
+$ S = k_B\ln W $ (Section~\ref{sec:microcanonical}). The energy survives because
+$ \hat H' $ conserves it; everything else about the microstate is erased. This is the
+second law for an isolated body, with its origin in view: the equal a priori
+probability of the microstates is the image, in the state, of the flat prior over
+the unknown part of the Hamiltonian.
+
+One consequence must be stated. A stochastic operator that does not commute with
+$ \hat H $ does work on the body. The dissipator of Eq.~\eqref{eq:dissipator} leaves
+$ \mathbb{1} $ invariant, and unless the admitted operators conserve the energy the
+steady state is uniform over all the states, whatever their energy: the body is
+heated without limit. A steady state at a finite temperature is therefore tied to
+the conservation of the energy by $ \hat H' $, and it needs nothing else; no
+reservoir has to be introduced. The uniform state on the shell of energy $ E $ has
+the entropy $ S(E) = k_B\ln W(E) $ and hence a temperature, $ 1/T = \partial S/\partial E $,
+and every small part of the body is then in the canonical state at that
+temperature, by the counting argument of Section~\ref{sec:reservoir} with the
+remainder of the body in the place of the reservoir. The temperature is a
+property of the conserved energy and not a parameter of $ \hat H' $ or of its prior
+(Section~\ref{sec:found_tls}).
+
+\paragraph{The master equation.} The same mechanism takes a familiar form in the
+eigenbasis of the known Hamiltonian when $ \hat H' $ is weak. Let $ |a\rangle $, $ E_a $ be
+the eigenstates of the model Hamiltonian $ \hat H $ and $ p_a = \langle a|\varrho|a\rangle $
+their occupations. Over a time $ \Delta t $, second-order perturbation theory in
+$ \hat H' $, averaged over the prior of its coefficients, gives Fermi's golden rule.
+Under a flat prior the matrix elements $ H'_{ab} = \langle a|\hat H'|b\rangle $ of different
+transitions are independent and their phases uniformly distributed, so that the
+interference terms between different transitions average to zero and $ \varrho $
+stays diagonal in $ |a\rangle $:
 \[
   \frac{dp_a}{dt} = \sum_b W_{ab}\,(p_b - p_a) , \qquad
   W_{ab} = \frac{2\pi}{\hbar}\,\overline{|H'_{ab}|^{2}}\;\delta_{\Delta t}(E_a - E_b) ,
@@ -3180,7 +3406,11 @@ Boltzmann's $ H $-theorem in Pauli's form (1928). Since $ \sum_a\dot p_a = 0 $,
 the last form following by exchanging $ a \leftrightarrow b $ and averaging, with
 $ W_{ab} = W_{ba} $. Each term is non-negative because the logarithm is increasing, and
 the sum vanishes only if $ p_a = p_b $ for every pair connected by a transition, i.e.\
-for the uniform distribution on the energy shell. The irreversibility enters at one
+for the uniform distribution on the energy shell. This is the diagonal part of
+Eq.~\eqref{eq:dissipator}, whose matrix elements in a basis in which $ \varrho $ is
+diagonal give the same equation with
+$ W_{ab} = \sum_\alpha\kappa_\alpha|\langle a|\hat\Lambda_\alpha|b\rangle|^{2} $, and the inequality is
+Eq.~\eqref{eq:dissipator_entropy}. The irreversibility enters at one
 identifiable step: the phases of $ \rho $ and of $ \hat H' $ are discarded at every
 interval $ \Delta t $ (Pauli's repeated random-phase assumption).\footnote{\label{fn:pauli}%
 \textbf{Pauli's random-phase assumption.} In deriving the master equation (1928)
@@ -3312,11 +3542,373 @@ survives: they relax instead to a \emph{generalised} Gibbs ensemble with one
 multiplier for each conserved quantity. It fails too for many-body localised
 systems, which do not thermalise at all.
 
+\subsection{A test case: the two-level system}
+\label{sec:found_tls}
+
+The formalism of Section~\ref{sec:found_second} can be followed from beginning to
+end, with nothing left implicit, for a system of two levels: a spin $ 1/2 $ in a known
+field along $ z $, with level splitting $ \hbar\omega_0 $, and in an unknown additional
+field, produced for instance by the nuclear moments of the surrounding atoms. The
+operator basis consists of the unit matrix and the three Pauli matrices
+$ \hat\sigma_x $, $ \hat\sigma_y $, $ \hat\sigma_z $. The coefficient of the unit matrix
+shifts the zero of energy and drops out, so that
+\[
+  \hat H = \tfrac12\hbar\omega_0\,\hat\sigma_z , \qquad
+  \hat H' = \tfrac12\,\boldsymbol{\eta}\cdot\hat{\boldsymbol{\sigma}}
+  = \tfrac12\big(\eta_x\hat\sigma_x + \eta_y\hat\sigma_y + \eta_z\hat\sigma_z\big) :
+\]
+the unknown part of the Hamiltonian is three real numbers. (The basis operators
+are here $ \hat\sigma_i/2 $, normalised to $ \Tr(\hat\sigma_i\hat\sigma_j)/4 = \delta_{ij}/2 $
+rather than to unity, which only rescales the coefficients.) Every density matrix
+is
+\[
+  \rho = \tfrac12\big(\mathbb{1} + \mathbf{s}\cdot\hat{\boldsymbol{\sigma}}\big) , \qquad
+  \mathbf{s} = \Tr(\rho\,\hat{\boldsymbol{\sigma}}) , \qquad |\mathbf{s}| \leq 1 ,
+\]
+with the polarisation $ \mathbf{s} $ (the Bloch vector) as its three parameters. Its
+eigenvalues are $ (1 \pm s)/2 $ with $ s = |\mathbf{s}| $, so that the entropy depends on
+the length of $ \mathbf{s} $ alone,
+\[
+  S(s) = -k_B\Big[\frac{1 + s}{2}\ln\frac{1 + s}{2} + \frac{1 - s}{2}\ln\frac{1 - s}{2}\Big] ,
+\]
+and decreases monotonically from $ k_B\ln2 $ at $ s = 0 $ to zero for a pure state,
+$ s = 1 $. The occupations of the upper and the lower level are $ (1 \pm s_z)/2 $, and
+the energy is $ U = \tfrac12\hbar\omega_0s_z $.
+
+For given $ \boldsymbol{\eta} $ the von~Neumann equation with
+$ \hat H + \hat H'_\eta = \tfrac12\hbar\,\boldsymbol{\Omega}_\eta\cdot\hat{\boldsymbol{\sigma}} $ is
+\[
+  \frac{d\mathbf{s}_\eta}{dt} = \boldsymbol{\Omega}_\eta\times\mathbf{s}_\eta , \qquad
+  \boldsymbol{\Omega}_\eta = \omega_0\,\mathbf{e}_z + \boldsymbol{\eta}/\hbar ,
+\]
+a rigid rotation of the polarisation about the total field. It conserves
+$ |\mathbf{s}_\eta| $: this is the conservation of the entropy by the microscopic
+dynamics (Section~\ref{sec:found_unitary}). Since $ \rho $ is linear in $ \mathbf{s} $,
+the description~\eqref{eq:prior_average} has the polarisation
+$ \bar{\mathbf{s}}(t) = \int d^{3}\eta\;\pi(\boldsymbol{\eta})\,\mathbf{s}_\eta(t) $, and
+\[
+  |\bar{\mathbf{s}}(t)| \;\leq\; \int\!d^{3}\eta\;\pi(\boldsymbol{\eta})\,|\mathbf{s}_\eta(t)|
+  = |\mathbf{s}(0)| .
+\]
+The inequality~\eqref{eq:prior_entropy} is here the triangle inequality: the average
+of vectors of equal length is shorter than each of them unless they all coincide.
+The entropy of the description grows because the unknown field has turned the
+polarisation by an unknown angle.
+
+\paragraph{Static coefficients.} Let $ \boldsymbol{\eta} $ be constant in time, with the
+flat prior~\eqref{eq:flat_prior} of width $ v $ in each component. With
+$ \mathbf{n} = \boldsymbol{\Omega}_\eta/\Omega_\eta $ the axis of the rotation and
+$ \mathbf{s}_0 = \mathbf{s}(0) $,
+\[
+  \mathbf{s}_\eta(t) = (\mathbf{n}\cdot\mathbf{s}_0)\,\mathbf{n}
+  + \big[\mathbf{s}_0 - (\mathbf{n}\cdot\mathbf{s}_0)\,\mathbf{n}\big]\cos\Omega_\eta t
+  + \mathbf{n}\times\mathbf{s}_0\,\sin\Omega_\eta t .
+\]
+The first term is the part of the state that is diagonal in the eigenbasis of the
+full Hamiltonian. The other two oscillate at a frequency that depends on
+$ \boldsymbol{\eta} $ and average to zero at long times, and the steady
+state~\eqref{eq:prior_steady} is
+$ \bar{\mathbf{s}}_\infty = \overline{(\mathbf{n}\cdot\mathbf{s}_0)\,\mathbf{n}} $. Two limits
+can be worked out in closed form.
+
+If the unknown field is weak, $ v \ll \hbar\omega_0 $, the axis is $ \mathbf{n} \simeq \mathbf{e}_z $
+and $ \Omega_\eta \simeq \omega_0 + \eta_z/\hbar $, up to corrections of relative order
+$ v^{2}/\hbar^{2}\omega_0^{2} $. Then $ \bar s_z $ is constant, and the Gaussian average of
+$ e^{i\eta_zt/\hbar} $ gives
+\[
+  \bar s_x(t) + i\bar s_y(t) = \big[s_x(0) + is_y(0)\big]\,e^{i\omega_0t}\,e^{-v^{2}t^{2}/2\hbar^{2}} .
+\]
+The transverse polarisation disappears in a time $ \hbar/v $ (the time $ T_2^{*} $ of
+magnetic resonance), with a Gaussian and not an exponential law, and the steady
+state is the diagonal ensemble of the known Hamiltonian,
+$ \bar{\mathbf{s}}_\infty = (0, 0, s_z(0)) $: the entropy has risen from $ S(|\mathbf{s}_0|) $ to
+$ S(|s_z(0)|) $.
+
+If the known field is absent, $ \omega_0 = 0 $, the axis $ \mathbf{n} $ is distributed
+uniformly over the sphere, $ \overline{n_in_j} = \delta_{ij}/3 $, and the frequency
+$ \Omega_\eta = |\boldsymbol{\eta}|/\hbar $ has a Maxwell distribution. Since
+$ \overline{\sin(\Omega_\eta t)/\Omega_\eta t} = e^{-v^{2}t^{2}/2\hbar^{2}} $ for an isotropic
+Gaussian, a derivative of $ t $ times this expression with respect to $ t $ gives
+$ \overline{\cos\Omega_\eta t} $, and
+\[
+  \bar{\mathbf{s}}(t) = \mathbf{s}_0\Big[\frac13
+  + \frac23\Big(1 - \frac{v^{2}t^{2}}{\hbar^{2}}\Big)e^{-v^{2}t^{2}/2\hbar^{2}}\Big] ,
+\]
+the function of Kubo and Toyabe (1967), which is measured directly as the
+depolarisation of muons implanted in a solid, where the unknown field is that of
+the randomly oriented nuclear moments. After a minimum at $ t = \sqrt3\,\hbar/v $ the
+polarisation recovers to one third of its initial value and stays there. The steady
+state exists and its entropy $ S(s_0/3) $ is higher than the initial one, but it is
+lower than $ k_B\ln2 $, and the state remembers the direction of $ \mathbf{s}_0 $: each
+realisation conserves the component of the polarisation along its own field, that
+is, its own energy, and one third is the prior average of $ n_z^{2} $. A static
+unknown part does not erase everything that it could. It is also reversible: a
+$ \pi $ pulse about a transverse axis at time $ t $ inverts the phase accumulated in
+the weak-field case and restores the transverse polarisation at $ 2t $, for every
+$ \eta_z $ and without any knowledge of it (the spin echo of
+Section~\ref{sec:found_second}).
+
+\paragraph{Fluctuating coefficients.} Let the components of the unknown field
+fluctuate as white noise with rates $ \kappa_x $, $ \kappa_y $, $ \kappa_z $,
+$ \overline{\eta_i(t)\,\eta_j(t')} = \hbar^{2}\kappa_i\,\delta_{ij}\,\delta(t - t') $.
+Eq.~\eqref{eq:dissipator} with the operators $ \hat\sigma_i/2 $ is
+\[
+  \frac{d\varrho}{dt} = -\frac{i\omega_0}{2}[\hat\sigma_z, \varrho]
+  - \frac18\sum_i\kappa_i\big[\hat\sigma_i, [\hat\sigma_i, \varrho]\big] ,
+\]
+and with $ [\hat\sigma_i, [\hat\sigma_i, \hat\sigma_j]] = 4(1 - \delta_{ij})\,\hat\sigma_j $ it
+becomes, for the polarisation of the description (the bar is dropped),
+\begin{equation}\label{eq:bloch}
+  \dot s_x = -\omega_0s_y - \frac{\kappa_y + \kappa_z}{2}\,s_x , \qquad
+  \dot s_y = \omega_0s_x - \frac{\kappa_x + \kappa_z}{2}\,s_y , \qquad
+  \dot s_z = -\frac{\kappa_x + \kappa_y}{2}\,s_z .
+\end{equation}
+Each component of the unknown field relaxes the two components of the polarisation
+perpendicular to it. For $ \kappa_x = \kappa_y = \kappa_\perp $ these are the equations
+that Bloch (1946) wrote down phenomenologically for nuclear magnetisation, with the
+longitudinal and transverse relaxation times
+\[
+  \frac{1}{T_1} = \kappa_\perp , \qquad
+  \frac{1}{T_2} = \frac{\kappa_\perp + \kappa_z}{2} = \frac{1}{2T_1} + \frac{1}{T_\varphi} ,
+  \qquad \frac{1}{T_\varphi} = \frac{\kappa_z}{2} ,
+\]
+now expressed through the widths of the prior. The decay is exponential and
+monotonic,
+\[
+  \frac{d}{dt}|\mathbf{s}|^{2} = -(\kappa_y + \kappa_z)\,s_x^{2} - (\kappa_x + \kappa_z)\,s_y^{2}
+  - (\kappa_x + \kappa_y)\,s_z^{2} \;\leq\; 0 ,
+\]
+which is Eq.~\eqref{eq:dissipator_entropy} for two levels, and no pulse brings the
+polarisation back. Compared with the static case the relaxation is slow: with
+$ \hbar^{2}\kappa \simeq 2v^{2}\tau_c $ the rate is $ (v/\hbar)\times(2v\tau_c/\hbar) $, smaller
+than the static rate $ v/\hbar $ by the small parameter of the white-noise limit
+(motional narrowing). After the transients, $ t \gg T_1, T_2 $, the description is
+stationary, and which stationary state it reaches is decided by what the unknown
+part conserves.
+\begin{itemize}
+\item \emph{$ \hat H' $ conserves the energy}: only $ \eta_z $ is admitted,
+  $ \kappa_\perp = 0 $. Then $ s_z $ is constant and $ s_x $, $ s_y $ decay in the time
+  $ T_\varphi $. The steady state
+  $ \varrho_\infty = \tfrac12(\mathbb{1} + s_z\hat\sigma_z) $ is the canonical state
+  \[
+    \varrho_\infty = \frac{e^{-\beta\hat H}}{Z} , \qquad
+    \tanh\frac{\beta\hbar\omega_0}{2} = -s_z(0) = -\frac{2U}{\hbar\omega_0} ,
+  \]
+  the state of largest entropy at the given energy
+  (Section~\ref{sec:found_info}), with a temperature that is not a parameter of
+  any reservoir but is fixed by the conserved energy $ U $ (and is negative if the
+  initial state was inverted, $ s_z(0) > 0 $). With two levels this costs nothing,
+  since every state diagonal in the energy is a Gibbs state. With more levels,
+  dephasing leaves the diagonal ensemble, and transitions among the many states of
+  an energy shell are needed to make it uniform there.
+\item \emph{$ \hat H' $ conserves nothing}: $ \kappa_\perp > 0 $. The unknown transverse
+  field does work on the spin, the energy is not conserved, and
+  $ \mathbf{s} \to 0 $: the steady state is $ \varrho_\infty = \mathbb{1}/2 $, the uniform
+  distribution over the $ W = 2 $ states, with $ S = k_B\ln2 = k_B\ln W $. For the flat
+  prior, $ \kappa_x = \kappa_y = \kappa_z = \kappa $, Eq.~\eqref{eq:bloch} gives
+  $ \mathbf{s}(t) = e^{-\kappa t}\,\mathbf{s}_{\rm rot}(t) $ with $ \mathbf{s}_{\rm rot} $ the
+  polarisation precessing under the known field alone, which is
+  Eq.~\eqref{eq:flat_relax} for $ W = 2 $ (in the normalised basis
+  $ \hat\sigma_i/\sqrt2 $ the rate is $ \kappa/2 $, and $ \kappa W/2 = \kappa $).
+\end{itemize}
+
+\paragraph{Temperature from the conserved energy.} Neither steady state has a
+temperature imposed on it, and none needs to be: a temperature appears, without
+any reservoir, as soon as there are many states at the same energy. Take $ N $
+identical two-level systems, isolated,
+$ \hat H = \tfrac12\hbar\omega_0\sum_k\hat\sigma_z^{(k)} $, with an unknown part that
+conserves the energy. The admitted operators are those that commute with
+$ \hat H $, such as the Hermitian combinations of the flip-flop operators
+$ \hat\sigma_+^{(k)}\hat\sigma_-^{(l)} $, which pass an excitation from one system to
+another (for nuclear spins, the dipolar coupling between moments at unknown
+positions). They act within the shell of the states with $ M $ systems in the upper
+level, of energy $ E = (M - N/2)\,\hbar\omega_0 $ and dimension $ W = \binom{N}{M} $. With
+fluctuating coefficients and a flat prior on the shell,
+Eq.~\eqref{eq:flat_relax} gives the uniform distribution over the shell as the
+steady state, with $ S = k_B\ln\binom{N}{M} $. The state of any single system is then
+diagonal, and its upper level is occupied in the fraction
+$ \binom{N-1}{M-1}/\binom{N}{M} = M/N $ of the states of the shell, so that
+\[
+  \frac{p_\uparrow}{p_\downarrow} = \frac{M}{N - M} =: e^{-\beta\hbar\omega_0} :
+\]
+each two-level system is in a canonical state. The $ \beta $ defined in this way is
+the thermodynamic one. With $ p = M/N $ and Stirling's formula,
+$ S \simeq -Nk_B[p\ln p + (1 - p)\ln(1 - p)] $ and $ dE = N\hbar\omega_0\,dp $, hence
+\[
+  \frac{1}{k_B}\frac{\partial S}{\partial E} = \frac{1}{\hbar\omega_0}\ln\frac{1 - p}{p} = \beta .
+\]
+The temperature is fixed by the conserved energy of the whole through
+$ 1/T = \partial S/\partial E $, and the prior contributes only the conservation law and the
+time that the relaxation takes. This is the spin temperature of magnetic
+resonance. If the unknown part does not conserve the energy, the steady state is
+uniform over all $ 2^{N} $ states, $ p = 1/2 $ and $ \beta = 0 $: a stochastic operator that
+does not commute with $ \hat H $ heats the body without limit.
+
+\paragraph{What the test case shows.} Under a Hamiltonian that is completely known
+the polarisation rotates for ever and the entropy is constant. With an unknown
+part, described by a prior over three coefficients, the description acquires a
+relaxation that no single realisation has, the transients die out in the times
+$ \hbar/v $, $ T_2 $ and $ T_1 $, and the observables become stationary. Their stationary
+values are those of an ensemble, and the ensemble is selected by the conservation
+laws of the unknown part: the canonical state at the conserved energy when
+$ \hat H' $ commutes with $ \hat H $, the uniform state when it does not, and for many
+two-level systems the canonical state of each at the temperature that the
+conserved energy of the whole defines. In each case the entropy of the description has
+increased, by an amount that the prior fixes and that the known Hamiltonian could
+not have produced.
+
+\subsection{A second test case: particles with an unknown one-body term}
+\label{sec:found_anderson}
+
+The two-level system has too few states to show what a static unknown part can
+fail to do. The simplest many-particle case does: non-interacting particles hopping
+on a lattice of $ L $ sites, with an unknown part that is a generic one-body
+operator,
+\[
+  \hat H = -g\sum_{\langle ij\rangle}\big(\hat c_i^\dagger\hat c_j + \hat c_j^\dagger\hat c_i\big) ,
+  \qquad
+  \hat H' = \sum_{i,j}\eta_{ij}\,\hat c_i^\dagger\hat c_j , \qquad \eta_{ji} = \eta_{ij}^{*} .
+\]
+The known part is the hopping with amplitude $ g $ between neighbouring sites. The
+unknown part is a stochastic hopping matrix: $ L $ real site energies $ \eta_{ii} $ and
+$ L(L-1)/2 $ complex amplitudes $ \eta_{ij} $, i.e.\ $ L^{2} $ real coefficients of the
+Hermitian basis operators $ \hat c_i^\dagger\hat c_i $,
+$ \hat c_i^\dagger\hat c_j + \hat c_j^\dagger\hat c_i $ and
+$ i(\hat c_i^\dagger\hat c_j - \hat c_j^\dagger\hat c_i) $. All of them commute with the
+total number $ \hat N = \sum_i\hat c_i^\dagger\hat c_i $, which is therefore conserved;
+they do not commute with $ \hat H $. What is known about $ \hat H' $ decides which of
+them are admitted, and the outcome depends on it. Two cases are the extremes: an
+$ \hat H' $ that is \emph{local}, $ \eta_{ij} = \eta_i\delta_{ij} $, an unknown potential on the
+sites, and an $ \hat H' $ without any spatial structure, in which every pair of sites
+is admitted on the same footing.
+
+Since both parts are quadratic, everything follows from one particle. For given
+$ \eta $ the one-particle Hamiltonian is
+$ \hat h_\eta = -g\sum_{\langle ij\rangle}(|i\rangle\langle j| + |j\rangle\langle i|) + \sum_{i,j}\eta_{ij}|i\rangle\langle j| $,
+with eigenstates $ \phi_n^{\eta}(i) $, and a particle placed on site $ j $ is found on
+site $ i $ at time $ t $ with a probability that the description averages over the
+prior,
+\[
+  P_{ij}(t) = \overline{\big|\langle i|e^{-i\hat h_\eta t/\hbar}|j\rangle\big|^{2}} ,
+  \qquad
+  P_{ij}(\infty) = \overline{\sum_n\big|\phi_n^{\eta}(i)\big|^{2}\,\big|\phi_n^{\eta}(j)\big|^{2}} ,
+\]
+the second expression being the steady state~\eqref{eq:prior_steady}. The average
+is taken over probabilities and not over amplitudes: within each realisation the
+amplitudes of all the paths from $ j $ to $ i $ interfere, with phases fixed by the
+definite, if unknown, values of the $ \eta_{ij} $.
+
+\paragraph{Static coefficients, local $ \hat H' $: localisation.} Let only the site
+energies be admitted, $ \hat H' = \sum_i\eta_i\,\hat c_i^\dagger\hat c_i $, independent under
+the prior and of width $ v $. This is the model of Anderson (1958), whose prior is
+flat in the literal sense, uniform on an interval $ [-v, v] $ for each site. If the
+unknown potential were to act
+as the unknown part of Section~\ref{sec:found_second} is expected to, the particle
+would diffuse, $ P_{ij}(\infty) $ would be $ 1/L $ for every pair of sites, and the
+density would become uniform. Anderson showed that it does not. For sufficiently
+large $ v/g $ in three dimensions, and for any $ v > 0 $ in one and two (Mott and
+Twose, 1961; Abrahams, Anderson, Licciardello and Ramakrishnan, 1979), the
+eigenstates $ \phi_n^{\eta} $ are localised, each falling off exponentially from its own
+centre over a localisation length $ \ell_{\rm loc} $. Then
+\[
+  P_{jj}(\infty) = \overline{\sum_n\big|\phi_n^{\eta}(j)\big|^{4}} \;>\; 0
+  \qquad\text{as } L \to \infty ,
+\]
+and $ P_{ij}(\infty) $ decays exponentially with the distance between $ i $ and $ j $ on
+the scale $ \ell_{\rm loc} $: the particle stays, for ever, within a localisation
+length of where it was put. A steady state is reached and its entropy exceeds the
+initial one (Eq.~\eqref{eq:prior_entropy}), but it is not an equilibrium state. An
+initial density profile never relaxes, the conductivity vanishes, and no ensemble
+with a few parameters describes the result. This is the first reservation made in
+Section~\ref{sec:found_second}, in its extreme form. Each realisation has $ L $
+conserved quantities, the occupations of its own eigenmodes $ \phi_n^{\eta} $, which
+are local and which differ from one realisation to the next; the description
+remembers all of them. Anderson's problem was in fact a failure of thermal
+relaxation, the absence of spin diffusion among donor spins in silicon, and the
+many-body localised systems mentioned in Section~\ref{sec:found_second} are its
+interacting descendants.
+
+\paragraph{Static coefficients, structureless $ \hat H' $.} Localisation is a
+property of the local prior, not of static coefficients as such. Let every pair of
+sites be admitted with the flat prior~\eqref{eq:flat_prior}, and let this part
+dominate the hopping, $ v\sqrt L \gg g $. The matrix $ \eta_{ij} $ is then a member of
+Wigner's Gaussian ensemble, whose eigenvectors are distributed uniformly over all
+orthonormal bases, and the average over them is elementary,
+\[
+  P_{ij}(\infty) = \frac{1 + \delta_{ij}}{L + 1} .
+\]
+The particle is found on every other site with equal probability, and the density
+becomes uniform. The return probability is twice that of any other site: a
+remnant of the interference, which the uniform distribution $ 1/L $ of a random
+walk lacks, and which vanishes relative to the total only as $ L \to \infty $. Between
+the two extremes the range of the unknown amplitudes decides. Random amplitudes
+between neighbours only still localise the particle in one dimension, and
+amplitudes that fall off as a power of the distance localise it if the power
+exceeds the dimension of the lattice and not otherwise. Even where the density
+becomes uniform, the steady state of many particles is not thermal: each
+realisation of a one-body $ \hat H' $ conserves the occupations of its $ L $
+eigenmodes, and the description keeps their distribution.
+
+Localisation also marks the limit of the master equation of
+Section~\ref{sec:found_second}. Applied to this model, the golden rule with the
+phases discarded at every interval gives transitions between plane waves at
+symmetric rates, hence diffusion and a uniform density, which is wrong. For static
+coefficients the phases may not be discarded more than once: the amplitudes of a
+closed path and of the same path traversed in the opposite sense carry the same
+phase for every $ \eta $, they survive the average over the prior, and they enhance
+the return to the starting point. The repeated random-phase assumption is
+legitimate only if the coefficients are renewed from one interval to the next.
+
+\paragraph{Fluctuating coefficients: diffusion.} Let the coefficients now fluctuate. For
+the structureless $ \hat H' $, with the same rate $ \kappa $ for all the one-body
+operators, the one-particle density matrix obeys Eq.~\eqref{eq:flat_relax} with
+$ W = L $: it relaxes to the uniform distribution over the sites at the rate
+$ \kappa L $, whatever the hopping. The local case is the instructive one. Let the site
+energies fluctuate as white noise, $ \overline{\eta_i(t)\,\eta_j(t')} = \hbar^{2}\kappa\,\delta_{ij}\,\delta(t - t') $, as
+they do when the potential is produced by a lattice that vibrates.
+With $ \hat n_i = \hat c_i^\dagger\hat c_i $, Eq.~\eqref{eq:dissipator} has the dissipator
+$ -\tfrac12\kappa\sum_i[\hat n_i, [\hat n_i, \varrho]] $, and for the one-particle density
+matrix $ \varrho_{ij} $, with $ \hat n_i = |i\rangle\langle i| $ and
+$ \sum_i[\hat n_i, [\hat n_i, \varrho]] = 2\varrho - 2\sum_i\hat n_i\varrho\hat n_i $, it reads
+\[
+  \frac{d\varrho_{ij}}{dt} = -\frac{i}{\hbar}[\hat h_0, \varrho]_{ij} - \kappa\,(1 - \delta_{ij})\,\varrho_{ij} ,
+\]
+with $ \hat h_0 $ the hopping alone: the coherences between different sites decay at
+the rate $ \kappa $, and the occupations $ n_i = \varrho_{ii} $ are not touched directly.
+For $ \hbar\kappa \gg g $ the coherence between neighbours follows the occupations,
+$ \varrho_{i,i+1} \simeq (ig/\hbar\kappa)(n_{i+1} - n_i) $ on a chain, and inserted in
+$ \dot n_i = -(i/\hbar)[\hat h_0, \varrho]_{ii} $ it gives
+\[
+  \frac{dn_i}{dt} = \frac{2g^{2}}{\hbar^{2}\kappa}\,\big(n_{i+1} + n_{i-1} - 2n_i\big) ,
+\]
+a random walk with the hopping rate $ 2g^{2}/\hbar^{2}\kappa $, i.e.\ diffusion. The same
+equation holds for the density of many non-interacting particles. It is a master
+equation with symmetric rates, its entropy grows monotonically, and its steady
+state is the uniform density $ n_i = N/L $. For the full description the steady
+state must commute with every $ \hat n_i $ and with $ \hat H $, and is therefore
+uniform over all the configurations of $ N $ particles on $ L $ sites, with
+$ S = k_B\ln\binom{L}{N} $ for fermions: the microcanonical state for the one
+quantity that the unknown part conserves. The interference that localises the
+particle has been removed, not by ignoring the phases, but because the fluctuating
+coefficients change them before a closed path is completed. In a real solid the
+vibrations of the lattice do this, and a localised system conducts by hopping at
+any $ T > 0 $.
+
+\paragraph{What the second test case shows.} An unknown part of the Hamiltonian is
+necessary for the second law, but its being unknown is not sufficient, and what
+it does depends on which operators the prior admits. With static coefficients the prior raises the entropy of the description and produces a steady
+state, and yet the body may fail to equilibrate, because every realisation keeps
+its own extensive set of conserved quantities. The thermodynamic steady state, a
+function of the few globally conserved quantities alone, is reached when the
+coefficients fluctuate in time, i.e.\ when the unknown part is a stochastic
+operator with a finite correlation time. That requirement is the content of the
+protocol of Section~\ref{sec:found_protocol}.
+
 \subsection{Entropy and chemical potential as devices}
 \label{sec:found_info}
 
-\paragraph{The device for energy exchange.} The results of the previous subsection
-share one structure. The unknown part of the Hamiltonian, whatever it is, drives the
+\paragraph{The device for energy exchange.} The results of the three preceding
+subsections share one structure. The unknown part of the Hamiltonian, whatever it is, drives the
 description to a stationary state that depends on it through the single parameter
 $ T $, and the approach is governed by a functional
 \[
@@ -3705,9 +4297,13 @@ description of a macroscopic body never contains its whole Hamiltonian. The unkn
 part $ \hat H' $, whether external couplings or the body's own unresolved degrees of
 freedom, acts on the microstate far below the resolution of any measurement,
 conserves the energy and the particle number except through the channels represented
-by $ T $ and $ \mu $, and scrambles everything else. Its effect on the description is an
-average over unitaries, which can only increase $ S[\rho] $; at the end only the
-conserved quantities remain, and the state is the one that maximises $ S $ given them.
+by $ T $ and $ \mu $, and scrambles everything else. Its coefficients in the operator
+basis are known only through a prior, and the description is the average, over that
+prior, of the unitarily evolved states (Eq.~\eqref{eq:prior_average}). The average
+obeys the von~Neumann equation of the known part with a dissipator added
+(Eq.~\eqref{eq:dissipator}), which can only increase $ S[\rho] $; in the steady state
+only the conserved quantities remain, and the state is the one that maximises $ S $
+given them.
 The thermodynamic entropy is the entropy of that state,
 \[
   S_{\rm th}(\mathcal{A}) := \max\big\{\,S[\rho] \;:\; \rho \text{ reproduces the macroscopic data } \mathcal{A}\,\big\} ,
@@ -3725,8 +4321,9 @@ candidates in the maximum defining $ S_{\rm th}(\mathcal{A}_1) $; hence
   S_{\rm th}(\mathcal{A}_1) \;\geq\; S[\rho(t)] \;\geq\; S[\rho(0)] = S_{\rm th}(\mathcal{A}_0) .
 \]
 The middle inequality is an equality for exactly unitary evolution
-(Section~\ref{sec:found_unitary}), and holds in general once the average over the
-unknown part of the Hamiltonian is included (Section~\ref{sec:found_second}). The
+(Section~\ref{sec:found_unitary}), and holds in general once the prior over the
+coefficients of the unknown part of the Hamiltonian is included
+(Eq.~\eqref{eq:prior_entropy}). The
 inequality is the entropy form of the minimum principle of Section~\ref{sec:minimum},
 and the same argument with a bath gives the potentials.
 
@@ -4507,7 +5104,7 @@ $ \hat{\mathcal{H}} = \hat H - \mu\hat N $ and $ \Xi = \Tr e^{-\beta\hat{\mathca
   = \Omega + k_BT\,D(\rho\,\|\,\rho_{\rm eq}) \;\geq\; \Omega = -k_BT\ln\Xi ,
 \]
 and $ \Omega \leq \Omega_0 + \langle\hat{\mathcal{H}} - \hat{\mathcal{H}}_0\rangle_0 $; the same holds with a field
-term $ -\mathcal{H}_M\hat M $ or a pressure term $ +P\hat V $ in $ \hat{\mathcal{H}} $.
+term $ -\hmag{}\hat M $ or a pressure term $ +P\hat V $ in $ \hat{\mathcal{H}} $.
 
 
 \section{Static response of a non-conserved quantity}
@@ -4633,50 +5230,50 @@ which is what a large chemical potential is supposed to do. With the opposite
 sign a high chemical potential would empty the system.
 
 
-\subsection*{Magnetic work: $\mathcal{H}_M\,dM$ versus $-M\,d\mathcal{H}_M$}
+\subsection*{Magnetic work: $\hmag{}\,dM$ versus $-M\,d\hmag{}$}
 Both, in different potentials; the pattern is that of $(\mu,N)$ with the total
-magnetisation $M$ playing the role of $N$ and the applied field $\mathcal{H}_M$
-that of $\mu$. (The script $\mathcal{H}_M$, with the subscript recalling the conjugate
+magnetisation $M$ playing the role of $N$ and the applied field $\hmag{}$
+that of $\mu$. (The script $\hmag{}$, with the subscript recalling the conjugate
 moment $M$, avoids two collisions: $H$ is the enthalpy, $\hat H$ the
 Hamiltonian and $\hat{\mathcal{H}}=\hat H-\mu\hat N$ the grand-canonical
-operator of Section~\ref{sec:filt_exact}. In density notation $h=\mathcal{H}_M$ and $m=M/V$.)
+operator of Section~\ref{sec:filt_exact}. In density notation $h=\hmag{}$ and $m=M/V$.)
 
-$M$ is extensive and $\mathcal{H}_M$ intensive, so $M$ joins $(S,V,N)$ as a natural
+$M$ is extensive and $\hmag{}$ intensive, so $M$ joins $(S,V,N)$ as a natural
 variable of $U$ and the work done \emph{on} the system is
-$\dbar W=\mathcal{H}_M\,dM$:
+$\dbar W=\hmag{}\,dM$:
 \[
-dU=T\,dS-P\,dV+\mu\,dN+\mathcal{H}_M\,dM ,
+dU=T\,dS-P\,dV+\mu\,dN+\hmag{}\,dM ,
 \]
-with $U=TS-PV+\mu N+\mathcal{H}_MM$ and $S\,dT-V\,dP+N\,d\mu+M\,d\mathcal{H}_M=0$.
-Note why $\mathcal{H}_M\,dM$ carries the opposite sign to $-P\,dV$: magnetising a
+with $U=TS-PV+\mu N+\hmag{}M$ and $S\,dT-V\,dP+N\,d\mu+M\,d\hmag{}=0$.
+Note why $\hmag{}\,dM$ carries the opposite sign to $-P\,dV$: magnetising a
 sample against a field costs energy, whereas expanding against a pressure
 releases it.
 
-An experiment fixes $\mathcal{H}_M$, not $M$, so one transforms:
+An experiment fixes $\hmag{}$, not $M$, so one transforms:
 \[
-\tilde F(T,V,N,\mathcal{H}_M)=F-\mathcal{H}_MM,
+\tilde F(T,V,N,\hmag{})=F-\hmag{}M,
 \qquad
-d\tilde F=-S\,dT-P\,dV+\mu\,dN-M\,d\mathcal{H}_M ,
+d\tilde F=-S\,dT-P\,dV+\mu\,dN-M\,d\hmag{} ,
 \]
-whence $M=-(\partial\tilde F/\partial\mathcal{H}_M)_{T,V,N}$ and
-$\chi=-(\partial^{2}\tilde F/\partial\mathcal{H}_M^{2})_{T,V,N}\geq0$. In the
+whence $M=-(\partial\tilde F/\partial\hmag{})_{T,V,N}$ and
+$\chi=-(\partial^{2}\tilde F/\partial\hmag{}^{2})_{T,V,N}\geq0$. In the
 partition function this is verbatim the construction of $\Xi$,
 \[
-\mathcal{Z}=\Tr\,e^{-\beta(\hat H-\mathcal{H}_M\hat M)},
+\mathcal{Z}=\Tr\,e^{-\beta(\hat H-\hmag{}\hat M)},
 \qquad
 \tilde F=-k_BT\ln\mathcal{Z},
 \qquad
 \Var(M)=k_BT\,\chi ,
 \]
 parallel to $\Var(N)=k_BT(\partial N/\partial\mu)_{T,V}$. So: the
-extensive-variable form $\mathcal{H}_M\,dM$ in $dU$, $dH$, $dF$, $dG$; the
-transformed form $-M\,d\mathcal{H}_M$ in whichever potential has traded $M$ away.
+extensive-variable form $\hmag{}\,dM$ in $dU$, $dH$, $dF$, $dG$; the
+transformed form $-M\,d\hmag{}$ in whichever potential has traded $M$ away.
 Which is correct is decided by what the apparatus holds fixed.
 
 Two cautions. The division of magnetic work between ``the sample'' and ``the
-field in the volume it occupies'' is convention-dependent, and $\mathcal{H}_M$
-versus $B$ versus $\mu_0\mathcal{H}_M$ differ by exactly such terms; the form above
-is the one in which $M$ is the sample's moment and $\mathcal{H}_M$ the applied
+field in the volume it occupies'' is convention-dependent, and $\hmag{}$
+versus $B$ versus $\mu_0\hmag{}$ differ by exactly such terms; the form above
+is the one in which $M$ is the sample's moment and $\hmag{}$ the applied
 field, which is what experiments report. And ferromagnets are precisely where
 hysteresis makes $U$ multivalued (Section~\ref{sec:states}), so these relations hold
 on the equilibrium branch, not around a loop.
@@ -6014,16 +6611,16 @@ involved. Three instances are needed below.
   electrostatic potential, is $ e^{2}\chi_c $, and the isothermal compressibility
   is $ \kappa_T = \chi_c/\bar n^{2} $ with $ \bar n = N/V $.
 \item \emph{Spin (Pauli) susceptibility.} For spin-$ \tfrac12 $ particles let
-  $ \lambda = (k, \sigma) $ with $ \sigma = \pm1 $, and let a field $ \mathcal{H}_M $ shift
+  $ \lambda = (k, \sigma) $ with $ \sigma = \pm1 $, and let a field $ \hmag{} $ shift
   the levels by the Zeeman energy, $ \varepsilon_{k\sigma} = \varepsilon_k - \sigma
-  m_0\mathcal{H}_M $, with $ m_0 = g\mu_B/2 $. Then $ \hat M = m_0\sum_{k\sigma}\sigma\,
+  m_0\hmag{} $, with $ m_0 = g\mu_B/2 $. Then $ \hat M = m_0\sum_{k\sigma}\sigma\,
   \hat n_{k\sigma} $, $ a_\lambda = b_\lambda = m_0\sigma $, and since $ \sigma^{2} = 1 $,
   \[
-    \chi_s := \frac{1}{V}\left(\frac{\partial M}{\partial\mathcal{H}_M}\right)_{T,\mu}\bigg|_{\mathcal{H}_M=0}
+    \chi_s := \frac{1}{V}\left(\frac{\partial M}{\partial\hmag{}}\right)_{T,\mu}\bigg|_{\hmag{}=0}
     = \frac{m_0^{2}}{Vk_BT}\sum_\lambda\Var(\hat n_\lambda) = \frac{\Var(M)}{Vk_BT}
     = m_0^{2}\,\chi_c .
   \]
-  The coupling is linear in $ \mathcal{H}_M $, so there is no diamagnetic term
+  The coupling is linear in $ \hmag{} $, so there is no diamagnetic term
   (Section~\ref{sec:convexity}); orbital (Landau) diamagnetism is excluded by
   construction.
 \item \emph{Heat capacity.} Changing $ T $ at fixed $ \mu $ is equivalent, by
