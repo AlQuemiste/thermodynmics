@@ -1071,14 +1071,32 @@ $S$ exist at the two end points.
 property of a macroscopic process, defined operationally in
 Section~\ref{sec:clausius}: quasi-static and without dissipation, so that the
 reversed protocol restores the \emph{macroscopic} state of system and surroundings.
-For a thermally isolated system the postulate makes reversibility and
-$\Delta S=0$ coincide.
-A reversible process has $\Delta S=0$, because the reversed process
-is also allowed and would have $-\Delta S\geq0$.
-Conversely, a process with $\Delta S=0$ is reversible,
-because any irreversibility consists of the relaxation of some internal
-variable from a value held by a released constraint to its equilibrium value,
-and the postulate says that such a relaxation strictly increases $S$. For a
+What matters here is the last property: a process is reversible if it can be
+undone with nothing changed, in the system or outside it. For a thermally
+isolated system this is the same as $\Delta S=0$, and both directions follow
+from the postulate.
+
+\emph{Reversible implies $\Delta S=0$.} The process and the process that undoes
+it are both allowed, so Eq.~\eqref{eq:DeltaS} applies to each: $\Delta S\geq0$
+and $-\Delta S\geq0$.
+
+\emph{$\Delta S=0$ implies reversible.} Let the process take the system from
+$A=(U_A,V_A)$ to $B=(U_B,V_B)$ at fixed $N$, with $S_B=S_A$. No heat is
+exchanged, so the only bodies affected outside the system are the work
+sources, which have supplied the work $U_B-U_A$. Now bring the volume slowly
+from $V_B$ back to $V_A$, again without heat. On this quasi-static path
+$dU=-P\,dV$, and comparison with Eq.~\eqref{eq:dU} gives $T\,dS=0$: the entropy
+stays at $S_A$. Because $S$ is strictly increasing in $U$, only one energy has
+the entropy $S_A$ at the volume $V_A$, and it is $U_A$. The system is back in
+$A$, and by the first law the work sources have received $U_B-U_A$ back.
+Everything is restored.
+
+The same argument shows why $\Delta S>0$ is irreversible. Any thermally
+isolated process leading back from $B$ to $A$ would have $\Delta S<0$, which
+Eq.~\eqref{eq:DeltaS} forbids; the system can be returned to $A$ only by
+giving up heat, and that leaves a change in the surroundings. Note what is
+\emph{not} claimed: $\Delta S=0$ says that the net effect of the process can
+be undone, not that every intermediate stage of it was slow. For a
 system that is \emph{not thermally isolated} the two notions must be kept apart,
 because $S$ then changes for two reasons. Entropy can be \emph{transferred}
 across the boundary with the heat exchanged with a reservoir,
@@ -1090,11 +1108,18 @@ and it can be \emph{created} by irreversibility; the balance along any process i
 with $T_{\rm res}$ the temperature of the reservoir supplying the heat
 (Section~\ref{sec:clausius}, where this follows from the Clausius inequality).
 \emph{Created} does not mean that heat is produced inside the system. Entropy
-is created by every irreversible relaxation: by friction or viscous flow,
-where work is dissipated into internal energy (the one case that can be
-described as internal production of heat); by heat flowing across a finite
-temperature difference, inside the system or between it and the reservoir; and
-by free expansion or mixing, where there is neither heat nor work. In the free
+is created in three kinds of process. The first is friction or viscous flow.
+Any work raises the internal energy, by the first law; what distinguishes
+frictional work is the path. Reversible work, $-P\,dV$, raises $U$ at constant
+entropy and is returned when the volume is restored. Frictional work
+$\dbar W_{\rm fr}>0$ (stirring, rubbing) raises $U$ with no change of volume
+and no heat, so that Eq.~\eqref{eq:dU} gives
+$dS=\dbar W_{\rm fr}/T>0$, all of it created: the system ends in the state it
+would have reached by absorbing the heat $\dbar W_{\rm fr}$, and the work
+cannot be returned. This is the one case that can be described as internal
+production of heat. The second is heat flowing across a finite
+temperature difference, inside the system or between it and the reservoir. The
+third is free expansion or mixing, where there is neither heat nor work. In the free
 expansion of an ideal gas $Q=W=0$ and $\Delta U=0$, yet
 $\Delta S=Nk_B\ln(V_{\rm f}/V_{\rm i})>0$, all of it created.
 Reversibility is equivalent to the vanishing of the \emph{created} part, not
