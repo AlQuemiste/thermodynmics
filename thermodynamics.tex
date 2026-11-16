@@ -327,6 +327,17 @@ $\det\mathsf{H}\geq0$; Section~\ref{sec:stability} uses this case.}
 \subsection{The Legendre transform}
 \label{sec:legendre}
 
+A function $U(S)$ encodes a relation between an independent variable $S$ and a
+value $U$. The Legendre transform encodes the same information with the
+\emph{slope} $T=U'(S)$ as the independent variable. It is the appropriate tool
+when two conditions are met~\cite{Zia}: the function is strictly convex (or
+strictly concave) and smooth, so that the slope can stand in for the point;
+and the slope is easier to control or to measure than the variable itself.
+Thermodynamics meets both. The temperature of a sample is set by a bath and
+read from a thermometer, whereas its entropy can be neither set nor read
+directly. The variable held fixed is the \emph{control} and its conjugate the
+\emph{response}; the transform exchanges the two roles.
+
 \paragraph{Definition.} Let $U(S)$ be strictly convex and $C^{1}$ on an
 interval, and let $T:= U'(S)$ be its slope. Because $U'$ is strictly
 increasing, each value of $T$ in the range of $U'$ is attained at exactly one
@@ -361,6 +372,49 @@ The two relations are symmetric: $S$ is recovered from $F$ by a
 differentiation, just as $T$ is obtained from $U$. The transform is therefore
 invertible by the same operation, $U(S)=F(T(S))+T(S)\,S$ with $T(S)$ the
 solution of $F'(T)=-S$, and \emph{no information is lost}.
+
+\paragraph{The symmetric form.} The sign convention of thermodynamics hides how
+symmetric the construction is. In terms of $\Phi(T):=-F(T)$,
+Eqs.~\eqref{eq:legendre_def} and \eqref{eq:legendre_deriv} read~\cite{Zia}
+\begin{equation}\label{eq:legendre_sym}
+  U(S)+\Phi(T)=T\,S ,\qquad \frac{dU}{dS}=T ,\qquad \frac{d\Phi}{dT}=S .
+\end{equation}
+There is only one independent variable here: either $S$, with $T=T(S)$, or $T$,
+with $S=S(T)$. Four properties can be read off.
+\begin{itemize}
+\item \emph{Duality.} Eq.~\eqref{eq:legendre_sym} is unchanged when the pairs
+$(U,S)$ and $(\Phi,T)$ are exchanged, so the transform of $\Phi$ is $U$: the
+Legendre transform is \emph{its own inverse}, unlike a Fourier or a Laplace
+transform. The minus signs in $F=U-TS$ and $dF/dT=-S$ are the price of
+working with $F=-\Phi$.
+\item \emph{Inverse slopes.} The slope functions $T(S)=U'(S)$ and
+$S(T)=\Phi'(T)$ are inverse functions of each other. This is the shortest
+characterisation of the transform: two functions are Legendre transforms of
+each other when their derivatives are inverse functions, the additive constant
+being fixed by $U+\Phi=TS$. The transform thus stores the map $S(T)$ as its own
+derivative, which is exactly what the substitution $U(S(T))$ fails to do
+(next paragraph).
+\item \emph{Geometry.} In Figure~\ref{fig:convex}b the tangent of slope $T$
+rises by $T\,S$ between the axis $S=0$ and the point of tangency, from the
+intercept $F=-\Phi$ to the value $U$: this is $TS=U+\Phi$. The subtraction in
+the definition is what makes the intercept, and not some other combination,
+the transform.
+\item \emph{Extrema.} Where $U$ has its minimum the tangent is horizontal,
+$T=0$, and its intercept is the minimum itself: $F(0)=U_{\min}$. Dually, $F$
+is stationary where $S=-F'(T)=0$, and its value there is $U(0)$. In
+thermodynamics the first relation says that the free energy at zero
+temperature is the lowest energy the system can have.
+\end{itemize}
+\emph{Example.} For $U(S)=S^{p}/p$ with $S>0$ and $p>1$, the slope is
+$T=S^{p-1}$, hence $S(T)=T^{1/(p-1)}$ and
+\[
+  \Phi(T)=TS-U=\Big(1-\frac1p\Big)S^{p}=\frac{T^{q}}{q} ,\qquad
+  \frac1p+\frac1q=1 .
+\]
+A power is transformed into the conjugate power. The parabola $p=q=2$ is
+self-dual (Figure~\ref{fig:convex}c), and a function that is nearly straight,
+$p\to1$, has a steep transform, $q\to\infty$. Black-body radiation at fixed
+volume is the case $p=4/3$: $U\propto S^{4/3}$ corresponds to $F\propto-T^{4}$.
 
 \paragraph{What naive substitution loses.} The transform is not the same as
 expressing $U$ in terms of $T$. Because the map $S\mapsto T$ is one-to-one,
@@ -465,6 +519,16 @@ its slope, and not a graph of small slope. The picture is this: where $U(S)$ is
 nearly straight, the slope $T$ changes very little over a wide range of $S$, so
 the inverse function $S(T)$ swings through that wide range for a tiny change of
 $T$, and $F$, whose slope is $-S$, bends sharply.
+In the symmetric form~\eqref{eq:legendre_sym} the statement is
+$U''(S)\,\Phi''(T)=1$, and differentiating again gives a relation at every
+order, the next one being
+\[
+  \frac{d^{3}\Phi}{dT^{3}}
+  =-\left(\frac{d^{2}U}{dS^{2}}\right)^{-3}\frac{d^{3}U}{dS^{3}} .
+\]
+Only inverse powers of $U''$ appear. The transform is therefore as smooth as
+the function, $F\in C^{n}$ wherever $U\in C^{n}$ and $U''>0$, and it can become
+singular only where $U''$ vanishes or where $U$ is itself singular.
 
 The limiting case, $U$ exactly affine on an interval, shows that this is the
 correct reading and what it becomes when $U''$ vanishes. Let
@@ -532,7 +596,12 @@ straight segment touching the graph at two points with a common tangent, the
 barrier between two wells, and with it every metastable or unstable state.}
 of $U$ (Figure~\ref{fig:convex}c). The reason is that a transform built from
 tangent lines can only see the part of the graph that is touched by a
-supporting line from below, and that is precisely the hull. In thermodynamics
+supporting line from below, and that is precisely the hull. In terms of the
+definition by the slope, Eq.~\eqref{eq:legendre_def}, a non-convex $U$ has
+several points $S_i(T)$ with the same slope $T$ and its transform is
+multivalued, with branches $U(S_i)-T\,S_i$; the minimum in
+Eq.~\eqref{eq:legendre_inf} keeps the lowest branch, and $F$ has a kink where
+two branches cross~\cite{Zia}. In thermodynamics
 this is the Maxwell construction (Section~\ref{sec:transitions} and
 Appendix~\ref{app:maxwell}): transforming a non-convex computed potential to its
 conjugate variable and back replaces the non-convex stretch by a straight
@@ -541,7 +610,25 @@ segment, i.e.\ by a two-phase mixture.
 \paragraph{Several variables.} Everything above applies to a function of
 several variables transformed in one of them, the others being held fixed as
 parameters. Successive transforms in different variables commute, and each
-replaces one extensive variable by its conjugate slope. The mixed convexity
+replaces one extensive variable by its conjugate slope. A function of $M$
+variables therefore has $2^{M}$ transforms, one for each choice of the
+variables traded. They sit at the corners of an $M$-dimensional cube whose
+edges are the single transforms, and all of them carry the same
+information~\cite{Zia}; the potentials of Section~\ref{sec:family} are such a
+family. For the transform in all the variables,
+$\Phi(\mathbf{s})=\sum_i s_i x_i-U(\mathbf{x})$ with $s_i=\partial U/\partial
+x_i$, the symmetric form gives $\partial\Phi/\partial s_i=x_i$, and
+Eq.~\eqref{eq:reciprocal} becomes a matrix statement:
+\[
+  \sum_{m}\frac{\partial^{2}\Phi}{\partial s_l\,\partial s_m}\,
+  \frac{\partial^{2}U}{\partial x_m\,\partial x_n}
+  =\sum_m\frac{\partial x_l}{\partial s_m}\,\frac{\partial s_m}{\partial x_n}
+  =\delta_{ln} ,
+\]
+the two Hessians are inverse matrices. This requires the Hessian of $U$ to be
+invertible. For an extensive $U(S,V,N)$ it is not, and the transform in all
+three variables vanishes identically (Section~\ref{sec:euler}); at least one
+extensive variable must be kept. The mixed convexity
 of the result is the point that needs care. Let $U(S,V)$ be jointly convex and
 transform it in $S$ only,
 \[
@@ -616,7 +703,8 @@ and $\Omega$, whereas for $U(S,V,N)$ they are a single matrix statement.
 \end{tikzpicture}
 \caption{\textbf{(a)} A convex function: every chord lies on or above the
 graph. \textbf{(b)} The Legendre transform. The tangent of slope $T$ touches
-the graph at $S(T)$; its intercept with the vertical axis is $F(T)=U-TS$. The
+the graph at $S(T)$; its intercept with the vertical axis is $F(T)=U-TS$,
+since the tangent rises by $TS$ between $S=0$ and $S(T)$. The
 family of all tangents reconstructs the curve, so the transform loses nothing.
 \textbf{(c)} The straight lines $\ell_S(T)=U(S)-TS$ for several fixed $S$
 (thin) and their lower envelope $F(T)=\min_S\ell_S(T)$ (thick), which is
@@ -2243,7 +2331,20 @@ $Z=\sum_EW(E)e^{-\beta E}$; likewise $\Xi=\sum_NZe^{\beta\mu N}$ and
 $\Delta=\int dV\,Ze^{-\beta PV}$. Evaluating each
 Laplace transform by steepest descent in the thermodynamic limit reproduces the
 Legendre transform, with the saddle point at the equilibrium value of the
-fluctuating variable (Section~\ref{sec:equivalence}).
+fluctuating variable (Section~\ref{sec:equivalence}). For the canonical row,
+$\ln Z=\max_E[\ln W(E)-\beta E]$ up to terms negligible in the thermodynamic
+limit, which in terms of the dimensionless functions $S/k_B=\ln W$ and
+$\beta F=-\ln Z$ reads
+\[
+  \beta F+\frac{S}{k_B}=\beta E ,\qquad
+  \frac{\partial(S/k_B)}{\partial E}=\beta ,\qquad
+  \frac{\partial(\beta F)}{\partial\beta}=E .
+\]
+This is the symmetric form of the Legendre transform,
+Eq.~\eqref{eq:legendre_sym}, with every sign positive: the variable conjugate
+to the energy is $\beta$, and $F=U-TS$ is the same statement written with $T$
+in its place, which is where the minus signs of the thermodynamic convention
+come from~\cite{Zia}.
 
 \paragraph{The identification with thermodynamics.} That $-k_BT\ln Z$ is the
 Helmholtz free energy, and not merely a function with its name, rests on two
@@ -2916,6 +3017,9 @@ Mechanics and Thermodynamics} (Oxford University Press, Oxford, 2012).
 (Springer, Berlin, 2006).
 \bibitem{Plischke} M. Plischke and B. Bergersen, \emph{Equilibrium Statistical
 Physics}, 3rd ed.\ (World Scientific, Singapore, 2005).
+\bibitem{Zia} R.~K.~P. Zia, E.~F. Redish and S.~R. McKay, \emph{Making sense of
+  the Legendre transform}, Am.\ J.\ Phys.\ \textbf{77}, 614 (2009),
+  arXiv:0806.1147.
 \bibitem{YangLee} C.~N. Yang and T.~D. Lee, Phys.\ Rev.\ \textbf{87}, 404
 (1952); T.~D. Lee and C.~N. Yang, Phys.\ Rev.\ \textbf{87}, 410 (1952).
 \bibitem{Isakov} S.~N. Isakov, Commun.\ Math.\ Phys.\ \textbf{95}, 427 (1984).
