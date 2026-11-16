@@ -225,15 +225,30 @@ the Legendre transform, homogeneous functions and constrained extrema. This
 section collects these tools in the form in which they are used later, so that
 the physical arguments can refer to them without interruption. The reader who
 knows them may skip to Section~\ref{sec:potentials} and return as needed.
-The smoothness required of a function is stated throughout by its
-differentiability class $C^{n}$.\footnote{\label{fn:Cn}%
-\textbf{Differentiability classes.} $f$ is of class $C^{n}$ if all its partial
-derivatives up to order $n$ exist and are continuous; $C^{0}$ is continuity
-alone. The classes are nested: $|x|$ is $C^{0}$ but not $C^{1}$, and $x|x|$ is
-$C^{1}$ but not $C^{2}$. Two facts are used: $f\in C^{1}$ guarantees that the
-differential $df$ exists, and $f\in C^{2}$ guarantees that mixed second
-derivatives are equal, which is what makes the Maxwell relations available
-(Appendix~\ref{app:exact}).}
+
+\paragraph{Differentiability classes.} The smoothness required of a function
+is stated throughout by its differentiability class: $f$ is of class $C^{n}$
+if all its partial derivatives up to order $n$ exist and are continuous;
+$C^{0}$ is continuity alone, and $C^{\infty}$ (\emph{smooth}) means that
+derivatives of every order exist. The classes are nested: $|x|$ is $C^{0}$ but
+not $C^{1}$, and $x|x|$ is $C^{1}$ but not $C^{2}$. Two facts are used:
+$f\in C^{1}$ guarantees that the differential $df$ exists, and $f\in C^{2}$
+guarantees that mixed second derivatives are equal, which is what makes the
+Maxwell relations available (Appendix~\ref{app:exact}).
+
+\paragraph{Analytic versus differentiable.} $f$ is \emph{analytic} at $x_0$ if
+its Taylor series about $x_0$ converges to $f$ in a neighbourhood of $x_0$.
+This is strictly stronger than $C^{\infty}$: $e^{-1/t^{2}}$ (with $f(0)=0$)
+has all derivatives zero at the origin, so its Taylor series is identically
+zero and represents the function nowhere but at $t=0$. \emph{Non-analytic} at
+$x_0$ covers three situations: $f$ may fail to be differentiable (a kink, as
+the Gibbs free energy $G$ at a first-order transition); it may have only
+finitely many continuous derivatives, $C^{k}$ but not $C^{k+1}$ (as
+$|t|^{2-\alpha}$ at a continuous transition, $C^{1}$ but not $C^{2}$ for
+$0<\alpha<1$); or it may be $C^{\infty}$ with a Taylor series that
+misrepresents it. Phase transitions realise the first two
+(Section~\ref{sec:critical}). Appendix~\ref{app:analytic} collects what is
+needed about analytic functions and analytic continuation.
 
 \subsection{Convex and concave functions}
 \label{sec:convex}
@@ -348,15 +363,27 @@ invertible by the same operation, $U(S)=F(T(S))+T(S)\,S$ with $T(S)$ the
 solution of $F'(T)=-S$, and \emph{no information is lost}.
 
 \paragraph{What naive substitution loses.} The transform is not the same as
-expressing $U$ in terms of $T$. Inverting $T=U'(S)$ to $S(T)$ and substituting,
-$\tilde U(T):= U(S(T))$, keeps only the slopes and discards the intercepts.
-That the loss is real is seen by trying to go back: from $F$ one recovers $U$
-by differentiation, $S=-F'(T)$ and $U=F+TS$; from $\tilde U$ one must solve the
-linear differential equation $F-TF'=\tilde U$, whose general solution is a
-particular solution plus $CT$ with $C$ an arbitrary constant. In thermodynamics
-$C$ becomes an arbitrary function of the remaining variables and the ambiguity
-is physical: the classical ideal gas has $\tilde U(T,V,N)=\tfrac32Nk_BT$, which
-does not depend on $V$ and cannot yield the equation of state, whereas
+expressing $U$ in terms of $T$. Because the map $S\mapsto T$ is one-to-one,
+the substitution $\tilde U(T):= U(S(T))$ loses nothing \emph{as long as the
+function $S(T)$ is kept along with it}. The function $\tilde U(T)$ alone,
+however, does not determine $S(T)$ completely. By the chain rule,
+\[
+  \frac{d\tilde U}{dT}=U'\big(S(T)\big)\,\frac{dS}{dT}=T\,\frac{dS}{dT}
+\]
+(in thermodynamics this is the heat capacity $C_V$), so that
+\begin{equation}\label{eq:S_from_Utilde}
+  S(T)=S(T_0)+\int_{T_0}^{T}\frac{dT'}{T'}\,\frac{d\tilde U}{dT'} .
+\end{equation}
+The function $\tilde U$ fixes $S(T)$ only up to the integration constant
+$S(T_0)$, hence $F=\tilde U-TS$ only up to a term $C\,T$ with $C=-S(T_0)$
+arbitrary, and the curve $U(S)$ only up to a rigid shift along the $S$ axis.
+From $F$, by contrast, $S=-F'(T)$ and $U=F+TS$ follow by differentiation, with
+no constant to supply. For a function of one variable the loss is a single
+number. In thermodynamics $S(T_0)$ is an arbitrary function of the remaining
+variables, and the loss is physical: the classical ideal gas has
+$\tilde U(T,V,N)=\tfrac32Nk_BT$, from which Eq.~\eqref{eq:S_from_Utilde} gives
+$S=\tfrac32Nk_B\ln(T/T_0)+S(T_0,V,N)$. The whole dependence on $V$ sits in the
+undetermined function, so $\tilde U$ cannot yield the equation of state, whereas
 $F(T,V,N)=-Nk_BT[\ln(V/N\lambda_T^{3})+1]$ gives $P=-\partial F/\partial V=Nk_BT/V$
 at once.
 
@@ -364,13 +391,13 @@ at once.
 \[
   g_T(S):= U(S)-T\,S .
 \]
-It is strictly convex, since $U$ is and $-TS$ is affine.\footnote{Adding an
-affine function $\ell$ to a convex function $f$ gives a convex function. An
+It is strictly convex, since $U$ is and $-TS$ is affine: adding an affine
+function $\ell$ to a convex function $f$ gives a convex function. Indeed, an
 affine function satisfies Eq.~\eqref{eq:chord} with equality,
-$\ell(xa+(1-x)b)=x\,\ell(a)+(1-x)\,\ell(b)$; adding this to the chord
+$\ell(xa+(1-x)b)=x\,\ell(a)+(1-x)\,\ell(b)$, and adding this to the chord
 inequality of $f$ gives the chord inequality of $f+\ell$ with the same sign,
 $\leq$ or $<$. Strictness is therefore preserved, and the same holds for
-concave $f$ with the inequality reversed.}
+concave $f$ with the inequality reversed.
 Its derivative $g_T'(S)=U'(S)-T$ vanishes only at $S=S(T)$, and a stationary
 point of a strictly convex function is its \emph{unique global minimum}
 (tangent form, Eq.~\eqref{eq:tangent}, with $f'(a)=0$). The minimum of $g_T$
@@ -398,17 +425,27 @@ bracket
 is a \emph{straight line} in $T$, with slope $-S$ and value $U(S)$ at $T=0$
 (Figure~\ref{fig:convex}c); the transform $F(T)=\min_S\ell_S(T)$ is the lowest of these lines at each $T$,
 their lower envelope. A lower envelope of straight lines is concave, and the
-proof is three lines. Take $T(x)=x\,T_1+(1-x)\,T_2$ with $0\leq x\leq1$, and let
-$S^{\ast}=S(T)$ be the value of $S$ that attains the minimum at this $T$. Then
+proof is three lines. Take $T=x\,T_1+(1-x)\,T_2$ with $0\leq x\leq1$, and let
+\[
+  S^{\ast}:=\arg\min_{S}\big[\,U(S)-T\,S\,\big]
+\]
+be the value of $S$ that attains the minimum at this intermediate $T$ (any one
+of them, if there are several), so that $F(T)=\ell_{S^{\ast}}(T)$. Then
 \[
   F(T)=\ell_{S^{\ast}}(T)
   =x\,\ell_{S^{\ast}}(T_1)+(1-x)\,\ell_{S^{\ast}}(T_2)
-  \;\geq\;x\,F(T_1)+(1-x)\,F(T_2) ,
+  \;\geq\;x\,F(T_1)+(1-x)\,F(T_2) .
 \]
-the equality in the middle because $\ell_{S^{\ast}}$ is affine in $T$. The
-inequality holds because $F(T_i)=\min_S\ell_S(T_i)$ is the smallest value taken
-at $T_i$ by any of the lines, so the particular line $S=S^{\ast}$ cannot lie
-below it there: $\ell_{S^{\ast}}(T_i)\geq F(T_i)$ for $i=1,2$. This is the chord inequality for a concave
+The second equality holds because $\ell_{S^{\ast}}$ is affine in $T$. For the
+inequality, note that $S^{\ast}$ was chosen to minimise at $T$, not at $T_1$ or
+$T_2$. At $T_i$ the line $\ell_{S^{\ast}}$ is only one of the candidates in the
+minimum that defines $F(T_i)$, and a minimum is not larger than any of its
+candidates:
+\[
+  F(T_i)=\min_S\ell_S(T_i)\;\leq\;\ell_{S^{\ast}}(T_i) ,\qquad i=1,2 .
+\]
+Multiplying these two inequalities by the non-negative weights $x$ and $1-x$
+and adding them gives the last step. This is the chord inequality for a concave
 function. The argument does not use the convexity of $U$; convexity is
 what makes the transform invertible, so that $U$ is recovered from $F$
 (Eq.~\eqref{eq:legendre_deriv}).
@@ -914,7 +951,7 @@ engines.
 
 The word \emph{macroscopic} in the statement is not decorative. The
 constraint is a wall, a valve, a clamp, a switch: something described by a few
-variables and operated \emph{without any knowledge of the microstate}.
+variables and operated \emph{without any knowledge of the microstate}.\footnote{%
 A constraint that acts on individual molecules is not of this kind.
 Maxwell's demon, a trap door opened for fast molecules travelling one way and for slow ones
 travelling the other, sorts a gas at uniform temperature into a hot half and a
@@ -929,6 +966,7 @@ together does not decrease. The second law bounds what can be achieved with
 \emph{macroscopic} manipulations; what a microscopic agent can do is accounted for
 only when the agent is included in the system (Maxwell's demon and Landauer's
 principle~\cite{ThermalNotes}).
+}
 Clausius' statement (heat does not flow spontaneously from cold to hot) and
 Kelvin's (no cyclic process in contact with a single reservoir converts heat
 into work) are consequences: Clausius' is derived at the end of this
@@ -944,27 +982,37 @@ $S$ exist at the two end points.
 \paragraph{Macroscopic reversibility.} \emph{Reversible} in the statement is a
 property of a macroscopic process, defined operationally in
 Section~\ref{sec:clausius}: quasi-static and without dissipation, so that the
-reversed protocol restores system and surroundings. For a thermally isolated
-system the postulate makes the two notions coincide. A reversible process has
-$\Delta S=0$, because the reversed process is also allowed and would have
-$-\Delta S\geq0$. Conversely, a process with $\Delta S=0$ is reversible,
+reversed protocol restores the \emph{macroscopic} state of system and surroundings.
+For a thermally isolated system the postulate makes reversibility and
+$\Delta S=0$ coincide.
+A reversible process has $\Delta S=0$, because the reversed process
+is also allowed and would have $-\Delta S\geq0$.
+Conversely, a process with $\Delta S=0$ is reversible,
 because any irreversibility consists of the relaxation of some internal
 variable from a value held by a released constraint to its equilibrium value,
 and the postulate says that such a relaxation strictly increases $S$. For a
 system that is \emph{not thermally isolated} the two notions must be kept apart,
 because $S$ then changes for two reasons. Entropy can be \emph{transferred}
-across the boundary with the heat, and it can be \emph{created} inside; the
-balance along any process is
+across the boundary with the heat exchanged with a reservoir,
+and it can be \emph{created} by irreversibility; the balance along any process is
 \[
   dS=\frac{\dbar Q}{T_{\rm res}}+\dbar S_{\rm created} ,\qquad
   \dbar S_{\rm created}\geq0 ,
 \]
 with $T_{\rm res}$ the temperature of the reservoir supplying the heat
 (Section~\ref{sec:clausius}, where this follows from the Clausius inequality).
+\emph{Created} does not mean that heat is produced inside the system. Entropy
+is created by every irreversible relaxation: by friction or viscous flow,
+where work is dissipated into internal energy (the one case that can be
+described as internal production of heat); by heat flowing across a finite
+temperature difference, inside the system or between it and the reservoir; and
+by free expansion or mixing, where there is neither heat nor work. In the free
+expansion of an ideal gas $Q=W=0$ and $\Delta U=0$, yet
+$\Delta S=Nk_B\ln(V_{\rm f}/V_{\rm i})>0$, all of it created.
 Reversibility is equivalent to the vanishing of the \emph{created} part, not
 of $\Delta S$: a reversible isothermal expansion has $\Delta S=Q/T>0$ and
-creates nothing, the loss of entropy of the reservoir, $-Q/T$, compensating
-exactly.\footnote{Along a reversible path $\dbar Q=T\,dS$
+creates no entropy, the loss of entropy of the reservoir, $-Q/T$,
+compensating exactly.\footnote{Along a reversible path $\dbar Q=T\,dS$
 (Eq.~\eqref{eq:TdS}); at constant $T$ this integrates to $Q=T\,\Delta S$. The
 sign follows from the Maxwell relation
 $(\partial S/\partial V)_{T,N}=(\partial P/\partial T)_{V,N}$, which is
@@ -973,34 +1021,6 @@ gas $Q=Nk_BT\ln(V_{\rm f}/V_{\rm i})>0$. The reservoir, at the same temperature
 $T$, gives up the heat $Q$ reversibly and its entropy changes by $-Q/T$. The
 total entropy of system and reservoir is unchanged.} The isolated system is the case $\dbar Q=0$, where transfer is
 absent and the two statements become one.
-
-\paragraph{Thermodynamic and microscopic reversibility.} The word
-\emph{reversible} is the point at which thermodynamics touches the
-microscopic dynamics, and the two usages must not be confused. The
-microscopic dynamics is reversible always, for every process: the equations of
-motion are invertible and, without magnetic fields, invariant under time
-reversal, so that every microscopic history has a time-reversed partner that is
-equally a solution. Thermodynamic
-reversibility is a property of some processes only, and of the
-\emph{protocol} rather than of the equations of motion: running the macroscopic
-controls backwards (pistons, fields, the temperatures of the reservoirs)
-restores system and surroundings. The two are not in conflict, because
-reversing the controls is not reversing the microstate. A free expansion is
-undone microscopically by reversing every velocity, which no piston can do;
-pushing the gas back with a piston restores its volume but leaves its entropy,
-and that of the surroundings, higher than before. The link between the two
-notions belongs to the microscopic foundations~\cite{ThermalNotes}, and it can be
-stated here in one line. The entropy created in a process is the information about the
-initial state that has been moved out of reach of the macroscopic controls,
-into correlations between the system and the unmonitored degrees of freedom of
-its surroundings and into the deviation of the surroundings from equilibrium;
-for a system in contact with a bath this is an exact identity. A process is
-thermodynamically reversible exactly when nothing of the kind happens, so that
-the time reversal of the microscopic dynamics, which always exists, can be
-carried out by the macroscopic controls alone. Quasi-static processes come
-close because a Gibbs state is fixed by a few macroscopic parameters: the
-reversed protocol leads the system back through the same sequence of Gibbs
-states without anyone having to know the microstate.
 
 \paragraph{The entropy representation.} Since $S$ is continuous and strictly
 increasing in $U$ at fixed $(V,N)$, the map $U\mapsto S$ is one-to-one and the
@@ -1029,7 +1049,7 @@ eigenstates of the Hamiltonian in a narrow window at energy $U$, so that
 \]
 is the logarithmic growth rate of the many-body density of states.
 Monotonicity of $S$ is therefore the statement that the number of states
-available to the system grows with its energy, and the sign of $T$ is the sign
+available to the isolated system grows with its energy, and the sign of $T$ is the sign
 of that growth. For a spectrum unbounded above it does grow. For the classical
 ideal gas the momenta fill a $3N$-dimensional sphere of radius $\sqrt{2mU}$,
 $W\propto V^{N}U^{3N/2}$ up to factors independent of $U$, and
@@ -1893,21 +1913,8 @@ uniform state is metastable and decays by nucleation.
 \emph{Euler homogeneity} is scaling in the extensive variables
 at fixed intensive ones; it needs only short-range interactions and a
 correlation length small compared with the sample, and it holds at and
-arbitrarily close to a critical point. \emph{Analyticity}\footnote{\label{fn:analytic}%
-\textbf{Analytic versus differentiable.} $f$ is \emph{analytic} at $x_0$ if
-its Taylor series about $x_0$ converges to $f$ in a neighbourhood of $x_0$.
-This is strictly stronger than $C^{\infty}$: $e^{-1/t^{2}}$ (with $f(0)=0$)
-has all derivatives zero at the origin, so its Taylor series is identically
-zero and represents the function nowhere but at $t=0$. \emph{Non-analytic} at
-$x_0$ covers three situations: $f$ may fail to be differentiable (a kink, as
-$G$ at a first-order transition);
-it may have only finitely many continuous derivatives, $C^{k}$ but not
-$C^{k+1}$, hence not smooth (as
-$|t|^{2-\alpha}$ at a continuous transition, $C^{1}$ but not $C^{2}$ for
-$0<\alpha<1$); or it may be $C^{\infty}$ with a Taylor series that
-misrepresents it. Phase transitions realise the first two.
-Appendix~\ref{app:analytic} collects what is needed about analytic functions
-and analytic continuation.} of the potential in its intensive variables is
+arbitrarily close to a critical point. \emph{Analyticity}
+(Section~\ref{sec:math}) of the potential in its intensive variables is
 what fails, and with it the smoothness of second derivatives.
 
 \paragraph{The two-dimensional Ising specific heat.} Onsager's exact solution
@@ -2984,7 +2991,7 @@ $dF=-S\,dT-P\,dV$ and $dG=-S\,dT+V\,dP$,
 \]
 These are the workhorses that convert an unmeasurable entropy derivative into a
 measurable equation-of-state derivative. They require $F,G\in C^{2}$, which is
-the symmetry of the Hessian (footnote~\ref{fn:Cn}).
+the symmetry of the Hessian (Section~\ref{sec:math}).
 
 \paragraph{Integrating factor.} Although $\dbar Q_{\rm rev}$ is inexact, dividing
 by $T$ makes it exact:
