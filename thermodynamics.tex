@@ -3095,36 +3095,51 @@ $\chi(\mathbf q)$, its limiting value. The exponents $\nu$ and $\eta$ reside
 in the approach to that limit,
 $\chi(\mathbf q)\simeq\chi\,\big[1-q^{2}\ell_c^{2}+\dots\big]$ for
 $q\ell_c\ll1$ and $\chi(\mathbf q)\sim q^{-(2-\eta)}$ for $q\ell_c\gg1$, and
-therefore in $g(\xi;h_{\mathbf q})$ at small non-zero $\mathbf q$. In a finite
-periodic sample the smallest non-zero wave vector is $2\pi/L$, so the same
-information is carried by the second parameter, the linear size $L$ of the
-sample, without any modulated field. With
-$s(k,h,L^{-1})=(k_B/L^{d})\ln g_L$ the entropy density of the spectrum of the
-finite system, let Eq.~\eqref{eq:filt_shom} extend to
+therefore in $g(\xi;h_{\mathbf q})$ at small non-zero $\mathbf q$.
+
+The second parameter needs no modulated field. Microscopically the size of
+the system is the number $N$ of its components (lattice sites, particles); a
+length or a volume enters only through the geometry of the couplings in
+$\hat H$, as $L=N^{1/d}$ lattice spacings for couplings that form a
+$d$-dimensional lattice. The smallest non-zero wave vector is then
+$2\pi/L$, so the dependence of the spectrum on $N$ carries the same
+information as its dependence on $h_{\mathbf q}$ at small $\mathbf q$. Let
+$s(k,h,N^{-1})=(k_B/N)\ln g_N$ be the entropy of the spectrum per component,
+with $k$ and $\epsilon$ now energies per component, and let
+Eq.~\eqref{eq:filt_shom} extend to
 \[
-  s_{\rm sing}(\lambda\epsilon,\lambda^{b}h,\lambda^{b_L}L^{-1})
-  =\lambda^{\sigma}s_{\rm sing}(\epsilon,h,L^{-1}) .
+  s_{\rm sing}(\lambda\epsilon,\lambda^{b}h,\lambda^{b_N}N^{-1})
+  =\lambda^{\sigma}s_{\rm sing}(\epsilon,h,N^{-1}) .
 \]
 The scaling function in Eq.~\eqref{eq:filt_crit} then acquires the further
-argument $L^{-1}/|t|^{\,b_L/(\sigma-1)}=\ell_c/L$, so that
+argument $N^{-1}/|t|^{\,b_N/(\sigma-1)}=N_c/N$, where
 \[
-  \nu=\frac{b_L}{\sigma-1} .
+  N_c\sim|t|^{-\nu_*} ,\qquad \nu_*=\frac{b_N}{\sigma-1} ,
 \]
-Under the rescaling the singular part of the logarithm of the \emph{total}
-density of states, $L^{d}s_{\rm sing}/k_B$, is multiplied by
-$\lambda^{\sigma-d\,b_L}$. It is invariant if and only if $\sigma=d\,b_L$,
-i.e.\ $2-\alpha=d\nu$: hyperscaling is the statement that $\ln g_{L,\rm sing}$
-of the whole sample depends on $L$ only through the scaling combinations
-$\epsilon L^{d/\sigma}$ and $hL^{bd/\sigma}$, which is the relation (FSS) of
+is the number of components that fluctuate coherently. Under the rescaling
+the singular part of the logarithm of the \emph{total} density of states,
+$N s_{\rm sing}/k_B$, is multiplied by $\lambda^{\sigma-b_N}$. It is invariant
+if and only if $\sigma=b_N$, i.e.
+\[
+  2-\alpha=\nu_* :
+\]
+$\ln g_{N,\rm sing}$ of the whole system depends on $N$ only through the
+scaling combinations $\epsilon N^{1/\sigma}$ and $hN^{b/\sigma}$. No length
+has been used, and the statement holds also where none exists: for the
+infinite-range Ising model the scaling variable is $tN^{1/2}$, so $\nu_*=2$,
+in agreement with $\alpha=0$. Geometry enters in one step only. On a
+$d$-dimensional lattice $N_c=\ell_c^{\,d}$, so $\nu_*=d\nu$ and the relation
+above is hyperscaling, $2-\alpha=d\nu$, i.e.\ the relation (FSS) of
 Appendix~\ref{app:fss} written for the spectrum. Finally, at $t=h=0$ the
-susceptibility of the finite sample grows as $L^{\gamma/\nu}$, and with
-$\chi=\int d^{d}r\,G(r)/k_BT$ cut off at $r\sim L$ this is $L^{2-\eta}$:
-$\eta=2-\gamma/\nu$. The complete set of static exponents thus follows from
-three exponents $(\sigma,b,b_L)$ of $g_L(\xi;h)$, reduced to two by
-hyperscaling.
+susceptibility of the finite system grows as $N^{\gamma/\nu_*}=L^{\gamma/\nu}$,
+and with $\chi=\int d^{d}r\,G(r)/k_BT$ cut off at $r\sim L$ this is
+$L^{2-\eta}$: $\eta=2-\gamma/\nu$. The complete set of static exponents thus
+follows from three exponents $(\sigma,b,b_N)$ of $g_N(\xi;h)$ and the
+dimension $d$ of the lattice of couplings, the three being reduced to two
+when $\sigma=b_N$.
 
 \paragraph{Scope of the spectral formulation.} The input is the many-body
-density of states $g(\xi;h,L)$ alone, a microscopic object that is defined
+density of states $g_N(\xi;h)$ alone, a microscopic object that is defined
 for every Hamiltonian and can be computed directly (by exact diagonalisation,
 or by sampling methods that estimate $g$). No property of a free energy is
 postulated, and neither a coarse-graining, a fixed point nor universality is
@@ -3148,7 +3163,7 @@ transform is invertible, homogeneity of $s_{\rm sing}$ and homogeneity of
 $\omega_{\rm sing}$ imply one another: at a critical point the relations among
 the exponents are those of Section~\ref{sec:critical}, as they must be. And
 the formulation reads the exponents off the spectrum but does not compute the
-spectrum: $(\sigma,b,b_L)$ are properties of $g$ that must be obtained from
+spectrum: $(\sigma,b,b_N)$ are properties of $g$ that must be obtained from
 the Hamiltonian, exactly, numerically or otherwise.
 
 \paragraph{What $c(T)$ determines.} Given $C_\mu$ at all temperatures, the
