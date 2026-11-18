@@ -2667,7 +2667,11 @@ spectrum. The starting point is one identity: every partition function is the
 \emph{Laplace transform} of the many-body density of states. Everything
 measured in equilibrium, the heat capacity, the entropy, the response
 functions, is therefore the many-body spectrum seen through the Boltzmann
-weight, and every response is a covariance. Two consequences are drawn. The
+weight, and every response is a covariance. A field or any other parameter
+of the Hamiltonian enters the thermodynamics only through the density of
+states, so that an order parameter and its susceptibility are fixed by the
+first and second derivatives of the density of states with respect to that
+parameter. Two consequences are drawn. The
 low-energy shape of the density of states fixes the low-temperature power laws
 of the observables, and this is the origin of the scaling forms of
 Section~\ref{sec:critical}; and a divergent response requires correlated
@@ -2794,6 +2798,77 @@ diagonal response then satisfies $ 0 \leq \chi_{AA} \leq \Var(\hat A)/k_BT $, wi
 equality if and only if $ \hat A $ is conserved: a non-conserved quantity
 responds less than it fluctuates.
 
+\paragraph{Parameters enter only through the density of states.} Let
+$ \hat{\mathcal{H}} $ depend on a parameter $ f $ (a field, a coupling
+constant), so that its eigenvalues are $ \xi_a(f) $ and its density of states
+is $ g(\xi;f) = \sum_a\delta(\xi - \xi_a(f)) $. In
+$ \Xi(T,f) = \int d\xi\,g(\xi;f)\,e^{-\beta\xi} $ the Boltzmann weight is a fixed
+kernel, independent of $ f $, so every derivative with respect to $ f $ acts on
+$ g $ alone:
+\[
+  \Xi_n := \frac{\partial^{n}\Xi}{\partial f^{n}}
+  = \int d\xi\;\frac{\partial^{n}g(\xi;f)}{\partial f^{n}}\,e^{-\beta\xi} .
+\]
+For a field coupled to $ \hat A $, $ \hat{\mathcal{H}} \to \hat{\mathcal{H}} - f\hat A $,
+the conjugate quantity is $ \langle\hat A\rangle = -\partial\Omega/\partial f $,
+and with $ \Omega = -k_BT\ln\Xi $
+\begin{equation}\label{eq:filt_param}
+  \langle\hat A\rangle = k_BT\,\frac{\Xi_1}{\Xi} , \qquad
+  \chi_{AA} = \frac{\partial\langle\hat A\rangle}{\partial f}\bigg|_{T,\mu}
+  = k_BT\left[\frac{\Xi_2}{\Xi} - \left(\frac{\Xi_1}{\Xi}\right)^{2}\right] .
+\end{equation}
+The order parameter is the Laplace transform of the first field derivative of
+the density of states, and the susceptibility that of the second (less the
+square of the first), each normalised by $ \Xi $. Both statements are exact and
+hold whether or not $ \hat A $ is conserved; in the latter case the change of
+the eigenvectors is contained in the curvature
+$ \partial^{2}\xi_a/\partial f^{2} $ of the levels, and
+Eq.~\eqref{eq:filt_param} is Eq.~\eqref{eq:filt_mb_kubo} in another form.
+
+The derivative of $ g $ has a direct meaning. A level moves with the field at
+the rate $ \partial\xi_a/\partial f = -A_{aa} $, with
+$ A_{aa} = \langle a|\hat A|a\rangle $ (the Hellmann--Feynman
+theorem\footnote{For a normalised eigenvector
+$ |a(f)\rangle $ of $ \hat{\mathcal{H}}(f) $ with eigenvalue $ \xi_a(f) $,
+$ \partial\xi_a/\partial f = \langle a|\partial\hat{\mathcal{H}}/\partial f|a\rangle $:
+the terms containing the derivative of the eigenvector add up to
+$ \xi_a\,\partial\langle a|a\rangle/\partial f = 0 $. Within a degenerate level
+the basis is chosen to diagonalise $ \partial\hat{\mathcal{H}}/\partial f $.}).
+Levels are neither created nor destroyed, so $ g $ obeys a continuity equation
+on the $ \xi $ axis,
+\begin{equation}\label{eq:filt_flow}
+  \frac{\partial g}{\partial f} = \frac{\partial}{\partial\xi}\big[g(\xi;f)\,\bar A(\xi;f)\big] ,
+  \qquad
+  \bar A(\xi;f) := \frac{1}{g(\xi;f)}\sum_a A_{aa}\,\delta(\xi - \xi_a) ,
+\end{equation}
+where $ \bar A $ is the average of $ \hat A $ over the eigenstates at $ \xi $ (the
+microcanonical average). Inserting this in $ \Xi_1 $ and integrating by parts
+gives $ \langle\hat A\rangle = \int d\xi\,P_T(\xi)\,\bar A(\xi;f) $.
+
+In a macroscopic system $ g = \exp[V s(k,f)/k_B] $, with $ k = \xi/V $ and $ s $
+the entropy density of the spectrum, and the Laplace transform is dominated
+by its saddle point (Section~\ref{sec:equivalence}): the grand potential
+density is $ \omega(T,f) = \min_k[k - T s(k,f)] $, and the minimum $ k_*(T,f) $
+solves $ \partial s/\partial k = 1/T $. Writing $ a := \langle\hat A\rangle/V $
+and denoting partial derivatives of $ s $ by subscripts,
+\begin{equation}\label{eq:filt_curv}
+  a = T\,s_f , \qquad
+  c_\mu = -\frac{1}{T^{2}\,s_{kk}} , \qquad
+  \chi = \frac{\partial a}{\partial f}\bigg|_{T} = T\left(s_{ff} - \frac{s_{kf}^{2}}{s_{kk}}\right) ,
+\end{equation}
+all evaluated at $ k_* $. The first is $ a = -\partial\omega/\partial f $ at the
+minimum; the other two follow by differentiating $ s_k(k_*,f) = 1/T $, which
+gives $ \partial k_*/\partial T = -1/(T^{2}s_{kk}) = c_\mu $ and
+$ \partial k_*/\partial f = -s_{kf}/s_{kk} $. The temperature appears only as
+the selector of the energy density $ k_* $ at which the spectrum is examined;
+the observables are derivatives of $ \ln g $ there. Stability, $ c_\mu > 0 $, is
+the concavity $ s_{kk} < 0 $, and a response can diverge only where the
+curvature $ s_{kk} $ of $ \ln g $ vanishes or $ s_{ff} $ diverges. A critical
+point is therefore a property of the density of states at one energy density
+$ k_c $ and one value of the field, and the form of $ s $ near that point
+decides the form of the singularities
+(Section~\ref{sec:filt_lowenergy}).
+
 \paragraph{Exact limits.} Three statements follow from Eq.~\eqref{eq:filt_mb} with no
 assumption on $ \hat H $.
 \begin{itemize}
@@ -2900,10 +2975,86 @@ $T^{r+2}$, and $c\sim T^{r+1}$ is recovered. No property of the Hamiltonian
 was used: a Legendre transform maps a generalised homogeneous function to a
 generalised homogeneous function, so a scale-free many-body spectrum yields
 power laws and scaling functions in thermodynamics, with exponents fixed by
-those of the spectrum. The same holds for the singular parts about a critical
-point at finite temperature, with the energy density and the order parameter
-measured from their critical values in place of $(k,\delta)$, and $(t,h)$ in
-place of $(T,\delta)$.
+those of the spectrum.
+
+\paragraph{Critical exponents from the spectrum.} The same argument applies
+at a critical point at finite temperature $T_c$ and field $h=0$, and yields
+the static scaling laws of Section~\ref{sec:critical} from the shape of the
+density of states, with no reference to the free energy. Let $k_c$ be the
+energy density selected by $T_c$, $\epsilon:=k-k_c$, and
+\[
+  s(k,h)=s(k_c,0)+\frac{\epsilon}{T_c}+s_{\rm sing}(\epsilon,h) ,
+\]
+the linear term being fixed by $\partial s/\partial k=1/T_c$ at the critical
+point. With $t=(T-T_c)/T_c$, $k-T\epsilon/T_c=k_c-t\epsilon$, so to leading
+order in $t$
+\[
+  \omega_{\rm sing}(t,h)=\min_\epsilon\big[-t\,\epsilon-T_c\,s_{\rm sing}(\epsilon,h)\big] :
+\]
+the reduced temperature is the variable conjugate to the energy density.
+Assume that the leading part of $s_{\rm sing}$ is generalised homogeneous,
+\begin{equation}\label{eq:filt_shom}
+  s_{\rm sing}(\lambda\epsilon,\lambda^{b}h)=\lambda^{\sigma}s_{\rm sing}(\epsilon,h) ,
+  \qquad \sigma>2 ,
+\end{equation}
+for instance $s_{\rm sing}(\epsilon,0)=-B_\pm|\epsilon|^{\sigma}$ with
+amplitudes $B_\pm>0$ for $\epsilon\gtrless0$. The condition $\sigma>2$ states
+that the curvature $s_{kk}$ of $\ln g$ vanishes at $k_c$, i.e.\ by
+Eq.~\eqref{eq:filt_curv} that the heat capacity diverges. Substituting
+$\epsilon=\lambda\epsilon'$ in the minimisation gives
+$\omega_{\rm sing}(\lambda^{\sigma-1}t,\lambda^{b}h)=\lambda^{\sigma}\omega_{\rm sing}(t,h)$,
+and the choice $\lambda=|t|^{-1/(\sigma-1)}$ gives Eq.~\eqref{eq:scaling},
+\begin{equation}\label{eq:filt_crit}
+  \omega_{\rm sing}(t,h)=|t|^{\sigma/(\sigma-1)}\,
+  \Phi_\pm\left(\frac{h}{|t|^{\,b/(\sigma-1)}}\right),
+  \qquad
+  2-\alpha=\frac{\sigma}{\sigma-1} ,\quad \Delta=\frac{b}{\sigma-1} ,
+\end{equation}
+with $\Phi_\pm(y):=\omega_{\rm sing}(\pm1,y)$. The exponents of
+Eq.~\eqref{eq:exponents} then follow as in Section~\ref{sec:critical},
+\[
+  \alpha=\frac{\sigma-2}{\sigma-1} ,\qquad
+  \beta=\frac{\sigma-b}{\sigma-1} ,\qquad
+  \gamma=\frac{2b-\sigma}{\sigma-1} ,\qquad
+  \delta=\frac{b}{\sigma-b} ,
+\]
+and satisfy Eq.~\eqref{eq:rushbrooke} identically. All static thermodynamic
+exponents are fixed by the two exponents $(\sigma,b)$ of the many-body
+density of states at $k_c$; for the three-dimensional Ising class
+$\sigma\simeq2.12$ and $b\simeq1.76$. If instead the curvature
+$s_{kk}(k_c)$ stays finite (a finite heat capacity with a cusp, $\alpha<0$),
+the regular quadratic term of $s$ dominates the minimisation,
+$\epsilon_*\propto t$, and the singular term passes to the potential
+unchanged, $\omega_{\rm sing}(t,h)\simeq-T_c\,s_{\rm sing}(\epsilon_*(t),h)$:
+then $2-\alpha=\sigma$ and $\Delta=b$, where $\sigma>2$ now expresses that
+the singular term is subleading to the quadratic one.
+
+\paragraph{Singularities that are not power laws.} Homogeneity is a special
+case. Eq.~\eqref{eq:filt_curv} holds for any shape of $s(k,h)$, and the
+character of the transition is read from the way $\ln g$ loses its curvature
+at $k_c$. For the two-dimensional Ising model
+$s_{\rm sing}\simeq-B\,\epsilon^{2}/\ln(1/|\epsilon|)$: the curvature vanishes
+only logarithmically, the minimisation gives
+$\epsilon_*\propto t\,\ln(1/|t|)$, and $c=\partial\epsilon_*/\partial t$
+diverges as $\ln(1/|t|)$, the result of Section~\ref{sec:critical}. At a
+Kosterlitz--Thouless transition the singular part of the potential is an
+essential singularity, $\omega_{\rm sing}\propto\exp(-{\rm const}/\sqrt{t})$
+for $t>0$, all of whose derivatives vanish at $t=0$; correspondingly $s$ has
+finite curvature and an essential singularity at $k_c$, and no pair
+$(\sigma,b)$ describes it.
+
+\paragraph{What the spectral formulation assumes.} The single assumption is
+Eq.~\eqref{eq:filt_shom}, a statement about the microscopic levels of
+$\hat{\mathcal H}$ and their motion with the field. It needs no coarse-graining
+and no construction of a renormalisation-group flow. It is, however,
+equivalent in content to the scaling hypothesis of
+Section~\ref{sec:critical}, because the Legendre transform is invertible: it
+yields the relations among the exponents, not their values. Explaining why
+the spectrum is scale-free at $k_c$, and computing $\sigma$ and $b$, is the
+task of the renormalisation group or of an exact solution. Moreover, the
+density of states in a uniform field contains no length: the exponents $\nu$
+and $\eta$ and the hyperscaling relation require the response to a field of
+wave vector $q$, i.e.\ the dependence of $g$ on a spatially modulated field.
 
 Independent particles are the simplest instance. For a single-particle
 density of states $\rho=A|\varepsilon-\varepsilon_0|^{r}$ (a band edge, a
@@ -2997,6 +3148,8 @@ high-$ T $ tail, Eq.~\eqref{eq:filt_mb_hiT}; sum rule, Eq.~\eqref{eq:filt_mb_sum
 $ c \sim T^{r+1} $ from $ \rho \sim |\varepsilon - \mu|^{r} $; $ s/c = 1/(r+1) $ \\
 divergent response requires correlations; stretched-exponential $g$, Eq.~\eqref{eq:filt_stretched} &
 per-orbital bound on $ c_\mu $, Eq.~\eqref{eq:filt_bound} \\
+order parameter and susceptibility from $ \partial_fg $, $ \partial_f^{2}g $, Eqs.~\eqref{eq:filt_param}, \eqref{eq:filt_curv} &
+Lifshitz singularity $ \omega_{\rm sing} \propto |\delta\mu|^{r+2} $ \\
 inversion of $ c(T) $ for $ g(\xi) $ &
 inversion of $ c(T) $ for $ \rho(\varepsilon) $ \\
 \bottomrule
