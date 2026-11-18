@@ -2834,7 +2834,35 @@ $ \partial\xi_a/\partial f = \langle a|\partial\hat{\mathcal{H}}/\partial f|a\ra
 the terms containing the derivative of the eigenvector add up to
 $ \xi_a\,\partial\langle a|a\rangle/\partial f = 0 $. Within a degenerate level
 the basis is chosen to diagonalise $ \partial\hat{\mathcal{H}}/\partial f $.}).
-Levels are neither created nor destroyed, so $ g $ obeys a continuity equation
+In the exact eigenbasis $ g $ is a sum of delta functions, and its derivatives
+are derivatives of distributions\footnote{The derivative $ \delta' $ of the
+delta function is defined by integration by parts against a smooth function
+$ \varphi $: $ \int d\xi\,\delta^{(n)}(\xi - \xi_a)\,\varphi(\xi) = (-1)^{n}\varphi^{(n)}(\xi_a) $.
+With $ \varphi = e^{-\beta\xi} $ this is $ \beta^{n}e^{-\beta\xi_a} $.}: by the
+chain rule,
+\[
+  \frac{\partial}{\partial f}\,\delta\big(\xi - \xi_a(f)\big)
+  = A_{aa}\,\delta'(\xi - \xi_a) , \qquad
+  \frac{\partial^{2}}{\partial f^{2}}\,\delta\big(\xi - \xi_a(f)\big)
+  = A_{aa}^{2}\,\delta''(\xi - \xi_a)
+  - \frac{\partial^{2}\xi_a}{\partial f^{2}}\,\delta'(\xi - \xi_a) .
+\]
+The Laplace transform turns each $ \delta^{(n)} $ into a factor $ \beta^{n} $, so
+$ \Xi_1 = \beta\sum_aA_{aa}\,e^{-\beta\xi_a} $ and
+$ \Xi_2 = \sum_a\big[\beta^{2}A_{aa}^{2} - \beta\,\partial^{2}\xi_a/\partial f^{2}\big]e^{-\beta\xi_a} $,
+and Eq.~\eqref{eq:filt_param} becomes
+\begin{equation}\label{eq:filt_vanvleck}
+  \langle\hat A\rangle = \sum_ap_a\,A_{aa} , \qquad
+  \chi_{AA} = \frac{1}{k_BT}\Big[\sum_ap_a\,A_{aa}^{2} - \Big(\sum_ap_a\,A_{aa}\Big)^{2}\Big]
+  - \sum_ap_a\,\frac{\partial^{2}\xi_a}{\partial f^{2}} .
+\end{equation}
+The first term of $ \chi_{AA} $ is the redistribution of the populations over
+levels of different slope (the Curie term), the second the bending of the
+levels themselves (the Van Vleck term), with
+$ -\partial^{2}\xi_a/\partial f^{2} = 2\sum_{b:\,\xi_b\neq\xi_a}|A_{ab}|^{2}/(\xi_b - \xi_a) $
+from second-order perturbation theory; it vanishes for conserved $ \hat A $,
+and Eq.~\eqref{eq:filt_mb_response} is recovered. In the same sense, since
+levels are neither created nor destroyed, $ g $ obeys a continuity equation
 on the $ \xi $ axis,
 \begin{equation}\label{eq:filt_flow}
   \frac{\partial g}{\partial f} = \frac{\partial}{\partial\xi}\big[g(\xi;f)\,\bar A(\xi;f)\big] ,
@@ -2845,7 +2873,9 @@ where $ \bar A $ is the average of $ \hat A $ over the eigenstates at $ \xi $ (t
 microcanonical average). Inserting this in $ \Xi_1 $ and integrating by parts
 gives $ \langle\hat A\rangle = \int d\xi\,P_T(\xi)\,\bar A(\xi;f) $.
 
-In a macroscopic system $ g = \exp[V s(k,f)/k_B] $, with $ k = \xi/V $ and $ s $
+In a macroscopic system the level spacing is exponentially small in $ V $,
+and $ g $ averaged over an energy window containing many levels is a smooth
+function, $ g = \exp[V s(k,f)/k_B] $, with $ k = \xi/V $ and $ s $
 the entropy density of the spectrum, and the Laplace transform is dominated
 by its saddle point (Section~\ref{sec:equivalence}): the grand potential
 density is $ \omega(T,f) = \min_k[k - T s(k,f)] $, and the minimum $ k_*(T,f) $
@@ -3043,32 +3073,70 @@ for $t>0$, all of whose derivatives vanish at $t=0$; correspondingly $s$ has
 finite curvature and an essential singularity at $k_c$, and no pair
 $(\sigma,b)$ describes it.
 
-\paragraph{What the spectral formulation assumes.} The single assumption is
-Eq.~\eqref{eq:filt_shom}, a statement about the microscopic levels of
-$\hat{\mathcal H}$ and their motion with the field. It needs no coarse-graining
-and no construction of a renormalisation-group flow. It is, however,
-equivalent in content to the scaling hypothesis of
-Section~\ref{sec:critical}, because the Legendre transform is invertible: it
-yields the relations among the exponents, not their values. Explaining why
-the spectrum is scale-free at $k_c$, and computing $\sigma$ and $b$, is the
-task of the renormalisation group or of an exact solution. Moreover, the
-density of states in a uniform field contains no length: the exponents $\nu$
-and $\eta$ and the hyperscaling relation require the response to a field of
-wave vector $q$, i.e.\ the dependence of $g$ on a spatially modulated field.
+\paragraph{Lengths: $\nu$, $\eta$ and hyperscaling.} The exponents of the
+correlation length (written $\ell_c\sim|t|^{-\nu}$ here, $\xi$ being in use for
+the energy) are encoded in the density of states in the same way, through its
+dependence on two further parameters of the Hamiltonian. The first is a
+spatially modulated field $h_{\mathbf q}$, coupled to the Fourier component
+$\hat M_{\mathbf q}$ of the order parameter: Eq.~\eqref{eq:filt_param} with
+$f=h_{\mathbf q}$ gives the static susceptibility $\chi(\mathbf q)$ as the
+second derivative of $g(\xi;h_{\mathbf q})$, and $\chi(\mathbf q)$ is the
+Fourier transform of $G(r)/k_BT$, with width $1/\ell_c$ in $q$ and decay
+$q^{-(2-\eta)}$ at $t=0$. A uniform field alone does not suffice for this: in
+the infinite system $g(\xi;h)$ fixes $\Xi(T,h)$, hence $\chi(\mathbf q=0)$,
+and nothing at $\mathbf q\neq0$. The second parameter, which needs no
+modulated field, is the linear size $L$ of the sample. With
+$s(k,h,L^{-1})=(k_B/L^{d})\ln g_L$ the entropy density of the spectrum of the
+finite system, let Eq.~\eqref{eq:filt_shom} extend to
+\[
+  s_{\rm sing}(\lambda\epsilon,\lambda^{b}h,\lambda^{b_L}L^{-1})
+  =\lambda^{\sigma}s_{\rm sing}(\epsilon,h,L^{-1}) .
+\]
+The scaling function in Eq.~\eqref{eq:filt_crit} then acquires the further
+argument $L^{-1}/|t|^{\,b_L/(\sigma-1)}=\ell_c/L$, so that
+\[
+  \nu=\frac{b_L}{\sigma-1} .
+\]
+Under the rescaling the singular part of the logarithm of the \emph{total}
+density of states, $L^{d}s_{\rm sing}/k_B$, is multiplied by
+$\lambda^{\sigma-d\,b_L}$. It is invariant if and only if $\sigma=d\,b_L$,
+i.e.\ $2-\alpha=d\nu$: hyperscaling is the statement that $\ln g_{L,\rm sing}$
+of the whole sample depends on $L$ only through the scaling combinations
+$\epsilon L^{d/\sigma}$ and $hL^{bd/\sigma}$, which is the relation (FSS) of
+Appendix~\ref{app:fss} written for the spectrum. Finally, at $t=h=0$ the
+susceptibility of the finite sample grows as $L^{\gamma/\nu}$, and with
+$\chi=\int d^{d}r\,G(r)/k_BT$ cut off at $r\sim L$ this is $L^{2-\eta}$:
+$\eta=2-\gamma/\nu$. The complete set of static exponents thus follows from
+three exponents $(\sigma,b,b_L)$ of $g_L(\xi;h)$, reduced to two by
+hyperscaling.
 
-Independent particles are the simplest instance. For a single-particle
-density of states $\rho=A|\varepsilon-\varepsilon_0|^{r}$ (a band edge, a
-Dirac point) and $\delta\mu=\mu-\varepsilon_0$, the substitution
-$\varepsilon-\varepsilon_0=k_BT\,y$ in the grand potential density of
-Appendix~\ref{app:quadratic}, Eq.~\eqref{eq:filt_Omega}, gives
-$\omega_{\rm sing}=A\,(k_BT)^{r+2}\,\Phi(\delta\mu/k_BT)$, i.e.\ $\Delta=1$.
-At $T=0$ the same form gives $\omega_{\rm sing}\propto|\delta\mu|^{r+2}$ on
-one side of $\varepsilon_0$: a thermodynamic singularity as $\mu$ crosses a
-band edge, the Lifshitz transition, of order $r+2$ in Ehrenfest's sense
-($5/2$ for a three-dimensional band edge, $r=\tfrac12$). At an interacting
-critical point the scale-free object is the many-body density of states of
-the collective fluctuations, and $\sigma$ and $b$ are no longer these simple
-numbers.
+\paragraph{Scope of the spectral formulation.} The input is the many-body
+density of states $g(\xi;h,L)$ alone, a microscopic object that is defined
+for every Hamiltonian and can be computed directly (by exact diagonalisation,
+or by sampling methods that estimate $g$). No property of a free energy is
+postulated, and neither a coarse-graining, a fixed point nor universality is
+invoked. The formulation therefore covers every regime in which the spectrum
+is scale-free about some energy density, and not only continuous transitions:
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item about $k_c$, a critical point at finite temperature
+  (Eq.~\eqref{eq:filt_crit});
+\item about the ground state, the low-temperature power laws of
+  Eq.~\eqref{eq:filt_scalingform}, whose exponents need not be universal. A
+  non-Fermi liquid with $c\sim T^{2/3}$ (two-dimensional fermions coupled to a
+  gapless boson) has $r=-\tfrac13$ in Eq.~\eqref{eq:filt_stretched},
+  $\ln g\propto V\,k^{2/5}$, against $\ln g\propto V\,k^{1/2}$ for a Fermi
+  liquid;
+\item spectra that are not scale-free, for which
+  Eq.~\eqref{eq:filt_curv} still gives the singularities (the logarithm and
+  the essential singularity above).
+\end{itemize}
+Two limits of the formulation should be kept in view. Since the Legendre
+transform is invertible, homogeneity of $s_{\rm sing}$ and homogeneity of
+$\omega_{\rm sing}$ imply one another: at a critical point the relations among
+the exponents are those of Section~\ref{sec:critical}, as they must be. And
+the formulation reads the exponents off the spectrum but does not compute the
+spectrum: $(\sigma,b,b_L)$ are properties of $g$ that must be obtained from
+the Hamiltonian, exactly, numerically or otherwise.
 
 \paragraph{What $c(T)$ determines.} Given $C_\mu$ at all temperatures, the
 entropy and the excitation energy follow by integration,
