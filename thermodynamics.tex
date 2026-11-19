@@ -3308,6 +3308,61 @@ not identify the modes (acoustic phonons and antiferromagnetic magnons both
 give $c\sim T^{3}$); that requires the dependence of $g$ on the field that
 couples to them.
 
+\paragraph{Frustration.} In a frustrated system\footnote{Couplings that
+cannot all be satisfied at once: antiferromagnetic bonds on a triangle, or
+first- and second-neighbour couplings that favour different ordering wave
+vectors.} several ordering tendencies compete and none wins clearly. In the
+spectrum this means that an unusually large number of many-body levels lie
+just above the ground state, and the thermodynamics is decided by the form
+of $\ln g$ in this bundle of levels. The cases differ by that form.
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item \emph{Extensive degeneracy.} If the number of ground states is
+  exponential in $N$, $d_0=e^{Ns_0/k_B}$, the entropy does not vanish at
+  $T\to0$, and the sum rule Eq.~\eqref{eq:filt_mb_sumrule} is reduced by
+  $Ns_0$: the heat capacity integrates to less than the full entropy. For
+  the triangular Ising antiferromagnet $s_0=0.323\,k_B$ per spin, for spin
+  ice $s_0\simeq\tfrac12k_B\ln\tfrac32$. Above the degenerate level there is
+  a gap, so $c$ is activated: no power law.
+\item \emph{A narrow bundle.} If a weak perturbation spreads these levels
+  over a width $W$ much smaller than the couplings $J$, $c(T)$ has a second
+  peak at $k_BT\sim W$ which releases the entropy $s_0$, and power laws, if
+  any, appear only below $W$. Exact spectra of small clusters of the
+  spin-$\tfrac12$ kagome antiferromagnet show such a bundle: a number of
+  singlet levels below the lowest triplet that grows exponentially with $N$.
+\item \emph{A soft manifold of wave vectors.} If the competing wave vectors
+  are degenerate, the gapless modes have $\omega=0$ not at one point but on a
+  manifold of dimension $d_m$ in $\mathbf q$ space, and disperse as
+  $\omega\propto|\delta\mathbf q_\perp|^{z}$ only in the $d-d_m$ directions
+  normal to it. For independent modes the single-mode density of states is
+  then $\propto\omega^{(d-d_m)/z-1}$, and
+  \[
+    c\sim T^{(d-d_m)/z} ,\qquad
+    \ln g(\xi_0+Vk)\propto V\,k^{(d-d_m)/(d-d_m+z)} .
+  \]
+  The exponent counts the directions in which the spectrum disperses, not
+  the dimension of space. The Goldstone case is $d_m=0$; for a surface of
+  degenerate wave vectors, $d_m=d-1$, $c\sim T^{1/z}$ in any dimension.
+\item \emph{Anisotropic scaling.} At a Lifshitz point, where the ordering
+  wave vector starts to move away from $\mathbf q=0$, the stiffness vanishes
+  in $m$ directions and $\omega$ scales as $q^{z}$ in $d-m$ directions and as
+  $q^{2z}$ in the others, so $c\sim T^{(d-m)/z+m/2z}$. The homogeneity
+  Eq.~\eqref{eq:filt_shomq} is generalised by a separate exponent $b_q$ for
+  each group of directions.
+\end{itemize}
+Two further statements follow from the same weight
+$P_T(\xi)=g\,e^{-\beta\xi}/\Xi$. Among degenerate ground states, the system at
+$T>0$ is found near those with the largest density of low-lying levels: the
+selection is made by $g$ and not by the energy (\emph{order by disorder}),
+and it can remove a soft manifold at the lowest temperatures. In the
+response, competing orders are several maxima of the curvature
+$\partial^{2}s/\partial h_{\mathbf q}^{2}$ of Eq.~\eqref{eq:filt_chiq} as a
+function of $\mathbf q$; order sets in at the wave vector where it first
+diverges, and when the maxima are nearly degenerate the ordering temperature
+is far below the scale of the couplings. In each case the signature, a power
+law, its exponent, its absence or a residual entropy, is read from $\ln g$
+near the ground state through the same Laplace transform, and no
+classification by order parameter or symmetry is needed.
+
 \paragraph{Scope of the spectral formulation.} The input is the many-body
 density of states and its dependence on the parameters of the Hamiltonian
 (uniform and modulated fields, number of components), a microscopic object that is defined
