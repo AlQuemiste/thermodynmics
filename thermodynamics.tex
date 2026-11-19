@@ -3363,6 +3363,64 @@ law, its exponent, its absence or a residual entropy, is read from $\ln g$
 near the ground state through the same Laplace transform, and no
 classification by order parameter or symmetry is needed.
 
+\paragraph{Disorder.} Quenched disorder\footnote{Random terms in the
+Hamiltonian (impurities, random bonds or fields) that are fixed in each
+sample and do not equilibrate.} does not create levels: the number of
+eigenstates is the dimension of the Fock space, and $\int d\xi\,g=D$ for
+every sample. It redistributes them. Degeneracies are lifted, each level is
+shifted by an amount that depends on the sample, and the density of states,
+which is the same for almost every large sample because $\ln g$ is
+extensive and self-averaging for short-range disorder, is the clean one with
+its sharp features broadened. The consequences are again read from the form
+of $g$.
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item \emph{Broadened degenerate levels.} A level of degeneracy
+  $d_0=e^{Ns_0/k_B}$ spread over a width $W$ is the narrow bundle of the
+  previous paragraph: the residual entropy is released in a peak of $c$ at
+  $k_BT\sim W$.
+\item \emph{Filled gaps and rounded edges.} Levels are moved into a gap of
+  the clean spectrum, where rare regions of the sample produce an
+  exponentially small tail of $g$ (a Lifshitz tail). A strictly activated
+  heat capacity and the band-edge singularity
+  $\omega_{\rm sing}\propto|\delta\mu|^{r+2}$ are both rounded.
+\item \emph{A flat distribution of local splittings.} In a glass, groups of
+  atoms have two nearly degenerate configurations whose splitting $\Delta$
+  is distributed with a density $P_0$ per unit volume that stays finite as
+  $\Delta\to0$. Each is a two-level system, with heat capacity
+  $k_Bx^{2}e^{x}/(e^{x}+1)^{2}$, $x=\Delta/k_BT$ (a Schottky peak), and
+  integrating over $\Delta$ with
+  $\int_0^\infty dx\,x^{2}e^{x}/(e^{x}+1)^{2}=\pi^{2}/6$,
+  \[
+    c=\frac{\pi^{2}}{6}\,k_B^{2}P_0\,T ,
+  \]
+  linear in $T$ in an insulator and in any dimension, with
+  $\ln g\propto V\,k^{1/2}$ as for a Fermi liquid.
+\item \emph{A power-law distribution of local scales.} If the local
+  splittings are distributed as $P(\Delta)\propto\Delta^{a-1}$ at small
+  $\Delta$, the same integral gives $c\sim T^{a}$ and, for local moments, a
+  susceptibility $\chi\sim T^{a-1}$ that diverges for $a<1$. The exponent $a$
+  is not universal and varies continuously with the parameters of the
+  Hamiltonian (random-singlet and Griffiths phases): power laws without a
+  critical point and without universality.
+\item \emph{Stability of a critical point.} Let the disorder shift the local
+  value of $t$ at random. Over the $N_c\sim|t|^{-\nu_*}$ components that
+  fluctuate coherently the shift averages to $N_c^{-1/2}=|t|^{\nu_*/2}$,
+  which is small compared with $|t|$ itself if and only if
+  \[
+    \nu_*>2 ,\qquad\text{i.e.}\quad \alpha<0\ \ \text{by}\ \ 2-\alpha=\nu_* .
+  \]
+  This is the Harris criterion ($d\nu>2$ with $\nu_*=d\nu$). In terms of the
+  spectrum, and with $\sigma=b_N$, weak disorder changes the exponents
+  precisely in the case $\sigma>2$ without a regular quadratic term, in which
+  the curvature of $\ln g$ vanishes at $k_c$.
+\end{itemize}
+One limit of the formulation shows here. The density of states does not
+register whether the eigenstates are extended or localised: at an Anderson
+transition of non-interacting electrons $g$ is smooth, and the thermodynamics
+with it. That distinction lies in the eigenvectors, and it enters only
+through the change of the levels with a modulated field or with the boundary
+condition.
+
 \paragraph{Scope of the spectral formulation.} The input is the many-body
 density of states and its dependence on the parameters of the Hamiltonian
 (uniform and modulated fields, number of components), a microscopic object that is defined
