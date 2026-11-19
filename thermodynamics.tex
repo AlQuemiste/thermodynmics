@@ -3034,13 +3034,14 @@ $ \hat H $.
   with weights $ p_a^{(0)} = e^{-\beta_0\xi_a}/\Xi(\beta_0) $. Writing
   $ e^{-\beta\xi_a} = e^{-\beta_0\xi_a}\,e^{-(\beta-\beta_0)\xi_a} $ in the sum over
   levels,
-  \[
+  \begin{align*}
     \frac{\Xi(\beta)}{\Xi(\beta_0)}
-    = \sum_ap_a^{(0)}\,e^{-(\beta-\beta_0)\xi_a}
+    &= \sum_ap_a^{(0)}\,e^{-(\beta-\beta_0)\xi_a}
     = \big\langle e^{-(\beta-\beta_0)\hat{\mathcal{H}}}\big\rangle_0
-    = 1 - (\beta-\beta_0)\,m_1 + \tfrac12(\beta-\beta_0)^{2}m_2 - \dots ,
+    \\
+    &= 1 - (\beta-\beta_0)\,m_1 + \tfrac12(\beta-\beta_0)^{2}m_2 - \dots ,
     \qquad m_n := \langle\hat{\mathcal{H}}^{n}\rangle_0 ,
-  \]
+  \end{align*}
   an exact identity. With $ \ln(1+x) = x - \tfrac12x^{2} + O(x^{3}) $ and
   $ \Var_0(\hat{\mathcal{H}}) = m_2 - m_1^{2} $,
   \begin{equation}\label{eq:filt_mb_cumul}
@@ -3063,9 +3064,12 @@ $ \hat H $.
   $ \langle\hat X\rangle_{T\to\infty} := \Tr\hat X/D $ is the
   \emph{infinite-temperature} average. Eq.~\eqref{eq:filt_mb_cumul} becomes
   \begin{equation}\label{eq:filt_mb_hiT}
-    \ln\Xi = \ln D - \beta\langle\hat{\mathcal{H}}\rangle_{T\to\infty} + \tfrac12\beta^{2}\Var_{T\to\infty}(\hat{\mathcal{H}}) + O(\beta^{3}) ,
-    \qquad
-    C_\mu = \frac{\Var_{T\to\infty}(\hat{\mathcal{H}})}{k_BT^{2}} + O(T^{-3}) .
+  \begin{aligned}
+    \ln\Xi &= \ln D - \beta\langle\hat{\mathcal{H}}\rangle_{T\to\infty}
+    + \tfrac12\beta^{2}\Var_{T\to\infty}(\hat{\mathcal{H}}) + O(\beta^{3}) ,
+    \\
+    C_\mu &= \frac{\Var_{T\to\infty}(\hat{\mathcal{H}})}{k_BT^{2}} + O(T^{-3}) .
+  \end{aligned}
   \end{equation}
   So $ S \to k_B\ln D $ and $ C_\mu $ decays as $ T^{-2} $ with a coefficient fixed by the
   spread of the whole spectrum.
@@ -3128,12 +3132,15 @@ from $ \xi_0/V $, and using $ \varepsilon_*/T \propto T^{\sigma/(1-\sigma)} $,
 The entropy is $ k_B\ln g $ at the energy $ \xi_0 + V\varepsilon_* $, as in the
 general case. All four are powers of $ T $:
 \begin{equation}\label{eq:filt_powerT}
+\begin{gathered}
   c_\mu = \gamma\,T^{r+1} , \qquad
   r+1 = \frac{\sigma}{1-\sigma}
   \;\Longleftrightarrow\;
-  \sigma = \frac{r+1}{r+2} , \qquad
+  \sigma = \frac{r+1}{r+2} ,
+  \\
   \gamma = \frac{(\sigma A)^{1/(1-\sigma)}}{1-\sigma} , \qquad
   \frac{S}{C_\mu} = \frac{1}{r+1} .
+\end{gathered}
 \end{equation}
 A stretched-exponential density of states with exponent $ \sigma $ is
 equivalent to a power-law heat capacity with exponent $ \sigma/(1-\sigma) $.
@@ -3304,13 +3311,13 @@ curvature of $\ln g$ vanishes at $\varepsilon_c$ and the heat capacity diverges
 transform, the linear term combines with the Boltzmann factor to
 $\delta\varepsilon\,(1/T_c-1/T)=t\,\delta\varepsilon/T$ with $t=(T-T_c)/T_c$,
 so that to leading order in $t$
-\[
-  \Xi(T,h)=g(V\varepsilon_c;0)\,e^{-V\varepsilon_c/k_BT}\;\Xi_{\rm sing}(t,h) ,
-  \qquad
-  \Xi_{\rm sing}(t,h):=V\int d\delta\varepsilon\;
+\begin{align*}
+  \Xi(T,h)&=g(V\varepsilon_c;0)\,e^{-V\varepsilon_c/k_BT}\;\Xi_{\rm sing}(t,h) ,
+  \\
+  \Xi_{\rm sing}(t,h)&:=V\int d\delta\varepsilon\;
   \exp\left\{\frac{V}{k_BT_c}\big[t\,\delta\varepsilon
   +T_c\,s_{\rm sing}(\delta\varepsilon,h)\big]\right\} .
-\]
+\end{align*}
 The first two factors are analytic in $T$. The reduced temperature is the
 variable conjugate to the energy density. At the rescaled arguments, with
 $\delta\varepsilon=\lambda\,\delta\varepsilon'$ and Eq.~\eqref{eq:filt_shom}, the
@@ -3323,12 +3330,12 @@ $\lambda^{\sigma}$, and for $V\to\infty$
 \]
 
 \emph{Potential.} The singular part of the potential is
-\[
-  \omega_{\rm sing}(t,h):=-\frac{k_BT_c}{V}\ln\Xi_{\rm sing}
+\begin{align*}
+  \omega_{\rm sing}(t,h)&:=-\frac{k_BT_c}{V}\ln\Xi_{\rm sing}
   =\min_{\delta\varepsilon}\big[-t\,\delta\varepsilon-T_c\,s_{\rm sing}(\delta\varepsilon,h)\big] ,
-  \qquad
-  \omega_{\rm sing}(\lambda^{\sigma-1}t,\lambda^{b}h)=\lambda^{\sigma}\omega_{\rm sing}(t,h) ,
-\]
+  \\
+  \omega_{\rm sing}(\lambda^{\sigma-1}t,\lambda^{b}h)&=\lambda^{\sigma}\omega_{\rm sing}(t,h) ,
+\end{align*}
 and the choice $\lambda=|t|^{-1/(\sigma-1)}$, for which
 $\lambda^{\sigma-1}t=\pm1$, gives Eq.~\eqref{eq:scaling},
 \begin{equation}\label{eq:filt_crit}
@@ -3463,10 +3470,13 @@ Eq.~\eqref{eq:filt_chiq}, with $t$ scaling as $\lambda^{\sigma-1}$
 The choices $\lambda=|t|^{-1/(\sigma-1)}$, and $\lambda=q^{-1/b_q}$ at $t=0$,
 give
 \begin{equation}\label{eq:filt_chiqscal}
-  \chi(\mathbf q,t)=|t|^{-\gamma}\,X_\pm\big(q\,\ell_c\big) ,\quad
-  \ell_c:=|t|^{-\nu} ,\quad \nu=\frac{b_q}{\sigma-1} ;
-  \qquad
-  \chi(\mathbf q,0)\propto q^{-(2-\eta)} ,\quad 2-\eta=\frac{2b-\sigma}{b_q} ,
+\begin{aligned}
+  \chi(\mathbf q,t)&=|t|^{-\gamma}\,X_\pm\big(q\,\ell_c\big) ,
+  &\ell_c&:=|t|^{-\nu} ,\quad \nu=\frac{b_q}{\sigma-1} ;
+  \\
+  \chi(\mathbf q,0)&\propto q^{-(2-\eta)} ,
+  &2-\eta&=\frac{2b-\sigma}{b_q} ,
+\end{aligned}
 \end{equation}
 with $\gamma=(2b-\sigma)/(\sigma-1)$ as before, so that the Fisher relation
 $\gamma=\nu(2-\eta)$ holds identically. In real space,
