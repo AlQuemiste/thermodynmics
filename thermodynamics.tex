@@ -3258,6 +3258,56 @@ homogeneity as a property of the spectrum of the given Hamiltonian; it does
 not require a fixed point shared with other Hamiltonians, and therefore
 applies unchanged to power laws that are not universal.
 
+\paragraph{Goldstone modes.} A phase with a broken continuous symmetry is
+the standard example of a spectrum that is scale-free at low energy without
+any tuning. The symmetry-broken ground states form a continuous family,
+related by the symmetry operations (the directions of the magnetisation of a
+Heisenberg magnet). A state in which the order parameter is twisted slowly,
+with wave vector $\mathbf q$, costs an energy that vanishes with $q$, since a
+uniform twist costs nothing: for short-range interactions there are
+excitations $\omega_{\mathbf q}\propto q^{z}$ with no gap, the
+\emph{Goldstone modes}\footnote{$z=1$ for antiferromagnets, superfluids and
+the acoustic phonons of a crystal; $z=2$ for ferromagnets.}. In the many-body
+spectrum this is a statement about $g$ just above the ground state: the modes
+are independent bosons with a single-mode density of states
+$\propto\omega^{d/z-1}$, so $c\sim T^{d/z}$ and, by
+Eq.~\eqref{eq:filt_stretched} with $r+1=d/z$,
+\[
+  \ln g(\xi_0+Vk)\;\propto\;V\,k^{\,d/(d+z)} ,
+\]
+i.e.\ $k^{3/4}$ for $d=3$, $z=1$ (the Debye result above) and $k^{3/5}$ for a
+three-dimensional ferromagnet. The family of ground states itself is not what
+thermodynamics registers. In a finite system it appears as a set of levels
+that collapse onto the ground state as $1/N$ (for a quantum antiferromagnet,
+$E_S\simeq S(S+1)/2\chi_\perp N$ in terms of the total spin $S$), whose number
+grows only as a power of $N$ and which contribute $O(\ln N)$ to the entropy.
+The extensive part of $\ln g$ comes from the slow twists.
+
+The response side is the same statement for a modulated field. For a field
+$h_{\mathbf q}$ transverse to the order parameter, Eq.~\eqref{eq:filt_chiq}
+gives $\chi_\perp(\mathbf q)\propto m^{2}/\rho_sq^{2}$, where the stiffness
+$\rho_s$ is the coefficient of the energy $\tfrac12\rho_sq^{2}$ per unit volume
+of a twist of wave vector $q$. Hence $G_\perp(r)\propto r^{-(d-2)}$ for $d>2$:
+the correlations decay as a power law throughout the ordered phase, with
+$2-\eta$ replaced by $2$ and no length $\ell_c$, and the uniform transverse
+susceptibility is infinite. For $d\leq2$ the fluctuation
+$\int d^{d}q\,k_BT\chi_\perp(\mathbf q)$ diverges at small $q$, and the weight
+of the gapless continuum destroys the order at any $T>0$ (the
+Mermin--Wagner theorem).
+
+In the spectral formulation the broken symmetry is not an ingredient. The
+observables depend on the form of $g$ and on its change with the fields, and
+any Hamiltonian with the same low-energy density of states has the same power
+laws, whatever their origin: the particle--hole continuum of a Fermi surface
+(Bethe's formula above), a critical point, a non-Fermi liquid. What the
+symmetry supplies is the reason for the absence of a gap and its robustness:
+it guarantees the form of $g$, and the exponent $z$, without solving the
+Hamiltonian, for every perturbation that respects it. Conversely, a gapless
+scale-free spectrum does not imply a broken symmetry, and $g(\xi)$ alone does
+not identify the modes (acoustic phonons and antiferromagnetic magnons both
+give $c\sim T^{3}$); that requires the dependence of $g$ on the field that
+couples to them.
+
 \paragraph{Scope of the spectral formulation.} The input is the many-body
 density of states and its dependence on the parameters of the Hamiltonian
 (uniform and modulated fields, number of components), a microscopic object that is defined
