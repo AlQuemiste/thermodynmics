@@ -2873,7 +2873,7 @@ $ -\partial^{2}\xi_a/\partial f^{2} = 2\sum_{b:\,\xi_b\neq\xi_a}|A_{ab}|^{2}/(\x
 from second-order perturbation theory; it vanishes for conserved $ \hat A $,
 and Eq.~\eqref{eq:filt_mb_response} is recovered.
 
-\paragraph{The macroscopic limit: the entropy density of the spectrum.}
+\paragraph{The macroscopic limit: the logarithmic density of states.}
 Let $ V $ denote the size of the system: the number of its components
 (lattice sites), or its volume in the continuum. Extensive quantities are
 referred to unit size,
@@ -2884,13 +2884,17 @@ referred to unit size,
 where $ \varepsilon $ without an index is the energy density of the many-body
 spectrum (single-particle energies carry an index, $ \varepsilon_\lambda $, or
 are written $ e $). The density of states is not extensive, but its logarithm
-is: the intensive description of the spectrum is its \emph{entropy density}
+is: the intensive description of the spectrum is the \emph{logarithmic
+density of states}
 \begin{equation}\label{eq:filt_sdef}
   s(\varepsilon,f) := \lim_{V\to\infty}\frac{k_B}{V}\,\ln g(V\varepsilon;f) ,
   \qquad\text{i.e.}\qquad
   g(V\varepsilon;f) = \exp\left[\frac{V\,s(\varepsilon,f)}{k_B}\right]
 \end{equation}
-up to a factor that is not exponential in $ V $. Here $ g $ is averaged over
+up to a factor that is not exponential in $ V $. The factor $ k_B $ and the
+letter $ s $ anticipate the result, derived below from the partition function,
+that this function is the entropy density; until then $ s $ is a property of
+the spectrum only. Here $ g $ is averaged over
 an interval of $ \xi $ that contains many levels; this is possible because the
 number of levels in an interval of width $ O(V) $ is $ e^{O(V)} $, so that the
 level spacing is exponentially small in $ V $~\cite[Ch.~2]{Schwabl}.
@@ -2949,7 +2953,7 @@ $ \varepsilon_*(T,f) $ is the minimum. Three consequences follow.
   \[
     \frac{S}{V} = \frac{\varepsilon_* - \omega}{T} = s(\varepsilon_*,f) .
   \]
-  The thermodynamic entropy density is the entropy density of the spectrum at
+  The thermodynamic entropy density is the logarithmic density of states at
   the energy density $ \varepsilon_* $. This is the microcanonical entropy of
   Section~\ref{sec:microcanonical} in the form $ k_B\ln g $, obtained here from
   the Laplace transform alone: $ s $ is defined by counting levels, and no
@@ -3078,39 +3082,58 @@ $ \hat H $.
 In this subsection $ \varepsilon := (\xi - \xi_0)/V $ is measured from the
 ground state, and $ \omega $ from $ \xi_0/V $.
 
-\paragraph{From the density of states to the power laws.} Let the entropy
-density of the spectrum, Eq.~\eqref{eq:filt_sdef}, be a power law just above
-the ground state,
+\paragraph{From the density of states to the power laws.} The path is:
+density of states, partition function, potential, entropy and heat capacity.
+
+\emph{Density of states.} Let the many-body density of states grow above the
+ground state as a stretched exponential,
 \begin{equation}\label{eq:filt_stretched}
-  s(\varepsilon) = A\,\varepsilon^{\sigma} , \qquad 0<\sigma<1 , \qquad
-  \text{i.e.}\quad
-  g(\xi_0 + V\varepsilon) = \exp\left[\frac{V A\,\varepsilon^{\sigma}}{k_B}\right] :
+  g(\xi_0 + V\varepsilon) = \exp\left[\frac{V A\,\varepsilon^{\sigma}}{k_B}\right] ,
+  \qquad 0<\sigma<1 ,
 \end{equation}
-the density of states grows as a stretched exponential. The range of
-$ \sigma $ is fixed by two conditions: $ \sigma>0 $, so that $ s $ increases
-from $ s(0)=0 $; and $ \sigma<1 $, so that $ s $ is concave and
-$ s_\varepsilon = \sigma A\,\varepsilon^{\sigma-1} \to \infty $ for
-$ \varepsilon\to0 $, i.e.\ so that the ground state is reached at $ T\to0 $.
-The stationarity condition of Eq.~\eqref{eq:filt_legendre},
-$ \sigma A\,\varepsilon_*^{\sigma-1} = 1/T $, and the three results that follow
-it give in turn
+i.e.\ $ \ln g \propto V^{1-\sigma}E^{\sigma} $ in terms of the excitation
+energy $ E = V\varepsilon $. The range of $ \sigma $ is fixed by two
+conditions: $ \sigma>0 $, so that $ g $ increases; and $ \sigma<1 $, so that
+the Laplace transform below converges at every temperature.
+
+\emph{Partition function.} By Eq.~\eqref{eq:filt_mb},
+\[
+  \Xi = \int d\xi\;g(\xi)\,e^{-\beta\xi}
+  = e^{-\beta\xi_0}\,V\int_0^{\infty}d\varepsilon\;
+  \exp\left\{\frac{V}{k_B}\Big[A\,\varepsilon^{\sigma} - \frac{\varepsilon}{T}\Big]\right\} .
+\]
+The bracket is largest at $ \varepsilon_* $ given by
+$ \sigma A\,\varepsilon_*^{\sigma-1} = 1/T $, where its value is
+$ (1-\sigma)\,\varepsilon_*/\sigma T $. For $ V\to\infty $ (Laplace's method),
+\begin{equation}\label{eq:filt_lnXi}
+  \ln\Xi = -\beta\xi_0 + \frac{V}{k_B}\,\frac{1-\sigma}{\sigma}\,\frac{\varepsilon_*(T)}{T} + O(\ln V) ,
+  \qquad
+  \varepsilon_*(T) = (\sigma A\,T)^{1/(1-\sigma)} .
+\end{equation}
+
+\emph{Potential, energy, entropy, heat capacity.} With $ \omega $ measured
+from $ \xi_0/V $, and using $ \varepsilon_*/T \propto T^{\sigma/(1-\sigma)} $,
 \begin{align*}
-  \varepsilon_*(T) &= (\sigma A\,T)^{1/(1-\sigma)} ,
+  \omega(T) &= -\frac{k_BT}{V}\ln\Xi = -\frac{1-\sigma}{\sigma}\,\varepsilon_* ,
   &
-  \omega(T) &= \varepsilon_* - T A\,\varepsilon_*^{\sigma} = -\frac{1-\sigma}{\sigma}\,\varepsilon_* ,
+  \frac{\langle\hat{\mathcal{H}}\rangle - \xi_0}{V}
+  &= \frac{k_BT^{2}}{V}\,\frac{\partial(\ln\Xi + \beta\xi_0)}{\partial T} = \varepsilon_* ,
   \\
-  s(T) &= A\,\varepsilon_*^{\sigma} = \frac{\varepsilon_*}{\sigma T} ,
+  \frac{S}{V} &= \frac{\langle\hat{\mathcal{H}}\rangle - \Omega}{VT}
+  = \frac{\varepsilon_*}{\sigma T} = A\,\varepsilon_*^{\sigma} ,
   &
-  c_\mu(T) &= \frac{\partial\varepsilon_*}{\partial T} = \frac{\varepsilon_*}{(1-\sigma)\,T} .
+  c_\mu &= \frac{1}{V}\frac{\partial\langle\hat{\mathcal{H}}\rangle}{\partial T}
+  = \frac{\varepsilon_*}{(1-\sigma)\,T} .
 \end{align*}
-All are powers of $ T $:
+The entropy is $ k_B\ln g $ at the energy $ \xi_0 + V\varepsilon_* $, as in the
+general case. All four are powers of $ T $:
 \begin{equation}\label{eq:filt_powerT}
   c_\mu = \gamma\,T^{r+1} , \qquad
   r+1 = \frac{\sigma}{1-\sigma}
   \;\Longleftrightarrow\;
   \sigma = \frac{r+1}{r+2} , \qquad
   \gamma = \frac{(\sigma A)^{1/(1-\sigma)}}{1-\sigma} , \qquad
-  \frac{s}{c_\mu} = \frac{1}{r+1} .
+  \frac{S}{C_\mu} = \frac{1}{r+1} .
 \end{equation}
 A stretched-exponential density of states with exponent $ \sigma $ is
 equivalent to a power-law heat capacity with exponent $ \sigma/(1-\sigma) $.
@@ -3123,7 +3146,8 @@ with $ s(T=0)=0 $ gives
   \qquad
   \varepsilon_*(T) = \int_0^{T}c_\mu(T')\,dT' = \frac{\gamma\,T^{r+2}}{r+2} ,
 \]
-and eliminating $ T $ returns Eq.~\eqref{eq:filt_stretched},
+and eliminating $ T $ returns Eq.~\eqref{eq:filt_stretched}, with
+$ s(\varepsilon) = (k_B/V)\ln g(\xi_0+V\varepsilon) $,
 \[
   s(\varepsilon) = \frac{\gamma}{r+1}\left(\frac{(r+2)\,\varepsilon}{\gamma}\right)^{(r+1)/(r+2)} .
 \]
@@ -3163,27 +3187,52 @@ particles.
 
 \paragraph{Scaling forms from a scale-free spectrum.} The scaling form
 Eq.~\eqref{eq:scaling} was postulated in Section~\ref{sec:critical}. It
-follows from the many-body spectrum of any Hamiltonian, interacting or not,
-once a parameter $ h $ of the Hamiltonian (a field, a detuning of $ \mu $) is
-included in $ s(\varepsilon,h) $. Suppose that the singular part of $ s $ at
-small $ \varepsilon $ and $ h $ has no intrinsic scale, in the sense that it is
-a generalised homogeneous function: for all $ \lambda>0 $,
+follows, by the same path, from the density of states of any Hamiltonian,
+interacting or not, once a parameter $ h $ of the Hamiltonian (a field, a
+detuning of $ \mu $) is included.
+
+\emph{Density of states.} Suppose that $ g(\xi_0+V\varepsilon;h) $ has no
+intrinsic scale at small $ \varepsilon $ and $ h $: rescaling the energy density
+by $ \lambda $ and the field by $ \lambda^{b} $ raises $ g $ to the power
+$ \lambda^{\sigma} $, for all $ \lambda>0 $,
 \begin{equation}\label{eq:filt_shom0}
-  s(\lambda\varepsilon,\lambda^{b}h)=\lambda^{\sigma}s(\varepsilon,h) ,\qquad 0<\sigma<1 .
+  g(\xi_0+V\lambda\varepsilon;\lambda^{b}h)=\big[g(\xi_0+V\varepsilon;h)\big]^{\lambda^{\sigma}} ,
+  \qquad 0<\sigma<1 ,
 \end{equation}
-At $ h=0 $ this is Eq.~\eqref{eq:filt_stretched} with $ A = s(1,0) $, and the
-range of $ \sigma $ is fixed by the same two conditions. Writing
-Eq.~\eqref{eq:filt_legendre} at the rescaled arguments, substituting
-$ \varepsilon=\lambda\varepsilon' $ and using Eq.~\eqref{eq:filt_shom0},
+i.e.\ $ s(\lambda\varepsilon,\lambda^{b}h)=\lambda^{\sigma}s(\varepsilon,h) $ for
+the logarithmic density of states: $ \ln g $ is a generalised homogeneous
+function. At $ h=0 $ this is Eq.~\eqref{eq:filt_stretched} with
+$ A = s(1,0) $, and the range of $ \sigma $ is fixed by the same two
+conditions.
+
+\emph{Partition function.} With energies measured from $ \xi_0 $,
+\[
+  \Xi(T,h) = V\int_0^{\infty}d\varepsilon\;g(\xi_0+V\varepsilon;h)\,e^{-V\varepsilon/k_BT} .
+\]
+At the rescaled arguments, substituting $ \varepsilon=\lambda\varepsilon' $ and
+using Eq.~\eqref{eq:filt_shom0},
 \begin{align*}
-  \omega(\lambda^{1-\sigma}T,\lambda^{b}h)
-  &=\min_{\varepsilon}\big[\varepsilon-\lambda^{1-\sigma}T\,s(\varepsilon,\lambda^{b}h)\big]
+  \Xi(\lambda^{1-\sigma}T,\lambda^{b}h)
+  &= V\int_0^{\infty}d\varepsilon\;g(\xi_0+V\varepsilon;\lambda^{b}h)\,
+  e^{-V\varepsilon/k_B\lambda^{1-\sigma}T}
   \\
-  &=\min_{\varepsilon'}\big[\lambda\varepsilon'-\lambda^{1-\sigma}T\,\lambda^{\sigma}s(\varepsilon',h)\big]
-  =\lambda\,\omega(T,h) .
+  &= \lambda V\int_0^{\infty}d\varepsilon'\;
+  \Big[g(\xi_0+V\varepsilon';h)\,e^{-V\varepsilon'/k_BT}\Big]^{\lambda^{\sigma}} .
 \end{align*}
-This holds for every $ \lambda>0 $. For $ \lambda=T^{-1/(1-\sigma)} $ the first
-argument is $ \lambda^{1-\sigma}T=1 $, and the relation reads
+The integrand is that of $ \Xi(T,h) $ raised to the power $ \lambda^{\sigma} $.
+For $ V\to\infty $ each integral is its largest integrand up to factors that
+are not exponential in $ V $, so
+\[
+  \ln\Xi(\lambda^{1-\sigma}T,\lambda^{b}h)=\lambda^{\sigma}\,\ln\Xi(T,h)+O(\ln V) .
+\]
+
+\emph{Potential.} With $ \omega=-(k_BT/V)\ln\Xi $, the prefactor
+$ \lambda^{1-\sigma}T $ on the left combines with $ \lambda^{\sigma} $ to
+\[
+  \omega(\lambda^{1-\sigma}T,\lambda^{b}h)=\lambda\,\omega(T,h)
+\]
+for every $ \lambda>0 $. For $ \lambda=T^{-1/(1-\sigma)} $ the first argument is
+$ \lambda^{1-\sigma}T=1 $, and the relation reads
 $ \omega(1,h\,T^{-b/(1-\sigma)})=T^{-1/(1-\sigma)}\,\omega(T,h) $, i.e.
 \begin{equation}\label{eq:filt_scalingform}
   \omega_{\rm sing}(T,h)=T^{1/(1-\sigma)}\,\Phi\left(\frac{h}{T^{\,b/(1-\sigma)}}\right),
@@ -3191,12 +3240,19 @@ $ \omega(1,h\,T^{-b/(1-\sigma)})=T^{-1/(1-\sigma)}\,\omega(T,h) $, i.e.
 \end{equation}
 This is the generalised homogeneous form of Section~\ref{sec:critical}, with
 $ T $ in the role of $ t $, $ 2-\alpha\to1/(1-\sigma) $ and gap exponent
-$ \Delta=b/(1-\sigma) $. With $ \sigma=(r+1)/(r+2) $ the prefactor is
-$ T^{r+2} $, and $ c_\mu\sim T^{r+1} $ is recovered. No property of the
-Hamiltonian was used: a Legendre transform maps a generalised homogeneous
-function to a generalised homogeneous function, so a scale-free many-body
-spectrum yields power laws and scaling functions in thermodynamics, with
-exponents fixed by those of the spectrum.
+$ \Delta=b/(1-\sigma) $.
+
+\emph{Entropy and heat capacity.} By differentiation, with
+$ z=h/T^{\,b/(1-\sigma)} $ and $ \sigma/(1-\sigma)=r+1 $,
+\[
+  \frac{S}{V}=-\frac{\partial\omega}{\partial T}=T^{r+1}\,\Phi_S(z) ,\qquad
+  c_\mu=-T\,\frac{\partial^{2}\omega}{\partial T^{2}}=T^{r+1}\,\Phi_c(z) ,
+\]
+where $ \Phi_S $ and $ \Phi_c $ are combinations of $ \Phi $ and its
+derivatives; $ c_\mu\sim T^{r+1} $ is recovered at $ h=0 $. No property of the
+Hamiltonian was used: a scale-free many-body density of states yields power
+laws and scaling functions in thermodynamics, with exponents fixed by those
+of the spectrum.
 
 Independent particles are the simplest instance. For a single-particle
 density of states $ \rho(e)=B|e-e_0|^{r} $ (a band edge, a Dirac point) and
@@ -3211,23 +3267,24 @@ three-dimensional band edge, $ r=\tfrac12 $). At an interacting critical point
 the scale-free object is the many-body density of states of the collective
 fluctuations, and $ \sigma $ and $ b $ are no longer these simple numbers.
 
-\paragraph{Critical exponents from the spectrum.} The same argument applies
+\paragraph{Critical exponents from the spectrum.} The same path applies
 at a critical point at finite temperature $T_c$ and field $h=0$, and yields
 the static scaling laws of Section~\ref{sec:critical} from the shape of the
-density of states, with no reference to the free energy. Let
-$\varepsilon_c$ be the energy density selected by $T_c$,
-$\delta\varepsilon:=\varepsilon-\varepsilon_c$, and
-\[
-  s(\varepsilon,h)=s(\varepsilon_c,0)+\frac{\delta\varepsilon}{T_c}+s_{\rm sing}(\delta\varepsilon,h) ,
-\]
-the linear term being fixed by $s_\varepsilon=1/T_c$ at the critical
-point. With $t=(T-T_c)/T_c$, $\varepsilon-T\delta\varepsilon/T_c=\varepsilon_c-t\delta\varepsilon$, so to leading
-order in $t$
-\[
-  \omega_{\rm sing}(t,h)=\min_{\delta\varepsilon}\big[-t\,\delta\varepsilon-T_c\,s_{\rm sing}(\delta\varepsilon,h)\big] :
-\]
-the reduced temperature is the variable conjugate to the energy density.
-Assume that the leading part of $s_{\rm sing}$ is generalised homogeneous,
+density of states, with no reference to the free energy.
+
+\emph{Density of states.} Let $\varepsilon_c$ be an energy density in the
+interior of the spectrum and $\delta\varepsilon:=\varepsilon-\varepsilon_c$.
+About it,
+\begin{equation}\label{eq:filt_gcrit}
+  g(V\varepsilon;h)=g(V\varepsilon_c;0)\,
+  \exp\left\{\frac{V}{k_B}\Big[\frac{\delta\varepsilon}{T_c}
+  +s_{\rm sing}(\delta\varepsilon,h)\Big]\right\} ,
+  \qquad
+  \frac{1}{T_c}:=k_B\,\frac{\partial\ln g}{\partial\xi}\bigg|_{V\varepsilon_c} :
+\end{equation}
+the first term is the exponential growth of $g$ at $\varepsilon_c$, whose
+rate defines $T_c$, and $s_{\rm sing}$ is the remainder. Assume that the
+leading part of the remainder has no intrinsic scale,
 \begin{equation}\label{eq:filt_shom}
   s_{\rm sing}(\lambda\,\delta\varepsilon,\lambda^{b}h)=\lambda^{\sigma}s_{\rm sing}(\delta\varepsilon,h) ,
   \qquad \sigma>2 ,
@@ -3241,13 +3298,36 @@ Eq.~\eqref{eq:filt_curv} the whole heat capacity would vanish at $T_c$; this
 is excluded generically, because the degrees of freedom that are not critical
 contribute a positive regular part to $c_\mu$. Hence $\sigma>2$: the
 curvature of $\ln g$ vanishes at $\varepsilon_c$ and the heat capacity diverges
-($\sigma=2$ with a logarithm is the marginal case, below). Substituting
-$\delta\varepsilon=\lambda\,\delta\varepsilon'$ in the minimisation,
+($\sigma=2$ with a logarithm is the marginal case, below).
+
+\emph{Partition function.} Inserting Eq.~\eqref{eq:filt_gcrit} in the Laplace
+transform, the linear term combines with the Boltzmann factor to
+$\delta\varepsilon\,(1/T_c-1/T)=t\,\delta\varepsilon/T$ with $t=(T-T_c)/T_c$,
+so that to leading order in $t$
 \[
-  \omega_{\rm sing}(\lambda^{\sigma-1}t,\lambda^{b}h)
-  =\min_{\delta\varepsilon'}\big[-\lambda^{\sigma-1}t\,\lambda\,\delta\varepsilon'
-  -T_c\,\lambda^{\sigma}s_{\rm sing}(\delta\varepsilon',h)\big]
-  =\lambda^{\sigma}\omega_{\rm sing}(t,h) ,
+  \Xi(T,h)=g(V\varepsilon_c;0)\,e^{-V\varepsilon_c/k_BT}\;\Xi_{\rm sing}(t,h) ,
+  \qquad
+  \Xi_{\rm sing}(t,h):=V\int d\delta\varepsilon\;
+  \exp\left\{\frac{V}{k_BT_c}\big[t\,\delta\varepsilon
+  +T_c\,s_{\rm sing}(\delta\varepsilon,h)\big]\right\} .
+\]
+The first two factors are analytic in $T$. The reduced temperature is the
+variable conjugate to the energy density. At the rescaled arguments, with
+$\delta\varepsilon=\lambda\,\delta\varepsilon'$ and Eq.~\eqref{eq:filt_shom}, the
+bracket becomes $\lambda^{\sigma}[t\,\delta\varepsilon'+T_c\,s_{\rm sing}(\delta\varepsilon',h)]$:
+the integrand is that of $\Xi_{\rm sing}(t,h)$ raised to the power
+$\lambda^{\sigma}$, and for $V\to\infty$
+\[
+  \ln\Xi_{\rm sing}(\lambda^{\sigma-1}t,\lambda^{b}h)
+  =\lambda^{\sigma}\,\ln\Xi_{\rm sing}(t,h)+O(\ln V) .
+\]
+
+\emph{Potential.} The singular part of the potential is
+\[
+  \omega_{\rm sing}(t,h):=-\frac{k_BT_c}{V}\ln\Xi_{\rm sing}
+  =\min_{\delta\varepsilon}\big[-t\,\delta\varepsilon-T_c\,s_{\rm sing}(\delta\varepsilon,h)\big] ,
+  \qquad
+  \omega_{\rm sing}(\lambda^{\sigma-1}t,\lambda^{b}h)=\lambda^{\sigma}\omega_{\rm sing}(t,h) ,
 \]
 and the choice $\lambda=|t|^{-1/(\sigma-1)}$, for which
 $\lambda^{\sigma-1}t=\pm1$, gives Eq.~\eqref{eq:scaling},
@@ -3257,8 +3337,15 @@ $\lambda^{\sigma-1}t=\pm1$, gives Eq.~\eqref{eq:scaling},
   \qquad
   2-\alpha=\frac{\sigma}{\sigma-1} ,\quad \Delta=\frac{b}{\sigma-1} ,
 \end{equation}
-with $\Phi_\pm(y):=\omega_{\rm sing}(\pm1,y)$. The exponents of
-Eq.~\eqref{eq:exponents} then follow as in Section~\ref{sec:critical},
+with $\Phi_\pm(y):=\omega_{\rm sing}(\pm1,y)$.
+
+\emph{Entropy, heat capacity, order parameter, susceptibility.} These are
+derivatives of $\omega_{\rm sing}$: the singular parts of the entropy and of
+the heat capacity are $-T_c^{-1}\partial\omega_{\rm sing}/\partial t\propto|t|^{1-\alpha}$
+and $-T_c^{-1}\partial^{2}\omega_{\rm sing}/\partial t^{2}\propto|t|^{-\alpha}$, and
+$m=-\partial\omega_{\rm sing}/\partial h$, $\chi=\partial m/\partial h$. The
+exponents of Eq.~\eqref{eq:exponents} follow as in
+Section~\ref{sec:critical},
 \[
   \alpha=\frac{\sigma-2}{\sigma-1} ,\qquad
   \beta=\frac{\sigma-b}{\sigma-1} ,\qquad
@@ -3336,8 +3423,8 @@ $k_BT\,\partial^{2}\ln\Xi/\partial h_{\mathbf q}^{2}
 =\sum_{ij}\cos(\mathbf q\cdot\mathbf r_i)\cos(\mathbf q\cdot\mathbf r_j)\,\chi_{ij}
 =\tfrac12V\chi(\mathbf q)$ for $\mathbf q\neq0$, the factor $\tfrac12$ being
 the mean of $\cos^{2}$. In the macroscopic limit let
-$s(\varepsilon,h,h_{\mathbf q};\mathbf q)$ be the entropy density of the
-spectrum, Eq.~\eqref{eq:filt_sdef}, in the presence of the modulated field. A
+$s(\varepsilon,h,h_{\mathbf q};\mathbf q)$ be the logarithmic density of
+states, Eq.~\eqref{eq:filt_sdef}, in the presence of the modulated field. A
 translation by half a wavelength maps $h_{\mathbf q}\to-h_{\mathbf q}$, so $s$
 is even in $h_{\mathbf q}$, the mixed derivatives in
 Eq.~\eqref{eq:filt_curv} vanish at $h_{\mathbf q}=0$, and
