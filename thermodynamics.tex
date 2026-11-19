@@ -3004,7 +3004,7 @@ form of the singularities, at least in the static case
 
 \subsubsection{Exact limits}
 \label{sec:filt_limits}
-Three statements follow from Eq.~\eqref{eq:filt_mb} with no assumption on
+Four statements follow from Eq.~\eqref{eq:filt_mb} with no assumption on
 $ \hat H $.
 \begin{itemize}
 \item \emph{Low temperature.} Let $ \xi_0 $ be the lowest eigenvalue of
@@ -3025,25 +3025,45 @@ $ \hat H $.
   The heat capacity of a gapped system has an ``activated exponential'' form, with the many-body gap of
   $ \hat{\mathcal{H}} $; at fixed $ \mu $ this includes the costs $ E_{N\pm1} - E_N \mp \mu $ of
   adding or removing a quantum particle.
-\item \emph{High temperature.} If the Fock space has \emph{finite} dimension $ D $ (fermions on a lattice),
-  write $ \langle\hat X\rangle_{T\to\infty} := \Tr\hat X/D $ for the
-  \emph{infinite-temperature} average (all $ p_a = 1/D $). Then
-  $ \Xi = \Tr e^{-\beta\hat{\mathcal{H}}} = D\,\langle e^{-\beta\hat{\mathcal{H}}}\rangle_{T\to\infty} $,
-  and the power series of the exponential, which converges for every $ \beta $
-  because $ D $ is finite, gives
+\item \emph{Expansion about any temperature.} Let $ \beta_0 = 1/k_BT_0 $ be
+  arbitrary and $ \langle\cdot\rangle_0 $ the equilibrium average at $ T_0 $,
+  with weights $ p_a^{(0)} = e^{-\beta_0\xi_a}/\Xi(\beta_0) $. Writing
+  $ e^{-\beta\xi_a} = e^{-\beta_0\xi_a}\,e^{-(\beta-\beta_0)\xi_a} $ in the sum over
+  levels,
   \[
-    \frac{\Xi}{D} = 1 - \beta\,m_1 + \tfrac12\beta^{2}m_2 + O(\beta^{3}) ,
-    \qquad m_n := \langle\hat{\mathcal{H}}^{n}\rangle_{T\to\infty} .
+    \frac{\Xi(\beta)}{\Xi(\beta_0)}
+    = \sum_ap_a^{(0)}\,e^{-(\beta-\beta_0)\xi_a}
+    = \big\langle e^{-(\beta-\beta_0)\hat{\mathcal{H}}}\big\rangle_0
+    = 1 - (\beta-\beta_0)\,m_1 + \tfrac12(\beta-\beta_0)^{2}m_2 - \dots ,
+    \qquad m_n := \langle\hat{\mathcal{H}}^{n}\rangle_0 ,
   \]
-  With $ \ln(1+x) = x - \tfrac12x^{2} + O(x^{3}) $ and
-  $ \Var_{T\to\infty}(\hat{\mathcal{H}}) = m_2 - m_1^{2} $,
+  an exact identity. With $ \ln(1+x) = x - \tfrac12x^{2} + O(x^{3}) $ and
+  $ \Var_0(\hat{\mathcal{H}}) = m_2 - m_1^{2} $,
+  \begin{equation}\label{eq:filt_mb_cumul}
+    \ln\Xi(\beta) = \ln\Xi(\beta_0) - (\beta-\beta_0)\,\langle\hat{\mathcal{H}}\rangle_0
+    + \tfrac12(\beta-\beta_0)^{2}\,\Var_0(\hat{\mathcal{H}}) + O\big((\beta-\beta_0)^{3}\big) .
+  \end{equation}
+  The coefficient of $ (-1)^{n}(\beta-\beta_0)^{n}/n! $ is the $ n $-th
+  cumulant of $ \hat{\mathcal{H}} $ at $ T_0 $: $ \ln\Xi $ is the cumulant
+  generating function of the spectrum. The second-order term is
+  $ C_\mu = k_B\beta^{2}\,\partial^{2}\ln\Xi/\partial\beta^{2}
+  = \Var(\hat{\mathcal{H}})/k_BT^{2} $ of Eq.~\eqref{eq:filt_mb}, at every
+  temperature. The series converges for $ |\beta-\beta_0| $ smaller than the
+  distance from $ \beta_0 $ to the nearest zero of $ \Xi $ in the complex
+  $ \beta $ plane. For a finite system this distance is non-zero at every
+  real $ \beta_0 $, since $ \Xi > 0 $ there; at a phase transition it shrinks
+  to zero in the thermodynamic limit (Section~\ref{sec:analyticity}).
+\item \emph{High temperature.} If the Fock space has \emph{finite} dimension
+  $ D $ (fermions on a lattice), the point $ \beta_0 = 0 $ is allowed:
+  $ \Xi(0) = D $, all $ p_a^{(0)} = 1/D $, and
+  $ \langle\hat X\rangle_{T\to\infty} := \Tr\hat X/D $ is the
+  \emph{infinite-temperature} average. Eq.~\eqref{eq:filt_mb_cumul} becomes
   \begin{equation}\label{eq:filt_mb_hiT}
     \ln\Xi = \ln D - \beta\langle\hat{\mathcal{H}}\rangle_{T\to\infty} + \tfrac12\beta^{2}\Var_{T\to\infty}(\hat{\mathcal{H}}) + O(\beta^{3}) ,
     \qquad
-    C_\mu = \frac{\Var_{T\to\infty}(\hat{\mathcal{H}})}{k_BT^{2}} + O(T^{-3}) ,
+    C_\mu = \frac{\Var_{T\to\infty}(\hat{\mathcal{H}})}{k_BT^{2}} + O(T^{-3}) .
   \end{equation}
-  the second by $ C_\mu = k_B\beta^{2}\,\partial^{2}\ln\Xi/\partial\beta^{2} $. So
-  $ S \to k_B\ln D $ and $ C_\mu $ decays as $ T^{-2} $ with a coefficient fixed by the
+  So $ S \to k_B\ln D $ and $ C_\mu $ decays as $ T^{-2} $ with a coefficient fixed by the
   spread of the whole spectrum.
 \item \emph{Sum rule.} Since $ C_\mu = T(\partial S/\partial T)_\mu $,
   \begin{equation}\label{eq:filt_mb_sumrule}
