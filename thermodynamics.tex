@@ -3073,16 +3073,64 @@ for $t>0$, all of whose derivatives vanish at $t=0$; correspondingly $s$ has
 finite curvature and an essential singularity at $k_c$, and no pair
 $(\sigma,b)$ describes it.
 
-\paragraph{Lengths: $\nu$, $\eta$ and hyperscaling.} The exponents of the
-correlation length (written $\ell_c\sim|t|^{-\nu}$ here, $\xi$ being in use for
-the energy) are encoded in the density of states in the same way, through its
-dependence on two further parameters of the Hamiltonian. The first is a
-spatially modulated field $h_{\mathbf q}$, coupled to the Fourier component
-$\hat M_{\mathbf q}$ of the order parameter: Eq.~\eqref{eq:filt_param} with
-$f=h_{\mathbf q}$ gives the static susceptibility $\chi(\mathbf q)$ as the
-second derivative of $g(\xi;h_{\mathbf q})$, and $\chi(\mathbf q)$ is the
-Fourier transform of $G(r)/k_BT$, with width $1/\ell_c$ in $q$ and decay
-$q^{-(2-\eta)}$ at $t=0$. The uniform
+\paragraph{Correlation functions from the spectrum.} The correlation
+function is obtained from the density of states in the same way as the
+susceptibility, with a field that depends on position. Let $\hat\sigma_i$ be
+the order-parameter operator of the component (site) $i$ at position
+$\mathbf r_i$, and add local fields,
+$\hat{\mathcal H}\to\hat{\mathcal H}-\sum_ih_i\hat\sigma_i$, so that
+$g=g(\xi;\{h_i\})$. Eq.~\eqref{eq:filt_param} holds for mixed derivatives,
+\[
+  \chi_{ij}:=\frac{\partial\langle\hat\sigma_i\rangle}{\partial h_j}
+  =k_BT\left[\frac{\Xi_{ij}}{\Xi}-\frac{\Xi_i\,\Xi_j}{\Xi^{2}}\right],
+  \qquad
+  \Xi_{ij}:=\int d\xi\;\frac{\partial^{2}g}{\partial h_i\,\partial h_j}\,e^{-\beta\xi} ,
+\]
+and the derivatives of the delta functions, with
+$\partial\xi_a/\partial h_i=-\sigma^{i}_{aa}$ and
+$\sigma^{i}_{aa}:=\langle a|\hat\sigma_i|a\rangle$, give as in
+Eq.~\eqref{eq:filt_vanvleck}
+\begin{equation}\label{eq:filt_corr}
+  \chi_{ij}=\frac{1}{k_BT}\Big[\sum_ap_a\,\sigma^{i}_{aa}\sigma^{j}_{aa}
+  -\langle\hat\sigma_i\rangle\langle\hat\sigma_j\rangle\Big]
+  -\sum_ap_a\,\frac{\partial^{2}\xi_a}{\partial h_i\,\partial h_j} .
+\end{equation}
+If all $\hat\sigma_i$ commute with $\hat{\mathcal H}$ (a classical model such
+as the Ising model) the eigenbasis diagonalises them, the last term vanishes,
+and $k_BT\chi_{ij}=G_{ij}:=\langle\hat\sigma_i\hat\sigma_j\rangle
+-\langle\hat\sigma_i\rangle\langle\hat\sigma_j\rangle$ exactly\footnote{In a
+quantum model $k_BT\chi_{ij}$ is the zero-frequency part of the correlation
+function and differs from the equal-time $G_{ij}$
+(Appendix~\ref{app:lehmann}). At a critical point at $T_c>0$ the two have the
+same singular behaviour at large distance, because the critical fluctuations
+are slow on the scale $\hbar/k_BT_c$.}. The correlation function is the mixed
+second derivative of the density of states with respect to the fields at the
+two sites: it is the covariance, over the Boltzmann-weighted levels, of the
+slopes of the levels with respect to these two fields. Two sites are
+correlated if the levels that are lowered by a field at $i$ are also lowered
+by a field at $j$.
+
+For a translation-invariant system $\chi_{ij}=\chi(\mathbf r_i-\mathbf r_j)$,
+with Fourier transform
+$\chi(\mathbf q)=\sum_{\mathbf r}e^{-i\mathbf q\cdot\mathbf r}\chi(\mathbf r)$.
+A modulated field $h_i=h_{\mathbf q}\cos(\mathbf q\cdot\mathbf r_i)$ of
+amplitude $h_{\mathbf q}$ is one parameter of the Hamiltonian, and
+$k_BT\,\partial^{2}\ln\Xi/\partial h_{\mathbf q}^{2}
+=\sum_{ij}\cos(\mathbf q\cdot\mathbf r_i)\cos(\mathbf q\cdot\mathbf r_j)\,\chi_{ij}
+=\tfrac12N\chi(\mathbf q)$ for $\mathbf q\neq0$, the factor $\tfrac12$ being
+the mean of $\cos^{2}$. In the macroscopic limit let
+$s(k,h,h_{\mathbf q};\mathbf q)=(k_B/N)\ln g$ be the entropy of the spectrum
+per component, with $k$ and $\epsilon$ now energies per component. A
+translation by half a wavelength maps $h_{\mathbf q}\to-h_{\mathbf q}$, so $s$
+is even in $h_{\mathbf q}$, the mixed derivatives in
+Eq.~\eqref{eq:filt_curv} vanish at $h_{\mathbf q}=0$, and
+\begin{equation}\label{eq:filt_chiq}
+  \chi(\mathbf q)=2T\,\frac{\partial^{2}s}{\partial h_{\mathbf q}^{2}}
+  \bigg|_{h_{\mathbf q}=0,\;k=k_*} :
+\end{equation}
+the static susceptibility at wave vector $\mathbf q$ is the curvature of
+$\ln g$ with respect to the amplitude of the modulated field, at the energy
+selected by $T$. The uniform
 susceptibility of Eq.~\eqref{eq:exponents} is the limit
 $\chi=\lim_{\mathbf q\to0}\chi(\mathbf q)$, taken after the thermodynamic
 limit; for short-range interactions it coincides with the derivative
@@ -3090,14 +3138,52 @@ $\partial m/\partial h$ obtained from $g(\xi;h)$ in a uniform
 field\footnote{The two differ for long-range (Coulomb) forces, and in an
 ensemble in which the total $\hat M$ is held fixed: there the response at
 $\mathbf q=0$ vanishes identically, while the limit $\mathbf q\to0$ does
-not.}. The uniform field thus supplies one point of the function
-$\chi(\mathbf q)$, its limiting value. The exponents $\nu$ and $\eta$ reside
-in the approach to that limit,
-$\chi(\mathbf q)\simeq\chi\,\big[1-q^{2}\ell_c^{2}+\dots\big]$ for
-$q\ell_c\ll1$ and $\chi(\mathbf q)\sim q^{-(2-\eta)}$ for $q\ell_c\gg1$, and
-therefore in $g(\xi;h_{\mathbf q})$ at small non-zero $\mathbf q$.
+not.}.
 
-The second parameter needs no modulated field. Microscopically the size of
+\paragraph{Power-law correlations and the correlation length.} Let the
+scale-free form Eq.~\eqref{eq:filt_shom} of the spectrum include the
+modulated field,
+\begin{equation}\label{eq:filt_shomq}
+  s_{\rm sing}(\lambda\epsilon,\lambda^{b}h,\lambda^{b}h_{\mathbf q};\lambda^{b_q}\mathbf q)
+  =\lambda^{\sigma}s_{\rm sing}(\epsilon,h,h_{\mathbf q};\mathbf q) ,
+  \qquad b_q>0 .
+\end{equation}
+The amplitude $h_{\mathbf q}$ scales as the uniform field, to which it reduces
+for $\mathbf q\to0$; the wave vector, which labels the perturbation, has its
+own exponent $b_q$. Two derivatives with respect to $h_{\mathbf q}$ in
+Eq.~\eqref{eq:filt_chiq}, with $t$ scaling as $\lambda^{\sigma-1}$
+(Eq.~\eqref{eq:filt_crit}), give at $h=0$
+\[
+  \chi(\lambda^{b_q}\mathbf q,\lambda^{\sigma-1}t)=\lambda^{-(2b-\sigma)}\,\chi(\mathbf q,t) .
+\]
+The choices $\lambda=|t|^{-1/(\sigma-1)}$, and $\lambda=q^{-1/b_q}$ at $t=0$,
+give
+\begin{equation}\label{eq:filt_chiqscal}
+  \chi(\mathbf q,t)=|t|^{-\gamma}\,X_\pm\big(q\,\ell_c\big) ,\quad
+  \ell_c:=|t|^{-\nu} ,\quad \nu=\frac{b_q}{\sigma-1} ;
+  \qquad
+  \chi(\mathbf q,0)\propto q^{-(2-\eta)} ,\quad 2-\eta=\frac{2b-\sigma}{b_q} ,
+\end{equation}
+with $\gamma=(2b-\sigma)/(\sigma-1)$ as before, so that the Fisher relation
+$\gamma=\nu(2-\eta)$ holds identically. In real space,
+$G(\mathbf r)=k_BT\int d^{d}q\,e^{i\mathbf q\cdot\mathbf r}\chi(\mathbf q)/(2\pi)^{d}$
+(lengths in units of the lattice spacing), and the Fourier transform of a
+power is a power: for $0<2-\eta<d$,
+\[
+  G(r)\propto\frac{1}{r^{\,d-2+\eta}}\quad(t=0) ,\qquad
+  G(r,t)=\frac{1}{r^{\,d-2+\eta}}\;\mathcal G_\pm\left(\frac{r}{\ell_c}\right)\quad(t\neq0) .
+\]
+The power-law decay of the correlations at the critical point, and the
+length $\ell_c$ beyond which they are cut off away from it, are thus
+consequences of Eq.~\eqref{eq:filt_shomq}. No correlation length has been
+assumed, and none appears in the input: $\ell_c$ is the inverse of the wave
+vector at which $\chi(\mathbf q,t)$ crosses over from its $q\to0$ limit to the
+power law, and its divergence $|t|^{-\nu}$ follows from the way the density
+of states changes with the amplitude and the wave vector of the field. The
+dimension $d$ enters only in the Fourier transform. For the
+three-dimensional Ising class $b_q\simeq0.71$.
+
+\paragraph{Size dependence and hyperscaling.} Microscopically the size of
 the system is the number $N$ of its components (lattice sites, particles); a
 length enters only through the geometry of the couplings in
 $\hat H$, as $L=N^{1/d}$ lattice spacings for couplings that form a
@@ -3107,12 +3193,8 @@ of a finite system depends on all of it. The volume is a macroscopic notion:
 that the thermodynamics depends on these data only through one number $V$,
 whatever the shape and the boundary condition, is a property of the
 thermodynamic limit with short-range interactions, and it fails for the
-finite-size scaling functions (assumption (S4) of Appendix~\ref{app:fss}). The smallest non-zero wave vector is then
-$2\pi/L$, so the dependence of the spectrum on $N$ carries the same
-information as its dependence on $h_{\mathbf q}$ at small $\mathbf q$. Let
-$s(k,h,N^{-1})=(k_B/N)\ln g_N$ be the entropy of the spectrum per component,
-with $k$ and $\epsilon$ now energies per component, and let
-Eq.~\eqref{eq:filt_shom} extend to
+finite-size scaling functions (assumption (S4) of Appendix~\ref{app:fss}).
+Let $s(k,h,N^{-1})=(k_B/N)\ln g_N$ and let Eq.~\eqref{eq:filt_shom} extend to
 \[
   s_{\rm sing}(\lambda\epsilon,\lambda^{b}h,\lambda^{b_N}N^{-1})
   =\lambda^{\sigma}s_{\rm sing}(\epsilon,h,N^{-1}) .
@@ -3133,23 +3215,56 @@ $\ln g_{N,\rm sing}$ of the whole system depends on $N$ only through the
 scaling combinations $\epsilon N^{1/\sigma}$ and $hN^{b/\sigma}$. No length
 has been used, and the statement holds also where none exists: for the
 infinite-range Ising model the scaling variable is $tN^{1/2}$, so $\nu_*=2$,
-in agreement with $\alpha=0$. Geometry enters in one step only. On a
-$d$-dimensional lattice $N_c=\ell_c^{\,d}$, so $\nu_*=d\nu$ and the relation
-above is hyperscaling, $2-\alpha=d\nu$, i.e.\ the relation (FSS) of
-Appendix~\ref{app:fss} written for the spectrum. Finally, at $t=h=0$ the
-susceptibility of the finite system grows as $N^{\gamma/\nu_*}=L^{\gamma/\nu}$,
-and with $\chi=\int d^{d}r\,G(r)/k_BT$ cut off at $r\sim L$ this is
-$L^{2-\eta}$: $\eta=2-\gamma/\nu$. The complete set of static exponents thus
-follows from three exponents $(\sigma,b,b_N)$ of $g_N(\xi;h)$ and the
-dimension $d$ of the lattice of couplings, the three being reduced to two
-when $\sigma=b_N$.
+in agreement with $\alpha=0$. The connection with the wave vector is the
+following. In a finite periodic system the smallest non-zero wave vector is
+$2\pi N^{-1/d}$. If the size enters the spectrum only through it, $N^{-1}$
+scales as $q^{d}$, so that
+\[
+  b_N=d\,b_q ,\qquad \nu_*=d\nu ,\qquad N_c=\ell_c^{\,d} ,
+\]
+and $\sigma=b_N$ becomes hyperscaling, $2-\alpha=d\nu$, i.e.\ the relation
+(FSS) of Appendix~\ref{app:fss} written for the spectrum. The susceptibility
+of the finite system at $t=h=0$ then grows as
+$N^{\gamma/\nu_*}=L^{\gamma/\nu}=L^{2-\eta}$. Above the upper critical
+dimension the premise fails, because the uniform mode is not controlled by
+the modes of small non-zero $\mathbf q$: the Ising model in $d>4$ with
+periodic boundary conditions has $\nu=\tfrac12$ but $\nu_*=2$, as for
+infinite range, so that $2-\alpha=\nu_*$ holds and $2-\alpha=d\nu$ does not.
+
+\paragraph{Relation to scale invariance and the renormalisation group.}
+Eq.~\eqref{eq:filt_shomq} is a statement of scale invariance. With
+$\ell:=\lambda^{b_q}$ it says that when all wave vectors are multiplied by
+$\ell$, the singular part of the spectrum keeps its form provided the energy
+per component, the field and the reduced temperature are rescaled by powers
+of $\ell$. Comparing with a renormalisation-group rescaling of lengths by
+the factor $\ell$ (with the scaling eigenvalues $y_t$, $y_h$ of
+Appendix~\ref{app:fss}), $t\to\ell^{\,y_t}t$, $h\to\ell^{\,y_h}h$,
+$f_{\rm sing}(t,h)=\ell^{-d}f_{\rm sing}(\ell^{\,y_t}t,\ell^{\,y_h}h)$,
+\[
+  y_t=\frac{\sigma-1}{b_q}=\frac1\nu ,\qquad
+  y_h=\frac{b}{b_q} ,\qquad
+  d=\frac{\sigma}{b_q}\ \ \text{(hyperscaling)} ,\qquad
+  \epsilon\to\ell^{\,1/b_q}\epsilon=\ell^{\,d-y_t}\epsilon ,
+\]
+the last being the scaling dimension $d-y_t$ of the energy density. The
+renormalisation-group eigenvalues are ratios of the exponents of the
+many-body density of states, and a fixed point is a Hamiltonian whose
+spectrum has no intrinsic scale in energy, field amplitude and wave vector.
+The two formulations differ in what is taken as given. The renormalisation
+group constructs the rescaling as a map on Hamiltonians and obtains the
+homogeneity from the existence of a fixed point, which also explains why
+different Hamiltonians share exponents. The spectral formulation takes the
+homogeneity as a property of the spectrum of the given Hamiltonian; it does
+not require a fixed point shared with other Hamiltonians, and therefore
+applies unchanged to power laws that are not universal.
 
 \paragraph{Scope of the spectral formulation.} The input is the many-body
-density of states $g_N(\xi;h)$ alone, a microscopic object that is defined
+density of states and its dependence on the parameters of the Hamiltonian
+(uniform and modulated fields, number of components), a microscopic object that is defined
 for every Hamiltonian and can be computed directly (by exact diagonalisation,
 or by sampling methods that estimate $g$). No property of a free energy is
-postulated, and neither a coarse-graining, a fixed point nor universality is
-invoked. The formulation therefore covers every regime in which the spectrum
+postulated, no diverging correlation length is assumed, and neither a
+coarse-graining, a fixed point nor universality is invoked. The formulation therefore covers every regime in which the spectrum
 is scale-free about some energy density, and not only continuous transitions:
 \begin{itemize}\setlength{\itemsep}{0pt}
 \item about $k_c$, a critical point at finite temperature
@@ -3169,7 +3284,7 @@ transform is invertible, homogeneity of $s_{\rm sing}$ and homogeneity of
 $\omega_{\rm sing}$ imply one another: at a critical point the relations among
 the exponents are those of Section~\ref{sec:critical}, as they must be. And
 the formulation reads the exponents off the spectrum but does not compute the
-spectrum: $(\sigma,b,b_N)$ are properties of $g$ that must be obtained from
+spectrum: $(\sigma,b,b_q,b_N)$ are properties of $g$ that must be obtained from
 the Hamiltonian, exactly, numerically or otherwise.
 
 \paragraph{What $c(T)$ determines.} Given $C_\mu$ at all temperatures, the
@@ -3250,7 +3365,7 @@ high-$ T $ tail, Eq.~\eqref{eq:filt_mb_hiT}; sum rule, Eq.~\eqref{eq:filt_mb_sum
 $ c \sim T^{r+1} $ from $ \rho \sim |\varepsilon - \mu|^{r} $; $ s/c = 1/(r+1) $ \\
 divergent response requires correlations; stretched-exponential $g$, Eq.~\eqref{eq:filt_stretched} &
 per-orbital bound on $ c_\mu $, Eq.~\eqref{eq:filt_bound} \\
-order parameter and susceptibility from $ \partial_fg $, $ \partial_f^{2}g $, Eqs.~\eqref{eq:filt_param}, \eqref{eq:filt_curv} &
+order parameter, susceptibility and correlation function from $ \partial_fg $, $ \partial_f^{2}g $, Eqs.~\eqref{eq:filt_param}, \eqref{eq:filt_corr}, \eqref{eq:filt_curv} &
 Lifshitz singularity $ \omega_{\rm sing} \propto |\delta\mu|^{r+2} $ \\
 inversion of $ c(T) $ for $ g(\xi) $ &
 inversion of $ c(T) $ for $ \rho(\varepsilon) $ \\
