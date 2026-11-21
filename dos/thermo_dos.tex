@@ -242,8 +242,8 @@ density of states} $\rho$ or, equivalently, by the \emph{level count} $\cN$,
   \rho(\xi) := \sum_a\delta(\xi - \xi_a) , \qquad
   \cN(\xi) := \sum_a\Theta(\xi-\xi_a) = \int_{-\infty}^{\xi}d\xi'\,\rho(\xi') ,
 \end{equation}
-the number of eigenstates with $\xi_a\le\xi$ ($\Theta$ is the Heaviside step
-function). $\cN$ is a non-decreasing step function and $\rho=d\cN/d\xi$. Then
+the number of eigenstates with $\xi_a\le\xi$, $\Theta$ is the Heaviside step function.
+$\cN$ is a non-decreasing step function and $\rho=d\cN/d\xi$. Then
 \begin{equation}\label{eq:filt_laplace}
   \Xi(\beta) = \int d\xi\; \rho(\xi)\,e^{-\beta \xi}
   = \beta\int d\xi\;\cN(\xi)\,e^{-\beta\xi} :
@@ -481,7 +481,7 @@ Thermodynamics is in this sense the study of the parametrised family of
 distributions $\rho_V(\xi;f)$ in the limit $V\to\infty$, on the logarithmic
 scale.
 
-\subsection{Entropy, energy and heat capacity from \texorpdfstring{$\Xi$}{Xi}}
+\subsection{Entropy, energy and heat capacity from the grand-canonical ensemble}
 \label{sec:filt_mb}
 
 Since $\hat{\mathcal H}$ does not depend on $T$ at fixed $\mu$, each
@@ -489,12 +489,12 @@ derivative of Eq.~\eqref{eq:filt_laplace} with respect to $\beta$ brings down
 a factor $-\xi$:
 \begin{equation}\label{eq:filt_moments}
   \langle\hat{\mathcal H}^{n}\rangle
-  = \frac{(-1)^{n}}{\Xi}\frac{\partial^{n}\Xi}{\partial\beta^{n}}\vert_{\mu}
+  = \frac{(-1)^{n}}{\Xi}\frac{\partial^{n}\Xi}{\partial\beta^{n}}\bigg\vert_{\mu}
   = \frac{1}{\Xi}\int d\xi\;\xi^{n}\rho(\xi)\,e^{-\beta\xi} ,
   \quad
-  \langle\hat{\mathcal H}\rangle = -\frac{\partial\ln\Xi}{\partial\beta}\vert_{\mu} ,
+  \langle\hat{\mathcal H}\rangle = -\frac{\partial\ln\Xi}{\partial\beta}\bigg\vert_{\mu} ,
   \quad
-  \Var(\hat{\mathcal H}) = \frac{\partial^{2}\ln\Xi}{\partial\beta^{2}}\vert_{\mu} .
+  \Var(\hat{\mathcal H}) = \frac{\partial^{2}\ln\Xi}{\partial\beta^{2}}\bigg\vert_{\mu} .
 \end{equation}
 The entropy of $\hat\rho_{\rm eq}$ is $S=-k_B\sum_ap_a\ln p_a$; with
 $\ln p_a=-\beta\xi_a-\ln\Xi$ and $\Omega=-k_BT\ln\Xi$,
