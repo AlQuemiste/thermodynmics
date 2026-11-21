@@ -18,10 +18,9 @@
 \theoremstyle{plain}
 \newtheorem{proposition}{Proposition}
 \newtheorem{lemma}{Lemma}
-%% assumptions on the spectrum are numbered A0, A1, ...
+%% assumptions on the spectrum are numbered A1, A2, ...
 \newtheorem{assumption}{Assumption}
 \renewcommand{\theassumption}{A\arabic{assumption}}
-\setcounter{assumption}{-1}
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 
@@ -31,9 +30,10 @@
 \newcommand{\Tr}{\operatorname{Tr}}
 \newcommand{\cN}{\mathcal{N}}   % level-counting function
 \newcommand{\cE}{\mathcal{E}}   % many-body excitation energy
-\newcommand{\cA}{\mathcal{A}}   % amplitude of the logarithmic density of states
-
+\newcommand{\cA}{{\mathcal{A}_0}}   % amplitude of the logarithmic density of states
 \newcommand{\hmag}{\mathcal{H}_M}
+\newcommand{\evalat}{\bigg\vert}  % evaluation bar, as in (d/d beta)|_mu
+
 %% capital kappa (one-mode grand partition function); LaTeX has no \Kappa
 \providecommand{\Kappa}{\mathrm{K}}
 
@@ -51,23 +51,25 @@ density of states. The density of states is a distribution (generalised
 function), the functional $\varphi\mapsto\Tr\varphi(\hat{\mathcal H})$, and
 every thermodynamic quantity is its pairing with a test function built from
 the Boltzmann factor: thermodynamics is a linear map from spectral to thermal
-information. These notes use this identity to derive the power laws and
-exponents of thermodynamic quantities, at continuous phase transitions and
-away from them (Fermi and non-Fermi liquids), from the form of the spectrum,
-with every assumption stated. The demonstration uses the grand partition
-function alone: an elementary two-sided bound, valid for any Hamiltonian,
-shows that $\ln\Xi$ is the Legendre--Fenchel transform of the logarithm of
-the level count up to logarithmic corrections; the entropy, the heat capacity
-and the responses follow by differentiation. It does not use the
-microcanonical ensemble, does not divide the system into parts and does not
-require short-range interactions. A scale-free logarithmic
-density of states then yields the low-temperature power laws and, at a
-critical point, the scaling forms and all static exponents. Neither an order
-parameter nor a broken symmetry enters; the formulation is applied to
-Goldstone modes, to frustration (competing, nearly degenerate orders), to
-disorder and to non-Fermi liquids. Quadratic Hamiltonians, and the classical
-microcanonical route through the steepest-descent method, are treated in
-appendices. The thermodynamic background is that of
+information. These notes do not propose a new thermodynamics. They
+reformulate the known one in terms of the microscopic spectrum, using only
+this identity, the formal properties of distributions and the equivalence
+of the microcanonical and the grand canonical ensembles. In this form the
+scaling hypothesis, the power laws and exponents of thermodynamic
+quantities, at continuous phase transitions and away from them, and the
+distinction between a transition and a crossover are statements about the
+form of the spectrum, not about the thermodynamic potential or the free
+energy, which are secondary quantities. A scale-free logarithmic density of states
+yields the low-temperature power laws and, at a critical point, the scaling
+forms and all static exponents, with every assumption stated. Neither an
+order parameter nor a broken symmetry enters, and neither universality nor
+a renormalisation group is needed: the formulation goes beyond Landau's
+symmetry-breaking paradigm, and is applied to Goldstone modes, to
+frustration (competing, nearly degenerate orders), to disorder and to
+non-Fermi liquids. The microcanonical entropy $S=k_B\ln W$, with $W$
+written in terms of the density of states, and the equivalence of the
+ensembles are recalled in an appendix; quadratic Hamiltonians are treated
+in another. The thermodynamic background is that of
 Swendsen~\cite{Swendsen}, Schwabl~\cite{Schwabl} and Plischke and
 Bergersen~\cite{Plischke}.
 \end{abstract}
@@ -77,20 +79,17 @@ Bergersen~\cite{Plischke}.
 \section{Outline of the argument}
 \label{sec:intro}
 
-The point of view of these notes is the following reduction. The spectrum of
-a many-body Hamiltonian, as thermodynamics sees it, is a distribution on the
-energy axis, the density of states $\rho_V(\xi;f)$, parametrised by the size
-$V$ and by the couplings and fields $f$ of the Hamiltonian, and constrained
-by physics: it is positive, its support is bounded below, its total weight
-is the dimension of the Fock space, its logarithm grows linearly with $V$
-(extensivity), and a field changes it by displacing levels, not by creating
-them. Equilibrium thermodynamics is the study of the properties of this
-parametrised family of distributions, on a logarithmic scale, in the limit
-$V\to\infty$: every thermodynamic quantity is a pairing of $\rho_V$ with a
-test function built from the Boltzmann factor, and every singularity, power
-law and exponent is a property of the form of $\ln\rho_V$ in that limit. The
-notes establish the following chain, for an arbitrary many-body Hamiltonian
-$\hat H$.
+The point of view of these notes is the following. The spectrum of a
+many-body Hamiltonian, as thermodynamics sees it, is a distribution on the
+energy axis: the density of states $\rho_V(\xi;f)$, parametrised by the size
+$V$ and by the couplings and fields $f$ of the Hamiltonian. It is positive,
+its support is bounded below, its total weight is the dimension of the Fock
+space, its logarithm grows linearly with $V$ (extensivity), and a field
+displaces its levels without creating any. Every thermodynamic quantity is a
+pairing of $\rho_V$ with a test function built from the Boltzmann factor,
+and every singularity, power law and exponent is a property of the form of
+$\ln\rho_V$ in the limit $V\to\infty$. The notes establish the following
+chain, for an arbitrary many-body Hamiltonian $\hat H$.
 \begin{enumerate}[label=(\roman*),itemsep=2pt]
 \item \emph{Exact relations} (Section~\ref{sec:filters}). The grand partition
   function is the Laplace transform of the many-body density of states
@@ -100,15 +99,18 @@ $\hat H$.
   every static response are derivatives of $\ln\Xi$, i.e.\ moments of $\rho$
   weighted by $e^{-\beta\xi}$ and of its derivatives with respect to the
   parameters of $\hat H$.
-\item \emph{Formal demonstration} (Section~\ref{sec:first}). For any spectrum,
-  $\ln\Xi$ lies between two Legendre--Fenchel transforms of the logarithm of
-  the level count $\cN$ (Proposition~\ref{prop:bounds}). For a large system
-  the thermodynamic potential is therefore the Legendre--Fenchel transform of the
-  \emph{logarithmic density of states} $s(\varepsilon)$, and the entropy is
-  $s$ at the thermal energy (Proposition~\ref{prop:legendre}). The
-  demonstration uses $\Xi$ alone: it neither invokes the microcanonical
-  ensemble nor divides the system into parts, and the range of the
-  interactions does not enter.
+\item \emph{Large systems} (Section~\ref{sec:large}). For a macroscopic
+  system the number of levels is exponential in the size,
+  $\rho_V(V\varepsilon)\asymp e^{Vs(\varepsilon)/k_B}$ (equality of the
+  logarithms to leading order in $V$), where the
+  \emph{logarithmic density of states} $s(\varepsilon)$ is the
+  microcanonical entropy density, Boltzmann's $k_B\ln W$ with $W$ written
+  in terms of the density of states. On this scale the Laplace transform is
+  evaluated by Laplace's method, and the thermodynamic potential is the
+  Legendre transform of $s$: this is the equivalence of the ensembles, a
+  known result, recalled in Appendix~\ref{app:second}. It makes the
+  potential a secondary quantity, the image of the spectrum under the
+  thermal map.
 \item \emph{Power laws} (Section~\ref{sec:filt_lowenergy}). An assumption on
   the form of $s$ is turned into a statement on the observables:
   a power law of $s$ above the ground state (Assumption~\ref{ass:power}) gives
@@ -127,10 +129,12 @@ $\hat H$.
 \end{enumerate}
 The representation used throughout is the eigenbasis of the full many-body
 Hamiltonian, which is assumed to be known. The construction is at fixed
-chemical potential $\mu$; the conversion to fixed particle number uses
-Eq.~\eqref{eq:dos_cvn}. The formulation relates the exponents to the spectrum;
-it does not compute the spectrum.
-It is thus an \emph{spectral formulation} of thermodynamics.
+chemical potential $\mu$. The formulation relates the exponents to the spectrum;
+it does not compute the spectrum. It is not a new thermodynamics but a
+\emph{spectral formulation} of the known one: its only tools are
+Eq.~\eqref{eq:filt_laplace}, the formal properties of distributions and
+their one-parameter families of test functions, and the equivalence of the
+ensembles.
 
 \section{Thermodynamic definitions}
 \label{sec:dos_prelim}
@@ -146,7 +150,11 @@ $\mu$, in a volume $V$, has the grand partition function and grand potential
 \end{equation}
 with $Z(T,V,N)$ the canonical partition function. The heat capacity per unit
 volume at fixed $\mu$ is $c_{\mu}=(T/V)(\partial S/\partial T)_{V,\mu}$ with
-$S=-(\partial\Omega/\partial T)_{V,\mu}$.
+$S=-(\partial\Omega/\partial T)_{V,\mu}$. For an isolated system at energy
+$E$ the microcanonical entropy is Boltzmann's $S=k_B\ln W$, with $W$ the
+number of eigenstates in a shell about $E$; Appendix~\ref{app:second}
+writes $W$ in terms of the density of states and recalls the equivalence
+of the two descriptions.
 
 Near a critical point at $T_c$, with reduced temperature $t=(T-T_c)/T_c$ and
 dimensionless field $h$ conjugate to the order parameter, the
@@ -159,7 +167,8 @@ dimensionless field $h$ conjugate to the order parameter, the
 \end{equation}
 with $m=-\partial f/\partial h \vert_{h \to 0}$, $\chi=\partial m/\partial h \vert_{h \to 0}$
 and $f(t,h)$ the free energy per unit volume, together with the correlation length
-$\ell_c\sim|t|^{-\nu}$ ($\ell_c$ is often denoted with $\xi$)
+$\ell_c\sim|t|^{-\nu}$ (usually written $\xi$, a letter reserved here for
+the energy)
 and the decay $G(r)\sim r^{-(d-2+\eta)}$ of the order-parameter correlation function
 at $t=0$ in $d$ dimensions.
 The order-parameter exponent is written $\tilde\beta$, because $\beta$ denotes
@@ -177,7 +186,7 @@ Eq.~\eqref{eq:scaling}.},
   f_{\rm sing}(t,h)=|t|^{2-\alpha}\,\Phi_\pm\left(\frac{h}{|t|^{\Delta_h}}\right) ,
 \end{equation}
 with the gap exponent $\Delta_h$ and two scaling functions $\Phi_\pm$, for
-$t>0$ and $t<0$. As in the conventional method, differentiation of Eq.~\eqref{eq:scaling} gives
+$t>0$ and $t<0$. Differentiation of Eq.~\eqref{eq:scaling} gives
 \begin{equation}\label{eq:rushbrooke}
   \Delta_h=\tilde\beta\delta=\tilde\beta+\gamma ,\qquad \alpha+2\tilde\beta+\gamma=2 ,
 \end{equation}
@@ -248,8 +257,8 @@ $\cN$ is a non-decreasing step function and $\rho=d\cN/d\xi$. Then
   \Xi(\beta) = \int d\xi\; \rho(\xi)\,e^{-\beta \xi}
   = \beta\int d\xi\;\cN(\xi)\,e^{-\beta\xi} :
 \end{equation}
-\emph{the grand partition function is the Laplace transform of the many-body
-density of states}, with $\beta$ the variable conjugate to $\xi$. The first
+the grand partition function is the Laplace transform of the many-body
+density of states, with $\beta$ the variable conjugate to $\xi$. The first
 form is the definition of $\rho$. The second follows by partial integration:
 the Heaviside function is the primitive of the delta function, so
 $\rho=d\cN/d\xi$, and
@@ -258,12 +267,12 @@ $\rho=d\cN/d\xi$, and
   =\Big[\cN(\xi)\,e^{-\beta\xi}\Big]_{-\infty}^{\infty}
   +\beta\int d\xi\;\cN(\xi)\,e^{-\beta\xi} ,
 \]
-where the boundary term vanishes: $\cN=0$ below the ground state, and for
-$\xi\to\infty$ the product $\cN(\xi)e^{-\beta\xi}$ tends to zero wherever
-the sum $\Xi$ converges in a neighbourhood of $\beta$ (trivially for a finite
-Fock space; in general because $\cN(\xi)e^{-\beta'\xi}\le\Xi(\beta')$ for
-$\beta'<\beta$, which is the lower bound of Proposition~\ref{prop:bounds}, so
-that $\cN(\xi)e^{-\beta\xi}\le\Xi(\beta')e^{-(\beta-\beta')\xi}$). In the
+where the boundary term vanishes: $\cN=0$ below the ground state, and
+$\cN(\xi)e^{-\beta\xi}\to0$ for $\xi\to\infty$ whenever $\Xi$ converges at
+some $\beta'<\beta$ (always, for a finite Fock space), because the $\cN(\xi)$
+levels below $\xi$ contribute at least $\cN(\xi)e^{-\beta'\xi}$ to
+$\Xi(\beta')$, so that
+$\cN(\xi)e^{-\beta\xi}\le\Xi(\beta')e^{-(\beta-\beta')\xi}$. In the
 form $e^{-\beta\xi_a}=\beta\int_{\xi_a}^{\infty}d\xi\,e^{-\beta\xi}$, summed
 over $a$, the same identity says that each level contributes to $\Xi$ through
 all the energies above it.
@@ -322,30 +331,24 @@ by $\xi_0$. The pairing is therefore defined for every continuous $\varphi$
 that decays for $\xi\to+\infty$ faster than the levels accumulate,
 $|\varphi(\xi)|\le{\rm const}\;e^{-\beta_1\xi}$ with $\Xi(\beta_1)<\infty$;
 no condition is needed for $\xi\to-\infty$, and none at all if the Fock
-space has finite dimension. The facts used below are statements about
-distributions.
+space has finite dimension. Three facts about distributions are used
+below.
 \begin{itemize}\setlength{\itemsep}{2pt}
 \item \emph{The level count is the primitive of $\rho$.} $\rho=d\cN/d\xi$ in the
   sense of distributions,
   $\langle \rho,\varphi\rangle=-\int d\xi\,\cN(\xi)\,\varphi'(\xi)$. Unlike $\rho$,
   $\cN$ is an ordinary function, with values that can be bounded and
   compared. For this reason the assumptions on the spectrum
-  (Assumptions~\ref{ass:ext}--\ref{ass:V}) are stated for $\cN$, not for $\rho$.
+  (Section~\ref{sec:large} and Assumptions~\ref{ass:power}--\ref{ass:V})
+  are stated for $\cN$, not for $\rho$.
 \item \emph{Derivative with respect to a parameter.} For $\rho(\xi;f)$,
   $\partial \rho/\partial f$ is the distribution defined by
-  $\langle\partial_f\rho,\varphi\rangle:=\partial_f\langle \rho,\varphi\rangle$.
-  This is the natural definition, and it differs in kind from the derivative
-  of footnote~\ref{footnote:distribution}: $f$ is a parameter of the
-  distribution, not its variable, and the test function does not depend on
-  it, so the derivative with respect to $f$ of the number
-  $\langle\rho,\varphi\rangle=\sum_a\varphi(\xi_a(f))$ is what
-  differentiation under the integral sign gives for an $f$-dependent
-  ordinary function. The derivative with respect to the variable $\xi$, in
-  contrast, is moved onto the test function by partial integration, because
-  $\rho$ has no values to differentiate.
-  By the Hellmann--Feynman theorem (Section~\ref{sec:filt_resp}),
-  for  $\hat{\mathcal H}(f)=\hat{\mathcal H}-f\hat A$,
-  $\partial\xi_a/\partial f=-A_{aa}$ so that
+  $\langle\partial_f\rho,\varphi\rangle:=\partial_f\langle \rho,\varphi\rangle$;
+  since the test function does not depend on $f$, this is differentiation
+  under the integral sign. For
+  $\hat{\mathcal H}(f)=\hat{\mathcal H}-f\hat A$ the Hellmann--Feynman
+  theorem (Section~\ref{sec:filt_resp}) gives
+  $\partial\xi_a/\partial f=-A_{aa}$, so that
   $\partial_f\sum_a\varphi(\xi_a)=-\sum_aA_{aa}\varphi'(\xi_a)$, i.e.
   \begin{equation}\label{eq:filt_gA}
     \frac{\partial \rho}{\partial f}=\frac{\partial \rho_A}{\partial\xi} ,
@@ -354,24 +357,17 @@ distributions.
     \qquad
     \langle \rho_A,\varphi\rangle=\Tr\big[\hat A\,\varphi(\hat{\mathcal H})\big] ,
   \end{equation}
-  with $\rho_A$ the density of states weighted by $\hat A$.
-  A field does not create or destroy levels, it moves them along the energy
-  axis. This holds whether or not $\hat A$ commutes with $\hat{\mathcal H}$:
-  the eigenvalues of a Hermitian operator are continuous functions of its
-  matrix elements, so each $\xi_a(f)$ moves continuously with $f$, at the
-  rate $-A_{aa}(f)$ with $A_{aa}$ taken in the eigenbasis at $f$, and
+  with $\rho_A$ the density of states weighted by $\hat A$. A field does
+  not create or destroy levels, it moves them along the energy axis, each
+  at the rate $-A_{aa}(f)$, with $A_{aa}$ taken in the eigenbasis at $f$;
   $\int d\xi\,\rho(\xi;f)=D$, the dimension of the Fock space, for every
-  $f$. Conservation, $[\hat A,\hat{\mathcal H}]=0$, only makes the rate
-  independent of $f$, so that the motion is uniform,
-  $\xi_a(f)=\xi_a-fA_a$. Eq.~\eqref{eq:filt_gA} is this conservation of the
-  number of levels written as a continuity equation on the energy axis: the
-  levels at $\xi$ move with the velocity $d\xi_a/df=-A_{aa}$, the current
-  of levels is density times velocity,
-  $j(\xi)=\sum_a(-A_{aa})\,\delta(\xi-\xi_a)=-\rho_A(\xi)$, and
-  $\partial_f\rho+\partial_\xi j=0$ is Eq.~\eqref{eq:filt_gA}. Integrated
-  over all $\xi$ it gives $\partial_fD=0$; integrated up to $\xi$ it says
-  that the number of levels below $\xi$ changes only through levels crossing
-  $\xi$, at the rate $-A_{aa}$ each.
+  $f$. This holds whether or not $\hat A$ commutes with $\hat{\mathcal H}$;
+  conservation only makes the rate independent of $f$,
+  $\xi_a(f)=\xi_a-fA_a$. Eq.~\eqref{eq:filt_gA} is the conservation of the
+  number of levels written as a continuity equation on the energy axis,
+  $\partial_f\rho+\partial_\xi j=0$, with the current of levels
+  $j=-\rho_A$ (density times velocity): the number of levels below $\xi$
+  changes only through levels crossing $\xi$.
 \item \emph{Regularisation.} The convolution of $\rho$ with a smooth window of
   unit area and width $\Delta$ is an ordinary function, the smoothed density
   of states: the number of levels per unit energy in a window $\Delta$ about
@@ -436,12 +432,10 @@ from the spectral to the thermal description has the following properties.
 \item \emph{It regularises.} The distribution $\rho$ has no values, let
   alone smooth ones; its pairing with the smooth family $e_\beta$, the sum
   $\Xi(\beta)=\sum_ae^{-\beta\xi_a}$, is an analytic function of $\beta$
-  wherever it converges, each term being analytic and the sum converging
-  uniformly on compact sets of the half-plane of convergence (for a finite
-  Fock space it is a finite sum of exponentials). The thermal quantities of
-  a finite system are therefore smooth functions of $T$; a non-analyticity
-  (a phase transition) can arise only in the limit $V\to\infty$ (infinite
-  size).
+  wherever it converges (for a finite Fock space it is a finite sum of
+  exponentials). The thermal quantities of a finite system are therefore
+  smooth functions of $T$; a non-analyticity (a phase transition) can arise
+  only in the limit $V\to\infty$.
 \item \emph{It is injective}\footnote{A map is \emph{injective}
   (one-to-one) if different inputs have different outputs: two spectra with
   the same $\Xi(\beta)$ for all $\beta$ are the same spectrum.}. A distribution with support bounded below is
@@ -467,19 +461,16 @@ exponentially many levels fall into every interval of fixed width. No
 normalisation by a power of $V$ makes the sequence $\rho_V$ converge, and
 the whole spectrum shifts with $V$ besides, since $\xi_0=O(V)$. What
 converges is the logarithm of a pairing, divided by $V$:
-Assumption~\ref{ass:ext} is the statement that
 $(k_B/V)\ln\langle\rho_V,\Theta(V\varepsilon-\,\cdot\,)\rangle$, the
 logarithm of the number of levels below the energy density $\varepsilon$,
-has the limit $s(\varepsilon)$, and Proposition~\ref{prop:legendre} is the
-statement that $(1/V)\ln\langle\rho_V,e_\beta\rangle$ then has a limit, the
-Legendre--Fenchel transform of $s$. In the language of the theory of large
+has the limit $s(\varepsilon)$, the microcanonical entropy density
+(Section~\ref{sec:large}), and $(1/V)\ln\langle\rho_V,e_\beta\rangle$ then
+has the limit $-\omega/k_BT$, the Legendre--Fenchel transform of $s/k_B$,
+Eq.~\eqref{eq:filt_legendre}. In the language of large
 deviations~\cite{Touchette2009}, $P_T=\rho_Ve^{-\beta\xi}/\Xi_V$ is a family
 of probability distributions of the energy density that concentrates
 exponentially fast on $\varepsilon_*$, with the rate function
-$[\varepsilon-Ts(\varepsilon)-\omega]/k_BT$ (the Laplace principle).
-Thermodynamics is in this sense the study of the parametrised family of
-distributions $\rho_V(\xi;f)$ in the limit $V\to\infty$, on the logarithmic
-scale.
+$[\varepsilon-Ts(\varepsilon)-\omega]/k_BT$.
 
 \subsection{Entropy, energy and heat capacity from the grand-canonical ensemble}
 \label{sec:filt_mb}
@@ -489,12 +480,12 @@ derivative of Eq.~\eqref{eq:filt_laplace} with respect to $\beta$ brings down
 a factor $-\xi$:
 \begin{equation}\label{eq:filt_moments}
   \langle\hat{\mathcal H}^{n}\rangle
-  = \frac{(-1)^{n}}{\Xi}\frac{\partial^{n}\Xi}{\partial\beta^{n}}\bigg\vert_{\mu}
+  = \frac{(-1)^{n}}{\Xi}\frac{\partial^{n}\Xi}{\partial\beta^{n}}\evalat_{\mu}
   = \frac{1}{\Xi}\int d\xi\;\xi^{n}\rho(\xi)\,e^{-\beta\xi} ,
   \quad
-  \langle\hat{\mathcal H}\rangle = -\frac{\partial\ln\Xi}{\partial\beta}\bigg\vert_{\mu} ,
+  \langle\hat{\mathcal H}\rangle = -\frac{\partial\ln\Xi}{\partial\beta}\evalat_{\mu} ,
   \quad
-  \Var(\hat{\mathcal H}) = \frac{\partial^{2}\ln\Xi}{\partial\beta^{2}}\bigg\vert_{\mu} .
+  \Var(\hat{\mathcal H}) = \frac{\partial^{2}\ln\Xi}{\partial\beta^{2}}\evalat_{\mu} .
 \end{equation}
 The entropy of $\hat\rho_{\rm eq}$ is $S=-k_B\sum_ap_a\ln p_a$; with
 $\ln p_a=-\beta\xi_a-\ln\Xi$ and $\Omega=-k_BT\ln\Xi$,
@@ -539,16 +530,10 @@ by the derivative of the exponential of an operator\footnote{For
 non-commuting operators
 $ \partial_fe^{-\beta\hat{\mathcal{H}}(f)} = \int_0^{\beta}d\tau\,
 e^{-(\beta-\tau)\hat{\mathcal{H}}(f)}\hat A\,e^{-\tau\hat{\mathcal{H}}(f)} $
-(Duhamel's formula~\cite{Wilcox1967}). \emph{Proof.} Write
-$e^{-\beta\hat{\mathcal H}}=\big(e^{-\beta\hat{\mathcal H}/n}\big)^{n}$ and
-apply the product rule: the derivative is the sum over $k=1,\dots,n$ of the
-product in which the $k$-th factor is replaced by
-$\partial_fe^{-\beta\hat{\mathcal H}/n}=(\beta/n)\hat A+O(n^{-2})$. For
-$n\to\infty$ the sum over $k$ becomes the integral over $\tau=k\beta/n$. This
-is the slicing that gives the time-ordered evolution operator of a
-time-dependent Hamiltonian, with the imaginary time $\tau$ in place of $it$.
-Under the trace the two exponentials combine by cyclicity, and the integral
-gives the factor $\beta$.} and the cyclic property of the trace. Hence
+(Duhamel's formula~\cite{Wilcox1967}, the imaginary-time form of
+first-order time-dependent perturbation theory). Under the trace the two
+exponentials combine by cyclicity, and the integral over $\tau$ gives the
+factor $\beta$.} and the cyclic property of the trace. Hence
 $\langle\hat A\rangle=-\partial\Omega/\partial f$ and
 \begin{equation}\label{eq:filt_param}
   \langle\hat A\rangle = k_BT\,\frac{\Xi^{(1)}}{\Xi} , \qquad
@@ -636,18 +621,6 @@ conserved; $ C_\mu $ itself ($ \hat B = \hat{\mathcal{H}} $,
 Eq.~\eqref{eq:filt_CU}); and
 $ (\partial N/\partial T)_\mu = \Cov(\hat N, \hat{\mathcal{H}})/k_BT^{2} $.
 
-\paragraph{Fixed particle number.} At fixed $N$ the heat capacity differs
-from $C_\mu$. By the Maxwell relation
-$(\partial S/\partial\mu)_{T,V}=(\partial N/\partial T)_{V,\mu}$,
-\begin{equation}\label{eq:dos_cvn}
-  C_{V,N}=C_{V,\mu}-T\,\frac{\big[(\partial N/\partial T)_{V,\mu}\big]^{2}}
-  {(\partial N/\partial\mu)_{T,V}}
-  =C_{V,\mu}-\frac{\big[\Cov(\hat N,\hat{\mathcal H})\big]^{2}}{k_BT^{2}\,\Var(\hat N)} ,
-\end{equation}
-both ingredients being the covariances of Eq.~\eqref{eq:filt_mb_response};
-the correction is negative, $C_{V,N}\le C_{V,\mu}$, and is not small in
-general.
-
 If $ \hat A $ is not conserved, the covariance is replaced by the Lehmann
 representation, Eq.~\eqref{eq:filt_mb_kubo} of Appendix~\ref{app:lehmann},
 which is Eq.~\eqref{eq:filt_vanvleck} in another form, and
@@ -671,207 +644,73 @@ $\Cov(\hat A,\hat B)$ of any extensive observable. An additive
 (Appendix~\ref{app:quadratic}, Eq.~\eqref{eq:filt_bound}): \emph{a divergent
 response requires interactions.}
 
-\subsection{Exact limits}
-\label{sec:filt_limits}
+\section{Large systems: the density of states on the logarithmic scale}
+\label{sec:large}
 
-Some statements follow from Eqs.~\eqref{eq:filt_laplace}
-and~\eqref{eq:filt_mb} with no assumption on $ \hat H $.
-\begin{itemize}
-\item \emph{Low temperature.} The Boltzmann weights are
-  $ p_a = e^{-\beta(\xi_a - \xi_0)}/\sum_be^{-\beta(\xi_b - \xi_0)} $.
-  As $ T \to 0 $, at fixed size, every term with $ \xi_b > \xi_0 $ vanishes and
-  the denominator tends to $ d_0 $: $ p_a \to 1/d_0 $ on the ground manifold
-  and $ p_a \to 0 $ elsewhere, so
-  \[
-    S \to k_B\ln d_0 \qquad (T\to0) .
-  \]
-  This is the limit of the grand canonical weights.
+Everything so far holds for a system of any size. For a macroscopic system
+the Laplace transform~\eqref{eq:filt_laplace} simplifies, because the number
+of levels is exponential in the size, and the simplification is the familiar
+one: the thermodynamic potential becomes the Legendre transform of the
+microcanonical entropy. Nothing in this section is new. It restates the
+equivalence of the microcanonical and the grand canonical ensembles in the
+language of Section~\ref{sec:filters}, so that in the following sections the
+observables can be read directly from the spectrum. The derivations are
+recalled in Appendix~\ref{app:second}; here only the statements are needed.
 
-\item \emph{Expansion about any temperature.} Let $ \beta_0 = 1/k_BT_0 $ be
-  arbitrary and $ \langle\cdot\rangle_0 $ the equilibrium average at $ T_0 $.
-  Writing $ e^{-\beta\xi_a} = e^{-\beta_0\xi_a}\,e^{-(\beta-\beta_0)\xi_a} $,
-  \[
-    \frac{\Xi(\beta)}{\Xi(\beta_0)}
-    = \big\langle e^{-(\beta-\beta_0)\hat{\mathcal{H}}}\big\rangle_0
-    = 1 - (\beta-\beta_0)\,\langle\hat{\mathcal H}\rangle_0
-    + \tfrac12(\beta-\beta_0)^{2}\langle\hat{\mathcal H}^{2}\rangle_0 - \dots ,
-  \]
-  an exact identity. With $ \ln(1+x) = x - \tfrac12x^{2} + O(x^{3}) $,
-  \begin{equation}\label{eq:filt_mb_cumul}
-    \ln\Xi(\beta) = \ln\Xi(\beta_0) - (\beta-\beta_0)\,\langle\hat{\mathcal{H}}\rangle_0
-    + \tfrac12(\beta-\beta_0)^{2}\,\Var_0(\hat{\mathcal{H}}) + O\big((\beta-\beta_0)^{3}\big) .
-  \end{equation}
-  The coefficient of $ (-1)^{n}(\beta-\beta_0)^{n}/n! $ is the $ n $-th
-  cumulant of $ \hat{\mathcal{H}} $ at $ T_0 $: $ \ln\Xi $ is the cumulant
-  generating function of the spectrum. The series converges for
-  $ |\beta-\beta_0| $ smaller than the distance from $ \beta_0 $ to the
-  nearest zero of $ \Xi $ in the complex $ \beta $ plane. For a finite system
-  this distance is non-zero at every real $ \beta_0 $, since $ \Xi > 0 $
-  there; at a phase transition it shrinks to zero in the thermodynamic limit
-  (Fisher zeros~\cite{Fisher1965}).
-\item \emph{High temperature.} If the Fock space has \emph{finite} dimension
-  $ D $ (fermions or spins on a lattice), the point $ \beta_0 = 0 $ is
-  allowed: $ \Xi(0) = D $, all $ p_a = 1/D $, and
-  $ \langle\hat X\rangle_{\infty} := \Tr\hat X/D $ is the
-  infinite-temperature average. Eq.~\eqref{eq:filt_mb_cumul} becomes
-  \begin{equation}\label{eq:filt_mb_hiT}
-    \ln\Xi = \ln D - \beta\langle\hat{\mathcal{H}}\rangle_{\infty}
-    + \tfrac12\beta^{2}\Var_{\infty}(\hat{\mathcal{H}}) + O(\beta^{3}) ,
-    \qquad
-    C_\mu = \frac{\Var_{\infty}(\hat{\mathcal{H}})}{k_BT^{2}} + O(T^{-3}) .
-  \end{equation}
-  So $ S \to k_B\ln D $, and $ C_\mu $ decays as $ T^{-2} $ with a coefficient
-  fixed by the spread of the whole spectrum.
-\item \emph{Sum rule.} Since $ C_\mu = T(\partial S/\partial T)_\mu $,
-  \begin{equation}\label{eq:filt_mb_sumrule}
-    \int_0^{\infty} C_\mu(T)\,\frac{dT}{T} = S(T \to \infty) - S(T = 0) = k_B\ln\frac{D}{d_0} :
-  \end{equation}
-  the area under $ C_\mu/T $ counts the eigenstates, logarithmically.
-\end{itemize}
+\subsection{Extensivity: the logarithmic density of states}
+\label{sec:large_ext}
 
-\section{Formal demonstration: the thermodynamic potential from the level count}
-\label{sec:first}
-
-The Laplace transform~\eqref{eq:filt_laplace} is now considered for a large
-system. The only tool is a pair of inequalities between $\Xi(\beta)$ and the
-level count $\cN(\xi)$; the entropy is not assumed to be given by the density
-of states, it is derived. The eigenvalues of $\hat{\mathcal H}$ are used as
-they are, in ascending order, $\xi_0\le\xi_1\le\xi_2\le\dots$, with $\cN(\xi)$
-the number of them not exceeding $\xi$; no energy is subtracted and no
-reference level is singled out. Neither the microcanonical ensemble, nor a
-division of the system into parts, nor the range of the interactions enters
-the argument.
-
-\subsection{Two-sided bound}
-
-The idea is the one behind every ``dominant term'' argument of statistical
-mechanics, made exact. The partition function is a sum of positive terms,
-$\Xi=\sum_ae^{-\beta\xi_a}$, in which the number of terms grows with the
-energy as the level count $\cN(\xi)$ while the size of each term decays as
-$e^{-\beta\xi}$. The terms at energy $\xi$ contribute about
-$\cN(\xi)e^{-\beta\xi}$, and the sum is dominated by the energy at which the
-growth of the count and the decay of the Boltzmann factor balance. The
-following proposition turns this into two inequalities that hold for any
-spectrum, without any assumption.
-
-\begin{proposition}[Bounds on the partition function]\label{prop:bounds}
-For any Hamiltonian, define the Legendre--Fenchel
-transform\footnote{The \emph{Legendre--Fenchel transform} of a function
-$\phi(x)$ is $\phi^{*}(\beta)=\sup_x[\phi(x)-\beta x]$. It is defined
-whether or not $\phi$ is differentiable or concave, and it is a convex
-function of $\beta$, being a supremum of linear functions. For a
-differentiable concave $\phi$ it reduces to the Legendre transform, with
-$\phi'(x)=\beta$ at the maximum~\cite{Touchette2009}.} of the logarithm of the
-level count,
-\begin{equation}\label{eq:filt_Phi}
-  \Phi(\beta):=\sup_{\xi\ge\xi_0}\big[\ln\cN(\xi)-\beta\xi\big] ,
-\end{equation}
-the supremum running over the energies at which $\cN\ge1$. Then, for every
-$\beta$ at which $\Xi$ exists and every $0<\beta'<\beta$,
-\begin{equation}\label{eq:filt_bounds}
-  \Phi(\beta)\;\le\;\ln\Xi(\beta)\;\le\;\Phi(\beta')-(\beta-\beta')\,\xi_0+\ln\frac{\beta}{\beta-\beta'} .
-\end{equation}
-\end{proposition}
-\begin{proof}
-\emph{Lower bound.} Fix any $\xi\ge\xi_0$ and keep in the sum $\Xi$ only the
-$\cN(\xi)$ terms with $\xi_a\le\xi$; each of them is at least $e^{-\beta\xi}$.
-Hence $\Xi\ge\cN(\xi)\,e^{-\beta\xi}$ for every $\xi$, and the supremum over
-$\xi$ gives $\ln\Xi\ge\Phi(\beta)$.
-
-\emph{Upper bound.} By the definition of $\Phi$ at the smaller inverse
-temperature $\beta'$, $\cN(\xi)\le e^{\Phi(\beta')+\beta'\xi}$ for all
-$\xi$: the level count grows at most exponentially, at the rate $\beta'$.
-Insert this in the second form of Eq.~\eqref{eq:filt_laplace}, whose
-integrand vanishes below $\xi_0$:
-\[
-  \Xi(\beta)=\beta\int_{\xi_0}^{\infty}d\xi\;\cN(\xi)\,e^{-\beta\xi}
-  \;\le\;\beta\,e^{\Phi(\beta')}\int_{\xi_0}^{\infty}d\xi\;e^{-(\beta-\beta')\xi}
-  =\frac{\beta}{\beta-\beta'}\,e^{\Phi(\beta')-(\beta-\beta')\xi_0} . \qedhere
-\]
-\end{proof}
-The supremum in Eq.~\eqref{eq:filt_Phi} is attained at an eigenvalue,
-$\xi_*(\beta)$: between two consecutive eigenvalues $\cN$ is constant and the
-bracket decreases, so the bracket is largest at the lower end of each such
-interval. $\xi_*(\beta)$ is the \emph{thermal energy}, the energy at which
-the number of levels and their Boltzmann weight balance; it is non-increasing
-in $\beta$, i.e.\ it rises with the temperature. Two further steps bring
-Eq.~\eqref{eq:filt_bounds} to a usable form. First, since $\Phi(\beta)$ is at
-least the value of its bracket at $\xi_*(\beta')$,
-$\Phi(\beta)\ge\ln\cN(\xi_*(\beta'))-\beta\,\xi_*(\beta')=\Phi(\beta')-(\beta-\beta')\,\xi_*(\beta')$,
-i.e.
-\[
-  \Phi(\beta')-\Phi(\beta)\le(\beta-\beta')\,\xi_*(\beta') .
-\]
-Second, write $\beta'=(1-\delta)\beta$ with $0<\delta<1$. Then
-Eq.~\eqref{eq:filt_bounds} reads
-\begin{equation}\label{eq:filt_bounds2}
-  0\;\le\;\ln\Xi(\beta)-\Phi(\beta)\;\le\;\delta\,\beta\,\big[\xi_*\big((1-\delta)\beta\big)-\xi_0\big]+\ln\frac1\delta
-  \qquad(0<\delta<1) .
-\end{equation}
-The bracket is the thermal energy measured from the ground state, at a
-temperature slightly above $T$; in units of $k_BT$ it is the number of
-thermal quanta the system holds, a number of order $V$ for a macroscopic
-system. The choice $\delta=1/V$ makes the first term $O(1)$ and the second
-$\ln V$ (any $\delta$ of the order of $1/\beta(\xi_*-\xi_0)$ does as well),
-whereas $\Phi$ itself, the logarithm of the number of thermally populated
-levels, is $O(V)$. Hence
-\begin{equation}\label{eq:filt_lnXi}
-  \ln\Xi(\beta)=\Phi(\beta)+O(\ln V) :
-\end{equation}
-\emph{$\ln\Xi$ is the Legendre--Fenchel transform of $\ln\cN$, up to a
-logarithmic correction.} What has been used is the definition of $\Xi$, the
-fact that $\cN$ is non-decreasing, and the existence of a lowest level, and
-nothing else. The ground-state energy $\xi_0$ enters only as the lower end
-of the spectrum, where the integral starts.
-
-\subsection{The thermodynamic limit}
-
-To state the consequences in intensive form one property of the spectrum is
-needed: the number of levels must grow exponentially with the size at every
-energy density, which is the spectral form of extensivity.
-
-\begin{assumption}[Extensive logarithm of the level count]\label{ass:ext}
-There is a measure $V$ of the size of the system (the number of lattice
-sites, or the volume) such that, with $\varepsilon:=\xi/V$ the density of
-$\xi=E-\mu N$, the ground-state energy density
-$\varepsilon_0:=\lim_{V\to\infty}\xi_0/V$ exists and
+Let $V$ be a measure of the size of the system (the number of lattice sites,
+or the volume) and $\varepsilon:=\xi/V$ the density of $\xi=E-\mu N$. The
+spectrum of a macroscopic system is \emph{extensive}: the ground-state
+energy density $\varepsilon_0:=\lim_{V\to\infty}\xi_0/V$ exists, and so does
 \begin{equation}\label{eq:filt_sdef}
   s(\varepsilon) := \lim_{V\to\infty}\frac{k_B}{V}\,\ln\cN_V(V\varepsilon)
+  \qquad(\varepsilon>\varepsilon_0) ,
 \end{equation}
-exists for every $\varepsilon>\varepsilon_0$, uniformly on bounded closed
-intervals of $\varepsilon$\footnote{\emph{Uniformly} means that the largest
-deviation on the interval, $\max_\varepsilon|(k_B/V)\ln\cN_V-s|$, tends
-to zero, not only the deviation at each $\varepsilon$ separately. It is needed
-because Proposition~\ref{prop:legendre} takes the supremum over $\varepsilon$
-of the finite-size function and compares it with the supremum of $s$: the
-supremum of a sequence of functions converges to the supremum of the limit
-when the convergence is uniform, but not necessarily when it is pointwise (a
-peak of height $1$ that becomes narrower and moves as $V$ grows tends to
-zero at every fixed $\varepsilon$, while its supremum stays $1$).}, and
-that for some constants $a$ and $b\ge0$ the linear bound
-$(k_B/V)\ln\cN_V(V\varepsilon)\le a+b\,\varepsilon$ holds for all $V$ and
-all $\varepsilon$.
-\end{assumption}
-The function $s(\varepsilon)$ is the \emph{logarithmic density of states}.
-It is a property of the spectrum: the number of levels below the energy
-$V\varepsilon$ is $e^{Vs(\varepsilon)/k_B}$ up to a factor that is not
-exponential in $V$. It is non-negative and non-decreasing for
-$\varepsilon>\varepsilon_0$, since $\cN\ge1$ there, and $s(\varepsilon)\to0$
-for $\varepsilon\to\varepsilon_0^{+}$ unless the ground-state degeneracy is
-exponential in $V$. The factor $k_B$ and the letter $s$ anticipate
-Proposition~\ref{prop:legendre}. The linear bound holds with $b=0$ and
-$a=k_B\ln D/V$ if the Fock space has finite dimension $D$; in general it is
-the condition for $\Xi$ to exist at $k_BT<1/b$, and it confines the thermal
-energy to a bounded range of $\varepsilon$. Assumption~\ref{ass:ext} does not
-require $s$ to be concave and assumes nothing about the range of the
-interactions\footnote{For short-range interactions Assumption~\ref{ass:ext}
-is a theorem~\cite{Ruelle}, proven by dividing the system into parts. For
-interactions that
-decay more slowly than $r^{-d}$ the energy is not extensive;
-Assumption~\ref{ass:ext} then holds after the couplings are rescaled with the
-size (Kac prescription~\cite{Campa2009}), and without any rescaling the
-results below hold in the form of total quantities,
-Eq.~\eqref{eq:filt_total}.}.
+uniformly on bounded intervals of $\varepsilon$\footnote{\emph{Uniformly}:
+the largest deviation on the interval,
+$\max_\varepsilon|(k_B/V)\ln\cN_V-s|$, tends to zero. This is what allows
+the minimum over $\varepsilon$ in Eq.~\eqref{eq:filt_legendre} to be taken
+after the limit $V\to\infty$ (Appendix~\ref{sec:second_bounds}).}, and
+$s(\varepsilon)\le a+b\,\varepsilon$ for some constants $a$ and $b\ge0$
+($s$ grows at most linearly).
+The function $s$ is the \emph{logarithmic density of states}: the number of
+levels below the energy $V\varepsilon$ is $e^{Vs(\varepsilon)/k_B}$ up to a
+factor that is not exponential in $V$, and so is the number of levels in a
+shell of any fixed width about $V\varepsilon$
+(Appendix~\ref{sec:second_mc}), which is the meaning of
+\begin{equation}\label{eq:filt_rhos}
+  \rho_V(V\varepsilon)\asymp e^{Vs(\varepsilon)/k_B} ,
+\end{equation}
+where $\asymp$ denotes equality of the logarithms to leading order in $V$,
+$\ln\rho_V(V\varepsilon)=Vs(\varepsilon)/k_B+o(V)$ (equality to
+logarithmic accuracy, footnote~\ref{fn:logacc}). Thus $s$ is the density
+of states on the logarithmic scale, the only scale on which the limit
+$V\to\infty$ exists (Section~\ref{sec:filt_dist}). It is also the
+microcanonical entropy density: Boltzmann's $S=k_B\ln W$, with $W$ the
+number of levels in a shell, equals $Vs(\varepsilon)$ to logarithmic
+accuracy, Eq.~\eqref{eq:filt_sg}. This is the reason for the letter $s$
+and the factor $k_B$. The function $s$ is non-negative and non-decreasing for
+$\varepsilon>\varepsilon_0$, since $\cN\ge1$ there, and
+$s(\varepsilon)\to0$ for $\varepsilon\to\varepsilon_0^{+}$ unless the
+ground-state degeneracy is exponential in $V$. The linear bound holds with
+$b=0$ and $a=k_B\ln D/V$ if the Fock space has finite dimension $D$; in
+general it is the condition for $\Xi$ to exist at $k_BT<1/b$, and it confines
+the thermal energy to a bounded range of $\varepsilon$.
+
+For short-range interactions the existence of the limit is a
+theorem~\cite{Ruelle}, proven by dividing the system into parts, and $s$ is
+concave (Appendix~\ref{sec:second_conc}). Nothing below requires concavity.
+For interactions that decay more slowly than $r^{-d}$ the energy is not
+extensive; Eq.~\eqref{eq:filt_sdef} then holds after the couplings are
+rescaled with the size (Kac prescription~\cite{Campa2009}), and without any
+rescaling the results below hold in the form of total quantities,
+Eq.~\eqref{eq:filt_total}. For a Hamiltonian that depends on a parameter
+$f$, $\cN=\cN(\xi;f)$ and $s=s(\varepsilon,f)$.
+
+\subsection{The Laplace transform on the logarithmic scale}
+\label{sec:large_laplace}
 
 Extensive quantities are referred to unit size:
 \begin{equation}\label{eq:filt_intensive}
@@ -881,149 +720,130 @@ Extensive quantities are referred to unit size:
   a := \frac{\langle\hat A\rangle}{V} ,
 \end{equation}
 with $u=\langle\hat H\rangle/V$ the energy density and
-$n=\langle\hat N\rangle/V$ the particle density.
-
-\begin{proposition}[thermodynamic potential, energy and entropy]\label{prop:legendre}
-Under Assumption~\ref{ass:ext}, for $V\to\infty$,
+$n=\langle\hat N\rangle/V$ the particle density. Inserting
+Eq.~\eqref{eq:filt_rhos} in the Laplace transform~\eqref{eq:filt_laplace},
+\begin{equation}\label{eq:filt_laplace_log}
+  \Xi=\int d\xi\;\rho(\xi)\,e^{-\beta\xi}
+  \asymp V\int_{\varepsilon_0}^{\infty}d\varepsilon\;
+  \exp\left\{-\frac{V}{k_BT}\big[\varepsilon-T\,s(\varepsilon)\big]\right\} .
+\end{equation}
+The integrand is the number of levels at $\varepsilon$ times their
+Boltzmann weight, and for $V\to\infty$ the integral is dominated by the
+energy at which the growth of the one and the decay of the other balance
+(Laplace's method, Appendix~\ref{sec:second_sd}):
 \begin{equation}\label{eq:filt_legendre}
   \omega(T) = \min_{\varepsilon\ge\varepsilon_0}\big[\varepsilon - T\,s(\varepsilon)\big]
   = \varepsilon_* - T\,s(\varepsilon_*) ,
 \end{equation}
-where $\varepsilon_*(T)$ is a minimiser. At every temperature at which the
-minimiser is unique,
+where $\varepsilon_*(T)$ is the minimiser, the \emph{thermal energy}. At
+every temperature at which it is unique,
 \begin{equation}\label{eq:filt_SI}
   u-\mu n=\varepsilon_*(T) , \qquad
   \frac{S}{V}=s\big(\varepsilon_*(T)\big) , \qquad
-  c_\mu=\frac{d\varepsilon_*}{dT}=T\,\frac{d}{dT}\,s\big(\varepsilon_*(T)\big) .
+  c_\mu=\frac{d\varepsilon_*}{dT}=T\,\frac{d}{dT}\,s\big(\varepsilon_*(T)\big) ,
 \end{equation}
-\end{proposition}
-\begin{proof}
-Divide Eq.~\eqref{eq:filt_bounds2} by $V$ and choose $\delta=1/V$:
-\[
-  0\;\le\;\frac{\ln\Xi_V(\beta)}{V}-\frac{\Phi_V(\beta)}{V}
-  \;\le\;\frac{\beta}{V}\cdot\frac{\xi_*\big((1-1/V)\beta\big)-\xi_0}{V}+\frac{\ln V}{V} .
-\]
-The thermal energy density stays bounded: by the linear bound of
-Assumption~\ref{ass:ext}, the bracket of Eq.~\eqref{eq:filt_Phi} per unit
-size, $(1/V)\ln\cN_V(V\varepsilon)-\beta\varepsilon$, is at most
-$a/k_B-(\beta-b/k_B)\varepsilon$, which for $\beta>b/k_B$ falls below the
-value of the bracket near $\varepsilon_0$ (at least
-$-\beta\varepsilon_0+o(1)$, since $\cN\ge1$ there) once $\varepsilon$
-exceeds some $\varepsilon_{\max}(\beta)$ independent of $V$. All maximisers
-therefore lie in $[\varepsilon_0,\varepsilon_{\max}]$, the right-hand side
-above is $O(1/V)+O(\ln V/V)$, and $\ln\Xi_V/V-\Phi_V/V\to0$. On the bounded
-interval the convergence of Assumption~\ref{ass:ext} is uniform, so the
-supremum of the finite-size bracket converges to the supremum of its limit:
-\[
-  \frac{\Phi_V(\beta)}{V}=\sup_\varepsilon\Big[\frac{\ln\cN_V(V\varepsilon)}{V}-\beta\varepsilon\Big]
-  \;\longrightarrow\;\varphi(\beta):=\sup_{\varepsilon\ge\varepsilon_0}\Big[\frac{s(\varepsilon)}{k_B}-\beta\varepsilon\Big] .
-\]
-Multiplying by $-k_BT$ gives Eq.~\eqref{eq:filt_legendre}. For the energy,
-note that $\ln\Xi_V$ is a convex function of $\beta$, because its second
-derivative is the variance of Eq.~\eqref{eq:filt_moments}. For convex
-functions the convergence of the functions implies that of the derivatives
-wherever the limit is differentiable\footnote{A convex function $F$ satisfies
-$[F(\beta)-F(\beta-\eta)]/\eta\le F'(\beta)\le[F(\beta+\eta)-F(\beta)]/\eta$
-for every $\eta>0$. Applying this to $F=\ln\Xi_V/V$, letting $V\to\infty$ and
-then $\eta\to0$, both bounds tend to $\varphi'(\beta)$.}. Hence
-$\langle\hat{\mathcal H}\rangle/V=-\partial(\ln\Xi_V/V)/\partial\beta\to-\varphi'(\beta)$,
-and $\varphi'(\beta)=-\varepsilon_*$ where the maximiser is unique (the
-derivative of a supremum of linear functions of $\beta$ is the slope of the
-maximising one). The entropy follows from Eq.~\eqref{eq:filt_mb},
-$S/Vk_B=\ln\Xi_V/V+\beta\langle\hat{\mathcal H}\rangle/V\to\varphi+\beta\varepsilon_*=s(\varepsilon_*)/k_B$,
-and the heat capacity from Eq.~\eqref{eq:filt_CU}\footnote{$c_\mu$ is a
-second derivative of $\ln\Xi_V/V$, and its convergence requires more than
-convexity: that $c_\mu$ of the finite system converge locally uniformly in
-$T$. This holds away from phase transitions; at a transition the equality is
-used for the singular part.}.
-\end{proof}
+and if $s$ is differentiable at $\varepsilon_*$ the minimum condition is
+\begin{equation}\label{eq:filt_stat}
+  \frac{\partial s}{\partial\varepsilon}\bigg|_{\varepsilon_*}=\frac1T .
+\end{equation}
+Since $\varepsilon$ is the density of $E-\mu N$, Eq.~\eqref{eq:filt_legendre}
+reads $\omega=u-Ts-\mu n$, i.e.\ $\Omega=U-TS-\mu N$ with the entropy equal
+to the microcanonical entropy at the mean energy: this is the equivalence of
+the ensembles~\cite[Ch.~2]{Schwabl}, with the microcanonical entropy
+written as the logarithm of the level count. The same argument applied to
+$Z_N$, with the levels of $\hat H$ at fixed $N$, gives the free energy
+density $f=\min_u[u-Ts(u)]$. The replacement of the sum $\Xi$ by its
+dominant group of levels costs $O(k_BT\ln V/V)$ in $\omega$, and it needs
+neither the concavity of $s$ nor a division of the system into parts
+(Appendix~\ref{sec:second_bounds}); the further replacement of
+$(k_B/V)\ln\cN_V$ by its limit $s$ converges at a rate that depends on the
+system (for short-range interactions a surface effect, of relative order
+$V^{-1/d}$ in $d$ dimensions).
 
-The following remarks fix the content of the proposition.
-\begin{itemize}
-\item \emph{It is the familiar grand potential.} Since $\varepsilon$ is the
-  density of $E-\mu N$, Eq.~\eqref{eq:filt_legendre} reads
-  $\omega=u-Ts-\mu n$, i.e.\ $\Omega=U-TS-\mu N$ with $U=\langle\hat H\rangle$:
-  the term $-\mu N$ of the textbook expression is contained in
-  $\varepsilon_*$, because the levels $\xi_a=E_a-\mu N_a$ of
-  $\hat{\mathcal H}$, not those of $\hat H$, were counted. The same argument
-  applied to $Z_N$, with the levels of $\hat H$ at fixed $N$, gives the free
-  energy density $f=\min_u[u-Ts(u)]$.
-\item \emph{Size of the corrections.} For a finite system
-  $\omega_V=-(k_BT/V)\Phi_V+O(k_BT\ln V/V)$, by Eq.~\eqref{eq:filt_lnXi}:
-  replacing the sum $\Xi$ by its dominant group of levels costs a logarithm
-  of the number of thermal quanta, and this is the only approximation that
-  Proposition~\ref{prop:bounds} makes. The further replacement of
-  $\Phi_V/V$ by its limit converges at the rate of
-  Assumption~\ref{ass:ext}, which depends on the system (for short-range
-  interactions it is a surface effect, of relative order $V^{-1/d}$ in $d$
-  dimensions).
-\item \emph{The entropy is derived.} The thermodynamic entropy
-  $S=-k_B\Tr\hat\rho_{\rm eq}\ln\hat\rho_{\rm eq}$, which is also
-  $-\partial\Omega/\partial T$, equals $k_B\ln\cN$ at the thermal energy
-  $\langle\hat{\mathcal H}\rangle=V\varepsilon_*(T)$:
-  \[
-    S=k_B\ln\cN(V\varepsilon_*)+O(\ln V) .
-  \]
-  This is an output of the bounds on the Laplace transform, which turn it
-  into a Legendre--Fenchel transform; the relation $S=k_B\ln W$ of the
-  microcanonical ensemble has not been used.
-\item \emph{The temperature selects an energy.} If $s$ is differentiable at
-  $\varepsilon_*$, the minimum condition is
-  \begin{equation}\label{eq:filt_stat}
-    \frac{\partial s}{\partial\varepsilon}\bigg|_{\varepsilon_*}=\frac1T .
-  \end{equation}
-  The temperature enters the observables only through $\varepsilon_*(T)$ and
-  as an explicit factor: it selects the energy density at which the spectrum
-  is examined, namely the one at which the level count grows at the rate
-  $1/k_BT$ per unit energy. Differentiating Eq.~\eqref{eq:filt_stat} with
-  respect to $T$ gives the heat capacity as the inverse curvature of $s$,
+The following remarks fix how Eq.~\eqref{eq:filt_legendre} is used below.
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item \emph{The temperature selects an energy.} The temperature enters the
+  observables only through $\varepsilon_*(T)$ and as an explicit factor: it
+  selects the energy density at which the spectrum is examined, namely the
+  one at which the level count grows at the rate $1/k_BT$ per unit energy.
+  Differentiating Eq.~\eqref{eq:filt_stat} with respect to $T$ gives the
+  heat capacity as the inverse curvature of $s$,
   \begin{equation}\label{eq:filt_curvmain}
     c_\mu=\frac{d\varepsilon_*}{dT}=-\frac{1}{T^{2}\,\partial^{2}s/\partial\varepsilon^{2}|_{\varepsilon_*}} ,
   \end{equation}
   wherever $s$ is twice differentiable: a large heat capacity means a flat
   stretch of $s$, i.e.\ a range of energies over which the level count grows
   at nearly the same rate.
-\item \emph{No concavity.} If $s$ is not concave, the minimum in
-  Eq.~\eqref{eq:filt_legendre} is still the correct thermodynamic potential.
-  The minimiser then jumps at some temperature $T_1$ between two energy
-  densities $\varepsilon_-<\varepsilon_+$: $\omega$ has a kink, the entropy
-  jumps by $s(\varepsilon_+)-s(\varepsilon_-)$, and the latent heat is
-  $\varepsilon_+-\varepsilon_-$ (a discontinuous transition). The levels with
-  $\varepsilon_-<\varepsilon<\varepsilon_+$ never dominate $\Xi$: at every
-  temperature the bracket $\varepsilon-Ts(\varepsilon)$ exceeds its minimum
-  there by a finite amount, so that their total Boltzmann weight relative to
-  the dominant levels is $e^{-O(V)}$, below $T_1$ because the levels at
-  $\varepsilon_-$ are lower in energy, above $T_1$ because the levels at
-  $\varepsilon_+$ are more numerous. They are present in the spectrum, but
-  no temperature makes them the thermal energy. In a system with short-range
-  interactions, where $s$ is concave, the same transition appears instead as
-  a linear stretch of $s$ between $\varepsilon_-$ and $\varepsilon_+$ (the
-  levels of phase-separated states), along which the minimiser sweeps at the
-  single temperature $T_1$ (Section~\ref{sec:transitions}).
-\item \emph{Parameters.} For a Hamiltonian that depends on a parameter $f$,
-  $\cN=\cN(\xi;f)$, hence $s=s(\varepsilon,f)$ and
-  $\omega(T,f)=\min_\varepsilon[\varepsilon-T\,s(\varepsilon,f)]$; nothing in
-  Eqs.~\eqref{eq:filt_bounds}--\eqref{eq:filt_legendre} depends on an origin
-  of energy. Since the bracket is stationary in $\varepsilon$ at the minimum,
-  the conjugate density is
+\item \emph{Parameters.} For $s=s(\varepsilon,f)$,
+  $\omega(T,f)=\min_\varepsilon[\varepsilon-T\,s(\varepsilon,f)]$, and since
+  the bracket is stationary in $\varepsilon$ at the minimum, the conjugate
+  density is
   \begin{equation}\label{eq:filt_af}
     a=-\frac{\partial\omega}{\partial f}\bigg|_{T}
     =T\,\frac{\partial s}{\partial f}\bigg|_{\varepsilon_*} ,
   \end{equation}
   the intensive form of $\langle\hat A\rangle=k_BT\,\Xi^{(1)}/\Xi$,
-  Eq.~\eqref{eq:filt_param}; the limit of the derivative is justified as for
-  the energy, because $\ln\Xi$ is convex in $f$ ($\chi_{AA}\ge0$,
-  Eq.~\eqref{eq:filt_chibound}).
+  Eq.~\eqref{eq:filt_param}: the response to a field is the rate at which
+  the field moves levels across the thermal energy.
+\item \emph{No concavity.} If $s$ is not concave,
+  Eq.~\eqref{eq:filt_legendre} still gives the thermodynamic potential, but
+  the minimiser may jump at some temperature $T_1$ between two energy
+  densities $\varepsilon_-<\varepsilon_+$: $\omega$ has a kink, the entropy
+  jumps by $s(\varepsilon_+)-s(\varepsilon_-)$, and the latent heat is
+  $\varepsilon_+-\varepsilon_-$ (a discontinuous transition). The levels in
+  between never dominate $\Xi$: their Boltzmann weight relative to the
+  dominant levels is $e^{-O(V)}$ at every temperature. For short-range
+  interactions $s$ is concave, and the same transition appears as a linear
+  stretch of $s$ between $\varepsilon_-$ and $\varepsilon_+$ (the levels of
+  phase-separated states), along which the minimiser sweeps at the single
+  temperature $T_1$ (Section~\ref{sec:transitions}).
 \end{itemize}
+
+\subsection{The thermodynamic potential as a secondary quantity}
+\label{sec:large_secondary}
+
+Thermodynamics is usually built on the potential $\omega$ (or the free
+energy $f$): the scaling hypothesis~\eqref{eq:scaling} is a hypothesis on
+$f_{\rm sing}$, Landau's theory expands $f$ in an order parameter, and the
+exponents are defined as properties of $f$ and of its derivatives.
+Eq.~\eqref{eq:filt_legendre} says that $\omega$ is a secondary quantity, the
+Legendre transform of the logarithmic density of states at the energy
+selected by $T$, and that every property of $\omega$ is the image, under the
+Laplace transform of Section~\ref{sec:filt_dist}, of a property of the
+spectrum:
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item a power law of $\omega$ in $T$ is a power law of $\ln\rho$ in the
+  excitation energy above the ground state
+  (Section~\ref{sec:filt_power_mb});
+\item a scaling form of $\omega$ in $T$ and a field $h$ is a homogeneity of
+  $\ln\rho$ in energy and field (Sections~\ref{sec:filt_scaling0}
+  and~\ref{sec:filt_critical});
+\item a singularity of $\omega$ at $T_c$ is a change in the growth rate of
+  the level count at an energy $\varepsilon_c$ in the interior of the
+  spectrum, and a crossover is the passage of $\varepsilon_*(T)$ through an
+  energy at which the form of $\rho$ changes
+  (Section~\ref{sec:transitions}).
+\end{itemize}
+The following sections make these statements precise, one assumption at a
+time. Each assumption is a statement about the many-body spectrum, on the
+logarithmic scale; the observable follows from Eq.~\eqref{eq:filt_legendre}
+by differentiation. No order parameter and no symmetry is needed to state
+the assumptions, and neither universality nor a renormalisation group is
+needed to draw the consequences (Section~\ref{sec:beyond}).
 
 \section{Power laws and exponents from the form of the spectrum}
 \label{sec:filt_lowenergy}
 
-Proposition~\ref{prop:legendre} turns an assumption on the form of
-$s(\varepsilon,f)$ into a statement on the observables. Three assumptions are
+Eq.~\eqref{eq:filt_legendre} turns an assumption on the form of
+$s(\varepsilon,f)$, i.e.\ on the many-body level count on the logarithmic
+scale, into a statement on the observables. Three assumptions are
 considered in turn. In each case the path is: logarithmic density of states,
-partition function, thermodynamic potential, then entropy, heat capacity and responses by
-differentiation.
+partition function, thermodynamic potential, then entropy, heat capacity and
+responses by differentiation. In the conventional formulation the
+corresponding assumptions (a power law, the scaling
+hypothesis~\eqref{eq:scaling}) are made on the free energy; here they are
+made on the spectrum, and the free energy inherits them through the Laplace
+transform.
 
 \subsection{Low-temperature power laws}
 \label{sec:filt_power_mb}
@@ -1044,12 +864,12 @@ to logarithmic accuracy\footnote{The symbol $o(1)$ denotes a quantity that
 tends to zero in the limit considered, here $\delta\varepsilon\to0$; more
 generally $f=o(g)$ means $f/g\to0$, and $f=O(g)$ means that $|f/g|$ stays
 bounded. A factor $1+o(1)$ thus tends to $1$, at a rate that is left
-unspecified.}\footnote{Two positive quantities agree \emph{to logarithmic
-accuracy} if their logarithms agree up to terms small compared with the
+unspecified.}\textsuperscript{,}\footnote{\label{fn:logacc}Two positive
+quantities agree \emph{to logarithmic accuracy} if their logarithms agree up to terms small compared with the
 logarithms themselves: here $\ln\cN=(V\cA/k_B)\,\delta\varepsilon^{\sigma}[1+o(1)]$,
 and any prefactor of $\cN$ that is not exponential in $V$ (a power of $V$, a
 constant) is dropped. This is the accuracy adapted to the problem: by
-Eq.~\eqref{eq:filt_lnXi} such prefactors change $\ln\Xi$ by $O(\ln V)$ and
+Eq.~\eqref{eq:filt_lnXi} of Appendix~\ref{sec:second_bounds} such prefactors change $\ln\Xi$ by $O(\ln V)$ and
 $\omega$ by $O(\ln V/V)$.}: the level count grows above the ground state as
 a stretched exponential of the excitation energy.
 \end{assumption}
@@ -1060,10 +880,12 @@ the same reason, and $s\to0$ for $\delta\varepsilon\to0$ excludes a
 ground-state degeneracy exponential in $V$. A low-temperature regime with
 $\delta\varepsilon_*\to0$ requires $\sigma<1$: for $\sigma>1$ the minimum of
 the bracket in Eq.~\eqref{eq:filt_legendre} stays at $\delta\varepsilon=0$ at
-small $T$, and for $\sigma=1$ the partition function diverges at $T=1/\cA$.
+small $T$, and for $\sigma=1$ the bracket is linear in $\delta\varepsilon$,
+with its minimum at $\delta\varepsilon=0$ for $T<1/\cA$ and unbounded below
+for $T>1/\cA$ (a Hagedorn temperature).
 
 \begin{proposition}[Low-temperature power laws]\label{prop:power}
-Under Assumptions~\ref{ass:ext} and~\ref{ass:power}, for $T\to0$,
+Under Assumption~\ref{ass:power}, for $T\to0$,
 \begin{equation}\label{eq:filt_lowT}
 \begin{gathered}
   \delta\varepsilon_*(T) = (\sigma\cA\,T)^{1/(1-\sigma)} ,\qquad
@@ -1097,7 +919,7 @@ $T\cA\,\delta\varepsilon_*^{\sigma}=\delta\varepsilon_*/\sigma$, which gives
 $\omega$ and $S/V=s(\varepsilon_*)$. For $T\to0$, $\delta\varepsilon_*\to0$,
 so only the form of $s$ at small $\delta\varepsilon$ matters: the levels at
 $\delta\varepsilon\ge\varepsilon_1>0$ cannot compete, since by the linear
-bound of Assumption~\ref{ass:ext}, $s\le a'+b\,\delta\varepsilon$ with
+bound of Section~\ref{sec:large_ext}, $s\le a'+b\,\delta\varepsilon$ with
 $a'=a+b\varepsilon_0$, their bracket exceeds $\varepsilon_0$ by at least
 $\varepsilon_1(1-bT)-a'T>0$ at small $T$, while the minimum lies below
 $\varepsilon_0$. The factor
@@ -1109,15 +931,16 @@ $d\,\delta\varepsilon_*/dT=\delta\varepsilon_*/(1-\sigma)T$.
 \end{proof}
 A stretched-exponential level count with exponent $\sigma$ is thus equivalent
 to a power-law heat capacity with exponent $\kappa=\sigma/(1-\sigma)$. The
-statement holds for any Hamiltonian that satisfies the two assumptions,
+statement holds for any Hamiltonian that satisfies the assumption,
 interacting or not. In terms of the single-particle exponent $r$ used in
 Appendix~\ref{app:quadratic} (density of states $\propto|E-\mu|^{r}$),
 $\kappa=r+1$.
 
-\paragraph{Total quantities.} Assumption~\ref{ass:ext} is not essential for
+\paragraph{Total quantities.} Extensivity is not essential for
 the exponent. If $\ln\cN(\xi)=B\,(\xi-\xi_0)^{\sigma}[1+o(1)]$ in a range
 of $\xi$, with any dependence of $B$ on the size,
-Eq.~\eqref{eq:filt_bounds2} gives directly
+the bounds of Appendix~\ref{sec:second_bounds},
+Eq.~\eqref{eq:filt_bounds2}, give directly
 \begin{equation}\label{eq:filt_total}
   \ln\Xi+\beta\xi_0=\frac{1-\sigma}{\sigma}\,(\sigma B)^{1/(1-\sigma)}\,(k_BT)^{\kappa}\,\big[1+o(1)\big] ,
   \qquad
@@ -1187,7 +1010,7 @@ acoustic phonons & $c=\tfrac{2\pi^{2}}{5}\,k_B\,(k_BT/\hbar v)^{3}$ & $3$ & $\tf
   Eq.~\eqref{eq:filt_sommerfeld}. For free electrons
   $\varrho(\mu)=3n/2\varepsilon_F$ and $c=\tfrac{\pi^{2}}{2}nk_BT/T_F$,
   Eq.~(4.3.16) of Ref.~\cite{Schwabl}; the difference between $c_\mu$ and
-  $c_{V,N}$, Eq.~\eqref{eq:dos_cvn}, is of order $T^{3}$. With $\kappa=1$,
+  the heat capacity at fixed $N$ is of order $T^{3}$. With $\kappa=1$,
   Eq.~\eqref{eq:filt_sinv} is
   \[
     s(\varepsilon) = \sqrt{2\,\mathcal C_0\,\delta\varepsilon}
@@ -1238,7 +1061,7 @@ excitation energy and the field.
 At $ h=0 $ this is Assumption~\ref{ass:power} with $ \cA = s(1,0) $.
 
 \begin{proposition}[Scaling form]\label{prop:scaling0}
-Under Assumptions~\ref{ass:ext} and~\ref{ass:hom0},
+Under Assumption~\ref{ass:hom0},
 \begin{equation}\label{eq:filt_scalingform}
 \begin{gathered}
   \omega(\lambda^{1-\sigma}T,\lambda^{b}h)-\varepsilon_0=\lambda\,\big[\omega(T,h)-\varepsilon_0\big]
@@ -1269,10 +1092,11 @@ $ z=h/T^{\,b/(1-\sigma)} $,
   a=-\frac{\partial\omega}{\partial h}=-T^{(1-b)/(1-\sigma)}\,\Phi'(z) ,
 \end{gather*}
 where $ \Phi_S $ and $ \Phi_c $ are combinations of $ \Phi $ and its
-derivatives; $ c_\mu\sim T^{\kappa} $ is recovered at $ h=0 $. The step that
-replaces a saddle-point evaluation of the Laplace transform is
-Proposition~\ref{prop:bounds}: no property of the Hamiltonian is used beyond
-Eq.~\eqref{eq:filt_shom0}.
+derivatives; $ c_\mu\sim T^{\kappa} $ is recovered at $ h=0 $. No property of the
+Hamiltonian is used beyond Eq.~\eqref{eq:filt_shom0} and the extensivity
+of Section~\ref{sec:large}: the scaling form of the thermodynamic potential
+is the homogeneity of the level count, carried through the Laplace
+transform.
 
 \paragraph{Example: a band edge.} For independent fermions with
 $ \varrho(E)=B|E-E_0|^{r} $ on one side of $E_0$ (a band edge) and
@@ -1361,7 +1185,7 @@ to an order parameter; it states how many levels lie where, and how they
 move.
 
 \begin{proposition}[Scaling at a critical point]\label{prop:crit}
-Under Assumptions~\ref{ass:ext} and~\ref{ass:crit}, with $t=(T-T_c)/T_c$,
+Under Assumption~\ref{ass:crit}, with $t=(T-T_c)/T_c$,
 the thermodynamic potential is $\omega=\varepsilon_c-Ts_c+\omega_{\rm sing}$ with
 \begin{equation}\label{eq:filt_crit}
   \omega_{\rm sing}(t,h)=|t|^{\sigma/(\sigma-1)}\,
@@ -1454,14 +1278,14 @@ In every case the singular term of $s$ about $\varepsilon_c$ has an exponent
 larger than $2$.
 
 \paragraph{Finite size.} The corrections to Eq.~\eqref{eq:filt_legendre} are
-$O(\ln V/V)$, so Eq.~\eqref{eq:filt_crit} describes a system of size $V$ for
+$O(\ln V/V)$ (Appendix~\ref{sec:second_bounds}), so Eq.~\eqref{eq:filt_crit} describes a system of size $V$ for
 $|t|^{2-\alpha}\gg\ln V/V$; closer to $T_c$ the singularity is rounded
 (Section~\ref{sec:filt_size}).
 
 \subsection{Singularities that are not power laws}
 \label{sec:filt_nonpower}
 
-Homogeneity is a special case. Proposition~\ref{prop:legendre} holds for any
+Homogeneity is a special case. Eq.~\eqref{eq:filt_legendre} holds for any
 form of $s(\varepsilon,h)$, and the character of the singularity is read
 from the form of $s$ about $\varepsilon_c$ (or about the ground state).
 \begin{itemize}\setlength{\itemsep}{0pt}
@@ -1602,27 +1426,22 @@ while the limit $\mathbf q\to0$ does not.}.
 \label{sec:filt_length}
 
 \begin{assumption}[Homogeneity in the wavelength of the perturbing field]\label{ass:q}
-The wave vector is not a variable of the spectrum: the Hamiltonian depends
-on the modulated field only through its profile
-$h_i=h_{\mathbf q}\cos(\mathbf q\cdot\mathbf r_i)$, and so does $s$. The
-assumption is that the scale-free form~\eqref{eq:filt_shom} extends to this
-profile, with the amplitude rescaled like the uniform field and the
-wavelength by an exponent of its own: for all $\lambda>0$,
+Let $s_{\rm sing}(\delta\varepsilon,h,h_{\mathbf q};\mathbf q)$ be the
+singular part of the logarithmic density of states of the Hamiltonian
+perturbed by the profile $h_{\mathbf q}\cos(\mathbf q\cdot\mathbf r_i)$; the
+semicolon separates the amplitude, a parameter of the Hamiltonian, from the
+wave vector, which labels the profile. The scale-free
+form~\eqref{eq:filt_shom} extends to this profile, with the amplitude
+rescaled like the uniform field and the wave vector by an exponent of its
+own: for all $\lambda>0$,
 \begin{equation}\label{eq:filt_shomq}
   s_{\rm sing}\big(\lambda\,\delta\varepsilon,\lambda^{b}h,\lambda^{b}h_{\mathbf q};\lambda^{b_q}\mathbf q\big)
   =\lambda^{\sigma}s_{\rm sing}\big(\delta\varepsilon,h,h_{\mathbf q};\mathbf q\big) ,
-  \qquad b_q>0 ,
+  \qquad b_q>0 .
 \end{equation}
-where $s_{\rm sing}(\dots,h_{\mathbf q};\mathbf q)$ is the singular part of
-the logarithmic density of states of the Hamiltonian perturbed by the
-profile $h_{\mathbf q}\cos(\mathbf q\cdot\mathbf r)$; the semicolon
-separates the amplitude, a parameter of the Hamiltonian, from the label of
-the profile.
 \end{assumption}
 The amplitude $h_{\mathbf q}$ scales as the uniform field, to which it reduces
-for $\mathbf q\to0$; the wavelength of the profile has its own exponent
-$b_q$. The two are the exponents of the two parameters, amplitude and
-wavelength, of one family of perturbations, and $b_q$ is the only place
+for $\mathbf q\to0$; the exponent $b_q$ of the wave vector is the only place
 where a length enters the spectrum. As in the proof of Proposition~\ref{prop:crit},
 $\omega_{\rm sing}(\lambda^{\sigma-1}t,\lambda^{b}h_{\mathbf q};\lambda^{b_q}\mathbf q)
 =\lambda^{\sigma}\omega_{\rm sing}(t,h_{\mathbf q};\mathbf q)$, and two
@@ -1760,7 +1579,7 @@ $s$ near the energies involved.
   the more numerous ones above. The minimiser jumps, $\omega$ has a kink in
   $T$, the entropy jumps by $s(\varepsilon_+)-s(\varepsilon_-)$ and the
   latent heat per unit size is $\varepsilon_+-\varepsilon_-$ (remark ``No
-  concavity'' of Section~\ref{sec:first}). In the spectrum two forms are
+  concavity'' of Section~\ref{sec:large_laplace}). In the spectrum two forms are
   possible. If the interactions are long-ranged, $s$ may be non-concave
   between $\varepsilon_-$ and $\varepsilon_+$, and the levels there are never
   thermally dominant. If they are short-ranged, $s$ is concave and the
@@ -1774,7 +1593,7 @@ $s$ near the energies involved.
   $\omega$ has a kink in $h$, because the levels that a positive and a
   negative field push down are different families, each with its own $s_k$
   (Section~\ref{sec:frustration}, case~(a)). In the complex plane the zeros
-  of $\Xi_V(\beta)$ (Fisher zeros, Section~\ref{sec:filt_limits}) pinch the
+  of $\Xi_V(\beta)$ (Fisher zeros) pinch the
   real axis at $\beta_1=1/k_BT_1$, with a density along the axis set by the
   latent heat~\cite{Fisher1965}.
 \item \emph{Continuous transition: the thermal energy moves continuously,
@@ -1835,7 +1654,8 @@ the symmetry it breaks and by the corresponding order parameter; a continuous
 transition is a change of symmetry, its singularities are those of the
 order-parameter fluctuations, and the gapless excitations of an ordered phase
 are the Goldstone modes of the broken symmetry.
-Propositions~\ref{prop:bounds}--\ref{prop:crit} use none of these notions.
+Eq.~\eqref{eq:filt_legendre} and
+Propositions~\ref{prop:power}--\ref{prop:crit} use none of these notions.
 Their input is the logarithmic density of states and its dependence on the
 parameters of the Hamiltonian; the power laws, the exponents and the scaling
 functions are fixed by its form. A symmetry, where there is one, is a
@@ -1957,12 +1777,9 @@ tendencies compete. Each would break a different symmetry, or the same
 symmetry at a different wave vector, and none prevails:
 the candidate ordered states are nearly degenerate, and the system is
 suspended among them. A description built on a single order parameter has
-no natural starting point here, and this is where the spectral formulation
-parts company with the free-energy formulation: the latter must choose an
-order parameter and expand about it, whereas the former works with the
-microscopic levels themselves, for which the near-degeneracy of competing
-states is simply a feature of the low-energy level count. In the spectrum the competition is a definite statement: an
-unusually large number of many-body levels lies just above the ground state,
+no natural starting point here. In the spectrum the competition is a
+definite statement: an unusually large number of many-body levels lies just
+above the ground state,
 and the thermodynamics is decided by the form of $\ln\cN$ in this group of
 levels. The cases below differ by that form; each is derived from the
 results of Sections~\ref{sec:filters}--\ref{sec:filt_lowenergy}.
@@ -2020,11 +1837,11 @@ fraction $x$ of the sample in family $k$, the rest in family $l$) complete
 $s=\max_ks_k$ to its concave hull; this does not change $\omega$.
 
 \paragraph{(b) Exponentially many ground states.} If the number of ground
-states is exponential in $V$, $d_0=e^{Vs_0/k_B}$, then by
-Section~\ref{sec:filt_limits} the entropy does not vanish for $T\to0$,
-$S\to Vs_0$, and Assumption~\ref{ass:power} fails: $s(\varepsilon)\to s_0>0$.
-The sum rule~\eqref{eq:filt_mb_sumrule} is reduced by $Vs_0$: the heat
-capacity integrates to less than the full entropy. For the triangular Ising
+states is exponential in $V$, $d_0=e^{Vs_0/k_B}$, then the
+entropy does not vanish for $T\to0$: at fixed size the Boltzmann weights
+tend to $1/d_0$ on the ground manifold, so $S\to k_B\ln d_0=Vs_0$, and Assumption~\ref{ass:power} fails: $s(\varepsilon)\to s_0>0$.
+The entropy sum rule $\int_0^\infty C_\mu\,dT/T=S(\infty)-S(0)$ is reduced
+by $Vs_0$: the heat capacity integrates to less than the full entropy. For the triangular Ising
 antiferromagnet $s_0=0.323\,k_B$ per spin~\cite{Wannier1950}, for spin ice
 $s_0\simeq\tfrac12k_B\ln\tfrac32$ per
 spin~\cite{Pauling1935,Ramirez1999}. If the next eigenvalue is
@@ -2054,8 +1871,8 @@ scale $W$ above $\xi_0$, small compared with the gap $\Delta$ to the other
 levels. For $k_BT\ll\Delta$,
 $e^{\beta\xi_0}\Xi=\sum_je^{-\beta(\xi_j-\xi_0)}=d_0\,\langle e^{-\beta(\xi-\xi_0)}\rangle_{\rm b}$,
 with $\langle\cdot\rangle_{\rm b}$ the average over the group with equal
-weights, and the cumulant expansion~\eqref{eq:filt_mb_cumul} about
-$\beta_0=0$ within the group gives, with the extensive variance
+weights, and the expansion of $\ln\langle e^{-\beta(\xi-\xi_0)}\rangle_{\rm b}$ in the
+cumulants of $\xi$ within the group gives, with the extensive variance
 $\Var_{\rm b}(\xi)=:Vv_2$ ($v_2\sim W^{2}$ per component),
 \[
   \frac{S}{V}=s_0-\frac{v_2}{2k_BT^{2}}+\dots ,\qquad
@@ -2267,11 +2084,10 @@ In these systems the quasiparticle (additive) description of
 Appendix~\ref{app:quadratic} fails, and the interaction mediated by the
 gapless boson is long-ranged in space and time, as is the bare interaction
 for Coulomb or gauge forces. Neither affects
-Propositions~\ref{prop:bounds}--\ref{prop:scaling0}, which require only the
-stated form of the level count. The concavity of $s$ and the equivalence
-of the ensembles, which rest on a division of the system into weakly coupled
-parts, are not guaranteed there; the demonstration of
-Section~\ref{sec:first} does not need them.
+Propositions~\ref{prop:power}--\ref{prop:scaling0}, which require only the
+stated form of the level count: the concavity of $s$, which rests on a
+division of the system into parts, is not guaranteed there, and the Laplace
+method does not need it (Appendix~\ref{sec:second_bounds}).
 
 \subsection{Scope and limits}
 \label{sec:scope}
@@ -2294,7 +2110,7 @@ has a definite form about some energy density:
 \item forms that are not scale-free (Section~\ref{sec:filt_nonpower}).
 \end{itemize}
 
-The limits and caveats should be also kept in view. First, for a concave $s$ the Legendre
+Three limits should be kept in view. First, for a concave $s$ the Legendre
 transform is invertible, so that homogeneity of $s_{\rm sing}$ and
 homogeneity of $\omega_{\rm sing}$ imply one another: at a critical point
 the relations among the exponents are those of
@@ -2321,18 +2137,17 @@ none (any $\hat H$, finite size) &
 $\Xi=\int d\xi\,\rho\,e^{-\beta\xi}$; $S$, $C_\mu=\Var(\hat{\mathcal H})/k_BT^{2}$,
 responses from $\Xi$ and $\partial_f^{n}\rho$,
 Eqs.~\eqref{eq:filt_mb}, \eqref{eq:filt_param}, \eqref{eq:filt_corr};
-bounds~\eqref{eq:filt_bounds}; limits and sum rule,
-Eqs.~\eqref{eq:filt_mb_hiT}, \eqref{eq:filt_mb_sumrule}; inversion of $c(T)$
+inversion of $c(T)$
 for $\rho$ \\[2pt]
-\ref{ass:ext} (extensive $\ln\cN$) &
-$\omega=\min_\varepsilon[\varepsilon-Ts]$, $S/V=s(\varepsilon_*)$,
-Eqs.~\eqref{eq:filt_legendre}, \eqref{eq:filt_SI} \\[2pt]
-\ref{ass:ext}, \ref{ass:power} ($s=\cA\,\delta\varepsilon^{\sigma}$) &
+extensive $\ln\cN$ (Section~\ref{sec:large}) &
+$\omega=\min_\varepsilon[\varepsilon-Ts]$, $S/V=s(\varepsilon_*)$: the
+equivalence of the ensembles, Eqs.~\eqref{eq:filt_legendre}, \eqref{eq:filt_SI} \\[2pt]
+\ref{ass:power} ($s=\cA\,\delta\varepsilon^{\sigma}$) &
 $c_\mu\propto T^{\sigma/(1-\sigma)}$, $S/C_\mu=(1-\sigma)/\sigma$,
 Eq.~\eqref{eq:filt_powerT} \\[2pt]
-\ref{ass:ext}, \ref{ass:hom0} (homogeneous in $\varepsilon$, $h$) &
+\ref{ass:hom0} (homogeneous in $\varepsilon$, $h$) &
 scaling function, Eq.~\eqref{eq:filt_scalingform} \\[2pt]
-\ref{ass:ext}, \ref{ass:crit} (homogeneous about $\varepsilon_c$) &
+\ref{ass:crit} (homogeneous about $\varepsilon_c$) &
 $\alpha$, $\tilde\beta$, $\gamma$, $\delta$ from $(\sigma,b)$,
 Eqs.~\eqref{eq:filt_crit}, \eqref{eq:filt_critexp} \\[2pt]
 \ref{ass:q} (wave vector) &
@@ -2395,18 +2210,21 @@ fluctuates; a non-conserved one responds less, because part of its fluctuation
 is carried by transitions between states of different energy, which a static field
 cannot exploit fully.
 
-\section{The microcanonical demonstration: the entropy as a logarithmic density of states}
+\section{The microcanonical entropy and the equivalence of the ensembles}
 \label{app:second}
 
-The demonstration of Section~\ref{sec:first} started from $\Xi$ and found
-that the entropy is $k_B\ln\cN$ at the thermal energy. The classical route,
-recalled here for comparison, starts from the microcanonical ensemble, in
-which the entropy is $k_B\ln$ of a number of levels by definition, and
-connects it to $\Xi$ by the steepest-descent method. It needs more
-(short-range interactions, and a division of the system into parts) and
-gives more (the converse statement, the fluctuations, and the responses as
-curvatures of $s$). The two routes are independent; nothing in the main text
-rests on this appendix.
+Section~\ref{sec:large} uses the thermodynamic limit of the Laplace
+transform in the form of Eq.~\eqref{eq:filt_legendre}. This appendix recalls
+where it comes from: Boltzmann's entropy $S=k_B\ln W$, with the number of
+states $W$ written in terms of the density of states
+(Section~\ref{sec:second_mc}); the existence and concavity of $s$ for
+short-range interactions (Section~\ref{sec:second_conc}); the
+steepest-descent evaluation of the Laplace transform
+(Section~\ref{sec:second_sd}); and two elementary bounds on $\Xi$ that hold
+for any spectrum, concave or not, and fix the size of the corrections
+(Section~\ref{sec:second_bounds}). None of it is new; it is collected here
+so that the main text can use Eq.~\eqref{eq:filt_legendre} as the known
+result that it is.
 
 \subsection{Microcanonical entropy and the smoothed density of states}
 \label{sec:second_mc}
@@ -2419,17 +2237,17 @@ which defines the \emph{smoothed} density of states $\bar\rho$: the
 regularisation of the distribution $\rho$ by convolution with a window of
 width $\Delta$, $W=\langle \rho,\mathbb 1_{[\xi,\xi+\Delta]}\rangle$
 (Section~\ref{sec:filt_dist}); for $V\to\infty$ it is the smoothed density of
-states referred to there. The microcanonical ensemble assigns the same probability $1/W$ to each of these
-states (the fundamental hypothesis of equal a priori
-probabilities~\cite[Eq.~(2.2.8)]{Schwabl}), and its entropy is
-Boltzmann's~\cite[Eq.~(2.3.4)]{Schwabl}
+states referred to there. The microcanonical ensemble assigns the same
+probability $1/W$ to each of these states (the fundamental hypothesis of
+equal a priori probabilities~\cite[Eq.~(2.2.8)]{Schwabl}), and its entropy
+is Boltzmann's~\cite[Eq.~(2.3.4)]{Schwabl}
 \begin{equation}\label{eq:filt_Smc}
-  S_{\rm mc}(\xi)=k_B\ln W(\xi)=k_B\ln\big[\bar\rho(\xi)\,\Delta\big] .
+  S_{\rm mc}(\xi)=k_B\ln W(\xi)=k_B\ln\big[\bar\rho(\xi)\,\Delta\big] :
 \end{equation}
-This is an assumption on the state of an isolated system; the first
-demonstration did not use it. For a large system the width $\Delta$ is
-immaterial, and $\bar\rho\Delta$ may be replaced by
-$\cN$~\cite[Eq.~(2.3.6)]{Schwabl}. Indeed, with
+the number of states $W$ of the textbook definition is a pairing of the
+distribution $\rho$ with the indicator function of the shell. For a large
+system the width $\Delta$ is immaterial, and $\bar\rho\Delta$ may be
+replaced by $\cN$~\cite[Eq.~(2.3.6)]{Schwabl}. Indeed, with
 $\cN=e^{Vs(\varepsilon)/k_B}$ and $\Delta\ll V$,
 \[
   W=\cN(\xi)\Big[e^{V[s(\varepsilon+\Delta/V)-s(\varepsilon)]/k_B}-1\Big]
@@ -2444,14 +2262,15 @@ $\ln\cN=O(V)$. Hence
   =\lim_{V\to\infty}\frac{k_B}{V}\ln\bar\rho(V\varepsilon)
   =\lim_{V\to\infty}\frac{S_{\rm mc}(V\varepsilon)}{V} :
 \end{equation}
-the logarithmic density of states of Assumption~\ref{ass:ext} is the
-microcanonical entropy density. The mean level spacing is
+the logarithmic density of states of Section~\ref{sec:large},
+Eq.~\eqref{eq:filt_sdef}, is the microcanonical entropy density. The mean
+level spacing is
 $\Delta/W=\Delta\,e^{-S_{\rm mc}/k_B}\sim e^{-V}$~\cite[Eq.~(2.3.7)]{Schwabl}:
 a shell far narrower than $k_BT$ contains a number of levels exponential in
-$V$. This is why the sum of delta functions $\rho$ may be replaced by the smooth
-function $\bar\rho$ under the integral of Eq.~\eqref{eq:filt_laplace}, and it
-is the precise meaning of
-$ \rho(V\varepsilon) = \exp[V s(\varepsilon)/k_B] $.
+$V$. This is why the sum of delta functions $\rho$ may be replaced by the
+smooth function $\bar\rho$ under the integral of Eq.~\eqref{eq:filt_laplace},
+and it is the precise meaning of Eq.~\eqref{eq:filt_rhos},
+$\rho(V\varepsilon)\asymp\exp[Vs(\varepsilon)/k_B]$.
 
 \subsection{Short-range interactions: existence and concavity}
 \label{sec:second_conc}
@@ -2488,6 +2307,7 @@ be non-concave~\cite{Campa2009}.
 
 With Eq.~\eqref{eq:filt_sg}, the Laplace transform~\eqref{eq:filt_laplace}
 is, up to a factor that is not exponential in $V$,
+Eq.~\eqref{eq:filt_laplace_log},
 \[
   \Xi = V\int_{\varepsilon_0}^{\infty}d\varepsilon\;
   \exp\left\{-\frac{V}{k_BT}\big[\varepsilon - T\,s(\varepsilon,f)\big]\right\} .
@@ -2502,9 +2322,8 @@ The steepest-descent (saddle-point) method is its extension to complex
 exponents.}), and $ \omega = -(k_BT/V)\ln\Xi $ becomes
 Eq.~\eqref{eq:filt_legendre}, with the stationarity
 condition~\eqref{eq:filt_stat}; since $s$ is concave the stationary point is
-the minimum. The two routes agree, as they must. The microcanonical one adds
-three results; subscripts on $ s $ denote partial derivatives, evaluated at
-$ (\varepsilon_*,f) $.
+the minimum. Three further results follow; subscripts on $ s $ denote partial
+derivatives, evaluated at $ (\varepsilon_*,f) $.
 \begin{itemize}
 \item \emph{Equivalence of the ensembles.} By Eqs.~\eqref{eq:filt_SI}
   and~\eqref{eq:filt_sg} the thermodynamic entropy of the grand ensemble
@@ -2559,33 +2378,109 @@ energy density $ \varepsilon_c $, which is the content of
 Assumption~\ref{ass:crit} ($\sigma>2$: vanishing curvature) and of
 Eq.~\eqref{eq:filt_curvmain}.
 
-\subsection{Comparison with the demonstration of Section~\ref{sec:first}}
-\label{sec:second_comp}
+\subsection{Elementary bounds: the Laplace method for any spectrum}
+\label{sec:second_bounds}
 
-\begin{center}
-\small
-\begin{tabular}{p{0.20\linewidth}p{0.36\linewidth}p{0.36\linewidth}}
-\toprule
- & Section~\ref{sec:first} & this appendix \\
-\midrule
-starting point & $\Xi=\int d\xi\,\rho\,e^{-\beta\xi}$ & $S_{\rm mc}=k_B\ln W$ \\
-tool & bounds of Proposition~\ref{prop:bounds} & steepest descent \\
-assumptions & Assumption~\ref{ass:ext} (none for the bounds) &
-  short-range interactions; equal a priori probabilities \\
-concavity of $s$ & not needed & needed, proven \\
-division into parts & none & yes, surface term neglected \\
-result & $\omega=\min[\varepsilon-Ts]$; $S/V=s(\varepsilon_*)$ &
-  the same, and Eqs.~\eqref{eq:filt_legendre_inv}--\eqref{eq:filt_curv} \\
-long-range interactions & valid & fails ($s$ may be non-concave) \\
-\bottomrule
-\end{tabular}
-\end{center}
+The steepest-descent evaluation assumes a smooth, concave $s$. The
+replacement of the sum $\Xi$ by its dominant group of levels in fact holds
+for any spectrum, with an explicit bound on the error, by the following
+elementary argument. Define the Legendre--Fenchel transform\footnote{The
+\emph{Legendre--Fenchel transform} of a function $\phi(x)$ is
+$\phi^{*}(\beta)=\sup_x[\phi(x)-\beta x]$. It is defined whether or not
+$\phi$ is differentiable or concave, and it is a convex function of
+$\beta$, being a supremum of linear functions. For a differentiable concave
+$\phi$ it reduces to the Legendre transform, with $\phi'(x)=\beta$ at the
+maximum~\cite{Touchette2009}.} of the logarithm of the level count,
+\begin{equation}\label{eq:filt_Phi}
+  \Phi(\beta):=\sup_{\xi\ge\xi_0}\big[\ln\cN(\xi)-\beta\xi\big] ,
+\end{equation}
+the supremum running over the energies at which $\cN\ge1$. Then, for every
+$\beta$ at which $\Xi$ exists and every $0<\beta'<\beta$,
+\begin{equation}\label{eq:filt_bounds}
+  \Phi(\beta)\;\le\;\ln\Xi(\beta)\;\le\;\Phi(\beta')-(\beta-\beta')\,\xi_0+\ln\frac{\beta}{\beta-\beta'} .
+\end{equation}
+For the lower bound, fix any $\xi\ge\xi_0$ and keep in the sum $\Xi$ only
+the $\cN(\xi)$ terms with $\xi_a\le\xi$; each of them is at least
+$e^{-\beta\xi}$, so $\Xi\ge\cN(\xi)\,e^{-\beta\xi}$ for every $\xi$, and the
+supremum over $\xi$ gives $\ln\Xi\ge\Phi(\beta)$. For the upper bound, the
+definition of $\Phi$ at the smaller inverse temperature $\beta'$ gives
+$\cN(\xi)\le e^{\Phi(\beta')+\beta'\xi}$ for all $\xi$: the level count
+grows at most exponentially, at the rate $\beta'$. Inserted in the second
+form of Eq.~\eqref{eq:filt_laplace}, whose integrand vanishes below $\xi_0$,
+\[
+  \Xi(\beta)=\beta\int_{\xi_0}^{\infty}d\xi\;\cN(\xi)\,e^{-\beta\xi}
+  \;\le\;\beta\,e^{\Phi(\beta')}\int_{\xi_0}^{\infty}d\xi\;e^{-(\beta-\beta')\xi}
+  =\frac{\beta}{\beta-\beta'}\,e^{\Phi(\beta')-(\beta-\beta')\xi_0} .
+\]
+The supremum in Eq.~\eqref{eq:filt_Phi} is attained at an eigenvalue,
+$\xi_*(\beta)$, the thermal energy of the finite system: between two
+consecutive eigenvalues $\cN$ is constant and the bracket decreases. Since
+$\Phi(\beta)$ is at least the value of its bracket at $\xi_*(\beta')$,
+$\Phi(\beta')-\Phi(\beta)\le(\beta-\beta')\,\xi_*(\beta')$; with
+$\beta'=(1-\delta)\beta$, $0<\delta<1$, Eq.~\eqref{eq:filt_bounds} becomes
+\begin{equation}\label{eq:filt_bounds2}
+  0\;\le\;\ln\Xi(\beta)-\Phi(\beta)\;\le\;\delta\,\beta\,\big[\xi_*\big((1-\delta)\beta\big)-\xi_0\big]+\ln\frac1\delta .
+\end{equation}
+The bracket is the thermal energy measured from the ground state, at a
+temperature slightly above $T$; in units of $k_BT$ it is the number of
+thermal quanta the system holds, of order $V$ for a macroscopic system. The
+choice $\delta=1/V$ makes the first term $O(1)$ and the second $\ln V$,
+whereas $\Phi$ itself, the logarithm of the number of thermally populated
+levels, is $O(V)$. Hence
+\begin{equation}\label{eq:filt_lnXi}
+  \ln\Xi(\beta)=\Phi(\beta)+O(\ln V) :
+\end{equation}
+$\ln\Xi$ is the Legendre--Fenchel transform of $\ln\cN$, up to a logarithmic
+correction, for any spectrum. What has been used is the definition of $\Xi$,
+the fact that $\cN$ is non-decreasing, and the existence of a lowest level.
+
+The passage to the limit uses the extensivity of Section~\ref{sec:large}.
+Dividing Eq.~\eqref{eq:filt_bounds2} by $V$ with $\delta=1/V$, the right-hand
+side is $O(\ln V/V)$ as long as the thermal energy density stays bounded,
+which the linear bound $s\le a+b\varepsilon$ guarantees for $\beta>b/k_B$:
+the bracket of Eq.~\eqref{eq:filt_Phi} per unit size is at most
+$a/k_B-(\beta-b/k_B)\varepsilon$, which falls below its value near
+$\varepsilon_0$ once $\varepsilon$ exceeds some $\varepsilon_{\max}(\beta)$
+independent of $V$. On the bounded interval
+$[\varepsilon_0,\varepsilon_{\max}]$ the convergence of
+Eq.~\eqref{eq:filt_sdef} is uniform, so the supremum of the finite-size
+bracket converges to the supremum of its limit\footnote{The supremum of a
+sequence of functions converges to the supremum of the limit when the
+convergence is uniform, but not necessarily when it is pointwise: a peak of
+height $1$ that becomes narrower and moves as $V$ grows tends to zero at
+every fixed $\varepsilon$, while its supremum stays $1$.}:
+\[
+  \frac{\Phi_V(\beta)}{V}
+  \;\longrightarrow\;\sup_{\varepsilon\ge\varepsilon_0}\Big[\frac{s(\varepsilon)}{k_B}-\beta\varepsilon\Big]
+  =-\frac{\omega(T)}{k_BT} ,
+\]
+which is Eq.~\eqref{eq:filt_legendre}, with no assumption on the concavity
+of $s$. The energy and the entropy, Eq.~\eqref{eq:filt_SI}, follow because
+$\ln\Xi_V$ is a convex function of $\beta$ (its second derivative is the
+variance of Eq.~\eqref{eq:filt_moments}), and for convex functions the
+convergence of the functions implies that of the derivatives wherever the
+limit is differentiable\footnote{A convex function $F$ satisfies
+$[F(\beta)-F(\beta-\eta)]/\eta\le F'(\beta)\le[F(\beta+\eta)-F(\beta)]/\eta$
+for every $\eta>0$. Applying this to $F=\ln\Xi_V/V$, letting $V\to\infty$
+and then $\eta\to0$, both bounds tend to the derivative of the limit.}:
+$\langle\hat{\mathcal H}\rangle/V=-\partial(\ln\Xi_V/V)/\partial\beta\to\varepsilon_*$
+where the minimiser is unique, and
+$S/Vk_B=\ln\Xi_V/V+\beta\langle\hat{\mathcal H}\rangle/V\to s(\varepsilon_*)/k_B$
+by Eq.~\eqref{eq:filt_mb}. The same argument applies to the derivative with
+respect to a parameter $f$, Eq.~\eqref{eq:filt_af}, because $\ln\Xi$ is
+convex in $f$ ($\chi_{AA}\ge0$, Eq.~\eqref{eq:filt_chibound}). The heat
+capacity is a second derivative, and its convergence requires in addition
+that $c_\mu$ of the finite system converge locally uniformly in $T$; this
+holds away from phase transitions, and at a transition
+Eq.~\eqref{eq:filt_SI} is used for the singular part.
+
 If $s$ is not concave, $\omega$ determines only its concave hull, the
 microcanonical and the grand canonical descriptions differ, and
 Eqs.~\eqref{eq:filt_legendre_inv}--\eqref{eq:filt_curv} do not hold in the
-non-concave range. Propositions~\ref{prop:legendre}--\ref{prop:crit} are
-unaffected: they concern the direction from the spectrum to the observables
-at given $T$ and $\mu$, and the assumed forms of $s$
+non-concave range. Eq.~\eqref{eq:filt_legendre} itself and the results of
+Sections~\ref{sec:large}--\ref{sec:filt_lowenergy} are unaffected: they
+concern the direction from the spectrum to the observables at given $T$ and
+$\mu$, and the assumed forms of $s$
 (Assumptions~\ref{ass:power}--\ref{ass:crit}) are concave near the point
 about which they are stated.
 
@@ -2600,7 +2495,8 @@ opposite direction from a measured $C_\mu(T)$.
 Eqs.~\eqref{eq:filt_mb} and~\eqref{eq:filt_CU},
 $S(T)=S(0)+\int_0^TC_\mu\,dT'/T'$ and
 $\langle\hat{\mathcal H}\rangle(T)=\xi_0+\int_0^TC_\mu\,dT'$, with
-$S(0)=k_B\ln d_0$ (Section~\ref{sec:filt_limits}). Inserting these in
+$S(0)=k_B\ln d_0$ (at fixed size the Boltzmann weights tend to $1/d_0$ on
+the ground manifold as $T\to0$). Inserting these in
 Eq.~\eqref{eq:filt_mb} in the form
 $\ln\Xi+\beta\xi_0=S/k_B-\beta(\langle\hat{\mathcal H}\rangle-\xi_0)$,
 \begin{equation}\label{eq:filt_XifromC}
@@ -2637,9 +2533,9 @@ degeneracies by a common factor, $\rho\to{\rm const}\times \rho$.
 \end{proof}
 What is determined is the distribution, i.e.\ the measure $d\cN$, not values
 of $\rho$ at points, which do not exist. The two undetermined constants are
-fixed by other data: $d_0$ by the sum rule~\eqref{eq:filt_mb_sumrule} if the
-dimension $D$ of the Fock space is known,
-$\ln(D/d_0)=\int_0^\infty C_\mu\,dT/k_BT$; and $\xi_0$, as a function of
+fixed by other data: $d_0$ by the entropy sum rule
+$\ln(D/d_0)=\int_0^\infty C_\mu\,dT/k_BT$, Eq.~\eqref{eq:filt_sumrule}, if the
+dimension $D$ of the Fock space is known; and $\xi_0$, as a function of
 $\mu$, by the equation of state, $\langle\hat N\rangle=-\partial\Omega/\partial\mu$.
 
 \paragraph{What needs other observables.} The heat capacity contains no
@@ -3040,8 +2936,8 @@ involved. Three instances are needed below.
   - \mu)/T $; with $ \hat B = \hat H - \mu\hat N $, $ b_\lambda = \varepsilon_\lambda - \mu $,
   Eq.~\eqref{eq:filt_response} returns $ c_\mu $ in the form
   Eq.~\eqref{eq:filt_C_fluct}. The mixed case $ a_\lambda = (\varepsilon_\lambda - \mu)/T $,
-  $ b_\lambda = 1 $ gives $ (\partial N/\partial T)_\mu $, which is needed for the
-  conversion to fixed $ N $ (Eq.~\eqref{eq:dos_cvn}).
+  $ b_\lambda = 1 $ gives $ (\partial N/\partial T)_\mu $, which enters the
+  conversion to fixed $ N $.
 \end{itemize}
 The entropy is the one quantity of interest that is not of this form, being a
 \emph{first} derivative of $ \Omega $; it is treated separately below.
@@ -4012,7 +3908,7 @@ splitting in the group of levels concerned, they are all equally populated, thei
 occupations stop changing with temperature, and by
 Eq.~\eqref{eq:filt_product} the sector ceases to absorb heat. The bookkeeping is
 the entropy sum rule, which follows immediately from $c=T(\partial s/\partial T)$ and
-holds for any Hamiltonian (Eq.~\eqref{eq:filt_mb_sumrule}):
+holds for any Hamiltonian:
 \begin{equation}\label{eq:filt_sumrule}
 \int_0^{\infty}c(T)\,\frac{dT}{T}=s(\infty)-s(0).
 \end{equation}
@@ -4031,8 +3927,10 @@ the previous paragraph.
 by the same sum rule, and the answer is conditional. If the spectrum is bounded
 and the degrees of freedom have finite dimension, then $s(\infty)$ is bounded by
 $k_B\ln(\dim\mathcal{H})/V$ and Eq.~\eqref{eq:filt_sumrule} forces $c\to0$. The
-explicit form, for any Hamiltonian, is the $ T^{-2} $ tail of
-Eq.~\eqref{eq:filt_mb_hiT}; in the additive case it is the Schottky tail obtained from
+explicit form, for any Hamiltonian with a finite Fock space, is the tail
+$c_\mu=\Var_\infty(\hat{\mathcal H})/Vk_BT^{2}+O(T^{-3})$, with $\Var_\infty$
+the variance of the spectrum over all states with equal weights; in the
+additive case it is the Schottky tail obtained from
 Eq.~\eqref{eq:filt_C} at $x_\lambda\to0$,
 \begin{equation}\label{eq:filt_schottky}
 c_\mu\;\xrightarrow[T\to\infty]{}\;\frac{k_B}{V}\sum_\lambda x_\lambda^{2}
