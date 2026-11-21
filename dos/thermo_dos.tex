@@ -33,6 +33,7 @@
 \newcommand{\cA}{{\mathcal{A}_0}}   % amplitude of the logarithmic density of states
 \newcommand{\hmag}{\mathcal{H}_M}
 \newcommand{\evalat}{\bigg\vert}  % evaluation bar, as in (d/d beta)|_mu
+\newcommand{\lndos}{\textsf{logdos}}  % abbreviation for the logarithmic density of states
 
 %% capital kappa (one-mode grand partition function); LaTeX has no \Kappa
 \providecommand{\Kappa}{\mathrm{K}}
@@ -79,8 +80,7 @@ Bergersen~\cite{Plischke}.
 \section{Outline of the argument}
 \label{sec:intro}
 
-The point of view of these notes is the following. The spectrum of a
-many-body Hamiltonian, as thermodynamics sees it, is a distribution on the
+The spectrum of a many-body Hamiltonian, as thermodynamics sees it, is a distribution on the
 energy axis: the density of states $\rho_V(\xi;f)$, parametrised by the size
 $V$ and by the couplings and fields $f$ of the Hamiltonian. It is positive,
 its support is bounded below, its total weight is the dimension of the Fock
@@ -103,27 +103,31 @@ chain, for an arbitrary many-body Hamiltonian $\hat H$.
   system the number of levels is exponential in the size,
   $\rho_V(V\varepsilon)\asymp e^{Vs(\varepsilon)/k_B}$ (equality of the
   logarithms to leading order in $V$), where the
-  \emph{logarithmic density of states} $s(\varepsilon)$ is the
-  microcanonical entropy density, Boltzmann's $k_B\ln W$ with $W$ written
+  \emph{logarithmic density of states} $s(\varepsilon)$ (hereafter, \emph{\lndos})
+  is the microcanonical entropy density, Boltzmann's $k_B\ln W$ with $W$ written
   in terms of the density of states. On this scale the Laplace transform is
-  evaluated by Laplace's method, and the thermodynamic potential is the
+  evaluated by the steepest-descent method, and the thermodynamic potential is the
   Legendre transform of $s$: this is the equivalence of the ensembles, a
   known result, recalled in Appendix~\ref{app:second}. It makes the
   potential a secondary quantity, the image of the spectrum under the
   thermal map.
 \item \emph{Power laws} (Section~\ref{sec:filt_lowenergy}). An assumption on
-  the form of $s$ is turned into a statement on the observables:
-  a power law of $s$ above the ground state (Assumption~\ref{ass:power}) gives
+  the form of \lndos{} $s$ is turned into a statement on the observables:
+  a power law of \lndos{} above the ground state (Assumption~\ref{ass:power}) gives
   power laws in temperature $T$; homogeneity in energy and field
   (Assumption~\ref{ass:hom0}) gives scaling functions; homogeneity about an
   energy in the interior of the spectrum (Assumption~\ref{ass:crit})
   gives the critical exponents and the scaling relations.
 \item \emph{Extensions and scope} (Sections~\ref{sec:filt_corr}
   to~\ref{sec:beyond}). Correlation functions, the correlation length and
-  hyperscaling follow when the homogeneity of $s$ extends to the amplitude
+  hyperscaling follow when the homogeneity of \lndos{} extends to the amplitude
   and the wavelength of a modulated perturbing field, and to the size;
   transitions and crossovers are classified by the motion of the thermal
-  energy through the spectrum (Section~\ref{sec:transitions}). The input is a property of the spectrum, not an order parameter:
+  energy through the spectrum (Section~\ref{sec:transitions}), which also
+  states the guiding principle: thermodynamics at $(T,f)$ is the local
+  geometry of $s$ at the energy selected by $T$, and every phenomenon is a
+  restructuring of this geometry, of the ground state or of the excitations
+  above it, on the energy axis (Section~\ref{sec:principle}). The input is a property of the spectrum, not an order parameter:
   the formulation covers Goldstone modes, frustration, disorder and
   non-Fermi liquids on the same footing.
 \end{enumerate}
@@ -207,7 +211,7 @@ known. All statements are identities for a system of finite size.
 \label{sec:filt_exact}
 
 Let $ \hat H $ be the many-body Hamiltonian, interacting or not, of a system
-whose total particle number is conserved, $ [\hat H, \hat N] = 0 $\footnote{The
+whose total particle number is conserved, $ [\hat H, \hat N] = 0 $.\footnote{The
 conservation law is required only for the species to which $ \mu $ is
 attached. Phonons, photons and magnons are not conserved, carry no chemical
 potential, and are treated canonically ($ \mu = 0 $). For a Hamiltonian with
@@ -215,8 +219,8 @@ no conserved number, such as the Bardeen--Cooper--Schrieffer mean-field
 Hamiltonian, the construction applies directly to
 $ \hat{\mathcal{H}} = \hat H_{\rm MF} - \mu\hat N $, which has an eigenbasis
 although $ \hat H_{\rm MF} $ and $ \hat N $ do not share one; $ \mu $ is fixed
-afterwards by $ \langle\hat N\rangle = N $.}. The
-commuting Hermitian operators $ \hat H $ and $ \hat N $ have a common
+afterwards by $ \langle\hat N\rangle = N $.}
+The commuting Hermitian operators $ \hat H $ and $ \hat N $ have a common
 orthonormal eigenbasis $ \{|a\rangle\} $ of the Fock space,
 \[
   \hat H\,|a\rangle = E_a\,|a\rangle , \qquad \hat N\,|a\rangle = N_a\,|a\rangle ,
@@ -251,7 +255,8 @@ density of states} $\rho$ or, equivalently, by the \emph{level count} $\cN$,
   \rho(\xi) := \sum_a\delta(\xi - \xi_a) , \qquad
   \cN(\xi) := \sum_a\Theta(\xi-\xi_a) = \int_{-\infty}^{\xi}d\xi'\,\rho(\xi') ,
 \end{equation}
-the number of eigenstates with $\xi_a\le\xi$, $\Theta$ is the Heaviside step function.
+the number of eigenstates with $\xi_a\le\xi$, $\Theta$ is the Heaviside step function,
+which is the primitive of the delta function.
 $\cN$ is a non-decreasing step function and $\rho=d\cN/d\xi$. Then
 \begin{equation}\label{eq:filt_laplace}
   \Xi(\beta) = \int d\xi\; \rho(\xi)\,e^{-\beta \xi}
@@ -259,8 +264,8 @@ $\cN$ is a non-decreasing step function and $\rho=d\cN/d\xi$. Then
 \end{equation}
 the grand partition function is the Laplace transform of the many-body
 density of states, with $\beta$ the variable conjugate to $\xi$. The first
-form is the definition of $\rho$. The second follows by partial integration:
-the Heaviside function is the primitive of the delta function, so
+form is the definition of $\rho$.
+The second follows by partial integration:
 $\rho=d\cN/d\xi$, and
 \[
   \int d\xi\;\frac{d\cN}{d\xi}\,e^{-\beta\xi}
@@ -272,15 +277,12 @@ $\cN(\xi)e^{-\beta\xi}\to0$ for $\xi\to\infty$ whenever $\Xi$ converges at
 some $\beta'<\beta$ (always, for a finite Fock space), because the $\cN(\xi)$
 levels below $\xi$ contribute at least $\cN(\xi)e^{-\beta'\xi}$ to
 $\Xi(\beta')$, so that
-$\cN(\xi)e^{-\beta\xi}\le\Xi(\beta')e^{-(\beta-\beta')\xi}$. In the
-form $e^{-\beta\xi_a}=\beta\int_{\xi_a}^{\infty}d\xi\,e^{-\beta\xi}$, summed
-over $a$, the same identity says that each level contributes to $\Xi$ through
-all the energies above it.
+$\cN(\xi)e^{-\beta\xi}\le\Xi(\beta')e^{-(\beta-\beta')\xi}$.
 The probability density of $\xi$ in equilibrium is
 $ P_T(\xi) := \rho(\xi)\,e^{-\beta \xi}/\Xi $: the spectrum seen through the
 Boltzmann weight. A parameter $f$ of the Hamiltonian (a field, a coupling
 constant) changes the levels, $\xi_a(f)$, and hence $\rho(\xi;f)$ and
-$\cN(\xi;f)$; the kernel $e^{-\beta\xi}$ does \emph{not} depend on it.
+$\cN(\xi;f)$; the Boltzmann kernel $e^{-\beta\xi}$ does \emph{not} depend on it.
 
 \subsection{The density of states as a distribution; the thermal map}
 \label{sec:filt_dist}
@@ -318,9 +320,8 @@ information is the set of these numbers for all $\varphi$. In operator form,
 \]
 the many-body analogue of the single-particle density of states
 $\varrho(\varepsilon)=\Tr\,\delta(\varepsilon-\hat h)$, with $\hat h$ the
-one-body Hamiltonian, of
-Appendix~\ref{app:quadratic} and of the spectral function of the Green's
-function. The operator $\delta(\xi-\hat{\mathcal H})$ is the projector onto
+one-body Hamiltonian (see Appendix~\ref{app:quadratic}).
+The operator $\delta(\xi-\hat{\mathcal H})$ is the projector onto
 the eigenstates of energy $\xi$, spread into a delta function, and
 $\int d\xi\,\delta(\xi-\hat{\mathcal H})\,\varphi(\xi)=\varphi(\hat{\mathcal H})$
 by the spectral theorem, which is Eq.~\eqref{eq:filt_pairing} under the
@@ -345,9 +346,9 @@ below.
   $\partial \rho/\partial f$ is the distribution defined by
   $\langle\partial_f\rho,\varphi\rangle:=\partial_f\langle \rho,\varphi\rangle$;
   since the test function does not depend on $f$, this is differentiation
-  under the integral sign. For
-  $\hat{\mathcal H}(f)=\hat{\mathcal H}-f\hat A$ the Hellmann--Feynman
-  theorem (Section~\ref{sec:filt_resp}) gives
+  under the integral sign.
+  For $\hat{\mathcal H}(f)=\hat{\mathcal H}-f\hat A$,
+  the Hellmann--Feynman theorem (Section~\ref{sec:filt_resp}) gives
   $\partial\xi_a/\partial f=-A_{aa}$, so that
   $\partial_f\sum_a\varphi(\xi_a)=-\sum_aA_{aa}\varphi'(\xi_a)$, i.e.
   \begin{equation}\label{eq:filt_gA}
@@ -372,9 +373,11 @@ below.
   unit area and width $\Delta$ is an ordinary function, the smoothed density
   of states: the number of levels per unit energy in a window $\Delta$ about
   $\xi$. Statements about ``the value of $\rho$'' refer to it, and are
-  meaningful only if they do not depend on the window; for a large system
-  they do not, over a wide range of $\Delta$, because the level spacing is
-  exponentially small in $V$ while the level count changes on the scale $V$.
+  meaningful only if they depend neither on the width $\Delta$ nor on the
+  shape of the window. For a large system they do not, over a wide range of
+  $\Delta$: the level spacing is exponentially small in $V$, so that every
+  window contains many levels, while the level count varies on the scale
+  $V$, so that no window of fixed width resolves its variation.
 \end{itemize}
 
 \paragraph{The thermal map.} Thermodynamics pairs $\rho$ with a particular
@@ -383,7 +386,7 @@ $e_\beta(\xi):=e^{-\beta\xi}$:
 \begin{equation}\label{eq:filt_map}
   \Xi(\beta)=\langle \rho,e_\beta\rangle ,
 \end{equation}
-which is the Laplace transform of the distribution
+which is basically the Laplace transform of the distribution
 $\rho$~\cite{Zemanian}, Eq.~\eqref{eq:filt_laplace}; its second form is the
 statement $\rho=d\cN/d\xi$ with $\varphi=e_\beta$. Every equilibrium quantity is
 a pairing of this kind, with $U:=\langle\hat{\mathcal H}\rangle$:
@@ -406,34 +409,50 @@ number of levels in $[\xi,\xi+\Delta]$ &
 \end{tabular}
 \end{center}
 These are derived in Sections~\ref{sec:filt_mb} and~\ref{sec:filt_resp}.
-The map $\rho\mapsto\Xi(\cdot)$ (Eq.~\ref{eq:filt_map})
+The map $\rho\mapsto\Xi(\cdot)$, Eq.~\ref{eq:filt_map},
 from the spectral to the thermal description has the following properties.
 \begin{itemize}\setlength{\itemsep}{2pt}
 \item \emph{It is linear, and it turns convolution into multiplication.}
   Linearity is that of the pairing. For two systems without mutual
   interaction, $\hat{\mathcal H}=\hat{\mathcal H}_1\otimes\mathbb 1+\mathbb 1\otimes\hat{\mathcal H}_2$,
   the eigenstates are the products $|a_1\rangle|a_2\rangle$ and the levels
-  add, $\xi=\xi^{(1)}_{a_1}+\xi^{(2)}_{a_2}$. Hence
+  add, $\xi=\xi^{(1)}_{a_1}+\xi^{(2)}_{a_2}$. Hence, for every test
+  function,
   \[
-    \rho(\xi)=\sum_{a_1,a_2}\delta\big(\xi-\xi^{(1)}_{a_1}-\xi^{(2)}_{a_2}\big)
-    =\int d\xi'\,\rho_1(\xi')\,\rho_2(\xi-\xi')=(\rho_1*\rho_2)(\xi) ,
+    \langle\rho,\varphi\rangle
+    =\sum_{a_1,a_2}\varphi\big(\xi^{(1)}_{a_1}+\xi^{(2)}_{a_2}\big)
+    =\big\langle\rho_1(\xi')\,\rho_2(\xi''),\,\varphi(\xi'+\xi'')\big\rangle
+    =:\langle\rho_1*\rho_2,\varphi\rangle ,
   \]
-  the convolution of the two densities of states (the number of ways of
-  sharing the energy $\xi$ between the parts), and
+  which is the definition of the \emph{convolution} $\rho_1*\rho_2$ of two
+  distributions\footnote{The product of two distributions of the same
+  variable, such as $\rho_1(\xi)\rho_2(\xi)$, is in general undefined.
+  The convolution is not such a product: $\rho_1(\xi')\rho_2(\xi'')$ is a
+  distribution in the two independent variables $\xi'$ and $\xi''$ (the
+  density of states of the pair of systems on the plane), and it is paired
+  with the test function $\varphi(\xi'+\xi'')$ of two variables. For
+  distributions whose supports are bounded below, as densities of states
+  are, this pairing is finite for every $\varphi$, and $\rho_1*\rho_2$ is a
+  well-defined distribution~\cite{Zemanian}. For sums of delta functions it
+  is again a sum of delta functions, located at the sums of the levels; the
+  formal expression $\int d\xi'\,\rho_1(\xi')\,\rho_2(\xi-\xi')$ is a
+  shorthand for this pairing and is not to be read as a product.}: the
+  number of ways of sharing the energy $\xi$ between the parts. With
+  $\varphi=e_\beta$, since the Boltzmann factor of a sum of energies is the
+  product of the Boltzmann factors,
   \[
-    \Xi=\int d\xi\,e^{-\beta\xi}\int d\xi'\,\rho_1(\xi')\,\rho_2(\xi-\xi')
-    =\int d\xi'\,\rho_1(\xi')\,e^{-\beta\xi'}\int d\xi''\,\rho_2(\xi'')\,e^{-\beta\xi''}
-    =\Xi_1\Xi_2 ,
+    \Xi=\langle\rho_1*\rho_2,e_\beta\rangle
+    =\big\langle\rho_1(\xi')\,\rho_2(\xi''),\,e^{-\beta\xi'}e^{-\beta\xi''}\big\rangle
+    =\langle\rho_1,e_\beta\rangle\,\langle\rho_2,e_\beta\rangle=\Xi_1\Xi_2 :
   \]
-  by the substitution $\xi''=\xi-\xi'$ and $e^{-\beta\xi}=e^{-\beta\xi'}e^{-\beta\xi''}$:
   the Laplace transform of a convolution is the product of the transforms.
   The additivity of the thermodynamic potential, $\Omega=\Omega_1+\Omega_2$,
   is the convolution theorem.
 \item \emph{It regularises.} The distribution $\rho$ has no values, let
-  alone smooth ones; its pairing with the smooth family $e_\beta$, the sum
+  alone being smooth; its pairing with the smooth family $e_\beta$, the sum
   $\Xi(\beta)=\sum_ae^{-\beta\xi_a}$, is an analytic function of $\beta$
   wherever it converges (for a finite Fock space it is a finite sum of
-  exponentials). The thermal quantities of a finite system are therefore
+  exponentials). The thermal quantities of a \emph{finite} system are therefore
   smooth functions of $T$; a non-analyticity (a phase transition) can arise
   only in the limit $V\to\infty$.
 \item \emph{It is injective}\footnote{A map is \emph{injective}
@@ -457,13 +476,20 @@ themselves. The number of levels of a system of size $V$ in an energy
 interval of fixed width, $\langle\rho_V,\varphi\rangle$ for a fixed window
 $\varphi$, grows exponentially with $V$: the total number of levels is
 $D=e^{O(V)}$ and the spectrum spreads only over a range $O(V)$, so that
-exponentially many levels fall into every interval of fixed width. No
-normalisation by a power of $V$ makes the sequence $\rho_V$ converge, and
-the whole spectrum shifts with $V$ besides, since $\xi_0=O(V)$. What
-converges is the logarithm of a pairing, divided by $V$:
-$(k_B/V)\ln\langle\rho_V,\Theta(V\varepsilon-\,\cdot\,)\rangle$, the
-logarithm of the number of levels below the energy density $\varepsilon$,
-has the limit $s(\varepsilon)$, the microcanonical entropy density
+exponentially many levels fall into every interval of fixed width.
+Consider the densities of states $\rho_V$ of a sequence of systems of
+increasing size, $V=1,2,\dots$ (a lattice of $V$ sites, say). No
+normalisation by a power of $V$ makes this sequence of distributions
+converge, and the whole spectrum shifts with $V$ besides, since
+$\xi_0=O(V)$. What converges is the logarithm of a pairing, divided by $V$.
+The pairing of $\rho_V$ with the step function $\Theta(V\varepsilon-\xi)$
+is the level count of Eq.~\eqref{eq:filt_gN} at the energy $V\varepsilon$,
+\[
+  \langle\rho_V,\Theta(V\varepsilon-\,\cdot\,)\rangle=\cN_V(V\varepsilon) ,
+\]
+the number of levels below the energy density $\varepsilon$, and its
+logarithm per unit size, $(k_B/V)\ln\cN_V(V\varepsilon)$,
+has the $V \to \infty$ limit $s(\varepsilon)$, the microcanonical entropy density
 (Section~\ref{sec:large}), and $(1/V)\ln\langle\rho_V,e_\beta\rangle$ then
 has the limit $-\omega/k_BT$, the Legendre--Fenchel transform of $s/k_B$,
 Eq.~\eqref{eq:filt_legendre}. In the language of large
@@ -498,8 +524,7 @@ $\ln p_a=-\beta\xi_a-\ln\Xi$ and $\Omega=-k_BT\ln\Xi$,
 \end{equation}
 For the second, differentiate $S=k_B\ln\Xi+\langle\hat{\mathcal H}\rangle/T$:
 since $k_B\,\partial\ln\Xi/\partial T=\langle\hat{\mathcal H}\rangle/T^{2}$,
-and using $ d\beta/dT = -1/k_BT^{2} $,
-the terms without a derivative of $\langle\hat{\mathcal H}\rangle$ cancel, and
+and using $ d\beta/dT = -1/k_BT^{2} $, and
 \begin{equation}\label{eq:filt_CU}
   C_\mu = \frac{\partial\langle\hat{\mathcal H}\rangle}{\partial T}\bigg|_{\mu}
   = \frac{1}{k_BT^{2}}\int d\xi\; P_T(\xi)\,\big(\xi - \langle\hat{\mathcal{H}}\rangle\big)^{2}\;\ge0 ~.
@@ -586,41 +611,17 @@ functions of the field (the Van Vleck term), with
 $ -\partial^{2}\xi_a/\partial f^{2} = 2\sum_{b:\,\xi_b\neq\xi_a}|A_{ab}|^{2}/(\xi_b - \xi_a) $
 from second-order perturbation theory.
 
-\paragraph{For conserved quantities, responses are covariances.} Let $ \hat A $
-be conserved, $ [\hat A, \hat H] = [\hat A, \hat N] = 0 $; the eigenbasis may
-then be chosen to diagonalise it, $ \hat A|a\rangle = A_a|a\rangle $, the
-field shifts the eigenvalues to $ \xi_a - fA_a $ without changing the
-eigenvectors, and the Van Vleck term vanishes. For any $ \hat B $ diagonal in
-the same basis, with the weights $w_a:=e^{-\beta(\xi_a-fA_a)}$ and
-$\Xi=\sum_aw_a$,
-\[
-  \langle\hat B\rangle=\frac{\sum_aB_aw_a}{\Xi} ,\qquad
-  \frac{\partial w_a}{\partial f}=\beta A_aw_a ,\qquad
-  \frac{\partial\Xi}{\partial f}=\beta\sum_aA_aw_a=\beta\,\Xi\,\langle\hat A\rangle ,
-\]
-and the quotient rule gives
-\[
-  \frac{\partial\langle\hat B\rangle}{\partial f}
-  =\frac{\beta\sum_aA_aB_aw_a}{\Xi}-\frac{\sum_aB_aw_a}{\Xi}\,\frac{\partial\Xi/\partial f}{\Xi}
-  =\beta\big(\langle\hat A\hat B\rangle-\langle\hat A\rangle\langle\hat B\rangle\big) .
-\]
-The same computation with $\partial w_a/\partial T=(\xi_a/k_BT^{2})\,w_a$ (at
-$f=0$) replaces $\beta A_a$ by $\xi_a/k_BT^{2}$. Hence
-\begin{equation}\label{eq:filt_mb_response}
-  \frac{\partial\langle\hat B\rangle}{\partial f}\bigg|_{T,\mu}
-  = \frac{\Cov(\hat A, \hat B)}{k_BT} ,
-  \qquad
-  \frac{\partial\langle\hat B\rangle}{\partial T}\bigg|_{\mu}
-  = \frac{\Cov(\hat{\mathcal{H}}, \hat B)}{k_BT^{2}} :
-\end{equation}
-a change of temperature acts as a field whose charge on the state $ a $ is
-$ \xi_a/T $. Instances are
-$ (\partial N/\partial\mu)_T = \Var(\hat N)/k_BT $ ($ \hat A = \hat B = \hat N $, $ f = \mu $);
-the spin susceptibility $ \Var(\hat M)/Vk_BT $ whenever the total moment $ \hat M $ is
-conserved; $ C_\mu $ itself ($ \hat B = \hat{\mathcal{H}} $,
-Eq.~\eqref{eq:filt_CU}); and
-$ (\partial N/\partial T)_\mu = \Cov(\hat N, \hat{\mathcal{H}})/k_BT^{2} $.
-
+\paragraph{Conserved and non-conserved quantities.} If $\hat A$ is
+conserved, $[\hat A,\hat H]=[\hat A,\hat N]=0$, the field shifts the levels
+without changing the eigenvectors, the Van Vleck term vanishes, and every
+response is a covariance (Appendix~\ref{app:lehmann},
+Eq.~\eqref{eq:filt_mb_response}):
+$\partial\langle\hat B\rangle/\partial f=\Cov(\hat A,\hat B)/k_BT$ for
+every $\hat B$ diagonal in the common eigenbasis. Instances are
+$C_\mu=\Var(\hat{\mathcal H})/k_BT^{2}$, Eq.~\eqref{eq:filt_CU},
+$(\partial N/\partial\mu)_T=\Var(\hat N)/k_BT$, and the spin
+susceptibility $\Var(\hat M)/Vk_BT$ whenever the total moment $\hat M$ is
+conserved.
 If $ \hat A $ is not conserved, the covariance is replaced by the Lehmann
 representation, Eq.~\eqref{eq:filt_mb_kubo} of Appendix~\ref{app:lehmann},
 which is Eq.~\eqref{eq:filt_vanvleck} in another form, and
@@ -629,33 +630,18 @@ which is Eq.~\eqref{eq:filt_vanvleck} in another form, and
 \end{equation}
 with equality on the right if and only if $ \hat A $ is conserved.
 
-\paragraph{Correlations.} Write $\hat{\mathcal H}=\sum_i\hat h_i$ as a sum
-of local terms (sites, or bonds). Then
-\begin{equation}\label{eq:filt_corrsum}
-  k_BT^{2}\,C_\mu=\Var(\hat{\mathcal H})
-  =\sum_i\Var(\hat h_i)+\sum_{i\neq j}\Cov(\hat h_i,\hat h_j) .
-\end{equation}
-For bounded local terms the first sum is at most $V$ times a constant, so a
-heat capacity per unit size that diverges requires the covariances to decay
-slowly enough that their sum over $j$ diverges: long-range correlations of
-the energy density. The same decomposition holds for $\Var(\hat A)$ and
-$\Cov(\hat A,\hat B)$ of any extensive observable. An additive
-(non-interacting) spectrum has no such covariances
-(Appendix~\ref{app:quadratic}, Eq.~\eqref{eq:filt_bound}): \emph{a divergent
-response requires interactions.}
-
 \section{Large systems: the density of states on the logarithmic scale}
 \label{sec:large}
 
 Everything so far holds for a system of any size. For a macroscopic system
 the Laplace transform~\eqref{eq:filt_laplace} simplifies, because the number
 of levels is exponential in the size, and the simplification is the familiar
-one: the thermodynamic potential becomes the Legendre transform of the
-microcanonical entropy. Nothing in this section is new. It restates the
+one: the thermodynamic potential becomes the Legendre transform of the entropy.
+Nothing in this section is new. It restates the
 equivalence of the microcanonical and the grand canonical ensembles in the
 language of Section~\ref{sec:filters}, so that in the following sections the
 observables can be read directly from the spectrum. The derivations are
-recalled in Appendix~\ref{app:second}; here only the statements are needed.
+provided in Appendix~\ref{app:second}; here only the statements are needed.
 
 \subsection{Extensivity: the logarithmic density of states}
 \label{sec:large_ext}
@@ -668,11 +654,12 @@ energy density $\varepsilon_0:=\lim_{V\to\infty}\xi_0/V$ exists, and so does
   s(\varepsilon) := \lim_{V\to\infty}\frac{k_B}{V}\,\ln\cN_V(V\varepsilon)
   \qquad(\varepsilon>\varepsilon_0) ,
 \end{equation}
-uniformly on bounded intervals of $\varepsilon$\footnote{\emph{Uniformly}:
+uniformly\footnote{\emph{Uniformly}:
 the largest deviation on the interval,
 $\max_\varepsilon|(k_B/V)\ln\cN_V-s|$, tends to zero. This is what allows
 the minimum over $\varepsilon$ in Eq.~\eqref{eq:filt_legendre} to be taken
-after the limit $V\to\infty$ (Appendix~\ref{sec:second_bounds}).}, and
+after the limit $V\to\infty$ (Appendix~\ref{sec:second_bounds}).}
+on bounded intervals of $\varepsilon$, and
 $s(\varepsilon)\le a+b\,\varepsilon$ for some constants $a$ and $b\ge0$
 ($s$ grows at most linearly).
 The function $s$ is the \emph{logarithmic density of states}: the number of
@@ -702,7 +689,7 @@ the thermal energy to a bounded range of $\varepsilon$.
 For short-range interactions the existence of the limit is a
 theorem~\cite{Ruelle}, proven by dividing the system into parts, and $s$ is
 concave (Appendix~\ref{sec:second_conc}). Nothing below requires concavity.
-For interactions that decay more slowly than $r^{-d}$ the energy is not
+For interactions in spatial dimension $d$ that decay more slowly than $r^{-d}$ the energy is not
 extensive; Eq.~\eqref{eq:filt_sdef} then holds after the couplings are
 rescaled with the size (Kac prescription~\cite{Campa2009}), and without any
 rescaling the results below hold in the form of total quantities,
@@ -727,32 +714,49 @@ Eq.~\eqref{eq:filt_rhos} in the Laplace transform~\eqref{eq:filt_laplace},
   \asymp V\int_{\varepsilon_0}^{\infty}d\varepsilon\;
   \exp\left\{-\frac{V}{k_BT}\big[\varepsilon-T\,s(\varepsilon)\big]\right\} .
 \end{equation}
-The integrand is the number of levels at $\varepsilon$ times their
-Boltzmann weight, and for $V\to\infty$ the integral is dominated by the
-energy at which the growth of the one and the decay of the other balance
-(Laplace's method, Appendix~\ref{sec:second_sd}):
+The integrand $\rho(\xi)\,e^{-\beta\xi}$ is the number of levels at the
+energy density $\varepsilon$ times their Boltzmann weight; divided by $\Xi$
+it is the equilibrium probability density $P_T$ of
+Section~\ref{sec:filt_exact}, written for the energy density
+$\varepsilon=\xi/V$. Its exponent is proportional to $V$, so for
+$V\to\infty$ the probability concentrates at the energy density at which
+the growth of the level count and the decay of the Boltzmann factor
+balance, the minimum of the bracket (steepest-descent method,
+Appendix~\ref{sec:second_sd}). Let $\varepsilon_*(T)$ be the minimiser,
+the \emph{thermal energy}, and let it be unique. Two statements follow.
+First, the integral equals $e^{-V[\varepsilon_*-Ts(\varepsilon_*)]/k_BT}$
+up to a factor that is not exponential in $V$, so that, by
+$\omega=-(k_BT/V)\ln\Xi$,
 \begin{equation}\label{eq:filt_legendre}
   \omega(T) = \min_{\varepsilon\ge\varepsilon_0}\big[\varepsilon - T\,s(\varepsilon)\big]
-  = \varepsilon_* - T\,s(\varepsilon_*) ,
+  = \varepsilon_* - T\,s(\varepsilon_*) .
 \end{equation}
-where $\varepsilon_*(T)$ is the minimiser, the \emph{thermal energy}. At
-every temperature at which it is unique,
+Second, the probability of the energy density is concentrated within
+$O(V^{-1/2})$ of $\varepsilon_*$ (Appendix~\ref{sec:second_sd}), so that
+the mean of $\xi/V=(E-\mu N)/V$ is $\varepsilon_*$. This is what
+identifies the minimiser with the thermodynamic energy: with
+Eq.~\eqref{eq:filt_mb},
 \begin{equation}\label{eq:filt_SI}
-  u-\mu n=\varepsilon_*(T) , \qquad
-  \frac{S}{V}=s\big(\varepsilon_*(T)\big) , \qquad
-  c_\mu=\frac{d\varepsilon_*}{dT}=T\,\frac{d}{dT}\,s\big(\varepsilon_*(T)\big) ,
+\begin{gathered}
+  u-\mu n=\frac{\langle\hat{\mathcal H}\rangle}{V}=\varepsilon_*(T) , \qquad
+  \frac{S}{V}=\frac{(u-\mu n)-\omega}{T}=s\big(\varepsilon_*(T)\big) ,
+  \\
+  c_\mu=\frac{d(u-\mu n)}{dT}\bigg|_{\mu}=\frac{d\varepsilon_*}{dT} ,
+\end{gathered}
 \end{equation}
-and if $s$ is differentiable at $\varepsilon_*$ the minimum condition is
+the second by inserting Eq.~\eqref{eq:filt_legendre}. If $s$ is
+differentiable at $\varepsilon_*$, the minimum condition is
 \begin{equation}\label{eq:filt_stat}
-  \frac{\partial s}{\partial\varepsilon}\bigg|_{\varepsilon_*}=\frac1T .
+  \frac{\partial s}{\partial\varepsilon}\bigg|_{\varepsilon_*}=\frac1T ,
 \end{equation}
-Since $\varepsilon$ is the density of $E-\mu N$, Eq.~\eqref{eq:filt_legendre}
-reads $\omega=u-Ts-\mu n$, i.e.\ $\Omega=U-TS-\mu N$ with the entropy equal
-to the microcanonical entropy at the mean energy: this is the equivalence of
-the ensembles~\cite[Ch.~2]{Schwabl}, with the microcanonical entropy
-written as the logarithm of the level count. The same argument applied to
-$Z_N$, with the levels of $\hat H$ at fixed $N$, gives the free energy
-density $f=\min_u[u-Ts(u)]$. The replacement of the sum $\Xi$ by its
+and then also $c_\mu=T\,\frac{d}{dT}\,s(\varepsilon_*(T))$, by the chain
+rule. Since $\varepsilon$ is the density of $E-\mu N$,
+Eq.~\eqref{eq:filt_legendre} reads $\omega=u-Ts-\mu n$, i.e.\
+$\Omega=U-TS-\mu N$ with the entropy equal to the microcanonical entropy
+at the mean energy: this is the equivalence of the
+ensembles~\cite[Ch.~2]{Schwabl}, with the microcanonical entropy written
+as the logarithm of the level count.
+The replacement of the sum $\Xi$ by its
 dominant group of levels costs $O(k_BT\ln V/V)$ in $\omega$, and it needs
 neither the concavity of $s$ nor a division of the system into parts
 (Appendix~\ref{sec:second_bounds}); the further replacement of
@@ -765,7 +769,7 @@ The following remarks fix how Eq.~\eqref{eq:filt_legendre} is used below.
 \item \emph{The temperature selects an energy.} The temperature enters the
   observables only through $\varepsilon_*(T)$ and as an explicit factor: it
   selects the energy density at which the spectrum is examined, namely the
-  one at which the level count grows at the rate $1/k_BT$ per unit energy.
+  one at which the level count grows at the rate $1/k_BT$ per unit energy, Eq.~\ref{eq:filt_stat}.
   Differentiating Eq.~\eqref{eq:filt_stat} with respect to $T$ gives the
   heat capacity as the inverse curvature of $s$,
   \begin{equation}\label{eq:filt_curvmain}
@@ -782,9 +786,10 @@ The following remarks fix how Eq.~\eqref{eq:filt_legendre} is used below.
     a=-\frac{\partial\omega}{\partial f}\bigg|_{T}
     =T\,\frac{\partial s}{\partial f}\bigg|_{\varepsilon_*} ,
   \end{equation}
-  the intensive form of $\langle\hat A\rangle=k_BT\,\Xi^{(1)}/\Xi$,
-  Eq.~\eqref{eq:filt_param}: the response to a field is the rate at which
-  the field moves levels across the thermal energy.
+  which is $\langle\hat A\rangle=k_BT\,\Xi^{(1)}/\Xi$,
+  Eq.~\eqref{eq:filt_param}, evaluated on the logarithmic scale and divided
+  by $V$: the response to a field is the rate at which the field moves
+  levels across the thermal energy.
 \item \emph{No concavity.} If $s$ is not concave,
   Eq.~\eqref{eq:filt_legendre} still gives the thermodynamic potential, but
   the minimiser may jump at some temperature $T_1$ between two energy
@@ -802,12 +807,13 @@ The following remarks fix how Eq.~\eqref{eq:filt_legendre} is used below.
 \subsection{The thermodynamic potential as a secondary quantity}
 \label{sec:large_secondary}
 
-Thermodynamics is usually built on the potential $\omega$ (or the free
+Thermodynamics is usually built on the thermodynamic potential $\omega$ (or the free
 energy $f$): the scaling hypothesis~\eqref{eq:scaling} is a hypothesis on
 $f_{\rm sing}$, Landau's theory expands $f$ in an order parameter, and the
 exponents are defined as properties of $f$ and of its derivatives.
-Eq.~\eqref{eq:filt_legendre} says that $\omega$ is a secondary quantity, the
-Legendre transform of the logarithmic density of states at the energy
+
+Eqs.~\eqref{eq:filt_intensive} and \eqref{eq:filt_legendre} say that $\omega$ is a secondary quantity,
+the Legendre transform of the logarithmic density of states at the energy
 selected by $T$, and that every property of $\omega$ is the image, under the
 Laplace transform of Section~\ref{sec:filt_dist}, of a property of the
 spectrum:
@@ -815,11 +821,11 @@ spectrum:
 \item a power law of $\omega$ in $T$ is a power law of $\ln\rho$ in the
   excitation energy above the ground state
   (Section~\ref{sec:filt_power_mb});
-\item a scaling form of $\omega$ in $T$ and a field $h$ is a homogeneity of
+\item a scaling form of $\omega$ in $T$ or a field $h$ is a homogeneity of
   $\ln\rho$ in energy and field (Sections~\ref{sec:filt_scaling0}
   and~\ref{sec:filt_critical});
 \item a singularity of $\omega$ at $T_c$ is a change in the growth rate of
-  the level count at an energy $\varepsilon_c$ in the interior of the
+  the level count at an energy $\varepsilon_c$ within the
   spectrum, and a crossover is the passage of $\varepsilon_*(T)$ through an
   energy at which the form of $\rho$ changes
   (Section~\ref{sec:transitions}).
@@ -842,18 +848,17 @@ partition function, thermodynamic potential, then entropy, heat capacity and
 responses by differentiation. In the conventional formulation the
 corresponding assumptions (a power law, the scaling
 hypothesis~\eqref{eq:scaling}) are made on the free energy; here they are
-made on the spectrum, and the free energy inherits them through the Laplace
-transform.
+made on the spectrum, and the free energy inherits them.
 
 \subsection{Low-temperature power laws}
 \label{sec:filt_power_mb}
 
 \begin{assumption}[Power law above the ground state]\label{ass:power}
-With $\delta\varepsilon:=\varepsilon-\varepsilon_0$ the excitation energy
-density, for $\delta\varepsilon\to0^{+}$,
+With $\delta\varepsilon:=\varepsilon-\varepsilon_0$ the excitation energy density,
+for $\delta\varepsilon\to0^{+}$,
 \begin{equation}\label{eq:filt_stretched}
 \begin{gathered}
-  s(\varepsilon)=\cA\,\delta\varepsilon^{\sigma}\,\big[1+o(1)\big] ,
+  s(\varepsilon)=\cA\,(\delta\varepsilon)^{\sigma}\,\big[1+o(1)\big] ,
   \qquad \cA>0 ,\quad 0<\sigma<1 ,
   \\
   \text{i.e.}\qquad
@@ -873,8 +878,7 @@ Eq.~\eqref{eq:filt_lnXi} of Appendix~\ref{sec:second_bounds} such prefactors cha
 $\omega$ by $O(\ln V/V)$.}: the level count grows above the ground state as
 a stretched exponential of the excitation energy.
 \end{assumption}
-Equation~\eqref{eq:filt_stretched} is the special case
-$s=\cA\,\delta\varepsilon^{\sigma}$ of Eq.~\eqref{eq:filt_sdef}. The
+Equation~\eqref{eq:filt_stretched} is a special case of Eq.~\eqref{eq:filt_sdef}. The
 amplitude $\cA$ is positive because $\cN$ is non-decreasing; $\sigma>0$ for
 the same reason, and $s\to0$ for $\delta\varepsilon\to0$ excludes a
 ground-state degeneracy exponential in $V$. A low-temperature regime with
@@ -892,7 +896,7 @@ Under Assumption~\ref{ass:power}, for $T\to0$,
   \omega-\varepsilon_0 = -\frac{1-\sigma}{\sigma}\,\delta\varepsilon_* ,\qquad
   u-\mu n-\varepsilon_0=\delta\varepsilon_* ,
   \\
-  \frac{S}{V} = \cA\,\delta\varepsilon_*^{\sigma}=\frac{\delta\varepsilon_*}{\sigma T} ,\qquad
+  \frac{S}{V} = \cA\,(\delta\varepsilon_*)^{\sigma}=\frac{\delta\varepsilon_*}{\sigma T} ,\qquad
   c_\mu = \frac{\delta\varepsilon_*}{(1-\sigma)\,T} ,
 \end{gathered}
 \end{equation}
@@ -910,12 +914,12 @@ each up to a factor $1+o(1)$. All are powers of $T$:
 \end{equation}
 \end{proposition}
 \begin{proof}
-For $s=\cA\,\delta\varepsilon^{\sigma}$ the bracket
-$\varepsilon-Ts=\varepsilon_0+\delta\varepsilon-T\cA\,\delta\varepsilon^{\sigma}$
+For $s=\cA\,(\delta\varepsilon)^{\sigma}$, the bracket
+$\varepsilon-Ts=\varepsilon_0+\delta\varepsilon-T\cA\,(\delta\varepsilon)^{\sigma}$
 of Eq.~\eqref{eq:filt_legendre} has its minimum where
-$\sigma\cA\,\delta\varepsilon_*^{\sigma-1}=1/T$, which is
+$\sigma\cA\,(\delta\varepsilon_*)^{\sigma-1}=1/T$, which is
 Eq.~\eqref{eq:filt_stat}; there
-$T\cA\,\delta\varepsilon_*^{\sigma}=\delta\varepsilon_*/\sigma$, which gives
+$T\cA\,(\delta\varepsilon_*)^{\sigma}=\delta\varepsilon_*/\sigma$, which gives
 $\omega$ and $S/V=s(\varepsilon_*)$. For $T\to0$, $\delta\varepsilon_*\to0$,
 so only the form of $s$ at small $\delta\varepsilon$ matters: the levels at
 $\delta\varepsilon\ge\varepsilon_1>0$ cannot compete, since by the linear
@@ -927,7 +931,7 @@ $1+o(1)$ in Eq.~\eqref{eq:filt_stretched} is handled by monotonicity: the
 minimum decreases when $s$ increases, so replacing $\cA$ by
 $\cA(1\pm\eta)$ brackets $\omega$, for any $\eta>0$ and $T$ small enough.
 Finally $u-\mu n$, $S$ and $c_\mu$ are given by Eq.~\eqref{eq:filt_SI}, and
-$d\,\delta\varepsilon_*/dT=\delta\varepsilon_*/(1-\sigma)T$.
+$d(\delta\varepsilon_*)/dT=\delta\varepsilon_*/(1-\sigma)T$.
 \end{proof}
 A stretched-exponential level count with exponent $\sigma$ is thus equivalent
 to a power-law heat capacity with exponent $\kappa=\sigma/(1-\sigma)$. The
@@ -940,7 +944,7 @@ $\kappa=r+1$.
 the exponent. If $\ln\cN(\xi)=B\,(\xi-\xi_0)^{\sigma}[1+o(1)]$ in a range
 of $\xi$, with any dependence of $B$ on the size,
 the bounds of Appendix~\ref{sec:second_bounds},
-Eq.~\eqref{eq:filt_bounds2}, give directly
+Eq.~\eqref{eq:filt_bounds2}, yield directly
 \begin{equation}\label{eq:filt_total}
   \ln\Xi+\beta\xi_0=\frac{1-\sigma}{\sigma}\,(\sigma B)^{1/(1-\sigma)}\,(k_BT)^{\kappa}\,\big[1+o(1)\big] ,
   \qquad
@@ -1084,12 +1088,12 @@ argument equal to $1$.
 This is the generalised homogeneous form~\eqref{eq:scaling}, with $ T $ in
 the role of $ t $, $ 2-\alpha\to1/(1-\sigma)=\kappa+1 $ and gap exponent
 $ \Delta_h=b/(1-\sigma) $. By differentiation, with
-$ z=h/T^{\,b/(1-\sigma)} $,
+$ \zeta=h/T^{\,b/(1-\sigma)} $,
 \begin{gather*}
-  \frac{S}{V}=-\frac{\partial\omega}{\partial T}=T^{\kappa}\,\Phi_S(z) ,\qquad
-  c_\mu=-T\,\frac{\partial^{2}\omega}{\partial T^{2}}=T^{\kappa}\,\Phi_c(z) ,
+  \frac{S}{V}=-\frac{\partial\omega}{\partial T}=T^{\kappa}\,\Phi_S(\zeta) ,\qquad
+  c_\mu=-T\,\frac{\partial^{2}\omega}{\partial T^{2}}=T^{\kappa}\,\Phi_c(\zeta) ,
   \\
-  a=-\frac{\partial\omega}{\partial h}=-T^{(1-b)/(1-\sigma)}\,\Phi'(z) ,
+  a=-\frac{\partial\omega}{\partial h}=-T^{(1-b)/(1-\sigma)}\,\Phi'(\zeta) ,
 \end{gather*}
 where $ \Phi_S $ and $ \Phi_c $ are combinations of $ \Phi $ and its
 derivatives; $ c_\mu\sim T^{\kappa} $ is recovered at $ h=0 $. No property of the
@@ -1097,22 +1101,6 @@ Hamiltonian is used beyond Eq.~\eqref{eq:filt_shom0} and the extensivity
 of Section~\ref{sec:large}: the scaling form of the thermodynamic potential
 is the homogeneity of the level count, carried through the Laplace
 transform.
-
-\paragraph{Example: a band edge.} For independent fermions with
-$ \varrho(E)=B|E-E_0|^{r} $ on one side of $E_0$ (a band edge) and
-$ h=\delta\mu:=\mu-E_0 $, the substitution $ E-E_0=k_BT\,y $ in the grand
-potential, Eq.~\eqref{eq:filt_Omega}, gives
-$ \omega_{\rm sing}=B\,(k_BT)^{r+2}\,\Phi(\delta\mu/k_BT) $, i.e.\
-$\sigma=(r+1)/(r+2)$, $b=1/(r+2)$ and $ \Delta_h=1 $. At $ T=0 $,
-$\partial^{2}\omega/\partial\mu^{2}=-\varrho(\mu)$, so
-$ \omega_{\rm sing}=-B\,|\delta\mu|^{r+2}/(r+1)(r+2) $ on the side of the
-band and zero on the other: a thermodynamic singularity as $ \mu $ crosses a
-band edge, the Lifshitz transition~\cite{Lifshitz1960}, of order $ r+2 $ in
-Ehrenfest's sense ($ \tfrac52 $ for a three-dimensional band edge,
-$ r=\tfrac12 $). No symmetry changes at this transition. At an interacting
-critical point the scale-free object is the many-body spectrum of the
-collective fluctuations, and $ \sigma $ and $ b $ are not these simple
-numbers.
 
 \subsection{Critical exponents from the spectrum}
 \label{sec:filt_critical}
@@ -1137,8 +1125,15 @@ arguments,
   \qquad \sigma>2 ,\quad b>0 .
 \end{equation}
 \end{assumption}
-The first two terms describe the exponential growth of the level count at
-$\varepsilon_c$, $\cN(\xi)\propto e^{(\xi-\xi_c)/k_BT_c}$ about $\xi_c:=V\varepsilon_c$, whose rate defines $T_c$. The
+The first two terms are the regular part of $s$ at $\varepsilon_c$: its
+value and its slope. The slope is written out because it is what fixes the
+critical temperature: by Eq.~\eqref{eq:filt_stat} the thermal energy
+reaches $\varepsilon_c$ at the temperature at which
+$\partial s/\partial\varepsilon=1/T$, i.e.\ at $T=T_c$. For the level
+count the two terms say that
+$\cN(\xi)\propto e^{(\xi-\xi_c)/k_BT_c}$ about $\xi_c:=V\varepsilon_c$:
+the level count grows exponentially with the energy, at the rate $1/k_BT_c$
+per unit energy, and this growth rate at $\xi_c$ is what defines $T_c$. The
 simplest instance of the remainder is
 $s_{\rm sing}(\delta\varepsilon,0)=-B_\pm|\delta\varepsilon|^{\sigma}$ with
 amplitudes $B_\pm>0$ for $\delta\varepsilon\gtrless0$. The condition
@@ -1148,7 +1143,7 @@ proposition.
 
 \paragraph{What the singularity of $s$ says about the spectrum.}
 Assumption~\ref{ass:crit} is a statement about the microscopic level count,
-and it is worth reading it as such. For the number of levels,
+and it is worth considering its implications. For the number of levels,
 $\cN(\xi)=e^{Vs(\xi/V)/k_B}$, it says
 \[
   \cN(\xi)=e^{Vs_c/k_B}\;e^{(\xi-\xi_c)/k_BT_c}\;
@@ -1392,7 +1387,7 @@ For a translation-invariant system $\chi_{ij}=\chi(\mathbf r_i-\mathbf r_j)$,
 with Fourier transform
 $\chi(\mathbf q)=\sum_{\mathbf r}e^{-i\mathbf q\cdot\mathbf r}\chi(\mathbf r)$.
 A modulated field $h_i=h_{\mathbf q}\cos(\mathbf q\cdot\mathbf r_i)$ of
-amplitude $h_{\mathbf q}$ is a parameter of the Hamiltonian, and
+amplitude $h_{\mathbf q}$ is a parameter of the full Hamiltonian, and
 $k_BT\,\partial^{2}\ln\Xi/\partial h_{\mathbf q}^{2}
 =\sum_{ij}\cos(\mathbf q\cdot\mathbf r_i)\cos(\mathbf q\cdot\mathbf r_j)\,\chi_{ij}
 =\tfrac12V\chi(\mathbf q)$ for $\mathbf q\neq0$, the factor $\tfrac12$ being
@@ -1511,21 +1506,21 @@ through the combinations $\delta\varepsilon\,V^{1/\sigma}$ and
 $hV^{b/\sigma}$. No length has been used, and the statement holds also where
 none exists: for the infinite-range Ising model the scaling variable is
 $tV^{1/2}$, so $\nu_*=2$, in agreement with $\alpha=0$. The connection with
-the wave vector is the following. In a finite periodic system the smallest
+the wave vector is the following. In a finite periodic system, the smallest
 non-zero wave vector is $2\pi V^{-1/d}$. If the size enters the spectrum only
 through it, $V^{-1}$ scales as $q^{d}$, so that
 \[
-  b_V=d\,b_q ,\qquad \nu_*=d\nu ,\qquad V_c=\ell_c^{\,d} ,
+  b_V=b_q \, d ,\qquad \nu_*=\nu \, d ,\qquad V_c=\ell_c^{\,d} ,
 \]
 and Eq.~\eqref{eq:filt_hyper} becomes the hyperscaling relation
-$2-\alpha=d\nu$ of Section~\ref{sec:dos_prelim}. The susceptibility of the
+$2-\alpha=\nu \, d$ of Section~\ref{sec:dos_prelim}. The susceptibility of the
 finite system at $t=h=0$ then grows as
 $V^{\gamma/\nu_*}=L^{\gamma/\nu}=L^{2-\eta}$. Above the upper critical
 dimension the premise fails, because the uniform mode is not controlled by
 the modes of small non-zero $\mathbf q$: the Ising model in $d>4$ with
 periodic boundary conditions has $\nu=\tfrac12$ but
 $\nu_*=2$~\cite{Brezin1982}, as for infinite range, so that
-$2-\alpha=\nu_*$ holds and $2-\alpha=d\nu$ does not.
+$2-\alpha=\nu_*$ holds and $2-\alpha=\nu \, d$ does not.
 
 \subsection{Relation to the renormalisation group}
 \label{sec:filt_rg}
@@ -1548,7 +1543,7 @@ the last being the scaling dimension $d-y_t$ of the energy.
 The renormalisation-group eigenvalues are ratios of the exponents of the
 many-body spectrum, and a fixed point is a Hamiltonian whose spectrum has no
 intrinsic scale in energy, field amplitude and wave vector. The two
-formulations differ in what is taken as given. The renormalisation group
+formulations differ in what is taken as assumption. The renormalisation group
 constructs the rescaling as a map on Hamiltonians and obtains the
 homogeneity from the existence of a fixed point, which also explains why
 different Hamiltonians share exponents. The spectral formulation takes the
@@ -1559,9 +1554,9 @@ applies unchanged to power laws that are not universal.
 \section{Phase transitions and crossovers in the spectral formulation}
 \label{sec:transitions}
 
-The results so far can be collected into one statement of what a phase
-transition, and what a crossover, is in terms of the spectrum. For a finite
-system nothing is singular: $\Xi(\beta)=\sum_ae^{-\beta\xi_a}$ is a sum of
+The results so far can be collected into a single statement of what a phase
+transition, and what a crossover, is in terms of the microscopic spectrum.
+For a finite system nothing is singular: $\Xi(\beta)=\sum_ae^{-\beta\xi_a}$ is a sum of
 analytic functions, and so are all its derivatives
 (Section~\ref{sec:filt_dist}). The thermodynamic limit replaces the sum by
 the minimisation of Eq.~\eqref{eq:filt_legendre}, and the minimum of a smooth
@@ -1570,7 +1565,7 @@ minimiser changes its character. Every singularity of the thermodynamics is
 therefore a statement about how the thermal energy $\varepsilon_*(T,f)$, the
 energy at which the level count grows at the rate $1/k_BT$, moves through
 the spectrum, and the character of the singularity is read from the form of
-$s$ near the energies involved.
+\lndos{} $s$ near the energies involved.
 \begin{itemize}\setlength{\itemsep}{2pt}
 \item \emph{Discontinuous transition: the thermal energy jumps.} Two
   separated ranges of the spectrum, about $\varepsilon_-$ and
@@ -1601,7 +1596,7 @@ $s$ near the energies involved.
   at $T_c$, so there is no latent heat, but $c_\mu=d\varepsilon_*/dT$, the
   rate at which the temperature drives the thermal energy through the
   spectrum, is singular. By Eq.~\eqref{eq:filt_curvmain} this requires the
-  curvature of $s$ to vanish at $\varepsilon_c$, which is
+  curvature of \lndos{} $s$ to vanish at $\varepsilon_c$, which is
   Assumption~\ref{ass:crit} with $\sigma>2$, or, with a finite regular part,
   a subleading singular term with $\sigma>2$
   (Section~\ref{sec:filt_critical}). The exponents are the exponents
@@ -1634,7 +1629,15 @@ $s$ near the energies involved.
   density, and a transition as a function of a parameter $f$ is a
   non-analyticity of $\varepsilon_0(f)$, i.e.\ of the lowest level of the
   spectrum: a level crossing at finite $V$ (first order), or an accumulation
-  of avoided crossings whose number grows with $V$ (continuous). The
+  of avoided crossings\footnote{Two levels of a finite system that would
+  cross as $f$ varies repel each other if
+  $\partial\hat{\mathcal H}/\partial f$ has a non-zero matrix element
+  between them: they approach to a minimum distance, the gap, and exchange
+  their character instead of crossing (an \emph{avoided crossing}). The
+  ground-state energy then remains analytic in $f$ at finite $V$, and a
+  non-analyticity can arise only from a number of avoided crossings that
+  grows with $V$, with gaps that close as $V\to\infty$.} whose number grows
+  with $V$ (continuous). The
   spectrum above the ground state is reorganised at the same point, and the
   scale-free form of Assumption~\ref{ass:hom0} about $\varepsilon_0$, with
   $h=f-f_c$, gives the quantum critical fan
@@ -1642,9 +1645,116 @@ $s$ near the energies involved.
   (Section~\ref{sec:nfl}): at $T>0$ the lines $h\sim T^{\,b/(1-\sigma)}$ are
   crossovers, and the transition is confined to $T=0$.
 \end{itemize}
-The classification is by the motion of $\varepsilon_*$ through the spectrum,
-not by a symmetry; the following section is devoted to the cases in which
-the symmetry-breaking description has no starting point and this one does.
+The classification is by the motion of $\varepsilon_*$ through the
+spectrum, not by a symmetry. The four cases, and the cases of the following
+section, are instances of one principle, which is now stated.
+
+\subsection{The guiding principle: the geometry of the spectrum on the energy axis}
+\label{sec:principle}
+
+\paragraph{The picture.} The logarithmic density of states is a landscape:
+the graph of $s(\varepsilon,f)$ over the energy axis, which begins at the
+ground-state energy $\varepsilon_0(f)$, where $s=0$ (or the residual
+entropy), and rises with $\varepsilon$ as the levels become more numerous.
+The landscape is a property of the Hamiltonian alone: the temperature does
+not enter it. The temperature is a probe. Eq.~\eqref{eq:filt_legendre}
+says that $\omega$ is the smallest value of $\varepsilon-Ts(\varepsilon)$,
+i.e.\ that the straight line
+\begin{equation}\label{eq:filt_tangent}
+  \ell_T(\varepsilon):=\frac{\varepsilon-\omega}{T}
+\end{equation}
+of slope $1/T$ lies above the graph, $s(\varepsilon)\le\ell_T(\varepsilon)$
+for all $\varepsilon$, and touches it at $\varepsilon_*$. Lay a straight
+edge of slope $1/T$ on the landscape from above: it comes to rest at the
+thermal energy $\varepsilon_*$, and it crosses the energy axis at the
+thermodynamic potential $\omega$. At $T\to0$ the edge is vertical and
+rests at the ground state; heating lowers its slope and moves the point of
+contact up the landscape; at $T\to\infty$ the edge is horizontal and rests
+at the maximum of $s$, the energy at which the levels are densest. Every
+quantity measured at the temperature $T$ is a property of the landscape at
+the point of contact: its height is the entropy, its curvature the inverse
+heat capacity, its tilt in the direction of a parameter $f$ the conjugate
+density. The levels elsewhere on the axis are not seen: their weight in
+$\Xi$ is $e^{-O(V)}$ relative to those at the point of contact
+(Appendix~\ref{sec:second_bounds}).
+
+A thermodynamic phenomenon is then one of two things. Either the point of
+contact, as $T$ is varied, passes a feature of the landscape (a change of
+form of $s$: a crossover if smooth, a transition if non-analytic), or a
+parameter $f$ deforms the landscape and moves a feature to the point of
+contact. A quantum phase transition is the special case in which the
+feature is the boundary of the landscape itself, the ground-state energy
+$\varepsilon_0(f)$, which is non-analytic in $f$. In every case the
+physics is a restructuring of the spectrum on the energy axis, of its
+boundary (the ground state) or of its interior (the excitations above the
+ground state), and the thermodynamics records the restructuring when the
+point of contact reaches it. The cases of Section~\ref{sec:beyond} are
+restructurings of the excitations just above the ground state: a broken
+continuous symmetry makes the landscape rise from $\varepsilon_0$ as a
+definite power fixed by $d$ and $z$, with a degenerate family of ground
+states on the boundary; frustration makes it rise unusually steeply, since
+many levels lie just above the ground state; disorder extends it below the
+clean band edge and into the clean gaps; a Fermi liquid makes it rise as
+$\sqrt{\delta\varepsilon}$ and a non-Fermi liquid as another power, and a
+bad metal is a metal whose point of contact lies above the range in which
+either form holds.
+
+\paragraph{The principle.} Formally the picture is the following set of
+statements, all of them consequences of the equivalence of the ensembles
+of Section~\ref{sec:large}, which is their only input.
+\begin{enumerate}\setlength{\itemsep}{2pt}
+\item \emph{The object.} The thermodynamics of a Hamiltonian is encoded in
+  the function $s(\varepsilon,f)$ on the domain $\varepsilon\ge\varepsilon_0(f)$
+  and in its boundary $\varepsilon_0(f)$. Both are properties of the
+  spectrum, independent of $T$.
+\item \emph{Selection.} A thermodynamic state $(T,f)$ selects the point of
+  contact $\varepsilon_*(T,f)$, the minimiser of $\varepsilon-Ts(\varepsilon,f)$,
+  at which $\partial s/\partial\varepsilon=1/T$; the potential $\omega(T,f)$ is
+  the intercept of the supporting line~\eqref{eq:filt_tangent} with the
+  energy axis.
+\item \emph{Locality.} Every thermodynamic quantity at $(T,f)$ is a
+  function of $s$ and of its derivatives at $(\varepsilon_*,f)$, i.e.\ of
+  the local geometry of the landscape at the point of contact:
+  \begin{gather*}
+    u-\mu n=\varepsilon_* ,\qquad
+    \frac{S}{V}=s ,\qquad
+    c_\mu=-\frac{1}{T^{2}s_{\varepsilon\varepsilon}} ,
+    \\
+    a=T\,s_f ,\qquad
+    \chi=\frac{\partial a}{\partial f}\bigg|_{T}
+    =T\left[s_{ff}-\frac{s_{\varepsilon f}^{2}}{s_{\varepsilon\varepsilon}}\right] ,
+  \end{gather*}
+  all evaluated at $(\varepsilon_*,f)$, with subscripts denoting partial
+  derivatives (Eqs.~\eqref{eq:filt_SI}, \eqref{eq:filt_curvmain}
+  and~\eqref{eq:filt_af}; the last follows from differentiating
+  $s_\varepsilon(\varepsilon_*,f)=1/T$ with respect to $f$, which gives
+  $d\varepsilon_*/df=-s_{\varepsilon f}/s_{\varepsilon\varepsilon}$).
+  The dependence on $T$ is through $\varepsilon_*(T,f)$ and through the
+  explicit factors of $T$ alone.
+\item \emph{Singularities.} The thermodynamic quantities are non-analytic
+  in $(T,f)$ only where the local geometry of the landscape at the point of
+  contact is non-analytic, or where the point of contact jumps, or where the
+  boundary $\varepsilon_0(f)$ is non-analytic: a continuous transition, a
+  discontinuous transition, a quantum transition. A crossover is a change
+  of local form between two ranges of the axis, passed by the point of
+  contact over a range of temperatures that does not shrink with $V$.
+\item \emph{Form determines exponents.} The exponents and the scaling
+  functions of a transition or of a low-temperature regime are fixed by the
+  form of $s$ about the energy involved, Assumptions~\ref{ass:power}
+  to~\ref{ass:V}, without reference to a symmetry, an order parameter or a
+  fixed point; a symmetry, where there is one, is a reason for the form.
+\end{enumerate}
+In one sentence: \emph{thermodynamics at $(T,f)$ is the local geometry of
+the logarithmic density of states at the energy selected by $T$, and every
+thermodynamic phenomenon is a restructuring of this geometry, of the ground
+state or of the excitations above it, on the energy axis.} The principle
+contains nothing beyond Eq.~\eqref{eq:filt_legendre}; what it adds is the
+order of the questions. The conventional formulation asks for the free
+energy and reads the spectrum, if at all, from it. The spectral
+formulation asks for the landscape, and reads the free energy and every
+other quantity from the landscape at one point. The following section
+is devoted to the cases in which the symmetry-breaking description has no
+relevance and this reading does.
 
 \section{Beyond the symmetry-breaking paradigm}
 \label{sec:beyond}
@@ -1659,13 +1769,13 @@ Propositions~\ref{prop:power}--\ref{prop:crit} use none of these notions.
 Their input is the logarithmic density of states and its dependence on the
 parameters of the Hamiltonian; the power laws, the exponents and the scaling
 functions are fixed by its form. A symmetry, where there is one, is a
-\emph{reason} for a particular form of $s$ and for its robustness; the
+\emph{reason} for a particular form of \lndos{} and for its robustness; the
 thermodynamics depends on the form. The formulation therefore applies
-without change where the symmetry-breaking description has no starting
-point:
+without change where the symmetry-breaking description is not relevant:
 \begin{itemize}\setlength{\itemsep}{0pt}
-\item transitions without a change of symmetry (the Lifshitz transition of
-  Section~\ref{sec:filt_scaling0}) or without a local order parameter (the
+\item transitions without a change of symmetry (the Lifshitz transition,
+  at which the chemical potential crosses a band edge,
+  Section~\ref{sec:disorder}) or without a local order parameter (the
   Kosterlitz--Thouless transition, Section~\ref{sec:filt_nonpower});
 \item gapless phases whose power laws are not due to a broken symmetry:
   Fermi liquids, non-Fermi liquids (Section~\ref{sec:nfl}), glasses
@@ -1733,11 +1843,16 @@ $E_S\simeq S(S+1)/2\chi_\perp V$ in terms of the total spin
 $S$~\cite{Anderson1952}), whose number grows as a power of $V$. At $h=0$ they
 add $O(\ln V)$ to $\ln\cN$ and nothing to $s(\varepsilon)$ and $c_\mu$. A
 field $h$ conjugate to the order parameter, however, couples these levels
-with matrix elements of order $hV$, large compared with their spacing $1/V$,
-so that a field that vanishes as $V\to\infty$ selects one member of the
-family: the spontaneous order parameter
-$m=-\lim_{h\to0^{+}}\partial\omega/\partial h$ and the kink of $\omega$ at
-$h=0$ are their contribution.
+with matrix elements of order $hV$, large compared with their spacing
+$1/V$. Any field $h\gg V^{-2}$, however small, therefore polarises the
+family completely and selects one member of it, the ground state oriented
+along the field, whereas at $h=0$ exactly the family is degenerate and no
+member is selected. This is the order of limits in the definition of the
+spontaneous order parameter, $m=-\lim_{h\to0^{+}}\partial\omega/\partial h$
+with $\omega$ the limit $V\to\infty$ at fixed $h$: the field is sent to
+zero only after the size is sent to infinity. The spontaneous order
+parameter $m$ and the kink of $\omega$ at $h=0$ are the contribution of
+these levels.
 
 The response side is the same statement for a modulated field. For a field
 $h_{\mathbf q}$ transverse to the order parameter, Eq.~\eqref{eq:filt_chiq}
@@ -1764,7 +1879,7 @@ spectrum, and the exponent $z$, without solving the Hamiltonian, for every
 perturbation that respects it. Conversely, a gapless scale-free spectrum
 does not imply a broken symmetry, and $\rho(\xi)$ alone does not identify the
 modes (acoustic phonons and antiferromagnetic magnons both give
-$c\sim T^{3}$); that requires the dependence of $\rho$ on the field that couples
+$c\sim T^{3}$); that identification requires the dependence of $\rho$ on the field that couples
 to them.
 
 \subsection{Frustration: competing orders without a winner}
@@ -1776,8 +1891,8 @@ couplings that favour different ordering wave vectors.} several ordering
 tendencies compete. Each would break a different symmetry, or the same
 symmetry at a different wave vector, and none prevails:
 the candidate ordered states are nearly degenerate, and the system is
-suspended among them. A description built on a single order parameter has
-no natural starting point here. In the spectrum the competition is a
+suspended among them. A description built on a single order parameter
+has no relevance here. In the spectrum the competition is a
 definite statement: an unusually large number of many-body levels lies just
 above the ground state,
 and the thermodynamics is decided by the form of $\ln\cN$ in this group of
@@ -1800,9 +1915,11 @@ $\Xi=\sum_k\Xi_k$, and since $\max_k\Xi_k\le\Xi\le K\max_k\Xi_k$,
   \omega_k(T)=\min_{\delta\varepsilon}\big[\delta\varepsilon-T\,s_k(\delta\varepsilon)\big] ,
 \end{gathered}
 \end{equation}
-to first order in the fields. For $s_k=\cA_k\,\delta\varepsilon^{\sigma_k}$,
+to first order in the fields. For $s_k=\cA_k\,(\delta\varepsilon)^{\sigma_k}$,
 Eq.~\eqref{eq:filt_lowT} gives
-$\omega_k=-\tfrac{1-\sigma_k}{\sigma_k}(\sigma_k\cA_kT)^{1/(1-\sigma_k)}$.
+\[
+  \omega_k=-\tfrac{1-\sigma_k}{\sigma_k}(\sigma_k\cA_kT)^{1/(1-\sigma_k)} .
+\]
 The consequences of Eq.~\eqref{eq:filt_compete} are the following:
 \begin{itemize}\setlength{\itemsep}{0pt}
 \item \emph{Selection by the spectrum, not by the energy.} For exactly
@@ -1979,13 +2096,21 @@ sample. The consequences are read from its form.
   Section~\ref{sec:frustration}: $c_\mu=v_2/k_BT^{2}$ for $k_BT\gg W$, and the
   residual entropy is released in a maximum of $c_\mu$ at $k_BT\sim W$.
 \item \emph{Filled gaps and rounded edges.} For independent fermions at
-  $T=0$, $\partial^{2}\omega/\partial\mu^{2}=-\varrho(\mu)$
-  (Section~\ref{sec:filt_scaling0}). Near the edge $E_0'$ of the disordered spectrum the states are
+  $T=0$, $\partial^{2}\omega/\partial\mu^{2}=-\varrho(\mu)$ (the
+  compressibility $\chi_c=\partial n/\partial\mu$ tends to $\varrho(\mu)$
+  for $T\to0$, Appendix~\ref{app:quadratic}). A band edge $E_0$ of the
+  clean system, with $\varrho(E)=B|E-E_0|^{r}$ on the side of the band and
+  zero on the other, therefore gives
+  $\omega_{\rm sing}\propto|\mu-E_0|^{r+2}$ on the side of the band and
+  zero on the other: a thermodynamic singularity as $\mu$ crosses the band
+  edge, the Lifshitz transition~\cite{Lifshitz1960}, of order $r+2$ in
+  Ehrenfest's sense ($\tfrac52$ for a three-dimensional band edge,
+  $r=\tfrac12$), at which no symmetry changes. Near the edge $E_0'$ of the disordered spectrum the states are
   due to rare regions of the sample, and their density is exponentially
   small (a Lifshitz tail~\cite{Lifshitz1964}),
   $\varrho(E)\propto\exp[-{\rm const}\,(E-E_0')^{-d/2}]$, instead of the power
-  law $B(E-E_0)^{r}$ of the clean system. All derivatives of $\varrho$ vanish at $E_0'$, so the band-edge
-  singularity $\omega_{\rm sing}\propto|\delta\mu|^{r+2}$ is replaced by an
+  law $B|E-E_0|^{r}$ of the clean system. All derivatives of $\varrho$ vanish at $E_0'$, so the band-edge
+  singularity $\omega_{\rm sing}\propto|\mu-E_0|^{r+2}$ is replaced by an
   essential singularity: the transition is rounded. Likewise, if the
   disorder leaves a non-zero $\varrho(\mu)$ in a gap of the clean system, the
   activated law~\eqref{eq:filt_gap} is replaced by
@@ -2067,9 +2192,9 @@ fermions coupled to a gapless boson (a gauge field, or the order-parameter
 fluctuations at a quantum critical point with dynamical exponent $z=3$)
 have $c\sim T^{2/3}$~\cite{HLR1993,Lohneysen2007}: $\kappa=\tfrac23$,
 \[
-  s\propto\delta\varepsilon^{2/5}
+  s\propto(\delta\varepsilon)^{2/5}
   \qquad\text{against}\qquad
-  s\propto\delta\varepsilon^{1/2}\ \ \text{for a Fermi liquid} ,
+  s\propto(\delta\varepsilon)^{1/2}\ \ \text{for a Fermi liquid} ,
 \]
 i.e.\ more low-lying levels than any Fermi liquid has; the marginal Fermi
 liquid is the logarithmic case of Section~\ref{sec:filt_nonpower}. More
@@ -2086,8 +2211,30 @@ gapless boson is long-ranged in space and time, as is the bare interaction
 for Coulomb or gauge forces. Neither affects
 Propositions~\ref{prop:power}--\ref{prop:scaling0}, which require only the
 stated form of the level count: the concavity of $s$, which rests on a
-division of the system into parts, is not guaranteed there, and the Laplace
+division of the system into parts, is not guaranteed there, and the steepest-descent
 method does not need it (Appendix~\ref{sec:second_bounds}).
+
+\paragraph{Bad metals.} A \emph{bad metal} is a metal whose resistivity
+grows without saturation beyond the Mott--Ioffe--Regel value, at which the
+mean free path would equal the lattice spacing, so that at the temperatures
+of the measurement no quasiparticle can be
+defined~\cite{Emery1995,Hussey2004}. The resistivity is a transport
+quantity and outside the scope of these notes, but the thermodynamic
+counterpart of the statement is a statement about the spectrum: the entropy
+of a bad metal at these temperatures is not that of a degenerate Fermi
+liquid, $s\propto\sqrt{\delta\varepsilon}$ with an amplitude set by
+$\varrho(\mu)$, but is of order $k_B$ per carrier, as for a collection of
+local degrees of freedom. In the terms of Section~\ref{sec:transitions}
+the thermal energy of a bad metal lies above a crossover energy
+$\varepsilon_\times$: below it the level count may have the Fermi-liquid
+form, above it the level count grows as that of local moments or of a
+narrow group of levels (case~(c) of Section~\ref{sec:frustration}, with
+$W$ the coherence scale), and the many-body spectrum rather than a
+quasiparticle band is what the entropy measures. Whether $s$ takes the
+Fermi-liquid form below $\varepsilon_\times$, or one of the non-Fermi-liquid
+forms above, is a question about the form of $s$ about the ground state,
+decided by the heat capacity (Appendix~\ref{app:cv}) and not by the
+resistivity.
 
 \subsection{Scope and limits}
 \label{sec:scope}
@@ -2099,7 +2246,7 @@ and can be computed directly, by exact diagonalisation or by sampling
 methods that estimate $\rho$~\cite{WangLandau2001}. No property of a free
 energy is postulated, no diverging correlation length is assumed, and
 neither a coarse-graining, a fixed point, an order parameter nor
-universality is invoked. The formulation covers every regime in which $s$
+universality is invoked. The formulation covers every regime in which \lndos{}
 has a definite form about some energy density:
 \begin{itemize}\setlength{\itemsep}{0pt}
 \item about $\varepsilon_c$, a critical point at finite temperature
@@ -2110,7 +2257,7 @@ has a definite form about some energy density:
 \item forms that are not scale-free (Section~\ref{sec:filt_nonpower}).
 \end{itemize}
 
-Three limits should be kept in view. First, for a concave $s$ the Legendre
+The following caveats should be kept in view. First, for a concave $s$ the Legendre
 transform is invertible, so that homogeneity of $s_{\rm sing}$ and
 homogeneity of $\omega_{\rm sing}$ imply one another: at a critical point
 the relations among the exponents are those of
@@ -2165,14 +2312,53 @@ Eq.~\eqref{eq:filt_bound}; inversion of $c(T)$ for $\varrho$ \\
 \clearpage
 \appendix
 
-\section{Static response of a non-conserved quantity}
+\section{Static response: conserved and non-conserved quantities}
 \label{app:lehmann}
 
-This appendix derives the static response to a field $ f $ coupled to an operator
-$ \hat A $ that is \emph{not} conserved, in the notation of
+This appendix derives the static response to a field $ f $ coupled to a
+Hermitian operator $ \hat A $, in the notation of
 Section~\ref{sec:filt_resp}: $ \hat{\mathcal{H}}|a\rangle = \xi_a|a\rangle $,
-$ p_a = e^{-\beta\xi_a}/\Xi $, and $ \hat{\mathcal{H}} \to \hat{\mathcal{H}} - f\hat A $. The
-field now changes the eigenvectors as well as the eigenvalues. To first order in $ f $ (perturbation theory in the
+$ p_a = e^{-\beta\xi_a}/\Xi $, and $ \hat{\mathcal{H}} \to \hat{\mathcal{H}} - f\hat A $,
+first for a conserved $ \hat A $ and then for one that is not conserved.
+
+\paragraph{For conserved quantities, responses are covariances.} Let $ \hat A $
+be conserved, $ [\hat A, \hat H] = [\hat A, \hat N] = 0 $; the eigenbasis may
+then be chosen to diagonalise it, $ \hat A|a\rangle = A_a|a\rangle $, the
+field shifts the eigenvalues to $ \xi_a - fA_a $ without changing the
+eigenvectors, and the Van Vleck term vanishes. For any $ \hat B $ diagonal in
+the same basis, with the weights $w_a:=e^{-\beta(\xi_a-fA_a)}$ and
+$\Xi=\sum_aw_a$,
+\[
+  \langle\hat B\rangle=\frac{\sum_aB_aw_a}{\Xi} ,\qquad
+  \frac{\partial w_a}{\partial f}=\beta A_aw_a ,\qquad
+  \frac{\partial\Xi}{\partial f}=\beta\sum_aA_aw_a=\beta\,\Xi\,\langle\hat A\rangle ,
+\]
+and the quotient rule gives
+\[
+  \frac{\partial\langle\hat B\rangle}{\partial f}
+  =\frac{\beta\sum_aA_aB_aw_a}{\Xi}-\frac{\sum_aB_aw_a}{\Xi}\,\frac{\partial\Xi/\partial f}{\Xi}
+  =\beta\big(\langle\hat A\hat B\rangle-\langle\hat A\rangle\langle\hat B\rangle\big) .
+\]
+The same computation with $\partial w_a/\partial T=(\xi_a/k_BT^{2})\,w_a$ (at
+$f=0$) replaces $\beta A_a$ by $\xi_a/k_BT^{2}$. Hence
+\begin{equation}\label{eq:filt_mb_response}
+  \frac{\partial\langle\hat B\rangle}{\partial f}\bigg|_{T,\mu}
+  = \frac{\Cov(\hat A, \hat B)}{k_BT} ,
+  \qquad
+  \frac{\partial\langle\hat B\rangle}{\partial T}\bigg|_{\mu}
+  = \frac{\Cov(\hat{\mathcal{H}}, \hat B)}{k_BT^{2}} :
+\end{equation}
+a change of temperature acts as a field whose charge on the state $ a $ is
+$ \xi_a/T $. Instances are
+$ (\partial N/\partial\mu)_T = \Var(\hat N)/k_BT $ ($ \hat A = \hat B = \hat N $, $ f = \mu $);
+the spin susceptibility $ \Var(\hat M)/Vk_BT $ whenever the total moment $ \hat M $ is
+conserved; $ C_\mu $ itself ($ \hat B = \hat{\mathcal{H}} $,
+Eq.~\eqref{eq:filt_CU}); and
+$ (\partial N/\partial T)_\mu = \Cov(\hat N, \hat{\mathcal{H}})/k_BT^{2} $.
+
+\paragraph{For non-conserved quantities, the Lehmann representation.} If
+$ \hat A $ is not conserved, the field changes the eigenvectors as well as
+the eigenvalues. To first order in $ f $ (perturbation theory in the
 eigenbasis, chosen within each degenerate level to diagonalise $ \hat A $ there),
 \[
   \xi_a(f) = \xi_a - fA_{aa} , \qquad
@@ -2485,6 +2671,7 @@ $\mu$, and the assumed forms of $s$
 about which they are stated.
 
 \section{What the heat capacity determines}
+\label{app:cv}
 \label{sec:filt_invert_mb}
 
 The thermal map of Section~\ref{sec:filt_dist} sends spectral information
@@ -3630,8 +3817,10 @@ $ (k_BT)^{2}\times0.4392 $ for fermions (Eq.~\eqref{eq:filt_peak}), so
 $ \Var(E - \mu N) $ grows at most like the \emph{number} of orbitals: independent
 fluctuations add like the steps of a random walk, and the response per unit volume
 stays finite (Eq.~\eqref{eq:filt_bound} below). The same holds for $ \Var(N) $ and
-$ \Var(M) $. The exact decomposition of Section~\ref{sec:filt_resp} (paragraph
-``Correlations'', Eq.~\eqref{eq:filt_corrsum}) shows what is missing: a divergence requires covariances between
+$ \Var(M) $. The decomposition
+$\Var(\hat{\mathcal H})=\sum_i\Var(\hat h_i)+\sum_{i\neq j}\Cov(\hat h_i,\hat h_j)$
+of the variance of a sum of local terms $\hat{\mathcal H}=\sum_i\hat h_i$
+shows what is missing: a divergence requires covariances between
 the fluctuations of macroscopically many degrees of freedom, and the additive
 spectrum, in which the occupations of different orbitals are independent, has none.
 In a self-consistent quasiparticle description, where the orbitals remain formally
@@ -3957,8 +4146,10 @@ $4e^{-2}k_B=0.5413\,k_B$, so in every case the bound is $\mathcal{O}(k_B)$ per
 mode. A lattice model with finitely many modes per site and a
 temperature-independent spectrum therefore has an $\mathcal{O}(k_B)$ heat
 capacity per site and cannot diverge at all. (Without additivity the bound is
-replaced by the exact decomposition of Eq.~\eqref{eq:filt_corrsum}: $ \Var(\hat{\mathcal{H}})/V $ stays
-finite unless correlations become long-ranged.) Every divergence is consequently a
+replaced by the decomposition of $ \Var(\hat{\mathcal{H}}) $ into the
+variances and covariances of the local terms of $ \hat{\mathcal{H}} $:
+$ \Var(\hat{\mathcal{H}})/V $ stays finite unless the covariances become
+long-ranged.) Every divergence is consequently a
 statement that the spectrum itself \emph{moves}: with temperature, through
 self-consistency --- an order parameter that reconstructs the band as it
 re-equilibrates --- or with a control parameter, through the accumulation of
