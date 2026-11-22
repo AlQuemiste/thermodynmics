@@ -35,6 +35,7 @@
 \newcommand{\hmag}{\mathcal{H}_M}
 \newcommand{\evalat}{\bigg\vert}  % evaluation bar, as in (d/d beta)|_mu
 \newcommand{\lndos}{{logdos}}  % abbreviation for the logarithmic density of states
+\newcommand{\hfield}{\mathscr{h}}  % parameter (field or coupling) of the Hamiltonian
 \newcommand{\lds}{\mathscr{s}}  % the logarithmic density of states (microcanonical entropy density) as a function of the energy density
 
 %% capital kappa (one-mode grand partition function); LaTeX has no \Kappa
@@ -83,8 +84,8 @@ Bergersen~\cite{Plischke}.
 \label{sec:intro}
 
 The spectrum of a many-body Hamiltonian, as thermodynamics sees it, is a distribution on the
-energy axis: the density of states $\rho_V(\xi;\mathscr{h})$, parametrised by the size
-$V$ and by the couplings and fields $\mathscr{h}$ of the Hamiltonian. It is positive,
+energy axis: the density of states $\rho_V(\xi;\hfield)$, parametrised by the size
+$V$ and by the couplings and fields $\hfield$ of the Hamiltonian. It is positive,
 its support is bounded below, its total weight is the dimension of the Fock
 space, its logarithm grows linearly with $V$ (extensivity), and
 a field displaces its levels without creating any. Every thermodynamic quantity is a
@@ -139,7 +140,7 @@ chain, for an arbitrary many-body Hamiltonian $\hat H$.
   and the wavelength of a modulated perturbing field, and to the size;
   transitions and crossovers are classified by the motion of the thermal
   energy through the spectrum (Section~\ref{sec:transitions}), which also
-  states the guiding principle: thermodynamics at $(T,\mathscr{h})$ is the local
+  states the guiding principle: thermodynamics at $(T,\hfield)$ is the local
   geometry of $\lds$ at the energy selected by $T$, and every phenomenon is a
   restructuring of this geometry, of the ground state or of the excitations
   above it, on the energy axis (Section~\ref{sec:principle}). The input is a property of the spectrum, not an order parameter:
@@ -316,9 +317,9 @@ $\Xi(\beta')$, so that
 $\cN(\xi)e^{-\beta\xi}\le\Xi(\beta')e^{-(\beta-\beta')\xi}$.
 The probability density of $\xi$ in equilibrium is
 $ P_T(\xi) := \rho(\xi)\,e^{-\beta \xi}/\Xi $: the spectrum seen through the
-Boltzmann weight. A parameter $\mathscr{h}$ of the Hamiltonian (a field, a coupling
-constant) changes the levels, $\xi_a(\mathscr{h})$, and hence $\rho(\xi;\mathscr{h})$ and
-$\cN(\xi;\mathscr{h})$; the Boltzmann kernel $e^{-\beta\xi}$ does \emph{not} depend on it.
+Boltzmann weight. A parameter $\hfield$ of the Hamiltonian (a field, a coupling
+constant) changes the levels, $\xi_a(\hfield)$, and hence $\rho(\xi;\hfield)$ and
+$\cN(\xi;\hfield)$; the Boltzmann kernel $e^{-\beta\xi}$ does \emph{not} depend on it.
 
 \subsection{The density of states as a distribution; the thermal map}
 \label{sec:filt_dist}
@@ -377,17 +378,17 @@ below.
   compared. For this reason the assumptions on the spectrum
   (Section~\ref{sec:large} and Assumptions~\ref{ass:power}--\ref{ass:V})
   are stated for $\cN$, not for $\rho$.
-\item \emph{Derivative with respect to a parameter.} For $\rho(\xi;\mathscr{h})$,
-  $\partial \rho/\partial \mathscr{h}$ is the distribution defined by
-  $\langle\partial_\mathscr{h}\rho,\varphi\rangle:=\partial_\mathscr{h}\langle \rho,\varphi\rangle$;
-  since the test function does not depend on $\mathscr{h}$, this is differentiation
+\item \emph{Derivative with respect to a parameter.} For $\rho(\xi;\hfield)$,
+  $\partial \rho/\partial \hfield$ is the distribution defined by
+  $\langle\partial_\hfield\rho,\varphi\rangle:=\partial_\hfield\langle \rho,\varphi\rangle$;
+  since the test function does not depend on $\hfield$, this is differentiation
   under the integral sign.
-  For $\hat{\mathcal H}(\mathscr{h})=\hat{\mathcal H}-\mathscr{h}\hat A$,
+  For $\hat{\mathcal H}(\hfield)=\hat{\mathcal H}-\hfield\hat A$,
   the Hellmann--Feynman theorem (Appendix~\ref{app:lehmann}) gives
-  $\partial\xi_a/\partial \mathscr{h}=-A_{aa}$, so that
-  $\partial_\mathscr{h}\sum_a\varphi(\xi_a)=-\sum_aA_{aa}\varphi'(\xi_a)$, i.e.
+  $\partial\xi_a/\partial \hfield=-A_{aa}$, so that
+  $\partial_\hfield\sum_a\varphi(\xi_a)=-\sum_aA_{aa}\varphi'(\xi_a)$, i.e.
   \begin{equation}\label{eq:filt_gA}
-    \frac{\partial \rho}{\partial \mathscr{h}}=\frac{\partial \rho_A}{\partial\xi} ,
+    \frac{\partial \rho}{\partial \hfield}=\frac{\partial \rho_A}{\partial\xi} ,
     \qquad
     \rho_A(\xi):=\sum_aA_{aa}\,\delta(\xi-\xi_a) ,
     \qquad
@@ -395,13 +396,13 @@ below.
   \end{equation}
   with $\rho_A$ the density of states weighted by $\hat A$. A field does
   not create or destroy levels, it moves them along the energy axis, each
-  at the rate $-A_{aa}(\mathscr{h})$, with $A_{aa}$ taken in the eigenbasis at $\mathscr{h}$;
-  $\int d\xi\,\rho(\xi;\mathscr{h})=D$, the dimension of the Fock space, for every
-  $\mathscr{h}$. This holds whether or not $\hat A$ commutes with $\hat{\mathcal H}$;
-  conservation only makes the rate independent of $\mathscr{h}$,
-  $\xi_a(\mathscr{h})=\xi_a-\mathscr{h}A_a$. Eq.~\eqref{eq:filt_gA} is the conservation of the
+  at the rate $-A_{aa}(\hfield)$, with $A_{aa}$ taken in the eigenbasis at $\hfield$;
+  $\int d\xi\,\rho(\xi;\hfield)=D$, the dimension of the Fock space, for every
+  $\hfield$. This holds whether or not $\hat A$ commutes with $\hat{\mathcal H}$;
+  conservation only makes the rate independent of $\hfield$,
+  $\xi_a(\hfield)=\xi_a-\hfield\,A_a$. Eq.~\eqref{eq:filt_gA} is the conservation of the
   number of levels written as a continuity equation on the energy axis,
-  $\partial_\mathscr{h}\rho+\partial_\xi j=0$, with the current of levels
+  $\partial_\hfield\rho+\partial_\xi j=0$, with the current of levels
   $j=-\rho_A$ (density times velocity): the number of levels below $\xi$
   changes only through levels crossing $\xi$.
 \item \emph{Regularisation.} The convolution of $\rho$ with a smooth window of
@@ -437,7 +438,7 @@ moments $\langle\hat{\mathcal H}^{n}\rangle$ &
 heat capacity $C_\mu$ &
   $\langle \rho,(\xi-U)^{2}e_\beta\rangle/\Xi\,k_BT^{2}$ \\[2pt]
 conjugate quantity $\langle\hat A\rangle$ &
-  $\langle \rho_A,e_\beta\rangle/\Xi=k_BT\,\langle\partial_\mathscr{h}\rho,e_\beta\rangle/\Xi$ \\[2pt]
+  $\langle \rho_A,e_\beta\rangle/\Xi=k_BT\,\langle\partial_\hfield\rho,e_\beta\rangle/\Xi$ \\[2pt]
 number of levels in $[\xi,\xi+\Delta]$ &
   $\langle \rho,\mathbb 1_{[\xi,\xi+\Delta]}\rangle$ \\
 \bottomrule
@@ -581,55 +582,55 @@ The entropy and the heat capacity are thus obtained from $\Xi$ and its first two
 \label{sec:filt_resp}
 
 \paragraph{Parameters enter only through the density of states.} Because the
-Boltzmann kernel in Eq.~\eqref{eq:filt_laplace} is independent of $\mathscr{h}$, every derivative
-with respect to $ \mathscr{h} $ acts on $ \rho $ alone:
+Boltzmann kernel in Eq.~\eqref{eq:filt_laplace} is independent of $\hfield$, every derivative
+with respect to $ \hfield $ acts on $ \rho $ alone:
 \begin{equation}\label{eq:Z-derivatives}
-  \Xi^{(n)} := \frac{\partial^{n}\Xi}{\partial \mathscr{h}^{n}}
-  = \int d\xi\;\frac{\partial^{n}\rho(\xi;\mathscr{h})}{\partial \mathscr{h}^{n}}\,e^{-\beta\xi} .
+  \Xi^{(n)} := \frac{\partial^{n}\Xi}{\partial \hfield^{n}}
+  = \int d\xi\;\frac{\partial^{n}\rho(\xi;\hfield)}{\partial \hfield^{n}}\,e^{-\beta\xi} .
 \end{equation}
 Let the field couple to a Hermitian operator $\hat A$,
-$ \hat{\mathcal{H}}(\mathscr{h}) = \hat{\mathcal{H}} - \mathscr{h}\hat A $. Whether or not
+$ \hat{\mathcal{H}}(\hfield) = \hat{\mathcal{H}} - \hfield\hat A $. Whether or not
 $\hat A$ commutes with $\hat{\mathcal H}$,
 \[
-  \frac{\partial\Xi}{\partial \mathscr{h}}
-  = \frac{\partial}{\partial \mathscr{h}}\Tr e^{-\beta\hat{\mathcal{H}}(\mathscr{h})}
-  = \beta\,\Tr\big[\hat A\,e^{-\beta\hat{\mathcal{H}}(\mathscr{h})}\big]
+  \frac{\partial\Xi}{\partial \hfield}
+  = \frac{\partial}{\partial \hfield}\Tr e^{-\beta\hat{\mathcal{H}}(\hfield)}
+  = \beta\,\Tr\big[\hat A\,e^{-\beta\hat{\mathcal{H}}(\hfield)}\big]
   = \beta\,\Xi\,\langle\hat A\rangle ,
 \]
 by the derivative of the exponential of an operator\footnote{For
 non-commuting operators
-$ \partial_\mathscr{h}e^{-\beta\hat{\mathcal{H}}(\mathscr{h})} = \int_0^{\beta}d\tau\,
-e^{-(\beta-\tau)\hat{\mathcal{H}}(\mathscr{h})}\hat A\,e^{-\tau\hat{\mathcal{H}}(\mathscr{h})} $
+$ \partial_\hfield\,e^{-\beta\hat{\mathcal{H}}(\hfield)} = \int_0^{\beta}d\tau\,
+e^{-(\beta-\tau)\hat{\mathcal{H}}(\hfield)}\hat A\,e^{-\tau\hat{\mathcal{H}}(\hfield)} $
 (Duhamel's formula~\cite{Wilcox1967}, the imaginary-time form of
 first-order time-dependent perturbation theory). Under the trace the two
 exponentials combine by cyclicity, and the integral over $\tau$ gives the
 factor $\beta$.} and the cyclic property of the trace. Hence
-$\langle\hat A\rangle=-\partial\Omega/\partial \mathscr{h}$ and
+$\langle\hat A\rangle=-\partial\Omega/\partial \hfield$ and
 \begin{equation}\label{eq:filt_param}
   \langle\hat A\rangle = k_BT\,\frac{\Xi^{(1)}}{\Xi} , \qquad
-  \chi_{AA} := \frac{\partial\langle\hat A\rangle}{\partial \mathscr{h}}\bigg|_{T,\mu}
+  \chi_{AA} := \frac{\partial\langle\hat A\rangle}{\partial \hfield}\bigg|_{T,\mu}
   = k_BT\left[\frac{\Xi^{(2)}}{\Xi} - \left(\frac{\Xi^{(1)}}{\Xi}\right)^{2}\right] .
 \end{equation}
-The conjugate quantity (the order parameter, if $\mathscr{h}$ is the ordering field) is
-the Laplace transform of $\partial \rho/\partial \mathscr{h}$, and the susceptibility that
-of $\partial^{2}\rho/\partial \mathscr{h}^{2}$ less the square of the first, each
+The conjugate quantity (the order parameter, if $\hfield$ is the ordering field) is
+the Laplace transform of $\partial \rho/\partial \hfield$, and the susceptibility that
+of $\partial^{2}\rho/\partial \hfield^{2}$ less the square of the first, each
 normalised by $ \Xi $. Both statements are exact.
 
 \paragraph{Work and heat.} The two ways in which a parameter and the
 temperature act are the two terms of the first law. For an infinitesimal
-change of $\mathscr{h}$ and $T$,
+change of $\hfield$ and $T$,
 \[
   d\langle\hat{\mathcal H}\rangle=\sum_ap_a\,d\xi_a+\sum_a\xi_a\,dp_a
-  =-\langle\hat A\rangle\,d\mathscr{h}+T\,dS ,
+  =-\langle\hat A\rangle\,d\hfield+T\,dS ,
 \]
 the first term being the work done by the field, which moves the levels at
-the rates $\partial\xi_a/\partial \mathscr{h}=-A_{aa}$ (Appendix~\ref{app:lehmann})
+the rates $\partial\xi_a/\partial \hfield=-A_{aa}$ (Appendix~\ref{app:lehmann})
 with the populations fixed, and the second the heat, which redistributes
 the populations over fixed levels; $\sum_a\xi_a\,dp_a=T\,dS$ follows from
 $dS=-k_B\sum_a\ln p_a\,dp_a$ and $\ln p_a=-\beta\xi_a-\ln\Xi$ with
 $\sum_adp_a=0$~\cite[Sec.~7.1]{Honerkamp}. The conjugate quantity
-$\langle\hat A\rangle=-\sum_ap_a\,\partial\xi_a/\partial \mathscr{h}$ is the mean
-velocity of the levels, which for $\mathscr{h}=-V$ is the pressure. In the density of
+$\langle\hat A\rangle=-\sum_ap_a\,\partial\xi_a/\partial \hfield$ is the mean
+velocity of the levels, which for $\hfield=-V$ is the pressure. In the density of
 states the work term is the motion of $\rho$ along the energy axis,
 Eq.~\eqref{eq:filt_gA}, and the heat term the change of the weight
 $e^{-\beta\xi}$ at fixed $\rho$.
@@ -639,7 +640,7 @@ conserved, $[\hat A,\hat H]=[\hat A,\hat N]=0$, the field shifts the levels
 without changing the eigenvectors, the Van Vleck term vanishes, and every
 response is a covariance (Appendix~\ref{app:lehmann},
 Eq.~\eqref{eq:filt_mb_response}):
-$\partial\langle\hat B\rangle/\partial \mathscr{h}=\Cov(\hat A,\hat B)/k_BT$ for
+$\partial\langle\hat B\rangle/\partial \hfield=\Cov(\hat A,\hat B)/k_BT$ for
 every $\hat B$ diagonal in the common eigenbasis. Instances are
 $C_\mu=\Var(\hat{\mathcal H})/k_BT^{2}$, Eq.~\eqref{eq:filt_CU},
 $(\partial N/\partial\mu)_T=\Var(\hat N)/k_BT$, and the spin
@@ -757,7 +758,7 @@ extensive; Eq.~\eqref{eq:filt_sdef} then holds after the couplings are
 rescaled with the size (Kac prescription~\cite{Campa2009}), and without any
 rescaling the results below hold in the form of total quantities,
 Eq.~\eqref{eq:filt_total}. For a Hamiltonian that depends on a parameter
-$\mathscr{h}$, $\cN=\cN(\xi;\mathscr{h})$ and $\lds=\lds(\varepsilon,\mathscr{h})$.
+$\hfield$, $\cN=\cN(\xi;\hfield)$ and $\lds=\lds(\varepsilon,\hfield)$.
 
 \subsection{Infinite size: the Laplace transform on the logarithmic scale}
 \label{sec:large_laplace}
@@ -852,13 +853,13 @@ The following remarks fix how Eq.~\eqref{eq:filt_legendre} is used below.
   wherever $\lds$ is twice differentiable: a large heat capacity means a flat
   stretch of $\lds$, i.e.\ a range of energies over which the level count grows
   at nearly the same rate.
-\item \emph{Parameters.} For $\lds=\lds(\varepsilon,\mathscr{h})$,
-  $\omega(T,\mathscr{h})=\min_\varepsilon[\varepsilon-T\,\lds(\varepsilon,\mathscr{h})]$, and since
+\item \emph{Parameters.} For $\lds=\lds(\varepsilon,\hfield)$,
+  $\omega(T,\hfield)=\min_\varepsilon[\varepsilon-T\,\lds(\varepsilon,\hfield)]$, and since
   the bracket is stationary in $\varepsilon$ at the minimum, the conjugate
   density is
   \begin{equation}\label{eq:filt_af}
-    a=-\frac{\partial\omega}{\partial \mathscr{h}}\bigg|_{T}
-    =T\,\frac{\partial \lds}{\partial \mathscr{h}}\bigg|_{\varepsilon_*} ,
+    a=-\frac{\partial\omega}{\partial \hfield}\bigg|_{T}
+    =T\,\frac{\partial \lds}{\partial \hfield}\bigg|_{\varepsilon_*} ,
   \end{equation}
   which is $\langle\hat A\rangle=k_BT\,\Xi^{(1)}/\Xi$,
   Eq.~\eqref{eq:filt_param}, evaluated on the logarithmic scale and divided
@@ -915,7 +916,7 @@ needed to draw the consequences (Section~\ref{sec:beyond}).
 \label{sec:filt_lowenergy}
 
 Eq.~\eqref{eq:filt_legendre} turns an assumption on the form of
-$\lds(\varepsilon,\mathscr{h})$, i.e.\ on the many-body level count on the logarithmic
+$\lds(\varepsilon,\hfield)$, i.e.\ on the many-body level count on the logarithmic
 scale, into a statement on the observables. Three assumptions are
 considered in turn. In each case the path is: logarithmic density of states,
 partition function, thermodynamic potential, then entropy, heat capacity and
@@ -1681,7 +1682,7 @@ analytic functions, and so are all its derivatives
 the minimisation of Eq.~\eqref{eq:filt_legendre}, and the minimum of a smooth
 family can be non-analytic in its parameters at the points where the
 minimiser changes its character. Every singularity of the thermodynamics is
-therefore a statement about how the thermal energy $\varepsilon_*(T,\mathscr{h})$, the
+therefore a statement about how the thermal energy $\varepsilon_*(T,\hfield)$, the
 energy at which the level count grows at the rate $1/k_BT$, moves through
 the spectrum, and the character of the singularity is read from the form of
 \lndos{} $\lds$ near the energies involved (Fig.~\ref{fig:transitions}).
@@ -1752,14 +1753,14 @@ the spectrum, and the character of the singularity is read from the form of
 \begin{tikzpicture}[landscape]
   % panel (d): quantum transition, the boundary of the landscape as a function of a parameter
   \node[font=\normalsize] at (-2.2,2.4) {(d)};
-  \draw[->] (-2.2,1.0) -- (2.3,1.0) node[below left]{$\mathscr{h}$};
-  \draw[->] (0,-0.2) -- (0,2.4) node[right]{$\varepsilon_0(\mathscr{h})$};
+  \draw[->] (-2.2,1.0) -- (2.3,1.0) node[below left]{$\hfield$};
+  \draw[->] (0,-0.2) -- (0,2.4) node[right]{$\varepsilon_0(\hfield)$};
   \draw[alt] (-2,1.9) -- (2,0.3);
   \draw[alt] (-2,0.3) -- (2,1.9);
   \draw[lds] (-2,0.3) -- (0,1.1) -- (2,0.3);
   % finite size: avoided crossing
   \draw[gray!60!black,thick,domain=-2:2,samples=60,smooth] plot (\x,{1.1-0.4*sqrt(\x*\x+0.08)});
-  \node[below,font=\scriptsize] at (0,1.0) {$\mathscr{h}_c$};
+  \node[below,font=\scriptsize] at (0,1.0) {$\hfield_c$};
   \node[font=\scriptsize,anchor=south west,gray!40!black,align=left] at (0.35,1.3) {finite $V$:\\ avoided crossing};
   \node[font=\scriptsize,anchor=north,blue!60!black] at (-1.2,0.55) {$V\to\infty$: kink};
 \end{tikzpicture}
@@ -1779,9 +1780,9 @@ $\varepsilon_c$, but at a singular rate, $c_\mu=-1/T^{2}\lds_{\varepsilon\vareps
 (c)~Crossover: $\lds$ changes its form over a range of energies about
 $\varepsilon_\times$ (grey) without a non-analyticity; the probing point
 passes it over a range of temperatures, and $\omega(T)$ is analytic.
-(d)~Quantum transition: the boundary $\varepsilon_0(\mathscr{h})$ of the landscape is
-non-analytic in a parameter $\mathscr{h}$. Two analytic branches (red, dashed) cross
-at $\mathscr{h}_c$; the ground state (blue) has a kink. At finite size the crossing is
+(d)~Quantum transition: the boundary $\varepsilon_0(\hfield)$ of the landscape is
+non-analytic in a parameter $\hfield$. Two analytic branches (red, dashed) cross
+at $\hfield_c$; the ground state (blue) has a kink. At finite size the crossing is
 avoided (grey), and the kink appears only for $V\to\infty$.}
 \label{fig:transitions}
 \end{figure}
@@ -1844,22 +1845,22 @@ avoided (grey), and the kink appears only for $V\to\infty$.}
   the change of form of $\lds$ at $\varepsilon_\times$ has become
   non-analytic.
 \item \emph{Quantum phase transition: the ground state itself reorganises.}
-  At $T=0$ the thermal energy is $\varepsilon_0(\mathscr{h})$, the ground-state energy
-  density, and a transition as a function of a parameter $\mathscr{h}$ is a
-  non-analyticity of $\varepsilon_0(\mathscr{h})$, i.e.\ of the lowest level of the
+  At $T=0$ the thermal energy is $\varepsilon_0(\hfield)$, the ground-state energy
+  density, and a transition as a function of a parameter $\hfield$ is a
+  non-analyticity of $\varepsilon_0(\hfield)$, i.e.\ of the lowest level of the
   spectrum: a level crossing at finite $V$ (first order), or an accumulation
   of avoided crossings\footnote{Two levels of a finite system that would
-  cross as $\mathscr{h}$ varies repel each other if
-  $\partial\hat{\mathcal H}/\partial \mathscr{h}$ has a non-zero matrix element
+  cross as $\hfield$ varies repel each other if
+  $\partial\hat{\mathcal H}/\partial \hfield$ has a non-zero matrix element
   between them: they approach to a minimum distance, the gap, and exchange
   their character instead of crossing (an \emph{avoided crossing}). The
-  ground-state energy then remains analytic in $\mathscr{h}$ at finite $V$, and a
+  ground-state energy then remains analytic in $\hfield$ at finite $V$, and a
   non-analyticity can arise only from a number of avoided crossings that
   grows with $V$, with gaps that close as $V\to\infty$.} whose number grows
   with $V$ (continuous). The
   spectrum above the ground state is reorganised at the same point, and the
   scale-free form of Assumption~\ref{ass:hom0} about $\varepsilon_0$, with
-  $h=\mathscr{h}-\mathscr{h}_c$, gives the quantum critical fan
+  $h=\hfield-\hfield_c$, gives the quantum critical fan
   $\omega-\varepsilon_0\propto T^{1/(1-\sigma)}\Phi(h/T^{\,b/(1-\sigma)})$
   (Section~\ref{sec:nfl}): at $T>0$ the lines $h\sim T^{\,b/(1-\sigma)}$ are
   crossovers, and the transition is confined to $T=0$.
@@ -1872,8 +1873,8 @@ section, are instances of one principle, which is now stated.
 \label{sec:principle}
 
 \paragraph{The picture.} The logarithmic density of states is a landscape:
-the graph of $\lds(\varepsilon,\mathscr{h})$ over the energy axis, which begins at the
-ground-state energy $\varepsilon_0(\mathscr{h})$, where $\lds=0$ (or the residual
+the graph of $\lds(\varepsilon,\hfield)$ over the energy axis, which begins at the
+ground-state energy $\varepsilon_0(\hfield)$, where $\lds=0$ (or the residual
 entropy), and rises with $\varepsilon$ as the levels become more numerous.
 The landscape is a property of the Hamiltonian alone: the temperature does
 not enter it. The temperature is a probe. Eq.~\eqref{eq:filt_legendre}
@@ -1892,7 +1893,7 @@ the probing point up the landscape; at $T\to\infty$ the edge is horizontal and r
 at the maximum of $\lds$, the energy at which the levels are densest. Every
 quantity measured at the temperature $T$ is a property of the landscape at
 the probing point: its height is the entropy, its curvature the inverse
-heat capacity, its tilt in the direction of a parameter $\mathscr{h}$ the conjugate
+heat capacity, its tilt in the direction of a parameter $\hfield$ the conjugate
 density. The levels elsewhere on the axis are not seen: their weight in
 $\Xi$ is $e^{-O(V)}$ relative to those at the probing point
 (Appendix~\ref{sec:second_bounds}).
@@ -1900,10 +1901,10 @@ $\Xi$ is $e^{-O(V)}$ relative to those at the probing point
 A thermodynamic phenomenon is then one of two things. Either the point of
 contact, as $T$ is varied, passes a feature of the landscape (a change of
 form of $\lds$: a crossover if smooth, a transition if non-analytic), or a
-parameter $\mathscr{h}$ deforms the landscape and moves a feature to the point of
+parameter $\hfield$ deforms the landscape and moves a feature to the point of
 contact. A quantum phase transition is the special case in which the
 feature is the boundary of the landscape itself, the ground-state energy
-$\varepsilon_0(\mathscr{h})$, which is non-analytic in $\mathscr{h}$. In every case the
+$\varepsilon_0(\hfield)$, which is non-analytic in $\hfield$. In every case the
 physics is a restructuring of the spectrum on the energy axis, of its
 boundary (the ground state) or of its interior (the excitations above the
 ground state), and the thermodynamics records the restructuring when the
@@ -1923,37 +1924,37 @@ statements, all of them consequences of the equivalence of the ensembles
 of Section~\ref{sec:large}, which is their only input.
 \begin{enumerate}\setlength{\itemsep}{2pt}
 \item \emph{The object.} The thermodynamics of a Hamiltonian is encoded in
-  the function $\lds(\varepsilon,\mathscr{h})$ on the domain $\varepsilon\ge\varepsilon_0(\mathscr{h})$
-  and in its boundary $\varepsilon_0(\mathscr{h})$. Both are properties of the
+  the function $\lds(\varepsilon,\hfield)$ on the domain $\varepsilon\ge\varepsilon_0(\hfield)$
+  and in its boundary $\varepsilon_0(\hfield)$. Both are properties of the
   spectrum, independent of $T$.
-\item \emph{Selection.} A thermodynamic state $(T,\mathscr{h})$ selects the point of
-  contact $\varepsilon_*(T,\mathscr{h})$, the minimiser of $\varepsilon-T\lds(\varepsilon,\mathscr{h})$,
-  at which $\partial \lds/\partial\varepsilon=1/T$; the potential $\omega(T,\mathscr{h})$ is
+\item \emph{Selection.} A thermodynamic state $(T,\hfield)$ selects the point of
+  contact $\varepsilon_*(T,\hfield)$, the minimiser of $\varepsilon-T\lds(\varepsilon,\hfield)$,
+  at which $\partial \lds/\partial\varepsilon=1/T$; the potential $\omega(T,\hfield)$ is
   the intercept of the supporting line~\eqref{eq:filt_tangent} with the
   energy axis.
-\item \emph{Locality.} Every thermodynamic quantity at $(T,\mathscr{h})$ is a
-  function of $\lds$ and of its derivatives at $(\varepsilon_*,\mathscr{h})$, i.e.\ of
+\item \emph{Locality.} Every thermodynamic quantity at $(T,\hfield)$ is a
+  function of $\lds$ and of its derivatives at $(\varepsilon_*,\hfield)$, i.e.\ of
   the local geometry of the landscape at the probing point:
   \begin{gather*}
     u-\mu n=\varepsilon_* ,\qquad
     \frac{S}{V}=\lds ,\qquad
     c_\mu=-\frac{1}{T^{2}\lds_{\varepsilon\varepsilon}} ,
     \\
-    a=T\,\lds_\mathscr{h} ,\qquad
-    \chi=\frac{\partial a}{\partial \mathscr{h}}\bigg|_{T}
-    =T\left[\lds_{\mathscr{h}\mathscr{h}}-\frac{\lds_{\varepsilon \mathscr{h}}^{2}}{\lds_{\varepsilon\varepsilon}}\right] ,
+    a=T\,\lds_\hfield ,\qquad
+    \chi=\frac{\partial a}{\partial \hfield}\bigg|_{T}
+    =T\left[\lds_{\hfield\hfield}-\frac{\lds_{\varepsilon \hfield}^{2}}{\lds_{\varepsilon\varepsilon}}\right] ,
   \end{gather*}
-  all evaluated at $(\varepsilon_*,\mathscr{h})$, with subscripts denoting partial
+  all evaluated at $(\varepsilon_*,\hfield)$, with subscripts denoting partial
   derivatives (Eqs.~\eqref{eq:filt_SI}, \eqref{eq:filt_curvmain}
   and~\eqref{eq:filt_af}; the last follows from differentiating
-  $\lds_\varepsilon(\varepsilon_*,\mathscr{h})=1/T$ with respect to $\mathscr{h}$, which gives
-  $d\varepsilon_*/d\mathscr{h}=-\lds_{\varepsilon \mathscr{h}}/\lds_{\varepsilon\varepsilon}$).
-  The dependence on $T$ is through $\varepsilon_*(T,\mathscr{h})$ and through the
+  $\lds_\varepsilon(\varepsilon_*,\hfield)=1/T$ with respect to $\hfield$, which gives
+  $d\varepsilon_*/d\hfield=-\lds_{\varepsilon \hfield}/\lds_{\varepsilon\varepsilon}$).
+  The dependence on $T$ is through $\varepsilon_*(T,\hfield)$ and through the
   explicit factors of $T$ alone.
 \item \emph{Singularities.} The thermodynamic quantities are non-analytic
-  in $(T,\mathscr{h})$ only where the local geometry of the landscape at the point of
+  in $(T,\hfield)$ only where the local geometry of the landscape at the point of
   contact is non-analytic, or where the probing point jumps, or where the
-  boundary $\varepsilon_0(\mathscr{h})$ is non-analytic: a continuous transition, a
+  boundary $\varepsilon_0(\hfield)$ is non-analytic: a continuous transition, a
   discontinuous transition, a quantum transition. A crossover is a change
   of local form between two ranges of the axis, passed by the point of
   contact over a range of temperatures that does not shrink with $V$.
@@ -1970,7 +1971,7 @@ of Section~\ref{sec:large}, which is their only input.
   and it is \emph{global} on the energy axis: it is fixed by two numbers,
   the depths of the two minima, and it has no exponents. This is the
   thermal counterpart of the first-order quantum transition, a crossing of
-  two analytic branches of $\varepsilon_0(\mathscr{h})$, as the continuous
+  two analytic branches of $\varepsilon_0(\hfield)$, as the continuous
   transition is the counterpart of an accumulation of avoided crossings. In
   this sense the discontinuous transition is the simpler case; it is not
   the absence of structure. For short-range interactions, where $\lds$ is
@@ -1994,7 +1995,7 @@ of Section~\ref{sec:large}, which is their only input.
   to~\ref{ass:V}, without reference to a symmetry, an order parameter or a
   fixed point; a symmetry, where there is one, is a reason for the form.
 \end{enumerate}
-In one sentence: \emph{thermodynamics at $(T,\mathscr{h})$ is the local geometry of
+In one sentence: \emph{thermodynamics at $(T,\hfield)$ is the local geometry of
 the logarithmic density of states at the energy selected by $T$, and every
 thermodynamic phenomenon is a restructuring of this geometry, of the ground
 state or of the excitations above it, on the energy axis.} The principle
@@ -2427,7 +2428,7 @@ Quenched disorder\footnote{Random terms in the Hamiltonian (impurities,
 random bonds or fields) that are fixed in each sample and do not
 equilibrate.} does not create levels: the number of eigenstates is the
 dimension of the Fock space, and $\int d\xi\,\rho=D$ for every sample.
-It redistributes them: each random term is a parameter $\mathscr{h}$ of the
+It redistributes them: each random term is a parameter $\hfield$ of the
 Hamiltonian in the sense of Section~\ref{sec:filt_dist}, and as it is varied
 the levels move along the energy axis continuously and without changing
 their number, Eq.~\eqref{eq:filt_gA}. Level by level the motion is
@@ -2717,7 +2718,7 @@ Assumption & Result \\
 \midrule
 none (any $\hat H$, finite size) &
 $\Xi=\int d\xi\,\rho\,e^{-\beta\xi}$; $S$, $C_\mu=\Var(\hat{\mathcal H})/k_BT^{2}$,
-responses from $\Xi$ and $\partial_\mathscr{h}^{n}\rho$,
+responses from $\Xi$ and $\partial_\hfield^{n}\rho$,
 Eqs.~\eqref{eq:filt_mb}, \eqref{eq:filt_param}, \eqref{eq:filt_corr};
 inversion of $c(T)$
 for $\rho$ \\[2pt]
@@ -2750,76 +2751,76 @@ Eq.~\eqref{eq:filt_bound}; inversion of $c(T)$ for $\varrho$ \\
 \section{Static response: conserved and non-conserved quantities}
 \label{app:lehmann}
 
-This appendix derives the static response to a field $ \mathscr{h} $ coupled to a
+This appendix derives the static response to a field $ \hfield $ coupled to a
 Hermitian operator $ \hat A $, in the notation of
 Section~\ref{sec:filt_resp}: $ \hat{\mathcal{H}}|a\rangle = \xi_a|a\rangle $,
-$ p_a = e^{-\beta\xi_a}/\Xi $, and $ \hat{\mathcal{H}} \to \hat{\mathcal{H}} - \mathscr{h}\hat A $,
+$ p_a = e^{-\beta\xi_a}/\Xi $, and $ \hat{\mathcal{H}} \to \hat{\mathcal{H}} - \hfield\hat A $,
 first in explicit form, then for a conserved $ \hat A $ and finally for one
 that is not conserved.
 
 \paragraph{Explicit form of the derivatives of the density of states.} A level moves with the field at the rate
-$ \partial\xi_a/\partial \mathscr{h} = -A_{aa} $, with
+$ \partial\xi_a/\partial \hfield = -A_{aa} $, with
 $ A_{aa} = \langle a|\hat A|a\rangle $ (the Hellmann--Feynman
 theorem\footnote{For a normalised eigenvector
-$ |a(\mathscr{h})\rangle $ of $ \hat{\mathcal{H}}(\mathscr{h}) $ with eigenvalue $ \xi_a(\mathscr{h}) $,
-$ \partial\xi_a/\partial \mathscr{h} = \langle a|\partial\hat{\mathcal{H}}/\partial \mathscr{h}|a\rangle $:
+$ |a(\hfield)\rangle $ of $ \hat{\mathcal{H}}(\hfield) $ with eigenvalue $ \xi_a(\hfield) $,
+$ \partial\xi_a/\partial \hfield = \langle a|\partial\hat{\mathcal{H}}/\partial \hfield|a\rangle $:
 the terms containing the derivative of the eigenvector add up to
-$ \xi_a\,\partial\langle a|a\rangle/\partial \mathscr{h} = 0 $. Within a degenerate level
-the basis is chosen to diagonalise $ \partial\hat{\mathcal{H}}/\partial \mathscr{h} $.}).
-The derivatives of $ \rho $ with respect to $\mathscr{h}$ are derivatives of
+$ \xi_a\,\partial\langle a|a\rangle/\partial \hfield = 0 $. Within a degenerate level
+the basis is chosen to diagonalise $ \partial\hat{\mathcal{H}}/\partial \hfield $.}).
+The derivatives of $ \rho $ with respect to $\hfield$ are derivatives of
 distributions (Section~\ref{sec:filt_dist})\footnote{By the definition of the
 derivative of a distribution,
 $ \int d\xi\,\delta^{(n)}(\xi - \xi_a)\,\varphi(\xi) = (-1)^{n}\varphi^{(n)}(\xi_a) $.
 With $ \varphi = e^{-\beta\xi} $ this is $ \beta^{n}e^{-\beta\xi_a} $.}: by the
 chain rule,
 \[
-  \frac{\partial}{\partial \mathscr{h}}\,\delta\big(\xi - \xi_a(\mathscr{h})\big)
+  \frac{\partial}{\partial \hfield}\,\delta\big(\xi - \xi_a(\hfield)\big)
   = A_{aa}\,\delta'(\xi - \xi_a) , \qquad
-  \frac{\partial^{2}}{\partial \mathscr{h}^{2}}\,\delta\big(\xi - \xi_a(\mathscr{h})\big)
+  \frac{\partial^{2}}{\partial \hfield^{2}}\,\delta\big(\xi - \xi_a(\hfield)\big)
   = A_{aa}^{2}\,\delta''(\xi - \xi_a)
-  - \frac{\partial^{2}\xi_a}{\partial \mathscr{h}^{2}}\,\delta'(\xi - \xi_a) .
+  - \frac{\partial^{2}\xi_a}{\partial \hfield^{2}}\,\delta'(\xi - \xi_a) .
 \]
 The Laplace transform turns each $ \delta^{(n)} $ into a factor $ \beta^{n} $, so
 $ \Xi^{(1)} = \beta\sum_aA_{aa}\,e^{-\beta\xi_a} $ and
-$ \Xi^{(2)} = \sum_a\big[\beta^{2}A_{aa}^{2} - \beta\,\partial^{2}\xi_a/\partial \mathscr{h}^{2}\big]e^{-\beta\xi_a} $,
+$ \Xi^{(2)} = \sum_a\big[\beta^{2}A_{aa}^{2} - \beta\,\partial^{2}\xi_a/\partial \hfield^{2}\big]e^{-\beta\xi_a} $,
 the first being
 $\langle\partial_\xi \rho_A,e_\beta\rangle=\beta\langle \rho_A,e_\beta\rangle$,
 Eq.~\eqref{eq:filt_gA}. Eq.~\eqref{eq:filt_param} becomes
 \begin{equation}\label{eq:filt_vanvleck}
   \langle\hat A\rangle = \sum_ap_a\,A_{aa} , \qquad
   \chi_{AA} = \frac{1}{k_BT}\Big[\sum_ap_a\,A_{aa}^{2} - \Big(\sum_ap_a\,A_{aa}\Big)^{2}\Big]
-  - \sum_ap_a\,\frac{\partial^{2}\xi_a}{\partial \mathscr{h}^{2}} .
+  - \sum_ap_a\,\frac{\partial^{2}\xi_a}{\partial \hfield^{2}} .
 \end{equation}
 The first term of $ \chi_{AA} $ is the redistribution of the populations
 over levels of different \emph{slope}, the slope of a level being its rate
-of motion with the field, $\partial\xi_a/\partial \mathscr{h}=-A_{aa}$ (the Curie
+of motion with the field, $\partial\xi_a/\partial \hfield=-A_{aa}$ (the Curie
 term); the second is the \emph{bending} of the levels, their curvature as
 functions of the field (the Van Vleck term), with
-$ -\partial^{2}\xi_a/\partial \mathscr{h}^{2} = 2\sum_{b:\,\xi_b\neq\xi_a}|A_{ab}|^{2}/(\xi_b - \xi_a) $
+$ -\partial^{2}\xi_a/\partial \hfield^{2} = 2\sum_{b:\,\xi_b\neq\xi_a}|A_{ab}|^{2}/(\xi_b - \xi_a) $
 from second-order perturbation theory.
 
 \paragraph{For conserved quantities, responses are covariances.} Let $ \hat A $
 be conserved, $ [\hat A, \hat H] = [\hat A, \hat N] = 0 $; the eigenbasis may
 then be chosen to diagonalise it, $ \hat A|a\rangle = A_a|a\rangle $, the
-field shifts the eigenvalues to $ \xi_a - \mathscr{h}A_a $ without changing the
+field shifts the eigenvalues to $ \xi_a - \hfield\,A_a $ without changing the
 eigenvectors, and the Van Vleck term vanishes. For any $ \hat B $ diagonal in
-the same basis, with the weights $w_a:=e^{-\beta(\xi_a-\mathscr{h}A_a)}$ and
+the same basis, with the weights $w_a:=e^{-\beta(\xi_a-\hfield\,A_a)}$ and
 $\Xi=\sum_aw_a$,
 \[
   \langle\hat B\rangle=\frac{\sum_aB_aw_a}{\Xi} ,\qquad
-  \frac{\partial w_a}{\partial \mathscr{h}}=\beta A_aw_a ,\qquad
-  \frac{\partial\Xi}{\partial \mathscr{h}}=\beta\sum_aA_aw_a=\beta\,\Xi\,\langle\hat A\rangle ,
+  \frac{\partial w_a}{\partial \hfield}=\beta A_aw_a ,\qquad
+  \frac{\partial\Xi}{\partial \hfield}=\beta\sum_aA_aw_a=\beta\,\Xi\,\langle\hat A\rangle ,
 \]
 and the quotient rule gives
 \[
-  \frac{\partial\langle\hat B\rangle}{\partial \mathscr{h}}
-  =\frac{\beta\sum_aA_aB_aw_a}{\Xi}-\frac{\sum_aB_aw_a}{\Xi}\,\frac{\partial\Xi/\partial \mathscr{h}}{\Xi}
+  \frac{\partial\langle\hat B\rangle}{\partial \hfield}
+  =\frac{\beta\sum_aA_aB_aw_a}{\Xi}-\frac{\sum_aB_aw_a}{\Xi}\,\frac{\partial\Xi/\partial \hfield}{\Xi}
   =\beta\big(\langle\hat A\hat B\rangle-\langle\hat A\rangle\langle\hat B\rangle\big) .
 \]
 The same computation with $\partial w_a/\partial T=(\xi_a/k_BT^{2})\,w_a$ (at
-$\mathscr{h}=0$) replaces $\beta A_a$ by $\xi_a/k_BT^{2}$. Hence
+$\hfield=0$) replaces $\beta A_a$ by $\xi_a/k_BT^{2}$. Hence
 \begin{equation}\label{eq:filt_mb_response}
-  \frac{\partial\langle\hat B\rangle}{\partial \mathscr{h}}\bigg|_{T,\mu}
+  \frac{\partial\langle\hat B\rangle}{\partial \hfield}\bigg|_{T,\mu}
   = \frac{\Cov(\hat A, \hat B)}{k_BT} ,
   \qquad
   \frac{\partial\langle\hat B\rangle}{\partial T}\bigg|_{\mu}
@@ -2827,7 +2828,7 @@ $\mathscr{h}=0$) replaces $\beta A_a$ by $\xi_a/k_BT^{2}$. Hence
 \end{equation}
 a change of temperature acts as a field whose charge on the state $ a $ is
 $ \xi_a/T $. Instances are
-$ (\partial N/\partial\mu)_T = \Var(\hat N)/k_BT $ ($ \hat A = \hat B = \hat N $, $ \mathscr{h} = \mu $);
+$ (\partial N/\partial\mu)_T = \Var(\hat N)/k_BT $ ($ \hat A = \hat B = \hat N $, $ \hfield = \mu $);
 the spin susceptibility $ \Var(\hat M)/Vk_BT $ whenever the total moment $ \hat M $ is
 conserved; $ C_\mu $ itself ($ \hat B = \hat{\mathcal{H}} $,
 Eq.~\eqref{eq:filt_CU}); and
@@ -2835,22 +2836,22 @@ $ (\partial N/\partial T)_\mu = \Cov(\hat N, \hat{\mathcal{H}})/k_BT^{2} $.
 
 \paragraph{For non-conserved quantities, the Lehmann representation.} If
 $ \hat A $ is not conserved, the field changes the eigenvectors as well as
-the eigenvalues. To first order in $ \mathscr{h} $ (perturbation theory in the
+the eigenvalues. To first order in $ \hfield $ (perturbation theory in the
 eigenbasis, chosen within each degenerate level to diagonalise $ \hat A $ there),
 \[
-  \xi_a(\mathscr{h}) = \xi_a - \mathscr{h}A_{aa} , \qquad
-  |a(\mathscr{h})\rangle = |a\rangle - \mathscr{h}\sum_{b\,:\,\xi_b\neq\xi_a}|b\rangle\,\frac{A_{ba}}{\xi_a - \xi_b} ,
+  \xi_a(\hfield) = \xi_a - \hfield\,A_{aa} , \qquad
+  |a(\hfield)\rangle = |a\rangle - \hfield\sum_{b\,:\,\xi_b\neq\xi_a}|b\rangle\,\frac{A_{ba}}{\xi_a - \xi_b} ,
   \qquad A_{ab} := \langle a|\hat A|b\rangle .
 \]
-In $ \langle\hat B\rangle = \sum_ap_a(\mathscr{h})\,\langle a(\mathscr{h})|\hat B|a(\mathscr{h})\rangle $ the
+In $ \langle\hat B\rangle = \sum_ap_a(\hfield)\,\langle a(\hfield)|\hat B|a(\hfield)\rangle $ the
 populations contribute
 $ \beta\sum_ap_aA_{aa}B_{aa} - \beta\langle\hat A\rangle\langle\hat B\rangle $ to the
-derivative at $ \mathscr{h} = 0 $, and the eigenvectors
+derivative at $ \hfield = 0 $, and the eigenvectors
 $ -\sum_{a,b}p_a(A_{ab}B_{ba} + B_{ab}A_{ba})/(\xi_a - \xi_b) $. Exchanging $ a $ and
 $ b $ in the second term of the latter gives the \emph{Lehmann} (spectral)
 representation of the isothermal susceptibility,
 \begin{equation}\label{eq:filt_mb_kubo}
-  \chi_{AB} := \frac{\partial\langle\hat B\rangle}{\partial \mathscr{h}}\bigg|_{\mathscr{h}=0}
+  \chi_{AB} := \frac{\partial\langle\hat B\rangle}{\partial \hfield}\bigg|_{\hfield=0}
   = \sum_{a,b}A_{ab}B_{ba}\,w_{ab} - \beta\langle\hat A\rangle\langle\hat B\rangle ,
   \qquad
   w_{ab} = \frac{p_b - p_a}{\xi_a - \xi_b} ,
@@ -2973,7 +2974,7 @@ is, up to a factor that is not exponential in $V$,
 Eq.~\eqref{eq:filt_laplace_log},
 \[
   \Xi = V\int_{\varepsilon_0}^{\infty}d\varepsilon\;
-  \exp\left\{-\frac{V}{k_BT}\big[\varepsilon - T\,\lds(\varepsilon,\mathscr{h})\big]\right\} .
+  \exp\left\{-\frac{V}{k_BT}\big[\varepsilon - T\,\lds(\varepsilon,\hfield)\big]\right\} .
 \]
 For $ V \to \infty $ the integral is dominated by the smallest value of the
 bracket (the steepest-descent method\footnote{For a real exponent this is
@@ -2986,7 +2987,7 @@ exponents.}), and $ \omega = -(k_BT/V)\ln\Xi $ becomes
 Eq.~\eqref{eq:filt_legendre}, with the stationarity
 condition~\eqref{eq:filt_stat}; since $\lds$ is concave the stationary point is
 the minimum. Three further results follow; subscripts on $ \lds $ denote partial
-derivatives, evaluated at $ (\varepsilon_*,\mathscr{h}) $.
+derivatives, evaluated at $ (\varepsilon_*,\hfield) $.
 \begin{itemize}
 \item \emph{Equivalence of the ensembles.} By Eqs.~\eqref{eq:filt_SI}
   and~\eqref{eq:filt_sg} the thermodynamic entropy of the grand ensemble
@@ -3012,30 +3013,30 @@ derivatives, evaluated at $ (\varepsilon_*,\mathscr{h}) $.
   $ \Var(\hat{\mathcal{H}}) = k_BT^{2}C_\mu $. Only the levels in a vanishing
   neighbourhood of $ \varepsilon_* $ carry weight.
 \item \emph{Responses as curvatures.} Differentiating the stationarity
-  condition $ T\,\lds_\varepsilon(\varepsilon_*,\mathscr{h}) = 1 $ with respect to $ T $
-  and to $ \mathscr{h} $,
+  condition $ T\,\lds_\varepsilon(\varepsilon_*,\hfield) = 1 $ with respect to $ T $
+  and to $ \hfield $,
   \[
     \lds_\varepsilon + T\,\lds_{\varepsilon\varepsilon}\,\frac{\partial\varepsilon_*}{\partial T} = 0
     \;\Longrightarrow\;
     \frac{\partial\varepsilon_*}{\partial T} = -\frac{1}{T^{2}\lds_{\varepsilon\varepsilon}} ,
     \qquad
-    \lds_{\varepsilon\varepsilon}\,\frac{\partial\varepsilon_*}{\partial \mathscr{h}} + \lds_{\varepsilon \mathscr{h}} = 0
+    \lds_{\varepsilon\varepsilon}\,\frac{\partial\varepsilon_*}{\partial \hfield} + \lds_{\varepsilon \hfield} = 0
     \;\Longrightarrow\;
-    \frac{\partial\varepsilon_*}{\partial \mathscr{h}} = -\frac{\lds_{\varepsilon \mathscr{h}}}{\lds_{\varepsilon\varepsilon}} .
+    \frac{\partial\varepsilon_*}{\partial \hfield} = -\frac{\lds_{\varepsilon \hfield}}{\lds_{\varepsilon\varepsilon}} .
   \]
   Then $ c_\mu = \partial\varepsilon_*/\partial T $ and, from
   Eq.~\eqref{eq:filt_af},
-  $ \chi := (\partial a/\partial \mathscr{h})_T
-  = T\,[\,\lds_{\mathscr{h}\mathscr{h}} + \lds_{\mathscr{h}\varepsilon}\,\partial\varepsilon_*/\partial \mathscr{h}\,] $, i.e.
+  $ \chi := (\partial a/\partial \hfield)_T
+  = T\,[\,\lds_{\hfield\hfield} + \lds_{\hfield\varepsilon}\,\partial\varepsilon_*/\partial \hfield\,] $, i.e.
   \begin{equation}\label{eq:filt_curv}
-    a = T\,\lds_\mathscr{h} , \qquad
+    a = T\,\lds_\hfield , \qquad
     c_\mu = -\frac{1}{T^{2}\,\lds_{\varepsilon\varepsilon}} , \qquad
-    \chi = T\left(\lds_{\mathscr{h}\mathscr{h}} - \frac{\lds_{\varepsilon \mathscr{h}}^{2}}{\lds_{\varepsilon\varepsilon}}\right) .
+    \chi = T\left(\lds_{\hfield\hfield} - \frac{\lds_{\varepsilon \hfield}^{2}}{\lds_{\varepsilon\varepsilon}}\right) .
   \end{equation}
 \end{itemize}
 Stability, $ c_\mu > 0 $, is the concavity $ \lds_{\varepsilon\varepsilon} < 0 $.
 The heat capacity diverges where the curvature of $\lds$ vanishes, and $\chi$
-only where $ \lds_{\mathscr{h}\mathscr{h}} $ diverges or $ \lds_{\varepsilon\varepsilon} $ vanishes: a
+only where $ \lds_{\hfield\hfield} $ diverges or $ \lds_{\varepsilon\varepsilon} $ vanishes: a
 critical point is a property of the logarithmic density of states at an
 energy density $ \varepsilon_c $, which is the content of
 Assumption~\ref{ass:crit} ($\sigma>2$: vanishing curvature) and of
@@ -3130,8 +3131,8 @@ $\langle\hat{\mathcal H}\rangle/V=-\partial(\ln\Xi_V/V)/\partial\beta\to\varepsi
 where the minimiser is unique, and
 $S/Vk_B=\ln\Xi_V/V+\beta\langle\hat{\mathcal H}\rangle/V\to \lds(\varepsilon_*)/k_B$
 by Eq.~\eqref{eq:filt_mb}. The same argument applies to the derivative with
-respect to a parameter $\mathscr{h}$, Eq.~\eqref{eq:filt_af}, because $\ln\Xi$ is
-convex in $\mathscr{h}$ ($\chi_{AA}\ge0$, Eq.~\eqref{eq:filt_chibound}). The heat
+respect to a parameter $\hfield$, Eq.~\eqref{eq:filt_af}, because $\ln\Xi$ is
+convex in $\hfield$ ($\chi_{AA}\ge0$, Eq.~\eqref{eq:filt_chibound}). The heat
 capacity is a second derivative, and its convergence requires in addition
 that $c_\mu$ of the finite system converge locally uniformly in $T$; this
 holds away from phase transitions, and at a transition
@@ -3210,7 +3211,7 @@ quantity $\langle\hat A\rangle(T)$, together with $\Xi$, determines by the
 same theorem the weighted density of states
 $\rho_A=\sum_aA_{aa}\,\delta(\xi-\xi_a)$, i.e.\ the slopes of the levels in the
 field; the susceptibility $\chi_{AA}(T)$ likewise determines
-$\partial^{2}\rho/\partial \mathscr{h}^{2}$. The eigenvectors enter the thermodynamics
+$\partial^{2}\rho/\partial \hfield^{2}$. The eigenvectors enter the thermodynamics
 only through these derivatives of the levels.
 
 \paragraph{The inverse map is not continuous.} The inversion is exact but
@@ -3342,7 +3343,7 @@ with
 \]
 Examples are free electrons in a periodic or disordered potential, harmonic
 phonons, linear spin waves, and the conduction electrons of the Falicov--Kimball
-model at a fixed $ \mathscr{h} $-configuration. The orbitals $ \lambda $ are the eigenvectors of
+model at a fixed $ \hfield $-configuration. The orbitals $ \lambda $ are the eigenvectors of
 the one-body Hamiltonian matrix, and the $ \varepsilon_\lambda $ its eigenvalues;
 finding them is the ``solving'' of Section~\ref{sec:filt_exact}, now reduced from the
 Fock space to the single-particle space. The occupation number $ n_\lambda $ takes the
@@ -3561,11 +3562,11 @@ number of particles carrying it.
 member of a family. Let $ \hat A = \sum_\lambda a_\lambda\hat n_\lambda $ and
 $ \hat B = \sum_\lambda b_\lambda\hat n_\lambda $ be one-body observables diagonal in
 the orbital basis --- each orbital carries a definite ``charge'' $ a_\lambda $,
-$ b_\lambda $ of each --- and let a field $ \mathscr{h} $ couple to $ \hat A $ through
-$ \hat H \to \hat H - \mathscr{h}\hat A $, i.e.\ $ \varepsilon_\lambda \to \varepsilon_\lambda -
+$ b_\lambda $ of each --- and let a field $ \hfield $ couple to $ \hat A $ through
+$ \hat H \to \hat H - \hfield\hat A $, i.e.\ $ \varepsilon_\lambda \to \varepsilon_\lambda -
 fa_\lambda $. By Eq.~\eqref{eq:filt_master} and the chain rule,
 \begin{equation}\label{eq:filt_response}
-  \frac{\partial\langle\hat B\rangle}{\partial \mathscr{h}}\bigg|_{T,\mu}
+  \frac{\partial\langle\hat B\rangle}{\partial \hfield}\bigg|_{T,\mu}
   = \sum_\lambda b_\lambda\,\frac{\partial n_\lambda}{\partial\varepsilon_\lambda}\,(-a_\lambda)
   = \frac{1}{k_BT}\sum_\lambda a_\lambda b_\lambda\,\Var(\hat n_\lambda)
   = \frac{\Cov(\hat A, \hat B)}{k_BT} ,
@@ -3580,7 +3581,7 @@ weighted by the product of the charges the orbital carries for the two quantitie
 involved. Three instances are needed below.
 \begin{itemize}
 \item \emph{Charge susceptibility (compressibility).} $ \hat A = \hat B = \hat N $,
-  $ a_\lambda = b_\lambda = 1 $, $ \mathscr{h} = \mu $:
+  $ a_\lambda = b_\lambda = 1 $, $ \hfield = \mu $:
   \[
     \chi_c := \frac{1}{V}\left(\frac{\partial N}{\partial\mu}\right)_{T,V}
     = \frac{1}{Vk_BT}\sum_\lambda\Var(\hat n_\lambda) = \frac{\Var(N)}{Vk_BT} .
