@@ -982,12 +982,23 @@ $\ln\cN\simeq B(\xi-\xi_0)^{\sigma}$ and $\ln\Xi+\beta\xi_0\propto T^{\kappa}$,
 in both directions, is Kohlbecker's Tauberian
 theorem~\cite[Sec.~4.12]{BGT}.
 
-\paragraph{Why a stretched exponential.} A power law of $\rho$ itself,
-$\rho(\xi)\propto(\xi-\xi_0)^{p-1}$, gives $e^{\beta\xi_0}\Xi\propto T^{p}$ and
-$C_\mu=p\,k_B$, independent of $T$: this is the spectrum of a few degrees of
-freedom (equipartition). A heat capacity that is extensive and vanishes as a
-power of $T$ requires a number of levels that is exponential in a power of
-the size, which is Eq.~\eqref{eq:filt_stretched}.
+\paragraph{Why a stretched exponential.} Suppose instead that the level
+count itself is a power law, $\cN(\xi)\propto(\xi-\xi_0)^{p}$ above the
+ground state, with an exponent $p$ that does not depend on $T$; in terms of
+the smoothed density of states of Section~\ref{sec:filt_dist}, the number
+of levels per unit energy in a window that contains many levels, this is
+$\rho(\xi)\propto(\xi-\xi_0)^{p-1}$. The second form of
+Eq.~\eqref{eq:filt_laplace} then gives
+$e^{\beta\xi_0}\Xi=\beta\int d\xi\,\cN(\xi)\,e^{-\beta(\xi-\xi_0)}\propto\Gamma(p+1)\,(k_BT)^{p}$,
+hence $\langle\hat{\mathcal H}\rangle-\xi_0=p\,k_BT$ and $C_\mu=p\,k_B$,
+independent of $T$. This is equipartition: the classical ideal gas of $N$
+particles has $\cN(E)\propto E^{3N/2}$ and $C=\tfrac32Nk_B$. A power law of
+the level count therefore gives a heat capacity that is constant in $T$,
+extensive only if $p\propto V$. A heat capacity that is extensive
+\emph{and} vanishes as a power of $T$ requires a level count that grows
+faster than any power, exponentially in a power of the energy, with a
+coefficient that carries the size: $\ln\cN=VA(\delta\varepsilon)^{\sigma}
+=A\,V^{1-\sigma}(\xi-\xi_0)^{\sigma}$, which is Eq.~\eqref{eq:filt_stretched}.
 
 \paragraph{Examples: ideal quantum gases.} For non-interacting particles both
 sides are known independently, and the results agree with the textbook
