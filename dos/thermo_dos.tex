@@ -36,6 +36,7 @@
 \newcommand{\evalat}{\bigg\vert}  % evaluation bar, as in (d/d beta)|_mu
 \newcommand{\lndos}{{logdos}}  % abbreviation for the logarithmic density of states
 \newcommand{\hfield}{\mathscr{h}}  % parameter (field or coupling) of the Hamiltonian
+\newcommand{\enrg}{\mathcal{E}}  % energy eigenvalue of H - mu N (formerly \xi)
 \newcommand{\lds}{\mathscr{s}}  % the logarithmic density of states (microcanonical entropy density) as a function of the energy density
 
 %% capital kappa (one-mode grand partition function); LaTeX has no \Kappa
@@ -84,7 +85,7 @@ Bergersen~\cite{Plischke}.
 \label{sec:intro}
 
 The spectrum of a many-body Hamiltonian, as thermodynamics sees it, is a distribution on the
-energy axis: the density of states $\rho_V(\xi;\hfield)$, parametrised by the size
+energy axis: the density of states $\rho_V(\enrg;\hfield)$, parametrised by the size
 $V$ and by the couplings and fields $\hfield$ of the Hamiltonian. It is positive,
 its support is bounded below, its total weight is the dimension of the Fock
 space, its logarithm grows linearly with $V$ (extensivity), and
@@ -109,11 +110,11 @@ chain, for an arbitrary many-body Hamiltonian $\hat H$.
 \begin{enumerate}[label=(\roman*),itemsep=2pt]
 \item \emph{Exact relations} (Section~\ref{sec:filters}). The grand partition
   function is the Laplace transform of the many-body density of states
-  $\rho(\xi)$, Eq.~\eqref{eq:filt_laplace}. $\rho$ is a distribution, and the
+  $\rho(\enrg)$, Eq.~\eqref{eq:filt_laplace}. $\rho$ is a distribution, and the
   thermodynamic quantities are its pairings with a one-parameter family of
   test functions (Section~\ref{sec:filt_dist}). The entropy, the heat capacity and
   every static response are derivatives of $\ln\Xi$, i.e.\ moments of $\rho$
-  weighted by $e^{-\beta\xi}$ and of its derivatives with respect to the
+  weighted by $e^{-\beta\enrg}$ and of its derivatives with respect to the
   parameters of $\hat H$.
 \item \emph{Large systems} (Section~\ref{sec:large}). For a macroscopic
   system the number of levels is exponential in the size,
@@ -192,7 +193,7 @@ dimensionless field $h$ conjugate to the order parameter, the
 \end{equation}
 with $m=-\partial f/\partial h \vert_{h \to 0}$, $\chi=\partial m/\partial h \vert_{h \to 0}$
 and $f(t,h)$ the free energy per unit volume, together with the correlation length
-$\ell_c\sim|t|^{-\nu}$ (usually written $\xi$, a letter reserved here for
+$\ell_c\sim|t|^{-\nu}$ (usually written $\enrg$, a letter reserved here for
 the energy)
 and the decay $G(r)\sim r^{-(d-2+\eta)}$ of the order-parameter correlation function
 at $t=0$ in $d$ dimensions.
@@ -249,19 +250,19 @@ orthonormal eigenbasis $ \{|a\rangle\} $ of the Fock space,
 \]
 and we abbreviate
 \[
-  \hat{\mathcal{H}} := \hat H - \mu\hat N , \qquad \xi_a := E_a - \mu N_a ,
-  \qquad \hat{\mathcal{H}}|a\rangle = \xi_a|a\rangle .
+  \hat{\mathcal{H}} := \hat H - \mu\hat N , \qquad \enrg_a := E_a - \mu N_a ,
+  \qquad \hat{\mathcal{H}}|a\rangle = \enrg_a|a\rangle .
 \]
 In an interacting system the $ |a\rangle $ are in general superpositions of
 very many Slater determinants (or permanents). The lowest eigenvalue of
-$\hat{\mathcal H}$ is $\xi_0$, with degeneracy $d_0$.
+$\hat{\mathcal H}$ is $\enrg_0$, with degeneracy $d_0$.
 
 The grand canonical equilibrium state is the density matrix
 \[
   \hat\rho_{\rm eq} = \frac{e^{-\beta\hat{\mathcal{H}}}}{\Xi}
   = \sum_ap_a\,|a\rangle\langle a| , \qquad
-  p_a = \frac{e^{-\beta \xi_a}}{\Xi} , \qquad
-  \Xi(T,\mu) = \Tr e^{-\beta\hat{\mathcal{H}}} = \sum_ae^{-\beta\xi_a} ,
+  p_a = \frac{e^{-\beta \enrg_a}}{\Xi} , \qquad
+  \Xi(T,\mu) = \Tr e^{-\beta\hat{\mathcal{H}}} = \sum_ae^{-\beta\enrg_a} ,
 \]
 so that $\Xi$ is the normalisation of $\hat\rho_{\rm eq}$. This state is
 singled out among all density matrices $\hat\rho$ by the relative
@@ -289,37 +290,37 @@ which is Eq.~\eqref{eq:Xi}.
 The spectrum of $\hat{\mathcal H}$ is described by the \emph{many-body
 density of states} $\rho$ or, equivalently, by the \emph{level count} $\cN$,
 \begin{equation}\label{eq:filt_gN}
-  \rho(\xi) := \sum_a\delta(\xi - \xi_a) , \qquad
-  \cN(\xi) := \sum_a\Theta(\xi-\xi_a) = \int_{-\infty}^{\xi}d\xi'\,\rho(\xi') ,
+  \rho(\enrg) := \sum_a\delta(\enrg - \enrg_a) , \qquad
+  \cN(\enrg) := \sum_a\Theta(\enrg-\enrg_a) = \int_{-\infty}^{\enrg}d\enrg'\,\rho(\enrg') ,
 \end{equation}
-the number of eigenstates with $\xi_a\le\xi$, $\Theta$ is the Heaviside step function,
+the number of eigenstates with $\enrg_a\le\enrg$, $\Theta$ is the Heaviside step function,
 which is the primitive of the delta function.
-$\cN$ is a non-decreasing step function and $\rho=d\cN/d\xi$. Then
+$\cN$ is a non-decreasing step function and $\rho=d\cN/d\enrg$. Then
 \begin{equation}\label{eq:filt_laplace}
-  \Xi(\beta) = \int d\xi\; \rho(\xi)\,e^{-\beta \xi}
-  = \beta\int d\xi\;\cN(\xi)\,e^{-\beta\xi} :
+  \Xi(\beta) = \int d\enrg\; \rho(\enrg)\,e^{-\beta \enrg}
+  = \beta\int d\enrg\;\cN(\enrg)\,e^{-\beta\enrg} :
 \end{equation}
 the grand partition function is the Laplace transform of the many-body
-density of states, with $\beta$ the variable conjugate to $\xi$. The first
+density of states, with $\beta$ the variable conjugate to $\enrg$. The first
 form is the definition of $\rho$.
 The second follows by partial integration:
-$\rho=d\cN/d\xi$, and
+$\rho=d\cN/d\enrg$, and
 \[
-  \int d\xi\;\frac{d\cN}{d\xi}\,e^{-\beta\xi}
-  =\Big[\cN(\xi)\,e^{-\beta\xi}\Big]_{-\infty}^{\infty}
-  +\beta\int d\xi\;\cN(\xi)\,e^{-\beta\xi} ,
+  \int d\enrg\;\frac{d\cN}{d\enrg}\,e^{-\beta\enrg}
+  =\Big[\cN(\enrg)\,e^{-\beta\enrg}\Big]_{-\infty}^{\infty}
+  +\beta\int d\enrg\;\cN(\enrg)\,e^{-\beta\enrg} ,
 \]
 where the boundary term vanishes: $\cN=0$ below the ground state, and
-$\cN(\xi)e^{-\beta\xi}\to0$ for $\xi\to\infty$ whenever $\Xi$ converges at
-some $\beta'<\beta$ (always, for a finite Fock space), because the $\cN(\xi)$
-levels below $\xi$ contribute at least $\cN(\xi)e^{-\beta'\xi}$ to
+$\cN(\enrg)e^{-\beta\enrg}\to0$ for $\enrg\to\infty$ whenever $\Xi$ converges at
+some $\beta'<\beta$ (always, for a finite Fock space), because the $\cN(\enrg)$
+levels below $\enrg$ contribute at least $\cN(\enrg)e^{-\beta'\enrg}$ to
 $\Xi(\beta')$, so that
-$\cN(\xi)e^{-\beta\xi}\le\Xi(\beta')e^{-(\beta-\beta')\xi}$.
-The probability density of $\xi$ in equilibrium is
-$ P_T(\xi) := \rho(\xi)\,e^{-\beta \xi}/\Xi $: the spectrum seen through the
+$\cN(\enrg)e^{-\beta\enrg}\le\Xi(\beta')e^{-(\beta-\beta')\enrg}$.
+The probability density of $\enrg$ in equilibrium is
+$ P_T(\enrg) := \rho(\enrg)\,e^{-\beta \enrg}/\Xi $: the spectrum seen through the
 Boltzmann weight. A parameter $\hfield$ of the Hamiltonian (a field, a coupling
-constant) changes the levels, $\xi_a(\hfield)$, and hence $\rho(\xi;\hfield)$ and
-$\cN(\xi;\hfield)$; the Boltzmann kernel $e^{-\beta\xi}$ does \emph{not} depend on it.
+constant) changes the levels, $\enrg_a(\hfield)$, and hence $\rho(\enrg;\hfield)$ and
+$\cN(\enrg;\hfield)$; the Boltzmann kernel $e^{-\beta\enrg}$ does \emph{not} depend on it.
 
 \subsection{The density of states as a distribution; the thermal map}
 \label{sec:filt_dist}
@@ -331,84 +332,84 @@ A \emph{distribution} $T$ is a continuous linear
 functional $\varphi\mapsto\langle T,\varphi\rangle$ on a space of smooth
 \emph{test functions}.
 Every ordinary function $F$ that is locally integrable (its integral over
-every bounded interval is finite: a step function, a power $|\xi|^{-1/2}$,
+every bounded interval is finite: a step function, a power $|\enrg|^{-1/2}$,
 any continuous function) defines a distribution by
-$\langle F,\varphi\rangle=\int d\xi\,F\varphi$. The delta function
-$\delta(\xi-\xi_a)$ is the functional $\varphi\mapsto\varphi(\xi_a)$, and no
-locally integrable $F$ reproduces it: an integral $\int d\xi\,F\varphi$ with
-$\varphi$ concentrated in an interval of width $\eta$ about $\xi_a$ tends to
-zero with $\eta$, while $\varphi(\xi_a)$ need not. The delta function is thus
+$\langle F,\varphi\rangle=\int d\enrg\,F\varphi$. The delta function
+$\delta(\enrg-\enrg_a)$ is the functional $\varphi\mapsto\varphi(\enrg_a)$, and no
+locally integrable $F$ reproduces it: an integral $\int d\enrg\,F\varphi$ with
+$\varphi$ concentrated in an interval of width $\eta$ about $\enrg_a$ tends to
+zero with $\eta$, while $\varphi(\enrg_a)$ need not. The delta function is thus
 a distribution that is not a function. The derivative is defined by
 $\langle T',\varphi\rangle:=-\langle T,\varphi'\rangle$, and a sequence $T_n$
 converges to $T$ if $\langle T_n,\varphi\rangle\to\langle T,\varphi\rangle$
 for every test function~\cite{GelfandShilov,Zemanian}.}: the linear
 functional that assigns to a test function $\varphi$ the number
 \begin{equation}\label{eq:filt_pairing}
-  \langle \rho,\varphi\rangle:=\int d\xi\;\rho(\xi)\,\varphi(\xi)
-  =\sum_a\varphi(\xi_a)=\Tr\varphi(\hat{\mathcal H}) .
+  \langle \rho,\varphi\rangle:=\int d\enrg\;\rho(\enrg)\,\varphi(\enrg)
+  =\sum_a\varphi(\enrg_a)=\Tr\varphi(\hat{\mathcal H}) .
 \end{equation}
 The last form is independent of the basis: \emph{$\rho$ is the functional
 $\varphi\mapsto\Tr\varphi(\hat{\mathcal H})$}, and the microscopic spectral
 information is the set of these numbers for all $\varphi$. In operator form,
 \[
-  \rho(\xi)=\Tr\,\delta(\xi-\hat{\mathcal H}) ,\qquad
-  \delta(\xi-\hat{\mathcal H}):=\sum_a|a\rangle\langle a|\,\delta(\xi-\xi_a) ,
+  \rho(\enrg)=\Tr\,\delta(\enrg-\hat{\mathcal H}) ,\qquad
+  \delta(\enrg-\hat{\mathcal H}):=\sum_a|a\rangle\langle a|\,\delta(\enrg-\enrg_a) ,
 \]
 the many-body analogue of the single-particle density of states
 $\varrho(\varepsilon)=\Tr\,\delta(\varepsilon-\hat h)$, with $\hat h$ the
 one-body Hamiltonian (see Appendix~\ref{app:quadratic}).
-The operator $\delta(\xi-\hat{\mathcal H})$ is the projector onto
-the eigenstates of energy $\xi$, spread into a delta function, and
-$\int d\xi\,\delta(\xi-\hat{\mathcal H})\,\varphi(\xi)=\varphi(\hat{\mathcal H})$
+The operator $\delta(\enrg-\hat{\mathcal H})$ is the projector onto
+the eigenstates of energy $\enrg$, spread into a delta function, and
+$\int d\enrg\,\delta(\enrg-\hat{\mathcal H})\,\varphi(\enrg)=\varphi(\hat{\mathcal H})$
 by the spectral theorem, which is Eq.~\eqref{eq:filt_pairing} under the
 trace. Since
 $\langle \rho,\varphi\rangle\ge0$ for $\varphi\ge0$, $\rho$ is a positive
-distribution, i.e.\ a measure, and its support $\{\xi_a\}$ is bounded below
-by $\xi_0$. The pairing is therefore defined for every continuous $\varphi$
-that decays for $\xi\to+\infty$ faster than the levels accumulate,
-$|\varphi(\xi)|\le{\rm const}\;e^{-\beta_1\xi}$ with $\Xi(\beta_1)<\infty$;
-no condition is needed for $\xi\to-\infty$, and none at all if the Fock
+distribution, i.e.\ a measure, and its support $\{\enrg_a\}$ is bounded below
+by $\enrg_0$. The pairing is therefore defined for every continuous $\varphi$
+that decays for $\enrg\to+\infty$ faster than the levels accumulate,
+$|\varphi(\enrg)|\le{\rm const}\;e^{-\beta_1\enrg}$ with $\Xi(\beta_1)<\infty$;
+no condition is needed for $\enrg\to-\infty$, and none at all if the Fock
 space has finite dimension. Three facts about distributions are used
 below.
 \begin{itemize}\setlength{\itemsep}{2pt}
-\item \emph{The level count is the primitive of $\rho$.} $\rho=d\cN/d\xi$ in the
+\item \emph{The level count is the primitive of $\rho$.} $\rho=d\cN/d\enrg$ in the
   sense of distributions,
-  $\langle \rho,\varphi\rangle=-\int d\xi\,\cN(\xi)\,\varphi'(\xi)$. Unlike $\rho$,
+  $\langle \rho,\varphi\rangle=-\int d\enrg\,\cN(\enrg)\,\varphi'(\enrg)$. Unlike $\rho$,
   $\cN$ is an ordinary function, with values that can be bounded and
   compared. For this reason the assumptions on the spectrum
   (Section~\ref{sec:large} and Assumptions~\ref{ass:power}--\ref{ass:V})
   are stated for $\cN$, not for $\rho$.
-\item \emph{Derivative with respect to a parameter.} For $\rho(\xi;\hfield)$,
+\item \emph{Derivative with respect to a parameter.} For $\rho(\enrg;\hfield)$,
   $\partial \rho/\partial \hfield$ is the distribution defined by
   $\langle\partial_\hfield\rho,\varphi\rangle:=\partial_\hfield\langle \rho,\varphi\rangle$;
   since the test function does not depend on $\hfield$, this is differentiation
   under the integral sign.
   For $\hat{\mathcal H}(\hfield)=\hat{\mathcal H}-\hfield\hat A$,
   the Hellmann--Feynman theorem (Appendix~\ref{app:lehmann}) gives
-  $\partial\xi_a/\partial \hfield=-A_{aa}$, so that
-  $\partial_\hfield\sum_a\varphi(\xi_a)=-\sum_aA_{aa}\varphi'(\xi_a)$, i.e.
+  $\partial\enrg_a/\partial \hfield=-A_{aa}$, so that
+  $\partial_\hfield\sum_a\varphi(\enrg_a)=-\sum_aA_{aa}\varphi'(\enrg_a)$, i.e.
   \begin{equation}\label{eq:filt_gA}
-    \frac{\partial \rho}{\partial \hfield}=\frac{\partial \rho_A}{\partial\xi} ,
+    \frac{\partial \rho}{\partial \hfield}=\frac{\partial \rho_A}{\partial\enrg} ,
     \qquad
-    \rho_A(\xi):=\sum_aA_{aa}\,\delta(\xi-\xi_a) ,
+    \rho_A(\enrg):=\sum_aA_{aa}\,\delta(\enrg-\enrg_a) ,
     \qquad
     \langle \rho_A,\varphi\rangle=\Tr\big[\hat A\,\varphi(\hat{\mathcal H})\big] ,
   \end{equation}
   with $\rho_A$ the density of states weighted by $\hat A$. A field does
   not create or destroy levels, it moves them along the energy axis, each
   at the rate $-A_{aa}(\hfield)$, with $A_{aa}$ taken in the eigenbasis at $\hfield$;
-  $\int d\xi\,\rho(\xi;\hfield)=D$, the dimension of the Fock space, for every
+  $\int d\enrg\,\rho(\enrg;\hfield)=D$, the dimension of the Fock space, for every
   $\hfield$. This holds whether or not $\hat A$ commutes with $\hat{\mathcal H}$;
   conservation only makes the rate independent of $\hfield$,
-  $\xi_a(\hfield)=\xi_a-\hfield\,A_a$. Eq.~\eqref{eq:filt_gA} is the conservation of the
+  $\enrg_a(\hfield)=\enrg_a-\hfield\,A_a$. Eq.~\eqref{eq:filt_gA} is the conservation of the
   number of levels written as a continuity equation on the energy axis,
-  $\partial_\hfield\rho+\partial_\xi j=0$, with the current of levels
-  $j=-\rho_A$ (density times velocity): the number of levels below $\xi$
-  changes only through levels crossing $\xi$.
+  $\partial_\hfield\rho+\partial_\enrg j=0$, with the current of levels
+  $j=-\rho_A$ (density times velocity): the number of levels below $\enrg$
+  changes only through levels crossing $\enrg$.
 \item \emph{Regularisation.} The convolution of $\rho$ with a smooth window of
   unit area and width $\Delta$ is an ordinary function, the smoothed density
   of states: the number of levels per unit energy in a window $\Delta$ about
-  $\xi$. Statements about ``the value of $\rho$'' refer to it, and are
+  $\enrg$. Statements about ``the value of $\rho$'' refer to it, and are
   meaningful only if they depend neither on the width $\Delta$ nor on the
   shape of the window. For a large system they do not, over a wide range of
   $\Delta$: the level spacing is exponentially small in $V$, so that every
@@ -418,13 +419,13 @@ below.
 
 \paragraph{The thermal map.} Thermodynamics pairs $\rho$ with a particular
 one-parameter family of test functions, generated by the Boltzmann factor
-$e_\beta(\xi):=e^{-\beta\xi}$:
+$e_\beta(\enrg):=e^{-\beta\enrg}$:
 \begin{equation}\label{eq:filt_map}
   \Xi(\beta)=\langle \rho,e_\beta\rangle ,
 \end{equation}
 which is basically the Laplace transform of the distribution
 $\rho$~\cite{Zemanian}, Eq.~\eqref{eq:filt_laplace}; its second form is the
-statement $\rho=d\cN/d\xi$ with $\varphi=e_\beta$. Every equilibrium quantity is
+statement $\rho=d\cN/d\enrg$ with $\varphi=e_\beta$. Every equilibrium quantity is
 a pairing of this kind, with $U:=\langle\hat{\mathcal H}\rangle$:
 \begin{center}
 \small
@@ -434,13 +435,13 @@ thermal quantity & pairing with the spectrum \\
 \midrule
 partition function $\Xi(\beta)$ & $\langle \rho,e_\beta\rangle$ \\[2pt]
 moments $\langle\hat{\mathcal H}^{n}\rangle$ &
-  $\langle \rho,\xi^{n}e_\beta\rangle/\Xi$ \\[2pt]
+  $\langle \rho,\enrg^{n}e_\beta\rangle/\Xi$ \\[2pt]
 heat capacity $C_\mu$ &
-  $\langle \rho,(\xi-U)^{2}e_\beta\rangle/\Xi\,k_BT^{2}$ \\[2pt]
+  $\langle \rho,(\enrg-U)^{2}e_\beta\rangle/\Xi\,k_BT^{2}$ \\[2pt]
 conjugate quantity $\langle\hat A\rangle$ &
   $\langle \rho_A,e_\beta\rangle/\Xi=k_BT\,\langle\partial_\hfield\rho,e_\beta\rangle/\Xi$ \\[2pt]
-number of levels in $[\xi,\xi+\Delta]$ &
-  $\langle \rho,\mathbb 1_{[\xi,\xi+\Delta]}\rangle$ \\
+number of levels in $[\enrg,\enrg+\Delta]$ &
+  $\langle \rho,\mathbb 1_{[\enrg,\enrg+\Delta]}\rangle$ \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -452,33 +453,33 @@ from the spectral to the thermal description has the following properties.
   Linearity is that of the pairing. For two systems without mutual
   interaction, $\hat{\mathcal H}=\hat{\mathcal H}_1\otimes\mathbb 1+\mathbb 1\otimes\hat{\mathcal H}_2$,
   the eigenstates are the products $|a_1\rangle|a_2\rangle$ and the levels
-  add, $\xi=\xi^{(1)}_{a_1}+\xi^{(2)}_{a_2}$. Hence, for every test
+  add, $\enrg=\enrg^{(1)}_{a_1}+\enrg^{(2)}_{a_2}$. Hence, for every test
   function,
   \[
     \langle\rho,\varphi\rangle
-    =\sum_{a_1,a_2}\varphi\big(\xi^{(1)}_{a_1}+\xi^{(2)}_{a_2}\big)
-    =\big\langle\rho_1(\xi')\,\rho_2(\xi''),\,\varphi(\xi'+\xi'')\big\rangle
+    =\sum_{a_1,a_2}\varphi\big(\enrg^{(1)}_{a_1}+\enrg^{(2)}_{a_2}\big)
+    =\big\langle\rho_1(\enrg')\,\rho_2(\enrg''),\,\varphi(\enrg'+\enrg'')\big\rangle
     =:\langle\rho_1*\rho_2,\varphi\rangle ,
   \]
   which is the definition of the \emph{convolution} $\rho_1*\rho_2$ of two
   distributions\footnote{The product of two distributions of the same
-  variable, such as $\rho_1(\xi)\rho_2(\xi)$, is in general undefined.
-  The convolution is not such a product: $\rho_1(\xi')\rho_2(\xi'')$ is a
-  distribution in the two independent variables $\xi'$ and $\xi''$ (the
+  variable, such as $\rho_1(\enrg)\rho_2(\enrg)$, is in general undefined.
+  The convolution is not such a product: $\rho_1(\enrg')\rho_2(\enrg'')$ is a
+  distribution in the two independent variables $\enrg'$ and $\enrg''$ (the
   density of states of the pair of systems on the plane), and it is paired
-  with the test function $\varphi(\xi'+\xi'')$ of two variables. For
+  with the test function $\varphi(\enrg'+\enrg'')$ of two variables. For
   distributions whose supports are bounded below, as densities of states
   are, this pairing is finite for every $\varphi$, and $\rho_1*\rho_2$ is a
   well-defined distribution~\cite{Zemanian}. For sums of delta functions it
   is again a sum of delta functions, located at the sums of the levels; the
-  formal expression $\int d\xi'\,\rho_1(\xi')\,\rho_2(\xi-\xi')$ is a
+  formal expression $\int d\enrg'\,\rho_1(\enrg')\,\rho_2(\enrg-\enrg')$ is a
   shorthand for this pairing and is not to be read as a product.}: the
-  number of ways of sharing the energy $\xi$ between the parts. With
+  number of ways of sharing the energy $\enrg$ between the parts. With
   $\varphi=e_\beta$, since the Boltzmann factor of a sum of energies is the
   product of the Boltzmann factors,
   \[
     \Xi=\langle\rho_1*\rho_2,e_\beta\rangle
-    =\big\langle\rho_1(\xi')\,\rho_2(\xi''),\,e^{-\beta\xi'}e^{-\beta\xi''}\big\rangle
+    =\big\langle\rho_1(\enrg')\,\rho_2(\enrg''),\,e^{-\beta\enrg'}e^{-\beta\enrg''}\big\rangle
     =\langle\rho_1,e_\beta\rangle\,\langle\rho_2,e_\beta\rangle=\Xi_1\Xi_2 :
   \]
   the Laplace transform of a convolution is the product of the transforms.
@@ -486,7 +487,7 @@ from the spectral to the thermal description has the following properties.
   is the convolution theorem.
 \item \emph{It regularises.} The distribution $\rho$ has no values, let
   alone being smooth; its pairing with the smooth family $e_\beta$, the sum
-  $\Xi(\beta)=\sum_ae^{-\beta\xi_a}$, is an analytic function of $\beta$
+  $\Xi(\beta)=\sum_ae^{-\beta\enrg_a}$, is an analytic function of $\beta$
   wherever it converges (for a finite Fock space it is a finite sum of
   exponentials). The thermal quantities of a \emph{finite} system are therefore
   smooth functions of $T$; a non-analyticity (a phase transition) can arise
@@ -496,7 +497,7 @@ from the spectral to the thermal description has the following properties.
   the same $\Xi(\beta)$ for all $\beta$ are the same spectrum.}. A distribution with support bounded below is
   determined by its Laplace transform (Appendix~\ref{sec:filt_invert_mb}), so
   no spectral information is lost in principle.
-\item \emph{It has a finite resolution.} The test functions $\xi^{n}e_\beta$
+\item \emph{It has a finite resolution.} The test functions $\enrg^{n}e_\beta$
   vary on the scale of thermal energy, $k_BT$.
   Thermodynamics at temperature $T$ therefore ``examines'' $\rho$
   through the weight $P_T=\rho\,e_\beta/\Xi$ and does not resolve
@@ -516,8 +517,8 @@ Consider the densities of states $\rho_V$ of a sequence of systems of
 increasing size, $V=1,2,\dots$ (a lattice of $V$ sites, say). No
 normalisation by a power of $V$ makes this sequence of distributions
 converge, and the whole spectrum shifts with $V$ besides, since
-$\xi_0=O(V)$. What converges is the logarithm of a pairing, divided by $V$.
-The pairing of $\rho_V$ with the step function $\Theta(V\varepsilon-\xi)$
+$\enrg_0=O(V)$. What converges is the logarithm of a pairing, divided by $V$.
+The pairing of $\rho_V$ with the step function $\Theta(V\varepsilon-\enrg)$
 is the level count of Eq.~\eqref{eq:filt_gN} at the energy $V\varepsilon$,
 \[
   \langle\rho_V,\Theta(V\varepsilon-\,\cdot\,)\rangle=\cN_V(V\varepsilon) ,
@@ -528,7 +529,7 @@ has the $V \to \infty$ limit $\lds(\varepsilon)$, the microcanonical entropy den
 (Section~\ref{sec:large}), and $(1/V)\ln\langle\rho_V,e_\beta\rangle$ then
 has the limit $-\omega/k_BT$, the Legendre--Fenchel transform of $\lds/k_B$,
 Eq.~\eqref{eq:filt_legendre}.
-The distribution $P_T=\rho_Ve^{-\beta\xi}/\Xi_V$ of the energy density
+The distribution $P_T=\rho_Ve^{-\beta\enrg}/\Xi_V$ of the energy density
 concentrates exponentially fast on $\varepsilon_*$, with the exponent
 $[\varepsilon-T\lds(\varepsilon)-\omega]/k_BT$. This exponent has a
 name: it is the relative entropy, per unit size, of the microcanonical
@@ -545,22 +546,22 @@ energy density is $e^{-V\times(\text{exergy density})/k_BT}$.
 
 Since $\hat{\mathcal H}$ does not depend on $T$ at fixed $\mu$, each
 derivative of Eq.~\eqref{eq:filt_laplace} with respect to $\beta$ brings down
-a factor $-\xi$:
+a factor $-\enrg$:
 \begin{equation}\label{eq:filt_moments}
   \langle\hat{\mathcal H}^{n}\rangle
   = \frac{(-1)^{n}}{\Xi}\frac{\partial^{n}\Xi}{\partial\beta^{n}}\evalat_{\mu}
-  = \frac{1}{\Xi}\int d\xi\;\xi^{n}\rho(\xi)\,e^{-\beta\xi} ,
+  = \frac{1}{\Xi}\int d\enrg\;\enrg^{n}\rho(\enrg)\,e^{-\beta\enrg} ,
   \quad
   \langle\hat{\mathcal H}\rangle = -\frac{\partial\ln\Xi}{\partial\beta}\evalat_{\mu} ,
   \quad
   \Var(\hat{\mathcal H}) = \frac{\partial^{2}\ln\Xi}{\partial\beta^{2}}\evalat_{\mu} .
 \end{equation}
 More generally $\partial^{n}\ln\Xi/\partial\beta^{n}=(-1)^{n}\kappa_n$,
-with $\kappa_n$ the $n$th cumulant of $\xi$ under $P_T$: $\ln\Xi$ is the
+with $\kappa_n$ the $n$th cumulant of $\enrg$ under $P_T$: $\ln\Xi$ is the
 cumulant generating function of the energy, as $-\beta\Omega$ is that of
 the conjugate quantity in Section~\ref{sec:filt_resp}~\cite[Sec.~4.3]{Honerkamp}.
 The entropy of $\hat\rho_{\rm eq}$ is $S=-k_B\sum_ap_a\ln p_a$; with
-$\ln p_a=-\beta\xi_a-\ln\Xi$ and $\Omega=-k_BT\ln\Xi$,
+$\ln p_a=-\beta\enrg_a-\ln\Xi$ and $\Omega=-k_BT\ln\Xi$,
 \begin{equation}\label{eq:filt_mb}
   S = k_B\Big(\ln\Xi - \beta\,\frac{\partial\ln\Xi}{\partial\beta}\Big)
   = \frac{\langle\hat{\mathcal{H}}\rangle - \Omega}{T} , \qquad
@@ -573,7 +574,7 @@ since $k_B\,\partial\ln\Xi/\partial T=\langle\hat{\mathcal H}\rangle/T^{2}$,
 and using $ d\beta/dT = -1/k_BT^{2} $, and
 \begin{equation}\label{eq:filt_CU}
   C_\mu = \frac{\partial\langle\hat{\mathcal H}\rangle}{\partial T}\bigg|_{\mu}
-  = \frac{1}{k_BT^{2}}\int d\xi\; P_T(\xi)\,\big(\xi - \langle\hat{\mathcal{H}}\rangle\big)^{2}\;\ge0 ~.
+  = \frac{1}{k_BT^{2}}\int d\enrg\; P_T(\enrg)\,\big(\enrg - \langle\hat{\mathcal{H}}\rangle\big)^{2}\;\ge0 ~.
 \end{equation}
 The entropy and the heat capacity are thus obtained from $\Xi$ and its first two derivatives.
 
@@ -586,7 +587,7 @@ Boltzmann kernel in Eq.~\eqref{eq:filt_laplace} is independent of $\hfield$, eve
 with respect to $ \hfield $ acts on $ \rho $ alone:
 \begin{equation}\label{eq:Z-derivatives}
   \Xi^{(n)} := \frac{\partial^{n}\Xi}{\partial \hfield^{n}}
-  = \int d\xi\;\frac{\partial^{n}\rho(\xi;\hfield)}{\partial \hfield^{n}}\,e^{-\beta\xi} .
+  = \int d\enrg\;\frac{\partial^{n}\rho(\enrg;\hfield)}{\partial \hfield^{n}}\,e^{-\beta\enrg} .
 \end{equation}
 Let the field couple to a Hermitian operator $\hat A$,
 $ \hat{\mathcal{H}}(\hfield) = \hat{\mathcal{H}} - \hfield\hat A $. Whether or not
@@ -620,20 +621,20 @@ normalised by $ \Xi $. Both statements are exact.
 temperature act are the two terms of the first law. For an infinitesimal
 change of $\hfield$ and $T$,
 \[
-  d\langle\hat{\mathcal H}\rangle=\sum_ap_a\,d\xi_a+\sum_a\xi_a\,dp_a
+  d\langle\hat{\mathcal H}\rangle=\sum_ap_a\,d\enrg_a+\sum_a\enrg_a\,dp_a
   =-\langle\hat A\rangle\,d\hfield+T\,dS ,
 \]
 the first term being the work done by the field, which moves the levels at
-the rates $\partial\xi_a/\partial \hfield=-A_{aa}$ (Appendix~\ref{app:lehmann})
+the rates $\partial\enrg_a/\partial \hfield=-A_{aa}$ (Appendix~\ref{app:lehmann})
 with the populations fixed, and the second the heat, which redistributes
-the populations over fixed levels; $\sum_a\xi_a\,dp_a=T\,dS$ follows from
-$dS=-k_B\sum_a\ln p_a\,dp_a$ and $\ln p_a=-\beta\xi_a-\ln\Xi$ with
+the populations over fixed levels; $\sum_a\enrg_a\,dp_a=T\,dS$ follows from
+$dS=-k_B\sum_a\ln p_a\,dp_a$ and $\ln p_a=-\beta\enrg_a-\ln\Xi$ with
 $\sum_adp_a=0$~\cite[Sec.~7.1]{Honerkamp}. The conjugate quantity
-$\langle\hat A\rangle=-\sum_ap_a\,\partial\xi_a/\partial \hfield$ is the mean
+$\langle\hat A\rangle=-\sum_ap_a\,\partial\enrg_a/\partial \hfield$ is the mean
 velocity of the levels, which for $\hfield=-V$ is the pressure. In the density of
 states the work term is the motion of $\rho$ along the energy axis,
 Eq.~\eqref{eq:filt_gA}, and the heat term the change of the weight
-$e^{-\beta\xi}$ at fixed $\rho$.
+$e^{-\beta\enrg}$ at fixed $\rho$.
 
 \paragraph{Conserved and non-conserved quantities.} If $\hat A$ is
 conserved, $[\hat A,\hat H]=[\hat A,\hat N]=0$, the field shifts the levels
@@ -673,23 +674,23 @@ provided in Appendix~\ref{app:second}; here only the statements are needed.
 \label{sec:large_ext}
 
 Let $V$ be a measure of the size of the system (the number of lattice sites,
-or the volume) and $\varepsilon:=\xi/V$ the density of $\xi=E-\mu N$. The
+or the volume) and $\varepsilon:=\enrg/V$ the density of $\enrg=E-\mu N$. The
 second form of the Laplace transform~\eqref{eq:filt_laplace} contains the
-level count $\cN_V(\xi)$, an ordinary function of the energy, non-decreasing
-and at least $1$ above the ground state $\xi_0$. Write it as an exponential
+level count $\cN_V(\enrg)$, an ordinary function of the energy, non-decreasing
+and at least $1$ above the ground state $\enrg_0$. Write it as an exponential
 of the size,
 \begin{equation}\label{eq:filt_sV}
-  \cN_V(\xi)=:\exp\Big[\frac{V}{k_B}\,\lds_V\Big(\frac{\xi}{V}\Big)\Big] ,
+  \cN_V(\enrg)=:\exp\Big[\frac{V}{k_B}\,\lds_V\Big(\frac{\enrg}{V}\Big)\Big] ,
   \qquad\text{i.e.}\qquad
   \lds_V(\varepsilon):=\frac{k_B}{V}\ln\cN_V(V\varepsilon) .
 \end{equation}
 This is a change of notation, not an assumption: $\lds_V$ is the logarithm
 of the level count per unit size, a non-negative, non-decreasing step
 function of the energy density, defined for every finite system. In this
-notation, with $\xi=V\varepsilon$, the Laplace transform reads exactly
+notation, with $\enrg=V\varepsilon$, the Laplace transform reads exactly
 \begin{equation}\label{eq:filt_laplace_V}
-  \Xi=\beta\int d\xi\;\cN_V(\xi)\,e^{-\beta\xi}
-  =\beta V\int_{\xi_0/V}^{\infty}d\varepsilon\;
+  \Xi=\beta\int d\enrg\;\cN_V(\enrg)\,e^{-\beta\enrg}
+  =\beta V\int_{\enrg_0/V}^{\infty}d\varepsilon\;
   \exp\left\{-\frac{V}{k_BT}\big[\varepsilon-T\,\lds_V(\varepsilon)\big]\right\} ,
 \end{equation}
 the integrand vanishing below the ground state. At each energy density the
@@ -699,7 +700,7 @@ makes the limit of infinite size simple: the rest of the section draws the
 consequences, and the function in the exponent is its object.
 
 The spectrum of a macroscopic system is \emph{extensive}: the ground-state
-energy density $\varepsilon_0:=\lim_{V\to\infty}\xi_0/V$ exists, and so does
+energy density $\varepsilon_0:=\lim_{V\to\infty}\enrg_0/V$ exists, and so does
 \begin{equation}\label{eq:filt_sdef}
   \lds(\varepsilon) := \lim_{V\to\infty}\lds_V(\varepsilon)
   =\lim_{V\to\infty}\frac{k_B}{V}\,\ln\cN_V(V\varepsilon)
@@ -758,7 +759,7 @@ extensive; Eq.~\eqref{eq:filt_sdef} then holds after the couplings are
 rescaled with the size (Kac prescription~\cite{Campa2009}), and without any
 rescaling the results below hold in the form of total quantities,
 Eq.~\eqref{eq:filt_total}. For a Hamiltonian that depends on a parameter
-$\hfield$, $\cN=\cN(\xi;\hfield)$ and $\lds=\lds(\varepsilon,\hfield)$.
+$\hfield$, $\cN=\cN(\enrg;\hfield)$ and $\lds=\lds(\varepsilon,\hfield)$.
 
 \subsection{Infinite size: the Laplace transform on the logarithmic scale}
 \label{sec:large_laplace}
@@ -775,15 +776,15 @@ $n=\langle\hat N\rangle/V$ the particle density. Replacing $\lds_V$ in the
 exact Eq.~\eqref{eq:filt_laplace_V} by its limit $\lds$, which is the content of
 Eq.~\eqref{eq:filt_rhos},
 \begin{equation}\label{eq:filt_laplace_log}
-  \Xi=\int d\xi\;\rho(\xi)\,e^{-\beta\xi}
+  \Xi=\int d\enrg\;\rho(\enrg)\,e^{-\beta\enrg}
   \asymp V\int_{\varepsilon_0}^{\infty}d\varepsilon\;
   \exp\left\{-\frac{V}{k_BT}\big[\varepsilon-T\,\lds(\varepsilon)\big]\right\} .
 \end{equation}
-The integrand $\rho(\xi)\,e^{-\beta\xi}$ is the number of levels at the
+The integrand $\rho(\enrg)\,e^{-\beta\enrg}$ is the number of levels at the
 energy density $\varepsilon$ times their Boltzmann weight; divided by $\Xi$
 it is the equilibrium probability density $P_T$ of
 Section~\ref{sec:filt_exact}, written for the energy density
-$\varepsilon=\xi/V$. Its exponent is proportional to $V$, so for
+$\varepsilon=\enrg/V$. Its exponent is proportional to $V$, so for
 $V\to\infty$ the probability concentrates at the energy density at which
 the growth of the level count and the decay of the Boltzmann factor
 balance, the minimum of the bracket (steepest-descent method,
@@ -798,7 +799,7 @@ $\omega=-(k_BT/V)\ln\Xi$,
 \end{equation}
 Second, the probability of the energy density is concentrated within
 $O(V^{-1/2})$ of $\varepsilon_*$ (Appendix~\ref{sec:second_sd}), so that
-the mean of $\xi/V=(E-\mu N)/V$ is $\varepsilon_*$. This is what
+the mean of $\enrg/V=(E-\mu N)/V$ is $\varepsilon_*$. This is what
 identifies the minimiser with the thermodynamic energy: with
 Eq.~\eqref{eq:filt_mb},
 \begin{equation}\label{eq:filt_SI}
@@ -937,7 +938,7 @@ for $\delta\varepsilon\to0^{+}$,
   \qquad \cA>0 ,\quad 0<\sigma<1 ,
   \\
   \text{i.e.}\qquad
-  \cN(\xi)=\exp\left[\frac{V\cA}{k_B}\Big(\frac{\xi-\xi_0}{V}\Big)^{\sigma}\right]
+  \cN(\enrg)=\exp\left[\frac{V\cA}{k_B}\Big(\frac{\enrg-\enrg_0}{V}\Big)^{\sigma}\right]
 \end{gathered}
 \end{equation}
 to logarithmic accuracy\footnote{The symbol $o(1)$ denotes a quantity that
@@ -1016,17 +1017,17 @@ Appendix~\ref{app:quadratic} (density of states $\propto|E-\mu|^{r}$),
 $\kappa=r+1$.
 
 \paragraph{Total quantities.} Extensivity is not essential for
-the exponent. If $\ln\cN(\xi)=B\,(\xi-\xi_0)^{\sigma}[1+o(1)]$ in a range
-of $\xi$, with any dependence of $B$ on the size,
+the exponent. If $\ln\cN(\enrg)=B\,(\enrg-\enrg_0)^{\sigma}[1+o(1)]$ in a range
+of $\enrg$, with any dependence of $B$ on the size,
 the bounds of Appendix~\ref{sec:second_bounds},
 Eq.~\eqref{eq:filt_bounds2}, yield directly
 \begin{equation}\label{eq:filt_total}
-  \ln\Xi+\beta\xi_0=\frac{1-\sigma}{\sigma}\,(\sigma B)^{1/(1-\sigma)}\,(k_BT)^{\kappa}\,\big[1+o(1)\big] ,
+  \ln\Xi+\beta\enrg_0=\frac{1-\sigma}{\sigma}\,(\sigma B)^{1/(1-\sigma)}\,(k_BT)^{\kappa}\,\big[1+o(1)\big] ,
   \qquad
   C_\mu=k_B\,(\kappa+1)\,(\sigma B)^{1/(1-\sigma)}(k_BT)^{\kappa} ,
 \end{equation}
-for the temperatures at which $\xi_*-\xi_0=(\sigma Bk_BT)^{1/(1-\sigma)}$
-lies in that range and $\ln\Xi+\beta\xi_0\gg1$. The extensive case is
+for the temperatures at which $\enrg_*-\enrg_0=(\sigma Bk_BT)^{1/(1-\sigma)}$
+lies in that range and $\ln\Xi+\beta\enrg_0\gg1$. The extensive case is
 $B=\cA V^{1-\sigma}/k_B$. The exponent of $T$ is fixed by $\sigma$ alone,
 whether or not the energy is extensive.
 
@@ -1036,7 +1037,7 @@ be $ c_\mu = \mathcal C_0\,T^{\kappa} $ at low temperature, with $S(T=0)=0$
 distinguish it from the $\mathcal C$ computed from $\cA$ above). By
 $C_\mu=T(\partial S/\partial T)_\mu=(\partial\langle\hat{\mathcal H}\rangle/\partial T)_\mu$,
 Eqs.~\eqref{eq:filt_mb} and~\eqref{eq:filt_CU}, and
-$\langle\hat{\mathcal H}\rangle\to\xi_0$ for $T\to0$,
+$\langle\hat{\mathcal H}\rangle\to\enrg_0$ for $T\to0$,
 \[
   \frac{S}{V} = \int_0^{T}\frac{c_\mu(T')}{T'}\,dT' = \frac{\mathcal C_0\,T^{\kappa}}{\kappa} ,
   \qquad
@@ -1053,19 +1054,19 @@ $\lds(u-\mu n)=S/V$ holds at every temperature (it returns the concave hull of
 $\lds$); the power-law form of Eq.~\eqref{eq:filt_sinv} holds only for
 $\delta\varepsilon\to0$, where the power law of $c_\mu$ does. In the
 mathematical literature the equivalence of
-$\ln\cN\simeq B(\xi-\xi_0)^{\sigma}$ and $\ln\Xi+\beta\xi_0\propto T^{\kappa}$,
+$\ln\cN\simeq B(\enrg-\enrg_0)^{\sigma}$ and $\ln\Xi+\beta\enrg_0\propto T^{\kappa}$,
 in both directions, is Kohlbecker's Tauberian
 theorem~\cite[Sec.~4.12]{BGT}.
 
 \paragraph{Why a stretched exponential.} Suppose instead that the level
-count itself is a power law, $\cN(\xi)\propto(\xi-\xi_0)^{p}$ above the
+count itself is a power law, $\cN(\enrg)\propto(\enrg-\enrg_0)^{p}$ above the
 ground state, with an exponent $p$ that does not depend on $T$; in terms of
 the smoothed density of states of Section~\ref{sec:filt_dist}, the number
 of levels per unit energy in a window that contains many levels, this is
-$\rho(\xi)\propto(\xi-\xi_0)^{p-1}$. The second form of
+$\rho(\enrg)\propto(\enrg-\enrg_0)^{p-1}$. The second form of
 Eq.~\eqref{eq:filt_laplace} then gives
-$e^{\beta\xi_0}\Xi=\beta\int d\xi\,\cN(\xi)\,e^{-\beta(\xi-\xi_0)}\propto\Gamma(p+1)\,(k_BT)^{p}$,
-hence $\langle\hat{\mathcal H}\rangle-\xi_0=p\,k_BT$ and $C_\mu=p\,k_B$,
+$e^{\beta\enrg_0}\Xi=\beta\int d\enrg\,\cN(\enrg)\,e^{-\beta(\enrg-\enrg_0)}\propto\Gamma(p+1)\,(k_BT)^{p}$,
+hence $\langle\hat{\mathcal H}\rangle-\enrg_0=p\,k_BT$ and $C_\mu=p\,k_B$,
 independent of $T$. This is equipartition: the classical ideal gas of $N$
 particles has $\cN(E)\propto E^{3N/2}$ and $C=\tfrac32Nk_B$. A power law of
 the level count therefore gives a heat capacity that is constant in $T$,
@@ -1073,7 +1074,7 @@ extensive only if $p\propto V$. A heat capacity that is extensive
 \emph{and} vanishes as a power of $T$ requires a level count that grows
 faster than any power, exponentially in a power of the energy, with a
 coefficient that carries the size: $\ln\cN=VA(\delta\varepsilon)^{\sigma}
-=A\,V^{1-\sigma}(\xi-\xi_0)^{\sigma}$, which is Eq.~\eqref{eq:filt_stretched}.
+=A\,V^{1-\sigma}(\enrg-\enrg_0)^{\sigma}$, which is Eq.~\eqref{eq:filt_stretched}.
 
 \paragraph{Examples: ideal quantum gases.} For non-interacting particles both
 sides are known independently, and the results agree with the textbook
@@ -1107,7 +1108,7 @@ acoustic phonons & $c=\tfrac{2\pi^{2}}{5}\,k_B\,(k_BT/\hbar v)^{3}$ & $3$ & $\tf
     = 2k_B\sqrt{\tfrac{\pi^{2}}{6}\,\varrho(\mu)\,\delta\varepsilon} ,
   \]
   which is Bethe's formula for the level density of a Fermi
-  gas~\cite{Bethe1936}, $ \rho \propto e^{2\sqrt{\tilde a(\xi-\xi_0)}} $ with
+  gas~\cite{Bethe1936}, $ \rho \propto e^{2\sqrt{\tilde a(\enrg-\enrg_0)}} $ with
   $ \tilde a = \pi^{2}\varrho(\mu)V/6 $, obtained there by counting the levels.
 \item \emph{Fermions at a zero of $ \varrho $.} For $\varrho(E)=B|E-\mu|^{r}$ the
   substitution $E-\mu=2k_BTx$ in the heat-capacity integral gives the
@@ -1146,7 +1147,7 @@ no intrinsic scale: for all $\lambda>0$,
   \lds(\lambda\,\delta\varepsilon,\lambda^{b}h)=\lambda^{\sigma}\lds(\delta\varepsilon,h) ,
   \qquad 0<\sigma<1 ,\quad b>0 ,
 \end{equation}
-i.e.\ $ \cN\big(\xi_0+\lambda(\xi-\xi_0);\lambda^{b}h\big)=\big[\cN(\xi;h)\big]^{\lambda^{\sigma}} $
+i.e.\ $ \cN\big(\enrg_0+\lambda(\enrg-\enrg_0);\lambda^{b}h\big)=\big[\cN(\enrg;h)\big]^{\lambda^{\sigma}} $
 at fixed $V$: $\ln\cN$ is a generalised homogeneous function of the
 excitation energy and the field.
 \end{assumption}
@@ -1219,9 +1220,9 @@ critical temperature: by Eq.~\eqref{eq:filt_stat} the thermal energy
 reaches $\varepsilon_c$ at the temperature at which
 $\partial \lds/\partial\varepsilon=1/T$, i.e.\ at $T=T_c$. For the level
 count the two terms say that
-$\cN(\xi)\propto e^{(\xi-\xi_c)/k_BT_c}$ about $\xi_c:=V\varepsilon_c$:
+$\cN(\enrg)\propto e^{(\enrg-\enrg_c)/k_BT_c}$ about $\enrg_c:=V\varepsilon_c$:
 the level count grows exponentially with the energy, at the rate $1/k_BT_c$
-per unit energy, and this growth rate at $\xi_c$ is what defines $T_c$. The
+per unit energy, and this growth rate at $\enrg_c$ is what defines $T_c$. The
 simplest instance of the remainder is
 $\lds_{\rm sing}(\delta\varepsilon,0)=-B_\pm|\delta\varepsilon|^{\sigma}$ with
 amplitudes $B_\pm>0$ for $\delta\varepsilon\gtrless0$. The condition
@@ -1232,26 +1233,26 @@ proposition.
 \paragraph{What the singularity of $\lds$ says about the spectrum.}
 Assumption~\ref{ass:crit} is a statement about the microscopic level count,
 and it is worth considering its implications. For the number of levels,
-$\cN(\xi)=e^{V\lds(\xi/V)/k_B}$, it says
+$\cN(\enrg)=e^{V\lds(\enrg/V)/k_B}$, it says
 \[
-  \cN(\xi)=e^{V\lds_c/k_B}\;e^{(\xi-\xi_c)/k_BT_c}\;
-  \exp\Big[\frac{V}{k_B}\,\lds_{\rm sing}\Big(\frac{\xi-\xi_c}{V},h\Big)\Big] .
+  \cN(\enrg)=e^{V\lds_c/k_B}\;e^{(\enrg-\enrg_c)/k_BT_c}\;
+  \exp\Big[\frac{V}{k_B}\,\lds_{\rm sing}\Big(\frac{\enrg-\enrg_c}{V},h\Big)\Big] .
 \]
-The first two factors say that about $\xi_c$ the levels are spaced, on the
+The first two factors say that about $\enrg_c$ the levels are spaced, on the
 logarithmic scale, like a pure exponential of rate $1/k_BT_c$: each
 additional $k_BT_c$ of energy multiplies the number of levels by $e$. The
 third factor is the deviation from this exponential growth. Its logarithm,
 $-VB_\pm|\delta\varepsilon|^{\sigma}$ in the simplest case, is extensive but,
 because $\sigma>2$, smaller than any quadratic term: \emph{the growth rate
-of the level count, $d\ln\cN/d\xi=1/k_BT(\xi)$, is stationary at $\xi_c$.}
+of the level count, $d\ln\cN/d\enrg=1/k_BT(\enrg)$, is stationary at $\enrg_c$.}
 In a non-critical range of the spectrum $\lds$ has a finite negative curvature,
-the rate $1/k_BT(\xi)$ decreases linearly with $\xi$, and the temperature is
+the rate $1/k_BT(\enrg)$ decreases linearly with $\enrg$, and the temperature is
 a one-to-one label of the energy, with $c_\mu=-1/T^{2}\lds_{\varepsilon\varepsilon}$
 finite, Eq.~\eqref{eq:filt_curvmain}. At $\varepsilon_c$ the curvature
-vanishes: a macroscopic range of energies about $\xi_c$ carries almost the
+vanishes: a macroscopic range of energies about $\enrg_c$ carries almost the
 same rate $1/k_BT_c$, the temperature loses its grip on the energy, and
 $d\varepsilon_*/dT=c_\mu$ diverges. The same fact seen from the thermal side
-is the energy distribution $P_T(\xi)\propto\rho(\xi)e^{-\beta\xi}$ at
+is the energy distribution $P_T(\enrg)\propto\rho(\enrg)e^{-\beta\enrg}$ at
 $T=T_c$: the linear terms cancel and
 $P_{T_c}(V\varepsilon)\propto\exp[-VB_\pm|\delta\varepsilon|^{\sigma}/k_B]$,
 whose width in $\delta\varepsilon$ is $V^{-1/\sigma}$, i.e.\ a width
@@ -1262,7 +1263,7 @@ once more. The exponent $b$ says how this flat stretch of $\ln\cN$ is tilted
 by the field: a field $h$ changes the count at $\delta\varepsilon$ by the
 factor $\exp[V\lds_{\rm sing}(\delta\varepsilon,h)/k_B]$, which is of the same
 order as the field-free deviation when $h\sim|\delta\varepsilon|^{b}$, so
-that the range of energies about $\xi_c$ over which the levels are
+that the range of energies about $\enrg_c$ over which the levels are
 rearranged by the field shrinks as $h^{1/b}$. Nothing in this reading refers
 to an order parameter; it states how many levels lie where, and how they
 move.
@@ -1472,21 +1473,21 @@ way as the susceptibility, with a field that depends on position. Let
 $\hat m_i$ be the order-parameter operator of the component (site) $i$ at
 position $\mathbf r_i$, and add local fields,
 $\hat{\mathcal H}\to\hat{\mathcal H}-\sum_ih_i\hat m_i$, so that
-$\rho=\rho(\xi;\{h_i\})$. Eq.~\eqref{eq:filt_param} holds for mixed derivatives,
+$\rho=\rho(\enrg;\{h_i\})$. Eq.~\eqref{eq:filt_param} holds for mixed derivatives,
 \[
   \chi_{ij}:=\frac{\partial\langle\hat m_i\rangle}{\partial h_j}
   =k_BT\left[\frac{\Xi^{(ij)}}{\Xi}-\frac{\Xi^{(i)}\Xi^{(j)}}{\Xi^{2}}\right],
   \qquad
-  \Xi^{(ij)}:=\int d\xi\;\frac{\partial^{2}\rho}{\partial h_i\,\partial h_j}\,e^{-\beta\xi} ,
+  \Xi^{(ij)}:=\int d\enrg\;\frac{\partial^{2}\rho}{\partial h_i\,\partial h_j}\,e^{-\beta\enrg} ,
 \]
 and the derivatives of the delta functions, with
-$\partial\xi_a/\partial h_i=-m^{i}_{aa}$ and
+$\partial\enrg_a/\partial h_i=-m^{i}_{aa}$ and
 $m^{i}_{aa}:=\langle a|\hat m_i|a\rangle$, give as in
 Eq.~\eqref{eq:filt_vanvleck}
 \begin{equation}\label{eq:filt_corr}
   \chi_{ij}=\frac{1}{k_BT}\Big[\sum_ap_a\,m^{i}_{aa}m^{j}_{aa}
   -\langle\hat m_i\rangle\langle\hat m_j\rangle\Big]
-  -\sum_ap_a\,\frac{\partial^{2}\xi_a}{\partial h_i\,\partial h_j} .
+  -\sum_ap_a\,\frac{\partial^{2}\enrg_a}{\partial h_i\,\partial h_j} .
 \end{equation}
 If all $\hat m_i$ commute with $\hat{\mathcal H}$ (a classical model such
 as the Ising model) the eigenbasis diagonalises them, the last term vanishes,
@@ -1676,7 +1677,7 @@ applies unchanged to power laws that are not universal.
 
 The results so far can be collected into a single statement of what a phase
 transition, and what a crossover, is in terms of the microscopic spectrum.
-For a finite system nothing is singular: $\Xi(\beta)=\sum_ae^{-\beta\xi_a}$ is a sum of
+For a finite system nothing is singular: $\Xi(\beta)=\sum_ae^{-\beta\enrg_a}$ is a sum of
 analytic functions, and so are all its derivatives
 (Section~\ref{sec:filt_dist}). The thermodynamic limit replaces the sum by
 the minimisation of Eq.~\eqref{eq:filt_legendre}, and the minimum of a smooth
@@ -1801,7 +1802,7 @@ avoided (grey), and the kink appears only for $V\to\infty$.}
   transition appears as a \emph{linear} stretch of $\lds$ on
   $[\varepsilon_-,\varepsilon_+]$ with slope $1/T_1$: over a macroscopic
   interval of energies the number of levels grows as
-  $e^{(\xi-\xi_-)/k_BT_1}$ \emph{exactly}, these levels being the
+  $e^{(\enrg-\enrg_-)/k_BT_1}$ \emph{exactly}, these levels being the
   phase-separated states, and one temperature labels all of them. A
   transition that is discontinuous in a \emph{field} $h$ at $h=0$
   (spontaneous order) is the same statement for the dependence on $h$:
@@ -1823,7 +1824,7 @@ avoided (grey), and the kink appears only for $V\to\infty$.}
   $(\sigma,b,b_q,b_V)$ of the level count about $\varepsilon_c$, and the
   divergences of the correlation length, of the susceptibility and of the
   energy fluctuations are one property of the spectrum: a macroscopic window
-  of energies about $\xi_c$ over which the level count grows at a constant
+  of energies about $\enrg_c$ over which the level count grows at a constant
   rate $1/k_BT_c$ and is rearranged by a field of amplitude $h$ over a range
   $\propto h^{1/b}$.
 \item \emph{Crossover: the thermal energy passes a scale of the spectrum.}
@@ -2128,7 +2129,7 @@ critical point, a non-Fermi liquid. What the symmetry supplies is the reason
 for the absence of a gap and its robustness: it guarantees the form of the
 spectrum, and the exponent $z$, without solving the Hamiltonian, for every
 perturbation that respects it. Conversely, a gapless scale-free spectrum
-does not imply a broken symmetry, and $\rho(\xi)$ alone does not identify the
+does not imply a broken symmetry, and $\rho(\enrg)$ alone does not identify the
 modes (acoustic phonons and antiferromagnetic magnons both give
 $c\sim T^{3}$); that identification requires the dependence of $\rho$ on the field that couples
 to them.
@@ -2243,11 +2244,11 @@ selected order shows only below, Eq.~\eqref{eq:filt_neardeg}.}
 
 \paragraph{(a) A finite number of competing states.} Let the low-energy
 spectrum consist of $K$ families of levels, $k=0,\dots,K-1$, the family $k$
-being built on a candidate ordered state of energy $\xi_0+V\delta_k$
+being built on a candidate ordered state of energy $\enrg_0+V\delta_k$
 ($\delta_0=0\le\delta_k$; near-degeneracy means that the $\delta_k$ are small
 compared with the couplings), with level count
-$\cN_k(\xi)=\exp[V\lds_k(\delta\varepsilon-\delta_k)/k_B]$,
-$\delta\varepsilon=(\xi-\xi_0)/V$, and conjugate field $h_k$ coupled to its
+$\cN_k(\enrg)=\exp[V\lds_k(\delta\varepsilon-\delta_k)/k_B]$,
+$\delta\varepsilon=(\enrg-\enrg_0)/V$, and conjugate field $h_k$ coupled to its
 order parameter, of density $m_k$. Then $\cN=\sum_k\cN_k$ and
 $\Xi=\sum_k\Xi_k$, and since $\max_k\Xi_k\le\Xi\le K\max_k\Xi_k$,
 \begin{equation}\label{eq:filt_compete}
@@ -2304,11 +2305,11 @@ by $V\lds_0$: the heat capacity integrates to less than the full entropy. For th
 antiferromagnet $\lds_0=0.323\,k_B$ per spin~\cite{Wannier1950}, for spin ice
 $\lds_0\simeq\tfrac12k_B\ln\tfrac32$ per
 spin~\cite{Pauling1935,Ramirez1999}. If the next eigenvalue is
-$\xi_0+\Delta$, with degeneracy $d_1$, then for $k_BT$ small compared with
+$\enrg_0+\Delta$, with degeneracy $d_1$, then for $k_BT$ small compared with
 the distance to the following level
 \[
-  e^{\beta\xi_0}\,\Xi=d_0\,(1+q) ,\qquad q:=\frac{d_1}{d_0}\,e^{-\beta\Delta} ,\qquad
-  \langle\hat{\mathcal H}\rangle-\xi_0=\frac{\Delta\,q}{1+q} ,\qquad
+  e^{\beta\enrg_0}\,\Xi=d_0\,(1+q) ,\qquad q:=\frac{d_1}{d_0}\,e^{-\beta\Delta} ,\qquad
+  \langle\hat{\mathcal H}\rangle-\enrg_0=\frac{\Delta\,q}{1+q} ,\qquad
   \Var(\hat{\mathcal H})=\frac{\Delta^{2}q}{(1+q)^{2}} ,
 \]
 and by Eq.~\eqref{eq:filt_mb}, to leading order in $q$,
@@ -2320,19 +2321,19 @@ with the many-body gap of
 $ \hat{\mathcal{H}} $ (at fixed $ \mu $ this includes the costs
 $ E_{N\pm1} - E_N \mp \mu $ of adding or removing a particle): no power law.
 If the excitations are $n_1V$ independent local ones,
-$e^{\beta\xi_0}\Xi=d_0(1+e^{-\beta\Delta})^{n_1V}$, then $d_1/d_0=n_1V$ and
+$e^{\beta\enrg_0}\Xi=d_0(1+e^{-\beta\Delta})^{n_1V}$, then $d_1/d_0=n_1V$ and
 Eq.~\eqref{eq:filt_gap} is extensive and holds for $e^{-\beta\Delta}\ll1$
 without the condition $q\ll1$.
 
 \paragraph{(c) A narrow group of levels.} Let a weak perturbation spread the
-$d_0=e^{V\lds_0/k_B}$ levels of case~(b) over energies $\xi_j$ within a local
-scale $W$ above $\xi_0$, small compared with the gap $\Delta$ to the other
+$d_0=e^{V\lds_0/k_B}$ levels of case~(b) over energies $\enrg_j$ within a local
+scale $W$ above $\enrg_0$, small compared with the gap $\Delta$ to the other
 levels. For $k_BT\ll\Delta$,
-$e^{\beta\xi_0}\Xi=\sum_je^{-\beta(\xi_j-\xi_0)}=d_0\,\langle e^{-\beta(\xi-\xi_0)}\rangle_{\rm b}$,
+$e^{\beta\enrg_0}\Xi=\sum_je^{-\beta(\enrg_j-\enrg_0)}=d_0\,\langle e^{-\beta(\enrg-\enrg_0)}\rangle_{\rm b}$,
 with $\langle\cdot\rangle_{\rm b}$ the average over the group with equal
-weights, and the expansion of $\ln\langle e^{-\beta(\xi-\xi_0)}\rangle_{\rm b}$ in the
-cumulants of $\xi$ within the group gives, with the extensive variance
-$\Var_{\rm b}(\xi)=:Vv_2$ ($v_2\sim W^{2}$ per component),
+weights, and the expansion of $\ln\langle e^{-\beta(\enrg-\enrg_0)}\rangle_{\rm b}$ in the
+cumulants of $\enrg$ within the group gives, with the extensive variance
+$\Var_{\rm b}(\enrg)=:Vv_2$ ($v_2\sim W^{2}$ per component),
 \[
   \frac{S}{V}=\lds_0-\frac{v_2}{2k_BT^{2}}+\dots ,\qquad
   c_\mu=\frac{v_2}{k_BT^{2}}+\dots \qquad (W\ll k_BT\ll\Delta) .
@@ -2427,7 +2428,7 @@ suspended state of case~(a).
 Quenched disorder\footnote{Random terms in the Hamiltonian (impurities,
 random bonds or fields) that are fixed in each sample and do not
 equilibrate.} does not create levels: the number of eigenstates is the
-dimension of the Fock space, and $\int d\xi\,\rho=D$ for every sample.
+dimension of the Fock space, and $\int d\enrg\,\rho=D$ for every sample.
 It redistributes them: each random term is a parameter $\hfield$ of the
 Hamiltonian in the sense of Section~\ref{sec:filt_dist}, and as it is varied
 the levels move along the energy axis continuously and without changing
@@ -2560,7 +2561,7 @@ with a non-universal exponent.}
   independently of the rest of the sample. The splittings are distributed
   with a density $P(\Delta)$ per unit volume that tends to a constant $P_0$
   for $\Delta\to0$~\cite{Anderson1972,Phillips1972}. For independent
-  two-level systems $e^{\beta\xi_0}\Xi=\prod_j(1+e^{-\beta\Delta_j})$, each
+  two-level systems $e^{\beta\enrg_0}\Xi=\prod_j(1+e^{-\beta\Delta_j})$, each
   contributes $k_Bx^{2}e^{x}/(e^{x}+1)^{2}$ to $C_\mu$ with
   $x=\Delta/k_BT$ (Eq.~\eqref{eq:filt_gap} with $d_1=d_0$ and all orders in
   $q$), and with $\Delta=k_BT\,x$
@@ -2717,7 +2718,7 @@ it.
 Assumption & Result \\
 \midrule
 none (any $\hat H$, finite size) &
-$\Xi=\int d\xi\,\rho\,e^{-\beta\xi}$; $S$, $C_\mu=\Var(\hat{\mathcal H})/k_BT^{2}$,
+$\Xi=\int d\enrg\,\rho\,e^{-\beta\enrg}$; $S$, $C_\mu=\Var(\hat{\mathcal H})/k_BT^{2}$,
 responses from $\Xi$ and $\partial_\hfield^{n}\rho$,
 Eqs.~\eqref{eq:filt_mb}, \eqref{eq:filt_param}, \eqref{eq:filt_corr};
 inversion of $c(T)$
@@ -2753,58 +2754,58 @@ Eq.~\eqref{eq:filt_bound}; inversion of $c(T)$ for $\varrho$ \\
 
 This appendix derives the static response to a field $ \hfield $ coupled to a
 Hermitian operator $ \hat A $, in the notation of
-Section~\ref{sec:filt_resp}: $ \hat{\mathcal{H}}|a\rangle = \xi_a|a\rangle $,
-$ p_a = e^{-\beta\xi_a}/\Xi $, and $ \hat{\mathcal{H}} \to \hat{\mathcal{H}} - \hfield\hat A $,
+Section~\ref{sec:filt_resp}: $ \hat{\mathcal{H}}|a\rangle = \enrg_a|a\rangle $,
+$ p_a = e^{-\beta\enrg_a}/\Xi $, and $ \hat{\mathcal{H}} \to \hat{\mathcal{H}} - \hfield\hat A $,
 first in explicit form, then for a conserved $ \hat A $ and finally for one
 that is not conserved.
 
 \paragraph{Explicit form of the derivatives of the density of states.} A level moves with the field at the rate
-$ \partial\xi_a/\partial \hfield = -A_{aa} $, with
+$ \partial\enrg_a/\partial \hfield = -A_{aa} $, with
 $ A_{aa} = \langle a|\hat A|a\rangle $ (the Hellmann--Feynman
 theorem\footnote{For a normalised eigenvector
-$ |a(\hfield)\rangle $ of $ \hat{\mathcal{H}}(\hfield) $ with eigenvalue $ \xi_a(\hfield) $,
-$ \partial\xi_a/\partial \hfield = \langle a|\partial\hat{\mathcal{H}}/\partial \hfield|a\rangle $:
+$ |a(\hfield)\rangle $ of $ \hat{\mathcal{H}}(\hfield) $ with eigenvalue $ \enrg_a(\hfield) $,
+$ \partial\enrg_a/\partial \hfield = \langle a|\partial\hat{\mathcal{H}}/\partial \hfield|a\rangle $:
 the terms containing the derivative of the eigenvector add up to
-$ \xi_a\,\partial\langle a|a\rangle/\partial \hfield = 0 $. Within a degenerate level
+$ \enrg_a\,\partial\langle a|a\rangle/\partial \hfield = 0 $. Within a degenerate level
 the basis is chosen to diagonalise $ \partial\hat{\mathcal{H}}/\partial \hfield $.}).
 The derivatives of $ \rho $ with respect to $\hfield$ are derivatives of
 distributions (Section~\ref{sec:filt_dist})\footnote{By the definition of the
 derivative of a distribution,
-$ \int d\xi\,\delta^{(n)}(\xi - \xi_a)\,\varphi(\xi) = (-1)^{n}\varphi^{(n)}(\xi_a) $.
-With $ \varphi = e^{-\beta\xi} $ this is $ \beta^{n}e^{-\beta\xi_a} $.}: by the
+$ \int d\enrg\,\delta^{(n)}(\enrg - \enrg_a)\,\varphi(\enrg) = (-1)^{n}\varphi^{(n)}(\enrg_a) $.
+With $ \varphi = e^{-\beta\enrg} $ this is $ \beta^{n}e^{-\beta\enrg_a} $.}: by the
 chain rule,
 \[
-  \frac{\partial}{\partial \hfield}\,\delta\big(\xi - \xi_a(\hfield)\big)
-  = A_{aa}\,\delta'(\xi - \xi_a) , \qquad
-  \frac{\partial^{2}}{\partial \hfield^{2}}\,\delta\big(\xi - \xi_a(\hfield)\big)
-  = A_{aa}^{2}\,\delta''(\xi - \xi_a)
-  - \frac{\partial^{2}\xi_a}{\partial \hfield^{2}}\,\delta'(\xi - \xi_a) .
+  \frac{\partial}{\partial \hfield}\,\delta\big(\enrg - \enrg_a(\hfield)\big)
+  = A_{aa}\,\delta'(\enrg - \enrg_a) , \qquad
+  \frac{\partial^{2}}{\partial \hfield^{2}}\,\delta\big(\enrg - \enrg_a(\hfield)\big)
+  = A_{aa}^{2}\,\delta''(\enrg - \enrg_a)
+  - \frac{\partial^{2}\enrg_a}{\partial \hfield^{2}}\,\delta'(\enrg - \enrg_a) .
 \]
 The Laplace transform turns each $ \delta^{(n)} $ into a factor $ \beta^{n} $, so
-$ \Xi^{(1)} = \beta\sum_aA_{aa}\,e^{-\beta\xi_a} $ and
-$ \Xi^{(2)} = \sum_a\big[\beta^{2}A_{aa}^{2} - \beta\,\partial^{2}\xi_a/\partial \hfield^{2}\big]e^{-\beta\xi_a} $,
+$ \Xi^{(1)} = \beta\sum_aA_{aa}\,e^{-\beta\enrg_a} $ and
+$ \Xi^{(2)} = \sum_a\big[\beta^{2}A_{aa}^{2} - \beta\,\partial^{2}\enrg_a/\partial \hfield^{2}\big]e^{-\beta\enrg_a} $,
 the first being
-$\langle\partial_\xi \rho_A,e_\beta\rangle=\beta\langle \rho_A,e_\beta\rangle$,
+$\langle\partial_\enrg \rho_A,e_\beta\rangle=\beta\langle \rho_A,e_\beta\rangle$,
 Eq.~\eqref{eq:filt_gA}. Eq.~\eqref{eq:filt_param} becomes
 \begin{equation}\label{eq:filt_vanvleck}
   \langle\hat A\rangle = \sum_ap_a\,A_{aa} , \qquad
   \chi_{AA} = \frac{1}{k_BT}\Big[\sum_ap_a\,A_{aa}^{2} - \Big(\sum_ap_a\,A_{aa}\Big)^{2}\Big]
-  - \sum_ap_a\,\frac{\partial^{2}\xi_a}{\partial \hfield^{2}} .
+  - \sum_ap_a\,\frac{\partial^{2}\enrg_a}{\partial \hfield^{2}} .
 \end{equation}
 The first term of $ \chi_{AA} $ is the redistribution of the populations
 over levels of different \emph{slope}, the slope of a level being its rate
-of motion with the field, $\partial\xi_a/\partial \hfield=-A_{aa}$ (the Curie
+of motion with the field, $\partial\enrg_a/\partial \hfield=-A_{aa}$ (the Curie
 term); the second is the \emph{bending} of the levels, their curvature as
 functions of the field (the Van Vleck term), with
-$ -\partial^{2}\xi_a/\partial \hfield^{2} = 2\sum_{b:\,\xi_b\neq\xi_a}|A_{ab}|^{2}/(\xi_b - \xi_a) $
+$ -\partial^{2}\enrg_a/\partial \hfield^{2} = 2\sum_{b:\,\enrg_b\neq\enrg_a}|A_{ab}|^{2}/(\enrg_b - \enrg_a) $
 from second-order perturbation theory.
 
 \paragraph{For conserved quantities, responses are covariances.} Let $ \hat A $
 be conserved, $ [\hat A, \hat H] = [\hat A, \hat N] = 0 $; the eigenbasis may
 then be chosen to diagonalise it, $ \hat A|a\rangle = A_a|a\rangle $, the
-field shifts the eigenvalues to $ \xi_a - \hfield\,A_a $ without changing the
+field shifts the eigenvalues to $ \enrg_a - \hfield\,A_a $ without changing the
 eigenvectors, and the Van Vleck term vanishes. For any $ \hat B $ diagonal in
-the same basis, with the weights $w_a:=e^{-\beta(\xi_a-\hfield\,A_a)}$ and
+the same basis, with the weights $w_a:=e^{-\beta(\enrg_a-\hfield\,A_a)}$ and
 $\Xi=\sum_aw_a$,
 \[
   \langle\hat B\rangle=\frac{\sum_aB_aw_a}{\Xi} ,\qquad
@@ -2817,8 +2818,8 @@ and the quotient rule gives
   =\frac{\beta\sum_aA_aB_aw_a}{\Xi}-\frac{\sum_aB_aw_a}{\Xi}\,\frac{\partial\Xi/\partial \hfield}{\Xi}
   =\beta\big(\langle\hat A\hat B\rangle-\langle\hat A\rangle\langle\hat B\rangle\big) .
 \]
-The same computation with $\partial w_a/\partial T=(\xi_a/k_BT^{2})\,w_a$ (at
-$\hfield=0$) replaces $\beta A_a$ by $\xi_a/k_BT^{2}$. Hence
+The same computation with $\partial w_a/\partial T=(\enrg_a/k_BT^{2})\,w_a$ (at
+$\hfield=0$) replaces $\beta A_a$ by $\enrg_a/k_BT^{2}$. Hence
 \begin{equation}\label{eq:filt_mb_response}
   \frac{\partial\langle\hat B\rangle}{\partial \hfield}\bigg|_{T,\mu}
   = \frac{\Cov(\hat A, \hat B)}{k_BT} ,
@@ -2827,7 +2828,7 @@ $\hfield=0$) replaces $\beta A_a$ by $\xi_a/k_BT^{2}$. Hence
   = \frac{\Cov(\hat{\mathcal{H}}, \hat B)}{k_BT^{2}} :
 \end{equation}
 a change of temperature acts as a field whose charge on the state $ a $ is
-$ \xi_a/T $. Instances are
+$ \enrg_a/T $. Instances are
 $ (\partial N/\partial\mu)_T = \Var(\hat N)/k_BT $ ($ \hat A = \hat B = \hat N $, $ \hfield = \mu $);
 the spin susceptibility $ \Var(\hat M)/Vk_BT $ whenever the total moment $ \hat M $ is
 conserved; $ C_\mu $ itself ($ \hat B = \hat{\mathcal{H}} $,
@@ -2839,27 +2840,27 @@ $ \hat A $ is not conserved, the field changes the eigenvectors as well as
 the eigenvalues. To first order in $ \hfield $ (perturbation theory in the
 eigenbasis, chosen within each degenerate level to diagonalise $ \hat A $ there),
 \[
-  \xi_a(\hfield) = \xi_a - \hfield\,A_{aa} , \qquad
-  |a(\hfield)\rangle = |a\rangle - \hfield\sum_{b\,:\,\xi_b\neq\xi_a}|b\rangle\,\frac{A_{ba}}{\xi_a - \xi_b} ,
+  \enrg_a(\hfield) = \enrg_a - \hfield\,A_{aa} , \qquad
+  |a(\hfield)\rangle = |a\rangle - \hfield\sum_{b\,:\,\enrg_b\neq\enrg_a}|b\rangle\,\frac{A_{ba}}{\enrg_a - \enrg_b} ,
   \qquad A_{ab} := \langle a|\hat A|b\rangle .
 \]
 In $ \langle\hat B\rangle = \sum_ap_a(\hfield)\,\langle a(\hfield)|\hat B|a(\hfield)\rangle $ the
 populations contribute
 $ \beta\sum_ap_aA_{aa}B_{aa} - \beta\langle\hat A\rangle\langle\hat B\rangle $ to the
 derivative at $ \hfield = 0 $, and the eigenvectors
-$ -\sum_{a,b}p_a(A_{ab}B_{ba} + B_{ab}A_{ba})/(\xi_a - \xi_b) $. Exchanging $ a $ and
+$ -\sum_{a,b}p_a(A_{ab}B_{ba} + B_{ab}A_{ba})/(\enrg_a - \enrg_b) $. Exchanging $ a $ and
 $ b $ in the second term of the latter gives the \emph{Lehmann} (spectral)
 representation of the isothermal susceptibility,
 \begin{equation}\label{eq:filt_mb_kubo}
   \chi_{AB} := \frac{\partial\langle\hat B\rangle}{\partial \hfield}\bigg|_{\hfield=0}
   = \sum_{a,b}A_{ab}B_{ba}\,w_{ab} - \beta\langle\hat A\rangle\langle\hat B\rangle ,
   \qquad
-  w_{ab} = \frac{p_b - p_a}{\xi_a - \xi_b} ,
+  w_{ab} = \frac{p_b - p_a}{\enrg_a - \enrg_b} ,
 \end{equation}
-with $ w_{ab} := \beta p_a $ when $ \xi_a = \xi_b $ (the limit of the quotient). For conserved $ \hat A $ only $ a = b $ survives and
+with $ w_{ab} := \beta p_a $ when $ \enrg_a = \enrg_b $ (the limit of the quotient). For conserved $ \hat A $ only $ a = b $ survives and
 Eq.~\eqref{eq:filt_mb_response} is recovered. The weight $ w_{ab} > 0 $ is the
 many-body filter for responses: it acts on \emph{pairs} of eigenstates connected by
-the perturbation. Writing $ y = \beta(\xi_a - \xi_b) $, $ w_{ab} = \beta p_b(1 - e^{-y})/y $
+the perturbation. Writing $ y = \beta(\enrg_a - \enrg_b) $, $ w_{ab} = \beta p_b(1 - e^{-y})/y $
 while $ \tfrac12\beta(p_a + p_b) = \tfrac12\beta p_b(1 + e^{-y}) $, and
 $ (1 - e^{-y})/y \leq \tfrac12(1 + e^{-y}) $ is the inequality $ \tanh(y/2) \leq y/2 $.
 Hence, with $ \delta\hat A = \hat A - \langle\hat A\rangle $ and
@@ -2869,7 +2870,7 @@ $ \sum_{ab}|A_{ab}|^{2}p_a = \langle\hat A^{2}\rangle $,
   \;\leq\; \frac{\Var(\hat A)}{k_BT} ,
 \]
 with equality on the right if and only if $ \hat A $ connects only states of equal
-$ \xi_a $, i.e.\ is conserved. A conserved quantity responds exactly as much as it
+$ \enrg_a $, i.e.\ is conserved. A conserved quantity responds exactly as much as it
 fluctuates; a non-conserved one responds less, because part of its fluctuation
 is carried by transitions between states of different energy, which a static field
 cannot exploit fully.
@@ -2893,20 +2894,20 @@ result that it is.
 \subsection{Microcanonical entropy and the smoothed density of states}
 \label{sec:second_mc}
 
-The number of eigenstates in an energy shell $[\xi,\xi+\Delta]$ is
+The number of eigenstates in an energy shell $[\enrg,\enrg+\Delta]$ is
 \begin{equation}\label{eq:filt_W}
-  W(\xi):=\cN(\xi+\Delta)-\cN(\xi)=:\bar\rho(\xi)\,\Delta ,
+  W(\enrg):=\cN(\enrg+\Delta)-\cN(\enrg)=:\bar\rho(\enrg)\,\Delta ,
 \end{equation}
 which defines the \emph{smoothed} density of states $\bar\rho$: the
 regularisation of the distribution $\rho$ by convolution with a window of
-width $\Delta$, $W=\langle \rho,\mathbb 1_{[\xi,\xi+\Delta]}\rangle$
+width $\Delta$, $W=\langle \rho,\mathbb 1_{[\enrg,\enrg+\Delta]}\rangle$
 (Section~\ref{sec:filt_dist}); for $V\to\infty$ it is the smoothed density of
 states referred to there. The microcanonical ensemble assigns the same
 probability $1/W$ to each of these states (the fundamental hypothesis of
 equal a priori probabilities~\cite[Eq.~(2.2.8)]{Schwabl}), and its entropy
 is Boltzmann's~\cite[Eq.~(2.3.4)]{Schwabl}
 \begin{equation}\label{eq:filt_Smc}
-  S_{\rm mc}(\xi)=k_B\ln W(\xi)=k_B\ln\big[\bar\rho(\xi)\,\Delta\big] :
+  S_{\rm mc}(\enrg)=k_B\ln W(\enrg)=k_B\ln\big[\bar\rho(\enrg)\,\Delta\big] :
 \end{equation}
 the number of states $W$ of the textbook definition is a pairing of the
 distribution $\rho$ with the indicator function of the shell. For a large
@@ -2914,8 +2915,8 @@ system the width $\Delta$ is immaterial, and $\bar\rho\Delta$ may be
 replaced by $\cN$~\cite[Eq.~(2.3.6)]{Schwabl}. Indeed, with
 $\cN=e^{V\lds(\varepsilon)/k_B}$ and $\Delta\ll V$,
 \[
-  W=\cN(\xi)\Big[e^{V[\lds(\varepsilon+\Delta/V)-\lds(\varepsilon)]/k_B}-1\Big]
-  =\cN(\xi)\,\big[e^{\Delta\,\lds_\varepsilon/k_B}-1\big] ,
+  W=\cN(\enrg)\Big[e^{V[\lds(\varepsilon+\Delta/V)-\lds(\varepsilon)]/k_B}-1\Big]
+  =\cN(\enrg)\,\big[e^{\Delta\,\lds_\varepsilon/k_B}-1\big] ,
   \qquad
   \ln W=\ln\cN+O(1) ,
 \]
@@ -2945,7 +2946,7 @@ $ V_2 = (1-x)V $, $\hat{\mathcal H}=\hat{\mathcal H}_1+\hat{\mathcal H}_2+\hat{\
 For interactions of finite range the coupling involves only the components
 near the dividing surface, $\|\hat{\mathcal H}_{12}\|=O(V^{(d-1)/d})$.
 Without the coupling, the products of the eigenstates of the parts are
-eigenstates of the whole, with energies $ \xi^{(1)} + \xi^{(2)} $; every pair
+eigenstates of the whole, with energies $ \enrg^{(1)} + \enrg^{(2)} $; every pair
 of levels below $ V_1\varepsilon_1 $ and $ V_2\varepsilon_2 $ gives a level of the whole below
 $ V_1\varepsilon_1 + V_2\varepsilon_2 $. The coupling shifts each ordered eigenvalue by at most
 $\|\hat{\mathcal H}_{12}\|$ (Weyl's inequality), so
@@ -3056,34 +3057,34 @@ $\beta$, being a supremum of linear functions. For a differentiable concave
 $\phi$ it reduces to the Legendre transform, with $\phi'(x)=\beta$ at the
 maximum.} of the logarithm of the level count,
 \begin{equation}\label{eq:filt_Phi}
-  \Phi(\beta):=\sup_{\xi\ge\xi_0}\big[\ln\cN(\xi)-\beta\xi\big] ,
+  \Phi(\beta):=\sup_{\enrg\ge\enrg_0}\big[\ln\cN(\enrg)-\beta\enrg\big] ,
 \end{equation}
 the supremum running over the energies at which $\cN\ge1$. Then, for every
 $\beta$ at which $\Xi$ exists and every $0<\beta'<\beta$,
 \begin{equation}\label{eq:filt_bounds}
-  \Phi(\beta)\;\le\;\ln\Xi(\beta)\;\le\;\Phi(\beta')-(\beta-\beta')\,\xi_0+\ln\frac{\beta}{\beta-\beta'} .
+  \Phi(\beta)\;\le\;\ln\Xi(\beta)\;\le\;\Phi(\beta')-(\beta-\beta')\,\enrg_0+\ln\frac{\beta}{\beta-\beta'} .
 \end{equation}
-For the lower bound, fix any $\xi\ge\xi_0$ and keep in the sum $\Xi$ only
-the $\cN(\xi)$ terms with $\xi_a\le\xi$; each of them is at least
-$e^{-\beta\xi}$, so $\Xi\ge\cN(\xi)\,e^{-\beta\xi}$ for every $\xi$, and the
-supremum over $\xi$ gives $\ln\Xi\ge\Phi(\beta)$. For the upper bound, the
+For the lower bound, fix any $\enrg\ge\enrg_0$ and keep in the sum $\Xi$ only
+the $\cN(\enrg)$ terms with $\enrg_a\le\enrg$; each of them is at least
+$e^{-\beta\enrg}$, so $\Xi\ge\cN(\enrg)\,e^{-\beta\enrg}$ for every $\enrg$, and the
+supremum over $\enrg$ gives $\ln\Xi\ge\Phi(\beta)$. For the upper bound, the
 definition of $\Phi$ at the smaller inverse temperature $\beta'$ gives
-$\cN(\xi)\le e^{\Phi(\beta')+\beta'\xi}$ for all $\xi$: the level count
+$\cN(\enrg)\le e^{\Phi(\beta')+\beta'\enrg}$ for all $\enrg$: the level count
 grows at most exponentially, at the rate $\beta'$. Inserted in the second
-form of Eq.~\eqref{eq:filt_laplace}, whose integrand vanishes below $\xi_0$,
+form of Eq.~\eqref{eq:filt_laplace}, whose integrand vanishes below $\enrg_0$,
 \[
-  \Xi(\beta)=\beta\int_{\xi_0}^{\infty}d\xi\;\cN(\xi)\,e^{-\beta\xi}
-  \;\le\;\beta\,e^{\Phi(\beta')}\int_{\xi_0}^{\infty}d\xi\;e^{-(\beta-\beta')\xi}
-  =\frac{\beta}{\beta-\beta'}\,e^{\Phi(\beta')-(\beta-\beta')\xi_0} .
+  \Xi(\beta)=\beta\int_{\enrg_0}^{\infty}d\enrg\;\cN(\enrg)\,e^{-\beta\enrg}
+  \;\le\;\beta\,e^{\Phi(\beta')}\int_{\enrg_0}^{\infty}d\enrg\;e^{-(\beta-\beta')\enrg}
+  =\frac{\beta}{\beta-\beta'}\,e^{\Phi(\beta')-(\beta-\beta')\enrg_0} .
 \]
 The supremum in Eq.~\eqref{eq:filt_Phi} is attained at an eigenvalue,
-$\xi_*(\beta)$, the thermal energy of the finite system: between two
+$\enrg_*(\beta)$, the thermal energy of the finite system: between two
 consecutive eigenvalues $\cN$ is constant and the bracket decreases. Since
-$\Phi(\beta)$ is at least the value of its bracket at $\xi_*(\beta')$,
-$\Phi(\beta')-\Phi(\beta)\le(\beta-\beta')\,\xi_*(\beta')$; with
+$\Phi(\beta)$ is at least the value of its bracket at $\enrg_*(\beta')$,
+$\Phi(\beta')-\Phi(\beta)\le(\beta-\beta')\,\enrg_*(\beta')$; with
 $\beta'=(1-\delta)\beta$, $0<\delta<1$, Eq.~\eqref{eq:filt_bounds} becomes
 \begin{equation}\label{eq:filt_bounds2}
-  0\;\le\;\ln\Xi(\beta)-\Phi(\beta)\;\le\;\delta\,\beta\,\big[\xi_*\big((1-\delta)\beta\big)-\xi_0\big]+\ln\frac1\delta .
+  0\;\le\;\ln\Xi(\beta)-\Phi(\beta)\;\le\;\delta\,\beta\,\big[\enrg_*\big((1-\delta)\beta\big)-\enrg_0\big]+\ln\frac1\delta .
 \end{equation}
 The bracket is the thermal energy measured from the ground state, at a
 temperature slightly above $T$; in units of $k_BT$ it is the number of
@@ -3159,26 +3160,26 @@ opposite direction from a measured $C_\mu(T)$.
 \paragraph{From the heat capacity to the partition function.} By
 Eqs.~\eqref{eq:filt_mb} and~\eqref{eq:filt_CU},
 $S(T)=S(0)+\int_0^TC_\mu\,dT'/T'$ and
-$\langle\hat{\mathcal H}\rangle(T)=\xi_0+\int_0^TC_\mu\,dT'$, with
+$\langle\hat{\mathcal H}\rangle(T)=\enrg_0+\int_0^TC_\mu\,dT'$, with
 $S(0)=k_B\ln d_0$ (at fixed size the Boltzmann weights tend to $1/d_0$ on
 the ground manifold as $T\to0$). Inserting these in
 Eq.~\eqref{eq:filt_mb} in the form
-$\ln\Xi+\beta\xi_0=S/k_B-\beta(\langle\hat{\mathcal H}\rangle-\xi_0)$,
+$\ln\Xi+\beta\enrg_0=S/k_B-\beta(\langle\hat{\mathcal H}\rangle-\enrg_0)$,
 \begin{equation}\label{eq:filt_XifromC}
-  \ln\frac{e^{\beta\xi_0}\,\Xi(\beta)}{d_0}
+  \ln\frac{e^{\beta\enrg_0}\,\Xi(\beta)}{d_0}
   =\int_0^{T}\frac{C_\mu(T')}{k_BT'}\,dT'-\frac{1}{k_BT}\int_0^{T}C_\mu(T')\,dT' ,
   \qquad
-  \frac{e^{\beta\xi_0}\,\Xi(\beta)}{d_0}=\Big\langle\frac{\rho(\xi_0+\,\cdot\,)}{d_0}\,,\,e_\beta\Big\rangle :
+  \frac{e^{\beta\enrg_0}\,\Xi(\beta)}{d_0}=\Big\langle\frac{\rho(\enrg_0+\,\cdot\,)}{d_0}\,,\,e_\beta\Big\rangle :
 \end{equation}
 the heat capacity at all temperatures gives the Laplace transform of the
-distribution $\cE\mapsto\rho(\xi_0+\cE)/d_0$ of the excitation energy
-$\cE:=\xi-\xi_0\ge0$, for all $\beta>0$.
+distribution $\cE\mapsto\rho(\enrg_0+\cE)/d_0$ of the excitation energy
+$\cE:=\enrg-\enrg_0\ge0$, for all $\beta>0$.
 
 \begin{proposition}[What $C_\mu(T)$ determines]\label{prop:invert}
 For any Hamiltonian, the function $C_\mu(T)$, $0<T<\infty$, at fixed $\mu$
-determines the distribution $\rho(\xi_0+\cE)/d_0$, i.e.\ all excitation
-energies $\xi_a-\xi_0$ of $\hat{\mathcal H}$ and all ratios of degeneracies
-$d_n/d_0$. It does not determine $\xi_0$ and $d_0$.
+determines the distribution $\rho(\enrg_0+\cE)/d_0$, i.e.\ all excitation
+energies $\enrg_a-\enrg_0$ of $\hat{\mathcal H}$ and all ratios of degeneracies
+$d_n/d_0$. It does not determine $\enrg_0$ and $d_0$.
 \end{proposition}
 \begin{proof}
 A measure on $[0,\infty)$ is determined by its Laplace transform (Lerch's
@@ -3193,14 +3194,14 @@ function all of whose moments vanish is zero, since it can be approximated
 uniformly by polynomials (Weierstrass)~\cite{Widder}.}), which with
 Eq.~\eqref{eq:filt_XifromC} gives the first statement. For the second,
 $C_\mu=\Var(\hat{\mathcal H})/k_BT^{2}$ is unchanged by a shift of all
-levels, $\xi_a\to\xi_a+{\rm const}$, and by a multiplication of all
+levels, $\enrg_a\to\enrg_a+{\rm const}$, and by a multiplication of all
 degeneracies by a common factor, $\rho\to{\rm const}\times \rho$.
 \end{proof}
 What is determined is the distribution, i.e.\ the measure $d\cN$, not values
 of $\rho$ at points, which do not exist. The two undetermined constants are
 fixed by other data: $d_0$ by the entropy sum rule
 $\ln(D/d_0)=\int_0^\infty C_\mu\,dT/k_BT$, Eq.~\eqref{eq:filt_sumrule}, if the
-dimension $D$ of the Fock space is known; and $\xi_0$, as a function of
+dimension $D$ of the Fock space is known; and $\enrg_0$, as a function of
 $\mu$, by the equation of state, $\langle\hat N\rangle=-\partial\Omega/\partial\mu$.
 
 \paragraph{What needs other observables.} The heat capacity contains no
@@ -3209,7 +3210,7 @@ Eqs.~\eqref{eq:filt_param} and~\eqref{eq:filt_gA},
 $\Xi\,\langle\hat A\rangle=\langle \rho_A,e_\beta\rangle$, so the conjugate
 quantity $\langle\hat A\rangle(T)$, together with $\Xi$, determines by the
 same theorem the weighted density of states
-$\rho_A=\sum_aA_{aa}\,\delta(\xi-\xi_a)$, i.e.\ the slopes of the levels in the
+$\rho_A=\sum_aA_{aa}\,\delta(\enrg-\enrg_a)$, i.e.\ the slopes of the levels in the
 field; the susceptibility $\chi_{AA}(T)$ likewise determines
 $\partial^{2}\rho/\partial \hfield^{2}$. The eigenvectors enter the thermodynamics
 only through these derivatives of the levels.
@@ -3244,7 +3245,7 @@ potential is analytic.
 $\varepsilon_k$ denote single-particle energies (written $E$ in the main
 text), not the many-body energy density; $\varrho(\varepsilon)$ is the
 single-particle density of states per unit volume, and
-$\xi_\lambda=\varepsilon_\lambda-\mu$.
+$\enrg_\lambda=\varepsilon_\lambda-\mu$.
 
 \subsection{From many-body levels to single-particle levels}
 \label{sec:filt_additive}
@@ -3273,12 +3274,12 @@ eigenstate a single one. Even where the eigenstates are Fock states, the
 energies need not be additive: for one orbital with spin and an on-site
 repulsion $U$ (the Hubbard atom), the eigenstates $|0\rangle$,
 $|{\uparrow}\rangle$, $|{\downarrow}\rangle$, $|{\uparrow\downarrow}\rangle$
-have $\xi_a=0,\ \xi,\ \xi,\ 2\xi+U$ with $\xi=\varepsilon-\mu$, and
-$\Xi=1+2e^{-\beta\xi}+e^{-\beta(2\xi+U)}$ equals $(1+e^{-\beta\xi})^{2}$ only
-for $U=0$. The addition energies $\xi_b-\xi_a$ then belong to \emph{pairs} of
+have $\enrg_a=0,\ \enrg,\ \enrg,\ 2\enrg+U$ with $\enrg=\varepsilon-\mu$, and
+$\Xi=1+2e^{-\beta\enrg}+e^{-\beta(2\enrg+U)}$ equals $(1+e^{-\beta\enrg})^{2}$ only
+for $U=0$. The addition energies $\enrg_b-\enrg_a$ then belong to \emph{pairs} of
 many-body states and not to single orbitals, and the thermodynamics is not a
 functional of the single-particle spectral function alone: the entropy, for
-instance, requires the full $\rho(\xi)$. The single-particle filters of this
+instance, requires the full $\rho(\enrg)$. The single-particle filters of this
 appendix therefore hold exactly for quadratic Hamiltonians, and for
 interacting systems to the extent that the low-lying many-body spectrum is
 additive: for the quasiparticles of a Landau Fermi liquid at low
@@ -3361,11 +3362,11 @@ in the eigenbasis as in the site, momentum or any other basis. The term
 $ \mu\hat N $ is therefore diagonal in the same Fock basis as $ \hat H $. With the
 single-particle energies measured from the chemical potential,
 \[
-  \xi_\lambda := \varepsilon_\lambda - \mu ,
+  \enrg_\lambda := \varepsilon_\lambda - \mu ,
   \qquad
-  \hat{\mathcal{H}} = \hat H - \mu\hat N = \sum_\lambda \xi_\lambda\,\hat n_\lambda ,
+  \hat{\mathcal{H}} = \hat H - \mu\hat N = \sum_\lambda \enrg_\lambda\,\hat n_\lambda ,
 \]
-whose eigenvalues are $ \xi_{\{n\}} = \sum_\lambda\xi_\lambda n_\lambda $.
+whose eigenvalues are $ \enrg_{\{n\}} = \sum_\lambda\enrg_\lambda n_\lambda $.
 
 \paragraph{Factorisation.} Evaluate the trace $ \Xi = \Tr e^{-\beta\hat{\mathcal{H}}} $ of
 Section~\ref{sec:filt_exact} in the Fock eigenbasis. The label $ a $ is now the full
@@ -3374,12 +3375,12 @@ values (the fixed-$ N $ constraint of Appendix~\ref{app:quad_factor} is absent i
 grand ensemble), so the sum over $ a $ is a multiple sum, one sum per orbital. The
 weight of each state is the exponential of a sum, hence a product:
 \[
-\Xi = \sum_a e^{-\beta \xi_a}
-= \sum_{n_1}\sum_{n_2}\cdots\; e^{-\beta\sum_\lambda\xi_\lambda n_\lambda}
+\Xi = \sum_a e^{-\beta \enrg_a}
+= \sum_{n_1}\sum_{n_2}\cdots\; e^{-\beta\sum_\lambda\enrg_\lambda n_\lambda}
 = \sum_{n_1}\sum_{n_2}\cdots\;\prod_\lambda e^{-u_\lambda n_\lambda}
 = \prod_\lambda\Big(\sum_{n_\lambda} e^{-u_\lambda n_\lambda}\Big) ,
 \]
-with $ u_\lambda = \beta\xi_\lambda $. The last step is the distributive law: a sum over independent indices of a
+with $ u_\lambda = \beta\enrg_\lambda $. The last step is the distributive law: a sum over independent indices of a
 product of factors, each depending on one index only, is the product of the
 separate sums (as in $ \sum_{a,b} f(a)g(b) = \sum_a f(a)\sum_b g(b) $). It is
 legitimate precisely because (i) $ \hat{\mathcal{H}} $ is a sum of commuting
@@ -3392,7 +3393,7 @@ no role in the trace of a diagonal operator. The result is:
 \qquad
 \Kappa(u):=\sum_{n\ \rm allowed} e^{-nu},
 \qquad
-\;u_\lambda:=\frac{\xi_\lambda}{k_BT}=\frac{\varepsilon_\lambda-\mu}{k_BT}\
+\;u_\lambda:=\frac{\enrg_\lambda}{k_BT}=\frac{\varepsilon_\lambda-\mu}{k_BT}\
 \end{equation}
 The same factorisation holds for the probabilities themselves: the probability of
 a Fock state is
@@ -3543,18 +3544,18 @@ any commitment about statistics.
 \paragraph{The same quantity as a fluctuation.} The exact many-body result,
 Eq.~\eqref{eq:filt_mb}, is $ c_\mu = \Var(\hat{\mathcal{H}})/Vk_BT^{2} $ for any Hamiltonian. That
 identity and Eq.~\eqref{eq:filt_Cgen} are the same statement here. The operator
-$ \hat{\mathcal{H}} = \hat H - \mu\hat N = \sum_\lambda\xi_\lambda\hat n_\lambda $ is
+$ \hat{\mathcal{H}} = \hat H - \mu\hat N = \sum_\lambda\enrg_\lambda\hat n_\lambda $ is
 a sum of \emph{independent} terms, so variances add (the covariances vanish,
 Appendix~\ref{sec:filt_twolevel}),
-and $\xi_\lambda^2=(k_BT)^2u_\lambda^2$, so
+and $\enrg_\lambda^2=(k_BT)^2u_\lambda^2$, so
 \begin{equation}\label{eq:filt_C_fluct}
 \frac{\Var(E-\mu N)}{Vk_BT^{2}}
-=\frac{1}{Vk_BT^{2}}\sum_\lambda\xi_\lambda^{2}\Var(\hat n_\lambda)
+=\frac{1}{Vk_BT^{2}}\sum_\lambda\enrg_\lambda^{2}\Var(\hat n_\lambda)
 =\frac{k_B}{V}\sum_\lambda u_\lambda^{2}\,\Var(\hat n_\lambda).
 \end{equation}
 Equation~\eqref{eq:filt_Cgen} is thus a sum, over orbitals, of the variance
-$ \Var\big(\xi_\lambda\hat n_\lambda\big) =
-\xi_\lambda^2\Var(\hat n_\lambda) $ of the energy that each orbital
+$ \Var\big(\enrg_\lambda\hat n_\lambda\big) =
+\enrg_\lambda^2\Var(\hat n_\lambda) $ of the energy that each orbital
 carries: the energy carried by one particle, squared, times the variance of the
 number of particles carrying it.
 
@@ -4104,8 +4105,8 @@ window is therefore not a representation of the delta function, and the
 compressibility $ \chi_c = \int d\varepsilon\,\varrho\,\delta^{\rm B}_T $ is finite only if
 $ \varrho $ vanishes faster than $ \varepsilon - \mu $ at $ \mu $, or if $ \mu $ lies strictly
 below the bottom of the spectrum. The divergence is that of the number fluctuations
-of a bosonic mode, $ \Var(\hat n) = n(1+n) \simeq (k_BT/\xi_\lambda)^{2} $ for
-$ \xi_\lambda \ll k_BT $: the precursor of Bose--Einstein condensation.
+of a bosonic mode, $ \Var(\hat n) = n(1+n) \simeq (k_BT/\enrg_\lambda)^{2} $ for
+$ \enrg_\lambda \ll k_BT $: the precursor of Bose--Einstein condensation.
 
 The heat capacity and the entropy are better behaved, because their amplitudes
 vanish at $ \mu $ fast enough to cure the divergence. With
@@ -4283,7 +4284,7 @@ The blindness is the additive form of an exact statement. By
 Eq.~\eqref{eq:filt_mb_response}, $ \chi_c $ and $ c_\mu $ are the variances of two
 different conserved quantities, $ \hat N $ and $ \hat{\mathcal{H}} $, over the same distribution
 $ p_a $ of eigenstates. Equilibrium mixing among eigenstates that differ in $ N $ but
-have the same $ \xi_a $ --- a particle added or removed at no cost relative to the
+have the same $ \enrg_a $ --- a particle added or removed at no cost relative to the
 reservoir --- contributes to $ \Var(\hat N) $ and nothing to $ \Var(\hat{\mathcal{H}}) $. For independent
 fermions those are precisely the fluctuations of the levels at $ \mu $.
 
