@@ -1601,7 +1601,107 @@ minimiser changes its character. Every singularity of the thermodynamics is
 therefore a statement about how the thermal energy $\varepsilon_*(T,f)$, the
 energy at which the level count grows at the rate $1/k_BT$, moves through
 the spectrum, and the character of the singularity is read from the form of
-\lndos{} $\lds$ near the energies involved.
+\lndos{} $\lds$ near the energies involved (Fig.~\ref{fig:transitions}).
+
+\begin{figure}[htbp]
+\centering
+% common style of the landscape panels: energy density to the right, logdos upwards
+\tikzset{
+  landscape/.style={>=Stealth,font=\small,x=1.1cm,y=1.6cm},
+  lds/.style={very thick,blue!60!black},
+  edge/.style={very thick,orange!85!black},
+  guide/.style={thin,dotted,gray!80!black},
+  alt/.style={very thick,red!75!black,dashed},
+}
+\begin{tikzpicture}[landscape]
+  % panel (a): discontinuous transition, the linear stretch of the concave landscape
+  \node[font=\normalsize] at (-0.5,2.4) {(a)};
+  \draw[->] (-0.3,0) -- (4.4,0) node[below left]{$\varepsilon$};
+  \draw[->] (0,-0.2) -- (0,2.4) node[above]{$\lds$};
+  \draw[lds,domain=0:1,samples=40,smooth] plot (\x,{sqrt(\x)});
+  \draw[lds] (1,1) -- (2.2,1.6);
+  \draw[lds,domain=2.2:4.1,samples=40,smooth] plot (\x,{1.6+0.5*(\x-2.2)-0.08*(\x-2.2)^2});
+  \draw[alt,domain=1:2.2,samples=40,smooth] plot (\x,{1+0.5*(\x-1)-0.35*sin(deg(pi*(\x-1)/1.2))});
+  \draw[edge] (-0.2,0.4) -- (3.6,2.3);
+  \node[orange!85!black,anchor=west,font=\scriptsize] at (3.3,2.35) {slope $1/T_1$};
+  \draw[guide] (1,0) -- (1,1); \draw[guide] (2.2,0) -- (2.2,1.6);
+  \draw[guide] (0,1) -- (1,1); \draw[guide] (0,1.6) -- (2.2,1.6);
+  \node[below,font=\scriptsize] at (1,0) {$\varepsilon_-$};
+  \node[below,font=\scriptsize] at (2.2,0) {$\varepsilon_+$};
+  \draw[<->,thin] (0.15,1) -- (0.15,1.6) node[midway,right,font=\scriptsize]{$\Delta s$};
+  \draw[<->,thin] (1,-0.3) -- (2.2,-0.3) node[midway,below,font=\scriptsize]{latent heat};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[landscape]
+  % panel (b): continuous transition, vanishing curvature at the critical energy
+  \node[font=\normalsize] at (-0.5,2.4) {(b)};
+  \draw[->] (-0.3,0) -- (4.4,0) node[below left]{$\varepsilon$};
+  \draw[->] (0,-0.2) -- (0,2.4) node[above]{$\lds$};
+  \draw[lds,domain=0:4.1,samples=80,smooth] plot (\x,{1.2+0.4*(\x-2)-0.03*abs(\x-2)^3});
+  \draw[edge] (0.3,0.52) -- (3.9,1.96);
+  \node[orange!85!black,anchor=west,font=\scriptsize] at (2.9,2.15) {slope $1/T_c$};
+  \draw[guide] (2,0) -- (2,1.2);
+  \node[below,font=\scriptsize] at (2,0) {$\varepsilon_c$};
+  \fill[blue!60!black] (2,1.2) circle (1.5pt);
+  \node[anchor=north west,font=\scriptsize,align=left] at (2.1,1.1) {$\lds_{\varepsilon\varepsilon}=0$:\\ $c_\mu\to\infty$};
+\end{tikzpicture}
+
+\vspace{3mm}
+
+\begin{tikzpicture}[landscape]
+  % panel (c): crossover, the probing point passes a smooth change of form
+  \node[font=\normalsize] at (-0.5,2.4) {(c)};
+  \draw[->] (-0.3,0) -- (4.4,0) node[below left]{$\varepsilon$};
+  \draw[->] (0,-0.2) -- (0,2.4) node[above]{$\lds$};
+  \fill[gray!15] (0.7,0) rectangle (1.3,2.3);
+  \draw[lds,domain=0:1,samples=40,smooth] plot (\x,{\x^0.75});
+  \draw[lds,domain=1:4.1,samples=40,smooth] plot (\x,{1+0.75*(\x-1)-0.12*(\x-1)^2});
+  % edges at a temperature below and above the crossover temperature
+  \draw[edge] (-0.2,0.088) -- (1.5,1.38);          % slope 0.76, tangent at x=0.95 (power law)
+  \draw[edge] (1.2,1.534) -- (4.3,2.37);           % slope 0.27, tangent at x=3 (quadratic)
+  \fill[orange!85!black] (0.95,0.962) circle (1.5pt);
+  \fill[orange!85!black] (3,2.02) circle (1.5pt);
+  \node[below,font=\scriptsize] at (1,0) {$\varepsilon_\times$};
+  \node[font=\scriptsize,anchor=south,blue!60!black] at (0.45,1.0) {$\propto\delta\varepsilon^{\sigma}$};
+  \node[font=\scriptsize,anchor=north,blue!60!black] at (3.6,1.85) {other form};
+  \node[font=\scriptsize,orange!85!black,anchor=north west] at (1.6,1.35) {$T>T_\times$};
+  \node[font=\scriptsize,orange!85!black,anchor=north west] at (0.5,0.42) {$T<T_\times$};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[landscape]
+  % panel (d): quantum transition, the boundary of the landscape as a function of a parameter
+  \node[font=\normalsize] at (-2.2,2.4) {(d)};
+  \draw[->] (-2.2,1.0) -- (2.3,1.0) node[below left]{$f$};
+  \draw[->] (0,-0.2) -- (0,2.4) node[right]{$\varepsilon_0(f)$};
+  \draw[alt] (-2,1.9) -- (2,0.3);
+  \draw[alt] (-2,0.3) -- (2,1.9);
+  \draw[lds] (-2,0.3) -- (0,1.1) -- (2,0.3);
+  % finite size: avoided crossing
+  \draw[gray!60!black,thick,domain=-2:2,samples=60,smooth] plot (\x,{1.1-0.4*sqrt(\x*\x+0.08)});
+  \node[below,font=\scriptsize] at (0,1.0) {$f_c$};
+  \node[font=\scriptsize,anchor=south west,gray!40!black,align=left] at (0.35,1.3) {finite $V$:\\ avoided crossing};
+  \node[font=\scriptsize,anchor=north,blue!60!black] at (-1.2,0.55) {$V\to\infty$: kink};
+\end{tikzpicture}
+\caption{The four cases of Section~\ref{sec:transitions} as landscapes
+$\lds(\varepsilon)$ (blue) with the straight edge of slope $1/T$ (orange),
+which rests on the landscape at the probing point $\varepsilon_*(T)$.
+(a)~Discontinuous transition: for short-range interactions $\lds$ is
+concave and has a linear stretch between $\varepsilon_-$ and
+$\varepsilon_+$ (the phase-separated states); the edge of slope $1/T_1$
+rests on the whole stretch, the probing point jumps across it, the entropy
+jumps by $\Delta s$ and the latent heat is $\varepsilon_+-\varepsilon_-$.
+For long-range interactions the stretch may be replaced by a non-concave
+dip (red, dashed), whose levels never dominate.
+(b)~Continuous transition: the curvature of $\lds$ vanishes at
+$\varepsilon_c$; the probing point moves continuously through
+$\varepsilon_c$, but at a singular rate, $c_\mu=-1/T^{2}\lds_{\varepsilon\varepsilon}$.
+(c)~Crossover: $\lds$ changes its form over a range of energies about
+$\varepsilon_\times$ (grey) without a non-analyticity; the probing point
+passes it over a range of temperatures, and $\omega(T)$ is analytic.
+(d)~Quantum transition: the boundary $\varepsilon_0(f)$ of the landscape is
+non-analytic in a parameter $f$. Two analytic branches (red, dashed) cross
+at $f_c$; the ground state (blue) has a kink. At finite size the crossing is
+avoided (grey), and the kink appears only for $V\to\infty$.}
+\label{fig:transitions}
+\end{figure}
 \begin{itemize}\setlength{\itemsep}{2pt}
 \item \emph{Discontinuous transition: the thermal energy jumps.} Two
   separated ranges of the spectrum, about $\varepsilon_-$ and
@@ -1963,8 +2063,99 @@ has no relevance here. In the spectrum the competition is a
 definite statement: an unusually large number of many-body levels lies just
 above the ground state,
 and the thermodynamics is decided by the form of $\ln\cN$ in this group of
-levels. The cases below differ by that form; each is derived from the
-results of Sections~\ref{sec:filters}--\ref{sec:filt_lowenergy}.
+levels. The cases below differ by that form (Fig.~\ref{fig:frustration});
+each is derived from the results of
+Sections~\ref{sec:filters}--\ref{sec:filt_lowenergy}.
+
+\begin{figure}[htbp]
+\centering
+\tikzset{
+  landscape/.style={>=Stealth,font=\small,x=1.6cm,y=1.6cm},
+  lds/.style={very thick,blue!60!black},
+  edge/.style={very thick,orange!85!black},
+  guide/.style={thin,dotted,gray!80!black},
+  alt/.style={very thick,red!75!black,dashed},
+}
+\begin{tikzpicture}[landscape]
+  % panel (a): two competing families and the common tangent of their landscapes
+  \node[font=\normalsize] at (-0.45,1.55) {(a)};
+  \draw[->] (-0.15,0) -- (2.5,0) node[below left]{$\delta\varepsilon$};
+  \draw[->] (0,-0.1) -- (0,1.5) node[above]{$\lds$};
+  \draw[lds,domain=0:2.3,samples=50,smooth] plot (\x,{0.55*sqrt(\x)});
+  \draw[blue!65,domain=0.5:2.3,samples=50,smooth] plot (\x,{0.95*sqrt(\x-0.5)});
+  % common tangent: touches 0.55 sqrt(x) at x1 and 0.95 sqrt(x-0.5) at x2 with equal slope
+  \draw[edge] (-0.1,0.083) -- (2.4,1.452);
+  \fill[orange!85!black] (0.252,0.276) circle (1.4pt);
+  \fill[orange!85!black] (1.252,0.824) circle (1.4pt);
+  \draw[guide] (0.5,0) -- (0.5,0.1);
+  \node[below,font=\scriptsize] at (0.5,0) {$\delta_1$};
+  \node[font=\scriptsize,blue!60!black,anchor=north west] at (1.3,0.55) {$\lds_0$};
+  \node[font=\scriptsize,blue!65,anchor=north west] at (2.2,1.0) {$\lds_1$};
+  \node[font=\scriptsize,orange!85!black,anchor=south east] at (1.1,0.85) {slope $1/T_\times$};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[landscape]
+  % panel (b): exponentially many ground states, gap above them
+  \node[font=\normalsize] at (-0.45,1.55) {(b)};
+  \draw[->] (-0.15,0) -- (2.5,0) node[below left]{$\delta\varepsilon$};
+  \draw[->] (0,-0.1) -- (0,1.5) node[above]{$\lds$};
+  \draw[lds,domain=0.002:2.3,samples=120,smooth] plot (\x,{0.5+0.8*(\x/2.3)*(1-ln(\x/2.3))});
+  \fill[blue!60!black] (0,0.5) circle (1.4pt);
+  \node[left,font=\scriptsize] at (0,0.5) {$s_0$};
+  \node[font=\scriptsize,blue!60!black,anchor=north west,align=left] at (0.9,0.9) {vertical tangent at $s_0$:\\ activated, gap $\Delta$};
+  \draw[thin,blue!60!black] (0.9,0.85) -- (0.08,0.7);
+\end{tikzpicture}
+
+\vspace{3mm}
+
+\begin{tikzpicture}[landscape]
+  % panel (c): the degenerate levels spread over a narrow group of width W
+  \node[font=\normalsize] at (-0.45,1.55) {(c)};
+  \draw[->] (-0.15,0) -- (2.5,0) node[below left]{$\delta\varepsilon$};
+  \draw[->] (0,-0.1) -- (0,1.5) node[above]{$\lds$};
+  \fill[gray!15] (0,0) rectangle (0.15,1.4);
+  \draw[lds,domain=0:0.15,samples=30,smooth] plot (\x,{0.5*sqrt(\x/0.15)});
+  \draw[lds,domain=0.152:2.3,samples=120,smooth] plot (\x,{0.5+0.8*((\x-0.15)/2.15)*(1-ln((\x-0.15)/2.15))});
+  \draw[guide] (0,0.5) -- (0.15,0.5);
+  \node[left,font=\scriptsize] at (0,0.5) {$s_0$};
+  \node[font=\scriptsize,anchor=west] at (0.2,1.3) {$\sim W$};
+  \node[font=\scriptsize,blue!60!black,anchor=north west,align=left] at (0.9,0.9) {entropy $s_0$ released\\ below $k_BT\sim W$};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[landscape]
+  % panel (d): the exponent of the power law for a degenerate manifold of wave vectors
+  \node[font=\normalsize] at (-0.45,1.55) {(d)};
+  \draw[->] (-0.15,0) -- (2.5,0) node[below left]{$\delta\varepsilon$};
+  \draw[->] (0,-0.1) -- (0,1.5) node[above]{$\lds$};
+  \draw[lds,domain=0:2.3,samples=60,smooth] plot (\x,{0.8*\x^0.75});
+  \draw[blue!65,domain=0:2.3,samples=60,smooth] plot (\x,{sqrt(\x)});
+  \draw[alt,domain=0.001:2.3,samples=80,smooth] plot (\x,{sqrt(\x)*(\x/(\x+0.3))^(1/6)});
+  \draw[guide] (0.3,0) -- (0.3,0.5);
+  \node[below,font=\scriptsize] at (0.3,0) {$\sim\delta$};
+  \node[font=\scriptsize,blue!60!black,anchor=north west] at (1.5,0.95) {$d_m=0$: $\sigma=\frac{d}{d+z}$};
+  \node[font=\scriptsize,blue!65,anchor=south west] at (0.5,1.22) {$d_m>0$: $\sigma=\frac{d-d_m}{d-d_m+z}$};
+  \node[font=\scriptsize,red!75!black,anchor=north west] at (0.35,0.35) {lifted by $\delta$};
+\end{tikzpicture}
+\caption{Frustration, Section~\ref{sec:frustration}: the landscape just
+above the ground state, $\delta\varepsilon=\varepsilon-\varepsilon_0$.
+(a)~Two competing families, $\lds_0$ built on the ground state and a softer
+$\lds_1$ (more levels, larger amplitude) built on a state $\delta_1$ higher;
+$\lds$ is the larger of the two. The common tangent of slope $1/T_\times$
+is a discontinuous transition between the orders, at a temperature set by
+$\delta_1$, Eq.~\eqref{eq:filt_compete}.
+(b)~Exponentially many ground states: $\lds$ starts at the residual entropy
+$s_0$ and rises with a vertical tangent, $\lds-s_0\propto-x\ln x$ with
+$x\propto\delta\varepsilon/\Delta$, which is the activated law
+\eqref{eq:filt_gap}: the slope $1/T$ is reached only at exponentially
+small $\delta\varepsilon$.
+(c)~The same levels spread over a narrow group of width $W$ (grey): $\lds$
+rises from $0$ to $s_0$ within $\delta\varepsilon\sim W$, and the residual
+entropy is released in a maximum of $c_\mu$ at $k_BT\sim W$.
+(d)~Gapless modes on a degenerate manifold of wave vectors of dimension
+$d_m$ give a steeper power law than Goldstone modes, with the exponent set
+by the codimension $d-d_m$, Eq.~\eqref{eq:filt_manifold}; when the degeneracy is lifted by
+$\delta$ (red, dashed) the steeper law holds above $\delta\varepsilon\sim\delta$ and the
+selected order shows only below, Eq.~\eqref{eq:filt_neardeg}.}
+\label{fig:frustration}
+\end{figure}
 
 \paragraph{(a) A finite number of competing states.} Let the low-energy
 spectrum consist of $K$ families of levels, $k=0,\dots,K-1$, the family $k$
@@ -2156,7 +2347,95 @@ degenerate levels are split into bands whose width is set by the disorder,
 levels are pushed into gaps and beyond band edges by rare regions, and the
 exponents of $\lds$ may change. For short-range disorder $\ln\cN$ is extensive and
 self-averaging, so that $\lds(\varepsilon)$ is the same for almost every large
-sample. The consequences are read from its form.
+sample. The consequences are read from its form (Fig.~\ref{fig:disorder}).
+
+\begin{figure}[htbp]
+\centering
+\tikzset{
+  landscape/.style={>=Stealth,font=\small,x=1.4cm,y=1.6cm},
+  lds/.style={very thick,blue!60!black},
+  clean/.style={very thick,red!75!black},
+  guide/.style={thin,dotted,gray!80!black},
+}
+\begin{tikzpicture}[landscape]
+  % panel (a): single-particle density of states at a band edge, clean and with a Lifshitz tail
+  \node[font=\normalsize] at (-1.45,1.55) {(a)};
+  \draw[->] (-1.1,0) -- (2.2,0) node[below left]{$E$};
+  \draw[->] (-1.0,-0.1) -- (-1.0,1.5) node[above]{$\varrho$};
+  \draw[clean] (-1.0,0) -- (0,0);
+  \draw[clean,domain=0:2,samples=50,smooth] plot (\x,{0.9*sqrt(\x)});
+  \draw[lds,domain=-0.59:0.2,samples=80,smooth] plot (\x,{0.9*0.68*exp(-0.3/((\x+0.6)^1.5))});
+  \draw[lds,domain=0.2:2,samples=50,smooth] plot (\x,{0.9*sqrt(\x+0.0)});
+  \draw[guide] (0,0) -- (0,1.0);
+  \node[below,font=\scriptsize] at (0,0) {$E_0$};
+  \node[below,font=\scriptsize] at (-0.6,0) {$E_0'$};
+  \node[font=\scriptsize,red!75!black,anchor=west,align=left] at (0.9,0.5) {clean: $B|E-E_0|^{r}$};
+  \node[font=\scriptsize,blue!60!black,anchor=south east,align=right] at (0.05,0.35) {Lifshitz\\ tail};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[landscape]
+  % panel (b): a gap of the clean spectrum filled by the disorder
+  \node[font=\normalsize] at (-0.45,1.55) {(b)};
+  \draw[->] (-0.1,0) -- (3.2,0) node[below left]{$E$};
+  \draw[->] (0,-0.1) -- (0,1.5) node[above]{$\varrho$};
+  \draw[clean,domain=0:0.8,samples=40,smooth] plot (\x,{0.9*sqrt(0.8-\x)});
+  \draw[clean] (0.8,0) -- (1.8,0);
+  \draw[clean,domain=1.8:3.0,samples=40,smooth] plot (\x,{0.9*sqrt(\x-1.8)});
+  \draw[lds,domain=0:3.0,samples=120,smooth] plot (\x,{0.9*sqrt(max(0.8-\x,0)+0.0)*0+0.9*sqrt(0.5*(0.8-\x+sqrt((0.8-\x)^2+0.03)))*(\x<1.3)+0.9*sqrt(0.5*(\x-1.8+sqrt((\x-1.8)^2+0.03)))*(\x>=1.3)+0.07});
+  \draw[guide] (1.3,0) -- (1.3,0.6);
+  \node[below,font=\scriptsize] at (1.3,0) {$\mu$};
+  \node[font=\scriptsize,blue!60!black,anchor=south] at (1.3,0.62) {$\varrho(\mu)>0$: $c_\mu\propto T$};
+  \node[font=\scriptsize,red!75!black,anchor=north] at (1.3,-0.3) {clean gap: activated};
+\end{tikzpicture}
+
+\vspace{3mm}
+
+\begin{tikzpicture}[landscape]
+  % panel (c): distributions of local splittings
+  \node[font=\normalsize] at (-0.45,1.55) {(c)};
+  \draw[->] (-0.1,0) -- (2.6,0) node[below left]{$\Delta$};
+  \draw[->] (0,-0.1) -- (0,1.5) node[above]{$P(\Delta)$};
+  \fill[gray!15] (0,0) rectangle (0.6,1.4);
+  \node[font=\scriptsize,anchor=south] at (0.3,1.1) {$\Delta<k_BT$};
+  \draw[lds] (0,0.6) -- (2.4,0.6);
+  \draw[blue!45,domain=0.1:2.4,samples=60,smooth] plot (\x,{0.45/sqrt(\x)});
+  \draw[red!75!black,very thick,dashed,domain=0:2.4,samples=60,smooth] plot (\x,{0.6*sqrt(\x/1.5)});
+  \node[font=\scriptsize,blue!60!black,anchor=south west] at (0.65,0.65) {$a=1$: $P_0$ (glass)};
+  \node[font=\scriptsize,blue!45,anchor=south west] at (0.75,1.0) {$a<1$: $\chi$ diverges};
+  \node[font=\scriptsize,red!75!black,anchor=south west] at (1.9,0.8) {$a>1$};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[landscape]
+  % panel (d): the resulting landscapes above the ground state
+  \node[font=\normalsize] at (-0.45,1.55) {(d)};
+  \draw[->] (-0.1,0) -- (2.6,0) node[below left]{$\delta\varepsilon$};
+  \draw[->] (0,-0.1) -- (0,1.5) node[above]{$\lds$};
+  \draw[clean,domain=0.002:2.4,samples=120,smooth] plot (\x,{0.55*(\x/2.4)*(1-ln(\x/2.4))});
+  \draw[lds,domain=0:2.4,samples=60,smooth] plot (\x,{0.6*sqrt(\x)});
+  \draw[blue!45,domain=0:2.4,samples=60,smooth] plot (\x,{0.85*\x^(1/3)});
+  \node[font=\scriptsize,red!75!black,anchor=north west] at (1.3,0.42) {clean gap: $-x\ln x$};
+  \node[font=\scriptsize,blue!60!black,anchor=north west] at (1.75,0.74) {$\delta\varepsilon^{1/2}$};
+  \node[font=\scriptsize,blue!45,anchor=south west] at (1.5,1.2) {$\delta\varepsilon^{a/(a+1)}$, $a<1$};
+\end{tikzpicture}
+\caption{Disorder, Section~\ref{sec:disorder}: clean spectra in red,
+disordered ones in blue.
+(a)~Single-particle density of states at a band edge. The clean power law
+$B|E-E_0|^{r}$ gives the Lifshitz transition, of order $r+2$, as $\mu$
+crosses $E_0$; the rare-region tail $\exp[-{\rm const}\,(E-E_0')^{-d/2}]$ of
+the disordered system, with all derivatives vanishing at the new edge
+$E_0'$, rounds it into an essential singularity.
+(b)~A gap of the clean spectrum. A non-zero $\varrho(\mu)$ inside the gap
+replaces the activated law~\eqref{eq:filt_gap} by the linear
+law~\eqref{eq:filt_sommerfeld}.
+(c)~Distributions of the splittings $\Delta$ of local two-level systems,
+$P(\Delta)\propto\Delta^{a-1}$: the groups with $\Delta<k_BT$ (grey) are
+excited and respond as free moments, so $c_\mu\propto T^{a}$ and
+$\chi\propto T^{a-1}$; the flat case $a=1$ is the glass,
+Eq.~\eqref{eq:filt_tls}.
+(d)~The same cases as landscapes: the clean gap rises as $-x\ln x$ (activated),
+a filled gap or a flat $P(\Delta)$ as $\delta\varepsilon^{1/2}$ (as a Fermi
+liquid), and a power-law $P(\Delta)$ with $a<1$ more steeply, $\delta\varepsilon^{a/(a+1)}$,
+with a non-universal exponent.}
+\label{fig:disorder}
+\end{figure}
 \begin{itemize}\setlength{\itemsep}{2pt}
 \item \emph{Broadened degenerate levels.} A level of degeneracy
   $d_0=e^{V\lds_0/k_B}$ spread over a local width $W$ is case~(c) of
