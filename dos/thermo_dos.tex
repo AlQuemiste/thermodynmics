@@ -363,7 +363,7 @@ below.
   since the test function does not depend on $f$, this is differentiation
   under the integral sign.
   For $\hat{\mathcal H}(f)=\hat{\mathcal H}-f\hat A$,
-  the Hellmann--Feynman theorem (Section~\ref{sec:filt_resp}) gives
+  the Hellmann--Feynman theorem (Appendix~\ref{app:lehmann}) gives
   $\partial\xi_a/\partial f=-A_{aa}$, so that
   $\partial_f\sum_a\varphi(\xi_a)=-\sum_aA_{aa}\varphi'(\xi_a)$, i.e.
   \begin{equation}\label{eq:filt_gA}
@@ -585,48 +585,6 @@ the Laplace transform of $\partial \rho/\partial f$, and the susceptibility that
 of $\partial^{2}\rho/\partial f^{2}$ less the square of the first, each
 normalised by $ \Xi $. Both statements are exact.
 
-%DO: I think we do not need {Explicit form.} in the main body of the text. Move it to appendix.
-\paragraph{Explicit form.} A level moves with the field at the rate
-$ \partial\xi_a/\partial f = -A_{aa} $, with
-$ A_{aa} = \langle a|\hat A|a\rangle $ (the Hellmann--Feynman
-theorem\footnote{For a normalised eigenvector
-$ |a(f)\rangle $ of $ \hat{\mathcal{H}}(f) $ with eigenvalue $ \xi_a(f) $,
-$ \partial\xi_a/\partial f = \langle a|\partial\hat{\mathcal{H}}/\partial f|a\rangle $:
-the terms containing the derivative of the eigenvector add up to
-$ \xi_a\,\partial\langle a|a\rangle/\partial f = 0 $. Within a degenerate level
-the basis is chosen to diagonalise $ \partial\hat{\mathcal{H}}/\partial f $.}).
-The derivatives of $ \rho $ with respect to $f$ are derivatives of
-distributions (Section~\ref{sec:filt_dist})\footnote{By the definition of the
-derivative of a distribution,
-$ \int d\xi\,\delta^{(n)}(\xi - \xi_a)\,\varphi(\xi) = (-1)^{n}\varphi^{(n)}(\xi_a) $.
-With $ \varphi = e^{-\beta\xi} $ this is $ \beta^{n}e^{-\beta\xi_a} $.}: by the
-chain rule,
-\[
-  \frac{\partial}{\partial f}\,\delta\big(\xi - \xi_a(f)\big)
-  = A_{aa}\,\delta'(\xi - \xi_a) , \qquad
-  \frac{\partial^{2}}{\partial f^{2}}\,\delta\big(\xi - \xi_a(f)\big)
-  = A_{aa}^{2}\,\delta''(\xi - \xi_a)
-  - \frac{\partial^{2}\xi_a}{\partial f^{2}}\,\delta'(\xi - \xi_a) .
-\]
-The Laplace transform turns each $ \delta^{(n)} $ into a factor $ \beta^{n} $, so
-$ \Xi^{(1)} = \beta\sum_aA_{aa}\,e^{-\beta\xi_a} $ and
-$ \Xi^{(2)} = \sum_a\big[\beta^{2}A_{aa}^{2} - \beta\,\partial^{2}\xi_a/\partial f^{2}\big]e^{-\beta\xi_a} $,
-the first being
-$\langle\partial_\xi \rho_A,e_\beta\rangle=\beta\langle \rho_A,e_\beta\rangle$,
-Eq.~\eqref{eq:filt_gA}. Eq.~\eqref{eq:filt_param} becomes
-\begin{equation}\label{eq:filt_vanvleck}
-  \langle\hat A\rangle = \sum_ap_a\,A_{aa} , \qquad
-  \chi_{AA} = \frac{1}{k_BT}\Big[\sum_ap_a\,A_{aa}^{2} - \Big(\sum_ap_a\,A_{aa}\Big)^{2}\Big]
-  - \sum_ap_a\,\frac{\partial^{2}\xi_a}{\partial f^{2}} .
-\end{equation}
-The first term of $ \chi_{AA} $ is the redistribution of the populations
-over levels of different \emph{slope}, the slope of a level being its rate
-of motion with the field, $\partial\xi_a/\partial f=-A_{aa}$ (the Curie
-term); the second is the \emph{bending} of the levels, their curvature as
-functions of the field (the Van Vleck term), with
-$ -\partial^{2}\xi_a/\partial f^{2} = 2\sum_{b:\,\xi_b\neq\xi_a}|A_{ab}|^{2}/(\xi_b - \xi_a) $
-from second-order perturbation theory.
-
 \paragraph{Conserved and non-conserved quantities.} If $\hat A$ is
 conserved, $[\hat A,\hat H]=[\hat A,\hat N]=0$, the field shifts the levels
 without changing the eigenvectors, the Van Vleck term vanishes, and every
@@ -640,7 +598,9 @@ susceptibility $\Var(\hat M)/Vk_BT$ whenever the total moment $\hat M$ is
 conserved.
 If $ \hat A $ is not conserved, the covariance is replaced by the Lehmann
 representation, Eq.~\eqref{eq:filt_mb_kubo} of Appendix~\ref{app:lehmann},
-which is Eq.~\eqref{eq:filt_vanvleck} in another form, and
+which is Eq.~\eqref{eq:filt_vanvleck} of the same appendix (the explicit
+form of Eq.~\eqref{eq:filt_param}, with a Curie term from the populations
+and a Van Vleck term from the bending of the levels) in another form, and
 \begin{equation}\label{eq:filt_chibound}
   0 \leq \chi_{AA} \leq \frac{\Var(\hat A)}{k_BT} ,
 \end{equation}
@@ -1696,14 +1656,13 @@ edge of slope $1/T$ on the landscape from above: it comes to rest at the
 thermal energy $\varepsilon_*$, and it crosses the energy axis at the
 thermodynamic potential $\omega$. At $T\to0$ the edge is vertical and
 rests at the ground state; heating lowers its slope and moves
-%DO: throughout the text, use "probing point" instead of "point of contact"
-the point of contact up the landscape; at $T\to\infty$ the edge is horizontal and rests
+the probing point up the landscape; at $T\to\infty$ the edge is horizontal and rests
 at the maximum of $\lds$, the energy at which the levels are densest. Every
 quantity measured at the temperature $T$ is a property of the landscape at
-the point of contact: its height is the entropy, its curvature the inverse
+the probing point: its height is the entropy, its curvature the inverse
 heat capacity, its tilt in the direction of a parameter $f$ the conjugate
 density. The levels elsewhere on the axis are not seen: their weight in
-$\Xi$ is $e^{-O(V)}$ relative to those at the point of contact
+$\Xi$ is $e^{-O(V)}$ relative to those at the probing point
 (Appendix~\ref{sec:second_bounds}).
 
 A thermodynamic phenomenon is then one of two things. Either the point of
@@ -1716,7 +1675,7 @@ $\varepsilon_0(f)$, which is non-analytic in $f$. In every case the
 physics is a restructuring of the spectrum on the energy axis, of its
 boundary (the ground state) or of its interior (the excitations above the
 ground state), and the thermodynamics records the restructuring when the
-point of contact reaches it. The cases of Section~\ref{sec:beyond} are
+probing point reaches it. The cases of Section~\ref{sec:beyond} are
 restructurings of the excitations just above the ground state: a broken
 continuous symmetry makes the landscape rise from $\varepsilon_0$ as a
 definite power fixed by $d$ and $z$, with a degenerate family of ground
@@ -1724,7 +1683,7 @@ states on the boundary; frustration makes it rise unusually steeply, since
 many levels lie just above the ground state; disorder extends it below the
 clean band edge and into the clean gaps; a Fermi liquid makes it rise as
 $\sqrt{\delta\varepsilon}$ and a non-Fermi liquid as another power, and a
-bad metal is a metal whose point of contact lies above the range in which
+bad metal is a metal whose probing point lies above the range in which
 either form holds.
 
 \paragraph{The principle.} Formally the picture is the following set of
@@ -1742,7 +1701,7 @@ of Section~\ref{sec:large}, which is their only input.
   energy axis.
 \item \emph{Locality.} Every thermodynamic quantity at $(T,f)$ is a
   function of $\lds$ and of its derivatives at $(\varepsilon_*,f)$, i.e.\ of
-  the local geometry of the landscape at the point of contact:
+  the local geometry of the landscape at the probing point:
   \begin{gather*}
     u-\mu n=\varepsilon_* ,\qquad
     \frac{S}{V}=\lds ,\qquad
@@ -1761,7 +1720,7 @@ of Section~\ref{sec:large}, which is their only input.
   explicit factors of $T$ alone.
 \item \emph{Singularities.} The thermodynamic quantities are non-analytic
   in $(T,f)$ only where the local geometry of the landscape at the point of
-  contact is non-analytic, or where the point of contact jumps, or where the
+  contact is non-analytic, or where the probing point jumps, or where the
   boundary $\varepsilon_0(f)$ is non-analytic: a continuous transition, a
   discontinuous transition, a quantum transition. A crossover is a change
   of local form between two ranges of the axis, passed by the point of
@@ -1771,7 +1730,7 @@ of Section~\ref{sec:large}, which is their only input.
   continuous transition the landscape itself is non-analytic at the point
   of contact: the singularity is \emph{local} on the energy axis, and it
   carries exponents and scaling functions. At a discontinuous transition
-  the landscape is analytic at the points of contact; two regular regions
+  the landscape is analytic at the probing points; two regular regions
   of the spectrum, a low-entropy one about $\varepsilon_-$ and a
   high-entropy one about $\varepsilon_+$, compete, and the kink of
   $\omega$ is the kink of the minimum of two analytic branches whose values
@@ -1784,7 +1743,7 @@ of Section~\ref{sec:large}, which is their only input.
   this sense the discontinuous transition is the simpler case; it is not
   the absence of structure. For short-range interactions, where $\lds$ is
   concave, the two minima are replaced by a linear stretch of $\lds$ between
-  $\varepsilon_-$ and $\varepsilon_+$, along which the point of contact
+  $\varepsilon_-$ and $\varepsilon_+$, along which the probing point
   sweeps at the single temperature $T_1$: over a macroscopic range of
   energy, filled by the phase-separated states, the level count grows
   exactly exponentially at the rate $1/k_BT_1$, and $\lds$ is non-analytic at
@@ -1793,8 +1752,8 @@ of Section~\ref{sec:large}, which is their only input.
   minimum of the bracket: metastable phases, and the spinodal points at
   which the local minimum disappears, are properties of the two branches
   that the potential $\omega$ alone does not show. A crossover, finally,
-  has no singularity at all: the point of contact passes a smooth change of
-  form. Ordered by the structure at the point of contact, the crossover is
+  has no singularity at all: the probing point passes a smooth change of
+  form. Ordered by the structure at the probing point, the crossover is
   the least structured case, the discontinuous transition the intermediate
   one and the continuous transition the most.
 \item \emph{Form determines exponents.} The exponents and the scaling
@@ -2378,7 +2337,49 @@ This appendix derives the static response to a field $ f $ coupled to a
 Hermitian operator $ \hat A $, in the notation of
 Section~\ref{sec:filt_resp}: $ \hat{\mathcal{H}}|a\rangle = \xi_a|a\rangle $,
 $ p_a = e^{-\beta\xi_a}/\Xi $, and $ \hat{\mathcal{H}} \to \hat{\mathcal{H}} - f\hat A $,
-first for a conserved $ \hat A $ and then for one that is not conserved.
+first in explicit form, then for a conserved $ \hat A $ and finally for one
+that is not conserved.
+
+\paragraph{Explicit form of the derivatives of the density of states.} A level moves with the field at the rate
+$ \partial\xi_a/\partial f = -A_{aa} $, with
+$ A_{aa} = \langle a|\hat A|a\rangle $ (the Hellmann--Feynman
+theorem\footnote{For a normalised eigenvector
+$ |a(f)\rangle $ of $ \hat{\mathcal{H}}(f) $ with eigenvalue $ \xi_a(f) $,
+$ \partial\xi_a/\partial f = \langle a|\partial\hat{\mathcal{H}}/\partial f|a\rangle $:
+the terms containing the derivative of the eigenvector add up to
+$ \xi_a\,\partial\langle a|a\rangle/\partial f = 0 $. Within a degenerate level
+the basis is chosen to diagonalise $ \partial\hat{\mathcal{H}}/\partial f $.}).
+The derivatives of $ \rho $ with respect to $f$ are derivatives of
+distributions (Section~\ref{sec:filt_dist})\footnote{By the definition of the
+derivative of a distribution,
+$ \int d\xi\,\delta^{(n)}(\xi - \xi_a)\,\varphi(\xi) = (-1)^{n}\varphi^{(n)}(\xi_a) $.
+With $ \varphi = e^{-\beta\xi} $ this is $ \beta^{n}e^{-\beta\xi_a} $.}: by the
+chain rule,
+\[
+  \frac{\partial}{\partial f}\,\delta\big(\xi - \xi_a(f)\big)
+  = A_{aa}\,\delta'(\xi - \xi_a) , \qquad
+  \frac{\partial^{2}}{\partial f^{2}}\,\delta\big(\xi - \xi_a(f)\big)
+  = A_{aa}^{2}\,\delta''(\xi - \xi_a)
+  - \frac{\partial^{2}\xi_a}{\partial f^{2}}\,\delta'(\xi - \xi_a) .
+\]
+The Laplace transform turns each $ \delta^{(n)} $ into a factor $ \beta^{n} $, so
+$ \Xi^{(1)} = \beta\sum_aA_{aa}\,e^{-\beta\xi_a} $ and
+$ \Xi^{(2)} = \sum_a\big[\beta^{2}A_{aa}^{2} - \beta\,\partial^{2}\xi_a/\partial f^{2}\big]e^{-\beta\xi_a} $,
+the first being
+$\langle\partial_\xi \rho_A,e_\beta\rangle=\beta\langle \rho_A,e_\beta\rangle$,
+Eq.~\eqref{eq:filt_gA}. Eq.~\eqref{eq:filt_param} becomes
+\begin{equation}\label{eq:filt_vanvleck}
+  \langle\hat A\rangle = \sum_ap_a\,A_{aa} , \qquad
+  \chi_{AA} = \frac{1}{k_BT}\Big[\sum_ap_a\,A_{aa}^{2} - \Big(\sum_ap_a\,A_{aa}\Big)^{2}\Big]
+  - \sum_ap_a\,\frac{\partial^{2}\xi_a}{\partial f^{2}} .
+\end{equation}
+The first term of $ \chi_{AA} $ is the redistribution of the populations
+over levels of different \emph{slope}, the slope of a level being its rate
+of motion with the field, $\partial\xi_a/\partial f=-A_{aa}$ (the Curie
+term); the second is the \emph{bending} of the levels, their curvature as
+functions of the field (the Van Vleck term), with
+$ -\partial^{2}\xi_a/\partial f^{2} = 2\sum_{b:\,\xi_b\neq\xi_a}|A_{ab}|^{2}/(\xi_b - \xi_a) $
+from second-order perturbation theory.
 
 \paragraph{For conserved quantities, responses are covariances.} Let $ \hat A $
 be conserved, $ [\hat A, \hat H] = [\hat A, \hat N] = 0 $; the eigenbasis may
