@@ -71,7 +71,7 @@ symmetry-breaking paradigm, and is applied to Goldstone modes, to
 frustration (competing, nearly degenerate orders), to disorder and to
 non-Fermi liquids. The microcanonical entropy $S=k_B\ln W$, with $W$
 written in terms of the density of states, and the equivalence of the
-ensembles are recalled in an appendix; quadratic Hamiltonians are treated
+ensembles are provided in an appendix; quadratic Hamiltonians are treated
 in another. The thermodynamic background is that of
 Swendsen~\cite{Swendsen}, Schwabl~\cite{Schwabl} and Plischke and
 Bergersen~\cite{Plischke}.
@@ -83,11 +83,11 @@ Bergersen~\cite{Plischke}.
 \label{sec:intro}
 
 The spectrum of a many-body Hamiltonian, as thermodynamics sees it, is a distribution on the
-energy axis: the density of states $\rho_V(\xi;f)$, parametrised by the size
-$V$ and by the couplings and fields $f$ of the Hamiltonian. It is positive,
+energy axis: the density of states $\rho_V(\xi;\mathscr{h})$, parametrised by the size
+$V$ and by the couplings and fields $\mathscr{h}$ of the Hamiltonian. It is positive,
 its support is bounded below, its total weight is the dimension of the Fock
-space, its logarithm grows linearly with $V$ (extensivity), and a field
-displaces its levels without creating any. Every thermodynamic quantity is a
+space, its logarithm grows linearly with $V$ (extensivity), and
+a field displaces its levels without creating any. Every thermodynamic quantity is a
 pairing of $\rho_V$ with a test function built from the Boltzmann factor,
 and every singularity\footnote{A function of one or several real
 variables is \emph{analytic} at a point if it equals its Taylor series in
@@ -123,9 +123,9 @@ chain, for an arbitrary many-body Hamiltonian $\hat H$.
   in terms of the density of states. On this scale the Laplace transform is
   evaluated by the steepest-descent method, and the thermodynamic potential is the
   Legendre transform of $\lds$: this is the equivalence of the ensembles, a
-  known result, recalled in Appendix~\ref{app:second}. It makes the
-  potential a secondary quantity, the image of the spectrum under the
-  thermal map.
+  known result, given in Appendix~\ref{app:second}. It makes the
+  potential a secondary quantity, \emph{the image of the spectrum under the
+  thermal map}.
 \item \emph{Power laws} (Section~\ref{sec:filt_lowenergy}). An assumption on
   the form of \lndos{} $\lds$ is turned into a statement on the observables:
   a power law of \lndos{} above the ground state (Assumption~\ref{ass:power}) gives
@@ -177,7 +177,7 @@ volume at fixed $\mu$ is $c_{\mu}=(T/V)(\partial S/\partial T)_{V,\mu}$ with
 $S=-(\partial\Omega/\partial T)_{V,\mu}$. For an isolated system at energy
 $E$ the microcanonical entropy is Boltzmann's $S=k_B\ln W$, with $W$ the
 number of eigenstates in a shell about $E$; Appendix~\ref{app:second}
-writes $W$ in terms of the density of states and recalls the equivalence
+writes $W$ in terms of the density of states and provides the equivalence
 of the two descriptions.
 
 Near a critical point at $T_c$, with reduced temperature $t=(T-T_c)/T_c$ and
@@ -231,7 +231,7 @@ known. All statements are identities for a system of finite size.
 \label{sec:filt_exact}
 
 Let $ \hat H $ be the many-body Hamiltonian, interacting or not, of a system
-whose total particle number is conserved, $ [\hat H, \hat N] = 0 $.\footnote{The
+whose total particle number is conserved\footnote{The
 conservation law is required only for the species to which $ \mu $ is
 attached. Phonons, photons and magnons are not conserved, carry no chemical
 potential, and are treated canonically ($ \mu = 0 $). For a Hamiltonian with
@@ -239,7 +239,8 @@ no conserved number, such as the Bardeen--Cooper--Schrieffer mean-field
 Hamiltonian, the construction applies directly to
 $ \hat{\mathcal{H}} = \hat H_{\rm MF} - \mu\hat N $, which has an eigenbasis
 although $ \hat H_{\rm MF} $ and $ \hat N $ do not share one; $ \mu $ is fixed
-afterwards by $ \langle\hat N\rangle = N $.}
+afterwards by $ \langle\hat N\rangle = N $.},
+$ [\hat H, \hat N] = 0 $.
 The commuting Hermitian operators $ \hat H $ and $ \hat N $ have a common
 orthonormal eigenbasis $ \{|a\rangle\} $ of the Fock space,
 \[
@@ -350,8 +351,7 @@ $\varphi\mapsto\Tr\varphi(\hat{\mathcal H})$}, and the microscopic spectral
 information is the set of these numbers for all $\varphi$. In operator form,
 \[
   \rho(\xi)=\Tr\,\delta(\xi-\hat{\mathcal H}) ,\qquad
-  \delta(\xi-\hat{\mathcal H}):=\sum_a|a\rangle\langle a|\,\delta(\xi-\xi_a)
-  =-\frac1\pi\,{\rm Im}\,\frac{1}{\xi-\hat{\mathcal H}+i0^{+}} ,
+  \delta(\xi-\hat{\mathcal H}):=\sum_a|a\rangle\langle a|\,\delta(\xi-\xi_a) ,
 \]
 the many-body analogue of the single-particle density of states
 $\varrho(\varepsilon)=\Tr\,\delta(\varepsilon-\hat h)$, with $\hat h$ the
@@ -490,7 +490,7 @@ from the spectral to the thermal description has the following properties.
   exponentials). The thermal quantities of a \emph{finite} system are therefore
   smooth functions of $T$; a non-analyticity (a phase transition) can arise
   only in the limit $V\to\infty$.
-\item \emph{It is injective}\footnote{A map is \emph{injective}
+\item \emph{It is injective (one-to-one)}\footnote{A map is \emph{injective}
   (one-to-one) if different inputs have different outputs: two spectra with
   the same $\Xi(\beta)$ for all $\beta$ are the same spectrum.}. A distribution with support bounded below is
   determined by its Laplace transform (Appendix~\ref{sec:filt_invert_mb}), so
@@ -506,8 +506,7 @@ In this precise sense thermodynamics maps the microscopic ``spectral information
 (the functional $\rho$ on all test functions) into ``thermal information''
 (its restriction to the family generated by $e_\beta$, i.e.\ the function $\Xi(\beta)$ on a half-line).
 
-The limit of infinite size is not a limit of the distributions $\rho_V$
-themselves. The number of levels of a system of size $V$ in an energy
+The number of levels of a system of size $V$ in an energy
 interval of fixed width, $\langle\rho_V,\varphi\rangle$ for a fixed window
 $\varphi$, grows exponentially with $V$: the total number of levels is
 $D=e^{O(V)}$ and the spectrum spreads only over a range $O(V)$, so that
@@ -527,11 +526,10 @@ logarithm per unit size, $(k_B/V)\ln\cN_V(V\varepsilon)$,
 has the $V \to \infty$ limit $\lds(\varepsilon)$, the microcanonical entropy density
 (Section~\ref{sec:large}), and $(1/V)\ln\langle\rho_V,e_\beta\rangle$ then
 has the limit $-\omega/k_BT$, the Legendre--Fenchel transform of $\lds/k_B$,
-Eq.~\eqref{eq:filt_legendre}. In the language of large
-deviations~\cite{Touchette2009}, $P_T=\rho_Ve^{-\beta\xi}/\Xi_V$ is a family
-of probability distributions of the energy density that concentrates
-exponentially fast on $\varepsilon_*$, with the rate function
-$[\varepsilon-T\lds(\varepsilon)-\omega]/k_BT$. The rate function has a
+Eq.~\eqref{eq:filt_legendre}.
+The distribution $P_T=\rho_Ve^{-\beta\xi}/\Xi_V$ of the energy density
+concentrates exponentially fast on $\varepsilon_*$, with the exponent
+$[\varepsilon-T\lds(\varepsilon)-\omega]/k_BT$. This exponent has a
 name: it is the relative entropy, per unit size, of the microcanonical
 state at the energy density $\varepsilon$ with respect to
 $\hat\rho_{\rm eq}$ (Section~\ref{sec:filt_exact}, with
@@ -576,8 +574,8 @@ and using $ d\beta/dT = -1/k_BT^{2} $, and
   C_\mu = \frac{\partial\langle\hat{\mathcal H}\rangle}{\partial T}\bigg|_{\mu}
   = \frac{1}{k_BT^{2}}\int d\xi\; P_T(\xi)\,\big(\xi - \langle\hat{\mathcal{H}}\rangle\big)^{2}\;\ge0 ~.
 \end{equation}
-The entropy and the heat capacity are
-thus obtained from $\Xi$ and its first two derivatives.
+The entropy and the heat capacity are thus obtained from $\Xi$ and its first two derivatives.
+
 
 \subsection{Response functions}
 \label{sec:filt_resp}
@@ -664,7 +662,7 @@ Everything so far holds for a system of any size. For a macroscopic system
 the Laplace transform~\eqref{eq:filt_laplace} simplifies, because the number
 of levels is exponential in the size, and the simplification is the familiar
 one: the thermodynamic potential becomes the Legendre transform of the entropy.
-Nothing in this section is new. It restates the
+This section restates the
 equivalence of the microcanonical and the grand canonical ensembles in the
 language of Section~\ref{sec:filters}, so that in the following sections the
 observables can be read directly from the spectrum. The derivations are
@@ -726,9 +724,7 @@ shell of any fixed width about $V\varepsilon$
 \end{equation}
 where $\asymp$ denotes equality of the logarithms to leading order in $V$,
 $\ln\rho_V(V\varepsilon)=V\lds(\varepsilon)/k_B+o(V)$ (equality to
-logarithmic accuracy, footnote~\ref{fn:logacc}); in the language of
-probability, the level count has the \emph{large-deviation
-property}~\cite[Sec.~2.7]{Honerkamp} with the rate $-\lds/k_B$. Thus $\lds$ is the density
+logarithmic accuracy, footnote~\ref{fn:logacc}). Thus $\lds$ is the density
 of states on the logarithmic scale, the only scale on which the limit
 $V\to\infty$ exists (Section~\ref{sec:filt_dist}). It is also the
 microcanonical entropy density: Boltzmann's $S=k_B\ln W$, with $W$ the
@@ -851,7 +847,7 @@ The following remarks fix how Eq.~\eqref{eq:filt_legendre} is used below.
   Differentiating Eq.~\eqref{eq:filt_stat} with respect to $T$ gives the
   heat capacity as the inverse curvature of $\lds$,
   \begin{equation}\label{eq:filt_curvmain}
-    c_\mu=\frac{d\varepsilon_*}{dT}=-\frac{1}{T^{2}\,\partial^{2}\lds/\partial\varepsilon^{2}|_{\varepsilon_*}} ,
+    c_\mu=\frac{d\varepsilon_*}{dT}=-(T^{2}\,\partial^{2}\lds/\partial\varepsilon^{2}|_{\varepsilon_*})^{-1} ,
   \end{equation}
   wherever $\lds$ is twice differentiable: a large heat capacity means a flat
   stretch of $\lds$, i.e.\ a range of energies over which the level count grows
@@ -915,7 +911,7 @@ by differentiation. No order parameter and no symmetry is needed to state
 the assumptions, and neither universality nor a renormalisation group is
 needed to draw the consequences (Section~\ref{sec:beyond}).
 
-\section{Power laws and exponents from the form of the spectrum}
+\section{Power laws and exponents from the spectrum}
 \label{sec:filt_lowenergy}
 
 Eq.~\eqref{eq:filt_legendre} turns an assumption on the form of
@@ -1467,9 +1463,6 @@ assumption itself.
   collapse of the data for $m(t,h)$ or $\chi(t,h)$ onto one function of
   $h/|t|^{b/(\sigma-1)}$ uses all the data at once.
 \end{itemize}
-
-\section{Correlations, the correlation length and the size}
-\label{sec:filt_corr}
 
 \subsection{Correlation functions from the spectrum}
 
@@ -2884,7 +2877,7 @@ cannot exploit fully.
 \label{app:second}
 
 Section~\ref{sec:large} uses the thermodynamic limit of the Laplace
-transform in the form of Eq.~\eqref{eq:filt_legendre}. This appendix recalls
+transform in the form of Eq.~\eqref{eq:filt_legendre}. This appendix provides
 where it comes from: Boltzmann's entropy $S=k_B\ln W$, with the number of
 states $W$ written in terms of the density of states
 (Section~\ref{sec:second_mc}); the existence and concavity of $\lds$ for
@@ -3060,7 +3053,7 @@ $\phi^{*}(\beta)=\sup_x[\phi(x)-\beta x]$. It is defined whether or not
 $\phi$ is differentiable or concave, and it is a convex function of
 $\beta$, being a supremum of linear functions. For a differentiable concave
 $\phi$ it reduces to the Legendre transform, with $\phi'(x)=\beta$ at the
-maximum~\cite{Touchette2009}.} of the logarithm of the level count,
+maximum.} of the logarithm of the level count,
 \begin{equation}\label{eq:filt_Phi}
   \Phi(\beta):=\sup_{\xi\ge\xi_0}\big[\ln\cN(\xi)-\beta\xi\big] ,
 \end{equation}
