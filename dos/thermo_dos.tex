@@ -167,7 +167,12 @@ $\mu$, in a volume $V$, has the grand partition function and grand potential
 \begin{equation}\label{eq:Omega}
   \Omega=-k_BT\ln\Xi ,
 \end{equation}
-with $Z(T,V,N)$ the canonical partition function. The heat capacity per unit
+with $Z(T,V,N)$ the canonical partition function. For a homogeneous system
+$\Omega$ is extensive, $\Omega(T,V,\mu)=V\omega(T,\mu)$, and since
+$p=-(\partial\Omega/\partial V)_{T,\mu}$ the potential per unit volume is
+minus the pressure, $\omega=-p$~\cite[Sec.~6.2.3]{Honerkamp}: the
+thermodynamic potential of the following sections is the equation of
+state. The heat capacity per unit
 volume at fixed $\mu$ is $c_{\mu}=(T/V)(\partial S/\partial T)_{V,\mu}$ with
 $S=-(\partial\Omega/\partial T)_{V,\mu}$. For an isolated system at energy
 $E$ the microcanonical entropy is Boltzmann's $S=k_B\ln W$, with $W$ the
@@ -256,7 +261,22 @@ The grand canonical equilibrium state is the density matrix
   p_a = \frac{e^{-\beta \xi_a}}{\Xi} , \qquad
   \Xi(T,\mu) = \Tr e^{-\beta\hat{\mathcal{H}}} = \sum_ae^{-\beta\xi_a} ,
 \]
-so that $\Xi$ is the normalisation of $\hat\rho_{\rm eq}$. Grouping the
+so that $\Xi$ is the normalisation of $\hat\rho_{\rm eq}$. This state is
+singled out among all density matrices $\hat\rho$ by the relative
+entropy\footnote{The \emph{relative entropy} of $\hat\rho$ with respect to
+$\hat\rho_0$ is $S[\hat\rho|\hat\rho_0]:=k_B\Tr(\hat\rho\ln\hat\rho-\hat\rho\ln\hat\rho_0)\ge0$,
+with equality only for $\hat\rho=\hat\rho_0$ (Klein's
+inequality)~\cite[Sec.~6.1]{Honerkamp}.}: with
+$\ln\hat\rho_{\rm eq}=-\beta\hat{\mathcal H}-\ln\Xi$,
+\[
+  S[\hat\rho|\hat\rho_{\rm eq}]
+  =\frac{\langle\hat{\mathcal H}\rangle_{\hat\rho}-TS(\hat\rho)-\Omega}{T}\;\ge\;0 ,
+\]
+with $S(\hat\rho)=-k_B\Tr\hat\rho\ln\hat\rho$: among all states,
+$\hat\rho_{\rm eq}$ alone attains the minimum $\Omega$ of
+$\langle\hat{\mathcal H}\rangle-TS$ (Gibbs' variational principle). This
+inequality, applied to the microcanonical state, is what selects the
+thermal energy in Section~\ref{sec:large}. Grouping the
 eigenstates by their particle number,
 $ \Xi = \sum_N e^{\beta\mu N}\sum_{a:\,N_a = N} e^{-\beta E_a} = \sum_N e^{\beta\mu N}Z_N $,
 which is Eq.~\eqref{eq:Xi}.
@@ -511,7 +531,15 @@ Eq.~\eqref{eq:filt_legendre}. In the language of large
 deviations~\cite{Touchette2009}, $P_T=\rho_Ve^{-\beta\xi}/\Xi_V$ is a family
 of probability distributions of the energy density that concentrates
 exponentially fast on $\varepsilon_*$, with the rate function
-$[\varepsilon-T\lds(\varepsilon)-\omega]/k_BT$.
+$[\varepsilon-T\lds(\varepsilon)-\omega]/k_BT$. The rate function has a
+name: it is the relative entropy, per unit size, of the microcanonical
+state at the energy density $\varepsilon$ with respect to
+$\hat\rho_{\rm eq}$ (Section~\ref{sec:filt_exact}, with
+$S(\hat\rho)=V\lds(\varepsilon)$ and $\langle\hat{\mathcal H}\rangle=V\varepsilon$),
+which is also the exergy per unit size divided by $k_BT$, the maximum work
+obtainable from a system prepared at the energy $V\varepsilon$ in contact
+with a bath at $T$~\cite[Sec.~7.3]{Honerkamp}: the probability of an
+energy density is $e^{-V\times(\text{exergy density})/k_BT}$.
 
 \subsection{Entropy, energy and heat capacity from the grand-canonical ensemble}
 \label{sec:filt_mb}
@@ -528,6 +556,10 @@ a factor $-\xi$:
   \quad
   \Var(\hat{\mathcal H}) = \frac{\partial^{2}\ln\Xi}{\partial\beta^{2}}\evalat_{\mu} .
 \end{equation}
+More generally $\partial^{n}\ln\Xi/\partial\beta^{n}=(-1)^{n}\kappa_n$,
+with $\kappa_n$ the $n$th cumulant of $\xi$ under $P_T$: $\ln\Xi$ is the
+cumulant generating function of the energy, as $-\beta\Omega$ is that of
+the conjugate quantity in Section~\ref{sec:filt_resp}~\cite[Sec.~4.3]{Honerkamp}.
 The entropy of $\hat\rho_{\rm eq}$ is $S=-k_B\sum_ap_a\ln p_a$; with
 $\ln p_a=-\beta\xi_a-\ln\Xi$ and $\Omega=-k_BT\ln\Xi$,
 \begin{equation}\label{eq:filt_mb}
@@ -584,6 +616,25 @@ The conjugate quantity (the order parameter, if $f$ is the ordering field) is
 the Laplace transform of $\partial \rho/\partial f$, and the susceptibility that
 of $\partial^{2}\rho/\partial f^{2}$ less the square of the first, each
 normalised by $ \Xi $. Both statements are exact.
+
+\paragraph{Work and heat.} The two ways in which a parameter and the
+temperature act are the two terms of the first law. For an infinitesimal
+change of $f$ and $T$,
+\[
+  d\langle\hat{\mathcal H}\rangle=\sum_ap_a\,d\xi_a+\sum_a\xi_a\,dp_a
+  =-\langle\hat A\rangle\,df+T\,dS ,
+\]
+the first term being the work done by the field, which moves the levels at
+the rates $\partial\xi_a/\partial f=-A_{aa}$ (Appendix~\ref{app:lehmann})
+with the populations fixed, and the second the heat, which redistributes
+the populations over fixed levels; $\sum_a\xi_a\,dp_a=T\,dS$ follows from
+$dS=-k_B\sum_a\ln p_a\,dp_a$ and $\ln p_a=-\beta\xi_a-\ln\Xi$ with
+$\sum_adp_a=0$~\cite[Sec.~7.1]{Honerkamp}. The conjugate quantity
+$\langle\hat A\rangle=-\sum_ap_a\,\partial\xi_a/\partial f$ is the mean
+velocity of the levels, which for $f=-V$ is the pressure. In the density of
+states the work term is the motion of $\rho$ along the energy axis,
+Eq.~\eqref{eq:filt_gA}, and the heat term the change of the weight
+$e^{-\beta\xi}$ at fixed $\rho$.
 
 \paragraph{Conserved and non-conserved quantities.} If $\hat A$ is
 conserved, $[\hat A,\hat H]=[\hat A,\hat N]=0$, the field shifts the levels
@@ -675,7 +726,9 @@ shell of any fixed width about $V\varepsilon$
 \end{equation}
 where $\asymp$ denotes equality of the logarithms to leading order in $V$,
 $\ln\rho_V(V\varepsilon)=V\lds(\varepsilon)/k_B+o(V)$ (equality to
-logarithmic accuracy, footnote~\ref{fn:logacc}). Thus $\lds$ is the density
+logarithmic accuracy, footnote~\ref{fn:logacc}); in the language of
+probability, the level count has the \emph{large-deviation
+property}~\cite[Sec.~2.7]{Honerkamp} with the rate $-\lds/k_B$. Thus $\lds$ is the density
 of states on the logarithmic scale, the only scale on which the limit
 $V\to\infty$ exists (Section~\ref{sec:filt_dist}). It is also the
 microcanonical entropy density: Boltzmann's $S=k_B\ln W$, with $W$ the
@@ -1072,7 +1125,9 @@ acoustic phonons & $c=\tfrac{2\pi^{2}}{5}\,k_B\,(k_BT/\hbar v)^{3}$ & $3$ & $\tf
   $n=A\,\Gamma(\tfrac32)\zeta(\tfrac32)(k_BT_c)^{3/2}$ eliminates $A$, with
   $\Gamma(\tfrac72)/\Gamma(\tfrac32)=\tfrac{15}{4}$. Since $\mu=0$ at fixed
   $n$ for all $T<T_c$, this is also the heat capacity at fixed $n$. In $d$
-  dimensions $\kappa=d/2$.
+  dimensions $\kappa=d/2$, but only for $d>2$: for $d\le2$ the density at
+  $\mu=0$ diverges, there is no $T_c$ at fixed $n$, and the law is not a
+  low-temperature law of a system of fixed density~\cite[Sec.~6.4]{Honerkamp}.
 \item \emph{Photons and phonons.} $\varrho(E)\propto E^{2}$ and $\mu=0$:
   $\Gamma(5)\zeta(4)=4\pi^{4}/15$, with two polarisations of velocity $c$
   for photons and three branches of velocity $v$ for phonons (Debye's law).
@@ -1312,6 +1367,41 @@ larger than $2$.
 $O(\ln V/V)$ (Appendix~\ref{sec:second_bounds}), so Eq.~\eqref{eq:filt_crit} describes a system of size $V$ for
 $|t|^{2-\alpha}\gg\ln V/V$; closer to $T_c$ the singularity is rounded
 (Section~\ref{sec:filt_size}).
+
+\paragraph{A solvable case: the critical point at the edge of the spectrum.}
+Assumption~\ref{ass:crit} places $\varepsilon_c$ in the interior of the
+spectrum, with levels on both sides. The mean-field (Curie--Weiss) model,
+$\hat H=-(J_0/2V)\big(\sum_ix_i\big)^{2}$ with $x_i=\pm1$ on $V$
+sites~\cite[Sec.~4.5.1]{Honerkamp}, is the solvable case in which this
+fails and shows what replaces it. The energy density is
+$\varepsilon=-J_0y^{2}/2$ with $y$ the magnetisation per site, and the
+number of configurations with magnetisation $y$ is, by Stirling's formula,
+$\exp[V(\ln2-\mathcal S(y))]$ with
+$\mathcal S(y)=\tfrac{1+y}{2}\ln(1+y)+\tfrac{1-y}{2}\ln(1-y)=\tfrac12y^{2}+\tfrac1{12}y^{4}+\dots$,
+so that the landscape is explicit:
+\[
+  \frac{\lds(\varepsilon)}{k_B}=\ln2-\mathcal S\Big(\sqrt{-2\varepsilon/J_0}\Big)
+  =\ln2+\frac{\varepsilon}{J_0}-\frac{\varepsilon^{2}}{3J_0^{2}}+\dots ,
+  \qquad -\tfrac12J_0\le\varepsilon\le0 ,
+\]
+and there are no levels above $\varepsilon=0$. The slope at the upper
+edge is $1/T_c$ with $k_BT_c=J_0$, and the curvature there is finite,
+$-2k_B/3J_0^{2}$. For $T>T_c$ the edge of slope $1/T<1/T_c$ cannot rest
+anywhere inside the landscape, which is everywhere steeper; it rests on
+the boundary, $\varepsilon_*=0$, with $S/V=k_B\ln2$ and $c_\mu=0$. For
+$T<T_c$ the probing point moves inside,
+$\varepsilon_*=-\tfrac32J_0(T_c-T)/T$, and
+$c_\mu=\tfrac32k_B\,T_c/T\to\tfrac32k_B$ at $T_c^{-}$: the mean-field jump,
+$\alpha=0$. The singularity is not a vanishing curvature of $\lds$ but the
+arrival of the probing point at the upper boundary of the landscape, the
+thermal counterpart of the quantum transition of
+Section~\ref{sec:transitions}, where the boundary is the ground state. In
+the model with short-range couplings the spectrum continues above
+$\varepsilon_c$, Assumption~\ref{ass:crit} applies, and the jump becomes
+the power law or logarithm of the true exponent $\alpha$. Below $T_c$ the
+configurations at $\varepsilon_*$ are of two kinds, $y=\pm\sqrt{-2\varepsilon_*/J_0}$,
+selected by the sign of a field: the two families of
+Section~\ref{sec:frustration}, case~(a).
 
 \subsection{Singularities that are not power laws}
 \label{sec:filt_nonpower}
@@ -2305,7 +2395,13 @@ $\propto(\omega/\delta)^{d_m/2}$. Hence
 the second line being Lemma~\ref{lem:disp} with $a_i=\tfrac12$ along the
 manifold. The system behaves as if the orders were degenerate down to
 $k_BT\sim\delta$, and the selected order shows only below; the amplitude of
-the low-temperature law is enhanced by $\delta^{-d_m/2}$.
+the low-temperature law is enhanced by $\delta^{-d_m/2}$. A manifold at a
+finite energy gives the activated law with a prefactor that reads the same
+geometry: the rotons of superfluid helium,
+$\omega=\Delta+(q-q_0)^{2}/2m^{*}$ on a sphere ($d_m=2$), have
+$\varrho(\omega)\propto(\omega-\Delta)^{-1/2}$ and
+$c\propto\Delta^{2}T^{-3/2}e^{-\Delta/k_BT}$, against the $T^{-2}$ of a
+single level, Eq.~\eqref{eq:filt_gap}~\cite[Sec.~6.9.2]{Honerkamp}.
 
 \paragraph{(e) Anisotropic scaling.} At a Lifshitz
 point~\cite{Hornreich1975}, where the ordering wave vector starts to move
@@ -3351,7 +3447,13 @@ states is taken per unit volume,
   \frac{1}{V}\sum_\lambda F(\varepsilon_\lambda) = \int d\varepsilon\; \varrho(\varepsilon)\,F(\varepsilon) ,
 \end{equation}
 for any function $ F $; the second form is how every orbital sum below becomes an
-integral.
+integral. The replacement is legitimate only if no single orbital
+carries a share of order $V$ of the sum (Euler--Maclaurin
+formula~\cite[Sec.~6.4.1]{Honerkamp}); for bosons below the condensation
+temperature the lowest orbital does, and it must be kept as a separate
+term outside the integral. This is the one place where the regularisation
+of Section~\ref{sec:filt_dist}, the replacement of a sum of delta
+functions by a smooth density, fails on the single-particle level.
 
 Everything in this section follows from one structural observation about
 Eq.~\eqref{eq:filt_Omega}: \emph{temperature and chemical potential enter only
@@ -3512,7 +3614,15 @@ involved. Three instances are needed below.
   Eq.~\eqref{eq:filt_response} returns $ c_\mu $ in the form
   Eq.~\eqref{eq:filt_C_fluct}. The mixed case $ a_\lambda = (\varepsilon_\lambda - \mu)/T $,
   $ b_\lambda = 1 $ gives $ (\partial N/\partial T)_\mu $, which enters the
-  conversion to fixed $ N $.
+  conversion to fixed $ N $: with $ (\partial\mu/\partial T)_N
+  = -(\partial n/\partial T)_\mu/(\partial n/\partial\mu)_T $ and the Maxwell
+  relation $ (\partial s/\partial\mu)_T = (\partial n/\partial T)_\mu $,
+  \[
+    c_N = c_\mu - T\,\frac{[(\partial n/\partial T)_\mu]^{2}}{(\partial n/\partial\mu)_T} ,
+  \]
+  which for the degenerate Fermi gas reproduces the shift
+  $ \mu(T) = \varepsilon_F[1 - \tfrac{\pi^{2}}{12}(k_BT/\varepsilon_F)^{2}] $ and
+  a correction to $ c $ of relative order $ T^{2} $~\cite[Sec.~6.3.2]{Honerkamp}.
 \end{itemize}
 The entropy is the one quantity of interest that is not of this form, being a
 \emph{first} derivative of $ \Omega $; it is treated separately below.
@@ -4243,6 +4353,18 @@ Eq.~\eqref{eq:filt_sommerfeld}. So
 \;\varrho\sim|\varepsilon-\mu|^{r}\;\Longrightarrow\;c_\mu\sim T^{\,r+1},
 \qquad \frac{c_\mu}{T}\sim T^{\,r}\
 \end{equation}
+The same scale covariance gives an exact equation of state when the power
+law holds over the whole band, $\varrho=A\varepsilon^{r}$ from the band
+bottom $\varepsilon=0$: integrating Eq.~\eqref{eq:filt_Omega} by parts, as
+in the second form of Eq.~\eqref{eq:filt_laplace}, with
+$\int\varrho=A\varepsilon^{r+1}/(r+1)$ and
+$\partial\varphi(u)/\partial\varepsilon=\beta n(u)$,
+\[
+  \Omega=-\frac{E}{r+1} ,\qquad\text{i.e.}\qquad pV=\frac{E}{r+1} ,
+\]
+for either statistics and at every $T$ and $\mu$: $pV=\tfrac23E$ for the
+non-relativistic gas ($r=\tfrac12$) and $pV=\tfrac13E$ for
+photons ($r=2$)~\cite[Sec.~6.2.3]{Honerkamp}.
 The entropy carries the \emph{same} exponent with a different amplitude, and the
 ratio is exact. Integrating $\int_0^\infty x^{r}\sigma\,dx$ by parts with
 Eq.~\eqref{eq:filt_sprime} gives
