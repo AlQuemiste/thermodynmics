@@ -33,7 +33,7 @@
 \newcommand{\cA}{{\mathcal{A}_0}}   % amplitude of the logarithmic density of states
 \newcommand{\hmag}{\mathcal{H}_M}
 \newcommand{\evalat}{\bigg\vert}  % evaluation bar, as in (d/d beta)|_mu
-\newcommand{\lndos}{\textsf{logdos}}  % abbreviation for the logarithmic density of states
+\newcommand{\lndos}{{logdos}}  % abbreviation for the logarithmic density of states
 
 %% capital kappa (one-mode grand partition function); LaTeX has no \Kappa
 \providecommand{\Kappa}{\mathrm{K}}
@@ -1762,6 +1762,37 @@ of Section~\ref{sec:large}, which is their only input.
   discontinuous transition, a quantum transition. A crossover is a change
   of local form between two ranges of the axis, passed by the point of
   contact over a range of temperatures that does not shrink with $V$.
+
+  The three kinds of singularity differ in where the structure lies. At a
+  continuous transition the landscape itself is non-analytic at the point
+  of contact: the singularity is \emph{local} on the energy axis, and it
+  carries exponents and scaling functions. At a discontinuous transition
+  the landscape is analytic at the points of contact; two regular regions
+  of the spectrum, a low-entropy one about $\varepsilon_-$ and a
+  high-entropy one about $\varepsilon_+$, compete, and the kink of
+  $\omega$ is the kink of the minimum of two analytic branches whose values
+  cross. The singularity is in the selection, not in the object selected,
+  and it is \emph{global} on the energy axis: it is fixed by two numbers,
+  the depths of the two minima, and it has no exponents. This is the
+  thermal counterpart of the first-order quantum transition, a crossing of
+  two analytic branches of $\varepsilon_0(f)$, as the continuous
+  transition is the counterpart of an accumulation of avoided crossings. In
+  this sense the discontinuous transition is the simpler case; it is not
+  the absence of structure. For short-range interactions, where $s$ is
+  concave, the two minima are replaced by a linear stretch of $s$ between
+  $\varepsilon_-$ and $\varepsilon_+$, along which the point of contact
+  sweeps at the single temperature $T_1$: over a macroscopic range of
+  energy, filled by the phase-separated states, the level count grows
+  exactly exponentially at the rate $1/k_BT_1$, and $s$ is non-analytic at
+  the two ends of the stretch, where its curvature jumps to zero. And the
+  branch that has lost the competition persists beyond $T_1$ as a local
+  minimum of the bracket: metastable phases, and the spinodal points at
+  which the local minimum disappears, are properties of the two branches
+  that the potential $\omega$ alone does not show. A crossover, finally,
+  has no singularity at all: the point of contact passes a smooth change of
+  form. Ordered by the structure at the point of contact, the crossover is
+  the least structured case, the discontinuous transition the intermediate
+  one and the continuous transition the most.
 \item \emph{Form determines exponents.} The exponents and the scaling
   functions of a transition or of a low-temperature regime are fixed by the
   form of $s$ about the energy involved, Assumptions~\ref{ass:power}
