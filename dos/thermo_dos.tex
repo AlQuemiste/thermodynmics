@@ -624,20 +624,47 @@ provided in Appendix~\ref{app:second}; here only the statements are needed.
 
 Let $V$ be a measure of the size of the system (the number of lattice sites,
 or the volume) and $\varepsilon:=\xi/V$ the density of $\xi=E-\mu N$. The
-spectrum of a macroscopic system is \emph{extensive}: the ground-state
+second form of the Laplace transform~\eqref{eq:filt_laplace} contains the
+level count $\cN_V(\xi)$, an ordinary function of the energy, non-decreasing
+and at least $1$ above the ground state $\xi_0$. Write it as an exponential
+of the size,
+\begin{equation}\label{eq:filt_sV}
+  \cN_V(\xi)=:\exp\Big[\frac{V}{k_B}\,\lds_V\Big(\frac{\xi}{V}\Big)\Big] ,
+  \qquad\text{i.e.}\qquad
+  \lds_V(\varepsilon):=\frac{k_B}{V}\ln\cN_V(V\varepsilon) .
+\end{equation}
+This is a change of notation, not an assumption: $\lds_V$ is the logarithm
+of the level count per unit size, a non-negative, non-decreasing step
+function of the energy density, defined for every finite system. In this
+notation, with $\xi=V\varepsilon$, the Laplace transform reads exactly
+\begin{equation}\label{eq:filt_laplace_V}
+  \Xi=\beta\int d\xi\;\cN_V(\xi)\,e^{-\beta\xi}
+  =\beta V\int_{\xi_0/V}^{\infty}d\varepsilon\;
+  \exp\left\{-\frac{V}{k_BT}\big[\varepsilon-T\,\lds_V(\varepsilon)\big]\right\} ,
+\end{equation}
+the integrand vanishing below the ground state. At each energy density the
+exponent is the competition between the growth of the level count and the
+decay of the Boltzmann factor, and it is proportional to $V$. This is what
+makes the limit of infinite size simple: the rest of the section draws the
+consequences, and the function in the exponent is its object.
+
+The spectrum of a macroscopic system is \emph{extensive}: the ground-state
 energy density $\varepsilon_0:=\lim_{V\to\infty}\xi_0/V$ exists, and so does
 \begin{equation}\label{eq:filt_sdef}
-  \lds(\varepsilon) := \lim_{V\to\infty}\frac{k_B}{V}\,\ln\cN_V(V\varepsilon)
+  \lds(\varepsilon) := \lim_{V\to\infty}\lds_V(\varepsilon)
+  =\lim_{V\to\infty}\frac{k_B}{V}\,\ln\cN_V(V\varepsilon)
   \qquad(\varepsilon>\varepsilon_0) ,
 \end{equation}
 uniformly\footnote{\emph{Uniformly}:
 the largest deviation on the interval,
-$\max_\varepsilon|(k_B/V)\ln\cN_V-\lds|$, tends to zero. This is what allows
+$\max_\varepsilon|\lds_V-\lds|$, tends to zero. This is what allows
 the minimum over $\varepsilon$ in Eq.~\eqref{eq:filt_legendre} to be taken
 after the limit $V\to\infty$ (Appendix~\ref{sec:second_bounds}).}
 on bounded intervals of $\varepsilon$, and
-$\lds(\varepsilon)\le a+b\,\varepsilon$ for some constants $a$ and $b\ge0$
-($\lds$ grows at most linearly).
+\begin{equation}\label{eq:filt_linbound}
+  \lds(\varepsilon)\le a+b\,\varepsilon
+\end{equation}
+for some constants $a$ and $b\ge0$ ($\lds$ grows at most linearly).
 The function $\lds$ is the \emph{logarithmic density of states}: the number of
 levels below the energy $V\varepsilon$ is $e^{V\lds(\varepsilon)/k_B}$ up to a
 factor that is not exponential in $V$, and so is the number of levels in a
@@ -657,10 +684,21 @@ accuracy, Eq.~\eqref{eq:filt_sg}. This is the reason for the letter $\lds$
 and the factor $k_B$. The function $\lds$ is non-negative and non-decreasing for
 $\varepsilon>\varepsilon_0$, since $\cN\ge1$ there, and
 $\lds(\varepsilon)\to0$ for $\varepsilon\to\varepsilon_0^{+}$ unless the
-ground-state degeneracy is exponential in $V$. The linear bound holds with
-$b=0$ and $a=k_B\ln D/V$ if the Fock space has finite dimension $D$; in
-general it is the condition for $\Xi$ to exist at $k_BT<1/b$, and it confines
-the thermal energy to a bounded range of $\varepsilon$.
+ground-state degeneracy is exponential in $V$.
+
+The linear bound~\eqref{eq:filt_linbound} is the condition for the
+thermodynamic potential to be extensive. It holds with $b=0$ and
+$a=k_B\ln D/V$ if the Fock space has finite dimension $D$. In general it
+bounds the bracket of Eq.~\eqref{eq:filt_laplace_V} from below,
+$\varepsilon-T\lds(\varepsilon)\ge(1-bT)\,\varepsilon-aT$, so that for
+$T<1/b$ the bracket grows without limit at large $\varepsilon$: the
+integral converges, the exponent has a minimum, $\ln\Xi$ is of order $V$
+and $\Omega$ is of order $V$, and the energies that carry the Boltzmann
+weight are confined to a bounded range of $\varepsilon$. If the level count
+grew faster than exponentially in the energy the bracket would be unbounded
+below and $\Xi$ would not exist at any temperature; if it grew exactly
+exponentially, $\lds=a+b\varepsilon$, the bracket would be linear and $\Xi$
+would exist only for $T<1/b$ (a Hagedorn temperature, Section~\ref{sec:filt_power_mb}).
 
 For short-range interactions the existence of the limit is a
 theorem~\cite{Ruelle}, proven by dividing the system into parts, and $\lds$ is
@@ -672,7 +710,7 @@ rescaling the results below hold in the form of total quantities,
 Eq.~\eqref{eq:filt_total}. For a Hamiltonian that depends on a parameter
 $f$, $\cN=\cN(\xi;f)$ and $\lds=\lds(\varepsilon,f)$.
 
-\subsection{The Laplace transform on the logarithmic scale}
+\subsection{Infinite size: the Laplace transform on the logarithmic scale}
 \label{sec:large_laplace}
 
 Extensive quantities are referred to unit size:
@@ -683,8 +721,9 @@ Extensive quantities are referred to unit size:
   a := \frac{\langle\hat A\rangle}{V} ,
 \end{equation}
 with $u=\langle\hat H\rangle/V$ the energy density and
-$n=\langle\hat N\rangle/V$ the particle density. Inserting
-Eq.~\eqref{eq:filt_rhos} in the Laplace transform~\eqref{eq:filt_laplace},
+$n=\langle\hat N\rangle/V$ the particle density. Replacing $\lds_V$ in the
+exact Eq.~\eqref{eq:filt_laplace_V} by its limit $\lds$, which is the content of
+Eq.~\eqref{eq:filt_rhos},
 \begin{equation}\label{eq:filt_laplace_log}
   \Xi=\int d\xi\;\rho(\xi)\,e^{-\beta\xi}
   \asymp V\int_{\varepsilon_0}^{\infty}d\varepsilon\;
@@ -732,13 +771,23 @@ $\Omega=U-TS-\mu N$ with the entropy equal to the microcanonical entropy
 at the mean energy: this is the equivalence of the
 ensembles~\cite[Ch.~2]{Schwabl}, with the microcanonical entropy written
 as the logarithm of the level count.
-The replacement of the sum $\Xi$ by its
-dominant group of levels costs $O(k_BT\ln V/V)$ in $\omega$, and it needs
-neither the concavity of $\lds$ nor a division of the system into parts
-(Appendix~\ref{sec:second_bounds}); the further replacement of
-$(k_B/V)\ln\cN_V$ by its limit $\lds$ converges at a rate that depends on the
-system (for short-range interactions a surface effect, of relative order
-$V^{-1/d}$ in $d$ dimensions).
+
+The infinite size is what makes Eq.~\eqref{eq:filt_legendre} exact. Three
+things have been dropped from the exact Eq.~\eqref{eq:filt_laplace_V}, and
+each is smaller than $O(V)$ in the exponent: the prefactor $\beta V$ and
+the width $O(V^{-1/2})$ of the maximum of the integrand, which add
+$O(\ln V)$ to $\ln\Xi$; the difference $\lds_V-\lds$, which adds $o(V)$
+(for short-range interactions a surface term, of relative order $V^{-1/d}$
+in $d$ dimensions); and the levels away from $\varepsilon_*$, whose weight
+relative to the dominant ones is $e^{-O(V)}$. Divided by $V$, as in
+$\omega=-(k_BT/V)\ln\Xi$, all of them vanish, and only the term of order
+$V$ in the exponent survives: the thermodynamic potential depends on the
+spectrum through $\lds$ alone, and on $\lds$ only at $\varepsilon_*$. In a
+finite system these terms are the corrections, $O(k_BT\ln V/V)$ in
+$\omega$ for the replacement of the sum $\Xi$ by its dominant group of
+levels, which needs neither the concavity of $\lds$ nor a division of the
+system into parts (Appendix~\ref{sec:second_bounds}), and a rate of
+convergence of $\lds_V$ to $\lds$ that depends on the system.
 
 The following remarks fix how Eq.~\eqref{eq:filt_legendre} is used below.
 \begin{itemize}\setlength{\itemsep}{2pt}
@@ -2683,7 +2732,7 @@ the fact that $\cN$ is non-decreasing, and the existence of a lowest level.
 The passage to the limit uses the extensivity of Section~\ref{sec:large}.
 Dividing Eq.~\eqref{eq:filt_bounds2} by $V$ with $\delta=1/V$, the right-hand
 side is $O(\ln V/V)$ as long as the thermal energy density stays bounded,
-which the linear bound $\lds\le a+b\varepsilon$ guarantees for $\beta>b/k_B$:
+which the linear bound~\eqref{eq:filt_linbound} guarantees for $\beta>b/k_B$:
 the bracket of Eq.~\eqref{eq:filt_Phi} per unit size is at most
 $a/k_B-(\beta-b/k_B)\varepsilon$, which falls below its value near
 $\varepsilon_0$ once $\varepsilon$ exceeds some $\varepsilon_{\max}(\beta)$
