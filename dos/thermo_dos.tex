@@ -163,8 +163,7 @@ A system in contact with a reservoir at temperature $T$ and chemical potential
 $\mu$, in a volume $V$ (microscopically, a size; Section~\ref{sec:large_ext}), has the grand partition function and grand potential
 \begin{equation}\label{eq:Xi}
 \begin{gathered}
-  \Xi(T,V,\mu)=\sum_{N=0}^{\infty}\sum_ie^{-\beta(E_{i,N}-\mu N)}
-  =\sum_{N=0}^{\infty}(e^{\beta\mu})^{N}Z(T,V,N) ,
+  \Xi(T,V,\mu)=\sum_{N=0}^{\infty}\sum_ie^{-\beta(E_{i,N}-\mu N)} ,
   \\
   \Omega=-k_BT\ln\Xi , \qquad \beta=\frac1{k_BT} .
 \end{gathered}
@@ -544,7 +543,7 @@ The entropy and the heat capacity are thus obtained from $\Xi$ and its first two
 \paragraph{Parameters enter only through the density of states.} Because the
 Boltzmann kernel in Eq.~\eqref{eq:filt_laplace} is independent of $\hfield$, every derivative
 with respect to $ \hfield $ acts on $ \rho $ alone:
-\begin{equation}\label{eq:Z-derivatives}
+\begin{equation}\label{eq:Xi-derivatives}
   \Xi^{(n)} := \frac{\partial^{n}\Xi}{\partial \hfield^{n}}
   = \int d\enrg\;\frac{\partial^{n}\rho(\enrg;\hfield)}{\partial \hfield^{n}}\,e^{-\beta\enrg} .
 \end{equation}
@@ -2872,11 +2871,14 @@ $ \int d\enrg\,\delta^{(n)}(\enrg - \enrg_a)\,\varphi(\enrg) = (-1)^{n}\varphi^{
 With $ \varphi = e^{-\beta\enrg} $ this is $ \beta^{n}e^{-\beta\enrg_a} $.}: by the
 chain rule,
 \[
+\begin{gathered}
   \frac{\partial}{\partial \hfield}\,\delta\big(\enrg - \enrg_a(\hfield)\big)
-  = A_{aa}\,\delta'(\enrg - \enrg_a) , \qquad
+  = A_{aa}\,\delta'(\enrg - \enrg_a) ,
+  \\
   \frac{\partial^{2}}{\partial \hfield^{2}}\,\delta\big(\enrg - \enrg_a(\hfield)\big)
   = A_{aa}^{2}\,\delta''(\enrg - \enrg_a)
   - \frac{\partial^{2}\enrg_a}{\partial \hfield^{2}}\,\delta'(\enrg - \enrg_a) .
+\end{gathered}
 \]
 The Laplace transform turns each $ \delta^{(n)} $ into a factor $ \beta^{n} $, so
 $ \Xi^{(1)} = \beta\sum_aA_{aa}\,e^{-\beta\enrg_a} $ and
@@ -3492,9 +3494,10 @@ problem of independent particles factorise orbital by orbital. Let the single-pa
 modes (orbitals) have energies $ \varepsilon_k $; a many-body eigenstate is fixed by
 the occupation numbers $ \{n_k\} $, with $ n_k \in \{0, 1\} $ for fermions and
 $ n_k \in \{0, 1, 2, \dots\} $ for bosons, and has energy $ \sum_k n_k\varepsilon_k $
-and particle number $ \sum_k n_k $. At fixed $ N $,
+and particle number $ \sum_k n_k $. A sum over the eigenstates at fixed $ N $
+has the form
 \[
-  Z_N = \sum_{\{n_k\}} \delta_{\sum_k n_k,\,N}\; \prod_k e^{-\beta\varepsilon_k n_k} .
+  \sum_{\{n_k\}} \delta_{\sum_k n_k,\,N}\; \prod_k e^{-\beta\varepsilon_k n_k} .
 \]
 Without the Kronecker delta the sum over the set $ \{n_k\} $ would be a product of
 independent sums, one per mode. The delta forbids this: once all but one of the
@@ -3503,10 +3506,13 @@ the others. This is the sense in which the constraint $ \sum_kn_k = N $
 \emph{couples} the modes, although the Hamiltonian does not. Summing over $ N $
 with weight $ e^{\beta\mu N} $ removes the delta,
 \[
-  \Xi = \sum_N e^{\beta\mu N} Z_N
+\begin{aligned}
+  \Xi &= \sum_N e^{\beta\mu N}\sum_{\{n_k\}} \delta_{\sum_k n_k,\,N}\; \prod_k e^{-\beta\varepsilon_k n_k}
   = \sum_{\{n_k\}} \prod_{k\,:\,\text{states}} e^{-\beta(\varepsilon_k - \mu)n_k}
-  = \prod_{k\,:\,\text{states}}\;
+  \\
+  &= \prod_{k\,:\,\text{states}}\;
     \underbrace{\sum_{n_k\,:\,\text{allowed occupations}} e^{-\beta(\varepsilon_k - \mu)n_k}}_{\Kappa_k} ,
+\end{aligned}
 \]
 since now every $ n_k $ runs freely: the product runs over the single-particle
 states $ k $, and each sum over the occupations $ n_k $ allowed by the statistics.
@@ -3517,7 +3523,7 @@ role of a Lagrange multiplier enforcing the constraint on $\langle N\rangle$.
 The Fermi--Dirac and Bose--Einstein distributions, $ \langle n_k\rangle =
 1/(e^{\beta(\varepsilon_k-\mu)} \pm 1) $, emerge directly from this
 factorisation, one factor $ \Kappa_k $ at a time. At fixed $ N $ there is no such
-closed form: $ Z_N $ is a sum over all ways of distributing $ N $ particles among
+closed form: the constrained sum runs over all ways of distributing $ N $ particles among
 the modes, whose number grows combinatorially, and the canonical occupations
 depend on $ N $ and on the whole spectrum. It can be organised as a recursion in
 $ N $, or as a contour integral of $ \Xi $ over the fugacity $ z = e^{\beta\mu} $
@@ -3864,11 +3870,17 @@ bosons bunch.
 
 \emph{Boltzmann.} Classical particles are distinguishable in the dynamics but
 indistinguishable in the counting, which is implemented by Gibbs' factor $ 1/N! $
-rather than by (anti)symmetrisation. With $ Z_N = Z_1^{N}/N! $ and $ Z_1 =
-\sum_\lambda e^{-\beta\varepsilon_\lambda} $,
+rather than by (anti)symmetrisation. The $ N $ particles occupy the modes
+$ \lambda_1,\dots,\lambda_N $ independently, and the $ N! $ orderings of the labels
+count as one state, so that
 \[
-  \Xi = \sum_{N=0}^{\infty}\frac{\big(e^{\beta\mu}Z_1\big)^{N}}{N!}
-  = \exp\Big(\sum_\lambda e^{-u_\lambda}\Big) = \prod_\lambda \exp\big(e^{-u_\lambda}\big) ,
+\begin{aligned}
+  \Xi &= \sum_{N=0}^{\infty}\frac{e^{\beta\mu N}}{N!}\sum_{\lambda_1,\dots,\lambda_N}
+  e^{-\beta(\varepsilon_{\lambda_1}+\dots+\varepsilon_{\lambda_N})}
+  = \sum_{N=0}^{\infty}\frac{1}{N!}\Big(\sum_\lambda e^{-u_\lambda}\Big)^{N}
+  \\
+  &= \exp\Big(\sum_\lambda e^{-u_\lambda}\Big) = \prod_\lambda \exp\big(e^{-u_\lambda}\big) ,
+\end{aligned}
 \]
 so $ \Kappa(u) = \exp(e^{-u}) = \sum_n e^{-nu}/n! $: each occupation $ n $ carries the
 extra weight $ 1/n! $, and $ p_\lambda(n) $ is a Poisson distribution. Then
