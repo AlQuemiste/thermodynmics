@@ -74,9 +74,7 @@ frustration (competing, nearly degenerate orders), to disorder and to
 non-Fermi liquids. The microcanonical entropy $S=k_B\ln W$, with $W$
 written in terms of the density of states, and the equivalence of the
 ensembles are provided in an appendix; quadratic Hamiltonians are treated
-in another. The thermodynamic background is that of
-Swendsen~\cite{Swendsen}, Schwabl~\cite{Schwabl} and Plischke and
-Bergersen~\cite{Plischke}.
+in another.
 \end{abstract}
 
 \tableofcontents
@@ -113,11 +111,12 @@ chain, for an arbitrary many-body Hamiltonian $\hat H$.
   $\rho(\enrg)$, Eq.~\eqref{eq:filt_laplace}. $\rho$ is a distribution, and the
   thermodynamic quantities are its pairings with a one-parameter family of
   test functions (Section~\ref{sec:filt_dist}). The entropy, the heat capacity and
-  every static response are derivatives of $\ln\Xi$, i.e.\ moments of $\rho$
+  every static response, including the correlation functions, are
+  derivatives of $\ln\Xi$, i.e.\ moments of $\rho$
   weighted by $e^{-\beta\enrg}$ and of its derivatives with respect to the
   parameters of $\hat H$.
-\item \emph{Large systems} (Section~\ref{sec:large}). For a macroscopic
-  system the number of levels is exponential in the size,
+\item \emph{The limit of large size} (Section~\ref{sec:large}). For a
+  system with many components the number of levels is exponential in the size,
   $\rho_V(V\varepsilon)\asymp e^{V\lds(\varepsilon)/k_B}$ (equality of the
   logarithms to leading order in $V$), where the
   \emph{logarithmic density of states} $\lds(\varepsilon)$ (hereafter, \emph{\lndos})
@@ -135,7 +134,7 @@ chain, for an arbitrary many-body Hamiltonian $\hat H$.
   (Assumption~\ref{ass:hom0}) gives scaling functions; homogeneity about an
   energy in the interior of the spectrum (Assumption~\ref{ass:crit})
   gives the critical exponents and the scaling relations.
-\item \emph{Extensions and scope} (Sections~\ref{sec:filt_corr}
+\item \emph{Extensions and scope} (Sections~\ref{sec:filt_corrq}
   to~\ref{sec:beyond}). Correlation functions, the correlation length and
   hyperscaling follow when the homogeneity of \lndos{} extends to the amplitude
   and the wavelength of a modulated perturbing field, and to the size;
@@ -161,15 +160,16 @@ ensembles.
 \label{sec:dos_prelim}
 
 A system in contact with a reservoir at temperature $T$ and chemical potential
-$\mu$, in a volume $V$, has the grand partition function and grand potential
+$\mu$, in a volume $V$ (microscopically, a size; Section~\ref{sec:large_ext}), has the grand partition function and grand potential
 \begin{equation}\label{eq:Xi}
+\begin{gathered}
   \Xi(T,V,\mu)=\sum_{N=0}^{\infty}\sum_ie^{-\beta(E_{i,N}-\mu N)}
-  =\sum_{N=0}^{\infty}z^{N}Z(T,V,N),\qquad z=e^{\beta\mu},\quad \beta=\frac1{k_BT},
+  =\sum_{N=0}^{\infty}(e^{\beta\mu})^{N}Z(T,V,N) ,
+  \\
+  \Omega=-k_BT\ln\Xi , \qquad \beta=\frac1{k_BT} .
+\end{gathered}
 \end{equation}
-\begin{equation}\label{eq:Omega}
-  \Omega=-k_BT\ln\Xi ,
-\end{equation}
-with $Z(T,V,N)$ the canonical partition function. For a homogeneous system
+For a homogeneous system
 $\Omega$ is extensive, $\Omega(T,V,\mu)=V\omega(T,\mu)$, and since
 $p=-(\partial\Omega/\partial V)_{T,\mu}$ the potential per unit volume is
 minus the pressure, $\omega=-p$~\cite[Sec.~6.2.3]{Honerkamp}: the
@@ -193,12 +193,11 @@ dimensionless field $h$ conjugate to the order parameter, the
 \end{equation}
 with $m=-\partial f/\partial h \vert_{h \to 0}$, $\chi=\partial m/\partial h \vert_{h \to 0}$
 and $f(t,h)$ the free energy per unit volume, together with the correlation length
-$\ell_c\sim|t|^{-\nu}$ (usually written $\enrg$, a letter reserved here for
-the energy)
+$\ell_c\sim|t|^{-\nu}$ (usually written $\xi$)
 and the decay $G(r)\sim r^{-(d-2+\eta)}$ of the order-parameter correlation function
 at $t=0$ in $d$ dimensions.
 The order-parameter exponent is written $\tilde\beta$, because $\beta$ denotes
-$1/k_BT$ throughout. The \emph{scaling hypothesis}~\cite{Widom1965} states
+the inverse temperature throughout. The \emph{scaling hypothesis}~\cite{Widom1965} states
 that the singular part of $f$ is a generalised homogeneous
 function\footnote{A function $F(x_1,\dots,x_n)$ is \emph{generalised
 homogeneous} if $F(\lambda^{a_1}x_1,\dots,\lambda^{a_n}x_n)=\lambda^{a_F}F(x_1,\dots,x_n)$
@@ -225,9 +224,9 @@ derived from an assumption on the microscopic spectrum.
 
 \section{Exact relations for a finite system}
 \label{sec:filters}
-
 This section assumes nothing about $\hat H$ except that its spectrum is
-known. All statements are identities for a system of finite size.
+known. All statements are identities for a system of finite size; the
+limit of large size is the subject of Section~\ref{sec:large}.
 
 \subsection{Eigenbasis and equilibrium state}
 \label{sec:filt_exact}
@@ -264,24 +263,9 @@ The grand canonical equilibrium state is the density matrix
   p_a = \frac{e^{-\beta \enrg_a}}{\Xi} , \qquad
   \Xi(T,\mu) = \Tr e^{-\beta\hat{\mathcal{H}}} = \sum_ae^{-\beta\enrg_a} ,
 \]
-so that $\Xi$ is the normalisation of $\hat\rho_{\rm eq}$. This state is
-singled out among all density matrices $\hat\rho$ by the relative
-entropy\footnote{The \emph{relative entropy} of $\hat\rho$ with respect to
-$\hat\rho_0$ is $S[\hat\rho|\hat\rho_0]:=k_B\Tr(\hat\rho\ln\hat\rho-\hat\rho\ln\hat\rho_0)\ge0$,
-with equality only for $\hat\rho=\hat\rho_0$ (Klein's
-inequality)~\cite[Sec.~6.1]{Honerkamp}.}: with
-$\ln\hat\rho_{\rm eq}=-\beta\hat{\mathcal H}-\ln\Xi$,
-\[
-  S[\hat\rho|\hat\rho_{\rm eq}]
-  =\frac{\langle\hat{\mathcal H}\rangle_{\hat\rho}-TS(\hat\rho)-\Omega}{T}\;\ge\;0 ,
-\]
-with $S(\hat\rho)=-k_B\Tr\hat\rho\ln\hat\rho$: among all states,
-$\hat\rho_{\rm eq}$ alone attains the minimum $\Omega$ of
-$\langle\hat{\mathcal H}\rangle-TS$ (Gibbs' variational principle). This
-inequality, applied to the microcanonical state, is what selects the
-thermal energy in Section~\ref{sec:large}. Grouping the
+so that $\Xi$ is the normalisation of $\hat\rho_{\rm eq}$. Grouping the
 eigenstates by their particle number,
-$ \Xi = \sum_N e^{\beta\mu N}\sum_{a:\,N_a = N} e^{-\beta E_a} = \sum_N e^{\beta\mu N}Z_N $,
+$ \Xi = \sum_N e^{\beta\mu N}\sum_{a:\,N_a = N} e^{-\beta E_a}$,
 which is Eq.~\eqref{eq:Xi}.
 
 \subsection{The partition function is a Laplace transform}
@@ -401,20 +385,28 @@ below.
   $\int d\enrg\,\rho(\enrg;\hfield)=D$, the dimension of the Fock space, for every
   $\hfield$. This holds whether or not $\hat A$ commutes with $\hat{\mathcal H}$;
   conservation only makes the rate independent of $\hfield$,
-  $\enrg_a(\hfield)=\enrg_a-\hfield\,A_a$. Eq.~\eqref{eq:filt_gA} is the conservation of the
+  $\enrg_a(\hfield)=\enrg_a-\hfield\,A_a$.
+  Eq.~\eqref{eq:filt_gA} is the conservation of the
   number of levels written as a continuity equation on the energy axis,
   $\partial_\hfield\rho+\partial_\enrg j=0$, with the current of levels
-  $j=-\rho_A$ (density times velocity): the number of levels below $\enrg$
-  changes only through levels crossing $\enrg$.
+  $j=-\rho_A$ (density times velocity), and in integrated form
+  $\partial_\hfield\cN=-j$: the number of levels below $\enrg$
+  changes only through levels crossing $\enrg$. The proof, which needs
+  neither the Hellmann--Feynman theorem nor non-degenerate levels, is given
+  in Appendix~\ref{app:continuity}.
 \item \emph{Regularisation.} The convolution of $\rho$ with a smooth window of
   unit area and width $\Delta$ is an ordinary function, the smoothed density
   of states: the number of levels per unit energy in a window $\Delta$ about
   $\enrg$. Statements about ``the value of $\rho$'' refer to it, and are
   meaningful only if they depend neither on the width $\Delta$ nor on the
-  shape of the window. For a large system they do not, over a wide range of
-  $\Delta$: the level spacing is exponentially small in $V$, so that every
-  window contains many levels, while the level count varies on the scale
-  $V$, so that no window of fixed width resolves its variation.
+  shape of the window. In general they do depend on both: a
+  window narrower than the level spacing resolves the individual delta
+  functions, and a wider one averages the level count over its width, with
+  weights given by its shape. For a large system the value is independent
+  of the window if the window contains many levels and is narrow compared
+  with the energy over which the density of levels changes appreciably,
+  and its logarithm per unit size is independent of the window over a far
+  wider range (Section~\ref{sec:large_ext}).
 \end{itemize}
 
 \paragraph{The thermal map.} Thermodynamics pairs $\rho$ with a particular
@@ -507,39 +499,6 @@ from the spectral to the thermal description has the following properties.
 In this precise sense thermodynamics maps the microscopic ``spectral information''
 (the functional $\rho$ on all test functions) into ``thermal information''
 (its restriction to the family generated by $e_\beta$, i.e.\ the function $\Xi(\beta)$ on a half-line).
-
-The number of levels of a system of size $V$ in an energy
-interval of fixed width, $\langle\rho_V,\varphi\rangle$ for a fixed window
-$\varphi$, grows exponentially with $V$: the total number of levels is
-$D=e^{O(V)}$ and the spectrum spreads only over a range $O(V)$, so that
-exponentially many levels fall into every interval of fixed width.
-Consider the densities of states $\rho_V$ of a sequence of systems of
-increasing size, $V=1,2,\dots$ (a lattice of $V$ sites, say). No
-normalisation by a power of $V$ makes this sequence of distributions
-converge, and the whole spectrum shifts with $V$ besides, since
-$\enrg_0=O(V)$. What converges is the logarithm of a pairing, divided by $V$.
-The pairing of $\rho_V$ with the step function $\Theta(V\varepsilon-\enrg)$
-is the level count of Eq.~\eqref{eq:filt_gN} at the energy $V\varepsilon$,
-\[
-  \langle\rho_V,\Theta(V\varepsilon-\,\cdot\,)\rangle=\cN_V(V\varepsilon) ,
-\]
-the number of levels below the energy density $\varepsilon$, and its
-logarithm per unit size, $(k_B/V)\ln\cN_V(V\varepsilon)$,
-has the $V \to \infty$ limit $\lds(\varepsilon)$, the microcanonical entropy density
-(Section~\ref{sec:large}), and $(1/V)\ln\langle\rho_V,e_\beta\rangle$ then
-has the limit $-\omega/k_BT$, the Legendre--Fenchel transform of $\lds/k_B$,
-Eq.~\eqref{eq:filt_legendre}.
-The distribution $P_T=\rho_Ve^{-\beta\enrg}/\Xi_V$ of the energy density
-concentrates exponentially fast on $\varepsilon_*$, with the exponent
-$[\varepsilon-T\lds(\varepsilon)-\omega]/k_BT$. This exponent has a
-name: it is the relative entropy, per unit size, of the microcanonical
-state at the energy density $\varepsilon$ with respect to
-$\hat\rho_{\rm eq}$ (Section~\ref{sec:filt_exact}, with
-$S(\hat\rho)=V\lds(\varepsilon)$ and $\langle\hat{\mathcal H}\rangle=V\varepsilon$),
-which is also the exergy per unit size divided by $k_BT$, the maximum work
-obtainable from a system prepared at the energy $V\varepsilon$ in contact
-with a bath at $T$~\cite[Sec.~7.3]{Honerkamp}: the probability of an
-energy density is $e^{-V\times(\text{exergy density})/k_BT}$.
 
 \subsection{Entropy, energy and heat capacity from the grand-canonical ensemble}
 \label{sec:filt_mb}
@@ -657,10 +616,79 @@ and a Van Vleck term from the bending of the levels) in another form, and
 \end{equation}
 with equality on the right if and only if $ \hat A $ is conserved.
 
-\section{Large systems: the density of states on the logarithmic scale}
+\subsection{Correlation functions}
+\label{sec:filt_corr}
+
+The correlation function is obtained from the density of states in the same
+way as the susceptibility, with a field that depends on position. Let
+$\hat m_i$ be the order-parameter operator of the component (site) $i$ at
+position $\mathbf r_i$, and add local fields,
+$\hat{\mathcal H}\to\hat{\mathcal H}-\sum_ih_i\hat m_i$, so that
+$\rho=\rho(\enrg;\{h_i\})$. Eq.~\eqref{eq:filt_param} holds for mixed derivatives,
+\[
+  \chi_{ij}:=\frac{\partial\langle\hat m_i\rangle}{\partial h_j}
+  =k_BT\left[\frac{\Xi^{(ij)}}{\Xi}-\frac{\Xi^{(i)}\Xi^{(j)}}{\Xi^{2}}\right],
+  \qquad
+  \Xi^{(ij)}:=\int d\enrg\;\frac{\partial^{2}\rho}{\partial h_i\,\partial h_j}\,e^{-\beta\enrg} ,
+\]
+and the derivatives of the delta functions, with
+$\partial\enrg_a/\partial h_i=-m^{i}_{aa}$ and
+$m^{i}_{aa}:=\langle a|\hat m_i|a\rangle$, give as in
+Eq.~\eqref{eq:filt_vanvleck}
+\begin{equation}\label{eq:filt_corr}
+  \chi_{ij}=\frac{1}{k_BT}\Big[\sum_ap_a\,m^{i}_{aa}m^{j}_{aa}
+  -\langle\hat m_i\rangle\langle\hat m_j\rangle\Big]
+  -\sum_ap_a\,\frac{\partial^{2}\enrg_a}{\partial h_i\,\partial h_j} .
+\end{equation}
+If all $\hat m_i$ commute with $\hat{\mathcal H}$ (a classical model such
+as the Ising model) the eigenbasis diagonalises them, the last term vanishes,
+and $k_BT\chi_{ij}=G_{ij}:=\langle\hat m_i\hat m_j\rangle
+-\langle\hat m_i\rangle\langle\hat m_j\rangle$ exactly\footnote{In a
+quantum model $k_BT\chi_{ij}$ is the zero-frequency part of the correlation
+function and differs from the equal-time $G_{ij}$
+(Appendix~\ref{app:lehmann}). At a critical point at $T_c>0$ the two have the
+same singular behaviour at large distance, because the critical fluctuations
+are slow on the scale $\hbar/k_BT_c$.}. The correlation function is the mixed
+second derivative of the density of states with respect to the fields at the
+two sites: the covariance, over the Boltzmann-weighted levels, of the
+slopes of the levels with respect to these two fields. Two sites are
+correlated if the levels that are lowered by a field at $i$ are also lowered
+by a field at $j$.
+
+For a translation-invariant system (a lattice of $V$ sites with periodic
+boundary conditions, Section~\ref{sec:large_ext})
+$\chi_{ij}=\chi(\mathbf r_i-\mathbf r_j)$, with Fourier transform
+$\chi(\mathbf q)=\sum_{\mathbf r}e^{-i\mathbf q\cdot\mathbf r}\chi(\mathbf r)$
+at the wave vectors allowed by the boundary conditions; $\chi(\mathbf q)$ is
+real, since $\chi_{ij}=\chi_{ji}$ is a second derivative of $\ln\Xi$.
+A modulated field $h_i=h_{\mathbf q}\cos(\mathbf q\cdot\mathbf r_i)$ of
+amplitude $h_{\mathbf q}$ is a parameter of the full Hamiltonian, and
+\begin{equation}\label{eq:filt_chiq_exact}
+  k_BT\,\frac{\partial^{2}\ln\Xi}{\partial h_{\mathbf q}^{2}}\bigg|_{h_{\mathbf q}=0}
+  =\sum_{ij}\cos(\mathbf q\cdot\mathbf r_i)\cos(\mathbf q\cdot\mathbf r_j)\,\chi_{ij}
+  =\tfrac12V\chi(\mathbf q)
+\end{equation}
+for every allowed $\mathbf q$ such that $2\mathbf q$ is not a
+reciprocal-lattice vector (in particular $\mathbf q\neq0$). Indeed,
+$\cos a\cos b=\tfrac12[\cos(a-b)+\cos(a+b)]$; the first term gives
+$\tfrac12\sum_{ij}\cos(\mathbf q\cdot(\mathbf r_i-\mathbf r_j))\chi(\mathbf r_i-\mathbf r_j)=\tfrac12V\chi(\mathbf q)$,
+and the second
+$\tfrac12\sum_{\mathbf r}\chi(\mathbf r)\sum_j\cos(\mathbf q\cdot(2\mathbf r_j+\mathbf r))=0$,
+since the sum over the sites of a periodic lattice of the phase
+$e^{2i\mathbf q\cdot\mathbf r_j}$ vanishes unless $2\mathbf q$ is a
+reciprocal-lattice vector. The factor $\tfrac12$ is thus the mean of
+$\cos^{2}$; for $2\mathbf q$ a reciprocal-lattice vector (e.g.\ $\mathbf q=0$,
+or the antiferromagnetic wave vector) $\cos^{2}(\mathbf q\cdot\mathbf r_i)=1$ at
+every site and the factor is $1$. The susceptibility at wave vector
+$\mathbf q$ is the curvature of $\ln\Xi$, the Laplace transform of $\rho$,
+with respect to the amplitude of a modulated field: like every static
+response, it is read from the motion of the levels under a parameter of
+$\hat H$.
+
+\section{The limit of large size: the density of states on the logarithmic scale}
 \label{sec:large}
 
-Everything so far holds for a system of any size. For a macroscopic system
+Everything so far holds exactly, for a system of any finite size. For a macroscopic system
 the Laplace transform~\eqref{eq:filt_laplace} simplifies, because the number
 of levels is exponential in the size, and the simplification is the familiar
 one: the thermodynamic potential becomes the Legendre transform of the entropy.
@@ -673,8 +701,53 @@ provided in Appendix~\ref{app:second}; here only the statements are needed.
 \subsection{Extensivity: the logarithmic density of states}
 \label{sec:large_ext}
 
-Let $V$ be a measure of the size of the system (the number of lattice sites,
-or the volume) and $\varepsilon:=\enrg/V$ the density of $\enrg=E-\mu N$. The
+\paragraph{The size of a system.} A volume is not a property of a
+Hamiltonian, and the size of a system has to be defined microscopically.
+It enters $\hat H$ in two ways. The first is the \emph{number of
+components}, $V$: the sites of a lattice, the spins, or the orbitals that
+span the one-particle space, which fix the Fock space (of dimension
+$D=q^{V}$ for $q$ states per component, finite for fermions and spins on a
+lattice). The second is the \emph{boundary conditions}, which fix how the
+components at the edge are coupled: open, or periodic, which closes the
+lattice into a torus, keeps it translation invariant and makes the allowed
+wave vectors a grid of spacing $2\pi/L$ per direction. A system of size $V$
+is then one member of a sequence of Hamiltonians $\hat H_V$, built from the
+same local couplings with the same boundary conditions, e.g.\ a hypercubic
+lattice of $V=L^{d}$ sites with periodic boundary conditions, and ``large
+size'' means the limit of this sequence. A length enters only through the
+geometry of the couplings, as $L=V^{1/d}$ lattice spacings for couplings that
+form a $d$-dimensional lattice. For particles in a continuum the components
+are the one-particle modes of a box, the box enters the Hamiltonian only
+through the boundary conditions imposed on the kinetic energy, and the
+volume of the box, in units of a microscopic volume, plays the role of $V$.
+The particle number is not a measure of the size at fixed $\mu$, since it
+fluctuates; in the canonical ensemble it may serve as one at fixed density.
+The volume $V$ of Section~\ref{sec:dos_prelim} is this size.
+
+\paragraph{What converges for large size.} The levels of a lattice
+system of size $V$, with finitely many states per component and couplings of
+bounded strength, are $D=e^{O(V)}$ in number and spread over an energy range
+$O(V)$, so
+that the number of levels in an interval of fixed width,
+$\langle\rho_V,\varphi\rangle$ for a fixed window $\varphi$, grows
+exponentially with $V$. No normalisation by a power of $V$ makes the
+sequence of distributions $\rho_V$ converge, and the whole spectrum shifts
+with $V$ besides, since $\enrg_0=O(V)$. What converges is the logarithm of a
+pairing, divided by $V$, at a fixed energy \emph{density}. The pairing of
+$\rho_V$ with the step function $\Theta(V\varepsilon-\enrg)$ is the level
+count of Eq.~\eqref{eq:filt_gN} at the energy $V\varepsilon$,
+\[
+  \langle\rho_V,\Theta(V\varepsilon-\,\cdot\,)\rangle
+  =\int d\enrg\;\rho_V(\enrg)\,\Theta(V\varepsilon-\enrg)
+  =\int_{-\infty}^{V\varepsilon}d\enrg\;\rho_V(\enrg)
+  =\sum_a\Theta(V\varepsilon-\enrg_a)
+  =\cN_V(V\varepsilon) ,
+\]
+the number of levels below the energy density $\varepsilon$, and it is the
+logarithm of this number per unit size that has a limit.
+
+\paragraph{The logarithmic density of states.}
+Let $\varepsilon:=\enrg/V$ be the density of $\enrg=E-\mu N$. The
 second form of the Laplace transform~\eqref{eq:filt_laplace} contains the
 level count $\cN_V(\enrg)$, an ordinary function of the energy, non-decreasing
 and at least $1$ above the ground state $\enrg_0$. Write it as an exponential
@@ -728,7 +801,7 @@ where $\asymp$ denotes equality of the logarithms to leading order in $V$,
 $\ln\rho_V(V\varepsilon)=V\lds(\varepsilon)/k_B+o(V)$ (equality to
 logarithmic accuracy, footnote~\ref{fn:logacc}). Thus $\lds$ is the density
 of states on the logarithmic scale, the only scale on which the limit
-$V\to\infty$ exists (Section~\ref{sec:filt_dist}). It is also the
+$V\to\infty$ exists. It is also the
 microcanonical entropy density: Boltzmann's $S=k_B\ln W$, with $W$ the
 number of levels in a shell, equals $V\lds(\varepsilon)$ to logarithmic
 accuracy, Eq.~\eqref{eq:filt_sg}. This is the reason for the letter $\lds$
@@ -736,6 +809,63 @@ and the factor $k_B$. The function $\lds$ is non-negative and non-decreasing for
 $\varepsilon>\varepsilon_0$, since $\cN\ge1$ there, and
 $\lds(\varepsilon)\to0$ for $\varepsilon\to\varepsilon_0^{+}$ unless the
 ground-state degeneracy is exponential in $V$.
+
+\paragraph{When the smoothed density of states is independent of the
+window.} Let $w\ge0$ be a window of unit area that vanishes outside an
+interval of width $\Delta$, and
+$\bar\rho_V(\enrg):=\langle\rho_V,w(\enrg-\cdot)\rangle=\sum_aw(\enrg-\enrg_a)$
+the smoothed density of states of Section~\ref{sec:filt_dist}. Write
+$W_\delta(\enrg):=\cN_V(\enrg+\delta/2)-\cN_V(\enrg-\delta/2)$ for the number
+of levels in an interval of width $\delta$ about $\enrg$. Each level in the
+window contributes at most $\max w$, and each level in a sub-interval of
+width $\Delta'$ on which $w\ge w_->0$ contributes at least $w_-$, so that
+\[
+  w_-\,W_{\Delta'}(\enrg)\;\le\;\bar\rho_V(\enrg)\;\le\;(\max w)\,W_\Delta(\enrg) .
+\]
+At the energy $\enrg=V\varepsilon$ the level count grows at the rate
+$\partial\ln\cN_V/\partial\enrg=\lds_\varepsilon/k_B=:1/k_BT_\varepsilon$, with
+$\lds_\varepsilon:=\partial\lds/\partial\varepsilon>0$, and this rate changes
+only over energies of order $V$. For $\delta\ll V$ the level count is
+therefore an exponential across the interval,
+$\cN_V(\enrg\pm\delta/2)=\cN_V(\enrg)\,e^{\pm\delta/2k_BT_\varepsilon}$
+(Appendix~\ref{sec:second_mc}), and
+\[
+  W_\delta(\enrg)=\cN_V(\enrg)\big(e^{\delta/2k_BT_\varepsilon}-e^{-\delta/2k_BT_\varepsilon}\big)
+  =2\,\cN_V(\enrg)\,\sinh\frac{\delta}{2k_BT_\varepsilon} ,
+\]
+provided the interval contains many levels, i.e.\ $\delta$ is large
+compared with the mean level spacing $k_BT_\varepsilon/\cN_V\sim e^{-V\lds/k_B}$
+(otherwise $\bar\rho_V$ resolves the individual levels and vanishes between
+them). Two regimes follow.
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item \emph{The value.} For $\Delta\ll k_BT_\varepsilon$,
+  $W_\delta\simeq\cN_V\,\delta/k_BT_\varepsilon$ is proportional to the
+  width, the density of levels is constant across the window, and
+  $\bar\rho_V(\enrg)\simeq\cN_V(\enrg)/k_BT_\varepsilon=d\cN_V/d\enrg$ for
+  every window of unit area: the value of the smoothed density of states is
+  independent of the width and of the shape of the window. For
+  $\Delta\gtrsim k_BT_\varepsilon$ it is not: across the window the number of
+  levels changes by the factor $e^{\Delta/k_BT_\varepsilon}$, and a rectangular
+  window gives
+  $\bar\rho_V=W_\Delta/\Delta=(d\cN_V/d\enrg)\,\sinh(\Delta/2k_BT_\varepsilon)/(\Delta/2k_BT_\varepsilon)$,
+  which depends on $\Delta$, while other shapes weight the variation
+  differently. That every window contains many levels is thus necessary but
+  not sufficient; what makes the value independent of the window is that
+  the window is also narrow compared with the energy $k_BT_\varepsilon$ over
+  which the density of levels changes appreciably.
+\item \emph{The logarithm per unit size.} For every window with
+  $\Delta\ll V$ the two bounds differ from $\cN_V(\enrg)$ only by factors
+  ($\max w$, $w_-$, and $W_\delta/\cN_V$ for $\delta=\Delta,\Delta'$) that are
+  fixed by the window and by $T_\varepsilon$ and do not grow or decay
+  exponentially with $V$. Hence
+  $(k_B/V)\ln\bar\rho_V(V\varepsilon)-(k_B/V)\ln\cN_V(V\varepsilon)\to0$, and
+  $(k_B/V)\ln\bar\rho_V(V\varepsilon)\to\lds(\varepsilon)$, for all windows
+  between the level spacing and the size, a range that is exponentially
+  wide in $V$.
+\end{itemize}
+The second regime is the content of Eq.~\eqref{eq:filt_rhos}, and the
+reason why the microcanonical entropy does not depend on the width of the
+energy shell (Appendix~\ref{sec:second_mc}).
 
 The linear bound~\eqref{eq:filt_linbound} is the condition for the
 thermodynamic potential to be extensive. It holds with $b=0$ and
@@ -783,7 +913,7 @@ Eq.~\eqref{eq:filt_rhos},
 The integrand $\rho(\enrg)\,e^{-\beta\enrg}$ is the number of levels at the
 energy density $\varepsilon$ times their Boltzmann weight; divided by $\Xi$
 it is the equilibrium probability density $P_T$ of
-Section~\ref{sec:filt_exact}, written for the energy density
+Section~\ref{sec:filt_laplace}, written for the energy density
 $\varepsilon=\enrg/V$. Its exponent is proportional to $V$, so for
 $V\to\infty$ the probability concentrates at the energy density at which
 the growth of the level count and the decay of the Boltzmann factor
@@ -1466,57 +1596,18 @@ assumption itself.
   $h/|t|^{b/(\sigma-1)}$ uses all the data at once.
 \end{itemize}
 
-\subsection{Correlation functions from the spectrum}
+\subsection{The susceptibility at wave vector \texorpdfstring{$\mathbf q$}{q} on the logarithmic scale}
+\label{sec:filt_corrq}
 
-The correlation function is obtained from the density of states in the same
-way as the susceptibility, with a field that depends on position. Let
-$\hat m_i$ be the order-parameter operator of the component (site) $i$ at
-position $\mathbf r_i$, and add local fields,
-$\hat{\mathcal H}\to\hat{\mathcal H}-\sum_ih_i\hat m_i$, so that
-$\rho=\rho(\enrg;\{h_i\})$. Eq.~\eqref{eq:filt_param} holds for mixed derivatives,
-\[
-  \chi_{ij}:=\frac{\partial\langle\hat m_i\rangle}{\partial h_j}
-  =k_BT\left[\frac{\Xi^{(ij)}}{\Xi}-\frac{\Xi^{(i)}\Xi^{(j)}}{\Xi^{2}}\right],
-  \qquad
-  \Xi^{(ij)}:=\int d\enrg\;\frac{\partial^{2}\rho}{\partial h_i\,\partial h_j}\,e^{-\beta\enrg} ,
-\]
-and the derivatives of the delta functions, with
-$\partial\enrg_a/\partial h_i=-m^{i}_{aa}$ and
-$m^{i}_{aa}:=\langle a|\hat m_i|a\rangle$, give as in
-Eq.~\eqref{eq:filt_vanvleck}
-\begin{equation}\label{eq:filt_corr}
-  \chi_{ij}=\frac{1}{k_BT}\Big[\sum_ap_a\,m^{i}_{aa}m^{j}_{aa}
-  -\langle\hat m_i\rangle\langle\hat m_j\rangle\Big]
-  -\sum_ap_a\,\frac{\partial^{2}\enrg_a}{\partial h_i\,\partial h_j} .
-\end{equation}
-If all $\hat m_i$ commute with $\hat{\mathcal H}$ (a classical model such
-as the Ising model) the eigenbasis diagonalises them, the last term vanishes,
-and $k_BT\chi_{ij}=G_{ij}:=\langle\hat m_i\hat m_j\rangle
--\langle\hat m_i\rangle\langle\hat m_j\rangle$ exactly\footnote{In a
-quantum model $k_BT\chi_{ij}$ is the zero-frequency part of the correlation
-function and differs from the equal-time $G_{ij}$
-(Appendix~\ref{app:lehmann}). At a critical point at $T_c>0$ the two have the
-same singular behaviour at large distance, because the critical fluctuations
-are slow on the scale $\hbar/k_BT_c$.}. The correlation function is the mixed
-second derivative of the density of states with respect to the fields at the
-two sites: the covariance, over the Boltzmann-weighted levels, of the
-slopes of the levels with respect to these two fields. Two sites are
-correlated if the levels that are lowered by a field at $i$ are also lowered
-by a field at $j$.
-
-For a translation-invariant system $\chi_{ij}=\chi(\mathbf r_i-\mathbf r_j)$,
-with Fourier transform
-$\chi(\mathbf q)=\sum_{\mathbf r}e^{-i\mathbf q\cdot\mathbf r}\chi(\mathbf r)$.
-A modulated field $h_i=h_{\mathbf q}\cos(\mathbf q\cdot\mathbf r_i)$ of
-amplitude $h_{\mathbf q}$ is a parameter of the full Hamiltonian, and
-$k_BT\,\partial^{2}\ln\Xi/\partial h_{\mathbf q}^{2}
-=\sum_{ij}\cos(\mathbf q\cdot\mathbf r_i)\cos(\mathbf q\cdot\mathbf r_j)\,\chi_{ij}
-=\tfrac12V\chi(\mathbf q)$ for $\mathbf q\neq0$, the factor $\tfrac12$ being
-the mean of $\cos^{2}$. In the thermodynamic limit, $V\to\infty$, let
+The exact relation~\eqref{eq:filt_chiq_exact} between the susceptibility at
+wave vector $\mathbf q$ and the density of states
+(Section~\ref{sec:filt_corr}) carries over to the logarithmic scale.
+In the limit of infinite size, $V\to\infty$, let
 $\lds(\varepsilon,h,h_{\mathbf q};\mathbf q)$ be the logarithmic density of
 states in the presence of the modulated field, and
 $\omega(T,h,h_{\mathbf q};\mathbf q)$ its transform,
-Eq.~\eqref{eq:filt_legendre}. Then
+Eq.~\eqref{eq:filt_legendre}. Then, with $\omega=-(k_BT/V)\ln\Xi$ in
+Eq.~\eqref{eq:filt_chiq_exact},
 \begin{equation}\label{eq:filt_chiq}
   \chi(\mathbf q)=-2\,\frac{\partial^{2}\omega}{\partial h_{\mathbf q}^{2}}
   \bigg|_{h_{\mathbf q}=0}
@@ -1598,10 +1689,9 @@ $b_q\simeq0.71$.
 \subsection{Size dependence and hyperscaling}
 \label{sec:filt_size}
 
-Microscopically the size $V$ is the number of components of the system; a
-length enters only through the geometry of the couplings in $\hat H$, as
-$L=V^{1/d}$ lattice spacings for couplings that form a $d$-dimensional
-lattice. Let $\lds(\varepsilon,h,V^{-1}):=(k_B/V)\ln\cN_V$ denote the
+The size $V$ is the number of components of the system, at fixed boundary
+conditions (Section~\ref{sec:large_ext}); a length enters only through the
+geometry of the couplings, $L=V^{1/d}$. Let $\lds(\varepsilon,h,V^{-1}):=(k_B/V)\ln\cN_V$ denote the
 logarithm of the level count of the finite system.
 
 \begin{assumption}[Homogeneity in the size]\label{ass:V}
@@ -2183,11 +2273,16 @@ Sections~\ref{sec:filters}--\ref{sec:filt_lowenergy}.
   \node[font=\normalsize] at (-0.45,1.55) {(b)};
   \draw[->] (-0.15,0) -- (2.5,0) node[below left]{$\delta\varepsilon$};
   \draw[->] (0,-0.1) -- (0,1.5) node[above]{$\lds$};
-  \draw[lds,domain=0.002:2.3,samples=120,smooth] plot (\x,{0.5+0.8*(\x/2.3)*(1-ln(\x/2.3))});
+  % s - s_0 = A x ln(1 + B/x): -A x ln x near x = 0 (vertical tangent), saturating at large x;
+  % sampled at x = 2.3 t^4 so that the steep start is resolved
+  \draw[edge] (0,0.5) -- (0,1.05);
+  \draw[lds,variable=\t,domain=0.1:1,samples=150,smooth]
+    plot ({2.3*\t*\t*\t*\t},{0.5+2.84*(2.3*\t*\t*\t*\t)*ln(1+0.3/(2.3*\t*\t*\t*\t))});
+  \draw[lds] (0,0.5) -- ({2.3*0.0001},{0.5+2.84*0.00023*ln(1+0.3/0.00023)});
   \fill[blue!60!black] (0,0.5) circle (1.4pt);
   \node[left,font=\scriptsize] at (0,0.5) {$s_0$};
-  \node[font=\scriptsize,blue!60!black,anchor=north west,align=left] at (0.9,0.9) {vertical tangent at $s_0$:\\ activated, gap $\Delta$};
-  \draw[thin,blue!60!black] (0.9,0.85) -- (0.08,0.7);
+  \node[font=\scriptsize,orange!85!black,anchor=west,align=left] at (0.75,0.55) {vertical tangent at $s_0$:\\ activated, gap $\Delta$};
+  \draw[thin,orange!85!black] (0.75,0.55) -- (0.03,0.62);
 \end{tikzpicture}
 
 \vspace{3mm}
@@ -2227,10 +2322,12 @@ $\lds$ is the larger of the two. The common tangent of slope $1/T_\times$
 is a discontinuous transition between the orders, at a temperature set by
 $\delta_1$, Eq.~\eqref{eq:filt_compete}.
 (b)~Exponentially many ground states: $\lds$ starts at the residual entropy
-$s_0$ and rises with a vertical tangent, $\lds-s_0\propto-x\ln x$ with
+$s_0$ and rises with a vertical tangent (orange), $\lds-s_0\propto-x\ln x$ with
 $x\propto\delta\varepsilon/\Delta$, which is the activated law
 \eqref{eq:filt_gap}: the slope $1/T$ is reached only at exponentially
-small $\delta\varepsilon$.
+small $\delta\varepsilon$. The slope diverges only logarithmically, so the
+curve leaves the tangent quickly; it is drawn with an enlarged prefactor of the
+logarithm to make the tangent visible.
 (c)~The same levels spread over a narrow group of width $W$ (grey): $\lds$
 rises from $0$ to $s_0$ within $\delta\varepsilon\sim W$, and the residual
 entropy is released in a maximum of $c_\mu$ at $k_BT\sim W$.
@@ -2874,6 +2971,106 @@ $ \enrg_a $, i.e.\ is conserved. A conserved quantity responds exactly as much a
 fluctuates; a non-conserved one responds less, because part of its fluctuation
 is carried by transitions between states of different energy, which a static field
 cannot exploit fully.
+
+\section{The motion of the levels: a continuity equation}
+\label{app:continuity}
+
+This appendix proves Eq.~\eqref{eq:filt_gA} and its reading as the
+conservation of the number of levels (Section~\ref{sec:filt_dist}). Let
+$\hat{\mathcal H}(\hfield)=\hat{\mathcal H}-\hfield\hat A$, with $\hat A$
+Hermitian, act on a Fock space of finite dimension $D$, and let
+$\{|a\rangle\}$ be an orthonormal eigenbasis of $\hat{\mathcal H}(\hfield)$ at
+the value $\hfield$ considered, $\hat{\mathcal H}(\hfield)|a\rangle=\enrg_a|a\rangle$.
+No assumption is made on the commutator $[\hat A,\hat{\mathcal H}]$, on
+degeneracies, or on crossings of the levels.
+
+\begin{proposition}\label{prop:continuity}
+For every continuously differentiable function $\varphi$ on the real line,
+\begin{equation}\label{eq:cont_trace}
+  \frac{\partial}{\partial\hfield}\Tr\varphi\big(\hat{\mathcal H}(\hfield)\big)
+  =-\Tr\big[\hat A\,\varphi'\big(\hat{\mathcal H}(\hfield)\big)\big] .
+\end{equation}
+Consequently, with $\rho_A$ and $\rho$ as in Eq.~\eqref{eq:filt_gA} and
+$j:=-\rho_A$,
+\begin{equation}\label{eq:cont_eq}
+  \frac{\partial\rho}{\partial\hfield}+\frac{\partial j}{\partial\enrg}=0 ,\qquad
+  \frac{\partial\cN}{\partial\hfield}=-j ,\qquad
+  \frac{\partial}{\partial\hfield}\int d\enrg\,\rho(\enrg;\hfield)=0 ,
+\end{equation}
+in the sense of distributions in $\enrg$.
+\end{proposition}
+
+\begin{proof}
+\emph{Monomials.} For $\varphi(x)=x^{n}$, the product rule gives
+\[
+  \partial_\hfield\hat{\mathcal H}^{n}=\sum_{k=0}^{n-1}\hat{\mathcal H}^{k}\,(\partial_\hfield\hat{\mathcal H})\,\hat{\mathcal H}^{\,n-1-k} ,
+\]
+with $\partial_\hfield\hat{\mathcal H}=-\hat A$. The operators do not commute,
+but under the trace each term can be cycled to
+$\Tr[(\partial_\hfield\hat{\mathcal H})\,\hat{\mathcal H}^{\,n-1}]$, so that
+$\partial_\hfield\Tr\hat{\mathcal H}^{n}=-n\Tr[\hat A\,\hat{\mathcal H}^{\,n-1}]$,
+which is Eq.~\eqref{eq:cont_trace}. By linearity it holds for every
+polynomial.
+
+\emph{General $\varphi$.} For $\hfield$ in a bounded interval $J$ the spectra
+of $\hat{\mathcal H}(\hfield)$ lie in a bounded interval $I$, since
+$\|\hat{\mathcal H}(\hfield)\|\le\|\hat{\mathcal H}\|+|\hfield|\,\|\hat A\|$. By the
+Weierstrass theorem there are polynomials $q_k\to\varphi'$ uniformly on $I$;
+their primitives $p_k$, with $p_k(x_0)=\varphi(x_0)$ at a point $x_0\in I$,
+then converge to $\varphi$ uniformly on $I$. For a Hermitian $\hat X$ with
+spectrum in $I$, $\|f(\hat X)\|=\max_{x\in\mathrm{spec}\hat X}|f(x)|$, and
+$|\Tr\hat Y|\le D\|\hat Y\|$. Hence $\Tr p_k(\hat{\mathcal H}(\hfield))\to\Tr\varphi(\hat{\mathcal H}(\hfield))$
+and $-\Tr[\hat A\,q_k(\hat{\mathcal H}(\hfield))]\to-\Tr[\hat A\,\varphi'(\hat{\mathcal H}(\hfield))]$,
+both uniformly in $\hfield\in J$. A sequence of differentiable functions that
+converges, together with its derivatives uniformly, has as derivative of
+its limit the limit of the derivatives; this is Eq.~\eqref{eq:cont_trace}.
+
+\emph{The density of states.} By Eq.~\eqref{eq:filt_pairing} the left side of
+Eq.~\eqref{eq:cont_trace} is $\partial_\hfield\langle\rho,\varphi\rangle=\langle\partial_\hfield\rho,\varphi\rangle$.
+On the right, $\varphi'(\hat{\mathcal H}(\hfield))=\sum_a\varphi'(\enrg_a)|a\rangle\langle a|$
+is diagonal in the eigenbasis, so only the diagonal elements of $\hat A$
+enter,
+$\Tr[\hat A\,\varphi'(\hat{\mathcal H})]=\sum_aA_{aa}\varphi'(\enrg_a)=\langle\rho_A,\varphi'\rangle=-\langle\partial_\enrg\rho_A,\varphi\rangle$.
+Hence $\langle\partial_\hfield\rho,\varphi\rangle=\langle\partial_\enrg\rho_A,\varphi\rangle$
+for every test function, which is Eq.~\eqref{eq:filt_gA} and, with
+$j=-\rho_A$, the first of Eqs.~\eqref{eq:cont_eq}. Within a degenerate level
+the individual $A_{aa}$ depend on the choice of basis, but their sum, the
+trace of $\hat A$ over the eigenspace, does not; $\rho_A$ is therefore
+independent of the basis, as the form
+$\langle\rho_A,\varphi\rangle=\Tr[\hat A\varphi(\hat{\mathcal H})]$ shows.
+
+\emph{The level count and the number of levels.} By
+Eq.~\eqref{eq:filt_gN}, $\langle\cN,\varphi\rangle=\sum_a\Phi(\enrg_a)$ with
+$\Phi(x):=\int_x^{\infty}d\enrg\,\varphi(\enrg)$ for an integrable test function
+$\varphi$, i.e.\ $\langle\cN,\varphi\rangle=\Tr\Phi(\hat{\mathcal H})$. Since
+$\Phi'=-\varphi$, Eq.~\eqref{eq:cont_trace} gives
+$\partial_\hfield\langle\cN,\varphi\rangle=\Tr[\hat A\,\varphi(\hat{\mathcal H})]=\langle\rho_A,\varphi\rangle=-\langle j,\varphi\rangle$,
+the second of Eqs.~\eqref{eq:cont_eq}. Finally, $\varphi\equiv1$ in
+Eq.~\eqref{eq:cont_trace} gives $\partial_\hfield\Tr\mathbb 1=0$: the total
+number of levels, $\int d\enrg\,\rho=D$, does not depend on $\hfield$.
+\end{proof}
+
+\paragraph{Interpretation.} Where the levels are differentiable functions of
+$\hfield$, $\partial\enrg_a/\partial\hfield=-A_{aa}$ (the Hellmann--Feynman
+theorem, Appendix~\ref{app:lehmann}, with the basis chosen within each
+degenerate level to diagonalise $\hat A$), so that
+\[
+  j(\enrg)=\sum_a\frac{\partial\enrg_a}{\partial\hfield}\,\delta(\enrg-\enrg_a) :
+\]
+$j$ is the density of levels times their velocity along the energy axis,
+the current of levels. The first of Eqs.~\eqref{eq:cont_eq} is then the
+continuity equation of a fluid of $D$ particles on the energy axis, with
+$\hfield$ in the role of time: the field neither creates nor destroys levels,
+it moves them. The second states that the number of levels below $\enrg$
+changes only through the levels that cross $\enrg$: a level moving down
+through $\enrg$ ($\partial\enrg_a/\partial\hfield<0$, i.e.\ $j<0$ there) raises
+$\cN(\enrg)$ by one. The proof above uses only the cyclicity of the trace and
+does not need the levels to be differentiable at crossings or within
+degenerate levels. For an infinite-dimensional Fock space,
+Eq.~\eqref{eq:cont_trace} holds for every $\varphi$ for which both traces
+converge (e.g.\ $\varphi=e_\beta$, which is the derivation of
+$\partial_\hfield\Xi=\beta\Xi\langle\hat A\rangle$ in
+Section~\ref{sec:filt_resp}), while the total number of levels is infinite.
 
 \section{The microcanonical entropy and the equivalence of the ensembles}
 \label{app:second}
