@@ -14,7 +14,6 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[scr=boondoxo]{mathalfa}       % lowercase script letters: the symbol \lds of the logarithmic density of states
-\usepackage{xr-hyper}                       % references to the companion document
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
 
 \theoremstyle{plain}
@@ -43,7 +42,6 @@
 %% capital kappa (one-mode grand partition function); LaTeX has no \Kappa
 \providecommand{\Kappa}{\mathrm{K}}
 
-\externaldocument[S-]{build/thermo_dos_suppl}  % labels of the Supplement, prefix S-
 
 \title{A spectral perspective to thermodynamics\\
 \large The many-body density of states, the partition function\\ and the origin of power laws}
@@ -74,10 +72,7 @@ order parameter nor a broken symmetry enters, and neither universality nor
 a renormalisation group is needed: the formulation goes beyond Landau's
 symmetry-breaking paradigm, and is applied to Goldstone modes, to
 frustration (competing, nearly degenerate orders), to disorder and to
-non-Fermi liquids. The microcanonical entropy $S=k_B\ln W$, with $W$
-written in terms of the density of states, and the equivalence of the
-ensembles, as well as quadratic Hamiltonians, are treated in a separate
-supplement.
+non-Fermi liquids.
 \end{abstract}
 
 \tableofcontents
@@ -127,7 +122,7 @@ chain, for an arbitrary many-body Hamiltonian $\hat H$.
   in terms of the density of states. On this scale the Laplace transform is
   evaluated by the steepest-descent method, and the thermodynamic potential is the
   Legendre transform of $\lds$: this is the equivalence of the ensembles, a
-  known result, given in Sec.~\ref{S-app:second} of the Supplement. It makes the
+  known result~\cite[Ch.~2]{Schwabl}. It makes the
   potential a secondary quantity, \emph{the image of the spectrum under the
   thermal map}.
 \item \emph{Power laws} (Section~\ref{sec:filt_lowenergy}). An assumption on
@@ -165,11 +160,8 @@ ensembles.
 A system in contact with a reservoir at temperature $T$ and chemical potential
 $\mu$, in a volume $V$ (microscopically, a size; Section~\ref{sec:large_ext}), has the grand partition function and grand potential
 \begin{equation}\label{eq:Xi}
-\begin{gathered}
-  \Xi(T,V,\mu)=\sum_{N=0}^{\infty}\sum_ie^{-\beta(E_{i,N}-\mu N)} ,
-  \\
+  \Xi(T,V,\mu)=\sum_{N=0}^{\infty}\sum_ie^{-\beta(E_{i,N}-\mu N)} , \qquad
   \Omega=-k_BT\ln\Xi , \qquad \beta=\frac1{k_BT} .
-\end{gathered}
 \end{equation}
 For a homogeneous system
 $\Omega$ is extensive, $\Omega(T,V,\mu)=V\omega(T,\mu)$, and since
@@ -180,9 +172,10 @@ state. The heat capacity per unit
 volume at fixed $\mu$ is $c_{\mu}=(T/V)(\partial S/\partial T)_{V,\mu}$ with
 $S=-(\partial\Omega/\partial T)_{V,\mu}$. For an isolated system at energy
 $E$ the microcanonical entropy is Boltzmann's $S=k_B\ln W$, with $W$ the
-number of eigenstates in a shell about $E$; Sec.~\ref{S-app:second} of the Supplement
-writes $W$ in terms of the density of states and provides the equivalence
-of the two descriptions.
+number of eigenstates in a shell about $E$; Section~\ref{sec:large_ext}
+writes $W$ in terms of the density of states, and
+Section~\ref{sec:large_laplace} states the equivalence of the two
+descriptions~\cite[Ch.~2]{Schwabl}.
 
 Near a critical point at $T_c$, with reduced temperature $t=(T-T_c)/T_c$ and
 dimensionless field $h$ conjugate to the order parameter, the
@@ -343,7 +336,7 @@ information is the set of these numbers for all $\varphi$. In operator form,
 \]
 the many-body analogue of the single-particle density of states
 $\varrho(\varepsilon)=\Tr\,\delta(\varepsilon-\hat h)$, with $\hat h$ the
-one-body Hamiltonian (see Sec.~\ref{S-app:quadratic} of the Supplement).
+one-body Hamiltonian.
 The operator $\delta(\enrg-\hat{\mathcal H})$ is the projector onto
 the eigenstates of energy $\enrg$, spread into a delta function, and
 $\int d\enrg\,\delta(\enrg-\hat{\mathcal H})\,\varphi(\enrg)=\varphi(\hat{\mathcal H})$
@@ -489,7 +482,7 @@ from the spectral to the thermal description has the following properties.
 \item \emph{It is injective (one-to-one)}\footnote{A map is \emph{injective}
   (one-to-one) if different inputs have different outputs: two spectra with
   the same $\Xi(\beta)$ for all $\beta$ are the same spectrum.}. A distribution with support bounded below is
-  determined by its Laplace transform (Sec.~\ref{S-sec:filt_invert_mb} of the Supplement), so
+  determined by its Laplace transform (Lerch's theorem~\cite{Widder}), so
   no spectral information is lost in principle.
 \item \emph{It has a finite resolution.} The test functions $\enrg^{n}e_\beta$
   vary on the scale of thermal energy, $k_BT$.
@@ -698,7 +691,7 @@ This section restates the
 equivalence of the microcanonical and the grand canonical ensembles in the
 language of Section~\ref{sec:filters}, so that in the following sections the
 observables can be read directly from the spectrum. The derivations are
-provided in Sec.~\ref{S-app:second} of the Supplement; here only the statements are needed.
+standard~\cite[Ch.~2]{Schwabl}, \cite{Ruelle}; here only the statements are needed.
 
 \subsection{Extensivity: the logarithmic density of states}
 \label{sec:large_ext}
@@ -785,7 +778,7 @@ uniformly\footnote{\emph{Uniformly}:
 the largest deviation on the interval,
 $\max_\varepsilon|\lds_V-\lds|$, tends to zero. This is what allows
 the minimum over $\varepsilon$ in Eq.~\eqref{eq:filt_legendre} to be taken
-after the limit $V\to\infty$ (Sec.~\ref{S-sec:second_bounds} of the Supplement).}
+after the limit $V\to\infty$.}
 on bounded intervals of $\varepsilon$, and
 \begin{equation}\label{eq:filt_linbound}
   \lds(\varepsilon)\le a+b\,\varepsilon
@@ -795,7 +788,7 @@ The function $\lds$ is the \emph{logarithmic density of states}: the number of
 levels below the energy $V\varepsilon$ is $e^{V\lds(\varepsilon)/k_B}$ up to a
 factor that is not exponential in $V$, and so is the number of levels in a
 shell of any fixed width about $V\varepsilon$
-(Sec.~\ref{S-sec:second_mc} of the Supplement), which is the meaning of
+(see the end of this subsection), which is the meaning of
 \begin{equation}\label{eq:filt_rhos}
   \rho_V(V\varepsilon)\asymp e^{V\lds(\varepsilon)/k_B} ,
 \end{equation}
@@ -806,7 +799,7 @@ of states on the logarithmic scale, the only scale on which the limit
 $V\to\infty$ exists. It is also the
 microcanonical entropy density: Boltzmann's $S=k_B\ln W$, with $W$ the
 number of levels in a shell, equals $V\lds(\varepsilon)$ to logarithmic
-accuracy, Eq.~\eqref{S-eq:filt_sg}. This is the reason for the letter $\lds$
+accuracy~\cite[Eq.~(2.3.6)]{Schwabl}. This is the reason for the letter $\lds$
 and the factor $k_B$. The function $\lds$ is non-negative and non-decreasing for
 $\varepsilon>\varepsilon_0$, since $\cN\ge1$ there, and
 $\lds(\varepsilon)\to0$ for $\varepsilon\to\varepsilon_0^{+}$ unless the
@@ -829,8 +822,8 @@ $\partial\ln\cN_V/\partial\enrg=\lds_\varepsilon/k_B=:1/k_BT_\varepsilon$, with
 $\lds_\varepsilon:=\partial\lds/\partial\varepsilon>0$, and this rate changes
 only over energies of order $V$. For $\delta\ll V$ the level count is
 therefore an exponential across the interval,
-$\cN_V(\enrg\pm\delta/2)=\cN_V(\enrg)\,e^{\pm\delta/2k_BT_\varepsilon}$
-(Sec.~\ref{S-sec:second_mc} of the Supplement), and
+$\cN_V(\enrg\pm\delta/2)=\cN_V(\enrg)\,e^{\pm\delta/2k_BT_\varepsilon}$,
+and
 \[
   W_\delta(\enrg)=\cN_V(\enrg)\big(e^{\delta/2k_BT_\varepsilon}-e^{-\delta/2k_BT_\varepsilon}\big)
   =2\,\cN_V(\enrg)\,\sinh\frac{\delta}{2k_BT_\varepsilon} ,
@@ -867,7 +860,7 @@ them). Two regimes follow.
 \end{itemize}
 The second regime is the content of Eq.~\eqref{eq:filt_rhos}, and the
 reason why the microcanonical entropy does not depend on the width of the
-energy shell (Sec.~\ref{S-sec:second_mc} of the Supplement).
+energy shell~\cite[Sec.~2.3]{Schwabl}.
 
 The linear bound~\eqref{eq:filt_linbound} is the condition for the
 thermodynamic potential to be extensive. It holds with $b=0$ and
@@ -885,7 +878,7 @@ would exist only for $T<1/b$ (a Hagedorn temperature, Section~\ref{sec:filt_powe
 
 For short-range interactions the existence of the limit is a
 theorem~\cite{Ruelle}, proven by dividing the system into parts, and $\lds$ is
-concave (Sec.~\ref{S-sec:second_conc} of the Supplement). Nothing below requires concavity.
+concave. Nothing below requires concavity.
 For interactions in spatial dimension $d$ that decay more slowly than $r^{-d}$ the energy is not
 extensive; Eq.~\eqref{eq:filt_sdef} then holds after the couplings are
 rescaled with the size (Kac prescription~\cite{Campa2009}), and without any
@@ -919,8 +912,7 @@ Section~\ref{sec:filt_laplace}, written for the energy density
 $\varepsilon=\enrg/V$. Its exponent is proportional to $V$, so for
 $V\to\infty$ the probability concentrates at the energy density at which
 the growth of the level count and the decay of the Boltzmann factor
-balance, the minimum of the bracket (steepest-descent method,
-Sec.~\ref{S-sec:second_sd} of the Supplement). Let $\varepsilon_*(T)$ be the minimiser,
+balance, the minimum of the bracket (steepest-descent method). Let $\varepsilon_*(T)$ be the minimiser,
 the \emph{thermal energy}, and let it be unique. Two statements follow.
 First, the integral equals $e^{-V[\varepsilon_*-T\lds(\varepsilon_*)]/k_BT}$
 up to a factor that is not exponential in $V$, so that, by
@@ -930,7 +922,7 @@ $\omega=-(k_BT/V)\ln\Xi$,
   = \varepsilon_* - T\,\lds(\varepsilon_*) .
 \end{equation}
 Second, the probability of the energy density is concentrated within
-$O(V^{-1/2})$ of $\varepsilon_*$ (Sec.~\ref{S-sec:second_sd} of the Supplement), so that
+$O(V^{-1/2})$ of $\varepsilon_*$, so that
 the mean of $\enrg/V=(E-\mu N)/V$ is $\varepsilon_*$. This is what
 identifies the minimiser with the thermodynamic energy: with
 Eq.~\eqref{eq:filt_mb},
@@ -969,7 +961,7 @@ spectrum through $\lds$ alone, and on $\lds$ only at $\varepsilon_*$. In a
 finite system these terms are the corrections, $O(k_BT\ln V/V)$ in
 $\omega$ for the replacement of the sum $\Xi$ by its dominant group of
 levels, which needs neither the concavity of $\lds$ nor a division of the
-system into parts (Sec.~\ref{S-sec:second_bounds} of the Supplement), and a rate of
+system into parts, and a rate of
 convergence of $\lds_V$ to $\lds$ that depends on the system.
 
 The following remarks fix how Eq.~\eqref{eq:filt_legendre} is used below.
@@ -1081,9 +1073,10 @@ unspecified.}\textsuperscript{,}\footnote{\label{fn:logacc}Two positive
 quantities agree \emph{to logarithmic accuracy} if their logarithms agree up to terms small compared with the
 logarithms themselves: here $\ln\cN=(V\cA/k_B)\,\delta\varepsilon^{\sigma}[1+o(1)]$,
 and any prefactor of $\cN$ that is not exponential in $V$ (a power of $V$, a
-constant) is dropped. This is the accuracy adapted to the problem: by
-Eq.~\eqref{S-eq:filt_lnXi} of the Supplement such prefactors change $\ln\Xi$ by $O(\ln V)$ and
-$\omega$ by $O(\ln V/V)$.}: the level count grows above the ground state as
+constant) is dropped. This is the accuracy adapted to the problem: since
+$\Xi=\beta\int d\enrg\,\cN(\enrg)\,e^{-\beta\enrg}$ is linear in $\cN$, a
+prefactor between $V^{-p}$ and $V^{p}$ changes $\ln\Xi$ by at most
+$p\ln V$ and $\omega$ by $O(\ln V/V)$.}: the level count grows above the ground state as
 a stretched exponential of the excitation energy.
 \end{assumption}
 Equation~\eqref{eq:filt_stretched} is a special case of Eq.~\eqref{eq:filt_sdef}. The
@@ -1144,15 +1137,15 @@ $d(\delta\varepsilon_*)/dT=\delta\varepsilon_*/(1-\sigma)T$.
 A stretched-exponential level count with exponent $\sigma$ is thus equivalent
 to a power-law heat capacity with exponent $\kappa=\sigma/(1-\sigma)$. The
 statement holds for any Hamiltonian that satisfies the assumption,
-interacting or not. In terms of the single-particle exponent $r$ used in
-Sec.~\ref{S-app:quadratic} of the Supplement (density of states $\propto|E-\mu|^{r}$),
-$\kappa=r+1$.
+interacting or not. For independent fermions with a single-particle
+density of states $\propto|E-\mu|^{r}$, $\kappa=r+1$ (see the examples
+below).
 
 \paragraph{Total quantities.} Extensivity is not essential for
 the exponent. If $\ln\cN(\enrg)=B\,(\enrg-\enrg_0)^{\sigma}[1+o(1)]$ in a range
 of $\enrg$, with any dependence of $B$ on the size,
-the bounds of Sec.~\ref{S-sec:second_bounds} of the Supplement,
-Eq.~\eqref{S-eq:filt_bounds2}, yield directly
+the steepest-descent evaluation of the second form of
+Eq.~\eqref{eq:filt_laplace} yields directly
 \begin{equation}\label{eq:filt_total}
   \ln\Xi+\beta\enrg_0=\frac{1-\sigma}{\sigma}\,(\sigma B)^{1/(1-\sigma)}\,(k_BT)^{\kappa}\,\big[1+o(1)\big] ,
   \qquad
@@ -1212,7 +1205,7 @@ coefficient that carries the size: $\ln\cN=VA(\delta\varepsilon)^{\sigma}
 sides are known independently, and the results agree with the textbook
 values~\cite[Ch.~4]{Schwabl}. In each case $c_\mu=\mathcal C_0T^{\kappa}$ is
 obtained from the single-particle density of states per unit volume,
-$\varrho(E)$, by the formulas of Sec.~\ref{S-app:quadratic} of the Supplement, and $\lds(\varepsilon)$
+$\varrho(E)$, as in Ref.~\cite[Ch.~4]{Schwabl}, and $\lds(\varepsilon)$
 follows from Eq.~\eqref{eq:filt_sinv}.
 \begin{center}
 \small
@@ -1229,8 +1222,11 @@ acoustic phonons & $c=\tfrac{2\pi^{2}}{5}\,k_B\,(k_BT/\hbar v)^{3}$ & $3$ & $\tf
 \end{tabular}
 \end{center}
 \begin{itemize}\setlength{\itemsep}{0pt}
-\item \emph{Degenerate Fermi gas.} The Sommerfeld law is
-  Eq.~\eqref{S-eq:filt_sommerfeld}. For free electrons
+\item \emph{Degenerate Fermi gas.} The Sommerfeld law,
+  \begin{equation}\label{eq:filt_sommerfeld}
+    c_\mu=\frac{\pi^{2}}{3}\,k_B^{2}\,\varrho(\mu)\,T ,
+  \end{equation}
+  holds whenever $\varrho$ is smooth on the scale $k_BT$ about $\mu$. For free electrons
   $\varrho(\mu)=3n/2\varepsilon_F$ and $c=\tfrac{\pi^{2}}{2}nk_BT/T_F$,
   Eq.~(4.3.16) of Ref.~\cite{Schwabl}; the difference between $c_\mu$ and
   the heat capacity at fixed $N$ is of order $T^{3}$. With $\kappa=1$,
@@ -1243,14 +1239,25 @@ acoustic phonons & $c=\tfrac{2\pi^{2}}{5}\,k_B\,(k_BT/\hbar v)^{3}$ & $3$ & $\tf
   gas~\cite{Bethe1936}, $ \rho \propto e^{2\sqrt{\tilde a(\enrg-\enrg_0)}} $ with
   $ \tilde a = \pi^{2}\varrho(\mu)V/6 $, obtained there by counting the levels.
 \item \emph{Fermions at a zero of $ \varrho $.} For $\varrho(E)=B|E-\mu|^{r}$ the
-  substitution $E-\mu=2k_BTx$ in the heat-capacity integral gives the
-  second row (Eq.~\eqref{S-eq:filt_power_C}; $\eta(s)=(1-2^{1-s})\zeta(s)$).
+  substitution $E-\mu=2k_BTx$ in the heat-capacity integral of independent
+  fermions,
+  \begin{equation}\label{eq:filt_cF}
+    c_\mu=k_B\int dE\;\varrho(E)\,x^{2}\operatorname{sech}^{2}x ,
+    \qquad x=\frac{E-\mu}{2k_BT} ,
+  \end{equation}
+  gives the second row, with $\eta(s)=(1-2^{1-s})\zeta(s)$.
   At a Dirac point, $E=\pm\hbar v|\mathbf k|$ in $d$ dimensions, the number
   of states per unit volume in a shell is
   $\propto k^{d-1}dk\propto|E|^{d-1}dE$, so $r=d-1$ and $c\sim T^{d}$.
 \item \emph{Ideal Bose gas below the condensation temperature.} Here
-  $ \mu=0 $ and $ \varrho(E)=AE^{1/2} $. The bosonic formula,
-  Eq.~\eqref{S-eq:filt_power_CB}, gives
+  $ \mu=0 $ and $ \varrho(E)=AE^{1/2} $. The heat-capacity integral of
+  independent bosons,
+  \begin{equation}\label{eq:filt_cB}
+    c_\mu=k_B\int dE\;\varrho(E)\,x^{2}\operatorname{csch}^{2}x ,
+    \qquad x=\frac{E-\mu}{2k_BT} ,
+  \end{equation}
+  which for $\varrho=A(E-\mu)^{r}$ is
+  $c_\mu=k_BA\,\Gamma(r+3)\,\zeta(r+2)\,(k_BT)^{r+1}$, gives
   $c=k_BA\,\Gamma(\tfrac72)\zeta(\tfrac52)(k_BT)^{3/2}$, and the density
   $n=A\,\Gamma(\tfrac32)\zeta(\tfrac32)(k_BT_c)^{3/2}$ eliminates $A$, with
   $\Gamma(\tfrac72)/\Gamma(\tfrac32)=\tfrac{15}{4}$. Since $\mu=0$ at fixed
@@ -1494,7 +1501,7 @@ In every case the singular term of $\lds$ about $\varepsilon_c$ has an exponent
 larger than $2$.
 
 \paragraph{Finite size.} The corrections to Eq.~\eqref{eq:filt_legendre} are
-$O(\ln V/V)$ (Sec.~\ref{S-sec:second_bounds} of the Supplement), so Eq.~\eqref{eq:filt_crit} describes a system of size $V$ for
+$O(\ln V/V)$ (Section~\ref{sec:large_laplace}), so Eq.~\eqref{eq:filt_crit} describes a system of size $V$ for
 $|t|^{2-\alpha}\gg\ln V/V$; closer to $T_c$ the singularity is rounded
 (Section~\ref{sec:filt_size}).
 
@@ -1989,7 +1996,7 @@ the probing point: its height is the entropy, its curvature the inverse
 heat capacity, its tilt in the direction of a parameter $\hfield$ the conjugate
 density. The levels elsewhere on the axis are not seen: their weight in
 $\Xi$ is $e^{-O(V)}$ relative to those at the probing point
-(Sec.~\ref{S-sec:second_bounds} of the Supplement).
+(Section~\ref{sec:large_laplace}).
 
 A thermodynamic phenomenon is then one of two things. Either the point of
 contact, as $T$ is varied, passes a feature of the landscape (a change of
@@ -2168,7 +2175,7 @@ $\omega(\mathbf q)=\omega\,\omega(\mathbf x)$ by homogeneity with
 $\mu=\omega$, and
 $\delta(\omega-\omega\,\omega(\mathbf x))=\omega^{-1}\delta(1-\omega(\mathbf x))$.
 Components with $a_i=0$ are not rescaled and are integrated over their
-finite range. The heat capacity is Eq.~\eqref{S-eq:filt_power_CB} with
+finite range. The heat capacity is Eq.~\eqref{eq:filt_cB}, with $\mu=0$ and
 $r=\mathfrak a-1$, and $\lds(\varepsilon)$ follows from
 Eq.~\eqref{eq:filt_sinv} with $\kappa=\mathfrak a$.
 \end{proof}
@@ -2614,7 +2621,7 @@ the disordered system, with all derivatives vanishing at the new edge
 $E_0'$, rounds it into an essential singularity.
 (b)~A gap of the clean spectrum. A non-zero $\varrho(\mu)$ inside the gap
 replaces the activated law~\eqref{eq:filt_gap} by the linear
-law~\eqref{S-eq:filt_sommerfeld}.
+law~\eqref{eq:filt_sommerfeld}.
 (c)~Distributions of the splittings $\Delta$ of local two-level systems,
 $P(\Delta)\propto\Delta^{a-1}$: the groups with $\Delta<k_BT$ (grey) are
 excited and respond as free moments, so $c_\mu\propto T^{a}$ and
@@ -2634,7 +2641,7 @@ with a non-universal exponent.}
 \item \emph{Filled gaps and rounded edges.} For independent fermions at
   $T=0$, $\partial^{2}\omega/\partial\mu^{2}=-\varrho(\mu)$ (the
   compressibility $\chi_c=\partial n/\partial\mu$ tends to $\varrho(\mu)$
-  for $T\to0$, Sec.~\ref{S-app:quadratic} of the Supplement). A band edge $E_0$ of the
+  for $T\to0$). A band edge $E_0$ of the
   clean system, with $\varrho(E)=B|E-E_0|^{r}$ on the side of the band and
   zero on the other, therefore gives
   $\omega_{\rm sing}\propto|\mu-E_0|^{r+2}$ on the side of the band and
@@ -2651,7 +2658,7 @@ with a non-universal exponent.}
   disorder leaves a non-zero $\varrho(\mu)$ in a gap of the clean system, the
   activated law~\eqref{eq:filt_gap} is replaced by
   $c_\mu=\tfrac{\pi^{2}}{3}k_B^{2}\varrho(\mu)T$,
-  Eq.~\eqref{S-eq:filt_sommerfeld}.
+  Eq.~\eqref{eq:filt_sommerfeld}.
 \item \emph{A flat distribution of local splittings.} In a glass, small
   groups of atoms (a few atoms, or one atom in a double-well potential) have
   two nearly degenerate configurations. The energy difference $\Delta$
@@ -2741,14 +2748,13 @@ Proposition~\ref{prop:scaling0} with
 \[
   \sigma=\frac{d}{d+z} ,\qquad b=\frac{1}{\nu\,(d+z)} .
 \]
-In these systems the quasiparticle (additive) description of
-Sec.~\ref{S-app:quadratic} of the Supplement fails, and the interaction mediated by the
+In these systems the quasiparticle (additive) description fails, and the interaction mediated by the
 gapless boson is long-ranged in space and time, as is the bare interaction
 for Coulomb or gauge forces. Neither affects
 Propositions~\ref{prop:power}--\ref{prop:scaling0}, which require only the
 stated form of the level count: the concavity of $\lds$, which rests on a
 division of the system into parts, is not guaranteed there, and the steepest-descent
-method does not need it (Sec.~\ref{S-sec:second_bounds} of the Supplement).
+method does not need it.
 
 \paragraph{Bad metals.} A \emph{bad metal} is a metal whose resistivity
 grows without saturation beyond the Mott--Ioffe--Regel value, at which the
@@ -2769,7 +2775,7 @@ $W$ the coherence scale), and the many-body spectrum rather than a
 quasiparticle band is what the entropy measures. Whether $\lds$ takes the
 Fermi-liquid form below $\varepsilon_\times$, or one of the non-Fermi-liquid
 forms above, is a question about the form of $\lds$ about the ground state,
-decided by the heat capacity (Sec.~\ref{S-app:cv} of the Supplement) and not by the
+decided by the heat capacity (Eq.~\eqref{eq:filt_sinv}) and not by the
 resistivity.
 
 \subsection{Scope and limits}
@@ -2837,10 +2843,6 @@ Eqs.~\eqref{eq:filt_crit}, \eqref{eq:filt_critexp} \\[2pt]
 $\nu$, $\eta$, correlation length, Eq.~\eqref{eq:filt_chiqscal} \\[2pt]
 \ref{ass:V} (size) &
 $2-\alpha=\nu_*$; hyperscaling if $b_V=d\,b_q$, Eq.~\eqref{eq:filt_hyper} \\[2pt]
-additive spectrum (Sec.~\ref{S-app:quadratic} of the Supplement) &
-Fermi and Bose windows, Eq.~\eqref{S-eq:filt_window}; Sommerfeld law, Wilson
-ratio $1$; $c\sim T^{r+1}$ from $\varrho\sim|E-\mu|^{r}$; bound on $c_\mu$,
-Eq.~\eqref{S-eq:filt_bound}; inversion of $c(T)$ for $\varrho$ \\
 \bottomrule
 \end{tabular}
 \end{center}
