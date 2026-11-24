@@ -116,7 +116,10 @@ Hamiltonian $\hat H$.
   power laws in temperature $T$; homogeneity in energy and field
   (Assumption~\ref{ass:hom0}) gives scaling functions; homogeneity about an
   energy in the interior of the spectrum (Assumption~\ref{ass:crit})
-  gives the critical exponents and the scaling relations.
+  gives the critical exponents and the scaling relations. The
+  mathematical steps (the minimum of a function near a singular point,
+  the envelope theorem, generalised homogeneity) are collected
+  in Appendix~\ref{sec:tools}.
 \item \emph{Extensions and scope} (Sections~\ref{sec:filt_corrq}
   to~\ref{sec:principle}). Correlation functions and the correlation length
   follow from the response of \lndos{} to a modulated field, and hyperscaling
@@ -1002,7 +1005,8 @@ $\lds(\varepsilon,\hfield)$, i.e.\ on the many-body level count on the logarithm
 scale, into a statement on the observables.
 In each case the path is: logarithmic density of states,
 partition function, thermodynamic potential, then entropy, heat capacity and
-responses by differentiation.
+responses by differentiation. The mathematical steps are those of
+Appendix~\ref{sec:tools}, with the dictionary of Table~\ref{tab:tools}.
 
 In the conventional formulation the
 corresponding assumptions (a power law, the scaling
@@ -1084,7 +1088,8 @@ to leading order for $T\to0$. All are powers of $T$:
 \begin{proof}
 For $\lds=\cA\,(\delta\varepsilon)^{\sigma}$, the function
 $\fen(\varepsilon)=\varepsilon_0+\delta\varepsilon-T\cA\,(\delta\varepsilon)^{\sigma}$
-of Eq.~\eqref{eq:filt_psi} has its minimum where
+of Eq.~\eqref{eq:filt_psi} is that of Lemma~\ref{lem:balance} with
+$p=\sigma$, $q=1$, $\lambda=T\cA$, Eq.~\eqref{eq:tools_edge}: it has its minimum where
 $\sigma\cA\,(\delta\varepsilon_*)^{\sigma-1}=1/T$, which is
 Eq.~\eqref{eq:filt_stat}; there
 $T\cA\,(\delta\varepsilon_*)^{\sigma}=\delta\varepsilon_*/\sigma$, which yields
@@ -1265,7 +1270,8 @@ Under Assumption~\ref{ass:hom0},
 In $\omega(\lambda^{1-\sigma}T,\lambda^{b}\hfield)-\varepsilon_0
 =\min_{\delta\varepsilon}[\delta\varepsilon-\lambda^{1-\sigma}T\,\lds(\delta\varepsilon,\lambda^{b}\hfield)]$
 substitute $\delta\varepsilon=\lambda\,\delta\varepsilon'$ and use
-Eq.~\eqref{eq:filt_shom0}: the minimised function becomes
+Eq.~\eqref{eq:filt_shom0} (Lemma~\ref{lem:rescale} with $a=1-\sigma$,
+$b$ and $c=1$): the minimised function becomes
 $\lambda[\delta\varepsilon'-T\,\lds(\delta\varepsilon',\hfield)]$, whose minimum is
 $\lambda\,[\omega(T,\hfield)-\varepsilon_0]$. The choice $\lambda=T^{-1/(1-\sigma)}$ makes the first
 argument equal to $1$.
@@ -1395,7 +1401,8 @@ replaced by $T_c$ in the factor of $\lds_{\rm sing}$) the other two define
 \end{equation}
 the reduced temperature is the variable conjugate to the energy.
 Substituting $\delta\varepsilon=\lambda\,\delta\varepsilon'$ and using
-Eq.~\eqref{eq:filt_shom},
+Eq.~\eqref{eq:filt_shom} (Lemma~\ref{lem:rescale} with $a=\sigma-1$, $b$
+and $c=\sigma$),
 \[
   \omega_{\rm sing}(\lambda^{\sigma-1}t,\lambda^{b}\hfield)
   =\min_{\delta\varepsilon'}\lambda^{\sigma}
@@ -1410,13 +1417,16 @@ heat capacity are
 $-T_c^{-1}\partial\omega_{\rm sing}/\partial t\propto|t|^{1-\alpha}$ and
 $-T_c^{-1}\partial^{2}\omega_{\rm sing}/\partial t^{2}\propto|t|^{-\alpha}$,
 and $m=-\partial\omega_{\rm sing}/\partial \hfield\propto|t|^{2-\alpha-\Delta_\hfield}$,
-$\chi=\partial m/\partial \hfield\propto|t|^{2-\alpha-2\Delta_\hfield}$, which gives
+$\chi=\partial m/\partial \hfield\propto|t|^{2-\alpha-2\Delta_\hfield}$
+(Eq.~\eqref{eq:tools_expo}), which gives
 Eq.~\eqref{eq:filt_critexp}; $\delta=\Delta_\hfield/\tilde\beta$ follows from the
-requirement that $m$ be finite at $t=0$, $\hfield\neq0$.
+requirement that $m$ be finite at $t=0$, $\hfield\neq0$
+(Eq.~\eqref{eq:tools_match}).
 \end{proof}
 
 For $\lds_{\rm sing}=-B_\pm|\delta\varepsilon|^{\sigma}$ at $\hfield=0$ the
-minimisation in Eq.~\eqref{eq:filt_omsing} is explicit. The stationarity
+minimisation in Eq.~\eqref{eq:filt_omsing} is explicit (Lemma~\ref{lem:balance}
+with $p=1$, $q=\sigma$, Eq.~\eqref{eq:tools_crit}). The stationarity
 condition is $|t|=\sigma T_cB_\pm|\delta\varepsilon_*|^{\sigma-1}$, with
 $\delta\varepsilon_*$ of the sign of $t$, and
 \begin{equation}\label{eq:filt_omexpl}
@@ -1455,7 +1465,7 @@ $c_\mu\propto|t|^{-\alpha}$ with $\alpha=(\sigma-2)/(\sigma-1)$.
   regular term $-(\delta\varepsilon)^{2}/2T_c^{2}c_{\rm reg}$ in $\lds$, in
   addition to the terms of Eq.~\eqref{eq:filt_gcrit}, to which the singular
   part is subleading if $\sigma>2$. The quadratic term dominates the
-  minimisation: $\delta\varepsilon_*=c_{\rm reg}T_c\,t$ to leading order, and
+  minimisation (Lemma~\ref{lem:sublead}): $\delta\varepsilon_*=c_{\rm reg}T_c\,t$ to leading order, and
   $\omega_{\rm sing}(t,\hfield)\simeq-T_c\,\lds_{\rm sing}(\delta\varepsilon_*(t),\hfield)$.
   Hence $2-\alpha=\sigma$ and $\Delta_\hfield=b$, in place of
   Eq.~\eqref{eq:filt_crit}.
@@ -1734,7 +1744,8 @@ $2-\alpha=\nu_*$ holds and $2-\alpha=\nu \, d$ does not.}
 
 Homogeneity is a special case. Eq.~\eqref{eq:filt_legendre} holds for any
 form of $\lds(\varepsilon,\hfield)$, and the character of the singularity is read
-from the form of $\lds$ about $\varepsilon_c$ (or about the ground state).
+from the form of $\lds$ about $\varepsilon_c$ (or about the ground state),
+by the rules of Appendix~\ref{sec:tools_logs}.
 \begin{itemize}\setlength{\itemsep}{0pt}
 \item \emph{Logarithmic divergence.} For the two-dimensional Ising model
   ($\alpha=0$),
@@ -3042,6 +3053,471 @@ if $b_V=\sigma$, with $\nu_*=\nu \, d$, Eq.~\eqref{eq:filt_hyper} \\[2pt]
 
 \clearpage
 \appendix
+
+\section{The minimum of a function near a singular point}
+\label{sec:tools}
+
+Every result of Sections~\ref{sec:filt_lowenergy} and~\ref{sec:transitions}
+is obtained by one operation, applied repeatedly: the function
+$\fen(\varepsilon)=\varepsilon-T\,\lds(\varepsilon)$ of
+Eq.~\eqref{eq:filt_psi} is minimised over the energy,
+Eq.~\eqref{eq:filt_legendre}, and the minimum value $\omega(T)$ and the
+minimiser $\varepsilon_*(T)$ are differentiated with respect to $T$ and to
+the parameters of the Hamiltonian. The observables inherit a power law or a
+scaling form when $\lds$ is not analytic at some energy $\varepsilon_s$ (the
+ground state $\varepsilon_0$, or a critical energy $\varepsilon_c$ inside the
+spectrum) and the temperature drives $\varepsilon_*$ towards
+$\varepsilon_s$. This appendix collects, in a form that does not refer to
+thermodynamics, the elementary facts about such minima that
+Sections~\ref{sec:filt_lowenergy} and~\ref{sec:transitions} use: how a power law is recognised, how the minimum of two
+competing powers scales, how a minimum value is differentiated, and how a
+scale-free function of several variables is reduced to a scaling function.
+None of it is new; it is collected here so that the proofs in the main
+text can consist of references to this appendix.
+
+\paragraph{Notation.} Throughout this appendix $x$ is the distance from the
+singular point, $\tau$ the small parameter that drives the minimiser towards
+it, $g(x;\tau)$ the function to be minimised, $x_*(\tau)$ its minimiser and
+\begin{equation}\label{eq:tools_m}
+  m(\tau):=\min_{x}g(x;\tau)=g\big(x_*(\tau);\tau\big)
+\end{equation}
+its minimum value. Subscripts denote partial derivatives,
+$g_x=\partial g/\partial x$, $g_{x\tau}=\partial^{2}g/\partial x\,\partial\tau$.
+In the applications $x=\delta\varepsilon$ is the excitation energy measured
+from $\varepsilon_s$, $g$ is $\fen$ up to terms that do not depend on
+$\varepsilon$, $x_*=\delta\varepsilon_*$ and $m$ is $\omega$ up to the same
+terms; $\tau$ is $T$ at the ground state and the reduced temperature
+$t=(T-T_c)/T_c$ at a critical point. The dictionary is given at the end of
+the appendix (Table~\ref{tab:tools}).
+
+\subsection{Power laws and analyticity}
+\label{sec:tools_power}
+
+\paragraph{Leading order.} For two functions of $x\to0$, $f\simeq g$ means
+$f/g\to1$ (\emph{equality to leading order}); $f=O(g)$ and $f=o(g)$ are as
+in Section~\ref{sec:large_ext}. A statement of the form
+``$\lds=\cA\,x^{\sigma}$ for $x\to0^{+}$'' is always meant to leading order,
+$\lds=\cA\,x^{\sigma}\,[1+o(1)]$. Nothing is assumed about the rate at which
+the correction vanishes, and nothing about the form of $\lds$ at finite $x$.
+Two functions that agree to leading order give observables that agree to
+leading order (footnote to Assumption~\ref{ass:power}).
+
+\paragraph{Powers have no scale.} The function $f(x)=x^{\sigma}$, $x>0$, is
+up to a constant factor the only one that satisfies
+\begin{equation}\label{eq:tools_hom1}
+  f(\lambda x)=\lambda^{\sigma}f(x)\qquad\text{for all }\lambda>0 :
+\end{equation}
+setting $x=1$ in Eq.~\eqref{eq:tools_hom1} gives $f(\lambda)=f(1)\lambda^{\sigma}$.
+A power law is thus the statement that the function has no intrinsic scale,
+and $\sigma$ is the \emph{degree} of homogeneity. For $x$ of either sign the
+same holds for $B_\pm|x|^{\sigma}$, with independent amplitudes $B_+$ for
+$x>0$ and $B_-$ for $x<0$. A product $x^{\sigma}L(x)$ with a \emph{slowly
+varying} factor, $L(\lambda x)/L(x)\to1$ for $x\to0$ at every fixed
+$\lambda$ (a power of $\ln(1/x)$, for instance), satisfies
+Eq.~\eqref{eq:tools_hom1} only in the limit; the results below hold for it
+with logarithmic corrections (Appendix~\ref{sec:tools_logs}).
+
+\paragraph{Powers and derivatives.} The derivatives of a power are powers,
+\begin{equation}\label{eq:tools_deriv}
+  \frac{d^{k}}{dx^{k}}\,x^{\sigma}=\sigma(\sigma-1)\cdots(\sigma-k+1)\,x^{\sigma-k} ,
+\end{equation}
+so that for $x\to0^{+}$ the $k$th derivative of $x^{\sigma}$ tends to zero if
+$k<\sigma$, to a constant if $k=\sigma$, and diverges if $k>\sigma$. This
+fixes which powers are analytic (footnote in Section~\ref{sec:intro}) and
+which are not:
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $x^{\sigma}$ is analytic at $x=0$ only if $\sigma$ is a non-negative
+  integer, and $|x|^{\sigma}$ only if $\sigma$ is an even integer; then the
+  function is a polynomial. Every other power is \emph{non-analytic}: it has
+  no Taylor expansion at $x=0$, because the derivative of order
+  $\lceil\sigma\rceil$ (the smallest integer above $\sigma$) diverges there,
+  or, for $|x|^{\sigma}$ with $\sigma$ an odd integer, because the $\sigma$th
+  derivative jumps from $-\sigma!$ to $+\sigma!$ at $x=0$. The first
+  $\lfloor\sigma\rfloor$ derivatives are continuous at $x=0$ in either case.
+\item Conversely, the exponent of a non-analytic term is read from the
+  derivatives: if the $k$th derivative of $f$ is finite at $x=0$ and the
+  $(k+1)$th diverges as $|x|^{-\theta}$ with $0<\theta<1$, then $f$ contains
+  a term $|x|^{k+1-\theta}$, and $k<\sigma=k+1-\theta<k+1$.
+\end{itemize}
+Near a point $x=0$ at which it is not analytic, every function considered in
+this note has the local form
+\begin{equation}\label{eq:tools_local}
+  f(x)=\underbrace{f_0+f_1x+\tfrac12f_2x^{2}+\dots}_{\text{regular part}}
+  +\underbrace{B_\pm|x|^{\sigma}\,[1+o(1)]}_{\text{singular part}} ,
+\end{equation}
+where the regular part is the polynomial of the derivatives that are finite at
+$x=0$ and the singular part is the leading term that is not a polynomial,
+with $\sigma$ not an even integer. (A term $B_\pm x^{2}$ with $B_+\neq B_-$
+is of the same kind: it is a jump of the second derivative.) The singular
+term is \emph{subleading} to the regular term $f_kx^{k}$ if $\sigma>k$ and
+$f_k\neq0$, and \emph{leading} otherwise. Which case applies is decisive for
+the minimum, Appendix~\ref{sec:tools_min}.
+
+\paragraph{Regularity is transmitted.} If $g$ is analytic in $(x,\tau)$ near
+$(x_*,\tau)$ and $g_{xx}(x_*;\tau)\neq0$, then the stationarity condition
+$g_x(x_*;\tau)=0$ can be solved for $x_*(\tau)$ by the implicit-function
+theorem, $x_*(\tau)$ is analytic, and so is $m(\tau)=g(x_*(\tau);\tau)$. A
+non-analytic dependence of the minimum value on the parameter therefore
+requires one of three things: $g$ is not analytic at $x_*$ (the minimiser
+sits at a singular point of $g$); $g_{xx}=0$ at $x_*$ (the minimum is
+flatter than a parabola); or the minimiser is not unique (two separate
+minima exchange their roles). In the applications these are, respectively,
+a singularity of $\lds$ at the thermal energy, a vanishing curvature of
+$\lds$ at the thermal energy, and a discontinuous transition
+(Section~\ref{sec:transitions}). Since the third is excluded by assumption in
+Section~\ref{sec:filt_lowenergy}, a power law of the observables is always
+the image of a singular term in $\lds$ at the energy that the temperature
+selects.
+
+\subsection{The minimum of two competing powers}
+\label{sec:tools_min}
+
+The basic situation is a function that decreases as one power and increases
+as a larger power. The minimum lies where the two terms are of the same
+order, and its position and depth are powers of the coefficient of the
+decreasing term.
+
+\begin{lemma}[Balance of two powers]\label{lem:balance}
+Let $\lambda,\Lambda>0$ and $0<p<q$. The function
+\begin{equation}\label{eq:tools_g2}
+  g(x)=-\lambda\,x^{p}+\Lambda\,x^{q} , \qquad x\ge0 ,
+\end{equation}
+has a unique minimum, at
+\begin{equation}\label{eq:tools_xstar}
+  x_*=\left(\frac{p\,\lambda}{q\,\Lambda}\right)^{1/(q-p)} ,
+  \qquad
+  m=g(x_*)=-\frac{q-p}{q}\,\lambda\,x_*^{\,p}
+  =-\frac{q-p}{q}\left(\frac{p}{q\Lambda}\right)^{p/(q-p)}\lambda^{\,q/(q-p)} .
+\end{equation}
+At the minimum the two terms are in the ratio
+$\Lambda x_*^{q}/\lambda x_*^{p}=p/q$, and $g''(x_*)=p(q-p)\,\lambda\,x_*^{\,p-2}>0$.
+\end{lemma}
+\begin{proof}
+$g'(x)=x^{p-1}\big(-p\lambda+q\Lambda x^{q-p}\big)$ vanishes for $x>0$ only at
+Eq.~\eqref{eq:tools_xstar}, is negative below and positive above. There
+$\Lambda x_*^{q}=(p/q)\lambda x_*^{p}$, which gives $m$ and, inserted in
+$g''=-p(p-1)\lambda x^{p-2}+q(q-1)\Lambda x^{q-2}$, the curvature.
+\end{proof}
+The lemma is the whole content of the power laws of
+Section~\ref{sec:filt_lowenergy}, and the following reading of it is used
+each time. The coefficient $\lambda$ is the small parameter. As
+$\lambda\to0$ the minimiser moves to the singular point, $x_*\to0$, as the
+power $\lambda^{1/(q-p)}$; the minimum value vanishes as the power
+$\lambda^{q/(q-p)}$, and it is negative, i.e.\ below the value $g(0)=0$ at
+the singular point itself. The exponents of the minimiser and of the minimum
+value are fixed by the \emph{difference} of the two exponents of $g$. The
+derivatives of the minimum value with respect to the small parameter are
+again powers,
+\begin{equation}\label{eq:tools_mderiv}
+  \frac{d^{n}m}{d\lambda^{n}}\propto\lambda^{\,q/(q-p)-n} ,
+\end{equation}
+and the first derivative that diverges for $\lambda\to0$ is the one with
+$n>q/(q-p)$.
+
+Two instances cover the applications. For $x$ of either sign the function
+$-\lambda x+\Lambda_\pm|x|^{q}$ is positive on the side where $-\lambda x>0$,
+so that its minimum lies on the side of the sign of $\lambda$, with the
+amplitude $\Lambda_\pm$ of that side, and the lemma applies with $p=1$.
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item \emph{A power competing with a linear term} ($p=\sigma<1$, $q=1$,
+  $\Lambda=1$): $g=x-\lambda x^{\sigma}$, with
+  \begin{equation}\label{eq:tools_edge}
+    x_*=(\sigma\lambda)^{1/(1-\sigma)} ,\qquad
+    m=-\frac{1-\sigma}{\sigma}\,x_*\propto-\lambda^{1/(1-\sigma)} .
+  \end{equation}
+  This is the low-temperature case, $\lambda=T\cA$ (Assumption~\ref{ass:power}):
+  the singular term is leading, and the linear term is the energy itself.
+  The condition $\sigma<1$ is what makes the power the decreasing term at
+  small $x$; for $\sigma\ge1$ the linear term wins and the minimum stays at
+  $x=0$ for small $\lambda$.
+\item \emph{A linear term competing with a power} ($p=1$, $q=\sigma>1$):
+  $g=-\lambda x+\Lambda|x|^{\sigma}$, with
+  \begin{equation}\label{eq:tools_crit}
+    x_*=\pm\left(\frac{|\lambda|}{\sigma\Lambda_\pm}\right)^{1/(\sigma-1)} ,\qquad
+    m=-\frac{\sigma-1}{\sigma}\,|\lambda|\,|x_*|\propto-|\lambda|^{\sigma/(\sigma-1)} .
+  \end{equation}
+  This is the critical case, $\lambda=t$ (Assumption~\ref{ass:crit}), with
+  the singular term leading; the linear term is what remains of the energy
+  after the slope at $\varepsilon_c$ has been subtracted. The exponents
+  $\sigma$ of $g$ and $\sigma/(\sigma-1)$ of $m$ are \emph{conjugate},
+  $1/\sigma+1/[\sigma/(\sigma-1)]=1$: the Legendre transform of
+  $|x|^{\sigma}/\sigma$ is $|\lambda|^{\sigma'}/\sigma'$ with
+  $1/\sigma+1/\sigma'=1$, which is the familiar duality of Young's
+  inequality. By Eq.~\eqref{eq:tools_mderiv} the second derivative of $m$
+  diverges if $\sigma/(\sigma-1)<2$, i.e.\ $\sigma>2$, and stays finite with
+  a cusp if $1<\sigma<2$.
+\end{itemize}
+
+\paragraph{Global versus local.} The lemma locates the minimum of the local
+form~\eqref{eq:tools_local}, which is valid only for small $x$. It is the
+global minimum of the full function if, as $\lambda\to0$, the full function
+stays positive outside the range of validity, say for $|x|\ge x_1$, while
+the local minimum value $m\to0^{-}$ is negative. The first condition holds
+whenever the full function at $\lambda=0$ is bounded below by a positive
+constant on $|x|\ge x_1$ and depends continuously on $\lambda$ there; this is
+how the proof of Proposition~\ref{prop:power} uses the linear
+bound~\eqref{eq:filt_linbound}. When the condition fails, two separate
+minima can exchange their roles at some $\lambda$: a discontinuous
+transition (Section~\ref{sec:transitions}).
+
+\subsection{Derivatives of a minimum value}
+\label{sec:tools_env}
+
+The observables are derivatives of $m(\tau)$, not of $g$. The following
+rule (the \emph{envelope theorem}; in quantum mechanics, the
+Hellmann--Feynman theorem) reduces the former to the latter.
+
+\begin{lemma}[Envelope theorem]\label{lem:envelope}
+Let $g(x;\tau)$ be twice differentiable, and let $x_*(\tau)$ be a minimiser
+in the interior of the range of $x$, with $g_{xx}(x_*;\tau)>0$. Then
+\begin{equation}\label{eq:tools_env}
+  \frac{dm}{d\tau}=g_\tau\Big|_{x_*} ,\qquad
+  \frac{dx_*}{d\tau}=-\frac{g_{x\tau}}{g_{xx}}\Big|_{x_*} ,\qquad
+  \frac{d^{2}m}{d\tau^{2}}=\left[g_{\tau\tau}-\frac{g_{x\tau}^{2}}{g_{xx}}\right]_{x_*} .
+\end{equation}
+The same holds for a second parameter $h$: $dm/dh=g_h$,
+$d^{2}m/dh^{2}=g_{hh}-g_{xh}^{2}/g_{xx}$ and
+$d^{2}m/d\tau\,dh=g_{\tau h}-g_{x\tau}g_{xh}/g_{xx}$, all at $x_*$.
+\end{lemma}
+\begin{proof}
+$dm/d\tau=g_x\,dx_*/d\tau+g_\tau$, and $g_x=0$ at $x_*$: the motion of the
+minimiser does not contribute to the first derivative of the minimum value.
+Differentiating the stationarity condition $g_x(x_*(\tau);\tau)=0$ gives
+$g_{xx}\,dx_*/d\tau+g_{x\tau}=0$, and differentiating $dm/d\tau=g_\tau(x_*(\tau);\tau)$
+once more gives $d^{2}m/d\tau^{2}=g_{\tau x}\,dx_*/d\tau+g_{\tau\tau}$.
+\end{proof}
+The first identity says that a parameter enters the first derivative of the
+minimum value only through its explicit presence in $g$; the second, that the
+minimiser responds to the parameter in inverse proportion to the curvature
+of $g$ at the minimum; the third, that the second derivative of the minimum
+value is the explicit second derivative of $g$, reduced by the term that
+accounts for the motion of the minimiser, which is large when the minimum
+is flat. In the applications the lemma, with $g=\fen$, is
+Eq.~\eqref{eq:filt_SI} ($\tau=T$, first identity), Eq.~\eqref{eq:filt_curvmain}
+(second identity), and Eqs.~\eqref{eq:filt_af} and~\eqref{eq:filt_chis}
+($h=\hfield$).
+
+\paragraph{A small term in $g$.} Let $g=g_0+\eta\,g_1$ with $\eta$ small, and
+let $x_0$ be the minimiser of $g_0$. Applying the first identity to the
+parameter $\eta$ at $\eta=0$,
+\begin{equation}\label{eq:tools_pert}
+  m=m_0+\eta\,g_1(x_0)+O(\eta^{2}) ,\qquad
+  \text{with}\quad
+  \frac{d^{2}m}{d\eta^{2}}\Big|_{\eta=0}=-\frac{(g_{1,x})^{2}}{g_{0,xx}}\Big|_{x_0}\le0 :
+\end{equation}
+to first order the minimum value changes by the perturbation evaluated at the
+unperturbed minimiser, and the second-order correction is always negative
+(the minimiser moves so as to lower the value). This is the tool for a
+singular term that is subleading to a regular one.
+
+\begin{lemma}[A subleading singular term]\label{lem:sublead}
+Let $\kappa>0$, $\sigma>2$ and
+\begin{equation}\label{eq:tools_gsub}
+  g(x;\tau)=-\tau\,x+\tfrac12\,\kappa\,x^{2}+\Lambda_\pm|x|^{\sigma} .
+\end{equation}
+Then, for $\tau\to0$,
+\begin{equation}\label{eq:tools_msub}
+  x_*=\frac{\tau}{\kappa}\,\big[1+O(|\tau|^{\sigma-2})\big] ,\qquad
+  m(\tau)=-\frac{\tau^{2}}{2\kappa}+\Lambda_\pm\Big|\frac{\tau}{\kappa}\Big|^{\sigma}\big[1+O(|\tau|^{\sigma-2})\big] .
+\end{equation}
+\end{lemma}
+\begin{proof}
+With $g_0=-\tau x+\tfrac12\kappa x^{2}$, $x_0=\tau/\kappa$, $m_0=-\tau^{2}/2\kappa$,
+$g_1=|x|^{\sigma}$ and $\eta=\Lambda_\pm$, Eq.~\eqref{eq:tools_pert} gives
+$m=m_0+\Lambda_\pm|x_0|^{\sigma}-\tfrac12\Lambda_\pm^{2}\sigma^{2}|x_0|^{2\sigma-2}/\kappa+\dots$;
+the ratio of the third term to the second is $O(|x_0|^{\sigma-2})$. The
+correction to $x_*$ follows from the stationarity condition
+$\kappa x_*+\sigma\Lambda_\pm|x_*|^{\sigma-1}\operatorname{sgn}x_*=\tau$.
+\end{proof}
+The contrast with Eq.~\eqref{eq:tools_crit} is the point. When the singular
+term is leading, the minimiser scales as $|\tau|^{1/(\sigma-1)}$ and the
+minimum value as $|\tau|^{\sigma/(\sigma-1)}$: the exponent is transformed.
+When it is subleading to a quadratic term, the minimiser is fixed by the
+quadratic term, $x_*\propto\tau$, and the singular part of the minimum value
+is the singular term itself, evaluated at $x_*$: the exponent $\sigma$ is
+transmitted unchanged. Both cases occur at critical points
+(the paragraph on the range of $\sigma$ in Section~\ref{sec:filt_critical}).
+The intermediate case $\sigma=2$, $\Lambda_+\neq\Lambda_-$, is a different
+curvature on the two sides: $m=-\tau^{2}/2(\kappa+2\Lambda_\pm)$, and the
+second derivative of $m$ jumps at $\tau=0$.
+
+The three regimes are summarised in Table~\ref{tab:tools_regimes}.
+\begin{table}[htbp]
+\centering
+\small
+\caption{The minimum of $g(x;\tau)$ near a singular term
+$\Lambda|x|^{\sigma}$ of $g$ at $x=0$, as $\tau\to0$. ``Leading'' means
+that no regular term of lower order than $\sigma$ competes with the
+singular one, apart from the linear term $\propto\tau x$ that drives the
+minimiser. The last column is the first derivative of $m$ that is not
+finite at $\tau=0$.}
+\label{tab:tools_regimes}
+\begin{tabular}{llllll}
+\toprule
+exponent & singular term is & $g(x;\tau)$ & $x_*$ & $m(\tau)-m_{\rm reg}$ & singular derivative \\
+\midrule
+$0<\sigma<1$ & leading & $x-\tau\Lambda x^{\sigma}$ & $\propto\tau^{1/(1-\sigma)}$ & $\propto-\tau^{1/(1-\sigma)}$ & $n>1/(1-\sigma)$ \\[2pt]
+$1<\sigma<2$ & leading & $-\tau x+\Lambda|x|^{\sigma}$ & $\propto|\tau|^{1/(\sigma-1)}$ & $\propto-|\tau|^{\sigma/(\sigma-1)}$ & $n=2$ (cusp) \\[2pt]
+$\sigma>2$ & leading & $-\tau x+\Lambda|x|^{\sigma}$ & $\propto|\tau|^{1/(\sigma-1)}$ & $\propto-|\tau|^{\sigma/(\sigma-1)}$ & $n=2$ (divergence) \\[2pt]
+$\sigma>2$ & subleading & $-\tau x+\tfrac12\kappa x^{2}+\Lambda|x|^{\sigma}$ & $\simeq\tau/\kappa$ & $\simeq\Lambda|\tau/\kappa|^{\sigma}$ & $n>\sigma$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Scale-free functions of several variables: scaling functions}
+\label{sec:tools_scaling}
+
+When $g$ depends on a second parameter $h$ (a field), the minimum value is a
+function $m(\tau,h)$ of two variables. If $g$ has no intrinsic scale in the
+joint dependence on $x$, $\tau$ and $h$, the two-variable function $m$
+reduces to one variable: a power of $\tau$ times a function of one ratio.
+The rescaling that expresses this is the one of
+Eq.~\eqref{eq:tools_hom1}, applied to each variable with its own exponent
+(the \emph{generalised homogeneity} of the footnote in
+Section~\ref{sec:dos_prelim}).
+
+\begin{lemma}[Minimisation commutes with rescaling]\label{lem:rescale}
+Let $g$ satisfy, for all $\lambda>0$ and fixed exponents $a$, $b$, $c$,
+\begin{equation}\label{eq:tools_ghom}
+  g(\lambda x;\lambda^{a}\tau,\lambda^{b}h)=\lambda^{c}\,g(x;\tau,h) .
+\end{equation}
+Then the minimum value and the minimiser satisfy
+\begin{equation}\label{eq:tools_mhom}
+  m(\lambda^{a}\tau,\lambda^{b}h)=\lambda^{c}\,m(\tau,h) ,\qquad
+  x_*(\lambda^{a}\tau,\lambda^{b}h)=\lambda\,x_*(\tau,h) .
+\end{equation}
+\end{lemma}
+\begin{proof}
+Substitute $x=\lambda x'$ in the minimisation:
+$m(\lambda^{a}\tau,\lambda^{b}h)=\min_{x'}g(\lambda x';\lambda^{a}\tau,\lambda^{b}h)
+=\lambda^{c}\min_{x'}g(x';\tau,h)$, and the minimiser of the right-hand side
+is $x'=x_*(\tau,h)$.
+\end{proof}
+The homogeneity of $g$ is inherited by the minimum value, with the exponent
+of $x$ dropped: the degree $c$ and the exponents $a$, $b$ of the parameters
+are unchanged. This is the step in the proofs of
+Propositions~\ref{prop:scaling0} and~\ref{prop:crit}, and of
+Eq.~\eqref{eq:filt_fss}. In Eq.~\eqref{eq:tools_ghom} the exponent of $x$ has
+been set to $1$ by convention, which fixes the normalisation of the others.
+A function $g=-\tau x+\Lambda|x|^{\sigma}$ satisfies Eq.~\eqref{eq:tools_ghom}
+with $a=\sigma-1$, $c=\sigma$ (no $h$); a function $g=x-\tau\,\lds(x,h)$ with
+$\lds$ homogeneous of degree $\sigma$ in $(x,h^{1/b})$ satisfies it with
+$a=1-\sigma$, $c=1$.
+
+\paragraph{The scaling form.} In Eq.~\eqref{eq:tools_mhom} $\lambda$ is
+arbitrary; the choice $\lambda=|\tau|^{-1/a}$ sets the first argument to
+$\pm1$ and gives
+\begin{equation}\label{eq:tools_scalingform}
+  m(\tau,h)=|\tau|^{c/a}\,\Phi_\pm(z) ,\qquad
+  z:=\frac{h}{|\tau|^{b/a}} ,\qquad
+  \Phi_\pm(z):=m(\pm1,z) ,
+\end{equation}
+with one function $\Phi_+$ for $\tau>0$ and one, $\Phi_-$, for $\tau<0$
+(at the ground state only $\tau>0$ occurs). The two exponents of the scaling
+form, $c/a$ of the prefactor and $b/a$ of the variable $z$, are ratios of
+the exponents of $g$. The alternative choice $\lambda=|h|^{-1/b}$ gives the
+same function in the form $m=|h|^{c/b}\,\tilde\Phi(\tau/|h|^{a/b})$.
+
+\paragraph{Exponents by differentiation.} Differentiating
+Eq.~\eqref{eq:tools_mhom} with respect to $\tau$ or $h$ lowers the degree by
+the exponent of that variable:
+\begin{equation}\label{eq:tools_dhom}
+  \frac{\partial^{\,j+k}m}{\partial\tau^{j}\,\partial h^{k}}
+  \quad\text{is generalised homogeneous of degree}\quad c-ja-kb .
+\end{equation}
+Hence, by the same choice of $\lambda$, at $h=0$ and at $\tau=0$
+\begin{equation}\label{eq:tools_expo}
+  \frac{\partial^{\,j+k}m}{\partial\tau^{j}\,\partial h^{k}}\bigg|_{h=0}
+  \propto|\tau|^{(c-ja-kb)/a} ,
+  \qquad
+  \frac{\partial^{k}m}{\partial h^{k}}\bigg|_{\tau=0}
+  \propto|h|^{(c-kb)/b} ,
+\end{equation}
+provided that the derivative of the scaling function at $z=0$ (respectively
+at $\tau/|h|^{a/b}=0$) is finite and non-zero. Every exponent of a
+derivative of $m$ is thus a linear function of the two ratios $c/a$ and
+$b/a$. In particular, for $a=\sigma-1$, $c=\sigma$ (the critical case),
+\begin{equation}\label{eq:tools_critexp}
+\begin{gathered}
+  m\propto|\tau|^{\frac{\sigma}{\sigma-1}} ,\qquad
+  \partial_\tau^{2}m\propto|\tau|^{\frac{\sigma}{\sigma-1}-2}=|\tau|^{-\frac{\sigma-2}{\sigma-1}} ,\qquad
+  \partial_hm\propto|\tau|^{\frac{\sigma-b}{\sigma-1}} ,
+  \\
+  \partial_h^{2}m\propto|\tau|^{\frac{\sigma-2b}{\sigma-1}} ,\qquad
+  \partial_hm\big|_{\tau=0}\propto|h|^{\frac{\sigma-b}{b}} ,
+\end{gathered}
+\end{equation}
+which are the exponents $2-\alpha$, $-\alpha$, $\tilde\beta$, $-\gamma$
+and $1/\delta$ of Eq.~\eqref{eq:filt_critexp}. Since four exponents are
+linear functions of two ratios, they satisfy two linear relations
+identically, whatever the values of $\sigma$ and $b$: these are the scaling
+relations~\eqref{eq:rushbrooke}. The scaling relations therefore test the
+homogeneity~\eqref{eq:tools_ghom}, not the values of its exponents.
+
+\paragraph{Matching: the scaling function at large argument.} The form
+\eqref{eq:tools_scalingform} is singular at $\tau=0$ at fixed $h\neq0$
+unless $\Phi_\pm$ compensates. If $m(0,h)$ is finite and non-zero, then,
+writing $|\tau|^{c/a}=|h|^{c/b}\,z^{-c/b}$,
+\begin{equation}\label{eq:tools_match}
+  m(\tau,h)=|h|^{c/b}\,z^{-c/b}\,\Phi_\pm(z)
+  \quad\Longrightarrow\quad
+  \Phi_\pm(z)\simeq\Phi_\infty\,z^{c/b}\ \ (z\to\infty) ,
+  \quad m(0,h)=\Phi_\infty|h|^{c/b} .
+\end{equation}
+The large-argument behaviour of the scaling function is thus fixed by the
+requirement that the quantity be finite in the other limit, and it is a
+power whose exponent is read off from the exponents of the scaling form.
+This argument gives $\delta$ in Proposition~\ref{prop:crit}, the Fisher
+relation in Section~\ref{sec:filt_length} (with $q$ in the role of $h$) and
+the finite-size behaviour of the susceptibility in
+Section~\ref{sec:filt_size} (with $V^{-1}$ in the role of $h$).
+
+\subsection{Logarithmic corrections}
+\label{sec:tools_logs}
+
+A singular term $\Lambda|x|^{\sigma}L(x)$ with a slowly varying $L$ is not
+scale-free, but nearly so: Eq.~\eqref{eq:tools_hom1} holds for it up to the
+factor $L(\lambda x)/L(x)\to1$. Lemma~\ref{lem:balance} then holds
+\emph{to logarithmic accuracy}: the stationarity condition reads
+$|\lambda|=\sigma\Lambda|x_*|^{\sigma-1}L(x_*)\,[1+o(1)]$, since the
+derivative of $L$ is negligible against $L/x$ for a slowly varying function,
+and it is solved by iteration. To leading order $|x_*|$ is given by
+Eq.~\eqref{eq:tools_xstar} with $\Lambda$ replaced by $\Lambda L(x_*)$, and
+in $L(x_*)$ the argument may be replaced by its power-law estimate, because
+$L$ changes by a factor $1+o(1)$ when its argument changes by a power of
+itself. For $L=\ln^{\theta}(1/x)$ this gives
+$|x_*|\propto\big[|\lambda|/\ln^{\theta}(1/|\lambda|)\big]^{1/(\sigma-1)}$,
+and $m\propto-|\lambda|\,|x_*|$ as in Eq.~\eqref{eq:tools_crit}. The case
+$\sigma=2$, $L=1/\ln(1/x)$ gives $x_*\propto\lambda\ln(1/|\lambda|)$ and a
+second derivative of $m$ that diverges as $\ln(1/|\lambda|)$: the
+logarithmic heat capacity of Section~\ref{sec:filt_nonpower}. An essential
+singularity, $e^{-1/|x|^{\theta}}$, is beyond this analysis: all its
+derivatives vanish at $x=0$, no exponent describes it, and the minimum
+inherits an essential singularity.
+
+\paragraph{Dictionary.} Table~\ref{tab:tools} gives the correspondence
+between the quantities of this appendix and those of the main text.
+\begin{table}[htbp]
+\centering
+\small
+\caption{The variables of this appendix in the applications. In each case
+$g$ is $\fen=\varepsilon-T\lds$ up to terms independent of $\varepsilon$,
+and $m$ is $\omega$ up to the same terms.}
+\label{tab:tools}
+\begin{tabular}{lllll}
+\toprule
+Application & $x$ & $\tau$ & $g(x;\tau,h)$ & Lemma \\
+\midrule
+low $T$ (Sec.~\ref{sec:filt_power_mb}) & $\varepsilon-\varepsilon_0$ & $T$ & $x-T\cA x^{\sigma}$ & \ref{lem:balance}: $p=\sigma$, $q=1$ \\[2pt]
+scaling at low $T$ (Sec.~\ref{sec:filt_scaling0}) & $\varepsilon-\varepsilon_0$ & $T$ & $x-T\lds(x,\hfield)$ & \ref{lem:rescale}: $a=1-\sigma$, $c=1$ \\[2pt]
+critical, $\alpha>0$ (Sec.~\ref{sec:filt_critical}) & $\varepsilon-\varepsilon_c$ & $t$ & $-tx-T_c\lds_{\rm sing}(x,\hfield)$ & \ref{lem:balance}: $p=1$, $q=\sigma$; \ref{lem:rescale}: $a=\sigma-1$, $c=\sigma$ \\[2pt]
+critical, $\alpha<0$ (Sec.~\ref{sec:filt_critical}) & $\varepsilon-\varepsilon_c$ & $t$ & $-tx+\dfrac{x^{2}}{2T_cc_{\rm reg}}-T_c\lds_{\rm sing}$ & \ref{lem:sublead} \\[4pt]
+finite size (Sec.~\ref{sec:filt_size}) & $\varepsilon-\varepsilon_c$ & $t$ & as above, $V^{-1}$ a second field & \ref{lem:rescale} \\[2pt]
+responses (Secs.~\ref{sec:large_laplace}, \ref{sec:filt_corrq}) & $\varepsilon$ & $T$, $\hfield$ & $\varepsilon-T\lds(\varepsilon(\hfield))$ & \ref{lem:envelope} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 \section{The size of a system}
 \label{app:size}
