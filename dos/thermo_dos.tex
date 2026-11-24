@@ -37,6 +37,7 @@
 \newcommand{\lndos}{{logdos}}  % abbreviation for the logarithmic density of states
 \newcommand{\hfield}{\mathscr{h}}  % parameter (field or coupling) of the Hamiltonian
 \newcommand{\enrg}{\mathcal{E}}  % energy eigenvalue of H - mu N (formerly \xi)
+\newcommand{\fen}[1][T]{\mathscr{F}_{#1}}  % F_T(eps) = eps - T s(eps): free energy per unit size at a prescribed energy
 \newcommand{\lds}{\mathscr{s}}  % the logarithmic density of states (microcanonical entropy density) as a function of the energy
 
 %% capital kappa (one-mode grand partition function); LaTeX has no \Kappa
@@ -67,7 +68,7 @@ $\rho_V(\enrg(\hfield))$. It is positive, its support is bounded below, its tota
 weight\footnote{The \emph{total weight} of $\rho_V$ is its integral over the energy axis,
 $\int d\enrg\,\rho_V(\enrg)$, i.e.\ the number of eigenstates.} is the dimension of the Fock
 space, its logarithm grows linearly with $V$ (\emph{extensivity}), and
-a field displaces the levels without creating or removing any. Every thermodynamic quantity is a
+a field displaces the levels without creating or removing any levels. Every thermodynamic quantity is a
 pairing of $\rho_V$ with a test function built from the Boltzmann factor,
 and every singularity\footnote{A function of one or several real
 variables is \emph{analytic} at a point if it equals its Taylor series in
@@ -103,7 +104,7 @@ Hamiltonian $\hat H$.
   logarithms to leading order in $V$), where the
   \emph{logarithmic density of states} $\lds(\varepsilon)$ (hereafter, \emph{\lndos})
   can be understood as the microcanonical entropy, Boltzmann's $k_B\ln W$ with $W$ written
-  in terms of the density of states. On this scale the Laplace transform is
+  in terms of the density of states. On this scale, the Laplace transform is
   evaluated by the steepest-descent method, and the thermodynamic potential is the
   Legendre transform of logdos $\lds$: this is the equivalence of the ensembles, a
   known result~\cite[Ch.~2]{Schwabl}. It makes the
@@ -188,7 +189,7 @@ $t>0$ and $t<0$. Differentiation of Eq.~\eqref{eq:scaling} gives
 \end{equation}
 the second being the Rushbrooke identity. The further hypothesis that the
 singular free energy per correlation volume is of order $k_BT$,
-$f_{\rm sing}\sim\ell_c^{-d}$ (\emph{hyperscaling}), adds $2-\alpha=d\nu$, and
+$f_{\rm sing}\sim\ell_c^{-d}$ (\emph{hyperscaling}), adds $2-\alpha=\nu \; d$, and
 $\gamma=\nu(2-\eta)$ is the Fisher relation~\cite[Ch.~7]{Schwabl}. In
 Section~\ref{sec:filt_lowenergy} Eq.~\eqref{eq:scaling} is derived from an assumption on the microscopic spectrum.
 
@@ -238,7 +239,7 @@ eigenstates by their particle number,
 $ \Xi = \sum_N e^{\beta\mu N}\sum_{a:\,N_a = N} e^{-\beta E_a}$,
 which is Eq.~\eqref{eq:Xi}.
 
-\subsection{The partition function is a Laplace transform}
+\subsection{Partition function as a Laplace transform}
 \label{sec:filt_laplace}
 
 The spectrum of $\hat{\mathcal H}$ is described by the \emph{many-body
@@ -274,14 +275,10 @@ The probability density of $\enrg$ in equilibrium is
 \[
   P_T(\enrg) := \frac{\rho(\enrg)\,e^{-\beta \enrg}}{\Xi} ,
 \]
-the density of states weighted by the Boltzmann factor.
+the density of states weighted by the Boltzmann factor $ e^{-\beta \enrg} / \Xi $.
 A parameter $\hfield$ of the Hamiltonian (a field, a coupling
 constant) changes the levels, $\enrg_a(\hfield)$, and hence $\rho(\enrg(\hfield))$ and
 $\cN(\enrg(\hfield))$; the Boltzmann kernel $e^{-\beta\enrg}$ does \emph{not} depend on it.
-The property that singles out the Boltzmann factor among other weight
-functions is discussed in Appendix~\ref{app:testfn}, and the relation of
-$\Xi$ to the generating functions of statistics and to the evolution
-operator in Appendix~\ref{app:generating}.
 
 \subsection{The density of states as a distribution; the thermal map}
 \label{sec:filt_dist}
@@ -516,24 +513,27 @@ the terms without a derivative of $\langle\hat{\mathcal H}\rangle$ cancel, and
 The entropy and the heat capacity are thus obtained from $\Xi$ and its first two derivatives.
 
 
-\subsection{Response functions}
-\label{sec:filt_resp}
+\subsection{Response and correlation functions}
+\label{sec:filt_corr}\label{sec:filt_resp}
 
-Since the
-Boltzmann kernel in Eq.~\eqref{eq:filt_laplace} is independent of $\hfield$, every derivative
-with respect to $ \hfield $ acts on $ \rho $ alone:
+Let fields $\hfield_i$ couple to Hermitian operators $\hat A_i$,
+$ \hat{\mathcal{H}}(\{\hfield_i\}) = \hat{\mathcal{H}} - \sum_i\hfield_i\hat A_i $.
+Since the Boltzmann kernel in Eq.~\eqref{eq:filt_laplace} is independent of
+the fields, every derivative with respect to a field acts on $ \rho $ alone:
 \begin{equation}\label{eq:Xi-derivatives}
-  \Xi^{(n)} := \frac{\partial^{n}\Xi}{\partial \hfield^{n}}
-  = \int d\enrg\;\frac{\partial^{n}\rho(\enrg(\hfield))}{\partial \hfield^{n}}\,e^{-\beta\enrg} .
+  \Xi^{(i)} := \frac{\partial\Xi}{\partial \hfield_i}
+  = \int d\enrg\;\frac{\partial\rho}{\partial \hfield_i}\,e^{-\beta\enrg} ,
+  \qquad
+  \Xi^{(ij)} := \frac{\partial^{2}\Xi}{\partial \hfield_i\,\partial \hfield_j}
+  = \int d\enrg\;\frac{\partial^{2}\rho}{\partial \hfield_i\,\partial \hfield_j}\,e^{-\beta\enrg} .
 \end{equation}
-Let the field couple to a Hermitian operator $\hat A$,
-$ \hat{\mathcal{H}}(\hfield) = \hat{\mathcal{H}} - \hfield\hat A $. Whether or not
-$\hat A$ commutes with $\hat{\mathcal H}$,
+Whether or not the $\hat A_i$ commute with $\hat{\mathcal H}$ and with each
+other,
 \[
-  \frac{\partial\Xi}{\partial \hfield}
-  = \frac{\partial}{\partial \hfield}\Tr e^{-\beta\hat{\mathcal{H}}(\hfield)}
-  = \beta\,\Tr\big[\hat A\,e^{-\beta\hat{\mathcal{H}}(\hfield)}\big]
-  = \beta\,\Xi\,\langle\hat A\rangle ,
+  \frac{\partial\Xi}{\partial \hfield_i}
+  = \frac{\partial}{\partial \hfield_i}\Tr e^{-\beta\hat{\mathcal{H}}(\{\hfield_i\})}
+  = \beta\,\Tr\big[\hat A_i\,e^{-\beta\hat{\mathcal{H}}(\{\hfield_i\})}\big]
+  = \beta\,\Xi\,\langle\hat A_i\rangle ,
 \]
 by the derivative of the exponential of an operator\footnote{For
 non-commuting operators
@@ -543,36 +543,31 @@ e^{-(\beta-\tau)\hat{\mathcal{H}}(\hfield)}\hat A\,e^{-\tau\hat{\mathcal{H}}(\hf
 first-order time-dependent perturbation theory). Under the trace the two
 exponentials combine by cyclicity, and the integral over $\tau$ gives the
 factor $\beta$.} and the cyclic property of the trace. Hence
-$\langle\hat A\rangle=-\partial\Omega/\partial \hfield$ and
+$\langle\hat A_i\rangle=-\partial\Omega/\partial \hfield_i$ and
 \begin{equation}\label{eq:filt_param}
-  \langle\hat A\rangle = k_BT\,\frac{\Xi^{(1)}}{\Xi} , \qquad
-  \chi_{AA} := \frac{\partial\langle\hat A\rangle}{\partial \hfield}\bigg|_{T,\mu}
-  = k_BT\left[\frac{\Xi^{(2)}}{\Xi} - \left(\frac{\Xi^{(1)}}{\Xi}\right)^{2}\right] .
+  \langle\hat A_i\rangle = k_BT\,\frac{\Xi^{(i)}}{\Xi} , \qquad
+  \chi_{ij} := \frac{\partial\langle\hat A_i\rangle}{\partial \hfield_j}\bigg|_{T,\mu}
+  = k_BT\left[\frac{\Xi^{(ij)}}{\Xi} - \frac{\Xi^{(i)}\,\Xi^{(j)}}{\Xi^{2}}\right] .
 \end{equation}
-The conjugate quantity (the order parameter, if $\hfield$ is the ordering field) is
-the Laplace transform of $\partial \rho/\partial \hfield$, and the susceptibility that
-of $\partial^{2}\rho/\partial \hfield^{2}$ less the square of the first, each
-normalised by $ \Xi $. Both statements are exact.
-The explicit form of Eq.~\eqref{eq:filt_param} in terms of the levels, for
-conserved and non-conserved $\hat A$, is derived in
-Appendix~\ref{app:lehmann}.
+The conjugate quantity is the Laplace transform of
+$\partial \rho/\partial \hfield_i$, and the response function
+$\chi_{ij}=\chi_{ji}$ that of the mixed second derivative of $\rho$ less the
+product of the first ones, each normalised by $ \Xi $. Both statements are
+exact. The explicit form of Eq.~\eqref{eq:filt_param} in terms of the levels,
+for conserved and non-conserved operators, is derived in
+Appendix~\ref{app:lehmann}. Two cases are used below.
 
-\subsection{Correlation functions}
-\label{sec:filt_corr}
+\paragraph{A single field.} For one field $\hfield$ coupled to $\hat A$ (the
+order parameter, if $\hfield$ is the ordering field), with
+$\Xi^{(n)}:=\partial^{n}\Xi/\partial\hfield^{n}$, Eq.~\eqref{eq:filt_param} reads
+$\langle\hat A\rangle=k_BT\,\Xi^{(1)}/\Xi$ and gives the susceptibility
+$\chi_{AA}:=\partial\langle\hat A\rangle/\partial\hfield
+=k_BT\,[\Xi^{(2)}/\Xi-(\Xi^{(1)}/\Xi)^{2}]$.
 
-The correlation function is obtained from the density of states in the same
-way as the susceptibility, with a field that depends on position. Let
-$\hat m_i$ be the order-parameter operator of the component (site) $i$ at
-position $\mathbf r_i$, and add local fields,
-$\hat{\mathcal H}\to\hat{\mathcal H}-\sum_i\hfield_i\hat m_i$, so that
-$\rho=\rho(\enrg;\{\hfield_i\})$. Eq.~\eqref{eq:filt_param} holds for mixed derivatives,
-\[
-  \chi_{ij}:=\frac{\partial\langle\hat m_i\rangle}{\partial \hfield_j}
-  =k_BT\left[\frac{\Xi^{(ij)}}{\Xi}-\frac{\Xi^{(i)}\Xi^{(j)}}{\Xi^{2}}\right],
-  \qquad
-  \Xi^{(ij)}:=\int d\enrg\;\frac{\partial^{2}\rho}{\partial \hfield_i\,\partial \hfield_j}\,e^{-\beta\enrg} ,
-\]
-and the derivatives of the delta functions, with
+\paragraph{Local fields: the correlation function.} Let $\hat A_i=\hat m_i$ be
+the order-parameter operator of the component (site) $i$ at position
+$\mathbf r_i$, and $\hfield_i$ the local field at this site. The derivatives of
+the delta functions in $\rho$, with
 $\partial\enrg_a/\partial \hfield_i=-m^{i}_{aa}$ and
 $m^{i}_{aa}:=\langle a|\hat m_i|a\rangle$, give as in
 Eq.~\eqref{eq:filt_vanvleck}
@@ -595,7 +590,7 @@ slopes of the levels with respect to these two fields. Two sites are
 positively correlated if the levels that are lowered by a field at $i$ are also lowered by a field at $j$.
 
 For a translation-invariant system (a lattice of $V$ sites with periodic
-boundary conditions, Appendix~\ref{app:size})
+boundary conditions)
 $\chi_{ij}=\chi(\mathbf r_i-\mathbf r_j)$, with Fourier transform
 $\chi(\mathbf q)=\sum_{\mathbf r}e^{-i\mathbf q\cdot\mathbf r}\chi(\mathbf r)$
 at the wave vectors allowed by the boundary conditions; $\chi(\mathbf q)$ is
@@ -622,8 +617,8 @@ or the antiferromagnetic wave vector) $\cos^{2}(\mathbf q\cdot\mathbf r_i)=1$ at
 every site and the factor is $1$.}.
 The susceptibility at wave vector $\mathbf q$ is thus the second derivative
 of $\ln\Xi$, the Laplace transform of $\rho$, with respect to the amplitude
-of a modulated field: a static response to a parameter of $\hat H$, as in
-Section~\ref{sec:filt_resp}.
+of a modulated field: the single-field case of Eq.~\eqref{eq:filt_param},
+with the modulated profile as the operator $\hat A$.
 
 \section{The limit of large size: the density of states on the logarithmic scale}
 \label{sec:large}
@@ -642,14 +637,19 @@ standard~\cite[Ch.~2]{Schwabl}, \cite{Ruelle}; here only the precise statements 
 \label{sec:large_ext}
 
 The size $V$ of a system is the number of its components (lattice sites,
-spins, orbitals) at fixed boundary conditions; Appendix~\ref{app:size} gives
-the precise definition. The levels of a lattice system of size $V$, with
+spins, orbitals) at fixed boundary conditions.
+The levels of a lattice system of size $V$, with
 finitely many states per component and couplings of bounded strength, are
 $D=e^{O(V)}$ in number\footnote{$f=O(g)$ means that $|f/g|$ stays bounded in
 the limit considered, and $f=o(g)$ that $f/g\to0$. A factor $1+o(1)$ thus
 tends to $1$, at a rate that is left unspecified.} and lie in an energy range
-of width $O(V)$, with $\enrg_0=O(V)$: the density of states $\rho_V$ itself
-has no limit for $V\to\infty$. What has a limit is the logarithm of the level
+of width $O(V)$, with $\enrg_0=O(V)$. The density of states $\rho_V$ therefore
+has no limit for $V\to\infty$, although limits of distributions are defined
+(footnote~\ref{footnote:distribution}): its pairing with a fixed test
+function, e.g.\ the number of levels in a fixed range of $\enrg/V$, grows as
+$e^{O(V)}$, and the normalised distribution $\rho_V/D$ of $\enrg/V$ tends to a
+delta function at the energy at which the levels are densest, which retains
+no information on the rest of the spectrum. What has a limit is the logarithm of the level
 count $\cN_V$ of Eq.~\eqref{eq:filt_gN}, per unit size, at a fixed energy per
 unit size.
 
@@ -713,8 +713,7 @@ is sufficient: since $\Xi$ is linear in $\cN$, Eq.~\eqref{eq:filt_laplace}, a
 factor between $V^{-p}$ and $V^{p}$ changes $\ln\Xi$ by at most $p\ln V$ and
 $\omega=\Omega/V$ by $O(\ln V/V)$.}.
 The \lndos{} is the density of states on the logarithmic scale, the only
-scale on which the limit $V\to\infty$ exists. It is the microcanonical
-entropy per unit size: Boltzmann's $S=k_B\ln W$, with $W$ the number of levels
+scale on which the limit $V\to\infty$ exists. It corresponds to the microcanonical entropy per unit size: Boltzmann's $S=k_B\ln W$, with $W$ the number of levels
 in an energy shell, equals $V\lds(\varepsilon)$ to logarithmic
 accuracy~\cite[Eq.~(2.3.6)]{Schwabl}. Since $\cN_V\ge1$ is non-decreasing,
 $\lds$ is non-negative and non-decreasing for $\varepsilon>\varepsilon_0$. Its
@@ -724,10 +723,22 @@ within an energy $o(V)$ of the ground state is exponential in $V$; a
 degeneracy $d_0$ that grows as a power of $V$ contributes
 $(k_B/V)\ln d_0\to0$.
 
-If the Hamiltonian depends on a parameter $\hfield$, the levels
-$\enrg_a(\hfield)$ move, and with them the level count at a fixed energy. This
-dependence is written $\cN_V(\enrg;\hfield)$ and $\lds(\varepsilon;\hfield)$;
-derivatives with respect to $\hfield$ are taken at fixed energy.
+If the Hamiltonian depends on a parameter $\hfield$, the level count and the
+\lndos{} depend on it only through the levels $\enrg_a(\hfield)$. As for
+$\rho(\enrg(\hfield))$ in Section~\ref{sec:filt_dist}, this is denoted by
+\[
+  \cN_V(\enrg(\hfield)):=\sum_a\Theta\big(\enrg-\enrg_a(\hfield)\big) ,
+  \qquad
+  \lds(\varepsilon(\hfield)):=\lim_{V\to\infty}\frac{k_B}{V}\ln\cN_V(V\varepsilon(\hfield)) .
+\]
+A derivative with respect to $\hfield$ acts on the levels, at a fixed value of
+the energy at which the level count is evaluated:
+$\partial\cN_V/\partial\hfield
+=-\sum_a\delta(\enrg-\enrg_a)\,\partial\enrg_a/\partial\hfield=\rho_A$,
+Eq.~\eqref{eq:filt_gA}. In the homogeneity assumptions of
+Section~\ref{sec:filt_lowenergy}, which concern the joint dependence on the
+energy and on the field, the same function is written
+$\lds(\delta\varepsilon,\hfield)$.
 
 \paragraph{The density of states of a large system.}
 For a finite system $\cN_V$ is a step function and $\rho_V=d\cN_V/d\enrg$ a sum
@@ -758,16 +769,18 @@ not depend on the width of the shell~\cite[Sec.~2.3]{Schwabl}.
 The bound~\eqref{eq:filt_linbound} is the condition for the thermodynamic
 potential to exist and to be extensive. Let
 \begin{equation}\label{eq:filt_psi}
-  \psi_T(\varepsilon):=\varepsilon-T\,\lds(\varepsilon)
+  \fen(\varepsilon):=\varepsilon-T\,\lds(\varepsilon)
 \end{equation}
 be the function in the exponent of Eq.~\eqref{eq:filt_laplace_V} in the limit
-$V\to\infty$. By Eq.~\eqref{eq:filt_linbound},
-$\psi_T(\varepsilon)\ge(1-bT)\,\varepsilon-aT$, so that for $T<1/b$ (every $T$
-if $b=0$) $\psi_T$ grows without limit at large $\varepsilon$: the integral
-converges, $\psi_T$ has a minimum, $\ln\Xi$ and $\Omega$ are of order $V$, and
+$V\to\infty$. The notation recalls the Helmholtz free energy $F=E-TS$:
+$V\fen(\varepsilon)$ is the free energy of the levels at the energy
+$V\varepsilon$. By Eq.~\eqref{eq:filt_linbound},
+$\fen(\varepsilon)\ge(1-bT)\,\varepsilon-aT$, so that for $T<1/b$ (every $T$
+if $b=0$) $\fen$ grows without limit at large $\varepsilon$: the integral
+converges, $\fen$ has a minimum, $\ln\Xi$ and $\Omega$ are of order $V$, and
 the energies that carry the Boltzmann weight are confined to a bounded range
 of $\varepsilon$. If the level count grew faster than exponentially in the
-energy, $\psi_T$ would be unbounded below and $\Xi$ would not exist at any
+energy, $\fen$ would be unbounded below and $\Xi$ would not exist at any
 temperature; if it grew exactly exponentially, $\lds=a+b\varepsilon$, $\Xi$
 would exist only for $T<1/b$.
 
@@ -817,40 +830,41 @@ content of Eq.~\eqref{eq:filt_rhos}:
 \begin{equation}\label{eq:filt_laplace_log}
   \Xi=\int d\enrg\;\rho(\enrg)\,e^{-\beta\enrg}
   \asymp V\int_{\varepsilon_0}^{\infty}d\varepsilon\;
-  \exp\left\{-\frac{V}{k_BT}\,\psi_T(\varepsilon)\right\} ,
-  \qquad \psi_T(\varepsilon)=\varepsilon-T\,\lds(\varepsilon) .
+  \exp\left\{-\frac{V}{k_BT}\,\fen(\varepsilon)\right\} ,
+  \qquad \fen(\varepsilon)=\varepsilon-T\,\lds(\varepsilon) .
 \end{equation}
 The integrand is the number of levels at the energy $\varepsilon$ times their
 Boltzmann weight; divided by $\Xi$ it is the equilibrium probability density
 $P_T$ of Section~\ref{sec:filt_laplace}, written for the energy per unit size
 $\varepsilon=\enrg/V$. Since the exponent is proportional to $V$, the integral
-is dominated for $V\to\infty$ by the neighbourhood of the minimum of $\psi_T$
+is dominated for $V\to\infty$ by the neighbourhood of the minimum of $\fen$
 (the steepest-descent, or Laplace, method): it equals
-$e^{-V\min\psi_T/k_BT}$ up to a factor that is not exponential in $V$. Let
+$e^{-V (\min\fen) /k_BT}$ up to a factor that is not exponential in $V$. Let
 $\varepsilon_*(T)$ be the minimiser, the \emph{thermal energy}, and let it be
 unique. Then, by $\omega=-(k_BT/V)\ln\Xi$,
 \begin{equation}\label{eq:filt_legendre}
   \omega(T) = \min_{\varepsilon\ge\varepsilon_0}\big[\varepsilon - T\,\lds(\varepsilon)\big]
   = \varepsilon_* - T\,\lds(\varepsilon_*) .
 \end{equation}
-If $\lds$ is differentiable at $\varepsilon_*$, the condition for the minimum is
+If $\varepsilon_*>\varepsilon_0$ and $\lds$ is differentiable at $\varepsilon_*$
+(differentiability at this point suffices; the derivative need not be
+continuous), the condition for the minimum is
 \begin{equation}\label{eq:filt_stat}
   \frac{\partial \lds}{\partial\varepsilon}\bigg|_{\varepsilon_*}=\frac1T .
 \end{equation}
 Eq.~\eqref{eq:filt_stat} is the link between the microscopic spectrum and
 thermodynamics: the temperature is the inverse slope of the \lndos{} at the
 thermal energy. Equivalently, by Eq.~\eqref{eq:filt_sV},
-$\partial\ln\cN/\partial\enrg=1/k_BT$: at the thermal energy the level count
-increases by the factor $e$ over an energy $k_BT$.
+$\partial\ln\cN/\partial\enrg=1/k_BT$.
 
 \paragraph{The thermodynamic quantities.} Insert
 Eq.~\eqref{eq:filt_legendre} into the exact
-relations~\eqref{eq:filt_exactV}\footnote{The derivatives may be taken after
+relations~\eqref{eq:filt_exactV}.\footnote{The derivatives may be taken after
 the limit $V\to\infty$: $\ln\Xi$ is a convex function of $\beta$ at every
 size, since $\partial^{2}\ln\Xi/\partial\beta^{2}=\Var(\hat{\mathcal H})\ge0$,
 and the derivatives of a convergent sequence of convex functions converge to
-the derivative of the limit wherever the latter exists.}. Since
-$\psi_T(\varepsilon)$ is stationary in $\varepsilon$ at $\varepsilon_*$, only
+the derivative of the limit wherever the latter exists.}
+Since $\fen(\varepsilon)$ is stationary in $\varepsilon$ at $\varepsilon_*$, only
 its explicit dependence on $T$ contributes to the derivative of the minimum,
 $\partial\omega/\partial T=-\lds(\varepsilon_*)$, and
 \begin{equation}\label{eq:filt_SI}
@@ -867,20 +881,19 @@ microcanonical entropy written as the logarithm of the level count.
 
 The same identification follows from the distribution of the energy: for
 $V\to\infty$, $P_T$ is concentrated within $O(V^{-1/2})$ of
-$\varepsilon_*$\footnote{Let
+$\varepsilon_*$, so that the mean of $\enrg/V$ is $\varepsilon_*$.\footnote{Let
 $\lds_{\varepsilon\varepsilon}:=\partial^{2}\lds/\partial\varepsilon^{2}<0$ at
 $\varepsilon_*$. The expansion
-$\psi_T(\varepsilon)=\omega+\tfrac12T|\lds_{\varepsilon\varepsilon}|\,(\varepsilon-\varepsilon_*)^{2}+\dots$
+$\fen(\varepsilon)=\omega+\tfrac12T|\lds_{\varepsilon\varepsilon}|\,(\varepsilon-\varepsilon_*)^{2}+\dots$
 in Eq.~\eqref{eq:filt_laplace_log} gives
 $P_T\propto\exp[-V|\lds_{\varepsilon\varepsilon}|(\varepsilon-\varepsilon_*)^{2}/2k_B]$,
 a Gaussian of variance $k_B/V|\lds_{\varepsilon\varepsilon}|=k_BT^{2}c_\mu/V$
 (Eq.~\eqref{eq:filt_curvmain}), in agreement with the exact
 $\Var(\hat{\mathcal H})=k_BT^{2}C_\mu$ of Eq.~\eqref{eq:filt_mb}. The terms
-beyond the quadratic one give corrections of relative order $1/V$.}, so
-that the mean of $\enrg/V$ is $\varepsilon_*$.
+beyond the quadratic one give corrections of relative order $1/V$.}
 
 \paragraph{Corrections at finite size.} Eq.~\eqref{eq:filt_legendre} is exact
-for $V\to\infty$. Three contributions to the exponent of the exact
+for $V\to\infty$. The following contributions to the exponent of the exact
 Eq.~\eqref{eq:filt_laplace_V} have been discarded, each smaller than $O(V)$:
 (i)~the prefactor $\beta V$ and the width $O(V^{-1/2})$ of the maximum of the
 integrand, which add $O(\ln V)$ to $\ln\Xi$; (ii)~the difference
@@ -907,14 +920,16 @@ The following consequences of Eq.~\eqref{eq:filt_legendre} are used throughout.
     c_\mu=\frac{d\varepsilon_*}{dT}
     =-\frac{1}{T^{2}\,\lds_{\varepsilon\varepsilon}(\varepsilon_*)}
   \end{equation}
-  wherever $\lds$ is twice differentiable: the heat capacity is the inverse
-  curvature of the \lndos. A positive $c_\mu$ requires
+  wherever $\lds$ is twice differentiable at $\varepsilon_*$ with
+  $\lds_{\varepsilon\varepsilon}(\varepsilon_*)\neq0$ (a continuous second
+  derivative is not required): the heat capacity is the inverse curvature of
+  the \lndos. A positive $c_\mu$ requires
   $\lds_{\varepsilon\varepsilon}<0$ at $\varepsilon_*$, and a large heat
   capacity corresponds to a small $|\lds_{\varepsilon\varepsilon}|$, i.e.\ to a
   range of energies over which the slope of $\lds$ is nearly constant.
-\item \emph{Parameters.} For $\lds=\lds(\varepsilon;\hfield)$,
-  $\omega(T,\hfield)=\varepsilon_*-T\,\lds(\varepsilon_*;\hfield)$ with
-  $\varepsilon_*=\varepsilon_*(T,\hfield)$, and
+\item \emph{Parameters.} For $\lds=\lds(\varepsilon(\hfield))$,
+  $\omega(T,\hfield)=\big[\varepsilon-T\,\lds(\varepsilon(\hfield))\big]_{\varepsilon=\varepsilon_*}$
+  with $\varepsilon_*=\varepsilon_*(T,\hfield)$, and
   \[
     \frac{\partial\omega}{\partial\hfield}\bigg|_{T}
     =\Big[1-T\,\frac{\partial\lds}{\partial\varepsilon}\Big]_{\varepsilon_*}
@@ -944,29 +959,13 @@ The following consequences of Eq.~\eqref{eq:filt_legendre} are used throughout.
     -\frac{\lds_{\varepsilon\hfield}^{2}}{\lds_{\varepsilon\varepsilon}}\right]_{\varepsilon_*} ,
   \end{equation}
   with subscripts denoting partial derivatives.
-\item \emph{No concavity.} If $\lds$ is not concave,
-  Eq.~\eqref{eq:filt_legendre} still gives the thermodynamic potential, but
-  $\psi_T$ may have two local minima, and the minimiser may jump at some
-  temperature $T_1$ between two energies $\varepsilon_-<\varepsilon_+$. Then
-  $\omega$ has a kink\footnote{A \emph{kink} of a function is a point at which
-  it is continuous and its first derivative jumps. A \emph{cusp} is a point at
-  which it is continuous and finite but its slope diverges, as for $|t|^{p}$
-  with $0<p<1$ at $t=0$.} at $T_1$, the entropy jumps by
-  $\lds(\varepsilon_+)-\lds(\varepsilon_-)$, and the latent heat is
-  $\varepsilon_+-\varepsilon_-$ (a discontinuous transition). For
-  $\varepsilon_-<\varepsilon<\varepsilon_+$, $\psi_T(\varepsilon)$ exceeds its
-  minimum at every temperature: the Boltzmann weight of these levels relative
-  to the dominant ones is $e^{-O(V)}$, and no temperature selects them. For
-  short-range interactions $\lds$ is concave, and the same transition appears
-  as a linear stretch of $\lds$ between $\varepsilon_-$ and $\varepsilon_+$
+\item \emph{Concavity is not required.} Eq.~\eqref{eq:filt_legendre} holds
+  whether or not $\lds$ is concave. If the minimiser is not unique at some
+  temperature, the transition is discontinuous
   (Section~\ref{sec:transitions}).
 \end{itemize}
 
-\subsection{The thermodynamic potential as a secondary quantity}
-\label{sec:large_secondary}
-
-Thermodynamics is usually built on the thermodynamic potential $\omega$ (or the free
-energy $f$): the scaling hypothesis~\eqref{eq:scaling} is a hypothesis on
+Thermodynamics is usually built on the thermodynamic potential $\omega$ (or the free energy $f$): the scaling hypothesis~\eqref{eq:scaling} is a hypothesis on
 $f_{\rm sing}$, Landau's theory expands $f$ in an order parameter, and the
 exponents are defined as properties of $f$ and of its derivatives.
 
@@ -1003,10 +1002,13 @@ $\lds(\varepsilon,\hfield)$, i.e.\ on the many-body level count on the logarithm
 scale, into a statement on the observables.
 In each case the path is: logarithmic density of states,
 partition function, thermodynamic potential, then entropy, heat capacity and
-responses by differentiation. In the conventional formulation the
+responses by differentiation.
+
+In the conventional formulation the
 corresponding assumptions (a power law, the scaling
-hypothesis~\eqref{eq:scaling}) are made on the free energy; here they are
-made on the microscopic spectrum, and the free energy merely inherits them.
+hypothesis~\eqref{eq:scaling}) are made on the free energy. Here they are
+made on the microscopic spectrum: the specific properties of the free energy
+are indirect manifestations of the properties of the spectrum.
 
 \subsection{Low-temperature power laws}
 \label{sec:filt_power_mb}
@@ -1042,10 +1044,12 @@ $\delta\varepsilon\to0$ excludes a residual entropy
 (Section~\ref{sec:large_ext}). The condition $\sigma<1$ is required for a
 low-temperature regime in which the thermal excitation energy
 $\delta\varepsilon_*:=\varepsilon_*-\varepsilon_0$ tends to zero continuously
-with $T$: for $\sigma>1$ the minimum of
-$\psi_T=\varepsilon_0+\delta\varepsilon-T\cA\,(\delta\varepsilon)^{\sigma}$
+with $T$\footnote{That is, $\delta\varepsilon_*(T)$ is positive for every
+$T>0$ and tends to $0$ for $T\to0$, as opposed to $\delta\varepsilon_*=0$
+throughout a range of temperatures.}: for $\sigma>1$ the minimum of
+$\fen=\varepsilon_0+\delta\varepsilon-T\cA\,(\delta\varepsilon)^{\sigma}$
 at small $\delta\varepsilon$ stays at $\delta\varepsilon=0$, and for
-$\sigma=1$ $\psi_T$ is linear in $\delta\varepsilon$, with its minimum at
+$\sigma=1$ $\fen$ is linear in $\delta\varepsilon$, with its minimum at
 $\delta\varepsilon=0$ for $T<1/\cA$. The linear
 bound~\eqref{eq:filt_linbound} concerns large $\varepsilon$ and does not
 restrict $\sigma$. For short-range interactions $\sigma>1$ is excluded by
@@ -1079,20 +1083,20 @@ to leading order for $T\to0$. All are powers of $T$:
 \end{proposition}
 \begin{proof}
 For $\lds=\cA\,(\delta\varepsilon)^{\sigma}$, the function
-$\psi_T(\varepsilon)=\varepsilon_0+\delta\varepsilon-T\cA\,(\delta\varepsilon)^{\sigma}$
+$\fen(\varepsilon)=\varepsilon_0+\delta\varepsilon-T\cA\,(\delta\varepsilon)^{\sigma}$
 of Eq.~\eqref{eq:filt_psi} has its minimum where
 $\sigma\cA\,(\delta\varepsilon_*)^{\sigma-1}=1/T$, which is
 Eq.~\eqref{eq:filt_stat}; there
 $T\cA\,(\delta\varepsilon_*)^{\sigma}=\delta\varepsilon_*/\sigma$, which yields
-$\omega=\psi_T(\varepsilon_*)$ and $S/V=\lds(\varepsilon_*)$. Since
+$\omega=\fen(\varepsilon_*)$ and $S/V=\lds(\varepsilon_*)$. Since
 $\delta\varepsilon_*\to0$ for $T\to0$, this minimum lies in the range in
 which the power law holds, say $\delta\varepsilon<\varepsilon_1$. It is the
 global minimum: for $\delta\varepsilon\ge\varepsilon_1$ the linear
 bound~\eqref{eq:filt_linbound}, written as $\lds\le a'+b\,\delta\varepsilon$
 with $a'=a+b\varepsilon_0$, gives
-$\psi_T-\varepsilon_0\ge\varepsilon_1(1-bT)-a'T$, which is positive at small
+$\fen-\varepsilon_0\ge\varepsilon_1(1-bT)-a'T$, which is positive at small
 $T$, whereas
-$\psi_T(\varepsilon_*)-\varepsilon_0=-\tfrac{1-\sigma}{\sigma}\,\delta\varepsilon_*<0$.
+$\fen(\varepsilon_*)-\varepsilon_0=-\tfrac{1-\sigma}{\sigma}\,\delta\varepsilon_*<0$.
 Finally $u-\mu n$ and $c_\mu$ are given by Eq.~\eqref{eq:filt_SI}, with
 $d(\delta\varepsilon_*)/dT=\delta\varepsilon_*/(1-\sigma)T$.
 \end{proof}
@@ -1239,7 +1243,7 @@ no intrinsic scale: for all $\lambda>0$,
   \lds(\lambda\,\delta\varepsilon,\lambda^{b}\hfield)=\lambda^{\sigma}\lds(\delta\varepsilon,\hfield) ,
   \qquad 0<\sigma<1 ,\quad b>0 ,
 \end{equation}
-i.e.\ $ \cN\big(\enrg_0+\lambda(\enrg-\enrg_0);\lambda^{b}\hfield\big)=\big[\cN(\enrg;\hfield)\big]^{\lambda^{\sigma}} $
+i.e.\ $ \cN\big(\enrg_0+\lambda(\enrg-\enrg_0),\lambda^{b}\hfield\big)=\big[\cN(\enrg,\hfield)\big]^{\lambda^{\sigma}} $
 at fixed $V$: $\ln\cN$ is a generalised homogeneous function of the
 excitation energy and the field.
 \end{assumption}
@@ -1428,8 +1432,8 @@ the two sides of $\varepsilon_c$.
 \paragraph{The range of $\sigma$.} By Eq.~\eqref{eq:filt_crit},
 $c_\mu\propto|t|^{-\alpha}$ with $\alpha=(\sigma-2)/(\sigma-1)$.
 \begin{itemize}\setlength{\itemsep}{0pt}
-\item $\sigma>2$: $0<\alpha<1$, and the heat capacity diverges. All static
-  exponents are fixed by the two exponents $(\sigma,b)$ of the spectrum. For
+\item $\sigma>2$: $0<\alpha<1$, and the heat capacity diverges at $T_c$.
+  All static exponents are fixed by the two exponents $(\sigma,b)$ of the spectrum. For
   the three-dimensional Ising class ($\alpha\simeq0.110$,
   $\tilde\beta\delta\simeq1.564$), $\sigma\simeq2.12$ and $b\simeq1.76$.
 \item $\sigma=2$: $\alpha=0$. A term $-B_\pm\,(\delta\varepsilon)^{2}$ is a
@@ -1441,9 +1445,10 @@ $c_\mu\propto|t|^{-\alpha}$ with $\alpha=(\sigma-2)/(\sigma-1)$.
   $|t|^{(2-\sigma)/(\sigma-1)}$. This requires that no degree of freedom
   contributes a regular part to $c_\mu$. In general, degrees of freedom that
   are not critical add an analytic term to $\omega$ (the thermodynamic
-  potentials of weakly coupled subsystems add), and the transition takes
-  the following form.
-\item \emph{Finite heat capacity with a cusp} ($\alpha<0$, as in the
+  potentials of weakly coupled subsystems add). This is the case of a
+  \emph{finite heat capacity with a cusp}\footnote{A \emph{cusp} of a function
+  is a point at which it is continuous and finite but its slope diverges, as
+  for $|t|^{p}$ with $0<p<1$ at $t=0$.} ($\alpha<0$, as in the
   three-dimensional XY and Heisenberg classes). The transition is continuous,
   and $c_\mu$ is singular but finite at $T_c$. By Eq.~\eqref{eq:filt_curvmain}
   the regular part $c_{\rm reg}>0$ of the heat capacity corresponds to a
@@ -1480,7 +1485,7 @@ and there are no levels above $\varepsilon=0$, where $\lds$ remains
 constant. The slope of $\lds$ at the upper edge is $1/T_c$ with $k_BT_c=J_0$,
 and the curvature there is finite, $-2k_B/3J_0^{2}$. For $T>T_c$ no energy
 satisfies Eq.~\eqref{eq:filt_stat}, since the slope of $\lds$ exceeds $1/T_c$
-everywhere below the edge: $\psi_T$ decreases up to the edge and increases
+everywhere below the edge: $\fen$ decreases up to the edge and increases
 beyond it, so that $\varepsilon_*=0$, with $S/V=k_B\ln2$ and $c_\mu=0$. For
 $T<T_c$ the minimum lies inside the spectrum, at
 $\varepsilon_*=-\tfrac32J_0(T_c-T)/T$ to leading order in $T_c-T$, and
@@ -1503,7 +1508,7 @@ wave vector $\mathbf q$ and the density of states
 (Section~\ref{sec:filt_corr}) carries over to the logarithmic scale. For a
 given $\mathbf q$ the amplitude $\hfield_{\mathbf q}$ of the modulated field is a
 parameter of the Hamiltonian like any other. In the limit $V\to\infty$ let
-$\lds(\varepsilon;\hfield_{\mathbf q})$ be the \lndos{} in the presence of the
+$\lds(\varepsilon(\hfield_{\mathbf q}))$ be the \lndos{} in the presence of the
 modulated field, and $\omega(T,\hfield_{\mathbf q})$ its transform,
 Eq.~\eqref{eq:filt_legendre}. With $\ln\Xi=-V\omega/k_BT$,
 Eq.~\eqref{eq:filt_chiq_exact} reads
@@ -1650,10 +1655,9 @@ assumption itself.
 \subsection{Size dependence and hyperscaling}
 \label{sec:filt_size}
 
-Let $\lds(\varepsilon,\hfield,V^{-1}):=(k_B/V)\ln\cN_V(V\varepsilon;\hfield)$ denote the
+Let $\lds(\varepsilon,\hfield,V^{-1}):=(k_B/V)\ln\cN_V(V\varepsilon(\hfield))$ denote the
 logarithm of the level count per unit size of the finite system of $V$
-components (Eq.~\eqref{eq:filt_sV}; the size is defined in
-Appendix~\ref{app:size}), with $V^{-1}$ as a third argument.
+components (Eq.~\eqref{eq:filt_sV}), with $V^{-1}$ as a third argument.
 
 \begin{assumption}[Homogeneity in the size]\label{ass:V}
 \begin{equation}\label{eq:filt_shomV}
@@ -1712,10 +1716,10 @@ with $\alpha=0$.
 linear dimension $L=V^{1/d}$ enters the singular part only through the ratio
 $L/\ell_c$, then $V_c=\ell_c^{\,d}$ and
 \[
-  \nu_*=d\,\nu ,
+  \nu_*=\nu \, d ,
 \]
 and Eq.~\eqref{eq:filt_hyper} becomes the hyperscaling relation
-$2-\alpha=d\,\nu$ of Section~\ref{sec:dos_prelim}. The susceptibility of the
+$2-\alpha=\nu \, d$ of Section~\ref{sec:dos_prelim}. The susceptibility of the
 finite system at $t=\hfield=0$ then grows as
 $V^{\gamma/\nu_*}=L^{\gamma/\nu}=L^{2-\eta}$.\footnote{%
 Above the upper critical
@@ -1723,7 +1727,7 @@ dimension the premise fails, because the uniform mode is not controlled by
 the modes of small non-zero $\mathbf q$: the Ising model in $d>4$ with
 periodic boundary conditions has $\nu=\tfrac12$ but
 $\nu_*=2$~\cite{Brezin1982}, as for infinite range, so that
-$2-\alpha=\nu_*$ holds and $2-\alpha=d\,\nu$ does not.}
+$2-\alpha=\nu_*$ holds and $2-\alpha=\nu \, d$ does not.}
 
 \subsection{Singularities that are not power laws}
 \label{sec:filt_nonpower}
@@ -1772,8 +1776,8 @@ $d/y_t=\sigma/(\sigma-1)$, i.e.
   y_\hfield=\frac{b}{\nu\,(\sigma-1)} ,\qquad
   d=\frac{\sigma}{\nu\,(\sigma-1)} ,
 \]
-the last being hyperscaling, $2-\alpha=d\,\nu$ (Eq.~\eqref{eq:filt_hyper} with
-$\nu_*=d\,\nu$). The thermal energy scales as
+the last being hyperscaling, $2-\alpha=\nu \, d$ (Eq.~\eqref{eq:filt_hyper} with
+$\nu_*=\nu \, d$). The thermal energy scales as
 $|\delta\varepsilon_*|\propto|t|^{1/(\sigma-1)}=\ell_c^{-1/\nu(\sigma-1)}=\ell_c^{-(d-y_t)}$,
 with $d-y_t$ the scaling dimension of the energy density. The
 renormalisation-group eigenvalues are thus ratios of the exponents of the
@@ -1797,12 +1801,25 @@ The results so far can be collected into a statement of what a phase
 transition, and what a crossover, is in terms of the microscopic spectrum.
 For a finite system nothing is singular: $\Xi(\beta)=\sum_ae^{-\beta\enrg_a}$ is a sum of
 analytic functions, and so are all its derivatives
-(Section~\ref{sec:filt_dist}). The limit $V\to\infty$ replaces the sum by
+(Section~\ref{sec:filt_dist}). The limit $V\to\infty$ effectively replaces the sum by
 the minimisation of Eq.~\eqref{eq:filt_legendre}, and the minimum of a family
-of smooth functions can be non-analytic in its parameters where the
+of smooth functions can be non-analytic in its parameters\footnote{The minimum
+of a family of functions is studied in several branches of mathematics.
+(i)~Convex analysis: $\omega(T)$ is, up to signs, the Legendre--Fenchel
+transform of $\lds$. It is concave in $T$, it has a kink exactly where the
+minimiser is not unique, and it is differentiable where $\lds$ is strictly
+concave~\cite{Rockafellar,Touchette2009}.
+(ii)~Singularity (catastrophe) theory classifies the non-analyticities of the
+minimum of a \emph{smooth} family: generically, two minima of equal value (a
+discontinuous transition) or a degenerate minimum (a continuous transition
+with mean-field exponents)~\cite{Arnold}. Other exponents therefore require
+$\lds$ itself to be non-analytic at $\varepsilon_c$, as in
+Assumption~\ref{ass:crit}.
+(iii)~Probability: the theory of large deviations
+(Appendix~\ref{app:generating}).} where the
 minimiser $\varepsilon_*(T,\hfield)$ jumps, reaches a point at which $\lds$ is
 non-analytic, or reaches the edge of the spectrum. Every singularity of the
-thermodynamics is therefore a statement about the motion through the
+thermodynamics is therefore a statement about the relocation through the
 spectrum of the thermal energy $\varepsilon_*(T,\hfield)$, the energy at which
 the slope of the \lndos{} is $1/T$, and the character of the singularity is
 read from the form of $\lds$ near the energies involved
@@ -1842,17 +1859,22 @@ read from the form of $\lds$ near the energies involved
   \draw[<->,thin] (0.15,1) -- (0.15,1.6) node[midway,right,font=\scriptsize]{$\Delta s$};
 \end{tikzpicture}\hfill
 \begin{tikzpicture}[ldsgraph]
-  % panel (b): continuous transition, vanishing curvature at the critical energy
+  % panel (b): continuous transition, s = s_c + du/T_c - B|du|^3 (sigma = 3, T_c = 2)
   \node[font=\normalsize] at (-0.4,2.4) {(b)};
   \draw[->] (-0.3,0) -- (4.4,0) node[below left]{$\varepsilon$};
   \draw[->] (0,-0.2) -- (0,2.4) node[above]{$\lds$};
-  \draw[lds,domain=0:4.1,samples=80,smooth] plot (\x,{1.2+0.4*(\x-2)-0.03*abs(\x-2)^3});
-  \draw[edge] (0.3,0.52) -- (3.9,1.96);
-  \node[orange!85!black,anchor=south,font=\scriptsize] at (3.5,2.0) {slope $1/T_c$};
-  \draw[guide] (2,0) -- (2,1.2);
+  % shaded: the singular part, i.e. the deviation of the logdos from its tangent at eps_c
+  \fill[orange!25] plot[domain=0:4.1,samples=80,smooth] (\x,{1.3+0.5*(\x-2)-0.035*abs(\x-2)^3})
+     -- (4.1,2.35) -- (0,0.3) -- cycle;
+  \draw[lds,domain=0:4.1,samples=80,smooth] plot (\x,{1.3+0.5*(\x-2)-0.035*abs(\x-2)^3});
+  \draw[edge] (0,0.3) -- (4.1,2.35);
+  \node[orange!85!black,anchor=south east,font=\scriptsize] at (3.3,2.0) {slope $1/T_c$};
+  \draw[guide] (2,0) -- (2,1.3);
   \node[below,font=\scriptsize] at (2,0) {$\varepsilon_c$};
-  \fill[blue!60!black] (2,1.2) circle (1.5pt);
-  \node[anchor=north west,font=\scriptsize] at (2.1,1.1) {$\lds_{\varepsilon\varepsilon}=0$};
+  \fill[blue!60!black] (2,1.3) circle (1.5pt);
+  \node[anchor=north west,font=\scriptsize] at (2.05,1.2) {$\lds_{\varepsilon\varepsilon}=0$};
+  \node[anchor=north west,font=\scriptsize,orange!85!black] at (2.3,0.75) {$\lds_{\rm sing}\propto-|\delta\varepsilon|^{\sigma}$};
+  \draw[thin,orange!85!black] (3.0,0.72) -- (3.75,2.08);
 \end{tikzpicture}\hfill
 \begin{tikzpicture}[ldsgraph]
   % panel (c): crossover, smooth change of form
@@ -1880,7 +1902,7 @@ read from the form of $\lds$ near the energies involved
 \begin{tikzpicture}[psigraph]
   % (a): T = 1.5, 2 (= T_1), 2.6
   \draw[->] (-0.3,0) -- (4.4,0) node[above left]{$\varepsilon$};
-  \draw[->] (0,-2.5) -- (0,1.1) node[above]{$\psi_T$};
+  \draw[->] (0,-2.5) -- (0,1.1) node[above]{$\fen$};
   \draw[psiL,domain=0:1,samples=40,smooth] plot (\x,{\x-1.5*sqrt(\x)});
   \draw[psiL] (1,-0.5) -- (2.2,-0.2);
   \draw[psiL,domain=2.2:4.1,samples=30,smooth] plot (\x,{\x-1.5*(1.6+0.5*(\x-2.2)-0.08*(\x-2.2)^2)});
@@ -1900,24 +1922,24 @@ read from the form of $\lds$ near the energies involved
   \node[font=\scriptsize,red!70!black,anchor=south] at (3.6,-1.8) {$T>T_1$};
 \end{tikzpicture}\hfill
 \begin{tikzpicture}[psigraph]
-  % (b): T = 2, 2.5 (= T_c), 3.2
+  % (b): T = 1.6, 2 (= T_c), 2.6
   \draw[->] (-0.3,0) -- (4.4,0) node[above left]{$\varepsilon$};
-  \draw[->] (0,-2.5) -- (0,1.1) node[above]{$\psi_T$};
-  \draw[psiL,domain=0:4.1,samples=80,smooth] plot (\x,{\x-2*(1.2+0.4*(\x-2)-0.03*abs(\x-2)^3)});
-  \draw[psiC,domain=0:4.1,samples=80,smooth] plot (\x,{\x-2.5*(1.2+0.4*(\x-2)-0.03*abs(\x-2)^3)});
-  \draw[psiH,domain=0:4.1,samples=80,smooth] plot (\x,{\x-3.2*(1.2+0.4*(\x-2)-0.03*abs(\x-2)^3)});
-  \fill[blue!50] (0.946,-0.94) circle (1.5pt);
-  \fill[orange!85!black] (2,-1) circle (1.5pt);
-  \fill[red!70!black] (2.986,-2.02) circle (1.5pt);
-  \draw[guide] (2,0) -- (2,-1);
-  \node[font=\scriptsize,blue!50,anchor=south east] at (3.4,0.1) {$T<T_c$};
-  \node[font=\scriptsize,orange!85!black,anchor=south east] at (3.7,-0.65) {$T=T_c$};
-  \node[font=\scriptsize,red!70!black,anchor=south] at (3.7,-1.8) {$T>T_c$};
+  \draw[->] (0,-2.5) -- (0,1.1) node[above]{$\fen$};
+  \draw[psiL,domain=0:4.1,samples=80,smooth] plot (\x,{\x-1.6*(1.3+0.5*(\x-2)-0.035*abs(\x-2)^3)});
+  \draw[psiC,domain=0:4.1,samples=80,smooth] plot (\x,{\x-2*(1.3+0.5*(\x-2)-0.035*abs(\x-2)^3)});
+  \draw[psiH,domain=0:4.1,samples=80,smooth] plot (\x,{\x-2.6*(1.3+0.5*(\x-2)-0.035*abs(\x-2)^3)});
+  \fill[blue!50] (0.909,-0.225) circle (1.5pt);
+  \fill[orange!85!black] (2,-0.6) circle (1.5pt);
+  \fill[red!70!black] (3.048,-1.59) circle (1.5pt);
+  \draw[guide] (2,0) -- (2,-0.6);
+  \node[font=\scriptsize,blue!50,anchor=south east] at (3.2,0.3) {$T<T_c$};
+  \node[font=\scriptsize,orange!85!black,anchor=north] at (3.1,-0.68) {$T=T_c$: $\propto|\delta\varepsilon|^{\sigma}$};
+  \node[font=\scriptsize,red!70!black,anchor=north] at (3.0,-1.65) {$T>T_c$};
 \end{tikzpicture}\hfill
 \begin{tikzpicture}[psigraph]
   % (c): T = 1.1, 1.6, 2.5  (T_x = 4/3)
   \draw[->] (-0.3,0) -- (4.4,0) node[above left]{$\varepsilon$};
-  \draw[->] (0,-2.5) -- (0,1.1) node[above]{$\psi_T$};
+  \draw[->] (0,-2.5) -- (0,1.1) node[above]{$\fen$};
   \fill[gray!15] (0.7,-2.4) rectangle (1.3,1.0);
   \draw[->] (-0.3,0) -- (4.4,0);
   \draw[psiL,domain=0:1,samples=40,smooth] plot (\x,{\x-1.1*\x^0.75});
@@ -1937,17 +1959,19 @@ read from the form of $\lds$ near the energies involved
 
 % ---------------- lower row: quantum transition
 \begin{tikzpicture}[ldsgraph]
-  % panel (d): the lower edge of the spectrum as a function of a parameter
+  % panel (d): the lower edge of the spectrum as a function of a parameter;
+  % two branches of different slopes, 1.1 + 0.25 x and 1.1 - 0.5 x
   \node[font=\normalsize] at (-2.4,2.4) {(d)};
-  \draw[->] (-2.2,1.0) -- (2.3,1.0) node[below left]{$\hfield$};
+  \draw[->] (-2.2,1.0) -- (2.3,1.0) node[above left]{$\hfield$};
   \draw[->] (0,-0.2) -- (0,2.4) node[right]{$\varepsilon_0(\hfield)$};
-  \draw[alt] (-2,1.9) -- (2,0.3);
-  \draw[alt] (-2,0.3) -- (2,1.9);
-  \draw[lds] (-2,0.3) -- (0,1.1) -- (2,0.3);
-  % finite size: avoided crossing
-  \draw[gray!60!black,thick,domain=-2:2,samples=60,smooth] plot (\x,{1.1-0.4*sqrt(\x*\x+0.08)});
-  \node[below,font=\scriptsize] at (0,1.0) {$\hfield_c$};
-  \node[font=\scriptsize,anchor=north,gray!40!black] at (0,0.2) {finite $V$: avoided crossing};
+  \draw[alt] (-2,0.6) -- (2,1.6);
+  \draw[alt] (-2,2.1) -- (2,0.1);
+  \draw[lds] (-2,0.6) -- (0,1.1) -- (2,0.1);
+  % finite size: avoided crossing of the two lowest eigenvalues
+  \draw[gray!60!black,thick,domain=-2:2,samples=60,smooth] plot (\x,{1.1-0.125*\x-sqrt(0.1406*\x*\x+0.02)});
+  \node[anchor=south west,font=\scriptsize] at (0.03,1.25) {$\hfield_c$};
+  \draw[guide] (0,1.0) -- (0,1.1);
+  \node[font=\scriptsize,anchor=north,gray!40!black] at (-1.0,0.45) {finite $V$: no crossing};
   \node[font=\scriptsize,anchor=east,blue!60!black] at (2.3,2.2) {$V\to\infty$: kink};
 \end{tikzpicture}\hspace{1.5cm}
 \begin{tikzpicture}[ldsgraph]
@@ -1956,42 +1980,48 @@ read from the form of $\lds$ near the energies involved
   \draw[->] (-0.3,0) -- (4.4,0) node[below left]{$\varepsilon$};
   \draw[->] (0,-0.2) -- (0,2.4) node[above]{$\lds$};
   \draw[lds,variable=\t,domain=0:1,samples=60,smooth] plot ({0.3+3.8*\t*\t},{0.75*sqrt(3.8)*\t});
-  \draw[lds,dashed,domain=0.95:4.1,samples=60,smooth] plot (\x,{0.55*(\x-0.95)^0.75});
+  \draw[very thick,teal!80!black,domain=0.95:4.1,samples=60,smooth] plot (\x,{0.55*(\x-0.95)^0.75});
   \draw[psiC,variable=\t,domain=0:1,samples=60,smooth] plot ({1.7+2.4*\t^2.5},{0.95*(2.4)^0.4*\t});
   \node[below,font=\scriptsize] at (1.7,0) {$\varepsilon_0(\hfield_c)$};
   \draw[lds] (2.6,0.75) -- (3.0,0.75) node[right,font=\scriptsize,black]{$\hfield<\hfield_c$};
   \draw[psiC] (2.6,0.5) -- (3.0,0.5) node[right,font=\scriptsize,black]{$\hfield=\hfield_c$};
-  \draw[lds,dashed] (2.6,0.25) -- (3.0,0.25) node[right,font=\scriptsize,black]{$\hfield>\hfield_c$};
+  \draw[very thick,teal!80!black] (2.6,0.25) -- (3.0,0.25) node[right,font=\scriptsize,black]{$\hfield>\hfield_c$};
 \end{tikzpicture}
 \caption{The cases of Section~\ref{sec:transitions}.
 Upper row: the \lndos{} $\lds(\varepsilon)$ (blue) and the tangent of slope
 $1/T$ (orange), which touches the graph of $\lds$ at the thermal energy
 $\varepsilon_*(T)$, Eq.~\eqref{eq:filt_stat}.
-Middle row: the function $\psi_T(\varepsilon)=\varepsilon-T\lds(\varepsilon)$ of
+Middle row: the function $\fen(\varepsilon)=\varepsilon-T\lds(\varepsilon)$ of
 Eq.~\eqref{eq:filt_psi} at three temperatures; its minimum (dot) is at
 $\varepsilon_*(T)$, with the value $\omega(T)$.
 (a)~Discontinuous transition. For short-range interactions $\lds$ is concave
 and linear between $\varepsilon_-$ and $\varepsilon_+$ (phase-separated
-states), where its curvature vanishes; $\psi_{T_1}$ is constant on this
+states), where its curvature vanishes; $\fen[T_1]$ is constant on this
 interval, and the minimum jumps from $\varepsilon_-$ to $\varepsilon_+$ as $T$
 passes $T_1$. The entropy jumps by $\Delta s$, and the latent heat is
 $\varepsilon_+-\varepsilon_-$. For long-range interactions $\lds$ may be
 non-concave, although non-decreasing, between $\varepsilon_-$ and
-$\varepsilon_+$ (red, dashed); $\psi_{T_1}$ then has two minima separated by a
+$\varepsilon_+$ (red, dashed); $\fen[T_1]$ then has two minima separated by a
 maximum.
 (b)~Continuous transition: the curvature of $\lds$ vanishes at the single
-energy $\varepsilon_c$. The minimum of $\psi_T$ moves continuously through
+energy $\varepsilon_c$. The deviation of $\lds$ from its tangent at
+$\varepsilon_c$ (shaded) is the singular part
+$\lds_{\rm sing}=-B_\pm|\delta\varepsilon|^{\sigma}$ of
+Assumption~\ref{ass:crit} (drawn for $\sigma=3$); it appears directly in
+$\fen[T_c](\varepsilon)-\omega(T_c)=T_cB_\pm|\delta\varepsilon|^{\sigma}$. The minimum of $\fen$ moves continuously through
 $\varepsilon_c$ and is flat at $T_c$, so that $c_\mu=d\varepsilon_*/dT$ is
 singular.
 (c)~Crossover: $\lds$ changes its form smoothly over a range of energies about
-$\varepsilon_\times$ (grey). The minimum of $\psi_T$ passes this range over a
+$\varepsilon_\times$ (grey). The minimum of $\fen$ passes this range over a
 range of temperatures, and $\omega(T)$ is analytic.
 (d)~Quantum transition: the ground-state energy $\varepsilon_0(\hfield)$, the
 lower edge of the spectrum, is non-analytic in a parameter $\hfield$. Two
-analytic branches (red, dashed) cross at $\hfield_c$, and the ground state
-(blue) has a kink. If the two levels are coupled, the crossing is avoided at
-finite size (grey), and the kink appears only for $V\to\infty$.
-(e)~The \lndos{} $\lds(\varepsilon;\hfield)$ above the lower edge on the two
+analytic branches (red, dashed), in general of different slopes, cross at
+$\hfield_c$, and the ground-state energy (blue), the lower of the two, has a
+kink. At finite size the two lowest eigenvalues of $\hat{\mathcal H}(\hfield)$
+may instead approach each other without crossing (grey); the kink then
+appears only for $V\to\infty$.
+(e)~The \lndos{} $\lds(\varepsilon(\hfield))$ above the lower edge on the two
 sides of a continuous quantum transition and at $\hfield_c$: the edge
 $\varepsilon_0(\hfield)$ moves with $\hfield$, and the form of $\lds$ above it
 changes at $\hfield_c$.}
@@ -1999,9 +2029,9 @@ changes at $\hfield_c$.}
 \end{figure}
 \begin{itemize}\setlength{\itemsep}{2pt}
 \item \emph{Discontinuous transition: the thermal energy jumps.} Let
-  $\psi_T(\varepsilon)=\varepsilon-T\lds(\varepsilon)$, Eq.~\eqref{eq:filt_psi},
+  $\fen(\varepsilon)=\varepsilon-T\lds(\varepsilon)$, Eq.~\eqref{eq:filt_psi},
   have two local minima, at $\varepsilon_-(T)<\varepsilon_+(T)$, with the
-  values $\omega_\mp(T):=\psi_T(\varepsilon_\mp)$; then
+  values $\omega_\mp(T):=\fen(\varepsilon_\mp)$; then
   $\omega=\min(\omega_-,\omega_+)$. Since
   $\partial\omega_\mp/\partial T=-\lds(\varepsilon_\mp)$ and
   $\lds(\varepsilon_+)>\lds(\varepsilon_-)$, $\omega_+$ decreases faster with
@@ -2009,15 +2039,18 @@ changes at $\hfield_c$.}
   the equilibrium state is therefore the group of levels of lower energy,
   about $\varepsilon_-$, for $T<T_1$, and the more numerous group of levels
   of higher energy, about $\varepsilon_+$, for $T>T_1$. At $T_1$ the thermal
-  energy jumps from $\varepsilon_-$ to $\varepsilon_+$, $\omega$ has a kink,
+  energy jumps from $\varepsilon_-$ to $\varepsilon_+$, $\omega$ has a
+  kink\footnote{A \emph{kink} of a function is a point at which it is
+  continuous and its first derivative jumps.},
   the entropy jumps by $\Delta s=\lds(\varepsilon_+)-\lds(\varepsilon_-)$, and
   the latent heat per unit size is $\varepsilon_+-\varepsilon_-=T_1\,\Delta s$.
-  Two forms of $\lds$ are possible between $\varepsilon_-$ and
-  $\varepsilon_+$. (i)~For long-range interactions $\lds$ may be non-concave
-  there. Then $\psi_T(\varepsilon)>\omega(T)$ for
+  This holds
+  whether or not $\lds$ is concave. Two forms of $\lds$ are possible between $\varepsilon_-$ and
+  $\varepsilon_+$. (i)~For \emph{long-range} interactions $\lds$ may be non-concave
+  there. Then $\fen(\varepsilon)>\omega(T)$ for
   $\varepsilon_-<\varepsilon<\varepsilon_+$ at every temperature: the weight
   of these levels in $\Xi$ is $e^{-O(V)}$ relative to the dominant ones, and no
-  temperature selects them. (ii)~For short-range interactions $\lds$ is
+  temperature selects them. (ii)~For \emph{short-range} interactions $\lds$ is
   concave, and it is \emph{linear} on $[\varepsilon_-,\varepsilon_+]$ with the
   slope $1/T_1$. The levels in this interval are the phase-separated states:
   a fraction $x$ of the sample is in the state of energy $\varepsilon_+$ and
@@ -2026,7 +2059,7 @@ changes at $\hfield_c$.}
   parts add, $\varepsilon=(1-x)\varepsilon_-+x\,\varepsilon_+$, and their
   numbers of levels multiply,
   $\lds=(1-x)\,\lds(\varepsilon_-)+x\,\lds(\varepsilon_+)$, which is linear in
-  $\varepsilon$. Hence $\psi_{T_1}$ is constant on the interval: at $T_1$,
+  $\varepsilon$. Hence $\fen[T_1]$ is constant on the interval: at $T_1$,
   and only at $T_1$, every energy of the interval is a minimum. The curvature
   of $\lds$ vanishes on the whole interval, and the energy changes by the
   latent heat at the fixed temperature $T_1$.
@@ -2066,29 +2099,32 @@ changes at $\hfield_c$.}
   Examples are the maximum of the heat capacity of a narrow group of levels
   (Section~\ref{sec:disorder}), the change of the power law at
   $k_BT\sim\delta$ for a nearly degenerate manifold of wave vectors
-  (Section~\ref{sec:goldstone}), the Debye crossover from $T^{3}$ to the
-  Dulong--Petit value, and the rounding of a transition in a finite system
+  (Section~\ref{sec:goldstone}), the Debye crossover of the heat capacity of a
+  crystal from $c\propto T^{3}$ to the Dulong--Petit value $c=3k_B$ per atom,
+  and the rounding of a transition in a finite system
   (Section~\ref{sec:filt_size}). A transition is the limit of a crossover in
   which the change of form of $\lds$ at $\varepsilon_\times$ has become
   non-analytic.
-\item \emph{Quantum phase transition: the ground-state energy is
-  non-analytic.}
+\item \emph{Quantum phase transition: the ground-state energy is continuous but non-analytic.}
   At $T=0$ the thermal energy is the ground-state energy per unit size
   $\varepsilon_0(\hfield)$, the lower edge of the spectrum, and a transition as
   a function of a parameter $\hfield$ is a non-analyticity of
-  $\varepsilon_0(\hfield)$ at some $\hfield_c$. Two cases occur. (i)~Two levels
-  whose slopes $\partial\enrg_a/\partial\hfield$ differ by an amount of order
-  $V$ cross at $\hfield_c$, which is possible at finite $V$ if
-  $\partial\hat{\mathcal H}/\partial\hfield$ has no matrix element between them.
+  $\varepsilon_0(\hfield)$ at some $\hfield_c$. Two cases occur, distinguished by the
+  two lowest eigenvalues $\enrg_0(\hfield)\le\enrg_1(\hfield)$ of
+  $\hat{\mathcal H}(\hfield)$ at finite $V$. (i)~The two eigenvalues cross at
+  $\hfield_c$, with slopes $\partial\enrg/\partial\hfield$ that differ by an
+  amount of order $V$. This is possible at finite $V$ if the two eigenstates
+  differ in a conserved quantum number.
   Then $\varepsilon_0(\hfield)$ has a kink, and the conjugate density
   $a=-\partial\varepsilon_0/\partial\hfield$ jumps: a first-order transition.
-  (ii)~The levels are coupled and do not cross at any finite $V$ (an
-  \emph{avoided crossing}\footnote{Two levels of a finite system that would
-  cross as $\hfield$ varies repel each other if
-  $\partial\hat{\mathcal H}/\partial \hfield$ has a non-zero matrix element
-  between them: they approach to a minimum distance, the gap, and exchange
-  their character instead of crossing. The ground-state energy then remains
-  analytic in $\hfield$ at finite $V$.}). The gap above the ground state closes
+  (ii)~The two eigenvalues do not cross at any finite $V$: the gap
+  $\enrg_1-\enrg_0$ has a positive minimum near $\hfield_c$ (an \emph{avoided
+  crossing}\footnote{Two eigenvalues of $\hat{\mathcal H}(\hfield)$ that
+  approach each other as $\hfield$ varies cross only if the corresponding
+  eigenstates differ in a conserved quantum number. Otherwise they repel:
+  they approach to a minimum distance, the gap, and the two eigenstates
+  exchange their character. The lowest eigenvalue is then analytic in
+  $\hfield$ at finite $V$.}). This minimum gap closes
   for $V\to\infty$, and $\varepsilon_0(\hfield)$ becomes non-analytic only in
   this limit, with a continuous $a$: a continuous transition.
 
@@ -2226,12 +2262,12 @@ $c_\mu\sim T^{1/z}$ in any dimension.
   \draw[->] (-0.15,0) -- (2.5,0) node[below left]{$\delta\varepsilon$};
   \draw[->] (0,-0.1) -- (0,1.5) node[above]{$\lds$};
   \draw[lds,domain=0:2.3,samples=60,smooth] plot (\x,{0.8*\x^0.75});
-  \draw[blue!65,very thick,domain=0:2.3,samples=60,smooth] plot (\x,{sqrt(\x)});
+  \draw[teal!80!black,very thick,domain=0:2.3,samples=60,smooth] plot (\x,{sqrt(\x)});
   \draw[alt,domain=0.001:2.3,samples=80,smooth] plot (\x,{sqrt(\x)*(\x/(\x+0.3))^(1/6)});
   \draw[guide] (0.3,0) -- (0.3,0.5);
   \node[below,font=\scriptsize] at (0.3,0) {$\sim\delta$};
   \node[font=\scriptsize,blue!60!black,anchor=north west] at (1.5,0.95) {$d_m=0$: $\sigma=\frac{d}{d+z}$};
-  \node[font=\scriptsize,blue!65,anchor=south west] at (0.5,1.22) {$d_m>0$: $\sigma=\frac{d-d_m}{d-d_m+z}$};
+  \node[font=\scriptsize,teal!80!black,anchor=south west] at (0.5,1.22) {$d_m>0$: $\sigma=\frac{d-d_m}{d-d_m+z}$};
   \node[font=\scriptsize,red!75!black,anchor=north west] at (0.35,0.35) {lifted by $\delta$};
 \end{tikzpicture}
 \caption{The \lndos{} above the ground state,
@@ -2303,12 +2339,13 @@ the candidate ordered states are nearly degenerate. A description built on a
 single order parameter does not apply. In the spectrum the competition is a
 definite statement: an unusually large number of many-body levels lies just
 above the ground state, and the thermodynamics is decided by the form of
-$\ln\cN$ in this group of levels. This subsection treats a finite number of
+$\ln\cN$ in this group of levels. This subsection treats a \emph{finite} number of
 competing states. A degenerate manifold of ordering wave vectors is treated
 in Section~\ref{sec:goldstone}, and a number of ground states that is
 exponential in the size in Section~\ref{sec:disorder}.
 
 \begin{figure}[htbp]
+  % s_0 in blue, s_1 in teal
 \centering
 \tikzset{
   ldsgraph/.style={>=Stealth,font=\small,x=1.6cm,y=1.6cm},
@@ -2322,7 +2359,7 @@ exponential in the size in Section~\ref{sec:disorder}.
   \draw[->] (-0.15,0) -- (2.5,0) node[below left]{$\delta\varepsilon$};
   \draw[->] (0,-0.1) -- (0,1.5) node[above]{$\lds$};
   \draw[lds,domain=0:2.3,samples=50,smooth] plot (\x,{0.55*sqrt(\x)});
-  \draw[blue!65,very thick,domain=0.5:2.3,samples=50,smooth] plot (\x,{0.95*sqrt(\x-0.5)});
+  \draw[teal!80!black,very thick,domain=0.5:2.3,samples=50,smooth] plot (\x,{0.95*sqrt(\x-0.5)});
   % common tangent: touches 0.55 sqrt(x) at x1 and 0.95 sqrt(x-0.5) at x2 with equal slope
   \draw[edge] (-0.1,0.083) -- (2.4,1.452);
   \fill[orange!85!black] (0.252,0.276) circle (1.4pt);
@@ -2330,7 +2367,7 @@ exponential in the size in Section~\ref{sec:disorder}.
   \draw[guide] (0.5,0) -- (0.5,0.1);
   \node[below,font=\scriptsize] at (0.5,0) {$\delta_1$};
   \node[font=\scriptsize,blue!60!black,anchor=north west] at (1.3,0.55) {$\lds_0$};
-  \node[font=\scriptsize,blue!65,anchor=north west] at (2.2,1.0) {$\lds_1$};
+  \node[font=\scriptsize,teal!80!black,anchor=north west] at (2.2,1.0) {$\lds_1$};
   \node[font=\scriptsize,orange!85!black,anchor=south east] at (1.1,0.85) {slope $1/T_\times$};
 \end{tikzpicture}
 \caption{Two competing families of levels above the ground state,
@@ -2615,10 +2652,10 @@ entropy is released in a maximum of $c_\mu$ at $k_BT\sim W$.}
   \fill[gray!15] (0,0) rectangle (0.6,1.4);
   \node[font=\scriptsize,anchor=south] at (0.3,1.1) {$\Delta<k_BT$};
   \draw[lds] (0,0.6) -- (2.4,0.6);
-  \draw[blue!45,domain=0.1:2.4,samples=60,smooth] plot (\x,{0.45/sqrt(\x)});
+  \draw[teal!80!black,domain=0.1:2.4,samples=60,smooth] plot (\x,{0.45/sqrt(\x)});
   \draw[red!75!black,very thick,dashed,domain=0:2.4,samples=60,smooth] plot (\x,{0.6*sqrt(\x/1.5)});
   \node[font=\scriptsize,blue!60!black,anchor=south west] at (0.65,0.65) {$a=1$: $P_0$ (glass)};
-  \node[font=\scriptsize,blue!45,anchor=south west] at (0.75,1.0) {$a<1$: $\chi$ diverges};
+  \node[font=\scriptsize,teal!80!black,anchor=south west] at (0.75,1.0) {$a<1$: $\chi$ diverges};
   \node[font=\scriptsize,red!75!black,anchor=south west] at (1.9,0.8) {$a>1$};
 \end{tikzpicture}\hfill
 \begin{tikzpicture}[ldsgraph]
@@ -2628,13 +2665,13 @@ entropy is released in a maximum of $c_\mu$ at $k_BT\sim W$.}
   \draw[->] (0,-0.1) -- (0,1.5) node[above]{$\lds$};
   \draw[clean,domain=0.002:2.4,samples=120,smooth] plot (\x,{0.55*(\x/2.4)*(1-ln(\x/2.4))});
   \draw[lds,domain=0:2.4,samples=60,smooth] plot (\x,{0.6*sqrt(\x)});
-  \draw[blue!45,domain=0:2.4,samples=60,smooth] plot (\x,{0.85*\x^(1/3)});
+  \draw[teal!80!black,domain=0:2.4,samples=60,smooth] plot (\x,{0.85*\x^(1/3)});
   \node[font=\scriptsize,red!75!black,anchor=north west] at (1.3,0.42) {clean gap: $-x\ln x$};
   \node[font=\scriptsize,blue!60!black,anchor=north west] at (1.75,0.74) {$(\delta\varepsilon)^{1/2}$};
-  \node[font=\scriptsize,blue!45,anchor=south west] at (1.5,1.2) {$(\delta\varepsilon)^{a/(a+1)}$, $a<1$};
+  \node[font=\scriptsize,teal!80!black,anchor=south west] at (1.5,1.2) {$(\delta\varepsilon)^{a/(a+1)}$, $a<1$};
 \end{tikzpicture}
 \caption{Disorder, Section~\ref{sec:disorder}: clean spectra in red,
-disordered ones in blue.
+disordered ones in blue and green.
 (a)~Single-particle density of states at a band edge. The clean power law
 $B|E-E_0|^{r}$ gives the Lifshitz transition, of order $r+2$, as $\mu$
 crosses $E_0$; the rare-region tail $\exp[-{\rm const}\,(E-E_0')^{-d/2}]$ of
@@ -2757,7 +2794,7 @@ The further consequences of disorder are the following
   This is the Harris criterion\footnote{The \emph{Harris criterion} states
   that weak quenched disorder which couples to the local energy density (a
   random local $T_c$) leaves the critical exponents of the clean system
-  unchanged if $d\nu>2$.}~\cite{Harris1974} ($d\nu>2$ with $\nu_*=d\nu$). In terms of the spectrum: weak disorder changes the
+  unchanged if $\nu \; d>2$.}~\cite{Harris1974} ($\nu \; d>2$ with $\nu_*=\nu \; d$). In terms of the spectrum: weak disorder changes the
   exponents precisely when the curvature of $\lds$ vanishes at $\varepsilon_c$
   (the case $0<\alpha<1$ of Section~\ref{sec:filt_critical}).
 \end{itemize}
@@ -2801,7 +2838,94 @@ stated form of the level count: the concavity of $\lds$, which rests on a
 division of the system into parts, is not guaranteed there, and the steepest-descent
 method does not need it.
 
-\subsection{Scope and limits}
+\section{The guiding principle}
+\label{sec:principle}
+
+The results of the preceding sections are instances of one principle. It
+contains nothing beyond the equivalence of the ensembles,
+Eq.~\eqref{eq:filt_legendre}.
+\begin{enumerate}\setlength{\itemsep}{2pt}
+\item \emph{The object.} The thermodynamics of a Hamiltonian is encoded in
+  the \lndos{} $\lds(\varepsilon(\hfield))$ on the domain
+  $\varepsilon\ge\varepsilon_0(\hfield)$, and in the lower edge
+  $\varepsilon_0(\hfield)$ of this domain, the ground-state energy. Both are
+  properties of the spectrum and do not depend on $T$. The graph of $\lds$
+  over the energy axis begins at $\varepsilon_0$ with the residual entropy
+  $\lds_0$ and rises with $\varepsilon$ as the levels become more numerous.
+\item \emph{The probe.} Thermodynamics is a thermal probe of the microscopic
+  spectrum. For a finite system the probe is the pairing of $\rho$ with the
+  Boltzmann factor, of resolution $k_BT$ in energy
+  (Section~\ref{sec:filt_dist}). In the limit of infinite size it becomes
+  sharp on the scale of the energy per unit size: a state $(T,\hfield)$
+  selects the single energy $\varepsilon_*(T,\hfield)$, the minimiser of
+  $\fen$, at which $\partial \lds/\partial\varepsilon=1/T$. Geometrically,
+  the straight line
+  \begin{equation}\label{eq:filt_tangent}
+    \ell_T(\varepsilon):=\frac{\varepsilon-\omega}{T}
+  \end{equation}
+  of slope $1/T$ lies above the graph of $\lds$, touches it at
+  $\varepsilon_*$, and crosses the energy axis at $\omega$
+  (Fig.~\ref{fig:transitions}). For $T\to0$ the point of contact is the ground
+  state; it moves to higher energies with increasing $T$, and for
+  $T\to\infty$ it reaches the maximum of $\lds$. The levels at other energies
+  do not contribute: their weight in $\Xi$ is $e^{-O(V)}$ relative to those
+  at $\varepsilon_*$.
+\item \emph{Locality.} Every thermodynamic quantity at $(T,\hfield)$ is a
+  function of $\lds$ and of its derivatives at $(\varepsilon_*,\hfield)$:
+  \[
+    u-\mu n=\varepsilon_* ,\qquad
+    \frac{S}{V}=\lds ,\qquad
+    c_\mu=-\frac{1}{T^{2}\lds_{\varepsilon\varepsilon}} ,\qquad
+    a=T\,\lds_\hfield ,\qquad
+    \chi=T\left[\lds_{\hfield\hfield}-\frac{\lds_{\varepsilon \hfield}^{2}}{\lds_{\varepsilon\varepsilon}}\right]
+  \]
+  (Eqs.~\eqref{eq:filt_SI}, \eqref{eq:filt_curvmain}, \eqref{eq:filt_af}
+  and~\eqref{eq:filt_chis}). The temperature enters through
+  $\varepsilon_*(T,\hfield)$ and through the explicit factors of $T$ alone.
+\item \emph{Singularities.} The thermodynamic quantities are non-analytic in
+  $(T,\hfield)$ only where $\lds$ is non-analytic at $\varepsilon_*$, where
+  $\varepsilon_*$ jumps, or where $\varepsilon_0(\hfield)$ is non-analytic. The
+  thermodynamics of transitions is therefore the study of the smoothness
+  and analyticity of the \lndos.
+  \begin{itemize}\setlength{\itemsep}{0pt}
+  \item \emph{Continuous transition.} $\lds$ is non-analytic at a single
+    energy $\varepsilon_c$, with a singular term $\lds_{\rm sing}$ of exponent $\sigma>2$
+    (Eqs.~\eqref{eq:filt_gcrit} and~\eqref{eq:filt_shom}).
+    The singularity is local on the energy axis, and it carries exponents and
+    scaling functions.
+  \item \emph{Discontinuous transition.} $\lds$ is analytic at the two
+    energies $\varepsilon_\mp$ between which $\varepsilon_*$ jumps. The kink
+    of $\omega$ is that of the minimum of two analytic functions,
+    $\omega_-(T)$ and $\omega_+(T)$: the singularity lies in the selection
+    of the energy, is fixed by the values of $\fen$ at its two minima, and
+    has no exponents. For short-range interactions $\lds$ is linear between
+    $\varepsilon_-$ and $\varepsilon_+$ and non-analytic at the two ends of
+    this interval. The minimum of $\fen$ that is not selected persists
+    beyond $T_1$ as a local minimum, a metastable phase, up to the spinodal
+    temperature at which it disappears; the potential $\omega$ alone does
+    not show it.
+  \item \emph{Quantum transition.} The lower edge $\varepsilon_0(\hfield)$ is
+    non-analytic: a crossing of two analytic branches (first order), or a
+    gap that closes for $V\to\infty$ (continuous).
+  \item \emph{Crossover.} $\lds$ is analytic and changes its form between two
+    ranges of energy, which $\varepsilon_*$ traverses over a range of
+    temperatures. Nothing is singular.
+  \end{itemize}
+\item \emph{Form determines exponents.} The exponents and the scaling
+  functions of a transition or of a low-temperature regime are fixed by the
+  form of $\lds$ about the energy involved, Assumptions~\ref{ass:power}
+  to~\ref{ass:V}, without reference to a symmetry, an order parameter or a
+  fixed point; a symmetry, where there is one, is a reason for the form.
+\end{enumerate}
+In one sentence: \emph{thermodynamics at $(T,\hfield)$ is determined by the
+local form of the logarithmic density of states at the energy selected by
+$T$, and a thermodynamic phenomenon is a change of this form, at the ground
+state or above it, along the energy axis.} The conventional formulation
+starts from the free energy. The spectral formulation starts from the
+\lndos{} and obtains the free energy, and every other quantity, from its
+form at one energy.
+
+\section{Scope and limits}
 \label{sec:scope}
 
 The input of the formulation is the many-body level count and its dependence
@@ -2835,92 +2959,6 @@ renormalisation group (Section~\ref{sec:filt_rg}). Third, properties of the
 eigenvectors that leave the level count unchanged (localisation; a
 ground-state degeneracy that is not exponential in $V$) are invisible to
 it.
-
-\section{The guiding principle}
-\label{sec:principle}
-
-The results of the preceding sections are instances of one principle. It
-contains nothing beyond the equivalence of the ensembles,
-Eq.~\eqref{eq:filt_legendre}.
-\begin{enumerate}\setlength{\itemsep}{2pt}
-\item \emph{The object.} The thermodynamics of a Hamiltonian is encoded in
-  the \lndos{} $\lds(\varepsilon;\hfield)$ on the domain
-  $\varepsilon\ge\varepsilon_0(\hfield)$, and in the lower edge
-  $\varepsilon_0(\hfield)$ of this domain, the ground-state energy. Both are
-  properties of the spectrum and do not depend on $T$. The graph of $\lds$
-  over the energy axis begins at $\varepsilon_0$ with the residual entropy
-  $\lds_0$ and rises with $\varepsilon$ as the levels become more numerous.
-\item \emph{The probe.} Thermodynamics is a thermal probe of the microscopic
-  spectrum. For a finite system the probe is the pairing of $\rho$ with the
-  Boltzmann factor, of resolution $k_BT$ in energy
-  (Section~\ref{sec:filt_dist}). In the limit of infinite size it becomes
-  sharp on the scale of the energy per unit size: a state $(T,\hfield)$
-  selects the single energy $\varepsilon_*(T,\hfield)$, the minimiser of
-  $\psi_T$, at which $\partial \lds/\partial\varepsilon=1/T$. Geometrically,
-  the straight line
-  \begin{equation}\label{eq:filt_tangent}
-    \ell_T(\varepsilon):=\frac{\varepsilon-\omega}{T}
-  \end{equation}
-  of slope $1/T$ lies above the graph of $\lds$, touches it at
-  $\varepsilon_*$, and crosses the energy axis at $\omega$
-  (Fig.~\ref{fig:transitions}). For $T\to0$ the point of contact is the ground
-  state; it moves to higher energies with increasing $T$, and for
-  $T\to\infty$ it reaches the maximum of $\lds$. The levels at other energies
-  do not contribute: their weight in $\Xi$ is $e^{-O(V)}$ relative to those
-  at $\varepsilon_*$.
-\item \emph{Locality.} Every thermodynamic quantity at $(T,\hfield)$ is a
-  function of $\lds$ and of its derivatives at $(\varepsilon_*,\hfield)$:
-  \[
-    u-\mu n=\varepsilon_* ,\qquad
-    \frac{S}{V}=\lds ,\qquad
-    c_\mu=-\frac{1}{T^{2}\lds_{\varepsilon\varepsilon}} ,\qquad
-    a=T\,\lds_\hfield ,\qquad
-    \chi=T\left[\lds_{\hfield\hfield}-\frac{\lds_{\varepsilon \hfield}^{2}}{\lds_{\varepsilon\varepsilon}}\right]
-  \]
-  (Eqs.~\eqref{eq:filt_SI}, \eqref{eq:filt_curvmain}, \eqref{eq:filt_af}
-  and~\eqref{eq:filt_chis}). The temperature enters through
-  $\varepsilon_*(T,\hfield)$ and through the explicit factors of $T$ alone.
-\item \emph{Singularities.} The thermodynamic quantities are non-analytic in
-  $(T,\hfield)$ only where $\lds$ is non-analytic at $\varepsilon_*$, where
-  $\varepsilon_*$ jumps, or where $\varepsilon_0(\hfield)$ is non-analytic. The
-  thermodynamics of transitions is therefore the study of the smoothness
-  and analyticity of the \lndos.
-  \begin{itemize}\setlength{\itemsep}{0pt}
-  \item \emph{Continuous transition.} $\lds$ is non-analytic at a single
-    energy $\varepsilon_c$, with a singular term of exponent $\sigma>2$. The
-    singularity is local on the energy axis, and it carries exponents and
-    scaling functions.
-  \item \emph{Discontinuous transition.} $\lds$ is analytic at the two
-    energies $\varepsilon_\mp$ between which $\varepsilon_*$ jumps. The kink
-    of $\omega$ is that of the minimum of two analytic functions,
-    $\omega_-(T)$ and $\omega_+(T)$: the singularity lies in the selection
-    of the energy, is fixed by the values of $\psi_T$ at its two minima, and
-    has no exponents. For short-range interactions $\lds$ is linear between
-    $\varepsilon_-$ and $\varepsilon_+$ and non-analytic at the two ends of
-    this interval. The minimum of $\psi_T$ that is not selected persists
-    beyond $T_1$ as a local minimum, a metastable phase, up to the spinodal
-    temperature at which it disappears; the potential $\omega$ alone does
-    not show it.
-  \item \emph{Quantum transition.} The lower edge $\varepsilon_0(\hfield)$ is
-    non-analytic: a crossing of two analytic branches (first order), or a
-    gap that closes for $V\to\infty$ (continuous).
-  \item \emph{Crossover.} $\lds$ is analytic and changes its form between two
-    ranges of energy, which $\varepsilon_*$ traverses over a range of
-    temperatures. Nothing is singular.
-  \end{itemize}
-\item \emph{Form determines exponents.} The exponents and the scaling
-  functions of a transition or of a low-temperature regime are fixed by the
-  form of $\lds$ about the energy involved, Assumptions~\ref{ass:power}
-  to~\ref{ass:V}, without reference to a symmetry, an order parameter or a
-  fixed point; a symmetry, where there is one, is a reason for the form.
-\end{enumerate}
-In one sentence: \emph{thermodynamics at $(T,\hfield)$ is determined by the
-local form of the logarithmic density of states at the energy selected by
-$T$, and a thermodynamic phenomenon is a change of this form, at the ground
-state or above it, along the energy axis.} The conventional formulation
-starts from the free energy. The spectral formulation starts from the
-\lndos{} and obtains the free energy, and every other quantity, from its
-form at one energy.
 
 \section{Summary}
 \label{sec:summary}
@@ -2997,7 +3035,7 @@ $\nu$, $\eta$ and the Fisher relation $\gamma=\nu(2-\eta)$,
 Eq.~\eqref{eq:filt_chiqscal} \\[2pt]
 \ref{ass:V} (homogeneous in the size) &
 finite-size scaling, Eq.~\eqref{eq:filt_fss}; hyperscaling $2-\alpha=\nu_*$
-if $b_V=\sigma$, with $\nu_*=d\,\nu$, Eq.~\eqref{eq:filt_hyper} \\[2pt]
+if $b_V=\sigma$, with $\nu_*=\nu \, d$, Eq.~\eqref{eq:filt_hyper} \\[2pt]
 \bottomrule
 \end{tabular}
 \end{table}
