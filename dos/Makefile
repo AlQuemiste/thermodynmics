@@ -27,8 +27,10 @@ $(BUILD)/$(SUPPL).pdf: $(SUPPL).tex $(DOC).bib $(BUILD)/$(DOC).pdf | $(BUILD)
 	$(TEX) $(SUPPL).tex
 	$(TEX) $(SUPPL).tex
 
-view: all
+view: main
 	xdg-open $(BUILD)/$(DOC).pdf >/dev/null 2>&1 &
+
+view-suppl: suppl
 	xdg-open $(BUILD)/$(SUPPL).pdf >/dev/null 2>&1 &
 
 clean:
