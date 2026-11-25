@@ -81,19 +81,19 @@ spectrum and does not compute the spectrum.
 \label{sec:intro}
 
 The equilibrium thermodynamics of a many-body Hamiltonian $\hat H$ follows
-from its spectrum in two steps, both found in the
-textbooks~\cite[Ch.~2]{Schwabl}. First, the grand partition function is the
+from its spectrum in two well-known steps.
+First, the grand partition function is the
 Laplace transform of the many-body density of states $\rho(\enrg)$,
 Eq.~\eqref{eq:filt_laplace}; this is exact for a system of any size. Second,
 for a system of large size $V$ the number of levels is exponential in $V$,
 $\rho_V(V\varepsilon)\asymp e^{V\lds(\varepsilon)/k_B}$ (equality of the
 logarithms to leading order in $V$), and the Laplace transform reduces to a
 Legendre transform: the thermodynamic potential per unit size is
-$\omega(T)=\min_\varepsilon[\varepsilon-T\lds(\varepsilon)]$,
-Eq.~\eqref{eq:filt_legendre}. The function $\lds(\varepsilon)$, the
-\emph{logarithmic density of states} (hereafter \emph{\lndos}), is the
+$\omega(T)=\min_\varepsilon[\varepsilon-T\lds(\varepsilon)]$.
+The function $\lds(\varepsilon)$, the
+\emph{logarithmic density of states} (hereafter \emph{\lndos}), corresponds to the
 microcanonical entropy per unit size, Boltzmann's $k_B\ln W$ with $W$ written
-in terms of the level count, and the second step is the equivalence of the
+in terms of the level count, and the second step is basically the equivalence of the
 ensembles.
 
 In the usual presentation the assumptions that produce power laws and
@@ -115,7 +115,7 @@ potential is then a secondary quantity: at the temperature $T$ it depends on
 the spectrum only through the form of $\lds$ at the single energy
 $\varepsilon_*(T)$ at which the slope of $\lds$ is $1/T$, and every
 singularity, power law and exponent of the thermodynamics is a property of
-the form of $\lds$ near that energy. The text is organised as follows.
+the form of $\lds$ near that energy. The article is organised as follows.
 \begin{enumerate}[label=(\roman*),itemsep=2pt]
 \item \emph{Exact relations} (Section~\ref{sec:filters}). The density of
   states $\rho$ is a distribution, and the thermodynamic quantities of a
@@ -144,12 +144,9 @@ the form of $\lds$ near that energy. The text is organised as follows.
   not due to a broken symmetry: degenerate manifolds of wave vectors,
   competing orders, residual entropy, disorder and non-Fermi liquids.
 \end{enumerate}
-The mathematical steps (the minimum of a function near a singular point, the
-envelope theorem, generalised homogeneity) are collected in
-Appendix~\ref{sec:tools}.
 
 \paragraph{Contribution and relation to earlier work.} The contribution of
-this note is a formulation of phase transitions, crossovers and power laws
+this note is a reformulation of phase transitions, crossovers and power laws
 directly in terms of the microscopic spectrum, instead of the free energy.
 The objects of the description are the features of the graph of $\lds$ over
 the energy axis: its slope, its curvature, its lower and upper edges, the
@@ -161,8 +158,8 @@ description does not presuppose a broken symmetry or an order parameter, and
 it covers the cases outside Landau's paradigm in the same terms as those
 inside it (Section~\ref{sec:beyond}).
 
-The individual ingredients are known. The Legendre structure of
-Section~\ref{sec:large} is the equivalence of the
+The individual ingredients are known. The reduction of the Laplace transform
+to a Legendre transform (Section~\ref{sec:large}) is the equivalence of the
 ensembles~\cite{Schwabl,Ruelle} and, in the language of probability, a
 large-deviation principle~\cite{Touchette2009}. The stretched-exponential
 growth of the level count of a Fermi gas is Bethe's
@@ -178,7 +175,7 @@ diverges~\cite{Kastner2000}. The present formulation differs in three
 respects. It is set in the limit of large size, in which $\lds$ is a property
 of the Hamiltonian alone and non-analyticity is sharply defined. Its
 assumptions are homogeneity properties of the level count in the energy, the
-field, the wave vector and the size, from which the exponents, the
+field, and the size, from which the exponents, the
 correlation length, finite-size scaling and hyperscaling follow by one
 method. And it applies the same description at the lower edge of the
 spectrum, to low-temperature power laws, quantum criticality, frustration,
@@ -277,14 +274,17 @@ the linear functional that assigns to a test function $\varphi$ the number
 The last form is independent of the basis. Since the support of $\rho$ is
 bounded below, the pairing is defined for every continuous $\varphi$ that
 decays for $\enrg\to+\infty$ faster than the levels accumulate; no condition
-is needed if the Fock space has a finite dimension $D$. Three properties are
+is needed if the Fock space has a finite dimension $D$. Two properties are
 used below.
 \begin{itemize}\setlength{\itemsep}{2pt}
 \item \emph{Level count.} $\rho=d\cN/d\enrg$ in the sense of distributions.
   Unlike $\rho$, the level count $\cN$ is an ordinary function, with values
   that can be bounded and compared. The assumptions on the spectrum
   (Sections~\ref{sec:large} and~\ref{sec:filt_lowenergy}) are therefore
-  stated for $\cN$.
+  stated for $\cN$. A value of $\rho$, the number of levels per unit energy,
+  is used only for large size, where it is the derivative of the smooth
+  function that replaces $\cN$ to logarithmic accuracy
+  (Eq.~\eqref{eq:filt_rhosmooth}).
 \item \emph{Dependence on a parameter.} Let
   $\hat{\mathcal H}(\hfield)=\hat{\mathcal H}-\hfield\hat A$ with a Hermitian
   operator $\hat A$. A level moves with the field at the rate
@@ -310,11 +310,6 @@ used below.
   not create or remove levels, it moves them. In integrated form,
   $\partial_\hfield\cN=\rho_A$: the number of levels below $\enrg$ changes
   only through the levels that cross $\enrg$.
-\item \emph{Smoothing.} The convolution of $\rho$ with a smooth window of unit
-  area and width $\Delta$ is an ordinary function, the number of levels per
-  unit energy in the window. A statement about ``the value of $\rho$'' refers
-  to it, and is meaningful only if it depends neither on $\Delta$ nor on the
-  shape of the window (Section~\ref{sec:large_ext}).
 \end{itemize}
 
 \paragraph{Thermodynamics as a Laplace transform.} Thermodynamics pairs
@@ -345,7 +340,7 @@ $\rho\mapsto\Xi(\beta)$ has four properties.
   analytic function of $\beta$ wherever it converges. The thermal quantities
   of a finite system are therefore smooth functions of $T$; a phase
   transition can arise only in the limit $V\to\infty$.
-\item \emph{Injectivity.} A distribution with support bounded below is
+\item \emph{Injectivity (1-to-1 property).} A distribution with support bounded below is
   determined by its Laplace transform (Lerch's theorem~\cite{Widder}): two
   spectra with the same $\Xi(\beta)$ for all $\beta$ are the same spectrum.
 \item \emph{Finite resolution.} The test functions $\enrg^{n}e_\beta$ vary on
@@ -579,7 +574,7 @@ $\cN_V(\enrg)-\cN_V(\enrg-\Delta)=\cN_V(\enrg)\,(1-e^{-\Delta/k_BT_\varepsilon})
 which differs from $\cN_V$ by a factor that is not exponential in $V$.
 Boltzmann's entropy $k_B\ln W$, with $W$ the number of levels in a shell, is
 therefore $V\lds(\varepsilon)+O(1)$ for every width of the
-shell~\cite[Sec.~2.3]{Schwabl}: \emph{the \lndos{} is the microcanonical
+shell~\cite[Sec.~2.3]{Schwabl}: \emph{the logarithmic density of states is the microcanonical
 entropy per unit size}.
 
 If the Hamiltonian depends on a parameter $\hfield$, the level count and the
@@ -1052,6 +1047,42 @@ value, the maximum of the heat capacity of a narrow group of levels
 (Section~\ref{sec:frustration}), and the rounding of a transition in a
 finite system (Section~\ref{sec:filt_size}).
 
+A crossover does not correspond to a non-analytic point of $\lds$. For
+$V\to\infty$ the distribution of the energy per unit size has the width
+$(k_BT^{2}c_\mu/V)^{1/2}\to0$ (Section~\ref{sec:large}): the Boltzmann factor
+selects the single energy $\varepsilon_*(T)$, and a non-analytic point of
+$\lds$ at $\varepsilon_\times$ makes $\omega$ non-analytic at $T_\times$,
+which is a transition, case~(b). The sharp change of the spectrum that
+underlies a crossover lies in one of two other places.
+\begin{enumerate}[label=(\roman*),itemsep=0pt]
+\item \emph{In the spectrum of the single excitations}, i.e.\ of the
+  excitations of which the many-body levels are sums, as in
+  Eq.~\eqref{eq:lif_levels}; their energies are of order $k_BT$, not of
+  order $V$. Examples of a sharp point of this spectrum, at an energy
+  $E_\times$, are a gap, a band edge and the upper edge of the phonon
+  spectrum. The thermal occupation of an
+  excitation varies with its energy on the scale $k_BT$
+  (Section~\ref{sec:filt_dist}), so that the point enters $\omega(T)$
+  through an integral over an interval of width $k_BT$, as in
+  Eq.~\eqref{eq:lif_omega}. The integral is analytic in $T$, and so is $\lds$;
+  the observables change over the range $k_BT\sim E_\times$. A measurement
+  with a resolution finer than $k_BT$ locates the point: the spectroscopy of
+  the single excitations, or the thermodynamics for $T\to0$ as a function of
+  a parameter $\hfield$ on which $E_\times$ depends. If $E_\times(\hfield)$
+  vanishes at some $\hfield_c$, the crossover line
+  $k_BT_\times\sim E_\times(\hfield)$ ends at $T=0$ in a quantum transition,
+  discontinuous or continuous as described below; the Lifshitz transition of
+  Section~\ref{sec:filt_scaling0} is an example.
+\item \emph{In the spectrum at a neighbouring value of a parameter.} A
+  transition that exists for $V=\infty$ or at $\hfield=0$ appears at a finite
+  size or in a non-zero field as a crossover, which extends over
+  $|t|\lesssim V^{-1/\nu_*}$ (Eq.~\eqref{eq:filt_fss}) or
+  $|t|\lesssim|\hfield|^{1/\Delta_\hfield}$ (Eq.~\eqref{eq:filt_crit}), with
+  $t$ the relative distance of the temperature from the transition. In the
+  limit $V\to\infty$ or $\hfield\to0$ the range shrinks to a point, and the
+  crossover becomes the discontinuous or the continuous transition.
+\end{enumerate}
+
 \paragraph{Quantum transition.} At $T=0$ the thermal energy is the
 ground-state energy per unit size $\varepsilon_0(\hfield)$, the lower edge
 of the spectrum, and a transition as a function of a parameter $\hfield$ is
@@ -1080,11 +1111,10 @@ Section~\ref{sec:filt_scaling0}.
 \label{sec:filt_lowenergy}
 
 Eq.~\eqref{eq:filt_legendre} turns an assumption on the form of
-$\lds(\varepsilon,\hfield)$, i.e.\ on the many-body level count on the
+$\lds$, i.e.\ on the many-body level count on the
 logarithmic scale, into a statement on the observables. In each case the
 path is: \lndos, thermodynamic potential, then entropy, heat capacity and
-responses by differentiation. The mathematical steps are those of
-Appendix~\ref{sec:tools}, with the dictionary of Table~\ref{tab:tools}.
+responses by differentiation (see Table~\ref{tab:tools}).
 
 \subsection{Low-temperature power laws}
 \label{sec:filt_power_mb}
@@ -1098,7 +1128,8 @@ unit size, for $\delta\varepsilon\to0^{+}$,
   \qquad\text{i.e.}\qquad
   \cN(\enrg)\asymp\exp\left[\frac{V\cA}{k_B}\Big(\frac{\enrg-\enrg_0}{V}\Big)^{\sigma}\right]
 \end{equation}
-to leading order in $\delta\varepsilon$\footnote{Precisely,
+to leading order in $\delta\varepsilon$: the level count grows above the ground state
+as a stretched exponential of the excitation energy.\footnote{Precisely,
 $\lds(\varepsilon)=\cA\,(\delta\varepsilon)^{\sigma}\,[1+o(1)]$. Then for
 every $\eta>0$,
 $\cA(1-\eta)(\delta\varepsilon)^{\sigma}\le\lds\le\cA(1+\eta)(\delta\varepsilon)^{\sigma}$
@@ -1106,8 +1137,7 @@ at sufficiently small $\delta\varepsilon$. Since
 $\min_\varepsilon[\varepsilon-T\lds(\varepsilon)]$ decreases when $\lds$ is
 increased, $\omega$ lies between the values obtained with the amplitudes
 $\cA(1\pm\eta)$, and the results of Proposition~\ref{prop:power} hold to
-leading order for $T\to0$.}: the level count grows above the ground state
-as a stretched exponential of the excitation energy.
+leading order for $T\to0$.}
 \end{assumption}
 The amplitude and the exponent are positive because $\cN$ is non-decreasing,
 and $\lds\to0$ for $\delta\varepsilon\to0$ excludes a residual entropy. The
@@ -1821,8 +1851,35 @@ With $\lambda=|\delta\varepsilon|^{-1}$ the wave vector enters only through
 the ratio $q/|\delta\varepsilon|^{b_q}$: for the levels at the distance
 $\delta\varepsilon$ from $\varepsilon_c$, a field modulated on a length that
 exceeds $\ell\propto|\delta\varepsilon|^{-b_q}$ acts as a uniform field. The
-exponent $b_q$ is a further exponent of the spectrum, not fixed by
-$(\sigma,b)$.
+assumption states that this single length governs the dependence on the wave
+vector.
+
+\paragraph{Homogeneity and physical dimensions.} The exponent $b_q$ is a
+further exponent of the spectrum. It is not fixed by $(\sigma,b)$, and it is
+not fixed by the physical dimensions of energy and length. Let $a_0$ denote
+the lattice spacing and $J$ a microscopic energy (a coupling of the
+Hamiltonian). The arguments of $\lds_{\rm sing}$ are the pure numbers
+$\delta\varepsilon\,a_0^{d}/J$ and $q\,a_0$. A change of the units of energy
+and length changes $J$ and $a_0$ together with $\delta\varepsilon$ and $q$,
+and leaves both numbers unchanged; it holds for every function and gives no
+relation between exponents. Eq.~\eqref{eq:filt_shomq} is a different
+statement. In it $J$ and $a_0$ are fixed, and the level counts of one
+Hamiltonian are compared at different energies and at different wave vectors
+of the applied field. The wave vector is a parameter of the Hamiltonian that
+is chosen independently of the energy, as the amplitude $\hfield$ is, and its
+exponent is as free as $b$. With the constants restored,
+\[
+  \ell\propto a_0\,\Big(\frac{|\delta\varepsilon|\,a_0^{d}}{J}\Big)^{-b_q} :
+\]
+the dimension of length is carried by $a_0$, and no value of $b_q$ is
+excluded. Dimensional analysis would fix the exponent only if $a_0$ did not
+appear in $\ell$; then $\ell\propto(|\delta\varepsilon|/J)^{-1/d}$, i.e.\
+$b_q=1/d$, whereas the three-dimensional Ising class has $b_q\simeq0.71$.
+The exponent ceases to be independent under two further properties of the
+spectrum (Section~\ref{sec:filt_size}): if the size of the system enters
+only through the ratio $L/\ell$, then $b_V=d\,b_q$, and if hyperscaling
+holds, $b_V=\sigma$, so that $b_q=\sigma/d$. The first property fails above
+the upper critical dimension.
 
 By Lemma~\ref{lem:rescale}, with $q$ as a further parameter,
 \[
@@ -1840,6 +1897,9 @@ $\lambda=|t|^{-1/(\sigma-1)}$ give
 with $\gamma=(2b-\sigma)/(\sigma-1)$ as in Eq.~\eqref{eq:filt_critexp}. By
 the definition~\eqref{eq:filt_elldef}, $\ell_c\propto|t|^{-\nu}$: the
 susceptibility depends on the wave vector through the product $q\,\ell_c$.
+This is tested in scattering experiments: the ratio
+$\chi(\mathbf q,t)/\chi(0,t)$, measured at different temperatures on one
+side of the transition, is a single function of $q\,\ell_c$.
 Since $\chi(\mathbf q,t)$ is finite for $t\to0$ at $q\neq0$, the factor
 $|t|^{-\gamma}$ must be cancelled by $X_\pm$, which requires
 $X_\pm(x)\propto x^{-\gamma/\nu}$ for $x\to\infty$
@@ -1956,7 +2016,7 @@ Appendix~\ref{sec:tools_logs}.
   with a constant $\varepsilon_1$: Bethe's formula with a logarithm.
 \end{itemize}
 
-\subsection{Relation to the scaling hypothesis and to the renormalisation group}
+\subsection{Relation to the scaling hypothesis and to the renormalisation group approach}
 \label{sec:filt_rg}
 
 \paragraph{Scaling hypothesis.} For a concave $\lds$ the Legendre
@@ -2012,7 +2072,7 @@ continuous transition is a change of symmetry, and the gapless excitations
 of an ordered phase are the Goldstone modes of the broken symmetry.
 Propositions~\ref{prop:power}--\ref{prop:crit} use none of these notions.
 Their input is the \lndos{} and its dependence on the parameters of the
-Hamiltonian. A symmetry, where there is one, is a \emph{reason} for a
+Hamiltonian. A symmetry, where there is one, is a reason for a
 particular form of the \lndos{} and for its robustness; the thermodynamics
 depends on the form. The formulation therefore applies without change to
 transitions without a change of symmetry (the Lifshitz transition,
