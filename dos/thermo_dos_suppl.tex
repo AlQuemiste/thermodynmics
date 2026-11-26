@@ -39,6 +39,7 @@
 \newcommand{\hfield}{\mathscr{h}}  % parameter (field or coupling) of the Hamiltonian
 \newcommand{\enrg}{\mathcal{E}}  % energy eigenvalue of H - mu N (formerly \xi)
 \newcommand{\lds}{\mathscr{s}}  % the logarithmic density of states (microcanonical entropy density) as a function of the energy density
+\newcommand{\etaD}{\eta_{\rm D}}  % Dirichlet eta function
 
 %% capital kappa (one-mode grand partition function); LaTeX has no \Kappa
 \providecommand{\Kappa}{\mathrm{K}}
@@ -73,11 +74,13 @@
 \maketitle
 
 \noindent This supplement to \emph{Phase transitions and power laws from
-the many-body density of states} (the main text) collects two topics that the main text uses
+the many-body density of states} (the main text) collects three topics that the main text uses
 only as known results: the microcanonical entropy and the equivalence of
-the ensembles (Section~\ref{app:second}), and the quadratic
+the ensembles (Section~\ref{app:second}), the quadratic
 Hamiltonians, for which the many-body filters reduce to single-particle
-ones (Section~\ref{app:quadratic}). Sections, equations and propositions of
+ones (Section~\ref{app:quadratic}), and the Lifshitz transition, whose
+exponents the main text states without derivation
+(Section~\ref{app:lifshitz}). Sections, equations and propositions of
 the supplement are numbered with the prefix S; numbers without it refer to
 the main text, whose notation is used throughout.
 
@@ -1890,6 +1893,232 @@ the right null hypothesis: any claim of an anomalously large $c$ carries the
 burden of identifying either the extra orbitals or the moving spectrum that
 produces it.
 \end{remark}
+
+\section{The Lifshitz transition}
+\label{app:lifshitz}
+
+The main text mentions the Lifshitz transition (Section~\ref{M-sec:filt_scaling0})
+as a quantum transition at which no symmetry changes and no order parameter
+exists, and states its exponents without derivation. This section gives
+its complete treatment in the formulation of the main text: the
+homogeneity of the level count, the scaling function and its three regimes
+(Section~\ref{sec:lif_results}), and the derivations
+(Section~\ref{sec:lif_deriv}).
+
+\subsection{Exponents, scaling function and regimes}
+\label{sec:lif_results}
+
+The simplest quantum transition without an order parameter is the passage
+of the chemical potential through a band edge of independent fermions, the
+\emph{Lifshitz transition}~\cite{Lifshitz1960}: no symmetry distinguishes
+the two sides. Let the single-particle density of states per unit volume
+be $\varrho(E)=B\,(E-E_0)^{r}$ above the band edge $E_0$ and zero below it,
+with $r>-1$ ($r=d/2-1$ for a parabolic band in $d$ dimensions;
+Fig.~\ref{fig:lifshitz}a), and let
+\[
+  \hfield:=\mu-E_0
+\]
+be the chemical potential measured from the band edge. It is a parameter of
+$\hat{\mathcal H}=\hat H-\mu\hat N$ in the sense of
+Section~\ref{M-sec:filt_dist}, with $\hat A=\hat N$ and the conjugate density
+$a=n$. The following results are derived in Section~\ref{sec:lif_deriv}.
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item \emph{Lower edge of the spectrum.} The ground-state energy per unit
+  volume is
+  \begin{equation}\label{eq:lif_ground}
+    \varepsilon_0(\hfield)=-\frac{B\,\hfield^{\,r+2}}{(r+1)(r+2)}\quad(\hfield>0) ,
+    \qquad
+    \varepsilon_0(\hfield)=0\quad(\hfield<0) .
+  \end{equation}
+  It is non-analytic at $\hfield=0$, and the density
+  $n=-\partial\varepsilon_0/\partial\hfield=B\,\hfield^{\,r+1}/(r+1)$ is
+  continuous there: a continuous quantum transition in the sense of
+  Section~\ref{M-sec:transitions}.
+\item \emph{Homogeneity of the level count.} In the range of energies in
+  which $\varrho$ is a power law, the \lndos{} satisfies exactly, for all
+  $\Lambda>0$,
+  \begin{equation}\label{eq:lif_hom}
+    \lds(\Lambda^{r+2}\varepsilon;\Lambda\hfield)=\Lambda^{r+1}\,\lds(\varepsilon;\hfield) .
+  \end{equation}
+  With $\lambda:=\Lambda^{r+2}$ this is Eq.~\eqref{M-eq:filt_shom0}, with
+  $\delta\varepsilon=\varepsilon$, $e_{\rm reg}=0$ and
+  \begin{equation}\label{eq:lif_exp}
+    \sigma=\frac{r+1}{r+2} ,\qquad b=\frac{1}{r+2} .
+  \end{equation}
+  Assumption~\ref{M-ass:hom0} thus follows from the power law of the
+  single-particle density of states alone, without reference to a
+  thermodynamic potential. For $r=d/2-1$, $\sigma=d/(d+2)$ and $b=2/(d+2)$,
+  which is Eq.~\eqref{M-eq:filt_qcp} with $z=2$ and $\nu=\tfrac12$.
+\item \emph{Scaling function.} Proposition~\ref{M-prop:scaling0} with
+  Eq.~\eqref{eq:lif_exp} gives
+  $\omega(T,\hfield)=T^{\,r+2}\,\Phi(\hfield/T)$. The direct evaluation for
+  independent fermions confirms it:
+  \begin{equation}\label{eq:lif_omega}
+    \omega(T,\hfield)=B\,(k_BT)^{r+2}\,\Phi_r\Big(\frac{\hfield}{k_BT}\Big) ,
+    \qquad
+    \Phi_r(y):=-\frac{1}{r+1}\int_0^{\infty}dx\,\frac{x^{r+1}}{e^{x-y}+1} .
+  \end{equation}
+\item \emph{Regimes} (Fig.~\ref{fig:lifshitz}b). For $\hfield<0$ and
+  $k_BT\ll|\hfield|$ (empty band) all quantities are activated with the gap
+  $|\hfield|$, $\omega\simeq-B\,\Gamma(r+1)\,(k_BT)^{r+2}e^{-|\hfield|/k_BT}$.
+  For $|\hfield|\ll k_BT$ (critical regime)
+  $c_\mu=k_BB\,\Gamma(r+3)\,\etaD(r+2)\,(k_BT)^{r+1}$: the power law of
+  Proposition~\ref{M-prop:power} with $\kappa=r+1=\sigma/(1-\sigma)$. For
+  $\hfield>0$ and $k_BT\ll\hfield$ (Fermi liquid)
+  $\omega\simeq\varepsilon_0(\hfield)-\tfrac{\pi^{2}}{6}B\,\hfield^{\,r}(k_BT)^{2}$:
+  the ground-state energy~\eqref{eq:lif_ground}, $\propto\hfield^{1/b}$ as
+  required by Eq.~\eqref{M-eq:tools_match}, and the Sommerfeld
+  law~\eqref{M-eq:filt_sommerfeld} with $\varrho(\mu)=B\,\hfield^{\,r}$.
+\end{itemize}
+Since $\Phi_r(y)$ is analytic at every finite $y$, the boundaries
+$k_BT\sim|\hfield|$ of the critical regime are crossovers, and the
+transition is confined to $T=0$. No symmetry and no order parameter has been
+used: the exponents~\eqref{eq:lif_exp} and the three regimes follow from one
+property of the spectrum, the power law of the single-particle density of
+states at the band edge, which makes the many-body level count homogeneous.
+
+\begin{figure}[htbp]
+\centering
+\tikzset{
+  ldsgraph/.style={>=Stealth,font=\small,x=1.4cm,y=1.6cm},
+  lds/.style={very thick,blue!60!black},
+  guide/.style={thin,dotted,gray!80!black},
+}
+\begin{tikzpicture}[ldsgraph]
+  % panel (a): single-particle density of states at the band edge
+  \node[font=\normalsize] at (-1.45,1.55) {(a)};
+  \fill[orange!25] (0,0) -- plot[domain=0:1.2,samples=40,smooth] (\x,{0.9*sqrt(\x)}) -- (1.2,0) -- cycle;
+  \draw[->] (-1.1,0) -- (2.5,0) node[below left]{$E$};
+  \draw[->] (-1.0,-0.1) -- (-1.0,1.5) node[above]{$\varrho$};
+  \draw[lds] (-1.0,0) -- (0,0);
+  \draw[lds,domain=0:2.3,samples=60,smooth] plot (\x,{0.9*sqrt(\x)});
+  \draw[guide] (-0.5,0) -- (-0.5,1.15);
+  \draw[guide] (1.2,0) -- (1.2,1.15);
+  \node[below,font=\scriptsize] at (0,0) {$E_0$};
+  \node[below,font=\scriptsize] at (-0.5,0) {$\mu$};
+  \node[below,font=\scriptsize] at (1.2,0) {$\mu$};
+  \node[above,font=\scriptsize] at (-0.5,1.15) {$\hfield<0$};
+  \node[above,font=\scriptsize] at (1.2,1.15) {$\hfield>0$};
+  \node[font=\scriptsize,blue!60!black,anchor=east] at (2.45,0.85) {$B\,(E-E_0)^{r}$};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[ldsgraph]
+  % panel (b): regimes in the plane of the parameter and the temperature
+  \node[font=\normalsize] at (-2.55,1.55) {(b)};
+  \fill[orange!20] (0,0) -- (1.35,1.35) -- (-1.35,1.35) -- cycle;
+  \draw[->] (-2.3,0) -- (2.4,0) node[below left]{$\hfield$};
+  \draw[->] (0,-0.1) -- (0,1.5) node[above]{$k_BT$};
+  \draw[dashed,thick,gray!60!black] (0,0) -- (1.35,1.35);
+  \draw[dashed,thick,gray!60!black] (0,0) -- (-1.35,1.35);
+  \fill (0,0) circle (1.6pt);
+  \node[below,font=\scriptsize] at (0,-0.02) {$\hfield=0$};
+  \node[font=\scriptsize,align=center] at (-1.55,0.45) {empty band:\\ activated, gap $|\hfield|$};
+  \node[font=\scriptsize,align=center] at (1.6,0.45) {Fermi liquid:\\ $c_\mu\propto\varrho(\mu)\,T$};
+  \node[font=\scriptsize,align=center,fill=orange!20,inner sep=1pt] at (0,1.0) {critical:\\ $c_\mu\propto T^{\,r+1}$};
+  \node[font=\scriptsize,gray!40!black,anchor=west] at (1.38,1.3) {$k_BT=\hfield$};
+\end{tikzpicture}
+\caption{The Lifshitz transition.
+(a)~Single-particle density of states at a band edge $E_0$; the chemical
+potential lies below the edge for $\hfield<0$ (empty band) and inside the
+band for $\hfield>0$ (occupied states shaded).
+(b)~The regimes of the scaling function $\Phi_r(\hfield/k_BT)$,
+Eq.~\eqref{eq:lif_omega}: the critical regime $|\hfield|\lesssim k_BT$
+(shaded) is bounded by crossovers (dashed), and the transition (dot) is at
+$T=0$.}
+\label{fig:lifshitz}
+\end{figure}
+
+\subsection{Derivations}
+\label{sec:lif_deriv}
+
+This section derives Eqs.~\eqref{eq:lif_ground}--\eqref{eq:lif_omega} and
+the three regimes of the Lifshitz transition
+(Section~\ref{sec:lif_results}), in the notation defined there:
+$\varrho(E)=B\,(E-E_0)^{r}$ above the band edge $E_0$, and
+$\hfield=\mu-E_0$.
+
+\paragraph{Spectrum.} With $x_k:=E_k-E_0\ge0$ the single-particle energies
+measured from the edge and $n_k\in\{0,1\}$ their occupations, the many-body
+levels of $\hat{\mathcal H}=\hat H-\mu\hat N$ are
+\begin{equation}\label{eq:lif_levels}
+  \enrg=\sum_k(E_k-\mu)\,n_k=\sum_k(x_k-\hfield)\,n_k .
+\end{equation}
+For $\hfield<0$ every term is positive: the ground state is the empty band,
+$\enrg_0=0$, and the lowest excitation, one particle at the band edge, costs
+the gap $|\hfield|$. For $\hfield>0$ the ground state has all states with
+$x_k<\hfield$ occupied. Since there are $VB\,x^{r}dx$ single-particle states
+in the interval $dx$, the ground-state energy per unit volume is
+\[
+  \varepsilon_0(\hfield)=-B\int_0^{\hfield}dx\,x^{r}(\hfield-x)
+  =-B\,\hfield^{\,r+2}\Big[\frac{1}{r+1}-\frac{1}{r+2}\Big]
+  \quad(\hfield>0) ,
+\]
+which is Eq.~\eqref{eq:lif_ground}.
+
+\paragraph{Homogeneity of the level count.} Consider the system of size $V$ at
+the parameter $\Lambda\hfield$, with $\Lambda>0$, and write its
+single-particle energies as $x_k=\Lambda x'_k$. The number of the $x'_k$ in
+an interval $dx'$ is $VB\,(\Lambda x')^{r}\,\Lambda\,dx'
+=\Lambda^{r+1}V\cdot B\,x'^{\,r}dx'$: the $x'_k$ are the single-particle
+energies of a system of size $\Lambda^{r+1}V$. By
+Eq.~\eqref{eq:lif_levels}, $\enrg=\Lambda\sum_k(x'_k-\hfield)\,n_k$. The
+many-body levels of the system of size $V$ at the parameter $\Lambda\hfield$
+are thus $\Lambda$ times those of the system of size $\Lambda^{r+1}V$ at the
+parameter $\hfield$, and the level counts are equal,
+\[
+  \cN_V(\Lambda\enrg;\Lambda\hfield)
+  =\cN_{\Lambda^{r+1}V}(\enrg;\hfield) .
+\]
+Taking $(k_B/V)\ln$ of both sides for $V\to\infty$, with
+$\varepsilon=\enrg/\Lambda^{r+1}V$ the energy per unit volume of the larger
+system, so that $\Lambda\enrg/V=\Lambda^{r+2}\varepsilon$, gives
+Eq.~\eqref{eq:lif_hom}. The relation is exact in the range of energies in
+which $\varrho$ is a power law.
+
+\paragraph{Scaling function.} For independent
+fermions~\cite[Ch.~4]{Schwabl}
+\[
+  \omega=-k_BT\int dE\,\varrho(E)\,\ln\big(1+e^{-(E-\mu)/k_BT}\big) .
+\]
+The substitution $E-E_0=k_BT\,x$, with $y:=\hfield/k_BT$, gives
+\[
+  \omega=-B\,(k_BT)^{r+2}\int_0^{\infty}dx\,x^{r}\ln\big(1+e^{y-x}\big) ,
+\]
+and a partial integration, whose boundary terms vanish for $r>-1$, gives
+Eq.~\eqref{eq:lif_omega}. The density is
+\[
+  n=-\frac{\partial\omega}{\partial\hfield}
+  =B\,(k_BT)^{r+1}\int_0^{\infty}dx\,\frac{x^{r}}{e^{x-y}+1} ,
+\]
+with the prefactor $T^{(1-b)/(1-\sigma)}=T^{\,r+1}$ of
+Proposition~\ref{M-prop:scaling0}.
+
+\paragraph{Limits of the scaling function.} The three limits of $\Phi_r(y)$
+are the three regimes of Fig.~\ref{fig:lifshitz}b.
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item \emph{Empty band}, $\hfield<0$ and $k_BT\ll|\hfield|$ ($y\to-\infty$):
+  $\Phi_r\simeq-\Gamma(r+1)\,e^{y}$, so that
+  $\omega\simeq-B\,\Gamma(r+1)\,(k_BT)^{r+2}e^{-|\hfield|/k_BT}$. All
+  quantities are activated, with the gap $|\hfield|$.
+\item \emph{Critical regime}, $|\hfield|\ll k_BT$ ($y\to0$):
+  $\Phi_r(0)=-\Gamma(r+1)\,\etaD(r+2)$, and
+  $c_\mu=-T\,\partial^{2}\omega/\partial T^{2}
+  =k_BB\,\Gamma(r+3)\,\etaD(r+2)\,(k_BT)^{r+1}$: a power law with
+  $\kappa=r+1=\sigma/(1-\sigma)$, as in Proposition~\ref{M-prop:power} (one
+  half of the value of Table~\ref{M-tab:gases}, where $\varrho$ extends to
+  both sides of $\mu$).
+\item \emph{Fermi liquid}, $\hfield>0$ and $k_BT\ll\hfield$ ($y\to+\infty$):
+  by the Sommerfeld expansion\footnote{For a smooth function $g$ and
+  $y\gg1$,
+  $\int_0^{\infty}dx\,g(x)/(e^{x-y}+1)=\int_0^{y}dx\,g(x)+\tfrac{\pi^{2}}{6}\,g'(y)+\dots$~\cite[Sec.~4.3]{Schwabl}.},
+  $\Phi_r\simeq-y^{r+2}/(r+1)(r+2)-\tfrac{\pi^{2}}{6}\,y^{r}$, so that
+  $\omega\simeq\varepsilon_0(\hfield)-\tfrac{\pi^{2}}{6}B\,\hfield^{\,r}(k_BT)^{2}$.
+  The first term is the ground-state energy~\eqref{eq:lif_ground},
+  $\propto\hfield^{1/b}$ as required by Eq.~\eqref{M-eq:tools_match}; the
+  second gives the Sommerfeld law~\eqref{M-eq:filt_sommerfeld},
+  $c_\mu=\tfrac{\pi^{2}}{3}k_B^{2}\varrho(\mu)\,T$ with
+  $\varrho(\mu)=B\,\hfield^{\,r}$.
+\end{itemize}
+
 
 \bibliographystyle{plain}
 \bibliography{thermo_dos}
