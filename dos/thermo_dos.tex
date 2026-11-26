@@ -232,8 +232,21 @@ the density of states weighted by the Boltzmann factor,
   P_T(\enrg) := \frac{\rho(\enrg)\,e^{-\beta \enrg}}{\Xi} .
 \]
 A parameter $\hfield$ of the Hamiltonian changes the levels,
-$\enrg_a(\hfield)$, and hence $\rho(\enrg(\hfield))$ and $\cN(\enrg(\hfield))$;
-the Boltzmann factor $e^{-\beta\enrg}$ does not depend on it.
+$\enrg_a(\hfield)$, and with them the density of states and the level count,
+\begin{equation}\label{eq:filt_gNh}
+  \rho(\enrg;\hfield):=\sum_a\delta\big(\enrg-\enrg_a(\hfield)\big) ,
+  \qquad
+  \cN(\enrg;\hfield):=\sum_a\Theta\big(\enrg-\enrg_a(\hfield)\big) .
+\end{equation}
+The semicolon separates the energy from the parameters of the Hamiltonian.
+The two arguments are independent variables: $\enrg$ is the energy up to
+which the levels are counted, a value that is chosen freely and does not
+depend on $\hfield$, whereas $\hfield$ fixes the positions of the levels. At
+a fixed $\enrg$ the level count therefore depends on $\hfield$
+\emph{explicitly}: it changes whenever a level crosses $\enrg$
+(Eq.~\eqref{eq:filt_NA}). The second argument is omitted where no parameter
+is varied. The Boltzmann factor $e^{-\beta\enrg}$ does not depend on
+$\hfield$.
 
 \subsection{The density of states as a distribution}
 \label{sec:filt_dist}
@@ -312,7 +325,7 @@ used below.
   Eq.~\eqref{eq:filt_gA} over the energies below $\enrg$, with
   $\cN=\int\rho$ (Eq.~\eqref{eq:filt_gN}), is
   \begin{equation}\label{eq:filt_NA}
-    \frac{\partial\cN(\enrg)}{\partial\hfield}\bigg|_{\enrg}=\rho_A(\enrg) :
+    \frac{\partial\cN(\enrg;\hfield)}{\partial\hfield}\bigg|_{\enrg}=\rho_A(\enrg) :
   \end{equation}
   the number of levels below a fixed energy $\enrg$ changes only through the
   levels that cross $\enrg$.
@@ -636,22 +649,17 @@ therefore $V\lds(\varepsilon)+O(1)$ for every width of the
 shell~\cite[Sec.~2.3]{Schwabl}: \emph{the logarithmic density of states is the microcanonical
 entropy per unit volume}.
 
-\paragraph{Dependence on a parameter.} If the Hamiltonian depends on a
-parameter $\hfield$, the levels $\enrg_a(\hfield)$ move along the energy
-axis, and the number of levels below a \emph{fixed} energy changes. As for
-$\rho(\enrg(\hfield))$ in Section~\ref{sec:filt_exact}, this is denoted by
-\[
-  \cN_V(\enrg(\hfield)):=\sum_a\Theta\big(\enrg-\enrg_a(\hfield)\big) ,
-  \qquad
-  \lds(\varepsilon(\hfield)):=\lim_{V\to\infty}\frac{k_B}{V}\ln\cN_V(V\varepsilon(\hfield)) .
-\]
-The notation records that the parameter enters only through the positions
-of the levels. The energy $\varepsilon$ at which the levels are counted is
-an independent variable: the \lndos{} is a function of the two independent
-variables $\varepsilon$ and $\hfield$, and
-$\partial\lds/\partial\hfield|_{\varepsilon}$ denotes its derivative with
-respect to $\hfield$ at a fixed $\varepsilon$, its \emph{explicit} dependence
-on the parameter. This derivative follows from Eq.~\eqref{eq:filt_NA}. Let
+\paragraph{Dependence on a parameter.} With the level count
+$\cN_V(\enrg;\hfield)$ of Eq.~\eqref{eq:filt_gNh}, the \lndos{} is a function
+of the two independent variables $\varepsilon$ and $\hfield$,
+\begin{equation}\label{eq:filt_sdefh}
+  \lds(\varepsilon;\hfield):=\lim_{V\to\infty}\frac{k_B}{V}\ln\cN_V(V\varepsilon;\hfield) .
+\end{equation}
+Its derivative with respect to $\hfield$ at a fixed $\varepsilon$,
+$\partial\lds/\partial\hfield|_{\varepsilon}$, is its \emph{explicit}
+dependence on the parameter: the levels $\enrg_a(\hfield)$ move along the
+energy axis, and the number of levels below the fixed energy $V\varepsilon$
+changes. This derivative follows from Eq.~\eqref{eq:filt_NA}. Let
 $\bar a(\varepsilon)$ be the mean of $A_{aa}/V$ over the levels in a narrow
 range of energies about $V\varepsilon$, so that $\rho_A=V\bar a\,\rho_V$ there
 (Eq.~\eqref{eq:filt_gA}). With $\rho_V$ replaced by the smooth
@@ -666,8 +674,7 @@ $\tilde\rho_V=\cN_V/k_BT_\varepsilon$ of Eq.~\eqref{eq:filt_rhosmooth},
 for $V\to\infty$. The explicit dependence of the \lndos{} on the parameter is
 thus the mean rate $-\bar a$ at which the levels at $\varepsilon$ move
 (Eq.~\eqref{eq:filt_HF}), times the slope of the \lndos. By the last form,
-$\lds$ at $(\varepsilon,\hfield+d\hfield)$ equals $\lds$ at
-$(\varepsilon+\bar a\,d\hfield,\hfield)$: the levels found at $\varepsilon$
+$\lds(\varepsilon;\hfield+d\hfield)=\lds(\varepsilon+\bar a\,d\hfield;\hfield)$: the levels found at $\varepsilon$
 after the change of the parameter are those that were at
 $\varepsilon+\bar a\,d\hfield$ before it, and the level count is carried
 along with them.
@@ -839,9 +846,9 @@ $\enrg=V\varepsilon$ is larger by the factor $V^{2}$, i.e.\
 $k_BT^{2}\,Vc_\mu=k_BT^{2}C_\mu$, in agreement with the exact
 Eq.~\eqref{eq:filt_mb}.
 
-\paragraph{Response to a field.} For $\lds=\lds(\varepsilon(\hfield))$ the
-function to be minimised,
-$\fen(\varepsilon)=\varepsilon-T\,\lds(\varepsilon(\hfield))$, depends on the
+\paragraph{Response to a field.} In the presence of a field the function to
+be minimised, $\fen(\varepsilon)=\varepsilon-T\,\lds(\varepsilon;\hfield)$,
+depends on the
 field through the explicit dependence of the \lndos{} on $\hfield$ at a
 fixed energy (Eq.~\eqref{eq:filt_sh}), and its minimiser is
 $\varepsilon_*(T,\hfield)$. As in Eq.~\eqref{eq:filt_dwdT},
@@ -869,8 +876,8 @@ Eqs.~\eqref{eq:filt_Xi1} and~\eqref{eq:filt_param} in the limit of large
 size.
 
 For the susceptibility, Eqs.~\eqref{eq:filt_stat} and~\eqref{eq:filt_af},
-written as $\lds_\varepsilon(\varepsilon_*(T,\hfield),\hfield)=1/T$ and
-$a=T\,\lds_\hfield(\varepsilon_*(T,\hfield),\hfield)$, are differentiated with
+written as $\lds_\varepsilon(\varepsilon_*(T,\hfield);\hfield)=1/T$ and
+$a=T\,\lds_\hfield(\varepsilon_*(T,\hfield);\hfield)$, are differentiated with
 respect to $\hfield$ at fixed $T$:
 \[
   \lds_{\varepsilon\varepsilon}\,\frac{\partial\varepsilon_*}{\partial\hfield}
@@ -895,7 +902,7 @@ $\lds$ is non-analytic, i.e.\ at a transition, the equation does not apply.
 
 \paragraph{Modulated field.} The amplitude $\hfield_{\mathbf q}$ of a
 modulated field is a parameter conjugate to $\hat M_{\mathbf q}$,
-Eq.~\eqref{eq:filt_Mq}. Let $\lds(\varepsilon(\hfield_{\mathbf q}))$ be the
+Eq.~\eqref{eq:filt_Mq}. Let $\lds(\varepsilon;\hfield_{\mathbf q})$ be the
 \lndos{} in its presence. The susceptibility follows in three steps.
 (i)~With $\ln\Xi=-V\omega/k_BT$ (Eq.~\eqref{eq:filt_intensive}),
 Eq.~\eqref{eq:filt_chiq_exact} reads
@@ -1294,14 +1301,14 @@ $V\to\infty$.
 occurs as a function of a parameter $\hfield$ at a fixed temperature,
 including $T=0$. Let the levels consist of two families, i.e.\ two disjoint
 sets of eigenstates, with the level counts $\cN_\pm$, the \lndos{}
-$\lds_\pm(\varepsilon(\hfield))$ and the conjugate densities $a_+>a_-$. The
+$\lds_\pm(\varepsilon;\hfield)$ and the conjugate densities $a_+>a_-$. The
 level counts add, $\cN=\cN_++\cN_-$, and since $\Xi$ is linear in $\rho$
 (Section~\ref{sec:filt_dist}), $\Xi=\Xi_++\Xi_-$. With
 $\max(\Xi_+,\Xi_-)\le\Xi\le2\max(\Xi_+,\Xi_-)$, the potential is for
 $V\to\infty$
 \begin{equation}\label{eq:filt_two}
   \omega=\min(\omega_+,\omega_-) ,\qquad
-  \omega_\pm(T,\hfield):=\min_\varepsilon\big[\varepsilon-T\,\lds_\pm(\varepsilon(\hfield))\big] ,
+  \omega_\pm(T,\hfield):=\min_\varepsilon\big[\varepsilon-T\,\lds_\pm(\varepsilon;\hfield)\big] ,
   \qquad
   \frac{\partial\omega_\pm}{\partial\hfield}\bigg|_{T}=-a_\pm .
 \end{equation}
@@ -1689,16 +1696,15 @@ $\delta\varepsilon:=\varepsilon-\varepsilon_0-e_{\rm reg}(\hfield)$, where
 $\varepsilon_0$ is the ground-state energy at $\hfield=0$ and
 $e_{\rm reg}(\hfield)$, with $e_{\rm reg}(0)=0$, is an analytic displacement
 of the lower edge of the spectrum by the parameter ($e_{\rm reg}=0$ if
-there is none). In the homogeneity assumptions of this section, which
-concern the joint dependence on the energy and on the parameter, the \lndos{}
-$\lds(\varepsilon(\hfield))$, as a function of its two independent variables
-(Section~\ref{sec:large_ext}), is written $\lds(\delta\varepsilon,\hfield)$.
+there is none). In the homogeneity assumptions of this section the
+\lndos{} of Eq.~\eqref{eq:filt_sdefh} is written as a function of the
+excitation energy, $\lds(\delta\varepsilon;\hfield)$.
 
 \begin{assumption}[Homogeneity above the ground state]\label{ass:hom0}
 For small $\delta\varepsilon$ and $\hfield$ the \lndos{} has no intrinsic
 scale: for all $\lambda>0$,
 \begin{equation}\label{eq:filt_shom0}
-  \lds(\lambda\,\delta\varepsilon,\lambda^{b}\hfield)=\lambda^{\sigma}\lds(\delta\varepsilon,\hfield) ,
+  \lds(\lambda\,\delta\varepsilon;\lambda^{b}\hfield)=\lambda^{\sigma}\lds(\delta\varepsilon;\hfield) ,
   \qquad 0<\sigma<1 ,\quad b>0 ,
 \end{equation}
 i.e.\ $\ln\cN$ is a generalised homogeneous function\footnote{A function
@@ -1709,7 +1715,7 @@ $\lambda=|x_1|^{-1/a_1}$ shows that $F$ is a power of $|x_1|$ times a
 function of the ratios $x_i/|x_1|^{a_i/a_1}$.} of the excitation energy and
 the parameter.
 \end{assumption}
-At $ \hfield=0 $ this is Assumption~\ref{ass:power} with $ \cA = \lds(1,0) $.
+At $ \hfield=0 $ this is Assumption~\ref{ass:power} with $ \cA = \lds(1;0) $.
 With $\lambda=|\hfield|^{-1/b}$, the parameter enters $\lds$ only through the
 ratio $\delta\varepsilon/|\hfield|^{1/b}$: it changes the level count in the
 range of energies $\delta\varepsilon\lesssim|\hfield|^{1/b}$ above the ground
@@ -1730,10 +1736,10 @@ with $\Phi(w):=\delta\omega(1,w)$.
 \end{proposition}
 \begin{proof}
 In $\delta\omega(\lambda^{1-\sigma}T,\lambda^{b}\hfield)
-=\min_{\delta\varepsilon}[\delta\varepsilon-\lambda^{1-\sigma}T\,\lds(\delta\varepsilon,\lambda^{b}\hfield)]$
+=\min_{\delta\varepsilon}[\delta\varepsilon-\lambda^{1-\sigma}T\,\lds(\delta\varepsilon;\lambda^{b}\hfield)]$
 substitute $\delta\varepsilon=\lambda\,\delta\varepsilon'$ and use
 Eq.~\eqref{eq:filt_shom0} (Lemma~\ref{lem:rescale}): the minimised function
-becomes $\lambda[\delta\varepsilon'-T\,\lds(\delta\varepsilon',\hfield)]$, whose
+becomes $\lambda[\delta\varepsilon'-T\,\lds(\delta\varepsilon';\hfield)]$, whose
 minimum is $\lambda\,\delta\omega(T,\hfield)$. The choice
 $\lambda=T^{-1/(1-\sigma)}$ makes the first argument equal to $1$.
 \end{proof}
@@ -1802,7 +1808,7 @@ $a=n$. The following results are derived in Appendix~\ref{app:lifshitz}.
   which $\varrho$ is a power law, the \lndos{} satisfies exactly, for all
   $\Lambda>0$,
   \begin{equation}\label{eq:lif_hom}
-    \lds(\Lambda^{r+2}\varepsilon,\Lambda\hfield)=\Lambda^{r+1}\,\lds(\varepsilon,\hfield) .
+    \lds(\Lambda^{r+2}\varepsilon;\Lambda\hfield)=\Lambda^{r+1}\,\lds(\varepsilon;\hfield) .
   \end{equation}
   With $\lambda:=\Lambda^{r+2}$ this is Eq.~\eqref{eq:filt_shom0}, with
   $\delta\varepsilon=\varepsilon$, $e_{\rm reg}=0$ and
@@ -1929,15 +1935,15 @@ an energy $\varepsilon_c$ in its interior.
 \begin{assumption}[Homogeneity about $\varepsilon_c$]\label{ass:crit}
 With $\delta\varepsilon:=\varepsilon-\varepsilon_c$,
 \begin{equation}\label{eq:filt_gcrit}
-  \lds(\varepsilon,\hfield)=\lds_c+\frac{\delta\varepsilon}{T_c}
-  +\lds_{\rm sing}(\delta\varepsilon,\hfield) ,
+  \lds(\varepsilon;\hfield)=\lds_c+\frac{\delta\varepsilon}{T_c}
+  +\lds_{\rm sing}(\delta\varepsilon;\hfield) ,
   \qquad
   \frac{1}{T_c}:=\frac{\partial \lds}{\partial\varepsilon}\bigg|_{\varepsilon_c,\,\hfield=0} ,
 \end{equation}
 where the singular part has no intrinsic scale: for all $\lambda>0$ and small
 arguments,
 \begin{equation}\label{eq:filt_shom}
-  \lds_{\rm sing}(\lambda\,\delta\varepsilon,\lambda^{b}\hfield)=\lambda^{\sigma}\lds_{\rm sing}(\delta\varepsilon,\hfield) ,
+  \lds_{\rm sing}(\lambda\,\delta\varepsilon;\lambda^{b}\hfield)=\lambda^{\sigma}\lds_{\rm sing}(\delta\varepsilon;\hfield) ,
   \qquad \sigma>1 ,\quad b>0 .
 \end{equation}
 \end{assumption}
@@ -1945,12 +1951,12 @@ The first two terms are the value and the slope of $\lds$ at $\varepsilon_c$.
 The slope fixes the critical temperature: by Eq.~\eqref{eq:filt_stat} the
 thermal energy reaches $\varepsilon_c$ at $T=T_c$. The condition $\sigma>1$
 makes $\lds_{\rm sing}$ subleading to the linear term. The simplest instance
-is $\lds_{\rm sing}(\delta\varepsilon,0)=-B_\pm|\delta\varepsilon|^{\sigma}$
+is $\lds_{\rm sing}(\delta\varepsilon;0)=-B_\pm|\delta\varepsilon|^{\sigma}$
 with amplitudes $B_\pm>0$ for $\delta\varepsilon\gtrless0$. In terms of the
 level count,
 \[
   \cN(\enrg)\asymp e^{V\lds_c/k_B}\;e^{(\enrg-\enrg_c)/k_BT_c}\;
-  \exp\Big[\frac{V}{k_B}\,\lds_{\rm sing}\Big(\frac{\enrg-\enrg_c}{V},\hfield\Big)\Big] :
+  \exp\Big[\frac{V}{k_B}\,\lds_{\rm sing}\Big(\frac{\enrg-\enrg_c}{V};\hfield\Big)\Big] :
 \]
 an exponential growth with the energy, $\partial\ln\cN/\partial\enrg=1/k_BT_c$,
 times a deviation whose logarithm is extensive. For $\sigma>2$ the deviation
@@ -1967,8 +1973,8 @@ exceeds the width $V^{1/2}$ of a non-critical point.
 The exponent $b$ fixes the range of energies in which a field changes the
 level count. With $\lambda=|\delta\varepsilon|^{-1}$,
 Eq.~\eqref{eq:filt_shom} gives
-$\lds_{\rm sing}(\delta\varepsilon,\hfield)
-=|\delta\varepsilon|^{\sigma}\,\lds_{\rm sing}(\pm1,\hfield/|\delta\varepsilon|^{b})$:
+$\lds_{\rm sing}(\delta\varepsilon;\hfield)
+=|\delta\varepsilon|^{\sigma}\,\lds_{\rm sing}(\pm1;\hfield/|\delta\varepsilon|^{b})$:
 for $|\delta\varepsilon|\gg|\hfield|^{1/b}$ the singular part has its form at
 $\hfield=0$, and for $|\delta\varepsilon|\lesssim|\hfield|^{1/b}$ it is changed
 by the field to order one.
@@ -1996,14 +2002,14 @@ They satisfy the scaling relations~\eqref{eq:rushbrooke} identically.
 Insert Eq.~\eqref{eq:filt_gcrit} in Eq.~\eqref{eq:filt_legendre}. Since
 $1-T/T_c=-t$,
 \[
-  \varepsilon-T\,\lds(\varepsilon,\hfield)
-  =\varepsilon_c-T\,\lds_c-t\,\delta\varepsilon-T\,\lds_{\rm sing}(\delta\varepsilon,\hfield) .
+  \varepsilon-T\,\lds(\varepsilon;\hfield)
+  =\varepsilon_c-T\,\lds_c-t\,\delta\varepsilon-T\,\lds_{\rm sing}(\delta\varepsilon;\hfield) .
 \]
 The first two terms are analytic in $T$. To leading order in $t$ (with $T$
 replaced by $T_c$ in the factor of $\lds_{\rm sing}$) the other two define
 \begin{equation}\label{eq:filt_omsing}
   \omega_{\rm sing}(t,\hfield):=\min_{\delta\varepsilon}
-  \big[-t\,\delta\varepsilon-T_c\,\lds_{\rm sing}(\delta\varepsilon,\hfield)\big] :
+  \big[-t\,\delta\varepsilon-T_c\,\lds_{\rm sing}(\delta\varepsilon;\hfield)\big] :
 \end{equation}
 the reduced temperature is the variable conjugate to the energy.
 Substituting $\delta\varepsilon=\lambda\,\delta\varepsilon'$ and using
@@ -2011,7 +2017,7 @@ Eq.~\eqref{eq:filt_shom} (Lemma~\ref{lem:rescale}),
 \[
   \omega_{\rm sing}(\lambda^{\sigma-1}t,\lambda^{b}\hfield)
   =\min_{\delta\varepsilon'}\lambda^{\sigma}
-  \big[-t\,\delta\varepsilon'-T_c\,\lds_{\rm sing}(\delta\varepsilon',\hfield)\big]
+  \big[-t\,\delta\varepsilon'-T_c\,\lds_{\rm sing}(\delta\varepsilon';\hfield)\big]
   =\lambda^{\sigma}\,\omega_{\rm sing}(t,\hfield) ,
 \]
 and the choice $\lambda=|t|^{-1/(\sigma-1)}$ gives Eq.~\eqref{eq:filt_crit}
@@ -2064,7 +2070,7 @@ $\lds$ at $\varepsilon_c$.
   subleading to it. The quadratic term then fixes the minimiser
   (Lemma~\ref{lem:sublead}), $\delta\varepsilon_*=c_{\rm reg}T_c\,t$ to
   leading order, and
-  $\omega_{\rm sing}(t,\hfield)\simeq-T_c\,\lds_{\rm sing}(c_{\rm reg}T_c\,t,\hfield)$:
+  $\omega_{\rm sing}(t,\hfield)\simeq-T_c\,\lds_{\rm sing}(c_{\rm reg}T_c\,t;\hfield)$:
   the exponents of the spectrum are transmitted unchanged,
   \begin{equation}\label{eq:filt_critexp2}
     2-\alpha=\sigma ,\qquad \Delta_\hfield=b ,\qquad
@@ -2165,8 +2171,8 @@ Near $\varepsilon_c$ the singular part of the \lndos{} in the presence of a
 modulated field of amplitude $\hfield_{\mathbf q}$ and wave vector
 $\mathbf q$ is homogeneous in $q$ as well: for $q\to0$,
 \begin{equation}\label{eq:filt_shomq}
-  \lds_{\rm sing}(\lambda\,\delta\varepsilon,\lambda^{b}\hfield_{\mathbf q};\lambda^{b_q}q)
-  =\lambda^{\sigma}\lds_{\rm sing}(\delta\varepsilon,\hfield_{\mathbf q};q) ,
+  \lds_{\rm sing}(\lambda\,\delta\varepsilon;\lambda^{b}\hfield_{\mathbf q},\lambda^{b_q}q)
+  =\lambda^{\sigma}\lds_{\rm sing}(\delta\varepsilon;\hfield_{\mathbf q},q) ,
   \qquad b_q>0 ,
 \end{equation}
 with the exponent $b$ of the uniform field, and the response
@@ -2248,14 +2254,14 @@ three-dimensional Ising class $\nu\simeq0.630$, i.e.\ $b_q\simeq0.71$.
 \subsection{Size dependence and hyperscaling}
 \label{sec:filt_size}
 
-Let $\lds(\varepsilon,\hfield,V^{-1}):=(k_B/V)\ln\cN_V(V\varepsilon(\hfield))$
+Let $\lds(\varepsilon;\hfield,V^{-1}):=(k_B/V)\ln\cN_V(V\varepsilon;\hfield)$
 denote the logarithm of the level count per unit volume of the finite system
 (Eq.~\eqref{eq:filt_sV}), with $V^{-1}$ as a third argument.
 
 \begin{assumption}[Homogeneity in the size]\label{ass:V}
 \begin{equation}\label{eq:filt_shomV}
-  \lds_{\rm sing}(\lambda\,\delta\varepsilon,\lambda^{b}\hfield,\lambda^{b_V}V^{-1})
-  =\lambda^{\sigma}\lds_{\rm sing}(\delta\varepsilon,\hfield,V^{-1}) ,\qquad b_V>0 .
+  \lds_{\rm sing}(\lambda\,\delta\varepsilon;\lambda^{b}\hfield,\lambda^{b_V}V^{-1})
+  =\lambda^{\sigma}\lds_{\rm sing}(\delta\varepsilon;\hfield,V^{-1}) ,\qquad b_V>0 .
 \end{equation}
 \end{assumption}
 As in the proof of Proposition~\ref{prop:crit},
@@ -2291,8 +2297,8 @@ depend on $t$: the singular part of the thermodynamic potential is of order
 $k_BT_c$ per group of $V_c$ components. With $b_V=\sigma$ and
 $\lambda=V^{1/\sigma}$, Eq.~\eqref{eq:filt_shomV} gives
 \[
-  V\,\lds_{\rm sing}(\delta\varepsilon,\hfield,V^{-1})
-  =\lds_{\rm sing}\big(\delta\varepsilon\,V^{1/\sigma},\,\hfield\,V^{b/\sigma},\,1\big) :
+  V\,\lds_{\rm sing}(\delta\varepsilon;\hfield,V^{-1})
+  =\lds_{\rm sing}\big(\delta\varepsilon\,V^{1/\sigma};\,\hfield\,V^{b/\sigma},\,1\big) :
 \]
 the singular part of $\ln\cN_V$ depends on $V$ only through the combinations
 $\delta\varepsilon\,V^{1/\sigma}$ and $\hfield\,V^{b/\sigma}$. This is a
@@ -2910,7 +2916,7 @@ in terms of a density of states is an open problem.
 \label{sec:principle}\label{sec:summary}
 
 The thermodynamics of a Hamiltonian is encoded in the \lndos{}
-$\lds(\varepsilon(\hfield))$ on the domain $\varepsilon\ge\varepsilon_0(\hfield)$
+$\lds(\varepsilon;\hfield)$ on the domain $\varepsilon\ge\varepsilon_0(\hfield)$
 and in the lower edge $\varepsilon_0(\hfield)$ of this domain. Both are
 properties of the spectrum and do not depend on $T$. In the limit of large
 size a state $(T,\hfield)$ selects the single energy $\varepsilon_*(T,\hfield)$
@@ -3252,9 +3258,9 @@ is $x'=x_*(\tau,h)$.
 \end{proof}
 The homogeneity of $g$ is inherited by the minimum value, with the same
 degree $c$ and the same exponents of the parameters; further parameters are
-treated in the same way. The function $g=x-\tau\,\lds(x,h)$ with $\lds$ as in
+treated in the same way. The function $g=x-\tau\,\lds(x;h)$ with $\lds$ as in
 Eq.~\eqref{eq:filt_shom0} satisfies Eq.~\eqref{eq:tools_ghom} with
-$a=1-\sigma$, $c=1$, and $g=-\tau x-T_c\lds_{\rm sing}(x,h)$ with
+$a=1-\sigma$, $c=1$, and $g=-\tau x-T_c\lds_{\rm sing}(x;h)$ with
 Eq.~\eqref{eq:filt_shom} satisfies it with $a=\sigma-1$, $c=\sigma$.
 
 \paragraph{Scaling form.} The choice $\lambda=|\tau|^{-1/a}$ in
@@ -3325,11 +3331,11 @@ independent of $\varepsilon$.}
 Application & $x$ & $\tau$ & $g(x;\tau,h)$ & Lemma \\
 \midrule
 low $T$ (Sec.~\ref{sec:filt_power_mb}) & $\varepsilon-\varepsilon_0$ & $T$ & $x-T\cA x^{\sigma}$ & \ref{lem:balance} \\[2pt]
-scaling at low $T$ (Sec.~\ref{sec:filt_scaling0}) & $\varepsilon-\varepsilon_0$ & $T$ & $x-T\lds(x,\hfield)$ & \ref{lem:rescale} \\[2pt]
-critical, $\alpha>0$ (Sec.~\ref{sec:filt_critical}) & $\varepsilon-\varepsilon_c$ & $t$ & $-tx-T_c\lds_{\rm sing}(x,\hfield)$ & \ref{lem:balance}, \ref{lem:rescale} \\[2pt]
+scaling at low $T$ (Sec.~\ref{sec:filt_scaling0}) & $\varepsilon-\varepsilon_0$ & $T$ & $x-T\lds(x;\hfield)$ & \ref{lem:rescale} \\[2pt]
+critical, $\alpha>0$ (Sec.~\ref{sec:filt_critical}) & $\varepsilon-\varepsilon_c$ & $t$ & $-tx-T_c\lds_{\rm sing}(x;\hfield)$ & \ref{lem:balance}, \ref{lem:rescale} \\[2pt]
 critical, $\alpha<0$ (Sec.~\ref{sec:filt_critical}) & $\varepsilon-\varepsilon_c$ & $t$ & $-tx+\dfrac{x^{2}}{2T_cc_{\rm reg}}-T_c\lds_{\rm sing}$ & \ref{lem:sublead} \\[4pt]
 wave vector, size (Secs.~\ref{sec:filt_length}, \ref{sec:filt_size}) & $\varepsilon-\varepsilon_c$ & $t$ & as above, $q$ or $V^{-1}$ a further parameter & \ref{lem:rescale} \\[2pt]
-responses (Sec.~\ref{sec:large_laplace}) & $\varepsilon$ & $T$, $\hfield$ & $\varepsilon-T\lds(\varepsilon(\hfield))$ & \ref{lem:envelope} \\
+responses (Sec.~\ref{sec:large_laplace}) & $\varepsilon$ & $T$, $\hfield$ & $\varepsilon-T\lds(\varepsilon;\hfield)$ & \ref{lem:envelope} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -3557,8 +3563,8 @@ many-body levels of the system of size $V$ at the parameter $\Lambda\hfield$
 are thus $\Lambda$ times those of the system of size $\Lambda^{r+1}V$ at the
 parameter $\hfield$, and the level counts are equal,
 \[
-  \cN_V(\Lambda\enrg)\Big|_{\Lambda\hfield}
-  =\cN_{\Lambda^{r+1}V}(\enrg)\Big|_{\hfield} .
+  \cN_V(\Lambda\enrg;\Lambda\hfield)
+  =\cN_{\Lambda^{r+1}V}(\enrg;\hfield) .
 \]
 Taking $(k_B/V)\ln$ of both sides for $V\to\infty$, with
 $\varepsilon=\enrg/\Lambda^{r+1}V$ the energy per unit volume of the larger
