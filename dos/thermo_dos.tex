@@ -397,14 +397,11 @@ $\ln p_a=-\beta\enrg_a-\ln\Xi$,
   = k_B\beta^{2}\,\frac{\partial^{2}\ln\Xi}{\partial\beta^{2}}
   = \frac{\Var(\hat{\mathcal{H}})}{k_BT^{2}} .
 \end{equation}
-%DO: discard this unneeded part
-{
-Equivalently, since $T\,dS=d\langle\hat{\mathcal H}\rangle$ at fixed $\mu$,
-\begin{equation}\label{eq:filt_CU}
-  C_\mu = \frac{\partial\langle\hat{\mathcal H}\rangle}{\partial T}\bigg|_{\mu, V}
-  = \frac{1}{k_BT^{2}}\int d\enrg\; P_T(\enrg)\,\big(\enrg - \langle\hat{\mathcal{H}}\rangle\big)^{2}\;\ge0 .
-\end{equation}
-}
+Since $\partial/\partial T=-k_B\beta^{2}\,\partial/\partial\beta$ and
+$\langle\hat{\mathcal H}\rangle=-\partial\ln\Xi/\partial\beta$, also
+$C_\mu=\partial\langle\hat{\mathcal H}\rangle/\partial T$ at fixed $\mu$ and
+$V$.
+
 \subsection{Response and correlation functions}
 \label{sec:filt_corr}\label{sec:filt_resp}
 
@@ -701,7 +698,7 @@ Extensive quantities are referred to unit volume:
 \end{equation}
 with $u=\langle\hat H\rangle/V$ the energy density and
 $n=\langle\hat N\rangle/V$ the particle density. Dividing
-Eqs.~\eqref{eq:filt_moments}--\eqref{eq:filt_CU} by $V$, with
+Eqs.~\eqref{eq:filt_moments} and~\eqref{eq:filt_mb} by $V$, with
 $\ln\Xi=-\beta V\omega$, gives at every size
 \begin{equation}\label{eq:filt_exactV}
   u-\mu n=\frac{\partial(\beta\omega)}{\partial\beta}\bigg|_{\mu, V} ,\qquad
@@ -739,12 +736,6 @@ Laplace, method): it equals $e^{-V(\min\Fen)/k_BT}$ up to a factor that is
 not exponential in $V$ (footnote~\ref{fn:finite}). Let $\varepsilon_*(T)$ be
 the minimiser, the \emph{thermal energy}. With $\omega=-(k_BT/V)\ln\Xi$
 (Eq.~\eqref{eq:filt_intensive}),
-%DO: the form of $ \Fen$ indicates a subtle point which is intuitively beneficial and guiding. By scaling out $ T > 0 $, we can rewrite \Fen as
-%% $ 1/T ( \varepsilon/T - \lds(\varepsilon) ) $
-%% and using $ \varepsilon \mapsto T \tilde{\varepsilon} $,  minimising this function is equivalent to minimising the function
-%% $ \tilde{\Fen} := ( \tilde{\varepsilon} - \lds(k_B \beta \tilde{\varepsilon})) $.
-%% Therefore, even at this formal level, the idea of scaling appears; that is, it is clearly important that homogeneous forms of $\lds$ are special. The role of \hfield is rather different.
-
 \begin{equation}\label{eq:filt_legendre}
   \omega(T) = \min_{\varepsilon\ge\varepsilon_0}\big[\varepsilon - T\,\lds(\varepsilon)\big]
   = \varepsilon_* - T\,\lds(\varepsilon_*) ,
@@ -777,19 +768,57 @@ $\partial\Fen/\partial\varepsilon=0$, is
 \end{equation}
 the temperature is the inverse slope of the \lndos{} at the thermal energy;
 equivalently, $\partial\ln\cN/\partial\enrg=1/k_BT$.
-%DO: I do not think this geometrical construction would help much in better understanding. One can simply use the picture of a tangent line of slope 1/T to \lds.
-{
-Geometrically (Fig.~\ref{fig:transitions}), the straight line
-\begin{equation}\label{eq:filt_tangent}
-  \ell_T(\varepsilon):=\frac{\varepsilon-\omega(T)}{T}
-\end{equation}
-with slope $1/T$ lies on or above the graph of $\lds$, since
-$\ell_T(\varepsilon)-\lds(\varepsilon)=[\Fen(\varepsilon)-\omega(T)]/T\ge0$ by
-Eq.~\eqref{eq:filt_legendre}. It touches the graph at $\varepsilon_*$ and
-crosses the energy axis, $\ell_T=0$, at $\varepsilon=\omega(T)$. With
+Geometrically (Fig.~\ref{fig:transitions}), the tangent to the graph of
+$\lds$ at the thermal energy has the slope $1/T$, and the graph lies on or
+below this tangent, because
+$\Fen(\varepsilon)\ge\Fen(\varepsilon_*)$ is the inequality
+$\lds(\varepsilon)\le\lds(\varepsilon_*)+(\varepsilon-\varepsilon_*)/T$. With
 increasing $T$ the point of contact moves from the ground state ($T\to0$) to
 the energy at which $\lds$ reaches its maximum ($T\to\infty$).
-}
+
+\paragraph{The temperature as the unit of the excitation energy.} For
+$T>0$ let $x:=(\varepsilon-\varepsilon_0)/T\ge0$ be the excitation energy
+per unit volume in units of the temperature. Then
+$\Fen(\varepsilon)=\varepsilon_0+T\,[x-\lds(\varepsilon_0+Tx)]$, and
+Eq.~\eqref{eq:filt_legendre} becomes
+\begin{equation}\label{eq:filt_dilate}
+  \frac{\omega(T)-\varepsilon_0}{T}=\min_{x\ge0}\big[x-\lds(\varepsilon_0+Tx)\big] .
+\end{equation}
+The temperature enters the function to be minimised only through the
+argument of $\lds$: a change of the temperature is a dilation of the
+excitation-energy axis of the \lndos{}. Three consequences follow, which
+the later sections work out.
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item \emph{Homogeneous \lndos.} Let
+  $\lds(\varepsilon_0+\lambda\,\delta\varepsilon)=\lambda^{\sigma}\lds(\varepsilon_0+\delta\varepsilon)$
+  for all $\lambda>0$, with $0<\sigma<1$. Then
+  $\lds(\varepsilon_0+Tx)=T^{\sigma}\lds(\varepsilon_0+x)$, and the
+  substitution $x=T^{\sigma/(1-\sigma)}y$ gives
+  $x-T^{\sigma}\lds(\varepsilon_0+x)=T^{\sigma/(1-\sigma)}\,[y-\lds(\varepsilon_0+y)]$,
+  so that
+  \[
+    \omega(T)-\varepsilon_0=T^{1/(1-\sigma)}\,\min_{y\ge0}\big[y-\lds(\varepsilon_0+y)\big] :
+  \]
+  the dilation is absorbed by a change of the variable, the minimisation no
+  longer contains the temperature, and $\omega-\varepsilon_0$ is a pure
+  power of $T$ (Proposition~\ref{prop:power}). The powers
+  $\lds\propto(\delta\varepsilon)^{\sigma}$ are the only continuous functions
+  that a dilation of the argument multiplies by a constant.
+\item \emph{Any other form.} A \lndos{} that is not homogeneous contains at
+  least one scale of the excitation energy, and the minimum in
+  Eq.~\eqref{eq:filt_dilate} depends on the temperature through the ratio
+  of the thermal excitation energy to that scale: a crossover, or a
+  transition if $\lds$ is non-analytic there
+  (Section~\ref{sec:transitions}).
+\item \emph{A parameter.} A parameter $\hfield$ of the Hamiltonian enters
+  Eq.~\eqref{eq:filt_dilate} as a second argument of $\lds$, which the
+  dilation leaves unchanged. The temperature can then be removed from the
+  minimisation only if $\lds$ is homogeneous in the excitation energy and the
+  parameter jointly, the parameter with an exponent $b$ of its own; the
+  potential then depends on $\hfield$ through the ratio
+  $\hfield/T^{\,b/(1-\sigma)}$ (Assumption~\ref{ass:hom0} and
+  Proposition~\ref{prop:scaling0}).
+\end{itemize}
 
 \paragraph{Energy, entropy and heat capacity.} Insert
 Eq.~\eqref{eq:filt_legendre} into the exact
@@ -821,7 +850,8 @@ then give
   =\frac{\partial\varepsilon_*}{\partial T}\bigg|_{\mu} ,
 \end{equation}
 where the second relation uses Eq.~\eqref{eq:filt_legendre} and the third
-Eq.~\eqref{eq:filt_CU} divided by $V$. The derivatives
+$C_\mu=\partial\langle\hat{\mathcal H}\rangle/\partial T$
+(Section~\ref{sec:filt_mb}) divided by $V$. The derivatives
 are partial because $\varepsilon_*$ depends on $\mu$, and on a field
 $\hfield$ if there is one, besides $T$; they are taken at fixed $\mu$ and
 $\hfield$. The minimiser is the thermodynamic energy density, and the
@@ -1201,7 +1231,7 @@ exactly where the minimiser is not unique~\cite{Rockafellar,Touchette2009}.}
 \end{tikzpicture}
 \caption{The \lndos{} and the transitions of Section~\ref{sec:transitions}.
 Upper row: $\lds(\varepsilon)$ (blue) and the tangent of slope $1/T$
-(orange), Eq.~\eqref{eq:filt_tangent}. Middle row:
+(orange). Middle row:
 $\Fen(\varepsilon)=\varepsilon-T\lds(\varepsilon)$ at three temperatures; the
 dot marks its minimum, at $\varepsilon_*(T)$ with the value $\omega(T)$.
 (a)~Discontinuous transition: $\lds$ is linear between $\varepsilon_-$ and
@@ -1236,8 +1266,8 @@ $\Fen[T_1]$, with the same value,
 \begin{equation}\label{eq:filt_equal}
   \varepsilon_--T_1\,\lds(\varepsilon_-)=\varepsilon_+-T_1\,\lds(\varepsilon_+)=\omega(T_1) ,
 \end{equation}
-i.e.\ the straight line $\ell_{T_1}$ of Eq.~\eqref{eq:filt_tangent} touches
-the graph of $\lds$ at both energies. The thermal energy is below
+i.e.\ the tangents of slope $1/T_1$ at the two energies are one straight
+line, the \emph{common tangent}. The thermal energy is below
 $\varepsilon_-$ for $T<T_1$ and above $\varepsilon_+$ for $T>T_1$, because
 $\varepsilon_*(T)$ does not decrease with $T$.\footnote{Let $\varepsilon$ and
 $\varepsilon'$ be the minimisers at the temperatures $T<T'$. The sum of
@@ -1275,7 +1305,7 @@ is associated with the transition.
 Between $\varepsilon_-$ and $\varepsilon_+$ two forms of $\lds$ occur.
 
 \emph{(i)~Non-concave \lndos{}} (possible for long-range interactions). The
-line $\ell_{T_1}$ lies strictly above the graph of $\lds$ between the two
+common tangent lies strictly above the graph of $\lds$ between the two
 points of contact. Since the minimiser lies outside this interval at
 $T\neq T_1$, $\Fen(\varepsilon)>\omega(T)$ on the interval at every
 temperature: no temperature selects these levels. For $T$ near $T_1$,
@@ -1308,10 +1338,12 @@ with $\cN_V(V\varepsilon)\asymp e^{V\lds(\varepsilon)/k_B}$
   \asymp\exp\Big\{\frac{V}{k_B}\big[(1-x)\,\lds(\varepsilon_-)+x\,\lds(\varepsilon_+)\big]\Big\} .
 \]
 The logarithm, multiplied by $k_B/V$, is
-$\lds(\varepsilon)\ge(1-x)\,\lds(\varepsilon_-)+x\,\lds(\varepsilon_+)=\ell_{T_1}(\varepsilon)$:
-the right-hand side is linear in $\varepsilon$ and agrees with $\ell_{T_1}$
-at both points of contact. Since also $\lds\le\ell_{T_1}$
-(Eq.~\eqref{eq:filt_tangent}), $\lds=\ell_{T_1}$ on the interval. Then
+$\lds(\varepsilon)\ge(1-x)\,\lds(\varepsilon_-)+x\,\lds(\varepsilon_+)$: the
+right-hand side is linear in $\varepsilon$ and agrees with $\lds$ at
+$\varepsilon_-$ and $\varepsilon_+$, i.e.\ it is the common tangent. Since
+the graph of $\lds$ also lies on or below its tangent of slope $1/T_1$
+(Section~\ref{sec:large_laplace}), $\lds$ coincides with the common tangent
+on the interval. Then
 $\Fen[T_1]$ is constant on the interval: at $T_1$, and only at $T_1$, every
 energy of the interval is a minimiser. At $T\neq T_1$ the convex function
 $\Fen$ has a single local minimum, and there is no metastable state for
@@ -3604,7 +3636,7 @@ $\partial w_a/\partial T=(\enrg_a/k_BT^{2})\,w_a$, is
 \end{equation}
 Instances are $ (\partial N/\partial\mu)_T = \Var(\hat N)/k_BT $, the spin
 susceptibility $ \Var(\hat M)/Vk_BT $ whenever the total moment $ \hat M $
-is conserved, and $ C_\mu $ itself, Eq.~\eqref{eq:filt_CU}.
+is conserved, and $ C_\mu $ itself, Eq.~\eqref{eq:filt_mb}.
 
 \paragraph{Non-conserved quantities.} If $ \hat A $ is not conserved, the
 field changes the eigenvectors as well. To first order in $ \hfield $,
