@@ -80,7 +80,9 @@ the ensembles (Section~\ref{app:second}), the quadratic
 Hamiltonians, for which the many-body filters reduce to single-particle
 ones (Section~\ref{app:quadratic}), and the Lifshitz transition, whose
 exponents the main text states without derivation
-(Section~\ref{app:lifshitz}). Sections, equations and propositions of
+(Section~\ref{app:lifshitz}). A fourth section, on the level count of
+Goldstone modes and of degenerate manifolds of wave vectors
+(Section~\ref{sec:goldstone}), is not used by the main text. Sections, equations and propositions of
 the supplement are numbered with the prefix S; numbers without it refer to
 the main text, whose notation is used throughout.
 
@@ -2119,6 +2121,142 @@ are the three regimes of Fig.~\ref{fig:lifshitz}b.
   $\varrho(\mu)=B\,\hfield^{\,r}$.
 \end{itemize}
 
+%% ---------------------------------------------------------------------------
+%% This section (Goldstone modes and degenerate manifolds) was moved here from
+%% the appendices of the main text. It is not referenced from any other part
+%% of the supplement or of the main text and can be deleted as a whole, down
+%% to the line "END OF THE SECTION ON GOLDSTONE MODES", together with the
+%% bibliography entries Goldstone1961 and GSW1962, which are cited only here.
+%% ---------------------------------------------------------------------------
+\section{Goldstone modes and degenerate manifolds}
+\label{sec:goldstone}
+
+A phase with a broken continuous symmetry has a spectrum that is scale-free
+at low energy without any tuning~\cite{Goldstone1961,GSW1962}: a slow twist
+of the order parameter, of wave vector $\mathbf q$, costs an energy that
+vanishes with $q$, so that for short-range interactions there are gapless
+excitations of energy $\nu(\mathbf q)\propto q^{z}$, the \emph{Goldstone
+modes}\footnote{$z=1$ for antiferromagnets, superfluids and the acoustic
+phonons of a crystal; $z=2$ for ferromagnets. In this section
+$\nu(\mathbf q)$ denotes a dispersion; the exponent $\nu$ of
+Section~\ref{M-sec:filt_length} does not occur.}. Their contribution to $\lds$
+follows from a general statement on independent modes.
+
+\begin{lemma}[Homogeneous dispersion]\label{lem:disp}
+Let the modes have a dispersion $\nu(\mathbf q)\ge0$, the energy of the mode
+of wave vector $\mathbf q$ ($\hbar=1$), that is homogeneous near its zeros,
+$\nu(\lambda^{a_1}q_1,\dots,\lambda^{a_d}q_d)=\lambda\,\nu(\mathbf q)$
+for all $\lambda>0$, with exponents $a_i\ge0$ and $\mathfrak a:=\sum_ia_i>0$. Then
+the density of modes per unit volume is a power law of the mode energy $E$,
+\[
+  \varrho(E):=\int\frac{d^{d}q}{(2\pi)^{d}}\,\delta\big(E-\nu(\mathbf q)\big)
+  =\varrho(1)\,E^{\mathfrak a-1} ,
+\]
+and independent bosonic modes of this density give
+\begin{equation}\label{eq:filt_lemma}
+  c_\mu=k_B\,\varrho(1)\,\Gamma(\mathfrak a+2)\,\zeta(\mathfrak a+1)\,(k_BT)^{\mathfrak a} ,
+  \qquad
+  \lds\propto (\delta\varepsilon)^{\mathfrak a/(\mathfrak a+1)} .
+\end{equation}
+\end{lemma}
+\begin{proof}
+Substitute $q_i=E^{a_i}x_i$: then $d^{d}q=E^{\mathfrak a}d^{d}x$,
+$\nu(\mathbf q)=E\,\nu(\mathbf x)$ by homogeneity with $\lambda=E$, and
+$\delta(E-E\,\nu(\mathbf x))=E^{-1}\delta(1-\nu(\mathbf x))$.
+Components with $a_i=0$ are not rescaled and are integrated over their
+finite range. The heat capacity is the bosonic one of
+Section~\ref{M-sec:filt_power_mb} with $\mu=0$ and $r=\mathfrak a-1$, and
+$\lds(\varepsilon)$ follows from Eq.~\eqref{M-eq:filt_sinv} with
+$\kappa=\mathfrak a$.
+\end{proof}
+For Goldstone modes $a_i=1/z$ in all $d$ directions, $\mathfrak a=d/z$:
+$c_{\mu}\sim T^{d/z}$ and $\lds\propto(\delta\varepsilon)^{\,d/(d+z)}$, i.e.\
+$(\delta\varepsilon)^{3/4}$ for $d=3$, $z=1$ (the Debye result) and
+$(\delta\varepsilon)^{3/5}$ for a three-dimensional ferromagnet.
+
+\paragraph{Degenerate manifold of wave vectors.} If several ordering wave
+vectors are exactly degenerate, as for the competing orders of a frustrated
+system, the gapless modes have $\nu(\mathbf q)=0$ on a manifold of dimension
+$d_m$ in $\mathbf q$ space, and $\nu=v\,|\mathbf q_\perp|^{z}$ depends only on
+the $d-d_m$ components $\mathbf q_\perp$ of $\mathbf q$ normal to the
+manifold. In Lemma~\ref{lem:disp}, $a_i=1/z$ for these components and
+$a_i=0$ along the manifold, so that $\mathfrak a=(d-d_m)/z$:
+\begin{equation}\label{eq:filt_manifold}
+  \varrho(E)\propto E^{(d-d_m)/z-1} ,\qquad
+  c_\mu\sim T^{(d-d_m)/z} ,\qquad
+  \lds\propto(\delta\varepsilon)^{(d-d_m)/(d-d_m+z)} .
+\end{equation}
+The exponent is fixed by the codimension $d-d_m$ of the manifold, i.e.\ by
+the number of components of $\mathbf q$ on which the mode energy depends,
+and not by the dimension of space (Fig.~\ref{fig:manifold}). For a surface
+of degenerate wave vectors, $d_m=d-1$, $c_\mu\sim T^{1/z}$ in any dimension.
+
+\begin{figure}[htbp]
+\centering
+\tikzset{
+  ldsgraph/.style={>=Stealth,font=\small,x=1.6cm,y=1.6cm},
+  lds/.style={very thick,blue!60!black},
+  edge/.style={very thick,orange!85!black},
+  guide/.style={thin,dotted,gray!80!black},
+  alt/.style={very thick,red!75!black,dashed},
+}
+\begin{tikzpicture}[ldsgraph]
+  \draw[->] (-0.15,0) -- (2.5,0) node[below left]{$\delta\varepsilon$};
+  \draw[->] (0,-0.1) -- (0,1.5) node[above]{$\lds$};
+  \draw[lds,domain=0:2.3,samples=60,smooth] plot (\x,{0.8*\x^0.75});
+  \draw[teal!80!black,very thick,domain=0:2.3,samples=60,smooth] plot (\x,{sqrt(\x)});
+  \draw[alt,domain=0.001:2.3,samples=80,smooth] plot (\x,{sqrt(\x)*(\x/(\x+0.3))^(1/6)});
+  \draw[guide] (0.3,0) -- (0.3,0.5);
+  \node[below,font=\scriptsize] at (0.3,0) {$\sim\delta$};
+  \node[font=\scriptsize,blue!60!black,anchor=north west] at (1.5,0.95) {$d_m=0$: $\sigma=\frac{d}{d+z}$};
+  \node[font=\scriptsize,teal!80!black,anchor=south west] at (0.5,1.22) {$d_m>0$: $\sigma=\frac{d-d_m}{d-d_m+z}$};
+  \node[font=\scriptsize,red!75!black,anchor=north west] at (0.35,0.35) {lifted by $\delta$};
+\end{tikzpicture}
+\caption{The \lndos{} above the ground state,
+$\lds\propto(\delta\varepsilon)^{\sigma}$, for gapless modes on a degenerate
+manifold of wave vectors of dimension $d_m$; $d_m=0$ is the Goldstone case.
+When the degeneracy is lifted by an energy $\delta$ (red, dashed), the law
+of the degenerate manifold holds for $\delta\varepsilon$ above a scale set
+by $\delta$, and that of the selected order below,
+Eq.~\eqref{eq:filt_neardeg}.}
+\label{fig:manifold}
+\end{figure}
+
+\paragraph{Lifted degeneracy.} Let the degeneracy on the manifold be lifted
+by a small energy $\delta$:
+$\nu(\mathbf q)=\delta\,u(\mathbf q_\parallel)+v\,|\mathbf q_\perp|^{z}$,
+with $0\le u\le1$ vanishing quadratically at isolated points (the selected
+wave vectors). With $n:=d-d_m$, the integral over $\mathbf q_\perp$ gives
+$\varrho(E)\propto\int d^{d_m}q_\parallel\,
+[E-\delta\,u(\mathbf q_\parallel)]_+^{\,n/z-1}$, with $[x]_+:=\max(x,0)$.
+For $E\gg\delta$ the integrand is $E^{n/z-1}$ on the whole manifold and
+Eq.~\eqref{eq:filt_manifold} holds. For $E\ll\delta$ only the
+neighbourhoods $u<E/\delta$ of the minima contribute, of volume
+$\propto(E/\delta)^{d_m/2}$. Hence
+\begin{equation}\label{eq:filt_neardeg}
+  c_\mu\sim
+  \begin{cases}
+    T^{(d-d_m)/z} , & \delta\ll k_BT ,\\[2pt]
+    \delta^{-d_m/2}\,T^{(d-d_m)/z+d_m/2} , & k_BT\ll\delta ,
+  \end{cases}
+\end{equation}
+the second line being Lemma~\ref{lem:disp} with $a_i=\tfrac12$ along the
+manifold. The thermodynamics is that of degenerate orders down to
+$k_BT\sim\delta$, and the selected order appears only below. A manifold at
+a finite energy gives the activated law~\eqref{M-eq:filt_gap} with a prefactor
+fixed by the same geometry: the rotons of superfluid helium,
+$\nu=\Delta+(q-q_0)^{2}/2m^{*}$ on a sphere ($d_m=2$), have
+$\varrho(E)\propto(E-\Delta)^{-1/2}$ and
+$c\propto\Delta^{2}T^{-3/2}e^{-\Delta/k_BT}$~\cite[Sec.~6.9.2]{Honerkamp}.
+
+The broken symmetry is not an ingredient of Lemma~\ref{lem:disp} or of
+Proposition~\ref{M-prop:power}: any Hamiltonian with the same low-energy level
+count has the same power laws. The symmetry supplies the reason for the
+absence of a gap, and the exponent $z$, for every perturbation that respects
+it. Conversely, $\rho(\enrg)$ alone does not identify the modes (acoustic
+phonons and antiferromagnetic magnons both give $c\sim T^{3}$); that
+requires the dependence of $\rho$ on the field that couples to them.
+%% ------------- END OF THE SECTION ON GOLDSTONE MODES -------------
 
 \bibliographystyle{plain}
 \bibliography{thermo_dos}

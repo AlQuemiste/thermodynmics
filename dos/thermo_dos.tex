@@ -33,7 +33,7 @@
 \newcommand{\hfield}{\mathscr{h}}  % parameter (field or coupling) of the Hamiltonian
 \newcommand{\enrg}{\mathcal{E}}  % energy eigenvalue of H - mu N
 \newcommand{\cE}{\mathcal{E}_{\rm x}}  % many-body excitation energy, E - E_0
-\newcommand{\fen}[1][T]{\mathscr{F}_{#1}}  % F_T(eps) = eps - T s(eps): free energy per unit volume at a prescribed energy
+\newcommand{\Fen}[1][T]{\mathscr{F}_{#1}}  % F_T(eps) = eps - T s(eps): free energy per unit volume at a prescribed energy
 \newcommand{\lds}{\mathscr{s}}  % the logarithmic density of states (microcanonical entropy density) as a function of the energy
 \newcommand{\Tmax}{T_{\max}}  % limiting temperature of the linear bound on the logdos
 \newcommand{\etaD}{\eta_{\rm D}}  % Dirichlet eta function (eta is the anomalous exponent)
@@ -397,12 +397,14 @@ $\ln p_a=-\beta\enrg_a-\ln\Xi$,
   = k_B\beta^{2}\,\frac{\partial^{2}\ln\Xi}{\partial\beta^{2}}
   = \frac{\Var(\hat{\mathcal{H}})}{k_BT^{2}} .
 \end{equation}
+%DO: discard this unneeded part
+{
 Equivalently, since $T\,dS=d\langle\hat{\mathcal H}\rangle$ at fixed $\mu$,
 \begin{equation}\label{eq:filt_CU}
   C_\mu = \frac{\partial\langle\hat{\mathcal H}\rangle}{\partial T}\bigg|_{\mu, V}
   = \frac{1}{k_BT^{2}}\int d\enrg\; P_T(\enrg)\,\big(\enrg - \langle\hat{\mathcal{H}}\rangle\big)^{2}\;\ge0 .
 \end{equation}
-
+}
 \subsection{Response and correlation functions}
 \label{sec:filt_corr}\label{sec:filt_resp}
 
@@ -713,30 +715,36 @@ The spectrum enters these relations through $\omega$ alone.
 Eq.~\eqref{eq:filt_laplace_V} is replaced by its limit:
 \begin{equation}\label{eq:filt_laplace_log}
   \Xi\asymp V\int_{\varepsilon_0}^{\infty}d\varepsilon\;
-  \exp\left\{-\frac{V}{k_BT}\,\fen(\varepsilon)\right\} ,
-  \qquad \fen(\varepsilon):=\varepsilon-T\,\lds(\varepsilon) .
+  \exp\left\{-\frac{V}{k_BT}\,\Fen(\varepsilon)\right\} ,
+  \qquad \Fen(\varepsilon):=\varepsilon-T\,\lds(\varepsilon) .
 \end{equation}
-The notation recalls the Helmholtz free energy $F=E-TS$: $V\fen(\varepsilon)$
+The notation recalls the Helmholtz free energy $F=E-TS$: $V\Fen(\varepsilon)$
 is the free energy of the levels at the energy $V\varepsilon$, and the
 integrand, divided by $\Xi$, is the probability density $P_T$ of the energy $\varepsilon$.
-The function $\fen$ has a minimum for $T<\Tmax$. By the
+The function $\Fen$ has a minimum for $T<\Tmax$. By the
 bound~\eqref{eq:filt_linbound},
-$\fen(\varepsilon)\ge(1-T/\Tmax)\,\varepsilon-c_0T$, which grows without
-limit for $\varepsilon\to\infty$. Hence $\fen$ exceeds its value at
+$\Fen(\varepsilon)\ge(1-T/\Tmax)\,\varepsilon-c_0T$, which grows without
+limit for $\varepsilon\to\infty$. Hence $\Fen$ exceeds its value at
 $\varepsilon_0$ for all $\varepsilon$ above some $\varepsilon_{\max}$, its
 lowest value is that on the bounded closed interval
 $[\varepsilon_0,\varepsilon_{\max}]$, and a continuous function attains its
 minimum on such an interval\footnote{The \lndos{} is taken to be continuous;
 a concave function is continuous in the interior of its domain. If the level
-count grew faster than exponentially in the energy, $\fen$ would be unbounded
+count grew faster than exponentially in the energy, $\Fen$ would be unbounded
 below and $\Xi$ would not exist at any temperature; if it grows
 exponentially, $\Xi$ exists only for $T<\Tmax$.}. Since the exponent in
 Eq.~\eqref{eq:filt_laplace_log} is proportional to $V$, the integral is
 dominated by the neighbourhood of this minimum (the steepest-descent, or
-Laplace, method): it equals $e^{-V(\min\fen)/k_BT}$ up to a factor that is
+Laplace, method): it equals $e^{-V(\min\Fen)/k_BT}$ up to a factor that is
 not exponential in $V$ (footnote~\ref{fn:finite}). Let $\varepsilon_*(T)$ be
 the minimiser, the \emph{thermal energy}. With $\omega=-(k_BT/V)\ln\Xi$
 (Eq.~\eqref{eq:filt_intensive}),
+%DO: the form of $ \Fen$ indicates a subtle point which is intuitively beneficial and guiding. By scaling out $ T > 0 $, we can rewrite \Fen as
+%% $ 1/T ( \varepsilon/T - \lds(\varepsilon) ) $
+%% and using $ \varepsilon \mapsto T \tilde{\varepsilon} $,  minimising this function is equivalent to minimising the function
+%% $ \tilde{\Fen} := ( \tilde{\varepsilon} - \lds(k_B \beta \tilde{\varepsilon})) $.
+%% Therefore, even at this formal level, the idea of scaling appears; that is, it is clearly important that homogeneous forms of $\lds$ are special. The role of \hfield is rather different.
+
 \begin{equation}\label{eq:filt_legendre}
   \omega(T) = \min_{\varepsilon\ge\varepsilon_0}\big[\varepsilon - T\,\lds(\varepsilon)\big]
   = \varepsilon_* - T\,\lds(\varepsilon_*) ,
@@ -750,35 +758,38 @@ $V(\lds_V-\lds)/k_B$, which is $o(V)$ by the uniform convergence in
 Eq.~\eqref{eq:filt_sdef} (a surface term, for short-range interactions and
 open boundaries).
 (ii)~The energies away from the minimiser: if the minimiser is unique,
-$\fen(\varepsilon)-\fen(\varepsilon_*)\ge\Delta_\eta>0$ for
+$\Fen(\varepsilon)-\Fen(\varepsilon_*)\ge\Delta_\eta>0$ for
 $|\varepsilon-\varepsilon_*|\ge\eta$, so that the integrand is smaller there
 than at $\varepsilon_*$ by the factor $e^{-V\Delta_\eta/k_BT}=e^{-O(V)}$.
 (iii)~Near the minimiser,
-$\fen(\varepsilon)=\omega+\tfrac12\fen''(\varepsilon_*)(\varepsilon-\varepsilon_*)^{2}+\dots$
-with $\fen''=-T\,\partial^{2}\lds/\partial\varepsilon^{2}>0$; the linear term
+$\Fen(\varepsilon)=\omega+\tfrac12\Fen''(\varepsilon_*)(\varepsilon-\varepsilon_*)^{2}+\dots$
+with $\Fen''=-T\,\partial^{2}\lds/\partial\varepsilon^{2}>0$; the linear term
 vanishes by Eq.~\eqref{eq:filt_stat}. The integrand is therefore a Gaussian
-of width $(k_BT/V\fen'')^{1/2}=O(V^{-1/2})$, whose integral is
-$(2\pi k_BT/V\fen'')^{1/2}$. With the prefactor $\beta V$,
-$\ln\Xi=-V\omega/k_BT+\tfrac12\ln(2\pi V/k_BT\fen'')$: a correction
+of width $(k_BT/V\Fen'')^{1/2}=O(V^{-1/2})$, whose integral is
+$(2\pi k_BT/V\Fen'')^{1/2}$. With the prefactor $\beta V$,
+$\ln\Xi=-V\omega/k_BT+\tfrac12\ln(2\pi V/k_BT\Fen'')$: a correction
 $O(\ln V)$. In $\omega=-(k_BT/V)\ln\Xi$ all three contributions vanish for
 $V\to\infty$.}. If $\varepsilon_*>\varepsilon_0$ and $\lds$ is
 differentiable at $\varepsilon_*$, the condition for the minimum,
-$\partial\fen/\partial\varepsilon=0$, is
+$\partial\Fen/\partial\varepsilon=0$, is
 \begin{equation}\label{eq:filt_stat}
   \frac{\partial \lds}{\partial\varepsilon}\bigg|_{\varepsilon_*}=\frac1T ~,
 \end{equation}
 the temperature is the inverse slope of the \lndos{} at the thermal energy;
-equivalently, $\partial\ln\cN/\partial\enrg=1/k_BT$. Geometrically
-(Fig.~\ref{fig:transitions}), the straight line
+equivalently, $\partial\ln\cN/\partial\enrg=1/k_BT$.
+%DO: I do not think this geometrical construction would help much in better understanding. One can simply use the picture of a tangent line of slope 1/T to \lds.
+{
+Geometrically (Fig.~\ref{fig:transitions}), the straight line
 \begin{equation}\label{eq:filt_tangent}
   \ell_T(\varepsilon):=\frac{\varepsilon-\omega(T)}{T}
 \end{equation}
 with slope $1/T$ lies on or above the graph of $\lds$, since
-$\ell_T(\varepsilon)-\lds(\varepsilon)=[\fen(\varepsilon)-\omega(T)]/T\ge0$ by
+$\ell_T(\varepsilon)-\lds(\varepsilon)=[\Fen(\varepsilon)-\omega(T)]/T\ge0$ by
 Eq.~\eqref{eq:filt_legendre}. It touches the graph at $\varepsilon_*$ and
 crosses the energy axis, $\ell_T=0$, at $\varepsilon=\omega(T)$. With
 increasing $T$ the point of contact moves from the ground state ($T\to0$) to
 the energy at which $\lds$ reaches its maximum ($T\to\infty$).
+}
 
 \paragraph{Energy, entropy and heat capacity.} Insert
 Eq.~\eqref{eq:filt_legendre} into the exact
@@ -787,13 +798,13 @@ the limit $V\to\infty$: $\ln\Xi$ is a convex function of $\beta$ at every
 size, since $\partial^{2}\ln\Xi/\partial\beta^{2}=\Var(\hat{\mathcal H})\ge0$,
 and the derivatives of a convergent sequence of convex functions converge to
 the derivative of the limit wherever the latter exists.}
-The potential $\omega(T)=\fen(\varepsilon_*(T))$ depends on $T$ through the
-explicit factor $T$ of $\fen(\varepsilon)=\varepsilon-T\lds(\varepsilon)$ and
+The potential $\omega(T)=\Fen(\varepsilon_*(T))$ depends on $T$ through the
+explicit factor $T$ of $\Fen(\varepsilon)=\varepsilon-T\lds(\varepsilon)$ and
 through the minimiser. By the chain rule,
 \begin{equation}\label{eq:filt_dwdT}
   \frac{\partial\omega}{\partial T}\bigg|_{\mu}
-  =\frac{\partial\fen}{\partial T}\bigg|_{\varepsilon_*}
-  +\frac{\partial\fen}{\partial\varepsilon}\bigg|_{\varepsilon_*}\,
+  =\frac{\partial\Fen}{\partial T}\bigg|_{\varepsilon_*}
+  +\frac{\partial\Fen}{\partial\varepsilon}\bigg|_{\varepsilon_*}\,
   \frac{\partial\varepsilon_*}{\partial T}\bigg|_{\mu}
   =-\lds(\varepsilon_*) :
 \end{equation}
@@ -835,16 +846,16 @@ is nearly constant.
 
 The same curvature fixes the distribution of the energy. By
 Eq.~\eqref{eq:filt_laplace_log} the probability density of the energy per
-unit volume is $P_T\propto\exp[-V\fen(\varepsilon)/k_BT]$. The expansion of
-$\fen$ about its minimum is
+unit volume is $P_T\propto\exp[-V\Fen(\varepsilon)/k_BT]$. The expansion of
+$\Fen$ about its minimum is
 \begin{equation}\label{eq:filt_gauss}
-  \fen(\varepsilon)=\omega
+  \Fen(\varepsilon)=\omega
   +\tfrac12\,T\,|\lds_{\varepsilon\varepsilon}(\varepsilon_*)|\,(\varepsilon-\varepsilon_*)^{2}
   +\dots :
 \end{equation}
 the constant is Eq.~\eqref{eq:filt_legendre}, the linear term vanishes by
 Eq.~\eqref{eq:filt_stat}, and
-$\partial^{2}\fen/\partial\varepsilon^{2}=-T\lds_{\varepsilon\varepsilon}$ is
+$\partial^{2}\Fen/\partial\varepsilon^{2}=-T\lds_{\varepsilon\varepsilon}$ is
 positive at a minimum. Hence
 $P_T\propto\exp[-V|\lds_{\varepsilon\varepsilon}|(\varepsilon-\varepsilon_*)^{2}/2k_B]$,
 a Gaussian in $\varepsilon$ of variance
@@ -855,15 +866,15 @@ $k_BT^{2}\,Vc_\mu=k_BT^{2}C_\mu$, in agreement with the exact
 Eq.~\eqref{eq:filt_mb}.
 
 \paragraph{Response to a field.} In the presence of a field the function to
-be minimised, $\fen(\varepsilon)=\varepsilon-T\,\lds(\varepsilon;\hfield)$,
+be minimised, $\Fen(\varepsilon)=\varepsilon-T\,\lds(\varepsilon;\hfield)$,
 depends on the
 field through the explicit dependence of the \lndos{} on $\hfield$ at a
 fixed energy (Eq.~\eqref{eq:filt_sh}), and its minimiser is
 $\varepsilon_*(T,\hfield)$. As in Eq.~\eqref{eq:filt_dwdT},
 \begin{equation}\label{eq:filt_dwdh}
   \frac{\partial\omega}{\partial\hfield}\bigg|_{T}
-  =\frac{\partial\fen}{\partial\hfield}\bigg|_{\varepsilon_*}
-  +\frac{\partial\fen}{\partial\varepsilon}\bigg|_{\varepsilon_*}\,
+  =\frac{\partial\Fen}{\partial\hfield}\bigg|_{\varepsilon_*}
+  +\frac{\partial\Fen}{\partial\varepsilon}\bigg|_{\varepsilon_*}\,
   \frac{\partial\varepsilon_*}{\partial\hfield}\bigg|_{T}
   =-T\,\frac{\partial\lds}{\partial\hfield}\bigg|_{\varepsilon_*} .
 \end{equation}
@@ -966,8 +977,8 @@ family of functions can be non-analytic in its parameters. A phase
 transition is therefore a property of a minimisation: the ways in which the
 minimum value of a function can depend non-analytically on a parameter
 (Appendix~\ref{sec:tools_power}) are the kinds of transition, and the
-statements of this section are statements on the minimum of $\fen$ in
-thermodynamic terms. If $\fen$ is
+statements of this section are statements on the minimum of $\Fen$ in
+thermodynamic terms. If $\Fen$ is
 analytic at its minimiser, with a non-zero second derivative, and the
 minimiser is unique, the stationarity condition~\eqref{eq:filt_stat} can be
 solved for an analytic $\varepsilon_*(T,\hfield)$, and $\omega$ is analytic
@@ -975,7 +986,7 @@ solved for an analytic $\varepsilon_*(T,\hfield)$, and $\omega$ is analytic
 non-analytic only where
 \begin{enumerate}[label=(\alph*),itemsep=0pt]
 \item the minimiser $\varepsilon_*$ jumps between two separate minima of
-  $\fen$;
+  $\Fen$;
 \item $\lds$ is non-analytic at $\varepsilon_*$, or its curvature vanishes
   there ($\lds_{\varepsilon\varepsilon}\to0$, i.e.\ $c_\mu\to\infty$ by
   Eq.~\eqref{eq:filt_curvmain});
@@ -996,7 +1007,7 @@ smallest integer not less than $p$. The classification is by the relocation
 of the thermal energy through the spectrum, not by a symmetry.\footnote{If $\lds$
 is analytic, the non-analyticities of the minimum are generically two minima of
 equal value and, when a second parameter is tuned, a minimum at which the second and third derivatives of
-$\fen$ vanish (singularity theory~\cite{Arnold}). The latter has
+$\Fen$ vanish (singularity theory~\cite{Arnold}). The latter has
 $\lds_{\rm sing}\propto-(\varepsilon-\varepsilon_c)^{4}$, i.e.\ $\sigma=4$ in
 Assumption~\ref{ass:crit} and $c_\mu\propto|t|^{-2/3}$: the mean-field
 critical end point of a line of discontinuous transitions, at which the
@@ -1083,7 +1094,7 @@ exactly where the minimiser is not unique~\cite{Rockafellar,Touchette2009}.}
 \begin{tikzpicture}[psigraph]
   % (a): T = 1.5, 2 (= T_1), 2.6
   \draw[->] (-0.3,0) -- (4.4,0) node[above left]{$\varepsilon$};
-  \draw[->] (0,-2.5) -- (0,1.1) node[above]{$\fen$};
+  \draw[->] (0,-2.5) -- (0,1.1) node[above]{$\Fen$};
   \draw[psiL,domain=0:1,samples=40,smooth] plot (\x,{\x-1.5*sqrt(\x)});
   \draw[psiL] (1,-0.5) -- (2.2,-0.2);
   \draw[psiL,domain=2.2:4.1,samples=30,smooth] plot (\x,{\x-1.5*(1.6+0.5*(\x-2.2)-0.08*(\x-2.2)^2)});
@@ -1105,7 +1116,7 @@ exactly where the minimiser is not unique~\cite{Rockafellar,Touchette2009}.}
 \begin{tikzpicture}[psigraph]
   % (b): T = 1.6, 2 (= T_c), 2.6
   \draw[->] (-0.3,0) -- (4.4,0) node[above left]{$\varepsilon$};
-  \draw[->] (0,-2.5) -- (0,1.1) node[above]{$\fen$};
+  \draw[->] (0,-2.5) -- (0,1.1) node[above]{$\Fen$};
   \draw[psiL,domain=0:4.1,samples=80,smooth] plot (\x,{\x-1.6*(1.3+0.5*(\x-2)-0.035*abs(\x-2)^3)});
   \draw[psiC,domain=0:4.1,samples=80,smooth] plot (\x,{\x-2*(1.3+0.5*(\x-2)-0.035*abs(\x-2)^3)});
   \draw[psiH,domain=0:4.1,samples=80,smooth] plot (\x,{\x-2.6*(1.3+0.5*(\x-2)-0.035*abs(\x-2)^3)});
@@ -1120,7 +1131,7 @@ exactly where the minimiser is not unique~\cite{Rockafellar,Touchette2009}.}
 \begin{tikzpicture}[psigraph]
   % (c): T = 1.1, 1.6, 2.5  (T_x = 4/3)
   \draw[->] (-0.3,0) -- (4.4,0) node[above left]{$\varepsilon$};
-  \draw[->] (0,-2.5) -- (0,1.1) node[above]{$\fen$};
+  \draw[->] (0,-2.5) -- (0,1.1) node[above]{$\Fen$};
   \fill[gray!15] (0.7,-2.4) rectangle (1.3,1.0);
   \draw[->] (-0.3,0) -- (4.4,0);
   \draw[psiL,domain=0:1,samples=40,smooth] plot (\x,{\x-1.1*\x^0.75});
@@ -1191,7 +1202,7 @@ exactly where the minimiser is not unique~\cite{Rockafellar,Touchette2009}.}
 \caption{The \lndos{} and the transitions of Section~\ref{sec:transitions}.
 Upper row: $\lds(\varepsilon)$ (blue) and the tangent of slope $1/T$
 (orange), Eq.~\eqref{eq:filt_tangent}. Middle row:
-$\fen(\varepsilon)=\varepsilon-T\lds(\varepsilon)$ at three temperatures; the
+$\Fen(\varepsilon)=\varepsilon-T\lds(\varepsilon)$ at three temperatures; the
 dot marks its minimum, at $\varepsilon_*(T)$ with the value $\omega(T)$.
 (a)~Discontinuous transition: $\lds$ is linear between $\varepsilon_-$ and
 $\varepsilon_+$ (short-range interactions) or non-concave there (long-range
@@ -1221,7 +1232,7 @@ $\hfield<\hfield_c$, $\hfield=\hfield_c$ and $\hfield>\hfield_c$.}
 \paragraph{Discontinuous transition.} The minimiser jumps at a temperature
 $T_1$ from $\varepsilon_-$ to $\varepsilon_+>\varepsilon_-$
 (Fig.~\ref{fig:transitions}a). At $T_1$ both energies are minimisers of
-$\fen[T_1]$, with the same value,
+$\Fen[T_1]$, with the same value,
 \begin{equation}\label{eq:filt_equal}
   \varepsilon_--T_1\,\lds(\varepsilon_-)=\varepsilon_+-T_1\,\lds(\varepsilon_+)=\omega(T_1) ,
 \end{equation}
@@ -1230,8 +1241,8 @@ the graph of $\lds$ at both energies. The thermal energy is below
 $\varepsilon_-$ for $T<T_1$ and above $\varepsilon_+$ for $T>T_1$, because
 $\varepsilon_*(T)$ does not decrease with $T$.\footnote{Let $\varepsilon$ and
 $\varepsilon'$ be the minimisers at the temperatures $T<T'$. The sum of
-$\fen[T](\varepsilon)\le\fen[T](\varepsilon')$ and
-$\fen[T'](\varepsilon')\le\fen[T'](\varepsilon)$ is
+$\Fen[T](\varepsilon)\le\Fen[T](\varepsilon')$ and
+$\Fen[T'](\varepsilon')\le\Fen[T'](\varepsilon)$ is
 $(T'-T)\,[\lds(\varepsilon')-\lds(\varepsilon)]\ge0$, and $\lds$ increases
 with the energy.}
 Eqs.~\eqref{eq:filt_SI} and~\eqref{eq:filt_equal} give
@@ -1266,11 +1277,11 @@ Between $\varepsilon_-$ and $\varepsilon_+$ two forms of $\lds$ occur.
 \emph{(i)~Non-concave \lndos{}} (possible for long-range interactions). The
 line $\ell_{T_1}$ lies strictly above the graph of $\lds$ between the two
 points of contact. Since the minimiser lies outside this interval at
-$T\neq T_1$, $\fen(\varepsilon)>\omega(T)$ on the interval at every
+$T\neq T_1$, $\Fen(\varepsilon)>\omega(T)$ on the interval at every
 temperature: no temperature selects these levels. For $T$ near $T_1$,
-$\fen$ has two separate local minima, at
+$\Fen$ has two separate local minima, at
 $\varepsilon_-(T)<\varepsilon_+(T)$, with the values
-$\omega_\mp(T):=\fen(\varepsilon_\mp(T))$, which are equal only at $T_1$, and
+$\omega_\mp(T):=\Fen(\varepsilon_\mp(T))$, which are equal only at $T_1$, and
 $\omega=\min(\omega_-,\omega_+)$. By Lemma~\ref{lem:envelope},
 $\partial\omega_\mp/\partial T=-\lds(\varepsilon_\mp)$; since
 $\lds(\varepsilon_+)>\lds(\varepsilon_-)$, the difference $\omega_+-\omega_-$
@@ -1301,9 +1312,9 @@ $\lds(\varepsilon)\ge(1-x)\,\lds(\varepsilon_-)+x\,\lds(\varepsilon_+)=\ell_{T_1
 the right-hand side is linear in $\varepsilon$ and agrees with $\ell_{T_1}$
 at both points of contact. Since also $\lds\le\ell_{T_1}$
 (Eq.~\eqref{eq:filt_tangent}), $\lds=\ell_{T_1}$ on the interval. Then
-$\fen[T_1]$ is constant on the interval: at $T_1$, and only at $T_1$, every
+$\Fen[T_1]$ is constant on the interval: at $T_1$, and only at $T_1$, every
 energy of the interval is a minimiser. At $T\neq T_1$ the convex function
-$\fen$ has a single local minimum, and there is no metastable state for
+$\Fen$ has a single local minimum, and there is no metastable state for
 $V\to\infty$.
 
 \paragraph{Discontinuous transition in a parameter.} The same exchange
@@ -1510,7 +1521,7 @@ and $\lds\to0$ for $\delta\varepsilon\to0$ excludes a residual entropy. The
 condition $\sigma<1$ is required for the thermal excitation energy
 $\delta\varepsilon_*:=\varepsilon_*-\varepsilon_0$ to be positive at every
 $T>0$ and to vanish for $T\to0$: for $\sigma\ge1$ the minimum of
-$\fen=\varepsilon_0+\delta\varepsilon-T\cA\,(\delta\varepsilon)^{\sigma}$ at
+$\Fen=\varepsilon_0+\delta\varepsilon-T\cA\,(\delta\varepsilon)^{\sigma}$ at
 small $\delta\varepsilon$ and small $T$ stays at $\delta\varepsilon=0$. For
 short-range interactions $\sigma>1$ is excluded by the concavity of $\lds$.
 
@@ -1538,19 +1549,19 @@ All are powers of $T$:
 \end{proposition}
 \begin{proof}
 The function
-$\fen(\varepsilon)=\varepsilon_0+\delta\varepsilon-T\cA\,(\delta\varepsilon)^{\sigma}$
+$\Fen(\varepsilon)=\varepsilon_0+\delta\varepsilon-T\cA\,(\delta\varepsilon)^{\sigma}$
 is that of Lemma~\ref{lem:balance}, Eq.~\eqref{eq:tools_edge}: it has its
 minimum where $\sigma\cA\,(\delta\varepsilon_*)^{\sigma-1}=1/T$, which is
 Eq.~\eqref{eq:filt_stat}; there
 $T\cA\,(\delta\varepsilon_*)^{\sigma}=\delta\varepsilon_*/\sigma$, which gives
-$\omega=\fen(\varepsilon_*)$ and $S/V=\lds(\varepsilon_*)$. Since
+$\omega=\Fen(\varepsilon_*)$ and $S/V=\lds(\varepsilon_*)$. Since
 $\delta\varepsilon_*\to0$ for $T\to0$, this minimum lies in the range
 $\delta\varepsilon<\varepsilon_1$ in which the power law holds. It is the
 global minimum: for $\delta\varepsilon\ge\varepsilon_1$ the
 bound~\eqref{eq:filt_linbound} gives
-$\fen-\varepsilon_0\ge\varepsilon_1(1-T/\Tmax)-(c_0+\varepsilon_0/\Tmax)\,T$,
+$\Fen-\varepsilon_0\ge\varepsilon_1(1-T/\Tmax)-(c_0+\varepsilon_0/\Tmax)\,T$,
 which is positive at small $T$, whereas
-$\fen(\varepsilon_*)-\varepsilon_0<0$. Finally $u-\mu n$ and $c_\mu$ follow
+$\Fen(\varepsilon_*)-\varepsilon_0<0$. Finally $u-\mu n$ and $c_\mu$ follow
 from Eq.~\eqref{eq:filt_SI}, with
 $\partial(\delta\varepsilon_*)/\partial T=\delta\varepsilon_*/(1-\sigma)T$
 from the first relation of Eq.~\eqref{eq:filt_lowT}.
@@ -2189,7 +2200,7 @@ so that
 and $\lds$ is constant above $\varepsilon=0$, where there are no levels. The
 slope of $\lds$ at the upper edge is $1/T_c$ with $k_BT_c=J_0$, and it is
 larger everywhere below the edge. For $T>T_c$ no energy satisfies
-Eq.~\eqref{eq:filt_stat}: $\fen$ decreases up to the edge and increases
+Eq.~\eqref{eq:filt_stat}: $\Fen$ decreases up to the edge and increases
 beyond it, so that $\varepsilon_*=0$, with $S/V=k_B\ln2$ and $c_\mu=0$
 (Eq.~\eqref{eq:filt_SI}). For $T<T_c$ Eq.~\eqref{eq:filt_stat} with the
 expansion above, $k_B[1/J_0-2\varepsilon_*/3J_0^{2}]=1/T$, places the minimum
@@ -3198,7 +3209,7 @@ Eq.~\eqref{eq:filt_af}, which is needed for the dynamics.
 
 Every result of Sections~\ref{sec:transitions} and~\ref{sec:filt_lowenergy}
 is obtained by one operation: the function
-$\fen(\varepsilon)=\varepsilon-T\,\lds(\varepsilon)$ is minimised over the
+$\Fen(\varepsilon)=\varepsilon-T\,\lds(\varepsilon)$ is minimised over the
 energy, and the minimum value $\omega$ and the minimiser $\varepsilon_*$ are
 differentiated with respect to $T$ and to the parameters of the
 Hamiltonian. This appendix collects, in a form that does not refer to
@@ -3326,7 +3337,7 @@ $d^{2}m/d\tau^{2}=g_{\tau x}\,dx_*/d\tau+g_{\tau\tau}$.
 \end{proof}
 A parameter enters the first derivative of the minimum value only through
 its explicit presence in $g$; the minimiser responds to the parameter in
-inverse proportion to the curvature of $g$ at the minimum. With $g=\fen$ the
+inverse proportion to the curvature of $g$ at the minimum. With $g=\Fen$ the
 lemma gives Eqs.~\eqref{eq:filt_SI}, \eqref{eq:filt_curvmain},
 \eqref{eq:filt_af} and~\eqref{eq:filt_chis}. Applied to a small term,
 $g=g_0+\eta\,g_1$ with $x_0$ the minimiser of $g_0$, it gives
@@ -3471,7 +3482,7 @@ essential singularity.
 \centering
 \small
 \caption{The variables of Appendix~\ref{sec:tools} in the applications. In
-each case $g$ is $\fen=\varepsilon-T\lds$ and $m$ is $\omega$, up to terms
+each case $g$ is $\Fen=\varepsilon-T\lds$ and $m$ is $\omega$, up to terms
 independent of $\varepsilon$.}
 \label{tab:tools}
 \begin{tabular}{lllll}
@@ -3801,147 +3812,11 @@ are the regimes of Fig.~\ref{fig:tfim}b.
 \end{itemize}
 
 %% ---------------------------------------------------------------------------
-%% This appendix (Goldstone modes and degenerate manifolds) is not referenced
-%% from any other part of the text and can be deleted as a whole, down to the
-%% line "END OF THE APPENDIX ON GOLDSTONE MODES", together with the
-%% bibliography entries Goldstone1961 and GSW1962, which are cited only here.
-%% ---------------------------------------------------------------------------
-\section{Goldstone modes and degenerate manifolds}
-\label{sec:goldstone}
-
-A phase with a broken continuous symmetry has a spectrum that is scale-free
-at low energy without any tuning~\cite{Goldstone1961,GSW1962}: a slow twist
-of the order parameter, of wave vector $\mathbf q$, costs an energy that
-vanishes with $q$, so that for short-range interactions there are gapless
-excitations of energy $\nu(\mathbf q)\propto q^{z}$, the \emph{Goldstone
-modes}\footnote{$z=1$ for antiferromagnets, superfluids and the acoustic
-phonons of a crystal; $z=2$ for ferromagnets. In this section
-$\nu(\mathbf q)$ denotes a dispersion; the exponent $\nu$ of
-Section~\ref{sec:filt_length} does not occur.}. Their contribution to $\lds$
-follows from a general statement on independent modes.
-
-\begin{lemma}[Homogeneous dispersion]\label{lem:disp}
-Let the modes have a dispersion $\nu(\mathbf q)\ge0$, the energy of the mode
-of wave vector $\mathbf q$ ($\hbar=1$), that is homogeneous near its zeros,
-$\nu(\lambda^{a_1}q_1,\dots,\lambda^{a_d}q_d)=\lambda\,\nu(\mathbf q)$
-for all $\lambda>0$, with exponents $a_i\ge0$ and $\mathfrak a:=\sum_ia_i>0$. Then
-the density of modes per unit volume is a power law of the mode energy $E$,
-\[
-  \varrho(E):=\int\frac{d^{d}q}{(2\pi)^{d}}\,\delta\big(E-\nu(\mathbf q)\big)
-  =\varrho(1)\,E^{\mathfrak a-1} ,
-\]
-and independent bosonic modes of this density give
-\begin{equation}\label{eq:filt_lemma}
-  c_\mu=k_B\,\varrho(1)\,\Gamma(\mathfrak a+2)\,\zeta(\mathfrak a+1)\,(k_BT)^{\mathfrak a} ,
-  \qquad
-  \lds\propto (\delta\varepsilon)^{\mathfrak a/(\mathfrak a+1)} .
-\end{equation}
-\end{lemma}
-\begin{proof}
-Substitute $q_i=E^{a_i}x_i$: then $d^{d}q=E^{\mathfrak a}d^{d}x$,
-$\nu(\mathbf q)=E\,\nu(\mathbf x)$ by homogeneity with $\lambda=E$, and
-$\delta(E-E\,\nu(\mathbf x))=E^{-1}\delta(1-\nu(\mathbf x))$.
-Components with $a_i=0$ are not rescaled and are integrated over their
-finite range. The heat capacity is the bosonic one of
-Section~\ref{sec:filt_power_mb} with $\mu=0$ and $r=\mathfrak a-1$, and
-$\lds(\varepsilon)$ follows from Eq.~\eqref{eq:filt_sinv} with
-$\kappa=\mathfrak a$.
-\end{proof}
-For Goldstone modes $a_i=1/z$ in all $d$ directions, $\mathfrak a=d/z$:
-$c_{\mu}\sim T^{d/z}$ and $\lds\propto(\delta\varepsilon)^{\,d/(d+z)}$, i.e.\
-$(\delta\varepsilon)^{3/4}$ for $d=3$, $z=1$ (the Debye result) and
-$(\delta\varepsilon)^{3/5}$ for a three-dimensional ferromagnet.
-
-\paragraph{Degenerate manifold of wave vectors.} If several ordering wave
-vectors are exactly degenerate, as for the competing orders of a frustrated
-system, the gapless modes have $\nu(\mathbf q)=0$ on a manifold of dimension
-$d_m$ in $\mathbf q$ space, and $\nu=v\,|\mathbf q_\perp|^{z}$ depends only on
-the $d-d_m$ components $\mathbf q_\perp$ of $\mathbf q$ normal to the
-manifold. In Lemma~\ref{lem:disp}, $a_i=1/z$ for these components and
-$a_i=0$ along the manifold, so that $\mathfrak a=(d-d_m)/z$:
-\begin{equation}\label{eq:filt_manifold}
-  \varrho(E)\propto E^{(d-d_m)/z-1} ,\qquad
-  c_\mu\sim T^{(d-d_m)/z} ,\qquad
-  \lds\propto(\delta\varepsilon)^{(d-d_m)/(d-d_m+z)} .
-\end{equation}
-The exponent is fixed by the codimension $d-d_m$ of the manifold, i.e.\ by
-the number of components of $\mathbf q$ on which the mode energy depends,
-and not by the dimension of space (Fig.~\ref{fig:manifold}). For a surface
-of degenerate wave vectors, $d_m=d-1$, $c_\mu\sim T^{1/z}$ in any dimension.
-
-\begin{figure}[htbp]
-\centering
-\tikzset{
-  ldsgraph/.style={>=Stealth,font=\small,x=1.6cm,y=1.6cm},
-  lds/.style={very thick,blue!60!black},
-  edge/.style={very thick,orange!85!black},
-  guide/.style={thin,dotted,gray!80!black},
-  alt/.style={very thick,red!75!black,dashed},
-}
-\begin{tikzpicture}[ldsgraph]
-  \draw[->] (-0.15,0) -- (2.5,0) node[below left]{$\delta\varepsilon$};
-  \draw[->] (0,-0.1) -- (0,1.5) node[above]{$\lds$};
-  \draw[lds,domain=0:2.3,samples=60,smooth] plot (\x,{0.8*\x^0.75});
-  \draw[teal!80!black,very thick,domain=0:2.3,samples=60,smooth] plot (\x,{sqrt(\x)});
-  \draw[alt,domain=0.001:2.3,samples=80,smooth] plot (\x,{sqrt(\x)*(\x/(\x+0.3))^(1/6)});
-  \draw[guide] (0.3,0) -- (0.3,0.5);
-  \node[below,font=\scriptsize] at (0.3,0) {$\sim\delta$};
-  \node[font=\scriptsize,blue!60!black,anchor=north west] at (1.5,0.95) {$d_m=0$: $\sigma=\frac{d}{d+z}$};
-  \node[font=\scriptsize,teal!80!black,anchor=south west] at (0.5,1.22) {$d_m>0$: $\sigma=\frac{d-d_m}{d-d_m+z}$};
-  \node[font=\scriptsize,red!75!black,anchor=north west] at (0.35,0.35) {lifted by $\delta$};
-\end{tikzpicture}
-\caption{The \lndos{} above the ground state,
-$\lds\propto(\delta\varepsilon)^{\sigma}$, for gapless modes on a degenerate
-manifold of wave vectors of dimension $d_m$; $d_m=0$ is the Goldstone case.
-When the degeneracy is lifted by an energy $\delta$ (red, dashed), the law
-of the degenerate manifold holds for $\delta\varepsilon$ above a scale set
-by $\delta$, and that of the selected order below,
-Eq.~\eqref{eq:filt_neardeg}.}
-\label{fig:manifold}
-\end{figure}
-
-\paragraph{Lifted degeneracy.} Let the degeneracy on the manifold be lifted
-by a small energy $\delta$:
-$\nu(\mathbf q)=\delta\,u(\mathbf q_\parallel)+v\,|\mathbf q_\perp|^{z}$,
-with $0\le u\le1$ vanishing quadratically at isolated points (the selected
-wave vectors). With $n:=d-d_m$, the integral over $\mathbf q_\perp$ gives
-$\varrho(E)\propto\int d^{d_m}q_\parallel\,
-[E-\delta\,u(\mathbf q_\parallel)]_+^{\,n/z-1}$, with $[x]_+:=\max(x,0)$.
-For $E\gg\delta$ the integrand is $E^{n/z-1}$ on the whole manifold and
-Eq.~\eqref{eq:filt_manifold} holds. For $E\ll\delta$ only the
-neighbourhoods $u<E/\delta$ of the minima contribute, of volume
-$\propto(E/\delta)^{d_m/2}$. Hence
-\begin{equation}\label{eq:filt_neardeg}
-  c_\mu\sim
-  \begin{cases}
-    T^{(d-d_m)/z} , & \delta\ll k_BT ,\\[2pt]
-    \delta^{-d_m/2}\,T^{(d-d_m)/z+d_m/2} , & k_BT\ll\delta ,
-  \end{cases}
-\end{equation}
-the second line being Lemma~\ref{lem:disp} with $a_i=\tfrac12$ along the
-manifold. The thermodynamics is that of degenerate orders down to
-$k_BT\sim\delta$, and the selected order appears only below. A manifold at
-a finite energy gives the activated law~\eqref{eq:filt_gap} with a prefactor
-fixed by the same geometry: the rotons of superfluid helium,
-$\nu=\Delta+(q-q_0)^{2}/2m^{*}$ on a sphere ($d_m=2$), have
-$\varrho(E)\propto(E-\Delta)^{-1/2}$ and
-$c\propto\Delta^{2}T^{-3/2}e^{-\Delta/k_BT}$~\cite[Sec.~6.9.2]{Honerkamp}.
-
-The broken symmetry is not an ingredient of Lemma~\ref{lem:disp} or of
-Proposition~\ref{prop:power}: any Hamiltonian with the same low-energy level
-count has the same power laws. The symmetry supplies the reason for the
-absence of a gap, and the exponent $z$, for every perturbation that respects
-it. Conversely, $\rho(\enrg)$ alone does not identify the modes (acoustic
-phonons and antiferromagnetic magnons both give $c\sim T^{3}$); that
-requires the dependence of $\rho$ on the field that couples to them.
-%% ------------- END OF THE APPENDIX ON GOLDSTONE MODES -------------
-
-%% ---------------------------------------------------------------------------
 %% This appendix is a self-contained suggestion. It is not referenced from any
 %% other part of the text and can be deleted as a whole (down to the line "END
 %% OF THE APPENDIX ON THE FALICOV--KIMBALL MODEL"), together with the
-%% bibliography entries NejatiLenk2026 and FerrenbergSwendsen1989, which are
-%% cited only here.
+%% bibliography entries NejatiLenk2026, Oliveira2019 and
+%% FerrenbergSwendsen1989, which are cited only here.
 %% ---------------------------------------------------------------------------
 \section{Suggested test: the Falicov--Kimball model on the triangular lattice}
 \label{app:fkm}
@@ -3949,7 +3824,9 @@ requires the dependence of $\rho$ on the field that couples to them.
 This appendix outlines a test of Section~\ref{sec:frustration} on a model
 whose spectrum consists of families of levels exactly. The test has not been
 carried out. Eqs.~\eqref{eq:fkm_levels}--\eqref{eq:fkm_hist} are exact
-properties of the spectrum; the three statements at the end are predictions.
+properties of the spectrum. The statements that follow them are predictions,
+and conditions that an interpretation of the reported heat capacity must
+satisfy; each names the assumption on which it rests.
 
 \paragraph{Model.} Itinerant spinless fermions (operators $\hat c_i$) hop
 between neighbouring sites of a triangular lattice of $V$ sites and repel
@@ -3965,7 +3842,16 @@ A Monte Carlo study~\cite{NejatiLenk2026} finds a charge-density wave at low
 temperature and, between it and the weakly correlated regime, a regime in
 which several ordering wave vectors compete and the criteria of universal
 scaling fail; the order of the transition was not determined. No order
-parameter characterises the intermediate regime.
+parameter characterises the intermediate regime. For the densities
+$n_c=\tfrac23$ and $n_f=\tfrac13$, Ref.~\cite{Oliveira2019} reports that
+the configurations of the localised particles remain disordered down to the
+lowest temperatures for $U<U_c\simeq5.2\,t$ (a \emph{charge liquid}), with a
+discontinuous transition to the charge-density wave; that the heat capacity
+of the charge liquid follows power laws of the temperature other than the
+linear law of a Fermi liquid; and that a crossover line divides the charge
+liquid and ends at $T=0$ in a quantum critical point at a coupling
+$U_{\rm QCP}$, across which the law changes from $C\propto T^{2}$ to
+$C\propto T^{4}$.
 
 \paragraph{Families of levels.} For a fixed configuration
 $\mathbf f=(f_1,\dots,f_V)$ the itinerant fermions are independent. Let
@@ -4102,6 +3988,210 @@ $2k_B\ln2$ at the upper end or by the exact enumeration of a small lattice.
   temperature; the level count does not register the localisation
   (Section~\ref{sec:disorder}).
 \end{itemize}
+
+\paragraph{The low-lying levels of the charge liquid.} A heat capacity
+$c_\mu\propto T^{\kappa}$ fixes the exponent $\sigma=\kappa/(\kappa+1)$ of
+the total level count (Proposition~\ref{prop:power}) and nothing else. In
+this model Eq.~\eqref{eq:fkm_C} gives more, because the two terms count
+different levels and are measured separately.
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item \emph{Lower bound.} Both terms of Eq.~\eqref{eq:fkm_C} are
+  non-negative, so that $C_\mu\ge C_{\rm in}$, and
+  $C_{\rm in}/V=k_B\int dE\,\bar\varrho_T(E)\,x^{2}/\cosh^{2}x$ exactly, at
+  every size. If $\bar\varrho_T(E)\ge B\,|E-\mu_c|^{r}$ for
+  $|E-\mu_c|\le2k_BT$, the substitution $E-\mu_c=2k_BT\,x$ gives
+  \[
+    c_\mu\ \ge\ k_BB\,(2k_BT)^{r+1}\int_{-1}^{1}dx\,\frac{|x|^{r}x^{2}}{\cosh^{2}x}
+    \ \propto\ T^{\,r+1} .
+  \]
+  A law $c_\mu\propto T^{\kappa}$ with $\kappa>1$ therefore requires that the
+  averaged density of states vanish at $\mu_c$ at least as
+  $|E-\mu_c|^{\kappa-1}$ for $T\to0$: linearly for $T^{2}$, as the third
+  power for $T^{4}$, or with a gap. A non-zero $\bar\varrho_T(\mu_c)$ at the
+  lowest temperatures, smooth on the scale $k_BT$, whether the states are
+  extended or localised, gives
+  $c_\mu\ge\tfrac{\pi^{2}}{3}k_B^{2}\bar\varrho_T(\mu_c)\,T$ and excludes
+  every $\kappa>1$. The bound concerns $C_\mu$; for fixed densities see the
+  last remark of this appendix.
+\item \emph{The two counts.} If $C_{\rm in}\propto T^{\kappa_{\rm in}}$ and
+  $\bar\varrho_T$ does not depend on $T$ at low temperature, then
+  $\bar\varrho(E)\propto|E-\mu_c|^{\kappa_{\rm in}-1}$
+  (Section~\ref{sec:filt_power_mb}). If the itinerant fermions have a gap,
+  or $C_{\rm in}\ll C_{\rm ex}$, then
+  $\Xi_{\mathbf f}\simeq e^{-\beta E_0[\mathbf f]}$ with $E_0[\mathbf f]$ the
+  lowest level of the family, and $C_{\rm ex}$ is the heat capacity of the
+  classical model of the configurations with the energy $E_0[\mathbf f]$.
+  Proposition~\ref{prop:power} then applies to the count of the families,
+  $\#\{\mathbf f:E_0[\mathbf f]\le\enrg\}\asymp e^{Vs_{\rm conf}/k_B}$:
+  $C_{\rm ex}\propto T^{\kappa}$ is equivalent to
+  $s_{\rm conf}\propto(\delta\varepsilon)^{\kappa/(\kappa+1)}$, i.e.\
+  $(\delta\varepsilon)^{2/3}$ for $T^{2}$ and $(\delta\varepsilon)^{4/5}$ for
+  $T^{4}$.
+\item \emph{Local rearrangements.} Let the low-lying families differ from a
+  given one by transfers of single localised particles to neighbouring
+  sites, of cost $\Delta=E_0[\mathbf f']-E_0[\mathbf f]\ge0$, and let the
+  costs of distinct transfers add. These are the two-level systems of
+  Section~\ref{sec:disorder}: a density
+  $P(\Delta)=P_\theta\,\Delta^{\theta-1}$ per site gives
+  $C_{\rm ex}\propto T^{\theta}$, Eq.~\eqref{eq:filt_tls}. The simulation
+  evaluates $-k_BT\ln(\Xi_{\mathbf f'}/\Xi_{\mathbf f})$, which tends to
+  $\Delta$ for $T\to0$, for every proposed transfer, so that the histogram of
+  these values gives $\theta$ independently of the heat capacity. Agreement
+  of $\theta$ with the exponent of $C_{\rm ex}$ identifies the low-lying
+  levels as independent local rearrangements; a $C_{\rm ex}$ that exceeds
+  $T^{\theta}$ at low temperature shows levels that no single transfer
+  reaches.
+\end{itemize}
+Whether the single-particle states are extended or localised, and whether
+the fermions propagate coherently, are properties of the eigenvectors, which
+no heat capacity determines (Section~\ref{sec:disorder}).
+
+\paragraph{The boundary between the charge liquid and the charge-density
+wave.} At a discontinuous transition the heat capacity has no power-law
+singularity; three quantities follow from it.
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item \emph{Latent heat.} At the transition temperature $T_\times$ the
+  equilibrium state is the mixture with equal weights of two classes of
+  families whose energies differ by $V\ell$, with
+  $\ell=\varepsilon_+-\varepsilon_-$ the latent heat per site
+  (Section~\ref{sec:transitions}). The variance of the energy is then
+  $(V\ell/2)^{2}$, and Eq.~\eqref{eq:fkm_C} gives a maximum
+  $C_{\rm ex}/V\simeq V\ell^{2}/4k_BT_\times^{2}$, proportional to the size.
+  At a continuous transition the maximum grows as $V^{\alpha/\nu_*}$
+  (Eq.~\eqref{eq:filt_fss} with $c_\mu\propto|t|^{-\alpha}$ and
+  $|t|\sim V^{-1/\nu_*}$), with $\alpha/\nu_*<1$ under hyperscaling,
+  Eq.~\eqref{eq:filt_hyper}.
+\item \emph{The \lndos{} of each phase.} The parametric relation
+  $\lds(u-\mu n)=S/V$ of Section~\ref{sec:filt_power_mb}, applied to the
+  heat capacity below and above $T_\times$, gives $\lds_{\rm CDW}$ for
+  $\varepsilon<\varepsilon_-$ and $\lds_{\rm CL}$ for $\varepsilon>\varepsilon_+$;
+  Eq.~\eqref{eq:fkm_hist} gives $\lds_V$ in between.
+\item \emph{Slope and shape of the boundary.} Let $g_{\rm CL}$ and
+  $g_{\rm CDW}$ be the potentials of the two classes,
+  Eq.~\eqref{eq:filt_compete}, with $U$ as the parameter. By
+  Eq.~\eqref{eq:filt_HF}, $\partial g/\partial U=n_{cf}$, the density of
+  doubly occupied sites,
+  $n_{cf}:=V^{-1}\langle\sum_if_i\,\hat c_i^{\dagger}\hat c_i\rangle$, and
+  $\partial g/\partial T=-S/V$. Differentiation of
+  $g_{\rm CL}=g_{\rm CDW}$ along the boundary gives
+  \begin{equation}\label{eq:fkm_cc}
+    \frac{dT_\times}{dU}=\frac{n_{cf}^{\rm CL}-n_{cf}^{\rm CDW}}{(S^{\rm CL}-S^{\rm CDW})/V} ,
+  \end{equation}
+  in which all four quantities are sampled averages on the two sides: a
+  test of the location of the boundary that uses no derivative of the
+  data. Let the boundary reach $T=0$ at $U_c$ with a non-zero jump
+  $\Delta n_{cf}$, let the heat capacity of the charge-density wave be
+  activated, and let the charge liquid satisfy Assumption~\ref{ass:power}.
+  Then $\delta_1=\Delta n_{cf}\,(U-U_c)$ in Eq.~\eqref{eq:filt_compete}, and
+  $\delta_1=-\omega_{\rm CL}(T_\times)$ with Eq.~\eqref{eq:filt_lowT} gives
+  \[
+    T_\times=\frac{1}{\sigma\cA}\Big[\frac{\sigma}{1-\sigma}\,\Delta n_{cf}\,(U-U_c)\Big]^{1-\sigma}
+    \propto(U-U_c)^{1/(\kappa+1)} :
+  \]
+  the exponent of the heat capacity of the charge liquid fixes the shape of
+  the boundary near $U_c$, $(U-U_c)^{1/3}$ for $c_\mu\propto T^{2}$, and its
+  amplitude fixes the prefactor.
+\end{itemize}
+
+\paragraph{The quantum critical fan.} Let Assumption~\ref{ass:hom0} hold
+about the ground state at $U_{\rm QCP}$, with the parameter
+$\hfield:=U-U_{\rm QCP}$. Proposition~\ref{prop:scaling0} then determines
+the fan and the means to measure it.
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item \emph{Shape.} The fan is the region
+  $|\hfield|\lesssim T^{\,b/(1-\sigma)}$. Its two boundaries are
+  $T_\times=T_\pm\,|\hfield|^{(1-\sigma)/b}$, with one exponent on both
+  sides, equal to $\nu z$ by Eq.~\eqref{eq:filt_qcp}, and with amplitudes
+  $T_\pm$ that may differ. They are crossovers unless $\Phi$ is singular at a
+  finite argument.
+\item \emph{Exponents.} At $U_{\rm QCP}$ the heat capacity is
+  $c_\mu\propto T^{\kappa_c}$ with $\sigma=\kappa_c/(\kappa_c+1)$; the
+  amplitude-free ratios of Section~\ref{sec:filt_power_mb} give $\kappa_c$
+  without a fit. Since $\partial\omega/\partial\hfield=n_{cf}$,
+  Proposition~\ref{prop:scaling0} gives
+  \[
+    n_{cf}(T,U)=n_{cf}^{\rm reg}(U)+T^{(1-b)/(1-\sigma)}\,\Phi'(w) ,
+    \qquad w=\frac{U-U_{\rm QCP}}{T^{\,b/(1-\sigma)}} ,
+  \]
+  with $n_{cf}^{\rm reg}=de_{\rm reg}/d\hfield$ independent of $T$: the
+  temperature dependence of the sampled $n_{cf}$ at $U_{\rm QCP}$ gives $b$
+  if $\Phi'(0)\neq0$. With $\sigma$ and $b$ fixed in this way, the
+  dependence of $c_\mu/T^{\kappa_c}$ on $w$ alone, for all $U$ and $T$ in the
+  fan, is a test without a free exponent.
+\item \emph{Condition on the reported exponents.} Let the phases on the two
+  sides have $c_\mu\propto T^{\kappa_\pm}$. Then
+  $c_\mu=T^{\kappa_c}\Phi_c(w)$ requires
+  $\Phi_c(w)\propto|w|^{-q_\pm}$ for $w\to\pm\infty$ with
+  $\kappa_c+q_\pm b/(1-\sigma)=\kappa_\pm$, i.e.
+  \begin{equation}\label{eq:fkm_amp}
+    c_\mu\simeq\mathcal C_\pm\,|U-U_{\rm QCP}|^{-q_\pm}\,T^{\kappa_\pm} ,
+    \qquad
+    q_\pm=\frac{(1-\sigma)(\kappa_\pm-\kappa_c)}{b} .
+  \end{equation}
+  The amplitudes of the power laws of the two phases are powers of the
+  distance from $U_{\rm QCP}$, and the two laws meet the critical one at
+  $T^{\kappa_\pm-\kappa_c}\sim|\hfield|^{q_\pm}$, which is the boundary of the
+  fan. For $\kappa_-=2$ and $\kappa_+=4$,
+  $q_+-q_-=2(1-\sigma)/b\neq0$: at least one amplitude varies as a power of
+  $|U-U_{\rm QCP}|$, and the two measured exponents $q_\pm$ determine $b$
+  twice. If one phase has a gap, the gap is a function of $w$ times $k_BT$
+  and vanishes as $|\hfield|^{(1-\sigma)/b}$. A change of the exponent at
+  $U_{\rm QCP}$ with amplitudes that do not depend on $U$ is not of the
+  form~\eqref{eq:filt_scalingform}.
+\item \emph{Alternative.} In a gapless phase the exponent $\sigma$ may vary
+  continuously with the parameter (Section~\ref{sec:soc}). A heat-capacity
+  exponent that varies smoothly with $U$ at fixed low $T$ gives no fan; the
+  collapse on the variable $w$ distinguishes the two cases.
+\item \emph{Range of temperatures.} The single-particle levels of a family
+  on $V$ sites have the mean spacing $9t/V$ (the band of the triangular
+  lattice has the width $9t$). For $k_BT$ below this spacing $C_{\rm in}$ is
+  activated in every family and imitates a large exponent. The fan can be
+  resolved only at temperatures above the spacing, and only for
+  $|\hfield|$ above the value at which $T_\times$ equals it.
+\end{itemize}
+
+\paragraph{Conditions for a charge liquid with power laws at all
+$U<U_c$.} A power law of the heat capacity over a range of $U$ needs no
+tuning (Section~\ref{sec:soc}): it holds wherever the spectrum above the
+ground state has neither a gap nor a residual entropy. The formulation
+states what this requires of the levels~\eqref{eq:fkm_levels}; it does not
+derive these properties from the Hamiltonian~\eqref{eq:fkm_H}.
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item \emph{No term linear in $T$.} By the lower bound above,
+  $\bar\varrho_T(\mu_c)\to0$ for $T\to0$ throughout the phase.
+\item \emph{No gap of the configurations.} The $f_i$ are discrete. If
+  $E_0[\mathbf f]$ is a sum of interactions of a finite range, the cost
+  $\Delta$ of a transfer takes finitely many values: either the smallest is
+  positive and $C_{\rm ex}$ is activated, Eq.~\eqref{eq:filt_gap}, or
+  transfers of zero cost exist and the entropy is residual
+  (Section~\ref{sec:frustration}). A density $P(\Delta)\propto\Delta^{\theta-1}$
+  down to $\Delta\to0$ requires that $\Delta$ depend on the configuration at
+  distances that grow without bound as $\Delta\to0$, i.e.\ interactions among
+  the localised particles of unbounded range. The itinerant fermions mediate
+  such interactions only if they have levels arbitrarily close to $\mu_c$
+  (the mechanism named in Ref.~\cite{Oliveira2019}).
+\item \emph{Consequence.} Together the two conditions require single-particle
+  levels arbitrarily close to $\mu_c$ with a density that vanishes there:
+  $\bar\varrho(E)\propto|E-\mu_c|^{r}$ with $r\ge\kappa-1>0$, and
+  $\kappa=\min(r+1,\theta)$. This is a prediction for the sampled density of
+  states, conditional on the reported power laws and on the additivity of
+  the local rearrangements. It gives no reason why the density of states
+  should have this form at every $U<U_c$.
+\item \emph{No order.} The charge liquid is the ground state where the class
+  of disordered configurations has the lowest $\delta_k$ in
+  Eq.~\eqref{eq:filt_compete}. This is a statement on the energies
+  $E_0[\mathbf f]$, which the level count takes as given. At $T>0$ the
+  disordered class is favoured further by its larger number of low-lying
+  levels, as in the selection by the level count of
+  Section~\ref{sec:frustration}.
+\item \emph{Absence of universal exponents.} In the picture of the local
+  rearrangements the exponent $\theta$ is a property of the distribution of
+  the costs and may vary with $U$ and with the densities, as in the
+  random-singlet phases of Section~\ref{sec:disorder}. Power laws without
+  universal scaling are then the expected behaviour of the phase and no
+  evidence of a transition.
+\end{itemize}
+
 Eq.~\eqref{eq:fkm_C} holds at fixed chemical potentials. If the densities
 are held fixed instead, the chemical potentials vary with the temperature,
 and the measured heat capacity differs from $C_\mu$; for a single conserved
