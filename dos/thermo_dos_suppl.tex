@@ -38,6 +38,7 @@
 \newcommand{\lndos}{{logdos}}  % abbreviation for the logarithmic density of states
 \newcommand{\hfield}{\mathscr{h}}  % parameter (field or coupling) of the Hamiltonian
 \newcommand{\enrg}{\mathcal{E}}  % energy eigenvalue of H - mu N (formerly \xi)
+\newcommand{\Fen}[1][T]{\mathscr{F}_{#1}}  % F_T(eps) = eps - T s(eps), as in the main text
 \newcommand{\lds}{\mathscr{s}}  % the logarithmic density of states (microcanonical entropy density) as a function of the energy density
 \newcommand{\etaD}{\eta_{\rm D}}  % Dirichlet eta function
 
@@ -76,7 +77,9 @@
 \noindent This supplement to \emph{Phase transitions and power laws from
 the many-body density of states} (the main text) collects three topics that the main text uses
 only as known results: the microcanonical entropy and the equivalence of
-the ensembles (Section~\ref{app:second}), the quadratic
+the ensembles (Section~\ref{app:second}), with the geometrical reading of
+the thermodynamic potential as an envelope of straight lines
+(Section~\ref{app:envelope}), the quadratic
 Hamiltonians, for which the many-body filters reduce to single-particle
 ones (Section~\ref{app:quadratic}), and the Lifshitz transition, whose
 exponents the main text states without derivation
@@ -361,6 +364,437 @@ concern the direction from the spectrum to the observables at given $T$ and
 $\mu$, and the assumed forms of $\lds$
 (Assumptions~\ref{M-ass:power}--\ref{M-ass:crit}) are concave near the point
 about which they are stated.
+
+\section{The thermodynamic potential as an envelope}
+\label{app:envelope}
+
+Eq.~\eqref{M-eq:filt_legendre}, $\omega(T)=\min_\varepsilon[\varepsilon-T\lds(\varepsilon)]$,
+has two geometrical readings. In the plane of the energy and the \lndos{},
+the tangent to the graph of $\lds$ at the thermal energy has the slope $1/T$
+(Section~\ref{M-sec:large_laplace}). In the plane of the temperature and
+the potential, each energy defines a straight line, and the graph of
+$\omega$ is the curve that these lines touch. This section defines that
+curve, the \emph{envelope}, derives the properties of $\omega$ that follow
+from it without any assumption on $\lds$, and shows how each kind of
+transition of Section~\ref{M-sec:transitions} appears in it.
+
+\subsection{Definition}
+\label{sec:env_def}
+
+Let $y=F(T;\varepsilon)$ be a family of curves in the plane $(T,y)$, one
+curve for each value of the label $\varepsilon$, with $F$ differentiable in
+both arguments. An \emph{envelope} of the family is a curve $y=E(T)$ that
+at each of its points touches one member of the family: there is a function
+$\varepsilon(T)$, not constant on any interval, such that the curve and the
+member $\varepsilon(T)$ have a common point and a common slope at $T$,
+\[
+  E(T)=F\big(T;\varepsilon(T)\big) ,\qquad
+  \frac{dE}{dT}=\frac{\partial F}{\partial T}\bigg|_{\varepsilon=\varepsilon(T)} .
+\]
+The derivative of the first relation is
+$dE/dT=\partial F/\partial T+(\partial F/\partial\varepsilon)\,d\varepsilon/dT$.
+Comparison with the second gives
+$(\partial F/\partial\varepsilon)\,d\varepsilon/dT=0$, and since
+$\varepsilon(T)$ is not constant,
+\begin{equation}\label{eq:env_cond}
+  y=F(T;\varepsilon) ,\qquad \frac{\partial F}{\partial\varepsilon}\bigg|_{T}=0 .
+\end{equation}
+The envelope is obtained by eliminating the label $\varepsilon$ between
+these two equations, or, with $\varepsilon$ kept as a parameter, as the
+curve $\big(T(\varepsilon),y(\varepsilon)\big)$ that they define.\footnote{Example:
+the straight lines $y=2\varepsilon T-\varepsilon^{2}$. The second condition
+is $2T-2\varepsilon=0$, so that $\varepsilon=T$ and $y=T^{2}$: the lines are
+the tangents of the parabola $y=T^{2}$, which is their envelope.}
+
+\paragraph{Envelope and minimum.} Let
+$m(T):=\min_\varepsilon F(T;\varepsilon)$ be the lower boundary of the
+family. If the minimum is attained at an interior point $\varepsilon_*(T)$
+at which $F$ is differentiable, then $\partial F/\partial\varepsilon=0$
+there, and the point $(T,m(T))$ satisfies Eq.~\eqref{eq:env_cond}: the lower
+boundary consists of points of the envelope. The converse does not hold.
+Eq.~\eqref{eq:env_cond} is satisfied at every stationary point of
+$F(T;\cdot)$, including local minima that are not the lowest and local
+maxima, so that the envelope can have branches above the lower boundary
+(Section~\ref{sec:env_nonconcave}). The equality of the slopes,
+$dm/dT=\partial F/\partial T$ at $\varepsilon_*$, is the envelope theorem,
+Lemma~\ref{M-lem:envelope}.
+
+\subsection{The lines of the \lndos{}}
+\label{sec:env_lines}
+
+For the thermodynamic potential the family is
+\begin{equation}\label{eq:env_family}
+  F(T;\varepsilon):=\varepsilon-T\,\lds(\varepsilon) ,
+  \qquad \varepsilon\ge\varepsilon_0 ,\quad T\ge0 ,
+\end{equation}
+the function $\Fen(\varepsilon)$ of the main text, read as a function of
+$T$ at a fixed energy. For each $\varepsilon$ it is a straight line. Its
+value at $T=0$ is the energy $\varepsilon$, and its slope is
+$-\lds(\varepsilon)\le0$: a line that starts at a higher energy descends
+more steeply, because $\lds$ increases with the energy
+(Fig.~\ref{fig:envelope}b). The label enters only through the pair
+$(\varepsilon,\lds(\varepsilon))$, a point of the graph of the \lndos{}:
+each point of that graph is one line in the plane $(T,y)$.
+
+\begin{figure}[htbp]
+\centering
+\tikzset{
+  ldsgraph/.style={>=Stealth,font=\small},
+  lds/.style={very thick,blue!60!black},
+  edge/.style={very thick,orange!85!black},
+  guide/.style={thin,dotted,gray!80!black},
+  member/.style={thin,gray!70!black},
+}
+\begin{tikzpicture}[ldsgraph,x=3.2cm,y=1.6cm]
+  % panel (a): s = 2 sqrt(eps) with the tangent of slope 1/T at eps_* = T^2, drawn for T = 0.8
+  \node[font=\normalsize] at (-0.95,2.75) {(a)};
+  \draw[->] (-0.8,0) -- (1.75,0) node[below left]{$\varepsilon$};
+  \draw[->] (0,-0.15) -- (0,2.75) node[above]{$\lds$};
+  \draw[lds,domain=0:1.6,samples=120,smooth] plot (\x,{2*sqrt(\x)});
+  % tangent at eps = 0.64: s = 1.6 + (eps - 0.64)/0.8, zero at eps = -0.64
+  \draw[edge] (-0.74,-0.125) -- (1.45,2.6125);
+  \fill[orange!85!black] (0.64,1.6) circle (1.5pt);
+  \draw[guide] (0.64,0) -- (0.64,1.6) -- (0,1.6);
+  \node[below,font=\scriptsize] at (0.64,0) {$\varepsilon_*$};
+  \node[left,font=\scriptsize] at (0,1.6) {$S/V$};
+  \fill (-0.64,0) circle (1.3pt);
+  \node[below,font=\scriptsize] at (-0.64,0) {$\omega(T)$};
+  \node[below,font=\scriptsize] at (0,0) {$\varepsilon_0$};
+  \node[font=\scriptsize,orange!85!black,anchor=north west] at (1.0,1.95) {slope $1/T$};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[ldsgraph,x=4.2cm,y=1.6cm]
+  % panel (b): the lines y = eps - 2 sqrt(eps) T and their envelope y = -T^2
+  \node[font=\normalsize] at (-0.2,1.75) {(b)};
+  \begin{scope}
+    \clip (0,-1.72) rectangle (1.32,1.7);
+    \foreach \e in {0.04,0.16,0.36,1.0,1.44}
+      \draw[member] (0,\e) -- (1.4,{\e-2*sqrt(\e)*1.4});
+    \draw[edge] (0,0.64) -- (1.4,{0.64-1.6*1.4});
+    \draw[lds,domain=0:1.3,samples=80,smooth] plot (\x,{-\x*\x});
+  \end{scope}
+  \draw[->] (0,0) -- (1.42,0) node[below]{$T$};
+  \draw[->] (0,-1.75) -- (0,1.75) node[above]{$y$};
+  \fill[orange!85!black] (0.8,-0.64) circle (1.5pt);
+  \fill (0,0.64) circle (1.3pt);
+  \node[left,font=\scriptsize] at (0,0.64) {$\varepsilon_*$};
+  \node[left,font=\scriptsize] at (0,0) {$\varepsilon_0$};
+  \draw[guide] (0.8,0) -- (0.8,-0.64);
+  \node[above,font=\scriptsize] at (0.8,0) {$T$};
+  \node[font=\scriptsize,orange!85!black,anchor=south west,fill=white,inner sep=1pt] (sl) at (0.9,0.25) {slope $-S/V$};
+  \draw[thin,orange!85!black] (sl.south west) -- (0.42,-0.02);
+  \node[font=\scriptsize,blue!60!black,anchor=north east] at (0.98,-1.15) {$\omega(T)$};
+  \node[font=\scriptsize,gray!40!black,anchor=west] at (0.62,1.15) {lines $\varepsilon-T\lds(\varepsilon)$};
+\end{tikzpicture}
+\caption{The two readings of Eq.~\eqref{M-eq:filt_legendre}, drawn for
+$\lds=2\sqrt{\varepsilon-\varepsilon_0}$, for which $\varepsilon_*-\varepsilon_0=T^{2}$
+and $\omega-\varepsilon_0=-T^{2}$.
+(a)~Plane of the energy and the \lndos{}: the tangent of slope $1/T$
+(orange) touches the graph of $\lds$ (blue) at the thermal energy
+$\varepsilon_*$, where $\lds=S/V$, and crosses the energy axis at
+$\omega(T)$.
+(b)~Plane of the temperature and the potential: each energy $\varepsilon$
+is a straight line (grey) that starts at $\varepsilon$ with the slope
+$-\lds(\varepsilon)$. The potential $\omega(T)$ (blue) is the envelope of
+the lines and their lower boundary. The line of the thermal energy (orange)
+touches it at the temperature $T$; its slope is $-S/V$ and its value at
+$T=0$ is $\varepsilon_*$. A point of one graph is a tangent of the other.}
+\label{fig:envelope}
+\end{figure}
+
+\paragraph{The envelope.} The second condition of Eq.~\eqref{eq:env_cond}
+for the family~\eqref{eq:env_family} is
+$1-T\,\partial\lds/\partial\varepsilon=0$, the stationarity
+condition~\eqref{M-eq:filt_stat}. With the energy as the parameter, the
+envelope is the curve
+\begin{equation}\label{eq:env_param}
+  T(\varepsilon)=\frac{1}{\lds_\varepsilon(\varepsilon)} ,\qquad
+  y(\varepsilon)=\varepsilon-\frac{\lds(\varepsilon)}{\lds_\varepsilon(\varepsilon)} ,
+  \qquad \lds_\varepsilon:=\frac{\partial\lds}{\partial\varepsilon} .
+\end{equation}
+By Section~\ref{sec:env_def} the graph of $\omega$ is the part of this
+curve on which $\varepsilon$ is the minimiser $\varepsilon_*(T)$. If $\lds$
+is strictly concave, $\lds_\varepsilon$ decreases with the energy, each
+temperature occurs once in Eq.~\eqref{eq:env_param}, the stationary point
+is the minimum, and the envelope is the graph of $\omega$.
+
+\paragraph{What the point of contact gives.} At the temperature $T$ the
+graph of $\omega$ touches the line of the thermal energy $\varepsilon_*(T)$.
+The line and the graph have the same slope there, and the line is known
+from its two constants:
+\begin{equation}\label{eq:env_read}
+  \frac{\partial\omega}{\partial T}\bigg|_{\mu}=-\lds(\varepsilon_*)=-\frac{S}{V} ,
+  \qquad
+  \omega-T\,\frac{\partial\omega}{\partial T}\bigg|_{\mu}=\varepsilon_*=u-\mu n .
+\end{equation}
+The first relation is Eq.~\eqref{M-eq:filt_dwdT}; the second states that
+the tangent to the graph of $\omega$ at $T$, continued to $T=0$, has the
+value $\varepsilon_*$ there, and is the first relation of
+Eq.~\eqref{M-eq:filt_exactV}. The entropy and the energy are thus the slope
+and the intercept of the tangent to $\omega(T)$.\footnote{With
+$e(s)$ the inverse function of $\lds(\varepsilon)$, the two relations
+combine to $\omega=T\omega'+e(-\omega')$, with $\omega'=\partial\omega/\partial T$.
+This is a differential equation of Clairaut's form, $y=xy'+f(y')$. Its
+general solutions are the straight lines~\eqref{eq:env_family}, and its
+singular solution is their envelope.} In the other plane
+(Fig.~\ref{fig:envelope}a) the tangent to the graph of $\lds$ at
+$\varepsilon_*$ is
+$\varepsilon\mapsto\lds(\varepsilon_*)+(\varepsilon-\varepsilon_*)/T$; it
+vanishes at $\varepsilon=\varepsilon_*-T\lds(\varepsilon_*)=\omega(T)$. The
+two planes are related by the exchange of points and tangents
+(Table~\ref{tab:envelope}).
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Correspondence between the graph of the \lndos{} and the graph of
+the thermodynamic potential.}
+\label{tab:envelope}
+\begin{tabular}{ll}
+\toprule
+plane $(\varepsilon,\lds)$ & plane $(T,\omega)$ \\
+\midrule
+point $(\varepsilon,\lds(\varepsilon))$ of the graph & straight line $\varepsilon-T\lds(\varepsilon)$ \\
+tangent of slope $1/T$, zero at $\omega(T)$ & point $(T,\omega(T))$ of the graph \\
+slope $\lds_\varepsilon=1/T$ & abscissa $T$ \\
+ordinate $\lds(\varepsilon_*)$ & slope $-\partial\omega/\partial T$ \\
+curvature $\lds_{\varepsilon\varepsilon}$ & $\partial^{2}\omega/\partial T^{2}=1/T^{3}\lds_{\varepsilon\varepsilon}$ \\
+straight segment of slope $1/T_1$ & kink at $T_1$ \\
+point of vanishing curvature & point of infinite curvature \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{The lowest temperatures.} For $T\to0$ the lower boundary is the
+line of the ground state, $\varepsilon_0-T\lds(\varepsilon_0)$: the graph of
+$\omega$ starts at $\varepsilon_0$ with the slope $-\lds(\varepsilon_0)$,
+which is zero if there is no residual entropy and $-\lds_0$ if the number of
+ground states is exponential in the size
+(Section~\ref{M-sec:frustration}).
+
+\subsection{Concavity of the potential}
+\label{sec:env_concave}
+
+\begin{proposition}\label{prop:env_concave}
+For any function $\lds(\varepsilon)$ for which the minimum in
+Eq.~\eqref{M-eq:filt_legendre} exists, concave or not, $\omega(T)$ is a
+concave function of $T$.
+\end{proposition}
+\begin{proof}
+Let $T=(1-x)T_1+xT_2$ with $0\le x\le1$. Each member of the
+family~\eqref{eq:env_family} is linear in $T$, so that for every
+$\varepsilon$
+\[
+  F(T;\varepsilon)=(1-x)\,F(T_1;\varepsilon)+x\,F(T_2;\varepsilon)
+  \ge(1-x)\,\omega(T_1)+x\,\omega(T_2) ,
+\]
+because $\omega(T_i)$ is the smallest value of $F(T_i;\cdot)$. The
+right-hand side does not depend on $\varepsilon$; the minimum of the
+left-hand side over $\varepsilon$ gives
+$\omega(T)\ge(1-x)\,\omega(T_1)+x\,\omega(T_2)$.
+\end{proof}
+The energy is only a label in this argument, and no property of $\lds$ is
+used. Three consequences follow.
+\begin{itemize}\setlength{\itemsep}{2pt}
+\item \emph{Sign of the heat capacity.} Where $\omega$ is twice
+  differentiable, concavity is $\partial^{2}\omega/\partial T^{2}\le0$, i.e.\
+  $c_\mu=-T\,\partial^{2}\omega/\partial T^{2}\ge0$
+  (Eq.~\eqref{M-eq:filt_exactV}). At a finite size the same statement is
+  $\partial^{2}\ln\Xi/\partial\beta^{2}=\Var(\hat{\mathcal H})\ge0$,
+  Eq.~\eqref{M-eq:filt_moments}.
+\item \emph{Curvatures.} The derivative of the first relation of
+  Eq.~\eqref{eq:env_read} is
+  $\partial^{2}\omega/\partial T^{2}=-\lds_\varepsilon(\varepsilon_*)\,\partial\varepsilon_*/\partial T=-c_\mu/T$,
+  and with Eq.~\eqref{M-eq:filt_curvmain},
+  $\partial^{2}\omega/\partial T^{2}=1/T^{3}\lds_{\varepsilon\varepsilon}(\varepsilon_*)$:
+  the curvatures of the two graphs at corresponding points are inversely
+  proportional. A nearly straight part of the graph of $\lds$ is a
+  strongly curved part of the graph of $\omega$.
+\item \emph{The inverse construction.} For every $T>0$ and every
+  $\varepsilon$, $\omega(T)\le\varepsilon-T\lds(\varepsilon)$, i.e.\
+  $\lds(\varepsilon)\le[\varepsilon-\omega(T)]/T$, with equality if and only
+  if $\varepsilon$ is a minimiser at the temperature $T$. The straight
+  lines $\varepsilon\mapsto[\varepsilon-\omega(T)]/T$ in the plane
+  $(\varepsilon,\lds)$, labelled by $T$, are the tangents of
+  Fig.~\ref{fig:envelope}a, and their lower boundary,
+  Eq.~\eqref{eq:filt_legendre_inv}, is a concave function by the argument
+  of Proposition~\ref{prop:env_concave}. It is the smallest concave
+  function that is nowhere below $\lds$, the \emph{concave hull} of
+  $\lds$~\cite{Rockafellar}. It equals $\lds$ at the energies that are
+  minimisers at some temperature, and exceeds it at the others.
+\end{itemize}
+The two directions are therefore not equivalent. The potential is concave
+in $T$ for every spectrum, whereas the concavity of $\lds$ is a property of
+the Hamiltonian, which holds for short-range interactions
+(Section~\ref{sec:second_conc}). A parameter $\hfield$ does not enter the
+family~\eqref{eq:env_family} linearly, and
+Proposition~\ref{prop:env_concave} does not apply to the dependence of
+$\omega$ on it.
+
+\subsection{Transitions}
+\label{sec:env_nonconcave}
+
+The envelope~\eqref{eq:env_param} is a smooth curve, and equal to the graph
+of $\omega$, as long as $\lds$ is strictly concave and twice differentiable.
+The transitions of Section~\ref{M-sec:transitions} are the ways in which
+this fails.
+
+\begin{figure}[htbp]
+\centering
+\tikzset{
+  ldsgraph/.style={>=Stealth,font=\small},
+  lds/.style={very thick,blue!60!black},
+  edge/.style={very thick,orange!85!black},
+  guide/.style={thin,dotted,gray!80!black},
+  meta/.style={very thick,blue!60!black,dashed},
+  alt/.style={very thick,red!75!black},
+  member/.style={thin,gray!70!black},
+}
+\begin{tikzpicture}[ldsgraph,x=2.3cm,y=1.6cm]
+  % panel (a): s = 1.15 + e + 0.45 e^2 - 0.4 e^4, e = eps - 1; common tangent of slope 1 at e = -0.75, 0.75
+  \node[font=\normalsize] at (-0.35,2.55) {(a)};
+  \draw[->] (-0.1,0) -- (2.15,0) node[below left]{$\varepsilon$};
+  \draw[->] (0,-0.1) -- (0,2.55) node[above]{$\lds$};
+  \draw[lds,domain=-1:-0.75,samples=40,smooth,variable=\e]
+    plot ({1+\e},{1.15+\e+0.45*\e*\e-0.4*\e*\e*\e*\e});
+  \draw[meta,domain=-0.75:-0.433,samples=30,smooth,variable=\e]
+    plot ({1+\e},{1.15+\e+0.45*\e*\e-0.4*\e*\e*\e*\e});
+  \draw[alt,domain=-0.433:0.433,samples=40,smooth,variable=\e]
+    plot ({1+\e},{1.15+\e+0.45*\e*\e-0.4*\e*\e*\e*\e});
+  \draw[meta,domain=0.433:0.75,samples=30,smooth,variable=\e]
+    plot ({1+\e},{1.15+\e+0.45*\e*\e-0.4*\e*\e*\e*\e});
+  \draw[lds,domain=0.75:0.93,samples=40,smooth,variable=\e]
+    plot ({1+\e},{1.15+\e+0.45*\e*\e-0.4*\e*\e*\e*\e});
+  \draw[edge] (0.25,0.5266) -- (1.75,2.0266);
+  \fill[orange!85!black] (0.25,0.5266) circle (1.4pt);
+  \fill[orange!85!black] (1.75,2.0266) circle (1.4pt);
+  \draw[guide] (0.25,0) -- (0.25,0.5266);
+  \draw[guide] (1.75,0) -- (1.75,2.0266);
+  \node[below,font=\scriptsize] at (0.25,0) {$\varepsilon_-$};
+  \node[below,font=\scriptsize] at (1.75,0) {$\varepsilon_+$};
+  \node[font=\scriptsize,orange!85!black,anchor=south east] at (0.95,1.3) {slope $1/T_1$};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[ldsgraph,x=4.3cm,y=2.3cm]
+  % panel (b): the envelope T = 1/s', y = eps - s/s' for the logdos of panel (a)
+  \node[font=\normalsize] at (0.47,0.3) {(b)};
+  \draw[->] (0.55,-1.5) -- (1.65,-1.5) node[below left]{$T$};
+  \draw[->] (0.55,-1.5) -- (0.55,0.3) node[above]{$y$};
+  \draw[lds,domain=-1:-0.75,samples=40,smooth,variable=\e]
+    plot ({1/(1+0.9*\e-1.6*\e*\e*\e)},{1+\e-(1.15+\e+0.45*\e*\e-0.4*\e*\e*\e*\e)/(1+0.9*\e-1.6*\e*\e*\e)});
+  \draw[meta,domain=-0.75:-0.433,samples=30,smooth,variable=\e]
+    plot ({1/(1+0.9*\e-1.6*\e*\e*\e)},{1+\e-(1.15+\e+0.45*\e*\e-0.4*\e*\e*\e*\e)/(1+0.9*\e-1.6*\e*\e*\e)});
+  \draw[alt,domain=-0.433:0.433,samples=60,smooth,variable=\e]
+    plot ({1/(1+0.9*\e-1.6*\e*\e*\e)},{1+\e-(1.15+\e+0.45*\e*\e-0.4*\e*\e*\e*\e)/(1+0.9*\e-1.6*\e*\e*\e)});
+  \draw[meta,domain=0.433:0.75,samples=30,smooth,variable=\e]
+    plot ({1/(1+0.9*\e-1.6*\e*\e*\e)},{1+\e-(1.15+\e+0.45*\e*\e-0.4*\e*\e*\e*\e)/(1+0.9*\e-1.6*\e*\e*\e)});
+  \draw[lds,domain=0.75:0.9,samples=40,smooth,variable=\e]
+    plot ({1/(1+0.9*\e-1.6*\e*\e*\e)},{1+\e-(1.15+\e+0.45*\e*\e-0.4*\e*\e*\e*\e)/(1+0.9*\e-1.6*\e*\e*\e)});
+  \fill[orange!85!black] (1,-0.2766) circle (1.5pt);
+  \draw[guide] (1,-1.5) -- (1,-0.2766);
+  \node[below,font=\scriptsize] at (1,-1.5) {$T_1$};
+  \node[font=\scriptsize,blue!60!black,anchor=north east] at (1.22,-0.85) {$\omega(T)$};
+  \node[font=\scriptsize,red!75!black,anchor=south west] at (1.08,-0.15) {maxima};
+  \node[font=\scriptsize,blue!60!black,anchor=north west] at (1.28,-0.52) {metastable};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[ldsgraph,x=4.3cm,y=2.3cm]
+  % panel (c): concave logdos with a straight segment: the lines of the segment pass through the kink
+  \node[font=\normalsize] at (0.47,0.3) {(c)};
+  \draw[->] (0.55,-1.5) -- (1.65,-1.5) node[below left]{$T$};
+  \draw[->] (0.55,-1.5) -- (0.55,0.3) node[above]{$y$};
+  \begin{scope}
+    \clip (0.55,-1.5) rectangle (1.62,0.28);
+    \foreach \s in {0.5266,0.9,1.3,1.7,2.0266}
+      \draw[member] (0.5,{-0.2766+0.5*\s}) -- (1.7,{-0.2766-0.7*\s});
+  \end{scope}
+  \draw[lds,domain=-1:-0.75,samples=40,smooth,variable=\e]
+    plot ({1/(1+0.9*\e-1.6*\e*\e*\e)},{1+\e-(1.15+\e+0.45*\e*\e-0.4*\e*\e*\e*\e)/(1+0.9*\e-1.6*\e*\e*\e)});
+  \draw[lds,domain=0.75:0.9,samples=40,smooth,variable=\e]
+    plot ({1/(1+0.9*\e-1.6*\e*\e*\e)},{1+\e-(1.15+\e+0.45*\e*\e-0.4*\e*\e*\e*\e)/(1+0.9*\e-1.6*\e*\e*\e)});
+  \fill[orange!85!black] (1,-0.2766) circle (1.5pt);
+  \draw[guide] (1,-1.5) -- (1,-0.2766);
+  \node[below,font=\scriptsize] at (1,-1.5) {$T_1$};
+  \node[font=\scriptsize,blue!60!black,anchor=north east] at (1.22,-0.85) {$\omega(T)$};
+\end{tikzpicture}
+\caption{Discontinuous transition in the plane $(T,y)$.
+(a)~A \lndos{} that is not concave between $\varepsilon_-$ and
+$\varepsilon_+$, with the common tangent of slope $1/T_1$ (orange). Solid
+blue: energies that are minimisers at some temperature; dashed: local
+minima of $\varepsilon-T\lds(\varepsilon)$ that are not the lowest; red:
+local maxima ($\lds_{\varepsilon\varepsilon}>0$).
+(b)~The envelope~\eqref{eq:env_param} of the same \lndos{}, with the same
+marking. The curve turns back at the two energies at which
+$\lds_{\varepsilon\varepsilon}=0$ and crosses itself at $T_1$. The potential
+$\omega(T)$ is its lower boundary (solid blue), with a kink at $T_1$; the
+dashed and the red branches lie above it.
+(c)~The concave hull of the \lndos{} of panel~(a), which is linear on
+$[\varepsilon_-,\varepsilon_+]$: the lines of all energies of the interval
+(grey) pass through the point $(T_1,\omega(T_1))$, and $\omega(T)$ is the
+same as in panel~(b).}
+\label{fig:swallowtail}
+\end{figure}
+
+\paragraph{Discontinuous transition, non-concave \lndos.} Let
+$\lds_{\varepsilon\varepsilon}>0$ on an interval
+$(\varepsilon_a,\varepsilon_b)$ and $\lds_{\varepsilon\varepsilon}<0$
+outside it (Fig.~\ref{fig:swallowtail}a). Along the
+envelope~\eqref{eq:env_param},
+\[
+  \frac{dT}{d\varepsilon}=-\frac{\lds_{\varepsilon\varepsilon}}{\lds_\varepsilon^{2}} ,
+  \qquad
+  \frac{dy}{d\varepsilon}=\frac{\lds\,\lds_{\varepsilon\varepsilon}}{\lds_\varepsilon^{2}}
+  =-\lds\,\frac{dT}{d\varepsilon} .
+\]
+The temperature increases with the energy where $\lds$ is concave and
+decreases on $(\varepsilon_a,\varepsilon_b)$. Both derivatives vanish at
+$\varepsilon_a$ and $\varepsilon_b$, where the curve reverses its direction
+in a cusp\footnote{A \emph{cusp} of a curve is a point at which its
+direction of motion reverses while the tangent remains continuous; here the
+slope $dy/dT=-\lds$ is continuous through $\varepsilon_a$ and
+$\varepsilon_b$.}. The envelope therefore consists of three branches
+(Fig.~\ref{fig:swallowtail}b): the energies below $\varepsilon_a$, those
+above $\varepsilon_b$, and those between, which are local maxima of
+$F(T;\cdot)$ because
+$\partial^{2}F/\partial\varepsilon^{2}=-T\lds_{\varepsilon\varepsilon}<0$
+there. For the temperatures between $T(\varepsilon_b)$ and
+$T(\varepsilon_a)$ all three branches are present. Since the slope
+$-\lds$ of the upper-energy branch is the more negative, the two outer
+branches cross at one temperature $T_1$, at which the two energies
+$\varepsilon_-<\varepsilon_a$ and $\varepsilon_+>\varepsilon_b$ have the
+same value of $F$: Eq.~\eqref{M-eq:filt_equal}. The lower boundary follows
+the branch of the lower energies up to $T_1$ and that of the higher
+energies above, and has a kink at $T_1$ with the change of slope
+$-[\lds(\varepsilon_+)-\lds(\varepsilon_-)]$, the jump of the entropy. The
+continuations of the two branches beyond $T_1$, up to the cusps, are the
+metastable states of Section~\ref{M-sec:transitions}; the cusps are the
+temperatures at which a metastable state ceases to exist. The energies
+between $\varepsilon_-$ and $\varepsilon_+$ lie on no part of the lower
+boundary: their lines are above $\omega(T)$ at every temperature. The
+potential does not distinguish this \lndos{} from its concave hull.
+
+\paragraph{Discontinuous transition, concave \lndos.} If $\lds$ is linear on
+$[\varepsilon_-,\varepsilon_+]$ with the slope $1/T_1$,
+$\lds(\varepsilon)=\lds(\varepsilon_-)+(\varepsilon-\varepsilon_-)/T_1$, then
+for every energy of the interval
+$F(T_1;\varepsilon)=\varepsilon_--T_1\lds(\varepsilon_-)=\omega(T_1)$: all
+lines of the interval pass through the single point $(T_1,\omega(T_1))$,
+with slopes from $-\lds(\varepsilon_-)$ to $-\lds(\varepsilon_+)$
+(Fig.~\ref{fig:swallowtail}c). The part of the envelope that belongs to the
+interval is this one point, and the lower boundary has a kink there. A
+straight segment of the graph of $\lds$ is a kink of the graph of $\omega$;
+conversely, a kink of $\lds$ at an energy $\varepsilon_1$, with the slopes
+$1/T_a>1/T_b$ on its two sides, makes $\varepsilon_1$ the minimiser for all
+$T_a\le T\le T_b$, and $\omega$ coincides with the single line
+$\varepsilon_1-T\lds(\varepsilon_1)$ on that range of temperatures.
+
+\paragraph{Continuous transition.} As the interval
+$(\varepsilon_a,\varepsilon_b)$ of the non-concave case shrinks to a single
+energy $\varepsilon_c$, the two cusps and the crossing merge into one point
+of the envelope, at which $\lds_{\varepsilon\varepsilon}=0$ and
+$dT/d\varepsilon=0$ without a reversal of the direction. The graph of
+$\omega$ has no kink there, and its curvature
+$1/T^{3}\lds_{\varepsilon\varepsilon}$ is infinite: the heat capacity
+diverges (case~(b) of Section~\ref{M-sec:transitions}). A critical point is
+in this sense the end of a line of discontinuous transitions. At a
+crossover the envelope is smooth and only its curvature varies rapidly.
 
 \section{Quadratic Hamiltonians: the single-particle filters}
 \label{app:quadratic}

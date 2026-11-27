@@ -776,6 +776,23 @@ $\lds(\varepsilon)\le\lds(\varepsilon_*)+(\varepsilon-\varepsilon_*)/T$. With
 increasing $T$ the point of contact moves from the ground state ($T\to0$) to
 the energy at which $\lds$ reaches its maximum ($T\to\infty$).
 
+The potential $\omega(T)$ is a concave function of $T$ whatever the form of
+$\lds$: concave, convex, or neither. For each fixed $\varepsilon$ the
+function $T\mapsto\varepsilon-T\lds(\varepsilon)$ is linear in $T$. For
+$T=(1-x)T_1+xT_2$ with $0\le x\le1$ it therefore equals
+$(1-x)[\varepsilon-T_1\lds(\varepsilon)]+x[\varepsilon-T_2\lds(\varepsilon)]
+\ge(1-x)\,\omega(T_1)+x\,\omega(T_2)$, and the minimum over $\varepsilon$ of
+the left-hand side gives
+\begin{equation}\label{eq:filt_wconcave}
+  \omega\big((1-x)T_1+xT_2\big)\ge(1-x)\,\omega(T_1)+x\,\omega(T_2) .
+\end{equation}
+The energy is only a label in this argument, and no property of $\lds$ is
+used. By Eq.~\eqref{eq:filt_exactV} the concavity is $c_\mu\ge0$. The
+converse does not hold: the concavity of $\lds$ is a property of the
+Hamiltonian (short-range interactions), and where it fails $\omega$ remains
+concave and determines only the concave hull of $\lds$
+(Section~\ref{sec:transitions}).
+
 \paragraph{The temperature as the unit of the excitation energy.} For
 $T>0$ let $x:=(\varepsilon-\varepsilon_0)/T\ge0$ be the excitation energy
 per unit volume in units of the temperature. Then
@@ -819,6 +836,43 @@ the later sections work out.
   $\hfield/T^{\,b/(1-\sigma)}$ (Assumption~\ref{ass:hom0} and
   Proposition~\ref{prop:scaling0}).
 \end{itemize}
+These statements are instances of one property of the Legendre transform:
+it respects dilations. For a function $f$ of the excitation energy let
+$f^{\star}(\beta):=\min_{x\ge0}[\beta x-f(x)]$, so that
+Eq.~\eqref{eq:filt_legendre} reads
+$(\omega-\varepsilon_0)/T=\lds^{\star}(1/T)$ with $\lds$ as a function of
+$\delta\varepsilon$. The substitution $x=x'/\lambda$ in the minimisation,
+and the factorisation $\beta x-\lambda^{\sigma}f=\lambda^{\sigma}[(\beta/\lambda^{\sigma})x-f]$,
+give for every $\lambda>0$
+\begin{equation}\label{eq:filt_dilation}
+  g(x)=f(\lambda x)\ \Rightarrow\ g^{\star}(\beta)=f^{\star}(\beta/\lambda) ,
+  \qquad
+  g(x)=\lambda^{\sigma}f(x)\ \Rightarrow\ g^{\star}(\beta)=\lambda^{\sigma}f^{\star}(\beta/\lambda^{\sigma}) :
+\end{equation}
+a dilation of the argument of $f$, or of its values, is a dilation of the
+argument and of the values of $f^{\star}$. If
+$f(\lambda x)=\lambda^{\sigma}f(x)$, the two left-hand sides are the same
+function $g$, and equating the right-hand sides at
+$\beta=\lambda^{\sigma}\beta'$ gives
+\[
+  f^{\star}(\lambda^{\sigma-1}\beta')=\lambda^{\sigma}f^{\star}(\beta') :
+\]
+the transform of a homogeneous function of degree $\sigma$ is homogeneous
+of the degree $\sigma'=\sigma/(\sigma-1)$, i.e.\ $1/\sigma+1/\sigma'=1$
+(Appendix~\ref{sec:tools_min}). For $\lds$ this is
+$(\omega-\varepsilon_0)/T\propto T^{\sigma/(1-\sigma)}$, the result of the
+first item. A further argument of $f$, rescaled together with $x$, is
+carried through the same two steps (Lemma~\ref{lem:rescale}). Homogeneity of the level count is therefore
+inherited by the thermodynamic potential whatever the Hamiltonian; the
+exponents are an input and the scaling form is not.\footnote{The same
+transformation relates the Lagrangian $L(v)$ and the Hamiltonian
+$H(p)=\max_v[pv-L(v)]$ of mechanics. Up to signs, the energy density
+corresponds to the velocity $v$, $\beta$ to the momentum $p$, $\lds$ to $L$
+and $\beta\omega$ to $H$; the stationarity condition~\eqref{eq:filt_stat}
+corresponds to $p=\partial L/\partial v$, and
+$u-\mu n=\partial(\beta\omega)/\partial\beta$ (Eq.~\eqref{eq:filt_exactV}) to
+$v=\partial H/\partial p$. The kinetic energy $L=mv^{2}/2$, homogeneous of
+degree $2$, gives $H=p^{2}/2m$, of the conjugate degree $2$.}
 
 \paragraph{Energy, entropy and heat capacity.} Insert
 Eq.~\eqref{eq:filt_legendre} into the exact
